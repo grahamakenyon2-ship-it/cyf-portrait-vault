@@ -1,0 +1,30 @@
+name: paint-vault
+on:
+  schedule:
+    - cron: "0 */6 * * *"   # every six hours, until the roster is complete
+  workflow_dispatch: {}      # also runnable by hand from the Actions tab
+permissions:
+  contents: write
+jobs:
+  paint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Paint the missing faces
+        run: |
+          if node paint.mjs; then
+            git config user.name "portrait-keeper"
+            git config user.email "keeper@users.noreply.github.com"
+            git add -A
+            git diff --cached --quiet && echo "nothing new" && exit 0
+            git commit -m "gallery: new portraits"
+            git push
+          else
+            echo "painter finished with nothing new (or paused) - no commit"
+          fi
+        env:
+          MISTRAL_KEY: ${{ secrets.MISTRAL_KEY }}
+          BATCH: 15
