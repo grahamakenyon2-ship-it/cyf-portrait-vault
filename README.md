@@ -46,10 +46,4 @@ first fetch even offline (portraits are cached in the browser forever).
 
 ## Notes
 
-- Full roster at 15 faces per run, 4 runs a day = ~60 portraits/day:
-  the whole 1,335-face gallery completes in about 3 weeks. Raise BATCH
-  in the workflow (e.g. 30) to go faster; the painter respects rate
-  limits either way.
-- Portraits bill per image to the Mistral key in use.
-- To stop painting when done: disable the workflow in the Actions tab.
-  The vault keeps serving.
+
