@@ -1,0 +1,39 @@
+name: paint-themes
+on:
+  workflow_dispatch: {}           # run by hand from the Actions tab; no cron - four textures, once
+permissions:
+  contents: write
+  actions: write                 # lets the workflow disable itself when the vault is full
+concurrency:
+  group: paint-themes
+  cancel-in-progress: false
+jobs:
+  paint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Paint the missing textures
+        run: |
+          node paint-themes.mjs
+          rc=$?
+          if [ "$rc" -eq 0 ]; then
+            git config user.name "theme-keeper"
+            git config user.email "keeper@users.noreply.github.com"
+            git add -A
+            git diff --cached --quiet && echo "nothing new" && exit 0
+            git commit -m "themes: new dress textures"
+            git push
+          elif [ "$rc" -eq 2 ]; then
+            echo "THEME VAULT COMPLETE - every dress has its texture. Disabling this workflow."
+            curl -s -X POST -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/workflows/paint-themes.yml/disable"
+          else
+            echo "theme painter stopped early (key refused, rate limits, or errors) - run it again from the Actions tab"
+            exit 1
+          fi
+        env:
+          MISTRAL_KEY: ${{ secrets.MISTRAL_KEY }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
