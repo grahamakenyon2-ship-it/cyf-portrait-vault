@@ -1,49 +1,52 @@
 # cyf-portrait-vault
 
-The online portrait vault for "Choose Your Fate". GitHub Actions paints
-the roster of 1,335 documented rulers and canon leaders automatically, on
-a schedule, and Pages serves the finished portraits to the game. You never
-run anything, and you never import anything.
+The online portrait vault for "Choose Your Fate". GitHub Actions paints the
+roster of documented rulers and canon leaders when YOU trigger it, and Pages
+serves the finished portraits to the game. You never run anything, and you
+never import anything.
 
-## One-time setup (~5 minutes)
+## How it works (v4)
 
-1. Create a new GitHub repository named `cyf-portrait-vault` (public, so
-   Pages can serve the images for free).
-2. Upload these files to the repo root:
-   - `paint.mjs` (the server-side painter)
-   - `roster.json` (the 1,335 faces + their true-likeness prompts)
-   - `.github/workflows/paint-vault.yml` (the schedule)
-3. In the repo: Settings -> Pages -> Branch: `main`, folder: `/ (root)`,
-   Save. Your vault URL will be
-   `https://YOUR-USERNAME.github.io/cyf-portrait-vault/`
-4. In the repo: Actions tab -> enable the `paint-vault` workflow. Run it
-   once by hand ("Run workflow") to start the first batch.
-5. (Optional) Settings -> Secrets -> add `MISTRAL_KEY` with your own key.
-   Without a secret, the game's built-in key is used.
+- `paint.mjs` (the Portrait Keeper v4) paints only the faces not yet in
+  `vault/`, then commits them. Nothing is ever painted twice.
+- The workflow runs ONLY on manual dispatch (Actions tab -> Run workflow).
+  There is no schedule - painting happens only when you ask for it, so the
+  spend is always deliberate. The `batch` input sets how many sittings the
+  run may paint (default 40).
+- The API key comes ONLY from the `MISTRAL_KEY` repo secret. Nothing is
+  hardcoded (an old key was accidentally committed once; rotate any key
+  that ever touches a public repo).
 
-That is all. From now on, every 6 hours the Action paints up to 15 more
-faces (with rate-limit patience), commits them, and Pages publishes them.
-Nothing is ever painted twice - the vault only grows.
+## Adding a new batch of faces
+
+Drop a compact seed file `roster-add/batchN.json` (array of
+`{k, u, g, d, n}` = key, universe, gender, appearance description, display
+name). The keeper expands each seed into a full prompt by cloning the
+  template face of the same universe from `roster.json`, then paints it.
+See `roster-add/batch1.json` for the format.
+
+## One-time setup
+
+1. Settings -> Pages -> Branch: `main`, folder: `/ (root)`, Save.
+   Vault URL: `https://YOUR-USERNAME.github.io/cyf-portrait-vault/`
+2. Settings -> Secrets and variables -> Actions -> New repository secret:
+   name `MISTRAL_KEY`, value = your Mistral API key.
+3. Actions tab -> enable the `paint-vault` workflow -> "Run workflow" to
+   paint the current batch.
 
 ## The game side
 
 In Choose Your Fate v186+: Settings -> The Portrait Vault -> paste the
-Pages URL from step 3 -> Keep. The game confirms how many likenesses the
-vault holds. From then on, any documented ruler the game assigns is hung
-from the web vault instantly - automatic, no imports, works after the
-first fetch even offline (portraits are cached in the browser forever).
+Pages URL -> Keep. The game fetches `vault/index.json` and hangs any
+matching portrait instantly; fetched portraits are cached in the browser
+forever.
 
 ## Files
 
-- `paint.mjs` - paints missing faces via the Mistral image agent, writes
-  `vault/<name>.<ext>` + `vault/index.json`, resumable, rate-limit aware.
-- `roster.json` - [{k: face key, u: universe, p: prompt}] - generated from
-  the game's own FAMOUS_FACES / UNIVERSE_CANON / AI_STYLE data, so every
-  prompt is exactly as lore- and history-accurate as a live sitting.
-- `.github/workflows/paint-vault.yml` - cron every 6h + manual dispatch.
-- `vault/` - created by the painter; the paintings and the index the game
-  fetches.
-
-## Notes
-
-
+- `paint.mjs` - the Portrait Keeper v4 (secret-only key, seed expansion,
+  concurrency, rate-limit patience, moderation recovery).
+- `roster.json` - the 1,335 painted faces with their full prompts.
+- `roster-add/batch1.json` - 57 new faces (batch 1) in compact seed form.
+- `.github/workflows/paint-vault.yml` - manual-dispatch workflow.
+- `vault/` - the paintings and `index.json` the game fetches.
+- `agent-v3.txt` - the cached Mistral painter agent id.

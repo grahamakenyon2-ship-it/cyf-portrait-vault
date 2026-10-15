@@ -1,8 +1,11 @@
 name: paint-vault
 on:
-  schedule:
-    - cron: "*/30 * * * *"   # every 30 minutes, until the roster is complete
-  workflow_dispatch: {}      # also runnable by hand from the Actions tab
+  workflow_dispatch:      # manual only - run from the Actions tab when a batch should be painted
+    inputs:
+      batch:
+        description: 'Sittings per run (default 40)'
+        required: false
+        default: '40'
 permissions:
   contents: write
 concurrency:
@@ -30,5 +33,5 @@ jobs:
           fi
         env:
           MISTRAL_KEY: ${{ secrets.MISTRAL_KEY }}
-          BATCH: 40
+          BATCH: ${{ github.event.inputs.batch || '40' }}
           CONC: 4
