@@ -1,5 +1,5 @@
 // ================================================================
-// THE THEME KEEPER v6 - server-side texture painter for the
+// THE THEME KEEPER v7 - server-side texture painter for the
 // Choose Your Fate THEME VAULT (v242 THE COSTUMED COURT, v243 THE
 // FULL WARDROBE, v244 THE CROWN'S OWN DRESS, v245 THE HUNDRED
 // BANNERS, v247 THE LAST COURTS). Same pattern as the
@@ -11,6 +11,11 @@
 // token-only dress when the vault is empty or unreachable.
 // v5: 71 new nation dresses from v245 (118 keys x 3 assets).
 // v6: 116 new nation dresses from v247 THE LAST COURTS (234 keys x 3 assets).
+// v7: moderation recovery + hardened agent (image prompts free of proper nouns,
+// fresh agent-theme-v2.txt cache), bounded rate-limit retries, 2.5h run budget
+// (re-run to continue), failure diagnostics committed to themes/failures.txt.
+// Fixes run #2 (61 min, 0/287 painted, every commission image-less) while the
+// hardened portrait keeper kept painting through the same window.
 // v4: EVERY dress is a FULL dress - the 37 v244 realm/leader dresses
 // gained their own 9-slice panel frame and button face over the bg
 // sheets (47 keys x 3 assets). No regexes.
@@ -20,7 +25,7 @@ import path from 'path';
 
 const KEY = process.env.MISTRAL_KEY || '';
 if (!KEY) { console.error('MISTRAL_KEY secret is not set.'); process.exit(1); }
-const AGENT_FILE = 'agent-theme.txt';
+const AGENT_FILE = 'agent-theme-v2.txt';
 const THEMES_DIR = 'themes';
 
 // ---- the briefs: materials only - no franchises, no characters,
@@ -995,8 +1000,8 @@ async function agentId() {
   try { const id = fs.readFileSync(AGENT_FILE, 'utf8').trim(); if (id) return id; } catch (e) {}
   const r = await fetch('https://api.mistral.ai/v1/agents', { method: 'POST',
     headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + KEY },
-    body: JSON.stringify({ model: 'mistral-small-latest', name: 'CYF Theme Keeper v4', description: 'Paints UI background and frame textures for a strategy game.',
-      instructions: 'You are a court decorator. When given a texture commission, use the image generation tool to paint exactly what is described. Reply with the image only. Keep every texture seamless, dark, muted and low-contrast - it sits behind readable text in a game interface. Never paint letters, words or icons.',
+    body: JSON.stringify({ model: 'mistral-small-latest', name: 'CYF Theme Keeper v7', description: 'Paints UI background and frame textures for a strategy game.',
+      instructions: 'You are a court decorator. When given a texture commission, use the image generation tool to paint exactly what is described. Reply with the image only. Keep every texture seamless, dark, muted and low-contrast - it sits behind readable text in a game interface. Never paint letters, words or icons. When you write the image prompt, describe the materials and appearance only - use no proper nouns, no place names, no real people, and no franchise, book, film or game titles in the image prompt.',
       tools: [{ type: 'image_generation' }] }) });
   if (!r.ok) throw new Error('agent create failed (' + r.status + ')');
   const j = await r.json();
@@ -1014,28 +1019,48 @@ function magicMime(bytes) {
 }
 
 function readCanvas(j) {
-  let imgSrc = null, fileId = null;
+  let imgSrc = null, fileId = null, moderated = false;
   for (const o of (j.outputs || [])) {
     if (o && o.type === 'tool.execution' && o.name === 'image_generation' && o.info && o.info.result) {
+      if (String(o.info.result).indexOf('Moderation occurred') >= 0) moderated = true;
       try { const res = (typeof o.info.result === 'string') ? JSON.parse(o.info.result) : o.info.result; if (res && res.url) imgSrc = res.url; } catch (e) {}
     }
     if (o && o.content) for (const c of (o.content || [])) if (c.type === 'tool_file' && c.file_id) fileId = c.file_id;
   }
   if (!imgSrc && fileId) imgSrc = 'https://api.mistral.ai/v1/files/' + fileId + '/content';
-  return imgSrc;
+  return { imgSrc: imgSrc, moderated: moderated };
 }
 
-async function paintOne(ag, spec, prompt) {
+async function paintOne(ag, spec, prompt, attempt) {
   const key = spec[0], asset = spec[1];
   const r = await fetch('https://api.mistral.ai/v1/conversations', { method: 'POST',
     headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': 'Bearer ' + KEY },
     body: JSON.stringify({ inputs: prompt, stream: false, agent_id: ag }) });
   if (r.status === 401) throw new Error('refused (401)');
-  if (r.status === 429) { console.log(key + '/' + asset + ': rate-limited - pausing 30s'); await sleep(30000); return paintOne(ag, spec, prompt); }
+  if (r.status === 429) {
+    if ((attempt || 0) >= 4) throw new Error('rate-limited too long');
+    console.log(key + '/' + asset + ': rate-limited - pausing 60s');
+    await sleep(60000);
+    return paintOne(ag, spec, prompt, (attempt || 0) + 1);
+  }
   if (!r.ok) throw new Error('commission failed (' + r.status + ')');
   const j = await r.json();
-  const imgSrc = readCanvas(j);
-  if (!imgSrc) throw new Error('no canvas');
+  let cv = readCanvas(j);
+  // moderation recovery: re-commission the SAME texture in the same
+  // conversation, described only by plain materials (no proper nouns).
+  if (!cv.imgSrc && cv.moderated) {
+    console.log(key + '/' + asset + ': moderated - re-commissioning as plain materials');
+    const fr2 = await fetch('https://api.mistral.ai/v1/conversations/' + j.conversation_id, { method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': 'Bearer ' + KEY },
+      body: JSON.stringify({ stream: false,
+        inputs: 'That commission was blocked by image moderation. Repaint the SAME texture, but write the image prompt using ONLY plain physical description: materials, colors, textures, shapes and lighting described earlier. Absolutely no proper nouns, no place names, no real people, no franchise, book, show, film or game titles in the image prompt.' }) });
+    if (fr2.status === 401) throw new Error('refused (401)');
+    if (fr2.status === 429) throw new Error('rate-limited on re-commission');
+    if (!fr2.ok) throw new Error('re-commission failed (' + fr2.status + ')');
+    cv = readCanvas(await fr2.json());
+  }
+  const imgSrc = cv.imgSrc;
+  if (!imgSrc) throw new Error(cv.moderated ? 'no canvas (moderated twice)' : 'no canvas');
   const wantsAuth = imgSrc.indexOf('api.mistral.ai/') >= 0;   // plain check: no regex pitfalls
   const fr = await fetch(imgSrc, { headers: wantsAuth ? { Authorization: 'Bearer ' + KEY } : {} });
   const raw = fr.ok ? new Uint8Array(await fr.arrayBuffer()) : null;
@@ -1070,11 +1095,18 @@ for (const k of FULL) {
 }
 if (!todo.length) { console.log('THEME VAULT COMPLETE - every dress has its sheet, frame and face.'); process.exit(2); }
 const ag = await agentId();
-let painted = 0, failed = 0;
+let painted = 0, failed = 0, budgetHit = false;
+const T0 = Date.now();
+const BUDGET_MS = (Number(process.env.BUDGET_S || 9000)) * 1000;   // graceful partial exit; re-run to continue
+try { fs.unlinkSync('themes/failures.txt'); } catch (e) {}
 for (const spec of todo) {
-  try { await paintOne(ag, spec, spec[2]); painted++; }
-  catch (e) { console.log(spec[0] + '/' + spec[1] + ': FAILED - ' + e.message); failed++; }
+  if (Date.now() - T0 > BUDGET_MS) { console.log('run budget reached - exiting cleanly (re-run to continue)'); budgetHit = true; break; }
+  try { await paintOne(ag, spec, spec[2], 0); painted++; }
+  catch (e) {
+    console.log(spec[0] + '/' + spec[1] + ': FAILED - ' + e.message); failed++;
+    try { fs.appendFileSync('themes/failures.txt', spec[0] + '/' + spec[1] + ': ' + e.message + '\n'); } catch (e2) {}
+  }
   await sleep(2000);
 }
-console.log('painted ' + painted + ', failed ' + failed);
+console.log('painted ' + painted + ', failed ' + failed + (budgetHit ? ' (budget - re-run to continue)' : ''));
 process.exit(failed && !painted ? 1 : 0);

@@ -1,6 +1,6 @@
 name: paint-themes
 on:
-  workflow_dispatch: {}           # run by hand from the Actions tab; no cron - four textures, once
+  workflow_dispatch: {}           # run by hand from the Actions tab; no cron - a few long sittings
 permissions:
   contents: write
   actions: write                 # lets the workflow disable itself when the vault is full
@@ -31,7 +31,11 @@ jobs:
             curl -s -X POST -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \
               "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/workflows/paint-themes.yml/disable"
           else
-            echo "theme painter stopped early (key refused, rate limits, or errors) - run it again from the Actions tab"
+            echo "theme painter stopped early (moderation, rate limits, or errors) - run it again from the Actions tab"
+            git config user.name "theme-keeper"
+            git config user.email "keeper@users.noreply.github.com"
+            git add themes/failures.txt
+            git diff --cached --quiet || (git commit -m "themes: failure diagnostics" && git push)
             exit 1
           fi
         env:
