@@ -1,5 +1,5 @@
 // ================================================================
-// THE PORTRAIT KEEPER v4 - server-side batch painter for the
+// THE PORTRAIT KEEPER v4.2 - server-side batch painter for the
 // Choose Your Fate portrait vault. Runs in GitHub Actions; paints
 // the faces not yet in vault/, commits them, Pages serves them
 // to the game. Nothing is painted twice.
@@ -7,14 +7,18 @@
 // v3: MODERATION RECOVERY for protected fictional characters.
 // v4: SECURITY - the API key comes ONLY from the MISTRAL_KEY
 //     secret (Settings -> Secrets -> Actions). Never hardcoded;
-//     refuses to run without it. Workflow is manual-trigger only
-//     (workflow_dispatch) so painting happens ONLY when the
-//     roster is deliberately updated and the keeper is launched
-//     from the Actions tab - no silent spend.
+//     refuses to run without it.
+// v4.1: cron keeper - runs every 30 min, self-disables (rc==2)
+//     when the roster is complete.
+// v4.2: batch seeds may be shipped gzipped+base64 as .b64 files
+//     (large batches stay under GitHub's 100KB file limits), and
+//     aliases.json maps alias keys onto already-painted keys so
+//     the same person is never painted twice.
 // ================================================================
 import fs from 'fs';
 if (!fs.existsSync('roster-add')) fs.mkdirSync('roster-add');
 import path from 'path';
+import zlib from 'zlib';
 
 const KEY = process.env.MISTRAL_KEY || '';
 if (!KEY) { console.error('MISTRAL_KEY secret is not set. Add it under Settings -> Secrets and variables -> Actions, then run the workflow again.'); process.exit(1); }
@@ -25,8 +29,13 @@ const AGENT_V = 3;
 const AGENT_FILE = 'agent-v' + AGENT_V + '.txt';
 // ---- base roster (full prompts) + compact seed batches in roster-add/ ----
 const base = JSON.parse(fs.readFileSync('roster.json', 'utf8'));
-const seeds = fs.readdirSync('roster-add').filter(f => f.endsWith('.json'))
-  .flatMap(f => JSON.parse(fs.readFileSync('roster-add/' + f, 'utf8')));
+const seeds = fs.readdirSync('roster-add')
+  .filter(f => f.endsWith('.json') || f.endsWith('.b64'))
+  .flatMap(f => {
+    const raw = fs.readFileSync('roster-add/' + f, f.endsWith('.b64') ? 'utf8' : undefined);
+    const text = f.endsWith('.b64') ? zlib.gunzipSync(Buffer.from(raw, 'base64')).toString('utf8') : raw.toString('utf8');
+    return JSON.parse(text);
+  });
 // expand a seed {k,u,g,d,n} into a full prompt by cloning its universe's template face
 function expand(seed) {
   const tmpl = base.find(f => f.u === seed.u && f.p);
@@ -47,6 +56,11 @@ fs.mkdirSync(VAULT, { recursive: true });
 const indexFile = path.join(VAULT, 'index.json');
 let index = { v: 2, faces: {} };
 try { index = JSON.parse(fs.readFileSync(indexFile, 'utf8')); if (!index.faces) index.faces = {}; } catch (e) {}
+
+// ---- aliases: aliasKey -> existingKey; the alias face shares the
+// existing painting. Never painted, only merged into the index. ----
+let aliases = {};
+try { aliases = JSON.parse(fs.readFileSync('aliases.json', 'utf8')); } catch (e) {}
 
 // ---- the agent (cached across runs via the repo) ----
 async function agentId() {
@@ -176,6 +190,8 @@ if (!todo.length) { console.log('nothing to paint'); process.exit(2); }
 const queue = { list: todo, next: 0 };
 const stats = { painted: 0 };
 await Promise.all(Array.from({ length: Math.min(CONC, todo.length) }, () => worker(ag, queue, stats)));
+// merge aliases into the index LAST so the painter's own commits never race them
+for (const [ak, ek] of Object.entries(aliases)) if (index.faces[ek] && !index.faces[ak]) index.faces[ak] = index.faces[ek];
 fs.writeFileSync(indexFile, JSON.stringify(index));
 console.log(`done: ${stats.painted} painted this run; ${Object.keys(index.faces).length} in the vault; ${todo.length - stats.painted} still to go`);
 process.exit(stats.painted > 0 ? 0 : 2);
