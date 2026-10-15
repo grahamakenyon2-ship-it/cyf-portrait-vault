@@ -82,7 +82,7 @@ async function paintOne(ag, key, prompt) {
   const j = await r.json();
   const imgSrc = readCanvas(j);
   if (!imgSrc) throw new Error('no canvas');
-  const wantsAuth = /api\.mistral\.ai\/.test(imgSrc);
+  const wantsAuth = /api\.mistral\.ai\//.test(imgSrc);
   const fr = await fetch(imgSrc, { headers: wantsAuth ? { Authorization: 'Bearer ' + KEY } : {} });
   const raw = fr.ok ? new Uint8Array(await fr.arrayBuffer()) : null;
   if (!raw || !raw.byteLength) throw new Error('could not fetch the texture');
