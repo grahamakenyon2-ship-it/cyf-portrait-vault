@@ -1,5 +1,5 @@
 // ================================================================
-// THE THEME KEEPER v3 - server-side texture painter for the
+// THE THEME KEEPER v4 - server-side texture painter for the
 // Choose Your Fate THEME VAULT (v242 THE COSTUMED COURT, v243 THE
 // FULL WARDROBE, v244 THE CROWN'S OWN DRESS). Same pattern as the
 // portrait keeper: runs in GitHub Actions with the MISTRAL_KEY
@@ -8,9 +8,9 @@
 // when every texture exists. The game fetches these over Pages
 // (cached in localStorage as cyf-theme-v1:) and falls back to the
 // token-only dress when the vault is empty or unreachable.
-// v3: the FULL dresses (bg + 9-slice panel + 9-slice button) are
-// unchanged; the v244 NATION/LEADER dresses are BG-ONLY sheets -
-// 37 new keys (36 realm dresses + napoleonic). No regexes.
+// v4: EVERY dress is a FULL dress - the 37 v244 realm/leader dresses
+// gained their own 9-slice panel frame and button face over the bg
+// sheets (47 keys x 3 assets). No regexes.
 // ================================================================
 import fs from 'fs';
 import path from 'path';
@@ -28,11 +28,6 @@ function briefs(key, sheet, panel, btn) {
   BRIEFS[key + '/bg'] = 'A seamless full-screen background texture for a strategy game interface. ' + sheet;
   BRIEFS[key + '/panel'] = 'A square 9-slice UI panel frame texture for a strategy game interface: a simple ornamental border decoration occupying ONLY the outer 12 percent of the square, with a completely plain very dark center (the center is covered by game content). ' + panel + ' Dark, muted, low-contrast, flat even lighting, no text, no objects, no vignette.';
   BRIEFS[key + '/btn'] = 'A square 9-slice UI button face texture for a strategy game interface: a flat plaque face filling the whole square with subtle beveled edges, uniform and tileable so it stretches cleanly. ' + btn + ' Dark, muted, low-contrast, flat even lighting, absolutely no text, no letters, no icons in the center.';
-}
-// v244: the realm dresses carry ONLY the background sheet - the game's
-// own parchment furniture (1px borders, bronze buttons) stands.
-function briefBg(key, sheet) {
-  BRIEFS[key + '/bg'] = 'A seamless full-screen background texture for a strategy game interface. ' + sheet + ' Flat even lighting, no objects, no text, no vignette, no bright highlights.';
 }
 briefs('ironhall',
   'Weathered aged oak planks and cracked dark leather with faint iron rivet heads, very dark brown-black tones, subtle warm candlelight tint, flat even lighting, no objects, no text, no vignette, no bright highlights.',
@@ -75,48 +70,159 @@ briefs('modern',
   'Riveted dark gunmetal frame with a thin steel line.',
   'Dark brushed-steel plate with a faint blue rim.');
 
-// ---- v244: THE CROWN'S OWN DRESS - 37 bg-only sheets ----
+// ---- v244: THE CROWN'S OWN DRESS - 37 full dresses (bg + frame + face) ----
 // ASOIAF Great Houses
-briefBg('stark', 'The frozen North: dark granite stone and hard-packed snow, a single pale weirwood-white bark streak, cold blue-grey, extremely dark and muted.');
-briefBg('lannister', 'A crimson and gold medieval hall: dark red stone walls with faint gold-leaf arabesque, candle-glow, extremely dark and muted.');
-briefBg('baratheon', 'A storm-dark great hall: black basalt walls with a single hammered gold stag-horn motif, storm light, extremely dark and muted.');
-briefBg('targaryen', 'Black dragonfire: dark obsidian and blackened steel with thin veins of ember-red, smoke haze, extremely dark and muted.');
-briefBg('greyjoy', 'The Iron Islands: dark salt-bleached driftwood and wet black rock over a cold green sea haze, extremely dark and muted.');
-briefBg('martell', 'A desert palace at dusk: dark sandstone towers with a faint orange sun-disc motif and a warm wind, extremely dark and muted.');
-briefBg('tyrell', 'A garden castle by night: dark ivy and hedgerow stone with faint harvest-gold tracery, extremely dark and muted.');
-briefBg('arryn', 'A castle above the clouds: pale wind-scoured stone and blue-white cloudlight, airy but extremely dark and muted.');
-briefBg('tully', 'A riverside castle: dark wet blue-grey stone with a faint red-trout heraldic line and river mist, extremely dark and muted.');
-briefBg('nightswatch', 'The black keep on the ice Wall: pitch-black stone with faint white frost rime, extremely dark and muted.');
+briefs('stark',
+  'The frozen North: dark granite stone and hard-packed snow, a single pale weirwood-white bark streak, cold blue-grey, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark grey granite frame with pale bone-white inlay corners.',
+  'Cold grey stone plaque with a faint white-frost edge.');
+briefs('lannister',
+  'A crimson and gold medieval hall: dark red stone walls with faint gold-leaf arabesque, candle-glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark red stone frame with gold-leaf corner mounts.',
+  'Deep crimson lacquer plaque with a gold edge.');
+briefs('baratheon',
+  'A storm-dark great hall: black basalt walls with a single hammered gold stag-horn motif, storm light, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Black basalt frame with hammered gold corner brackets.',
+  'Black stone plaque with a hammered gold rim.');
+briefs('targaryen',
+  'Black dragonfire: dark obsidian and blackened steel with thin veins of ember-red, smoke haze, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Blackened steel frame with thin ember-red seams.',
+  'Dark obsidian plaque with a faint ember-red edge.');
+briefs('greyjoy',
+  'The Iron Islands: dark salt-bleached driftwood and wet black rock over a cold green sea haze, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark salt-bleached driftwood frame with iron corner rivets.',
+  'Wet dark wood plaque with rough iron trim.');
+briefs('martell',
+  'A desert palace at dusk: dark sandstone towers with a faint orange sun-disc motif and a warm wind, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark sandstone frame with copper sun-disc corner mounts.',
+  'Warm sandstone plaque with a burnished copper rim.');
+briefs('tyrell',
+  'A garden castle by night: dark ivy and hedgerow stone with faint harvest-gold tracery, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark hedgerow-stone frame with brass vine-work corners.',
+  'Dark ivy-green plaque with a brass edge.');
+briefs('arryn',
+  'A castle above the clouds: pale wind-scoured stone and blue-white cloudlight, airy but extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Pale moonstone frame with a thin sky-blue line.',
+  'Wind-scoured pale stone plaque with a faint blue rim.');
+briefs('tully',
+  'A riverside castle: dark wet blue-grey stone with a faint red-trout heraldic line and river mist, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark wet blue-grey river-stone frame with a muted red heraldic line inlay.',
+  'Blue-grey river stone plaque with a muted red edge.');
+briefs('nightswatch',
+  'The black keep on the ice Wall: pitch-black stone with faint white frost rime, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Pitch-black iron frame with faint white frost etching.',
+  'Black iron plaque with a thin white-frost rim.');
 // Historical crowns
-briefBg('rome', 'The Roman Forum at dusk: dark travertine marble with faint laurel wreath etchings and a crimson awning glow, extremely dark and muted.');
-briefBg('egypt', 'A painted tomb hall: dark sandstone with faint hieroglyphic registers, a whisper of lapis blue and gold leaf, extremely dark and muted.');
-briefBg('byzantium', 'A Byzantine palace: dark Tyrian-purple porphyry with faint gold mosaic tesserae and incense haze, extremely dark and muted.');
-briefBg('steppe', 'The yurt of a khan: dark horsehide and felt walls with faint gilt fittings and steppe-wind dust, extremely dark and muted.');
-briefBg('ottoman', 'The Topkapi at dusk: dark Iznik-tiled panels with teal and gold arabesque, warm lantern light, extremely dark and muted.');
-briefBg('chinaimperial', 'A Ming great hall: dark vermillion-lacquered pillars with faint gold cloud-dragon tracery, extremely dark and muted.');
-briefBg('persia', 'A Persian palace hall: dark turquoise tilework with faint gold lion-and-sun ornament, extremely dark and muted.');
-briefBg('aztec', 'The Templo Mayor at night: dark obsidian and jade with faint turquoise feather-work ornament, extremely dark and muted.');
-briefBg('norse', 'A Viking mead hall: dark rune-carved oak and cold North-Sea grey with faint whale-oil lamp glow, extremely dark and muted.');
-briefBg('bourbon', 'A hall of mirrors at Versailles by candlelight: deep bleu-de-France silk walls with faint gilt ornament, extremely dark and muted.');
-briefBg('britannia', 'An Admiralty boardroom: dark navy panelling and ship oak with faint signal-red rope lines and brass, extremely dark and muted.');
-briefBg('prussia', 'A Prussian parade square at dusk: dark polished black-and-white stone with faint white discipline lines, extremely dark and muted.');
-briefBg('muscovy', 'The Kremlin terem: dark icon-green and oxblood walls with faint gold icon haloes, extremely dark and muted.');
-briefBg('spain', 'The Escorial by candlelight: dark escorial stone with faint black-and-gold Burgundy-cross banners, extremely dark and muted.');
-briefBg('mughal', 'A Mughal durbar hall: dark marble pietra-dura inlay with faint peacock-teal and gold floral ornament, extremely dark and muted.');
-briefBg('mali', 'A Sahel palace: dark carved hardwood with faint gold-dust inlay and desert-haze warmth, extremely dark and muted.');
-briefBg('sparta', 'A Spartan barracks hall: dark blackened bronze and stone with a single crimson cloak-cloth band, extremely dark and muted.');
+briefs('rome',
+  'The Roman Forum at dusk: dark travertine marble with faint laurel wreath etchings and a crimson awning glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark travertine frame with laurel-wreath border etching.',
+  'Dark bronze plaque with a worn classical sheen.');
+briefs('egypt',
+  'A painted tomb hall: dark sandstone with faint hieroglyphic registers, a whisper of lapis blue and gold leaf, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark sandstone frame with hieroglyphic-register edging and gold leaf lines.',
+  'Dark lapis-blue plaque with a gold rim.');
+briefs('byzantium',
+  'A Byzantine palace: dark Tyrian-purple porphyry with faint gold mosaic tesserae and incense haze, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark porphyry frame with gold mosaic-tessera edging.',
+  'Deep purple lacquer plaque with a gold rim.');
+briefs('steppe',
+  'The yurt of a khan: dark horsehide and felt walls with faint gilt fittings and steppe-wind dust, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark felt-and-horsehide frame with gilt corner fittings.',
+  'Dark saddle-leather plaque with a gilt edge.');
+briefs('ottoman',
+  'The Topkapi at dusk: dark Iznik-tiled panels with teal and gold arabesque, warm lantern light, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Iznik tile frame with a teal arabesque border.',
+  'Dark teal tile plaque with a thin gold edge.');
+briefs('chinaimperial',
+  'A Ming great hall: dark vermillion-lacquered pillars with faint gold cloud-dragon tracery, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark vermillion lacquer frame with a gold cloud-line border.',
+  'Black lacquer plaque with a gold rim.');
+briefs('persia',
+  'A Persian palace hall: dark turquoise tilework with faint gold lion-and-sun ornament, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark turquoise tile frame with gold lion-and-sun corner ornament.',
+  'Dark turquoise tile plaque with a gold edge.');
+briefs('aztec',
+  'The Templo Mayor at night: dark obsidian and jade with faint turquoise feather-work ornament, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark obsidian frame with jade corner inlay.',
+  'Black obsidian plaque with a jade rim.');
+briefs('norse',
+  'A Viking mead hall: dark rune-carved oak and cold North-Sea grey with faint whale-oil lamp glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark rune-carved oak frame with iron corner brackets.',
+  'Dark carved oak plaque with an iron rim.');
+briefs('bourbon',
+  'A hall of mirrors at Versailles by candlelight: deep bleu-de-France silk walls with faint gilt ornament, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark giltwood frame with a bleu-de-France silk border.',
+  'Deep navy silk plaque with faint gilt edging.');
+briefs('britannia',
+  'An Admiralty boardroom: dark navy panelling and ship oak with faint signal-red rope lines and brass, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark navy-oak frame with brass corner rope lines.',
+  'Dark gun-deck oak plaque with a brass rim.');
+briefs('prussia',
+  'A Prussian parade square at dusk: dark polished black-and-white stone with faint white discipline lines, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Polished black stone frame with white discipline lines.',
+  'Black-and-white marble plaque with a steel edge.');
+briefs('muscovy',
+  'The Kremlin terem: dark icon-green and oxblood walls with faint gold icon haloes, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark icon-green frame with gold halo-pattern corner mounts.',
+  'Dark oxblood lacquer plaque with a gold rim.');
+briefs('spain',
+  'The Escorial by candlelight: dark escorial stone with faint black-and-gold Burgundy-cross banners, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark escorial stone frame with black-and-gold Burgundy-cross edging.',
+  'Dark leather plaque with black-and-gold trim.');
+briefs('mughal',
+  'A Mughal durbar hall: dark marble pietra-dura inlay with faint peacock-teal and gold floral ornament, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark marble pietra-dura frame with peacock-teal and gold floral border.',
+  'Dark marble plaque with a teal-and-gold edge.');
+briefs('mali',
+  'A Sahel palace: dark carved hardwood with faint gold-dust inlay and desert-haze warmth, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark carved hardwood frame with gold-dust inlay corners.',
+  'Dark polished hardwood plaque with a gold rim.');
+briefs('sparta',
+  'A Spartan barracks hall: dark blackened bronze and stone with a single crimson cloak-cloth band, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Blackened bronze frame with a single crimson band border.',
+  'Dark blackened bronze plaque with a crimson edge.');
 // Extended powers
-briefBg('mordor', 'A dark tower hall: black ash and riveted iron with faint ember-red furnace glow, extremely dark and muted.');
-briefBg('gondor', 'A white-stone citadel at dusk: pale silvered walls with a faint white-tree motif on deep indigo, extremely dark and muted.');
-briefBg('galacticemp', 'A star destroyer bridge: dark gunmetal panels with faint black uniform-cloth texture and a cold grey glow, extremely dark and muted.');
-briefBg('federation', 'A starship ready room: dark clean blue panels with faint white starfield and a hopeful cold glow, extremely dark and muted.');
-briefBg('nilfgaard', 'A black-marble imperial hall with a faint golden sun-disc motif, cold candle glow, extremely dark and muted.');
-briefBg('atreides', 'A sea-cliff castle hall: dark green silk banners with a faint black-hawk motif and cold ocean light, extremely dark and muted.');
-briefBg('harkonnen', 'A brutalist black hall: pitch-black industrial stone with faint pale bone-grey veins and a sickly cold glow, extremely dark and muted.');
-briefBg('imperium40k', 'A gothic cathedral-forge: dark blackened stone with faint skull-gold ornament and censer smoke, extremely dark and muted.');
-briefBg('klingon', 'A Klingon great hall: dark ridged metal with faint deep-red blade-glow and battle-standard drapery, extremely dark and muted.');
+briefs('mordor',
+  'A dark tower hall: black ash and riveted iron with faint ember-red furnace glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Riveted black iron frame with faint ember-red furnace seams.',
+  'Black iron plaque with a faint ember rim.');
+briefs('gondor',
+  'A white-stone citadel at dusk: pale silvered walls with a faint white-tree motif on deep indigo, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Pale white-stone frame with a silver tree-line inlay.',
+  'Pale silvered stone plaque with a deep indigo rim.');
+briefs('galacticemp',
+  'A star destroyer bridge: dark gunmetal panels with faint black uniform-cloth texture and a cold grey glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark gunmetal frame with black uniform-cloth trim.',
+  'Grey steel plaque with a black edge.');
+briefs('federation',
+  'A starship ready room: dark clean blue panels with faint white starfield and a hopeful cold glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark clean blue frame with a thin white starline border.',
+  'Blue composite plaque with a white rim.');
+briefs('nilfgaard',
+  'A black-marble imperial hall with a faint golden sun-disc motif, cold candle glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Black marble frame with a gold sun-disc corner ornament.',
+  'Black marble plaque with a gold rim.');
+briefs('atreides',
+  'A sea-cliff castle hall: dark green silk banners with a faint black-hawk motif and cold ocean light, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark green silk-draped frame with a black hawk-crest corner mount.',
+  'Dark green plaque with a black edge.');
+briefs('harkonnen',
+  'A brutalist black hall: pitch-black industrial stone with faint pale bone-grey veins and a sickly cold glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Black industrial frame with pale bone-grey veining.',
+  'Pitch-black plaque with a pale grey rim.');
+briefs('imperium40k',
+  'A gothic cathedral-forge: dark blackened stone with faint skull-gold ornament and censer smoke, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Gothic blackened-stone frame with gold ornament edging.',
+  'Blackened iron plaque with a gold rim.');
+briefs('klingon',
+  'A Klingon great hall: dark ridged metal with faint deep-red blade-glow and battle-standard drapery, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark ridged metal frame with deep-red blade trim.',
+  'Dark ridged metal plaque with a deep-red edge.');
 // The sovereign's own dress
-briefBg('napoleonic', 'The Emperor\'s field tent: dark imperial-green wool drapery with faint gold bee-and-eagle ornament and warm candle glow, extremely dark and muted.');
+briefs('napoleonic',
+  'The Emperor\'s field tent: dark imperial-green wool drapery with faint gold bee-and-eagle ornament and warm candle glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark imperial-green frame with gold bee-and-eagle corner ornaments.',
+  'Dark imperial-green plaque with a gold rim.');
 
 // ---- what the game pulls ----
 const INDEX = 'themes/index.json';
@@ -134,7 +240,7 @@ async function agentId() {
   try { const id = fs.readFileSync(AGENT_FILE, 'utf8').trim(); if (id) return id; } catch (e) {}
   const r = await fetch('https://api.mistral.ai/v1/agents', { method: 'POST',
     headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + KEY },
-    body: JSON.stringify({ model: 'mistral-small-latest', name: 'CYF Theme Keeper v3', description: 'Paints UI background and frame textures for a strategy game.',
+    body: JSON.stringify({ model: 'mistral-small-latest', name: 'CYF Theme Keeper v4', description: 'Paints UI background and frame textures for a strategy game.',
       instructions: 'You are a court decorator. When given a texture commission, use the image generation tool to paint exactly what is described. Reply with the image only. Keep every texture seamless, dark, muted and low-contrast - it sits behind readable text in a game interface. Never paint letters, words or icons.',
       tools: [{ type: 'image_generation' }] }) });
   if (!r.ok) throw new Error('agent create failed (' + r.status + ')');
@@ -194,14 +300,8 @@ async function paintOne(ag, spec, prompt) {
 }
 
 // ---- the run: paint what is missing, one theme at a time ----
-// FULL dresses carry bg + 9-slice panel + 9-slice button; the v244
-// nation/leader dresses are BG-ONLY (the parchment furniture stands).
-const FULL = ['ironhall', 'inkwash', 'starmaps', 'dunes', 'tamriel', 'teyvat', 'roshar', 'antiquity', 'regency', 'modern'];
-const BGO = ['stark', 'lannister', 'baratheon', 'targaryen', 'greyjoy', 'martell', 'tyrell', 'arryn', 'tully', 'nightswatch',
-  'rome', 'egypt', 'byzantium', 'steppe', 'ottoman', 'chinaimperial', 'persia', 'aztec', 'norse', 'bourbon', 'britannia',
-  'prussia', 'muscovy', 'spain', 'mughal', 'mali', 'sparta',
-  'mordor', 'gondor', 'galacticemp', 'federation', 'nilfgaard', 'atreides', 'harkonnen', 'imperium40k', 'klingon',
-  'napoleonic'];
+// every dress carries bg + 9-slice panel + 9-slice button.
+const FULL = ["ironhall","inkwash","starmaps","dunes","tamriel","teyvat","roshar","antiquity","regency","modern","stark","lannister","baratheon","targaryen","greyjoy","martell","tyrell","arryn","tully","nightswatch","rome","egypt","byzantium","steppe","ottoman","chinaimperial","persia","aztec","norse","bourbon","britannia","prussia","muscovy","spain","mughal","mali","sparta","mordor","gondor","galacticemp","federation","nilfgaard","atreides","harkonnen","imperium40k","klingon","napoleonic"];
 const todo = [];
 for (const k of FULL) {
   if (have(k, ['bg', 'panel', 'btn'])) continue;
@@ -213,11 +313,7 @@ for (const k of FULL) {
     todo.push([k, a, BRIEFS[k + '/' + a]]);
   }
 }
-for (const k of BGO) {
-  if (have(k, ['bg'])) continue;
-  if (!fs.existsSync(path.join(THEMES_DIR, k, 'bg.jpg'))) todo.push([k, 'bg', BRIEFS[k + '/bg']]);
-}
-if (!todo.length) { console.log('THEME VAULT COMPLETE - every dress has its sheet (and the full dresses their frames and faces).'); process.exit(2); }
+if (!todo.length) { console.log('THEME VAULT COMPLETE - every dress has its sheet, frame and face.'); process.exit(2); }
 const ag = await agentId();
 let painted = 0, failed = 0;
 for (const spec of todo) {
