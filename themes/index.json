@@ -1,0 +1,481 @@
+{
+ "v": 2,
+ "themes": {
+  "ironhall": {
+   "name": "ironhall",
+   "bg": {
+    "f": "ironhall/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 395091
+   },
+   "panel": {
+    "f": "ironhall/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 195105
+   },
+   "btn": {
+    "f": "ironhall/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 240183
+   }
+  },
+  "inkwash": {
+   "name": "inkwash",
+   "bg": {
+    "f": "inkwash/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 339016
+   },
+   "panel": {
+    "f": "inkwash/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 282605
+   },
+   "btn": {
+    "f": "inkwash/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 172572
+   }
+  },
+  "starmaps": {
+   "name": "starmaps",
+   "bg": {
+    "f": "starmaps/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 212271
+   },
+   "panel": {
+    "f": "starmaps/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 292669
+   },
+   "btn": {
+    "f": "starmaps/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 146258
+   }
+  },
+  "dunes": {
+   "name": "dunes",
+   "bg": {
+    "f": "dunes/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 458021
+   },
+   "panel": {
+    "f": "dunes/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 279014
+   },
+   "btn": {
+    "f": "dunes/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 374465
+   }
+  },
+  "tamriel": {
+   "name": "tamriel",
+   "bg": {
+    "f": "tamriel/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 478914
+   },
+   "panel": {
+    "f": "tamriel/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 138795
+   },
+   "btn": {
+    "f": "tamriel/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 454443
+   }
+  },
+  "teyvat": {
+   "name": "teyvat",
+   "bg": {
+    "f": "teyvat/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 119550
+   },
+   "panel": {
+    "f": "teyvat/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 231992
+   },
+   "btn": {
+    "f": "teyvat/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 178221
+   }
+  },
+  "roshar": {
+   "name": "roshar",
+   "bg": {
+    "f": "roshar/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 371588
+   },
+   "panel": {
+    "f": "roshar/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 359466
+   },
+   "btn": {
+    "f": "roshar/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 325639
+   }
+  },
+  "antiquity": {
+   "name": "antiquity",
+   "bg": {
+    "f": "antiquity/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 466374
+   },
+   "panel": {
+    "f": "antiquity/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 268951
+   },
+   "btn": {
+    "f": "antiquity/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 313345
+   }
+  },
+  "regency": {
+   "name": "regency",
+   "bg": {
+    "f": "regency/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 255298
+   },
+   "panel": {
+    "f": "regency/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 254986
+   },
+   "btn": {
+    "f": "regency/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 369400
+   }
+  },
+  "modern": {
+   "name": "modern",
+   "bg": {
+    "f": "modern/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 350237
+   },
+   "panel": {
+    "f": "modern/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 305386
+   },
+   "btn": {
+    "f": "modern/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 169342
+   }
+  },
+  "stark": {
+   "name": "stark",
+   "bg": {
+    "f": "stark/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 448911
+   }
+  },
+  "lannister": {
+   "name": "lannister",
+   "bg": {
+    "f": "lannister/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 372091
+   }
+  },
+  "baratheon": {
+   "name": "baratheon",
+   "bg": {
+    "f": "baratheon/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 309165
+   }
+  },
+  "targaryen": {
+   "name": "targaryen",
+   "bg": {
+    "f": "targaryen/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 367384
+   }
+  },
+  "greyjoy": {
+   "name": "greyjoy",
+   "bg": {
+    "f": "greyjoy/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 276002
+   }
+  },
+  "martell": {
+   "name": "martell",
+   "bg": {
+    "f": "martell/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 213276
+   }
+  },
+  "tyrell": {
+   "name": "tyrell",
+   "bg": {
+    "f": "tyrell/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 408884
+   }
+  },
+  "arryn": {
+   "name": "arryn",
+   "bg": {
+    "f": "arryn/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 143745
+   }
+  },
+  "tully": {
+   "name": "tully",
+   "bg": {
+    "f": "tully/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 404929
+   }
+  },
+  "nightswatch": {
+   "name": "nightswatch",
+   "bg": {
+    "f": "nightswatch/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 383083
+   }
+  },
+  "rome": {
+   "name": "rome",
+   "bg": {
+    "f": "rome/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 335253
+   }
+  },
+  "egypt": {
+   "name": "egypt",
+   "bg": {
+    "f": "egypt/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 419469
+   }
+  },
+  "byzantium": {
+   "name": "byzantium",
+   "bg": {
+    "f": "byzantium/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 483504
+   }
+  },
+  "steppe": {
+   "name": "steppe",
+   "bg": {
+    "f": "steppe/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 300876
+   }
+  },
+  "ottoman": {
+   "name": "ottoman",
+   "bg": {
+    "f": "ottoman/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 320455
+   }
+  },
+  "chinaimperial": {
+   "name": "chinaimperial",
+   "bg": {
+    "f": "chinaimperial/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 269393
+   }
+  },
+  "persia": {
+   "name": "persia",
+   "bg": {
+    "f": "persia/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 644135
+   }
+  },
+  "aztec": {
+   "name": "aztec",
+   "bg": {
+    "f": "aztec/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 246269
+   }
+  },
+  "norse": {
+   "name": "norse",
+   "bg": {
+    "f": "norse/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 283564
+   }
+  },
+  "bourbon": {
+   "name": "bourbon",
+   "bg": {
+    "f": "bourbon/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 431818
+   }
+  },
+  "britannia": {
+   "name": "britannia",
+   "bg": {
+    "f": "britannia/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 350576
+   }
+  },
+  "prussia": {
+   "name": "prussia",
+   "bg": {
+    "f": "prussia/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 299108
+   }
+  },
+  "muscovy": {
+   "name": "muscovy",
+   "bg": {
+    "f": "muscovy/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 413215
+   }
+  },
+  "spain": {
+   "name": "spain",
+   "bg": {
+    "f": "spain/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 316962
+   }
+  },
+  "mughal": {
+   "name": "mughal",
+   "bg": {
+    "f": "mughal/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 740983
+   }
+  },
+  "mali": {
+   "name": "mali",
+   "bg": {
+    "f": "mali/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 631165
+   }
+  },
+  "sparta": {
+   "name": "sparta",
+   "bg": {
+    "f": "sparta/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 270745
+   }
+  },
+  "mordor": {
+   "name": "mordor",
+   "bg": {
+    "f": "mordor/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 339209
+   }
+  },
+  "gondor": {
+   "name": "gondor",
+   "bg": {
+    "f": "gondor/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 321013
+   }
+  },
+  "galacticemp": {
+   "name": "galacticemp",
+   "bg": {
+    "f": "galacticemp/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 345844
+   }
+  },
+  "federation": {
+   "name": "federation",
+   "bg": {
+    "f": "federation/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 286227
+   }
+  },
+  "nilfgaard": {
+   "name": "nilfgaard",
+   "bg": {
+    "f": "nilfgaard/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 352147
+   }
+  },
+  "atreides": {
+   "name": "atreides",
+   "bg": {
+    "f": "atreides/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 294788
+   }
+  },
+  "harkonnen": {
+   "name": "harkonnen",
+   "bg": {
+    "f": "harkonnen/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 335550
+   }
+  },
+  "imperium40k": {
+   "name": "imperium40k",
+   "bg": {
+    "f": "imperium40k/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 342792
+   }
+  },
+  "klingon": {
+   "name": "klingon",
+   "bg": {
+    "f": "klingon/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 304657
+   }
+  },
+  "napoleonic": {
+   "name": "napoleonic",
+   "bg": {
+    "f": "napoleonic/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 293722
+   }
+  }
+ }
+}
