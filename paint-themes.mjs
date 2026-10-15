@@ -1,8 +1,8 @@
 // ================================================================
-// THE THEME KEEPER v5 - server-side texture painter for the
+// THE THEME KEEPER v6 - server-side texture painter for the
 // Choose Your Fate THEME VAULT (v242 THE COSTUMED COURT, v243 THE
 // FULL WARDROBE, v244 THE CROWN'S OWN DRESS, v245 THE HUNDRED
-// BANNERS). Same pattern as the
+// BANNERS, v247 THE LAST COURTS). Same pattern as the
 // portrait keeper: runs in GitHub Actions with the MISTRAL_KEY
 // secret, paints each theme's textures ONCE into themes/<key>/,
 // writes themes/index.json, commits, and exits 2 (self-disable)
@@ -10,6 +10,7 @@
 // (cached in localStorage as cyf-theme-v1:) and falls back to the
 // token-only dress when the vault is empty or unreachable.
 // v5: 71 new nation dresses from v245 (118 keys x 3 assets).
+// v6: 116 new nation dresses from v247 THE LAST COURTS (234 keys x 3 assets).
 // v4: EVERY dress is a FULL dress - the 37 v244 realm/leader dresses
 // gained their own 9-slice panel frame and button face over the bg
 // sheets (47 keys x 3 assets). No regexes.
@@ -513,6 +514,472 @@ briefs('granada',
   'Dark carved stucco frame with red-gold corner ornament.',
   'Carved stucco plaque with a red-gold rim.');
 
+// ---- v247: THE LAST COURTS - 116 new nation dresses ----
+briefs('azir',
+  'A ministry hall: dark ivory silk panels and maroon-ink ledger ornament with faint gold seal-work, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Ivory silk panel frame with faint ember-red corner mounts.',
+  'Ivory silk panel plaque with a muted ember-red rim.');
+briefs('thaylenah',
+  'A merchant-city night: dark weathered teal stone and stacked trade-crates with faint coin-gold glint, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Weathered trade-teal frame with faint ember-red corner mounts.',
+  'Weathered trade-teal plaque with a muted ember-red rim.');
+briefs('shinovar',
+  'A stone garden: dark mossy garden-stone and rice-paper screens with faint rain-grey light, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Mossy garden-stone frame with faint ember-red corner mounts.',
+  'Mossy garden-stone plaque with a muted ember-red rim.');
+briefs('herdaz',
+  'A hill-country keep: dark hearthstone and iron pot-metal with faint spark-glow and lichen-green, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Dark hearthstone frame with faint ember-red corner mounts.',
+  'Dark hearthstone plaque with a muted ember-red rim.');
+briefs('kharbranth',
+  'A terrace-city night: pale sea-wall stone and white linen awnings with faint coral lantern-glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Pale sea-wall stone frame with faint ember-red corner mounts.',
+  'Pale sea-wall stone plaque with a muted ember-red rim.');
+briefs('listeners',
+  'A shell-armored war-camp in the chasms: marbled red-black shell and chasm-shadow with faint ember-red rhythm-glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Marbled red-black shell frame with faint ember-red corner mounts.',
+  'Marbled red-black shell plaque with a muted ember-red rim.');
+briefs('urithiru',
+  'The lost tower city: silver-ash stone halls with faint sapphire light and drifting cloud-shadow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Silver-ash stone and sapphire light floating over the clouds frame with faint ember-red corner mounts.',
+  'Silver-ash stone and sapphire light floating over the clouds plaque with a muted ember-red rim.');
+briefs('iri',
+  'A wandering-court: dark traveller-gold weave and sun-copper ornament with faint painted-skin glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Traveller gold frame with faint ember-red corner mounts.',
+  'Traveller gold plaque with a muted ember-red rim.');
+briefs('rira',
+  'A Riran gallery court: plum-violet lacquer and collected art-frames with faint candle-glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Plum-violet courts frame with faint ember-red corner mounts.',
+  'Plum-violet courts plaque with a muted ember-red rim.');
+briefs('bavland',
+  'A pit-town night: dark red pit-clay and shoring timber with faint lamp-dust haze, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Red pit-clay frame with faint ember-red corner mounts.',
+  'Red pit-clay plaque with a muted ember-red rim.');
+briefs('horneaterpeaks',
+  'A lakemount: frozen black basalt and hot-spring steam with faint lava-ember glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Frozen basalt peaks frame with faint ember-red corner mounts.',
+  'Frozen basalt peaks plaque with a muted ember-red rim.');
+briefs('unclaimedhills',
+  'The unclaimed hills at dusk: cracked hill-bronze and worn road-leather with faint rusted-iron glint, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Cracked hill-bronze frame with faint ember-red corner mounts.',
+  'Cracked hill-bronze plaque with a muted ember-red rim.');
+briefs('aimia',
+  'Aimian ruins at night: ash-grey rubble and dead-glass shards with faint cold teal glint, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Ash-grey rubble frame with faint ember-red corner mounts.',
+  'Ash-grey rubble plaque with a muted ember-red rim.');
+briefs('emul',
+  'A desert palace night: sandy court-plaster and date-palm shadow with faint royal-blue cloth, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Sandy court-plaster frame with faint ember-red corner mounts.',
+  'Sandy court-plaster plaque with a muted ember-red rim.');
+briefs('tukar',
+  'An old quarter: dark red sandstone walls and carved lintels with faint torch-dust, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Dark red sandstone frame with faint ember-red corner mounts.',
+  'Dark red sandstone plaque with a muted ember-red rim.');
+briefs('marat',
+  'A nomad camp: pale rangefield grass and hide tents with faint bone-ornament white, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Pale rangefield grass frame with faint ember-red corner mounts.',
+  'Pale rangefield grass plaque with a muted ember-red rim.');
+briefs('yezeir',
+  'A lacquer court hall: black lacquer panels and dark red court cushions with faint gold thread, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Black lacquer panels and the quiet red of the court cushions frame with faint ember-red corner mounts.',
+  'Black lacquer panels and the quiet red of the court cushions plaque with a muted ember-red rim.');
+briefs('liafor',
+  'A Liafor ministry: deep court-blue plaster and silver leaf-work with faint lamp-glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Deep court-blue frame with faint ember-red corner mounts.',
+  'Deep court-blue plaque with a muted ember-red rim.');
+briefs('tashikk',
+  'A Tashikki weaver court: loom-linen panels and madder-red dye vats with faint work-lamp glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Loom-linen frame with faint ember-red corner mounts.',
+  'Loom-linen plaque with a muted ember-red rim.');
+briefs('desh',
+  'A Deshi court hall: dark tile-work and cedar screens with faint amber varnish glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Court tile-work frame with faint ember-red corner mounts.',
+  'Court tile-work plaque with a muted ember-red rim.');
+briefs('purelake',
+  'The Purelake at dusk: quiet water-teal shallows and reed-shadow with faint silver fish-glint, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Quiet water-teal frame with faint ember-red corner mounts.',
+  'Quiet water-teal plaque with a muted ember-red rim.');
+briefs('reshiisles',
+  'A Reshi isle night: shell-white sand and palm shadow with faint trade-red cloth glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Shell-white sand frame with faint ember-red corner mounts.',
+  'Shell-white sand plaque with a muted ember-red rim.');
+briefs('frostlands',
+  'The frostlands night: blue ice-shadow and frozen hide-tents with faint pale sky-glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Blue ice-shadow frame with faint ember-red corner mounts.',
+  'Blue ice-shadow plaque with a muted ember-red rim.');
+briefs('shatteredplains',
+  'The shattered plains: chasm-dust and plateau rock with faint bridge-timber and distant ember glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Chasm-dust frame with faint ember-red corner mounts.',
+  'Chasm-dust plaque with a muted ember-red rim.');
+briefs('ix',
+  'An Ixian development court: chrome-grey panels and machine-green indicator glow with faint banned-circuit tracery, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Chrome-grey frame with faint ember-red corner mounts.',
+  'Chrome-grey plaque with a muted ember-red rim.');
+briefs('motesystem',
+  'A Motie artifact chamber: tan artifact-gold and asymmetric bronze with faint brown-watchful glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Tan artifact-gold frame with faint ember-red corner mounts.',
+  'Tan artifact-gold plaque with a muted ember-red rim.');
+briefs('mexico',
+  'A Mexican palace hall: eagle-stone and agave-green banner with faint silver republic ornament, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Eagle-stone frame with faint ember-red corner mounts.',
+  'Eagle-stone plaque with a muted ember-red rim.');
+briefs('brazil',
+  'A Brazilian imperial court: deep green and gold coffee-leaf ornament with faint tropical lamp-glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Deep imperial green frame with faint ember-red corner mounts.',
+  'Deep imperial green plaque with a muted ember-red rim.');
+briefs('grancolombia',
+  'A Gran Colombian hall: bolivar-blue banners and andean stone with faint gold liberty ornament, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Bolivar blue frame with faint ember-red corner mounts.',
+  'Bolivar blue plaque with a muted ember-red rim.');
+briefs('argentina',
+  'An Argentine hall: pampa-silver haze and sky-blue cloth with faint gaucho-leather ornament, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Pampa-silver frame with faint ember-red corner mounts.',
+  'Pampa-silver plaque with a muted ember-red rim.');
+briefs('haiti',
+  'King Christophe\'s citadelle: royal blue and creole red banners over dark mason-stone, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Royal blue frame with faint ember-red corner mounts.',
+  'Royal blue plaque with a muted ember-red rim.');
+briefs('switzerland',
+  'A Swiss canton hall: dark alpine fir and white cross-linen with faint iron-stove glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Alpine fir frame with faint ember-red corner mounts.',
+  'Alpine fir plaque with a muted ember-red rim.');
+briefs('merina',
+  'A Merina highland palace: red-earth terrace walls and raffia silk with faint royal lamba white, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Red-earth terrace frame with faint ember-red corner mounts.',
+  'Red-earth terrace plaque with a muted ember-red rim.');
+briefs('congo',
+  'A Congo river station: jungle-teal shadow and rain-stained wood with faint brass lantern-glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Jungle-teal shadow frame with faint ember-red corner mounts.',
+  'Jungle-teal shadow plaque with a muted ember-red rim.');
+briefs('mirkwood',
+  'Spider-dark Mirkwood at night: black fir trunks and hanging cobwebs with one faint grey-green patch of light, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Spider-dark fir frame with faint ember-red corner mounts.',
+  'Spider-dark fir plaque with a muted ember-red rim.');
+briefs('woodmenmirkwood',
+  'A woodmen clearing: axe-hewn palisade timber and log halls with faint watch-fire smoke, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Axe-hewn palisade timber frame with faint ember-red corner mounts.',
+  'Axe-hewn palisade timber plaque with a muted ember-red rim.');
+briefs('beornsland',
+  'A honey-lit great hall: black timber and bear-pelt benches with faint mead-glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Honey-lit timber frame with faint ember-red corner mounts.',
+  'Honey-lit timber plaque with a muted ember-red rim.');
+briefs('fangorn',
+  'Fangorn at night: ancient furrowed bark and deep moss with faint green thought-glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Ancient bark frame with faint ember-red corner mounts.',
+  'Ancient bark plaque with a muted ember-red rim.');
+briefs('mistymountains',
+  'The goblin tunnels: cold granite and chasm wind with a thin ember-green goblin-fire glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Cold granite frame with faint ember-red corner mounts.',
+  'Cold granite plaque with a muted ember-red rim.');
+briefs('forodwaith',
+  'The northern waste: grey ice-scree and old snow under a black sky, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Ice-scree frame with faint ember-red corner mounts.',
+  'Ice-scree plaque with a muted ember-red rim.');
+briefs('aielwaste',
+  'The threefold land: sun-baked ochre rock spires and wind-carved canyons with faint dust haze, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Sun-baked ochre rock frame with faint ember-red corner mounts.',
+  'Sun-baked ochre rock plaque with a muted ember-red rim.');
+briefs('shienar',
+  'A shienaran border keep: black volcanic stone and iron fittings with faint watch-lantern glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Black volcanic stone frame with faint ember-red corner mounts.',
+  'Black volcanic stone plaque with a muted ember-red rim.');
+briefs('arafel',
+  'An arafel court: pale birch panels and tiny silver bell ornaments with faint snow-light, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Pale birch frame with faint ember-red corner mounts.',
+  'Pale birch plaque with a muted ember-red rim.');
+briefs('kandor',
+  'A kandori merchant house: bronze chain-work and ledger-ink dark wood with faint lamplight, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Merchant bronze frame with faint ember-red corner mounts.',
+  'Merchant bronze plaque with a muted ember-red rim.');
+briefs('saldaea',
+  'A saldaean camp: dark furs and ice-blue steel with faint steppe-wind dust, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Horse-lord furs frame with faint ember-red corner mounts.',
+  'Horse-lord furs plaque with a muted ember-red rim.');
+briefs('malkier',
+  'A malkieri hall: deep blue silk with faint golden crane-thread embroidery, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Crane-gold thread on deep blue and the last king\'s banner frame with faint ember-red corner mounts.',
+  'Crane-gold thread on deep blue and the last king\'s banner plaque with a muted ember-red rim.');
+briefs('borderlands',
+  'A borderlands march hall: black leather and border-steel with faint brazier glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Black leather frame with faint ember-red corner mounts.',
+  'Black leather plaque with a muted ember-red rim.');
+briefs('cairhien',
+  'A cairhienin court: striped dark cloth and low candle-shadow with faint gilded intrigue, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Striped court cloth frame with faint ember-red corner mounts.',
+  'Striped court cloth plaque with a muted ember-red rim.');
+briefs('tear',
+  'The stone of tear: massive dark granite and dusty gold banner with faint torchlight, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Massive granite frame with faint ember-red corner mounts.',
+  'Massive granite plaque with a muted ember-red rim.');
+briefs('illian',
+  'An illianer hall: honey-gold wood and olive-leaf ornament with faint sea-breeze white, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Honey-gold frame with faint ember-red corner mounts.',
+  'Honey-gold plaque with a muted ember-red rim.');
+briefs('murandy',
+  'A murandian hill hall: worn tartan cloth and iron clasps with faint hearth-glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Worn hill-tartan frame with faint ember-red corner mounts.',
+  'Worn hill-tartan plaque with a muted ember-red rim.');
+briefs('altara',
+  'An ebou dar courtyard: rose-red shutters and sea-teal tiles with faint silver glint, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Rose-red shutters frame with faint ember-red corner mounts.',
+  'Rose-red shutters plaque with a muted ember-red rim.');
+briefs('araddoman',
+  'A domani court: dark silk with faint silver-embroidered patterns and candle polish, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Silver-embroidered silk frame with faint ember-red corner mounts.',
+  'Silver-embroidered silk plaque with a muted ember-red rim.');
+briefs('tarabon',
+  'A taraboner court: fig-ivory lace and veil-cloth with faint bronze snake-ornament, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Fig-ivory lace frame with faint ember-red corner mounts.',
+  'Fig-ivory lace plaque with a muted ember-red rim.');
+briefs('amadicia',
+  'An amadician keep: snowy white cloak-cloth and hard ash-grey stone with faint questioner-fire glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Snowy white cloaks frame with faint ember-red corner mounts.',
+  'Snowy white cloaks plaque with a muted ember-red rim.');
+briefs('ghealdan',
+  'A ghealdanin hall: weathered throne-gold gone grey with faint ember-glow and wolf-pelt shadow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Weathered throne-gold gone grey frame with faint ember-red corner mounts.',
+  'Weathered throne-gold gone grey plaque with a muted ember-red rim.');
+briefs('mayene',
+  'Mayene at night: pearl-white port walls and teal water with faint lamp-oil glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Pearl-white port frame with faint ember-red corner mounts.',
+  'Pearl-white port plaque with a muted ember-red rim.');
+briefs('kashyyyk',
+  'A wroshyr city: canopy-deep bark architecture and shadow-leaf with faint green bioluminescence, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Canopy-deep bark cities frame with faint ember-red corner mounts.',
+  'Canopy-deep bark cities plaque with a muted ember-red rim.');
+briefs('ryloth',
+  'The ryloth tunnels: desert-rose rock and dust with faint spice-lantern glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Desert-rose rock frame with faint ember-red corner mounts.',
+  'Desert-rose rock plaque with a muted ember-red rim.');
+briefs('corellia',
+  'A corellian drydock: dark dock-steel and brandy-green stripe-work with faint arc-weld glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Dock-steel frame with faint ember-red corner mounts.',
+  'Dock-steel plaque with a muted ember-red rim.');
+briefs('kuat',
+  'The kuat drive yards: orbital ring-steel and gold hull-plate with faint planetary glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Orbital ring-steel and hull-plate gold over the planet glow frame with faint ember-red corner mounts.',
+  'Orbital ring-steel and hull-plate gold over the planet glow plaque with a muted ember-red rim.');
+briefs('bespin',
+  'A bespin terrace: sunset-cloud orange and floating gold light with faint gas-glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Sunset-cloud orange frame with faint ember-red corner mounts.',
+  'Sunset-cloud orange plaque with a muted ember-red rim.');
+briefs('geonosis',
+  'A geonosian hive: red-rock spires and dust with faint geometric carving, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Red-rock spires frame with faint ember-red corner mounts.',
+  'Red-rock spires plaque with a muted ember-red rim.');
+briefs('utapau',
+  'An utapaun sinkhole city: bone-grey pau stone and sinkhole shadow with faint pen-light, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Bone-grey pau city frame with faint ember-red corner mounts.',
+  'Bone-grey pau city plaque with a muted ember-red rim.');
+briefs('onderon',
+  'An onderonian citadel: jungle-stone walls and beast-rider green banners with faint torch-glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Jungle-stone citadel frame with faint ember-red corner mounts.',
+  'Jungle-stone citadel plaque with a muted ember-red rim.');
+briefs('dathomir',
+  'A dathomiri night: blood-mist lavender fog and rancor-bone totems with faint green witchfire, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Blood-mist lavender frame with faint ember-red corner mounts.',
+  'Blood-mist lavender plaque with a muted ember-red rim.');
+briefs('kamino',
+  'A kaminoan platform: storm-grey rain and pale steel with faint vat-glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Storm-grey rain frame with faint ember-red corner mounts.',
+  'Storm-grey rain plaque with a muted ember-red rim.');
+briefs('bothawui',
+  'A bothawui bazaar: trade-tan stalls and clan tapestries with faint spy-blue lamp glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Trade-tan stalls frame with faint ember-red corner mounts.',
+  'Trade-tan stalls plaque with a muted ember-red rim.');
+briefs('vulcan',
+  'The vulcan forge: copper-red desert sands and logic-stone with faint bronze glint, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Copper-red forge sands frame with faint ember-red corner mounts.',
+  'Copper-red forge sands plaque with a muted ember-red rim.');
+briefs('tholian',
+  'A tholian lattice: crystalline amber geometry and heat-haze with faint lattice glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Crystalline amber geometry frame with faint ember-red corner mounts.',
+  'Crystalline amber geometry plaque with a muted ember-red rim.');
+briefs('gorn',
+  'A gorn elder hall: humid jungle-stone and scale-hide banners with faint green bask-light, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Jungle-reptile green frame with faint ember-red corner mounts.',
+  'Jungle-reptile green plaque with a muted ember-red rim.');
+briefs('talarians',
+  'A talarian war-hall: ridged bronze and war-leather with faint salt-lamp glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Ridged bronze frame with faint ember-red corner mounts.',
+  'Ridged bronze plaque with a muted ember-red rim.');
+briefs('sheliak',
+  'A sheliak vault: hyperbaride grey lattice and exo-ribs with faint cold treaty-light, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Hyperbaride grey frame with faint ember-red corner mounts.',
+  'Hyperbaride grey plaque with a muted ember-red rim.');
+briefs('insurrectionists',
+  'An insurrectionist cell: rusted colonial tin and frontier dust with faint resistance-red daub, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Rusted colonial tin frame with faint ember-red corner mounts.',
+  'Rusted colonial tin plaque with a muted ember-red rim.');
+briefs('unitedrebelfront',
+  'A URF war-room: battered bunker-steel and map-lamplight with faint red alarm glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Battered bunker-steel frame with faint ember-red corner mounts.',
+  'Battered bunker-steel plaque with a muted ember-red rim.');
+briefs('dongzhuo',
+  'The warlord\'s camp: rust-black iron and crimson war-banners with faint brazier glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Rust-black iron frame with faint ember-red corner mounts.',
+  'Rust-black iron plaque with a muted ember-red rim.');
+briefs('yuanshao',
+  'A great family\'s host: gold-grey silk banners and old-family crest-work with faint lamp-glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Old-family gold-grey frame with faint ember-red corner mounts.',
+  'Old-family gold-grey plaque with a muted ember-red rim.');
+briefs('lubu',
+  'The halberd-lord\'s camp: lacquer-red banners and black-maned crimson with faint weapon-glint, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Halberd-crimson frame with faint ember-red corner mounts.',
+  'Halberd-crimson plaque with a muted ember-red rim.');
+briefs('gongsunzan',
+  'A white-rider frontier fortress: grey stone and white-horse banners with faint dawn light, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark White-horse banners frame with faint ember-red corner mounts.',
+  'White-horse banners plaque with a muted ember-red rim.');
+briefs('mateng',
+  'A western horse-lord\'s keep: horse-brown leather and steppe dust with faint iron-glint, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Horse-brown leather frame with faint ember-red corner mounts.',
+  'Horse-brown leather plaque with a muted ember-red rim.');
+briefs('hanzhong',
+  'A mountain fastness: grey-green taoist stone and terrace mist with faint rice-lantern glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Taist grey-green frame with faint ember-red corner mounts.',
+  'Taist grey-green plaque with a muted ember-red rim.');
+briefs('jingprovince',
+  'A river province: river-teal hulls and reed marsh with faint fleet-lantern glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark River-teal hulls frame with faint ember-red corner mounts.',
+  'River-teal hulls plaque with a muted ember-red rim.');
+briefs('yiprovince',
+  'A jade province: jade-green court-stone and cypress with faint plum-blossom lamp glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Shu jade-green frame with faint ember-red corner mounts.',
+  'Shu jade-green plaque with a muted ember-red rim.');
+briefs('xuprovince',
+  'A wheat province court: granary brick and wheat-cloth banners with faint millet-gold light, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Wheat-yellow cloth frame with faint ember-red corner mounts.',
+  'Wheat-yellow cloth plaque with a muted ember-red rim.');
+briefs('yellowturbans',
+  'A yellow-turban camp: yellow-ochre cloth and ash with faint bonfire fervor glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Yellow-ochre turbans frame with faint ember-red corner mounts.',
+  'Yellow-ochre turbans plaque with a muted ember-red rim.');
+briefs('turbanremnants',
+  'A faded remnant camp: washed-out ochre cloth and worn ash-grey with faint ember remnants, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Washed-out ochre frame with faint ember-red corner mounts.',
+  'Washed-out ochre plaque with a muted ember-red rim.');
+briefs('bailong',
+  'A white-banner keep: white-dragon cloth and river mist with faint lantern glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark White-dragon banners frame with faint ember-red corner mounts.',
+  'White-dragon banners plaque with a muted ember-red rim.');
+briefs('goguryeo',
+  'A goguryeo mountain fortress: dark fortress stone and falcon-black banners with faint iron-glint, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Mountain-fortress stone frame with faint ember-red corner mounts.',
+  'Mountain-fortress stone plaque with a muted ember-red rim.');
+briefs('yamatai',
+  'A yamatai shrine-court: bronze-mirror polish and shrine-wood with faint silk-lantern glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Bronze-mirror polish frame with faint ember-red corner mounts.',
+  'Bronze-mirror polish plaque with a muted ember-red rim.');
+briefs('codominium',
+  'A joint bureaucracy hall: cold filing-steel and two-flag brass with faint fluorescent glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Cold-war files frame with faint ember-red corner mounts.',
+  'Cold-war files plaque with a muted ember-red rim.');
+briefs('tanith',
+  'A legion barracks: forest-camo cloth and wet-jungle dark with faint field-lamp glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Forest-camo frame with faint ember-red corner mounts.',
+  'Forest-camo plaque with a muted ember-red rim.');
+briefs('newchicago',
+  'A decaying megacity office: urban rust and boardroom brass with faint neon spill, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Urban rust frame with faint ember-red corner mounts.',
+  'Urban rust plaque with a muted ember-red rim.');
+briefs('frystaat',
+  'A high plateau farmstead: ochre earth and veld-grass with faint stoic lamplight, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Boer-farm ochre frame with faint ember-red corner mounts.',
+  'Boer-farm ochre plaque with a muted ember-red rim.');
+briefs('dayan',
+  'A coastal desert citadel: desert-stone and star-blue cloth with faint olive-drab discipline, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Desert-stone frame with faint ember-red corner mounts.',
+  'Desert-stone plaque with a muted ember-red rim.');
+briefs('xanadu',
+  'A syndic boardroom: black lacquer and bought-silk gold with faint hologram glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Black lacquer frame with faint ember-red corner mounts.',
+  'Black lacquer plaque with a muted ember-red rim.');
+briefs('makassar',
+  'An outie settlement: island rust and hull-iron with faint settler bonfire glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Island rust frame with faint ember-red corner mounts.',
+  'Island rust plaque with a muted ember-red rim.');
+briefs('lunaorbital',
+  'A lunar free city: grey regolith and orbital steel with faint blue earthlight, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Grey regolith frame with faint ember-red corner mounts.',
+  'Grey regolith plaque with a muted ember-red rim.');
+briefs('marsbelt',
+  'A mars colony: red dust and pressure-iron with faint mining-lamp flare, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Red dust frame with faint ember-red corner mounts.',
+  'Red dust plaque with a muted ember-red rim.');
+briefs('newcaledonia',
+  'A south-seas capital: french-teal shutters and island mahogany with faint accord-lamp glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark French-teal frame with faint ember-red corner mounts.',
+  'French-teal plaque with a muted ember-red rim.');
+briefs('solarianleague',
+  'A solarian sky-lobby: beige-blue marble and endless files with faint lobby light, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Infinite beige-blue files frame with faint ember-red corner mounts.',
+  'Infinite beige-blue files plaque with a muted ember-red rim.');
+briefs('grayson',
+  'A steadholder\'s hall: charcoal stone and cream cloth with faint testament-lamp glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Charcoal stone frame with faint ember-red corner mounts.',
+  'Charcoal stone plaque with a muted ember-red rim.');
+briefs('masada',
+  'A masadan meeting-hall: plain black wool and ash-stone with faint hard elder light, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Plain black wool frame with faint ember-red corner mounts.',
+  'Plain black wool plaque with a muted ember-red rim.');
+briefs('mesa',
+  'A mesan corridor: lab-white walls and shadow-glass with faint cold plan-glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Lab-white corridors frame with faint ember-red corner mounts.',
+  'Lab-white corridors plaque with a muted ember-red rim.');
+briefs('talbott',
+  'A talbott cluster hall: frontier brass and worn navy cloth with faint annex-lamp glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Frontier brass frame with faint ember-red corner mounts.',
+  'Frontier brass plaque with a muted ember-red rim.');
+briefs('erewhonrim',
+  'A rim magnate\'s hall: worn trade-gold and dark velvet with faint deal-lamp glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Worn trade-gold frame with faint ember-red corner mounts.',
+  'Worn trade-gold plaque with a muted ember-red rim.');
+briefs('beowulf',
+  'A beowulf atrium: green-silver biotech and glass with faint genome-tree glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Biotech green-silver frame with faint ember-red corner mounts.',
+  'Biotech green-silver plaque with a muted ember-red rim.');
+briefs('chisholm',
+  'A chisholm court: royal rose banners and harbor-teal with faint crown-lamp glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Royal rose frame with faint ember-red corner mounts.',
+  'Royal rose plaque with a muted ember-red rim.');
+briefs('monaco',
+  'A principality hall: riviera azure and casino gilt with faint harbor glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Riviera azure frame with faint ember-red corner mounts.',
+  'Riviera azure plaque with a muted ember-red rim.');
+briefs('nippon',
+  'A nipponese castle hall: lacquer-black panels and daimyo gold with faint cherry-lac red, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Lacquer-black frame with faint ember-red corner mounts.',
+  'Lacquer-black plaque with a muted ember-red rim.');
+briefs('badlandswhf',
+  'The badlands wastes: sun-cracked ochre rock and bone-sand with faint dust haze, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Sun-cracked ochre frame with faint ember-red corner mounts.',
+  'Sun-cracked ochre plaque with a muted ember-red rim.');
+briefs('darksea',
+  'The dark sea at night: abyss-teal water and drowned violet isle-shadow with faint phosphor glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Abyss-teal frame with faint ember-red corner mounts.',
+  'Abyss-teal plaque with a muted ember-red rim.');
+briefs('japan',
+  'An imperial japanese court: dark silk and faint gold chrysanthemum ornament with hollyhock purple, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Imperial gold frame with faint ember-red corner mounts.',
+  'Imperial gold plaque with a muted ember-red rim.');
+briefs('korea',
+  'A joseon palace hall: dancheong red-blue beamwork and jade screens with faint paper-lantern glow, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Palace dancheong red-blue frame with faint ember-red corner mounts.',
+  'Palace dancheong red-blue plaque with a muted ember-red rim.');
+briefs('tibet',
+  'A himalayan temple court: snow-lion white cloth and temple-red beams with faint high-altitude haze, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Snow-lion white frame with faint ember-red corner mounts.',
+  'Snow-lion white plaque with a muted ember-red rim.');
+briefs('carolingian',
+  'A carolingian chapel: dark stone and gospel-gold scriptorium glow with faint candle light, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Chapel stone frame with faint ember-red corner mounts.',
+  'Chapel stone plaque with a muted ember-red rim.');
+briefs('frankish',
+  'A merovingian hall: long-hair gold ornament and dark timber with faint grave-bee gold, extremely dark and muted. Flat even lighting, no objects, no text, no vignette, no bright highlights.',
+  'Dark Merovingian gold frame with faint ember-red corner mounts.',
+  'Merovingian gold plaque with a muted ember-red rim.');
+
 const INDEX = 'themes/index.json';
 function readIndex() {
   try { return JSON.parse(fs.readFileSync(INDEX, 'utf8')); } catch (e) { return { v: 2, themes: {} }; }
@@ -589,7 +1056,7 @@ async function paintOne(ag, spec, prompt) {
 
 // ---- the run: paint what is missing, one theme at a time ----
 // every dress carries bg + 9-slice panel + 9-slice button.
-const FULL = ["ironhall","inkwash","starmaps","dunes","tamriel","teyvat","roshar","antiquity","regency","modern","stark","lannister","baratheon","targaryen","greyjoy","martell","tyrell","arryn","tully","nightswatch","rome","egypt","byzantium","steppe","ottoman","chinaimperial","persia","aztec","norse","bourbon","britannia","prussia","muscovy","spain","mughal","mali","sparta","mordor","gondor","galacticemp","federation","nilfgaard","atreides","harkonnen","imperium40k","klingon","napoleonic","braavos","dothraki","qarth","asshai","rohan","shire","isengard","elven","erebor","numenor","harad","temeria","toussaint","andor","tarvalon","seanchan","mandalorian","hutt","sithempire","romulan","cardassian","borg","ferengi","corrino","fremen","unsc","covenant","forerunner","skyrim","cyrodiil","morrowind","hammerfell","summerset","valenwood","blackmarsh","alethkar","tau","necron","chaoswar","orkz","aeldari","empire","bretonnia","kislev","sylvania","nehekhara","lustria","skaven","mondstadt","liyue","inazuma","sumeru","fontaine","natlan","snezhnaya","carthage","hellas","caliphate","bharat","inca","venice","papal","dutch","portugal","poland","austria","ethiopia","zulu","usa","indochina","granada"];
+const FULL = ["azir","thaylenah","shinovar","herdaz","kharbranth","listeners","urithiru","iri","rira","bavland","horneaterpeaks","unclaimedhills","aimia","emul","tukar","marat","yezeir","liafor","tashikk","desh","purelake","reshiisles","frostlands","shatteredplains","ix","motesystem","mexico","brazil","grancolombia","argentina","haiti","switzerland","merina","congo","mirkwood","woodmenmirkwood","beornsland","fangorn","mistymountains","forodwaith","aielwaste","shienar","arafel","kandor","saldaea","malkier","borderlands","cairhien","tear","illian","murandy","altara","araddoman","tarabon","amadicia","ghealdan","mayene","kashyyyk","ryloth","corellia","kuat","bespin","geonosis","utapau","onderon","dathomir","kamino","bothawui","vulcan","tholian","gorn","talarians","sheliak","insurrectionists","unitedrebelfront","dongzhuo","yuanshao","lubu","gongsunzan","mateng","hanzhong","jingprovince","yiprovince","xuprovince","yellowturbans","turbanremnants","bailong","goguryeo","yamatai","codominium","tanith","newchicago","frystaat","dayan","xanadu","makassar","lunaorbital","marsbelt","newcaledonia","solarianleague","grayson","masada","mesa","talbott","erewhonrim","beowulf","chisholm","monaco","nippon","badlandswhf","darksea","japan","korea","tibet","carolingian","frankish","ironhall","inkwash","starmaps","dunes","tamriel","teyvat","roshar","antiquity","regency","modern","stark","lannister","baratheon","targaryen","greyjoy","martell","tyrell","arryn","tully","nightswatch","rome","egypt","byzantium","steppe","ottoman","chinaimperial","persia","aztec","norse","bourbon","britannia","prussia","muscovy","spain","mughal","mali","sparta","mordor","gondor","galacticemp","federation","nilfgaard","atreides","harkonnen","imperium40k","klingon","napoleonic","braavos","dothraki","qarth","asshai","rohan","shire","isengard","elven","erebor","numenor","harad","temeria","toussaint","andor","tarvalon","seanchan","mandalorian","hutt","sithempire","romulan","cardassian","borg","ferengi","corrino","fremen","unsc","covenant","forerunner","skyrim","cyrodiil","morrowind","hammerfell","summerset","valenwood","blackmarsh","alethkar","tau","necron","chaoswar","orkz","aeldari","empire","bretonnia","kislev","sylvania","nehekhara","lustria","skaven","mondstadt","liyue","inazuma","sumeru","fontaine","natlan","snezhnaya","carthage","hellas","caliphate","bharat","inca","venice","papal","dutch","portugal","poland","austria","ethiopia","zulu","usa","indochina","granada"];
 const todo = [];
 for (const k of FULL) {
   if (have(k, ['bg', 'panel', 'btn'])) continue;
