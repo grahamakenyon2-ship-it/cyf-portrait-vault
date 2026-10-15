@@ -1,5 +1,5 @@
 // ================================================================
-// THE PORTRAIT KEEPER v4.2 - server-side batch painter for the
+// THE PORTRAIT KEEPER v4.3 - server-side batch painter for the
 // Choose Your Fate portrait vault. Runs in GitHub Actions; paints
 // the faces not yet in vault/, commits them, Pages serves them
 // to the game. Nothing is painted twice.
@@ -14,6 +14,12 @@
 //     (large batches stay under GitHub's 100KB file limits), and
 //     aliases.json maps alias keys onto already-painted keys so
 //     the same person is never painted twice.
+// v4.3: VAULT FOLDERS - nation-map.json maps every key to a folder
+//     group ("history/<nation>" or "<universe>/<realm>"). On the
+//     first run the existing flat vault/ is reorganized into
+//     subfolders (index v3: every f is "group/file"), and new
+//     paintings are written straight into their folder. A run that
+//     only reorganizes still exits 0 so the workflow commits it.
 // ================================================================
 import fs from 'fs';
 if (!fs.existsSync('roster-add')) fs.mkdirSync('roster-add');
@@ -61,6 +67,44 @@ try { index = JSON.parse(fs.readFileSync(indexFile, 'utf8')); if (!index.faces) 
 // existing painting. Never painted, only merged into the index. ----
 let aliases = {};
 try { aliases = JSON.parse(fs.readFileSync('aliases.json', 'utf8')); } catch (e) {}
+
+// ---- nation map: key -> folder group ("history/<nation>" or
+// "<universe>/<realm>"). Ships as plain JSON or gzipped .b64. ----
+let nmap = {};
+try {
+  if (fs.existsSync('nation-map.json')) nmap = JSON.parse(fs.readFileSync('nation-map.json', 'utf8'));
+  else if (fs.existsSync('nation-map.b64')) nmap = JSON.parse(zlib.gunzipSync(Buffer.from(fs.readFileSync('nation-map.b64', 'utf8'), 'base64')).toString('utf8'));
+} catch (e) { console.log('nation map unreadable - everything lands in history/uncategorized'); }
+
+const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+function groupFor(k) {
+  if (nmap[k]) return nmap[k];
+  const fc = roster.find(r => r.k === k);
+  if (fc && fc.u && slug(fc.u) !== 'history') return slug(fc.u) + '/uncategorized';
+  return 'history/uncategorized';
+}
+
+// ---- one-time reorganization: flat vault/ into nation folders ----
+let reorganized = false;
+if (index.v !== 3) {
+  const remap = {};
+  let movedCount = 0;
+  for (const [k, e] of Object.entries(index.faces)) {
+    if (!e || !e.f) continue;
+    if (e.f.includes('/')) continue;            // already in a folder
+    if (remap[e.f]) { e.f = remap[e.f]; continue; } // alias shares this file
+    const g = groupFor(k);
+    const nf = g + '/' + e.f;
+    fs.mkdirSync(path.join(VAULT, g), { recursive: true });
+    try { fs.renameSync(path.join(VAULT, e.f), path.join(VAULT, nf)); movedCount++; }
+    catch (err) { console.log('missing during reorg (will repaint if needed): ' + e.f); }
+    remap[e.f] = nf;
+    e.f = nf;
+  }
+  index.v = 3;
+  reorganized = true;
+  console.log('vault reorganized into nation folders: ' + movedCount + ' files moved (index v3)');
+}
 
 // ---- the agent (cached across runs via the repo) ----
 async function agentId() {
@@ -147,9 +191,11 @@ async function paintOne(ag, face) {
   const mime = magicMime(raw);
   if (!mime || raw.byteLength < 1024) throw new Error('not a true canvas (' + raw.byteLength + ' bytes)');
   const ext = mime === 'image/jpeg' ? 'jpg' : (mime === 'image/png' ? 'png' : 'webp');
+  const g = groupFor(face.k);
   const file = encodeURIComponent(face.k).replace(/%/g, '_') + '.' + ext;
-  fs.writeFileSync(path.join(VAULT, file), Buffer.from(raw));
-  index.faces[face.k] = { f: file, m: mime };
+  fs.mkdirSync(path.join(VAULT, g), { recursive: true });
+  fs.writeFileSync(path.join(VAULT, g, file), Buffer.from(raw));
+  index.faces[face.k] = { f: g + '/' + file, m: mime };
   return { ok: true };
 }
 
@@ -186,7 +232,10 @@ async function worker(ag, queue, stats) {
 const ag = await agentId();
 const todo = roster.filter(fc => !index.faces[fc.k]);
 console.log(`vault holds ${Object.keys(index.faces).length}; ${todo.length} faces remain; ${CONC} brushes at once, ${BATCH} sittings max`);
-if (!todo.length) { console.log('nothing to paint'); process.exit(2); }
+if (!todo.length) {
+  if (reorganized) { fs.writeFileSync(indexFile, JSON.stringify(index)); console.log('reorg committed; roster complete'); process.exit(0); }
+  console.log('nothing to paint'); process.exit(2);
+}
 const queue = { list: todo, next: 0 };
 const stats = { painted: 0 };
 await Promise.all(Array.from({ length: Math.min(CONC, todo.length) }, () => worker(ag, queue, stats)));
@@ -194,4 +243,4 @@ await Promise.all(Array.from({ length: Math.min(CONC, todo.length) }, () => work
 for (const [ak, ek] of Object.entries(aliases)) if (index.faces[ek] && !index.faces[ak]) index.faces[ak] = index.faces[ek];
 fs.writeFileSync(indexFile, JSON.stringify(index));
 console.log(`done: ${stats.painted} painted this run; ${Object.keys(index.faces).length} in the vault; ${todo.length - stats.painted} still to go`);
-process.exit(stats.painted > 0 ? 0 : 2);
+process.exit(stats.painted > 0 || reorganized ? 0 : 2);
