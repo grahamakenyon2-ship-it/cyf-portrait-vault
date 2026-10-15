@@ -1,4 +1,4 @@
-# The Theme Vault (v242-v244: THE COSTUMED COURT / THE FULL WARDROBE / THE CROWN'S OWN DRESS)
+# The Theme Vault (v242-v245: THE COSTUMED COURT / THE FULL WARDROBE / THE CROWN'S OWN DRESS / THE HUNDRED BANNERS)
 
 UI dress textures for Choose Your Fate. The game fetches these over
 GitHub Pages and caches them in localStorage (cyf-theme-v1:); the vault
@@ -33,6 +33,37 @@ by a great RULER when the GM names the crown):
 - Extended powers: mordor, gondor, galacticemp, federation, nilfgaard,
   atreides, harkonnen, imperium40k, klingon
 - The sovereign's own dress: napoleonic (The Imperial Eagle)
+
+The v245 nation dresses (keeper v5, THE HUNDRED BANNERS - every
+playable nation in every world now wears its own arms):
+- ASOIAF beyond the houses:
+  braavos, dothraki, qarth, asshai
+- LOTR realms:
+  rohan, shire, isengard, elven, erebor, numenor, harad
+- Witcher:
+  temeria, toussaint
+- Wheel of Time:
+  andor, tarvalon, seanchan
+- Star Wars:
+  mandalorian, hutt, sithempire
+- Star Trek:
+  romulan, cardassian, borg, ferengi
+- Dune:
+  corrino, fremen
+- Halo:
+  unsc, covenant, forerunner
+- Elder Scrolls provinces:
+  skyrim, cyrodiil, morrowind, hammerfell, summerset, valenwood, blackmarsh
+- Stormlight:
+  alethkar
+- Warhammer 40K:
+  tau, necron, chaoswar, orkz, aeldari
+- Warhammer Fantasy:
+  empire, bretonnia, kislev, sylvania, nehekhara, lustria, skaven
+- Genshin Impact nations:
+  mondstadt, liyue, inazuma, sumeru, fontaine, natlan, snezhnaya
+- More historical crowns:
+  carthage, hellas, caliphate, bharat, inca, venice, papal, dutch, portugal, poland, austria, ethiopia, zulu, usa, indochina, granada
 
 To (re)paint: Actions -> paint-themes -> Run workflow. The keeper paints
 only what is missing and disables itself when complete. Textures must
