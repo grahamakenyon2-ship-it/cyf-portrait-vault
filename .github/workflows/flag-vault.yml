@@ -1,6 +1,11 @@
 name: flag-vault
 on:
-  workflow_dispatch:             # run by hand from the Actions tab; re-run whenever RW_FLAGS grows
+  workflow_dispatch:             # run by hand from the Actions tab; re-run until it reports the vault complete
+    inputs:
+      batch:
+        description: 'Banners per run (default 80 - slow and steady; raise only if Commons stops throttling)'
+        required: false
+        default: '80'
 permissions:
   contents: write
   actions: write                 # lets the workflow disable itself when the vault is complete
@@ -10,15 +15,16 @@ concurrency:
 jobs:
   fetch:
     runs-on: ubuntu-latest
+    timeout-minutes: 50          # the crawl is slow on purpose; the chunk commit keeps progress safe
     steps:
       - uses: actions/checkout@v4
-      # v2 NOTE: the game repo (cyf-game) is PRIVATE - this repo's GITHUB_TOKEN
+      # NOTE: the game repo (cyf-game) is PRIVATE - this repo's GITHUB_TOKEN
       # cannot check it out. The banner title list travels in-repo as
       # flags/titles.txt; update that file when RW_FLAGS grows.
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Fetch the missing banners
+      - name: Fetch the missing banners (chunked)
         id: fetch
         run: |
           set +e
@@ -27,13 +33,15 @@ jobs:
           echo "rc=$rc" >> "$GITHUB_OUTPUT"
           echo "fetch-flags exit code: $rc"
           exit 0
-      - name: Commit the vault
+        env:
+          BATCH: ${{ github.event.inputs.batch || '80' }}
+      - name: Commit the chunk
         run: |
           git config user.name "flag-keeper"
           git config user.email "keeper@users.noreply.github.com"
           git add flags
           git diff --cached --quiet && echo "nothing new" && exit 0
-          git commit -m "flags: banner vault refresh"
+          git commit -m "flags: banner vault chunk"
           for i in 1 2 3; do
             if git push; then exit 0; fi
             echo "push rejected - rebasing on remote and retrying (attempt $i)"
