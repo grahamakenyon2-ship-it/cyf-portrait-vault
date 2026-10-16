@@ -2144,6 +2144,307 @@
     "f": "frystaat/panel.jpg",
     "m": "image/jpeg",
     "bytes": 176650
+   },
+   "btn": {
+    "f": "frystaat/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 283641
+   }
+  },
+  "dayan": {
+   "name": "dayan",
+   "bg": {
+    "f": "dayan/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 583771
+   },
+   "panel": {
+    "f": "dayan/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 355185
+   },
+   "btn": {
+    "f": "dayan/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 481126
+   }
+  },
+  "xanadu": {
+   "name": "xanadu",
+   "bg": {
+    "f": "xanadu/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 155959
+   },
+   "panel": {
+    "f": "xanadu/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 118468
+   },
+   "btn": {
+    "f": "xanadu/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 135231
+   }
+  },
+  "makassar": {
+   "name": "makassar",
+   "bg": {
+    "f": "makassar/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 435079
+   },
+   "panel": {
+    "f": "makassar/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 239450
+   },
+   "btn": {
+    "f": "makassar/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 304966
+   }
+  },
+  "lunaorbital": {
+   "name": "lunaorbital",
+   "bg": {
+    "f": "lunaorbital/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 467586
+   },
+   "panel": {
+    "f": "lunaorbital/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 197809
+   },
+   "btn": {
+    "f": "lunaorbital/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 358840
+   }
+  },
+  "marsbelt": {
+   "name": "marsbelt",
+   "bg": {
+    "f": "marsbelt/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 274783
+   },
+   "panel": {
+    "f": "marsbelt/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 282104
+   },
+   "btn": {
+    "f": "marsbelt/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 325569
+   }
+  },
+  "newcaledonia": {
+   "name": "newcaledonia",
+   "bg": {
+    "f": "newcaledonia/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 198224
+   },
+   "panel": {
+    "f": "newcaledonia/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 208048
+   },
+   "btn": {
+    "f": "newcaledonia/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 231850
+   }
+  },
+  "solarianleague": {
+   "name": "solarianleague",
+   "bg": {
+    "f": "solarianleague/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 352284
+   },
+   "panel": {
+    "f": "solarianleague/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 190979
+   },
+   "btn": {
+    "f": "solarianleague/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 279222
+   }
+  },
+  "grayson": {
+   "name": "grayson",
+   "bg": {
+    "f": "grayson/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 265241
+   },
+   "panel": {
+    "f": "grayson/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 291380
+   },
+   "btn": {
+    "f": "grayson/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 320334
+   }
+  },
+  "masada": {
+   "name": "masada",
+   "bg": {
+    "f": "masada/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 383390
+   },
+   "panel": {
+    "f": "masada/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 167273
+   },
+   "btn": {
+    "f": "masada/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 377691
+   }
+  },
+  "mesa": {
+   "name": "mesa",
+   "bg": {
+    "f": "mesa/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 177356
+   },
+   "panel": {
+    "f": "mesa/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 231578
+   },
+   "btn": {
+    "f": "mesa/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 125238
+   }
+  },
+  "talbott": {
+   "name": "talbott",
+   "bg": {
+    "f": "talbott/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 369755
+   },
+   "panel": {
+    "f": "talbott/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 306600
+   },
+   "btn": {
+    "f": "talbott/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 152867
+   }
+  },
+  "erewhonrim": {
+   "name": "erewhonrim",
+   "bg": {
+    "f": "erewhonrim/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 303883
+   },
+   "panel": {
+    "f": "erewhonrim/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 332590
+   },
+   "btn": {
+    "f": "erewhonrim/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 428294
+   }
+  },
+  "beowulf": {
+   "name": "beowulf",
+   "bg": {
+    "f": "beowulf/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 332952
+   },
+   "panel": {
+    "f": "beowulf/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 199197
+   },
+   "btn": {
+    "f": "beowulf/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 277880
+   }
+  },
+  "chisholm": {
+   "name": "chisholm",
+   "bg": {
+    "f": "chisholm/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 314565
+   },
+   "panel": {
+    "f": "chisholm/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 209193
+   },
+   "btn": {
+    "f": "chisholm/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 196838
+   }
+  },
+  "monaco": {
+   "name": "monaco",
+   "bg": {
+    "f": "monaco/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 225688
+   },
+   "panel": {
+    "f": "monaco/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 256287
+   },
+   "btn": {
+    "f": "monaco/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 428664
+   }
+  },
+  "nippon": {
+   "name": "nippon",
+   "bg": {
+    "f": "nippon/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 337903
+   },
+   "panel": {
+    "f": "nippon/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 213080
+   },
+   "btn": {
+    "f": "nippon/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 98264
+   }
+  },
+  "badlandswhf": {
+   "name": "badlandswhf",
+   "bg": {
+    "f": "badlandswhf/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 510683
    }
   }
  }
