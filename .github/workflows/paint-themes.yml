@@ -5,7 +5,7 @@ permissions:
   contents: write
   actions: write                 # lets the workflow disable itself when the vault is full
 concurrency:
-  group: paint-themes
+  group: vault-painter            # SHARED with paint-vault: one painter in the repo at a time
   cancel-in-progress: false
 jobs:
   paint:
@@ -25,7 +25,12 @@ jobs:
             git add -A
             git diff --cached --quiet && echo "nothing new" && exit 0
             git commit -m "themes: new dress textures"
-            git push
+            for i in 1 2 3; do
+              if git push; then exit 0; fi
+              echo "push rejected - rebasing on remote and retrying (attempt $i)"
+              git pull --rebase origin "$GITHUB_REF_NAME" || exit 1
+            done
+            echo "push failed after 3 attempts" && exit 1
           elif [ "$rc" -eq 2 ]; then
             echo "THEME VAULT COMPLETE - every dress has its texture. Disabling this workflow."
             curl -s -X POST -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \
@@ -35,7 +40,13 @@ jobs:
             git config user.name "theme-keeper"
             git config user.email "keeper@users.noreply.github.com"
             git add themes/failures.txt
-            git diff --cached --quiet || (git commit -m "themes: failure diagnostics" && git push)
+            git diff --cached --quiet || {
+              git commit -m "themes: failure diagnostics"
+              for i in 1 2 3; do
+                if git push; then break; fi
+                git pull --rebase origin "$GITHUB_REF_NAME" || break
+              done
+            }
             exit 1
           fi
         env:
