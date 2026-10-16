@@ -3864,6 +3864,307 @@
     "f": "sumeru/panel.jpg",
     "m": "image/jpeg",
     "bytes": 311960
+   },
+   "btn": {
+    "f": "sumeru/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 229009
+   }
+  },
+  "fontaine": {
+   "name": "fontaine",
+   "bg": {
+    "f": "fontaine/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 477232
+   },
+   "panel": {
+    "f": "fontaine/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 171154
+   },
+   "btn": {
+    "f": "fontaine/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 239483
+   }
+  },
+  "natlan": {
+   "name": "natlan",
+   "bg": {
+    "f": "natlan/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 349943
+   },
+   "panel": {
+    "f": "natlan/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 196856
+   },
+   "btn": {
+    "f": "natlan/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 178736
+   }
+  },
+  "snezhnaya": {
+   "name": "snezhnaya",
+   "bg": {
+    "f": "snezhnaya/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 473237
+   },
+   "panel": {
+    "f": "snezhnaya/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 173823
+   },
+   "btn": {
+    "f": "snezhnaya/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 189097
+   }
+  },
+  "carthage": {
+   "name": "carthage",
+   "bg": {
+    "f": "carthage/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 287206
+   },
+   "panel": {
+    "f": "carthage/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 214875
+   },
+   "btn": {
+    "f": "carthage/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 244066
+   }
+  },
+  "hellas": {
+   "name": "hellas",
+   "bg": {
+    "f": "hellas/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 323433
+   },
+   "panel": {
+    "f": "hellas/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 238036
+   },
+   "btn": {
+    "f": "hellas/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 186128
+   }
+  },
+  "caliphate": {
+   "name": "caliphate",
+   "bg": {
+    "f": "caliphate/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 239973
+   },
+   "panel": {
+    "f": "caliphate/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 430824
+   },
+   "btn": {
+    "f": "caliphate/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 299120
+   }
+  },
+  "bharat": {
+   "name": "bharat",
+   "bg": {
+    "f": "bharat/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 223400
+   },
+   "panel": {
+    "f": "bharat/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 329105
+   },
+   "btn": {
+    "f": "bharat/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 311270
+   }
+  },
+  "inca": {
+   "name": "inca",
+   "bg": {
+    "f": "inca/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 308368
+   },
+   "panel": {
+    "f": "inca/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 270496
+   },
+   "btn": {
+    "f": "inca/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 323671
+   }
+  },
+  "venice": {
+   "name": "venice",
+   "bg": {
+    "f": "venice/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 273759
+   },
+   "panel": {
+    "f": "venice/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 366462
+   },
+   "btn": {
+    "f": "venice/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 238445
+   }
+  },
+  "papal": {
+   "name": "papal",
+   "bg": {
+    "f": "papal/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 423824
+   },
+   "panel": {
+    "f": "papal/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 133059
+   },
+   "btn": {
+    "f": "papal/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 185998
+   }
+  },
+  "dutch": {
+   "name": "dutch",
+   "bg": {
+    "f": "dutch/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 326164
+   },
+   "panel": {
+    "f": "dutch/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 196973
+   },
+   "btn": {
+    "f": "dutch/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 361446
+   }
+  },
+  "portugal": {
+   "name": "portugal",
+   "bg": {
+    "f": "portugal/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 308847
+   },
+   "panel": {
+    "f": "portugal/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 189921
+   },
+   "btn": {
+    "f": "portugal/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 180566
+   }
+  },
+  "poland": {
+   "name": "poland",
+   "bg": {
+    "f": "poland/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 233612
+   },
+   "panel": {
+    "f": "poland/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 136532
+   },
+   "btn": {
+    "f": "poland/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 218220
+   }
+  },
+  "austria": {
+   "name": "austria",
+   "bg": {
+    "f": "austria/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 299698
+   },
+   "panel": {
+    "f": "austria/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 202508
+   },
+   "btn": {
+    "f": "austria/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 155598
+   }
+  },
+  "ethiopia": {
+   "name": "ethiopia",
+   "bg": {
+    "f": "ethiopia/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 314235
+   },
+   "panel": {
+    "f": "ethiopia/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 344398
+   },
+   "btn": {
+    "f": "ethiopia/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 301773
+   }
+  },
+  "zulu": {
+   "name": "zulu",
+   "bg": {
+    "f": "zulu/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 277311
+   },
+   "panel": {
+    "f": "zulu/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 358221
+   },
+   "btn": {
+    "f": "zulu/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 153445
+   }
+  },
+  "usa": {
+   "name": "usa",
+   "bg": {
+    "f": "usa/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 179441
    }
   }
  }
