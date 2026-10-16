@@ -794,6 +794,307 @@
     "f": "liafor/panel.jpg",
     "m": "image/jpeg",
     "bytes": 282937
+   },
+   "btn": {
+    "f": "liafor/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 171209
+   }
+  },
+  "tashikk": {
+   "name": "tashikk",
+   "bg": {
+    "f": "tashikk/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 374309
+   },
+   "panel": {
+    "f": "tashikk/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 241336
+   },
+   "btn": {
+    "f": "tashikk/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 293296
+   }
+  },
+  "desh": {
+   "name": "desh",
+   "bg": {
+    "f": "desh/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 399814
+   },
+   "panel": {
+    "f": "desh/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 172892
+   },
+   "btn": {
+    "f": "desh/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 392182
+   }
+  },
+  "purelake": {
+   "name": "purelake",
+   "bg": {
+    "f": "purelake/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 196121
+   },
+   "panel": {
+    "f": "purelake/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 212567
+   },
+   "btn": {
+    "f": "purelake/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 167450
+   }
+  },
+  "reshiisles": {
+   "name": "reshiisles",
+   "bg": {
+    "f": "reshiisles/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 275945
+   },
+   "panel": {
+    "f": "reshiisles/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 425979
+   },
+   "btn": {
+    "f": "reshiisles/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 422132
+   }
+  },
+  "frostlands": {
+   "name": "frostlands",
+   "bg": {
+    "f": "frostlands/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 285033
+   },
+   "panel": {
+    "f": "frostlands/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 180437
+   },
+   "btn": {
+    "f": "frostlands/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 133571
+   }
+  },
+  "shatteredplains": {
+   "name": "shatteredplains",
+   "bg": {
+    "f": "shatteredplains/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 227049
+   },
+   "panel": {
+    "f": "shatteredplains/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 354065
+   },
+   "btn": {
+    "f": "shatteredplains/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 410543
+   }
+  },
+  "ix": {
+   "name": "ix",
+   "bg": {
+    "f": "ix/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 335070
+   },
+   "panel": {
+    "f": "ix/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 144034
+   },
+   "btn": {
+    "f": "ix/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 243018
+   }
+  },
+  "motesystem": {
+   "name": "motesystem",
+   "bg": {
+    "f": "motesystem/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 406600
+   },
+   "panel": {
+    "f": "motesystem/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 268505
+   },
+   "btn": {
+    "f": "motesystem/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 310462
+   }
+  },
+  "mexico": {
+   "name": "mexico",
+   "bg": {
+    "f": "mexico/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 360121
+   },
+   "panel": {
+    "f": "mexico/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 178849
+   },
+   "btn": {
+    "f": "mexico/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 379683
+   }
+  },
+  "brazil": {
+   "name": "brazil",
+   "bg": {
+    "f": "brazil/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 430871
+   },
+   "panel": {
+    "f": "brazil/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 142761
+   },
+   "btn": {
+    "f": "brazil/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 293024
+   }
+  },
+  "grancolombia": {
+   "name": "grancolombia",
+   "bg": {
+    "f": "grancolombia/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 304413
+   },
+   "panel": {
+    "f": "grancolombia/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 162870
+   },
+   "btn": {
+    "f": "grancolombia/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 220261
+   }
+  },
+  "argentina": {
+   "name": "argentina",
+   "bg": {
+    "f": "argentina/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 331087
+   },
+   "panel": {
+    "f": "argentina/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 139062
+   },
+   "btn": {
+    "f": "argentina/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 144509
+   }
+  },
+  "haiti": {
+   "name": "haiti",
+   "bg": {
+    "f": "haiti/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 360803
+   },
+   "panel": {
+    "f": "haiti/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 172684
+   },
+   "btn": {
+    "f": "haiti/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 121041
+   }
+  },
+  "switzerland": {
+   "name": "switzerland",
+   "bg": {
+    "f": "switzerland/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 256188
+   },
+   "panel": {
+    "f": "switzerland/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 211672
+   },
+   "btn": {
+    "f": "switzerland/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 291964
+   }
+  },
+  "merina": {
+   "name": "merina",
+   "bg": {
+    "f": "merina/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 503577
+   },
+   "panel": {
+    "f": "merina/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 225542
+   },
+   "btn": {
+    "f": "merina/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 433642
+   }
+  },
+  "congo": {
+   "name": "congo",
+   "bg": {
+    "f": "congo/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 278647
+   },
+   "panel": {
+    "f": "congo/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 220445
+   },
+   "btn": {
+    "f": "congo/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 155988
+   }
+  },
+  "mirkwood": {
+   "name": "mirkwood",
+   "bg": {
+    "f": "mirkwood/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 174726
    }
   }
  }
