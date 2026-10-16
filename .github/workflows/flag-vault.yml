@@ -1,0 +1,53 @@
+name: flag-vault
+on:
+  workflow_dispatch:             # run by hand from the Actions tab; re-run whenever RW_FLAGS grows
+permissions:
+  contents: write
+  actions: write                 # lets the workflow disable itself when the vault is complete
+concurrency:
+  group: vault-painter           # SHARED with paint-vault/paint-themes: one painter in the repo at a time
+  cancel-in-progress: false
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check out the game repo (RW_FLAGS title list)
+        uses: actions/checkout@v4
+        with:
+          repository: grahamakenyon2-ship-it/cyf-game
+          path: game
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Fetch the missing banners
+        id: fetch
+        run: |
+          set +e
+          node fetch-flags.mjs
+          rc=$?
+          echo "rc=$rc" >> "$GITHUB_OUTPUT"
+          echo "fetch-flags exit code: $rc"
+          exit 0
+      - name: Commit the vault
+        run: |
+          git config user.name "flag-keeper"
+          git config user.email "keeper@users.noreply.github.com"
+          git add flags
+          git diff --cached --quiet && echo "nothing new" && exit 0
+          git commit -m "flags: banner vault refresh"
+          for i in 1 2 3; do
+            if git push; then exit 0; fi
+            echo "push rejected - rebasing on remote and retrying (attempt $i)"
+            git pull --rebase origin "$GITHUB_REF_NAME" || exit 1
+          done
+          echo "push failed after 3 attempts" && exit 1
+      - name: Complete - disable this workflow
+        if: steps.fetch.outputs.rc == '2'
+        run: |
+          echo "BANNER VAULT COMPLETE - every banner the game names is mirrored. Disabling this workflow."
+          echo "(If RW_FLAGS grows later, re-enable and re-run it from the Actions tab.)"
+          curl -s -X POST -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/workflows/flag-vault.yml/disable"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
