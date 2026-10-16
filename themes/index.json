@@ -476,6 +476,24 @@
     "m": "image/jpeg",
     "bytes": 293722
    }
+  },
+  "azir": {
+   "name": "azir",
+   "bg": {
+    "f": "azir/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 271711
+   },
+   "panel": {
+    "f": "azir/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 167870
+   },
+   "btn": {
+    "f": "azir/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 229005
+   }
   }
  }
 }
