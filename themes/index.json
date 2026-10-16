@@ -4165,6 +4165,52 @@
     "f": "usa/bg.jpg",
     "m": "image/jpeg",
     "bytes": 179441
+   },
+   "panel": {
+    "f": "usa/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 194824
+   },
+   "btn": {
+    "f": "usa/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 196575
+   }
+  },
+  "indochina": {
+   "name": "indochina",
+   "bg": {
+    "f": "indochina/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 371189
+   },
+   "panel": {
+    "f": "indochina/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 199234
+   },
+   "btn": {
+    "f": "indochina/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 359498
+   }
+  },
+  "granada": {
+   "name": "granada",
+   "bg": {
+    "f": "granada/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 342833
+   },
+   "panel": {
+    "f": "granada/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 179126
+   },
+   "btn": {
+    "f": "granada/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 404334
    }
   }
  }
