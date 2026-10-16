@@ -1,9 +1,14 @@
 #!/usr/bin/env node
 /**
- * FLAG KEEPER v2 - mirrors every banner the game's RW_FLAGS table names
+ * FLAG KEEPER v3 - mirrors every banner the game's RW_FLAGS table names
  * from Wikimedia Commons into flags/ in this repo (the portrait vault),
  * so the game reads banners from GitHub Pages instead of hammering
  * Commons on every fresh session (playtest 429 storms).
+ *
+ * v3: upload.wikimedia.org 429'd nearly every file on the v2 run - the
+ * 150ms politeness delay is far too fast for Commons' file host. Each
+ * banner now retries on HTTP 429 with growing backoff (5s/15s/45s/90s),
+ * healthy fetches pause 900ms apart, and a hard failure pauses 5s.
  *
  * v2: the title list now travels IN THIS REPO as flags/titles.txt (one
  * Commons "File:" title per line). The first version read it from a
@@ -61,22 +66,39 @@ for (let i = 0; i < missing.length; i += 50) {
   await sleep(400);
 }
 
+// v3: patient fetching - 429 backoff (5s/15s/45s/90s), 900ms between healthy files
 let ok = 0;
 const fail = [];
+const BACKOFF = [5000, 15000, 45000, 90000];
 for (const t of missing) {
   const u = directFor.get(t);
   const f = slug(t) + '.svg';
   if (!u) { console.warn('MISS (no such banner on Commons): ' + t); fail.push(t + ' (missing on Commons)'); continue; }
-  try {
-    const r = await fetch(u, { headers: { 'User-Agent': UA } });
-    if (!r.ok) throw new Error('HTTP ' + r.status);
-    const text = await r.text();
-    if (!text || text.charCodeAt(0) !== 60 || text.length > 1200000) throw new Error('not a sane svg');
+  let text = null, err = null;
+  for (let attempt = 0; attempt <= BACKOFF.length; attempt++) {
+    try {
+      const r = await fetch(u, { headers: { 'User-Agent': UA } });
+      if (r.status === 429 && attempt < BACKOFF.length) {
+        console.warn('429 on ' + t + ' - backing off ' + (BACKOFF[attempt] / 1000) + 's (attempt ' + (attempt + 1) + '/' + (BACKOFF.length + 1) + ')');
+        await sleep(BACKOFF[attempt]);
+        continue;
+      }
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      text = await r.text();
+      break;
+    } catch (e) { err = e; if (attempt < BACKOFF.length) await sleep(BACKOFF[attempt]); }
+  }
+  if (text && text.charCodeAt(0) === 60 && text.length <= 1200000) {
     writeFileSync(FLAGS_DIR + '/' + f, text);
     index.files[t] = { f, m: 'image/svg+xml', bytes: Buffer.byteLength(text) };
     ok++;
-    await sleep(150);
-  } catch (e) { console.warn('FAIL ' + t + ': ' + e.message); fail.push(t + ' (' + e.message + ')'); await sleep(1200); }
+    await sleep(900);
+  } else {
+    const why = text ? 'not a sane svg' : ((err && err.message) || 'exhausted retries');
+    console.warn('FAIL ' + t + ': ' + why);
+    fail.push(t + ' (' + why + ')');
+    await sleep(5000);   // after a hard failure, give the host a long breath
+  }
 }
 writeFileSync(INDEX, JSON.stringify(index, null, 1) + '\n');
 if (fail.length) writeFileSync('flags/failures.txt', fail.join('\n') + '\n');
