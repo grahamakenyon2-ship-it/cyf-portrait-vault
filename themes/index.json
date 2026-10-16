@@ -2970,6 +2970,307 @@
     "m": "image/jpeg",
     "bytes": 211178
    }
+  },
+  "qarth": {
+   "name": "qarth",
+   "bg": {
+    "f": "qarth/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 342889
+   },
+   "panel": {
+    "f": "qarth/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 347868
+   },
+   "btn": {
+    "f": "qarth/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 205425
+   }
+  },
+  "asshai": {
+   "name": "asshai",
+   "bg": {
+    "f": "asshai/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 339394
+   },
+   "panel": {
+    "f": "asshai/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 327714
+   },
+   "btn": {
+    "f": "asshai/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 197907
+   }
+  },
+  "rohan": {
+   "name": "rohan",
+   "bg": {
+    "f": "rohan/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 312562
+   },
+   "panel": {
+    "f": "rohan/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 190065
+   },
+   "btn": {
+    "f": "rohan/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 329480
+   }
+  },
+  "shire": {
+   "name": "shire",
+   "bg": {
+    "f": "shire/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 224072
+   },
+   "panel": {
+    "f": "shire/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 219555
+   },
+   "btn": {
+    "f": "shire/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 251750
+   }
+  },
+  "isengard": {
+   "name": "isengard",
+   "bg": {
+    "f": "isengard/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 374066
+   },
+   "panel": {
+    "f": "isengard/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 332775
+   },
+   "btn": {
+    "f": "isengard/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 379665
+   }
+  },
+  "elven": {
+   "name": "elven",
+   "bg": {
+    "f": "elven/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 414759
+   },
+   "panel": {
+    "f": "elven/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 227352
+   },
+   "btn": {
+    "f": "elven/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 344316
+   }
+  },
+  "erebor": {
+   "name": "erebor",
+   "bg": {
+    "f": "erebor/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 392398
+   },
+   "panel": {
+    "f": "erebor/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 228823
+   },
+   "btn": {
+    "f": "erebor/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 202448
+   }
+  },
+  "numenor": {
+   "name": "numenor",
+   "bg": {
+    "f": "numenor/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 277410
+   },
+   "panel": {
+    "f": "numenor/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 236001
+   },
+   "btn": {
+    "f": "numenor/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 167505
+   }
+  },
+  "harad": {
+   "name": "harad",
+   "bg": {
+    "f": "harad/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 397968
+   },
+   "panel": {
+    "f": "harad/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 323397
+   },
+   "btn": {
+    "f": "harad/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 233661
+   }
+  },
+  "temeria": {
+   "name": "temeria",
+   "bg": {
+    "f": "temeria/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 488359
+   },
+   "panel": {
+    "f": "temeria/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 175518
+   },
+   "btn": {
+    "f": "temeria/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 361962
+   }
+  },
+  "toussaint": {
+   "name": "toussaint",
+   "bg": {
+    "f": "toussaint/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 208487
+   },
+   "panel": {
+    "f": "toussaint/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 242449
+   },
+   "btn": {
+    "f": "toussaint/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 280041
+   }
+  },
+  "andor": {
+   "name": "andor",
+   "bg": {
+    "f": "andor/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 410906
+   },
+   "panel": {
+    "f": "andor/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 272628
+   },
+   "btn": {
+    "f": "andor/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 184786
+   }
+  },
+  "tarvalon": {
+   "name": "tarvalon",
+   "bg": {
+    "f": "tarvalon/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 396470
+   },
+   "panel": {
+    "f": "tarvalon/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 175930
+   },
+   "btn": {
+    "f": "tarvalon/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 314913
+   }
+  },
+  "seanchan": {
+   "name": "seanchan",
+   "bg": {
+    "f": "seanchan/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 307853
+   },
+   "panel": {
+    "f": "seanchan/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 202064
+   },
+   "btn": {
+    "f": "seanchan/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 134552
+   }
+  },
+  "mandalorian": {
+   "name": "mandalorian",
+   "bg": {
+    "f": "mandalorian/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 386023
+   },
+   "panel": {
+    "f": "mandalorian/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 300943
+   },
+   "btn": {
+    "f": "mandalorian/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 417313
+   }
+  },
+  "hutt": {
+   "name": "hutt",
+   "bg": {
+    "f": "hutt/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 418287
+   },
+   "panel": {
+    "f": "hutt/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 272888
+   },
+   "btn": {
+    "f": "hutt/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 225795
+   }
+  },
+  "sithempire": {
+   "name": "sithempire",
+   "bg": {
+    "f": "sithempire/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 289800
+   },
+   "panel": {
+    "f": "sithempire/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 334416
+   }
   }
  }
 }
