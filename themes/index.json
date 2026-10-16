@@ -3324,6 +3324,11 @@
     "f": "borg/panel.jpg",
     "m": "image/jpeg",
     "bytes": 141640
+   },
+   "btn": {
+    "f": "borg/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 112895
    }
   },
   "ferengi": {
@@ -3566,6 +3571,299 @@
     "f": "alethkar/bg.jpg",
     "m": "image/jpeg",
     "bytes": 360731
+   },
+   "panel": {
+    "f": "alethkar/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 178383
+   },
+   "btn": {
+    "f": "alethkar/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 194409
+   }
+  },
+  "tau": {
+   "name": "tau",
+   "bg": {
+    "f": "tau/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 185849
+   },
+   "panel": {
+    "f": "tau/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 191596
+   },
+   "btn": {
+    "f": "tau/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 392885
+   }
+  },
+  "necron": {
+   "name": "necron",
+   "bg": {
+    "f": "necron/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 164402
+   },
+   "panel": {
+    "f": "necron/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 159008
+   },
+   "btn": {
+    "f": "necron/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 255584
+   }
+  },
+  "chaoswar": {
+   "name": "chaoswar",
+   "bg": {
+    "f": "chaoswar/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 367008
+   },
+   "panel": {
+    "f": "chaoswar/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 375055
+   },
+   "btn": {
+    "f": "chaoswar/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 317013
+   }
+  },
+  "orkz": {
+   "name": "orkz",
+   "bg": {
+    "f": "orkz/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 444519
+   },
+   "panel": {
+    "f": "orkz/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 309295
+   },
+   "btn": {
+    "f": "orkz/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 255011
+   }
+  },
+  "aeldari": {
+   "name": "aeldari",
+   "bg": {
+    "f": "aeldari/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 288161
+   },
+   "panel": {
+    "f": "aeldari/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 178412
+   },
+   "btn": {
+    "f": "aeldari/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 338255
+   }
+  },
+  "empire": {
+   "name": "empire",
+   "bg": {
+    "f": "empire/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 151776
+   },
+   "panel": {
+    "f": "empire/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 277374
+   },
+   "btn": {
+    "f": "empire/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 214963
+   }
+  },
+  "bretonnia": {
+   "name": "bretonnia",
+   "bg": {
+    "f": "bretonnia/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 333525
+   },
+   "panel": {
+    "f": "bretonnia/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 176258
+   },
+   "btn": {
+    "f": "bretonnia/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 105961
+   }
+  },
+  "kislev": {
+   "name": "kislev",
+   "bg": {
+    "f": "kislev/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 347040
+   },
+   "panel": {
+    "f": "kislev/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 194673
+   },
+   "btn": {
+    "f": "kislev/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 188145
+   }
+  },
+  "sylvania": {
+   "name": "sylvania",
+   "bg": {
+    "f": "sylvania/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 295015
+   },
+   "panel": {
+    "f": "sylvania/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 154481
+   },
+   "btn": {
+    "f": "sylvania/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 144067
+   }
+  },
+  "nehekhara": {
+   "name": "nehekhara",
+   "bg": {
+    "f": "nehekhara/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 362771
+   },
+   "panel": {
+    "f": "nehekhara/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 295429
+   },
+   "btn": {
+    "f": "nehekhara/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 382091
+   }
+  },
+  "lustria": {
+   "name": "lustria",
+   "bg": {
+    "f": "lustria/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 457457
+   },
+   "panel": {
+    "f": "lustria/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 201253
+   },
+   "btn": {
+    "f": "lustria/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 235902
+   }
+  },
+  "skaven": {
+   "name": "skaven",
+   "bg": {
+    "f": "skaven/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 440673
+   },
+   "panel": {
+    "f": "skaven/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 195733
+   },
+   "btn": {
+    "f": "skaven/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 185341
+   }
+  },
+  "mondstadt": {
+   "name": "mondstadt",
+   "bg": {
+    "f": "mondstadt/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 334198
+   },
+   "panel": {
+    "f": "mondstadt/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 306588
+   },
+   "btn": {
+    "f": "mondstadt/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 432134
+   }
+  },
+  "liyue": {
+   "name": "liyue",
+   "bg": {
+    "f": "liyue/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 375007
+   },
+   "panel": {
+    "f": "liyue/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 327757
+   },
+   "btn": {
+    "f": "liyue/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 157502
+   }
+  },
+  "inazuma": {
+   "name": "inazuma",
+   "bg": {
+    "f": "inazuma/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 319574
+   },
+   "panel": {
+    "f": "inazuma/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 230817
+   },
+   "btn": {
+    "f": "inazuma/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 189417
+   }
+  },
+  "sumeru": {
+   "name": "sumeru",
+   "bg": {
+    "f": "sumeru/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 325177
+   },
+   "panel": {
+    "f": "sumeru/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 311960
    }
   }
  }
