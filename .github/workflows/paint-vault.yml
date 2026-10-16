@@ -12,7 +12,7 @@ permissions:
   contents: write
   actions: write              # lets the workflow disable itself when the vault is full
 concurrency:
-  group: paint-vault
+  group: vault-painter        # SHARED with paint-themes: one painter in the repo at a time
   cancel-in-progress: false    # never kill a sitting mid-stroke; the next run waits its turn
 jobs:
   paint:
@@ -32,7 +32,12 @@ jobs:
             git add -A
             git diff --cached --quiet && echo "nothing new" && exit 0
             git commit -m "gallery: new portraits"
-            git push
+            for i in 1 2 3; do
+              if git push; then exit 0; fi
+              echo "push rejected - rebasing on remote and retrying (attempt $i)"
+              git pull --rebase origin "$GITHUB_REF_NAME" || exit 1
+            done
+            echo "push failed after 3 attempts" && exit 1
           elif [ "$rc" -eq 2 ]; then
             echo "VAULT COMPLETE - every face on the roster is painted. Disabling this workflow so the cron stops for good."
             echo "To paint a future batch: re-enable paint-vault in the Actions tab, run it once by hand, and it will disable itself again when done."
@@ -44,6 +49,6 @@ jobs:
           fi
         env:
           MISTRAL_KEY: ${{ secrets.MISTRAL_KEY }}
-          BATCH: ${{ github.event.inputs.batch || '40' }}
+          BATCH: ${{ github.event.inputs.batch || G40G }}
           CONC: 4
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
