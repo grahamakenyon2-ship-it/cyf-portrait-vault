@@ -457,6 +457,16 @@
     "f": "chinaimperial/bg.jpg",
     "m": "image/jpeg",
     "bytes": 269393
+   },
+   "panel": {
+    "f": "chinaimperial/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 213469
+   },
+   "btn": {
+    "f": "chinaimperial/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 290193
    }
   },
   "persia": {
@@ -465,6 +475,16 @@
     "f": "persia/bg.jpg",
     "m": "image/jpeg",
     "bytes": 644135
+   },
+   "panel": {
+    "f": "persia/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 231749
+   },
+   "btn": {
+    "f": "persia/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 323766
    }
   },
   "aztec": {
@@ -473,6 +493,16 @@
     "f": "aztec/bg.jpg",
     "m": "image/jpeg",
     "bytes": 246269
+   },
+   "panel": {
+    "f": "aztec/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 202872
+   },
+   "btn": {
+    "f": "aztec/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 264652
    }
   },
   "norse": {
@@ -481,6 +511,16 @@
     "f": "norse/bg.jpg",
     "m": "image/jpeg",
     "bytes": 283564
+   },
+   "panel": {
+    "f": "norse/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 133691
+   },
+   "btn": {
+    "f": "norse/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 330060
    }
   },
   "bourbon": {
@@ -489,6 +529,16 @@
     "f": "bourbon/bg.jpg",
     "m": "image/jpeg",
     "bytes": 431818
+   },
+   "panel": {
+    "f": "bourbon/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 329505
+   },
+   "btn": {
+    "f": "bourbon/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 142295
    }
   },
   "britannia": {
@@ -497,6 +547,16 @@
     "f": "britannia/bg.jpg",
     "m": "image/jpeg",
     "bytes": 350576
+   },
+   "panel": {
+    "f": "britannia/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 119682
+   },
+   "btn": {
+    "f": "britannia/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 309600
    }
   },
   "prussia": {
@@ -505,6 +565,16 @@
     "f": "prussia/bg.jpg",
     "m": "image/jpeg",
     "bytes": 299108
+   },
+   "panel": {
+    "f": "prussia/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 159403
+   },
+   "btn": {
+    "f": "prussia/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 406785
    }
   },
   "muscovy": {
@@ -513,6 +583,16 @@
     "f": "muscovy/bg.jpg",
     "m": "image/jpeg",
     "bytes": 413215
+   },
+   "panel": {
+    "f": "muscovy/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 178472
+   },
+   "btn": {
+    "f": "muscovy/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 186695
    }
   },
   "spain": {
@@ -521,6 +601,16 @@
     "f": "spain/bg.jpg",
     "m": "image/jpeg",
     "bytes": 316962
+   },
+   "panel": {
+    "f": "spain/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 272324
+   },
+   "btn": {
+    "f": "spain/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 406487
    }
   },
   "mughal": {
@@ -529,6 +619,16 @@
     "f": "mughal/bg.jpg",
     "m": "image/jpeg",
     "bytes": 740983
+   },
+   "panel": {
+    "f": "mughal/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 426597
+   },
+   "btn": {
+    "f": "mughal/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 356639
    }
   },
   "mali": {
@@ -537,6 +637,16 @@
     "f": "mali/bg.jpg",
     "m": "image/jpeg",
     "bytes": 631165
+   },
+   "panel": {
+    "f": "mali/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 235188
+   },
+   "btn": {
+    "f": "mali/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 316117
    }
   },
   "sparta": {
@@ -545,6 +655,16 @@
     "f": "sparta/bg.jpg",
     "m": "image/jpeg",
     "bytes": 270745
+   },
+   "panel": {
+    "f": "sparta/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 286294
+   },
+   "btn": {
+    "f": "sparta/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 313225
    }
   },
   "mordor": {
@@ -553,6 +673,16 @@
     "f": "mordor/bg.jpg",
     "m": "image/jpeg",
     "bytes": 339209
+   },
+   "panel": {
+    "f": "mordor/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 249965
+   },
+   "btn": {
+    "f": "mordor/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 391193
    }
   },
   "gondor": {
@@ -561,6 +691,16 @@
     "f": "gondor/bg.jpg",
     "m": "image/jpeg",
     "bytes": 321013
+   },
+   "panel": {
+    "f": "gondor/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 421697
+   },
+   "btn": {
+    "f": "gondor/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 532980
    }
   },
   "galacticemp": {
@@ -569,6 +709,16 @@
     "f": "galacticemp/bg.jpg",
     "m": "image/jpeg",
     "bytes": 345844
+   },
+   "panel": {
+    "f": "galacticemp/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 200861
+   },
+   "btn": {
+    "f": "galacticemp/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 151756
    }
   },
   "federation": {
@@ -577,6 +727,16 @@
     "f": "federation/bg.jpg",
     "m": "image/jpeg",
     "bytes": 286227
+   },
+   "panel": {
+    "f": "federation/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 180887
+   },
+   "btn": {
+    "f": "federation/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 222043
    }
   },
   "nilfgaard": {
@@ -585,6 +745,16 @@
     "f": "nilfgaard/bg.jpg",
     "m": "image/jpeg",
     "bytes": 352147
+   },
+   "panel": {
+    "f": "nilfgaard/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 151140
+   },
+   "btn": {
+    "f": "nilfgaard/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 210614
    }
   },
   "atreides": {
@@ -593,6 +763,16 @@
     "f": "atreides/bg.jpg",
     "m": "image/jpeg",
     "bytes": 294788
+   },
+   "panel": {
+    "f": "atreides/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 120239
+   },
+   "btn": {
+    "f": "atreides/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 329191
    }
   },
   "harkonnen": {
@@ -601,6 +781,16 @@
     "f": "harkonnen/bg.jpg",
     "m": "image/jpeg",
     "bytes": 335550
+   },
+   "panel": {
+    "f": "harkonnen/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 301056
+   },
+   "btn": {
+    "f": "harkonnen/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 180275
    }
   },
   "imperium40k": {
@@ -609,6 +799,16 @@
     "f": "imperium40k/bg.jpg",
     "m": "image/jpeg",
     "bytes": 342792
+   },
+   "panel": {
+    "f": "imperium40k/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 340194
+   },
+   "btn": {
+    "f": "imperium40k/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 186275
    }
   },
   "klingon": {
@@ -617,6 +817,16 @@
     "f": "klingon/bg.jpg",
     "m": "image/jpeg",
     "bytes": 304657
+   },
+   "panel": {
+    "f": "klingon/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 249005
+   },
+   "btn": {
+    "f": "klingon/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 374134
    }
   },
   "napoleonic": {
@@ -625,6 +835,16 @@
     "f": "napoleonic/bg.jpg",
     "m": "image/jpeg",
     "bytes": 293722
+   },
+   "panel": {
+    "f": "napoleonic/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 239496
+   },
+   "btn": {
+    "f": "napoleonic/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 121607
    }
   },
   "azir": {
@@ -2713,6 +2933,42 @@
     "f": "frankish/btn.jpg",
     "m": "image/jpeg",
     "bytes": 405519
+   }
+  },
+  "braavos": {
+   "name": "braavos",
+   "bg": {
+    "f": "braavos/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 261183
+   },
+   "panel": {
+    "f": "braavos/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 331396
+   },
+   "btn": {
+    "f": "braavos/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 414574
+   }
+  },
+  "dothraki": {
+   "name": "dothraki",
+   "bg": {
+    "f": "dothraki/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 355160
+   },
+   "panel": {
+    "f": "dothraki/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 416176
+   },
+   "btn": {
+    "f": "dothraki/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 211178
    }
   }
  }
