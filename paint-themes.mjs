@@ -11,6 +11,8 @@
 // token-only dress when the vault is empty or unreachable.
 // v5: 71 new nation dresses from v245 (118 keys x 3 assets).
 // v6: 116 new nation dresses from v247 THE LAST COURTS (234 keys x 3 assets).
+// v8: BATCH env (default 50 textures per sitting) for the cron cycle; exit 3
+// when the key is refused (credits exhausted) so the workflow self-disables.
 // v7: moderation recovery + hardened agent (image prompts free of proper nouns,
 // fresh agent-theme-v2.txt cache), bounded rate-limit retries, 2.5h run budget
 // (re-run to continue), failure diagnostics committed to themes/failures.txt.
@@ -1093,9 +1095,11 @@ for (const k of FULL) {
     todo.push([k, a, BRIEFS[k + '/' + a]]);
   }
 }
+const BATCH = Number(process.env.BATCH || 50);   // textures per sitting - the cron/next run continues the rest
+if (todo.length > BATCH) { console.log('capping this sitting at ' + BATCH + ' of ' + todo.length + ' remaining textures'); todo.length = BATCH; }
 if (!todo.length) { console.log('THEME VAULT COMPLETE - every dress has its sheet, frame and face.'); process.exit(2); }
 const ag = await agentId();
-let painted = 0, failed = 0, budgetHit = false;
+let painted = 0, failed = 0, refused = 0, budgetHit = false;
 const T0 = Date.now();
 const BUDGET_MS = (Number(process.env.BUDGET_S || 9000)) * 1000;   // graceful partial exit; re-run to continue
 try { fs.unlinkSync('themes/failures.txt'); } catch (e) {}
@@ -1104,9 +1108,11 @@ for (const spec of todo) {
   try { await paintOne(ag, spec, spec[2], 0); painted++; }
   catch (e) {
     console.log(spec[0] + '/' + spec[1] + ': FAILED - ' + e.message); failed++;
+    if (String(e.message).indexOf('refused') >= 0) refused++;
     try { fs.appendFileSync('themes/failures.txt', spec[0] + '/' + spec[1] + ': ' + e.message + '\n'); } catch (e2) {}
   }
   await sleep(2000);
 }
 console.log('painted ' + painted + ', failed ' + failed + (budgetHit ? ' (budget - re-run to continue)' : ''));
+if (!painted && refused) { console.log('KEY REFUSED - credits exhausted or key invalid. Stopping the cycle (exit 3) so the workflow disables itself.'); process.exit(3); }
 process.exit(failed && !painted ? 1 : 0);
