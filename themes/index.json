@@ -187,6 +187,16 @@
     "f": "stark/bg.jpg",
     "m": "image/jpeg",
     "bytes": 448911
+   },
+   "panel": {
+    "f": "stark/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 219754
+   },
+   "btn": {
+    "f": "stark/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 316382
    }
   },
   "lannister": {
@@ -195,6 +205,16 @@
     "f": "lannister/bg.jpg",
     "m": "image/jpeg",
     "bytes": 372091
+   },
+   "panel": {
+    "f": "lannister/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 261781
+   },
+   "btn": {
+    "f": "lannister/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 354653
    }
   },
   "baratheon": {
@@ -203,6 +223,16 @@
     "f": "baratheon/bg.jpg",
     "m": "image/jpeg",
     "bytes": 309165
+   },
+   "panel": {
+    "f": "baratheon/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 300641
+   },
+   "btn": {
+    "f": "baratheon/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 155420
    }
   },
   "targaryen": {
@@ -211,6 +241,16 @@
     "f": "targaryen/bg.jpg",
     "m": "image/jpeg",
     "bytes": 367384
+   },
+   "panel": {
+    "f": "targaryen/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 231171
+   },
+   "btn": {
+    "f": "targaryen/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 233350
    }
   },
   "greyjoy": {
@@ -219,6 +259,16 @@
     "f": "greyjoy/bg.jpg",
     "m": "image/jpeg",
     "bytes": 276002
+   },
+   "panel": {
+    "f": "greyjoy/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 354794
+   },
+   "btn": {
+    "f": "greyjoy/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 419912
    }
   },
   "martell": {
@@ -227,6 +277,16 @@
     "f": "martell/bg.jpg",
     "m": "image/jpeg",
     "bytes": 213276
+   },
+   "panel": {
+    "f": "martell/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 343346
+   },
+   "btn": {
+    "f": "martell/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 417541
    }
   },
   "tyrell": {
@@ -235,6 +295,16 @@
     "f": "tyrell/bg.jpg",
     "m": "image/jpeg",
     "bytes": 408884
+   },
+   "panel": {
+    "f": "tyrell/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 375855
+   },
+   "btn": {
+    "f": "tyrell/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 205676
    }
   },
   "arryn": {
@@ -243,6 +313,16 @@
     "f": "arryn/bg.jpg",
     "m": "image/jpeg",
     "bytes": 143745
+   },
+   "panel": {
+    "f": "arryn/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 171540
+   },
+   "btn": {
+    "f": "arryn/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 490983
    }
   },
   "tully": {
@@ -251,6 +331,16 @@
     "f": "tully/bg.jpg",
     "m": "image/jpeg",
     "bytes": 404929
+   },
+   "panel": {
+    "f": "tully/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 223861
+   },
+   "btn": {
+    "f": "tully/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 454324
    }
   },
   "nightswatch": {
@@ -259,6 +349,16 @@
     "f": "nightswatch/bg.jpg",
     "m": "image/jpeg",
     "bytes": 383083
+   },
+   "panel": {
+    "f": "nightswatch/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 285380
+   },
+   "btn": {
+    "f": "nightswatch/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 208354
    }
   },
   "rome": {
@@ -267,6 +367,16 @@
     "f": "rome/bg.jpg",
     "m": "image/jpeg",
     "bytes": 335253
+   },
+   "panel": {
+    "f": "rome/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 251703
+   },
+   "btn": {
+    "f": "rome/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 336343
    }
   },
   "egypt": {
@@ -275,6 +385,16 @@
     "f": "egypt/bg.jpg",
     "m": "image/jpeg",
     "bytes": 419469
+   },
+   "panel": {
+    "f": "egypt/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 453865
+   },
+   "btn": {
+    "f": "egypt/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 263421
    }
   },
   "byzantium": {
@@ -283,6 +403,16 @@
     "f": "byzantium/bg.jpg",
     "m": "image/jpeg",
     "bytes": 483504
+   },
+   "panel": {
+    "f": "byzantium/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 428012
+   },
+   "btn": {
+    "f": "byzantium/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 292307
    }
   },
   "steppe": {
@@ -291,6 +421,16 @@
     "f": "steppe/bg.jpg",
     "m": "image/jpeg",
     "bytes": 300876
+   },
+   "panel": {
+    "f": "steppe/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 397970
+   },
+   "btn": {
+    "f": "steppe/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 283801
    }
   },
   "ottoman": {
@@ -299,6 +439,16 @@
     "f": "ottoman/bg.jpg",
     "m": "image/jpeg",
     "bytes": 320455
+   },
+   "panel": {
+    "f": "ottoman/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 296151
+   },
+   "btn": {
+    "f": "ottoman/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 168141
    }
   },
   "chinaimperial": {
@@ -2445,6 +2595,124 @@
     "f": "badlandswhf/bg.jpg",
     "m": "image/jpeg",
     "bytes": 510683
+   },
+   "panel": {
+    "f": "badlandswhf/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 151391
+   },
+   "btn": {
+    "f": "badlandswhf/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 284739
+   }
+  },
+  "darksea": {
+   "name": "darksea",
+   "bg": {
+    "f": "darksea/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 292972
+   },
+   "panel": {
+    "f": "darksea/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 335231
+   },
+   "btn": {
+    "f": "darksea/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 238746
+   }
+  },
+  "japan": {
+   "name": "japan",
+   "bg": {
+    "f": "japan/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 410560
+   },
+   "panel": {
+    "f": "japan/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 169986
+   },
+   "btn": {
+    "f": "japan/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 115049
+   }
+  },
+  "korea": {
+   "name": "korea",
+   "bg": {
+    "f": "korea/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 345935
+   },
+   "panel": {
+    "f": "korea/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 296622
+   },
+   "btn": {
+    "f": "korea/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 324739
+   }
+  },
+  "tibet": {
+   "name": "tibet",
+   "bg": {
+    "f": "tibet/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 318105
+   },
+   "panel": {
+    "f": "tibet/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 169485
+   },
+   "btn": {
+    "f": "tibet/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 373802
+   }
+  },
+  "carolingian": {
+   "name": "carolingian",
+   "bg": {
+    "f": "carolingian/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 322826
+   },
+   "panel": {
+    "f": "carolingian/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 280048
+   },
+   "btn": {
+    "f": "carolingian/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 302408
+   }
+  },
+  "frankish": {
+   "name": "frankish",
+   "bg": {
+    "f": "frankish/bg.jpg",
+    "m": "image/jpeg",
+    "bytes": 301633
+   },
+   "panel": {
+    "f": "frankish/panel.jpg",
+    "m": "image/jpeg",
+    "bytes": 292720
+   },
+   "btn": {
+    "f": "frankish/btn.jpg",
+    "m": "image/jpeg",
+    "bytes": 405519
    }
   }
  }
