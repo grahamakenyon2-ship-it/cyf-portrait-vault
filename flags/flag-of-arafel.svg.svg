@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <g id="g">
+  <rect x="2.3981e-14" width="400" height="225" fill="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width=".51145"/>
+  <use transform="translate(-129.16 -89.354)" xlink:href="#d"/>
+  <use transform="translate(128.98 -88.794)" xlink:href="#d"/>
+  <g id="d" transform="translate(-717.19 269.22)">
+   <g id="h" transform="translate(174)">
+    <path id="a" d="m743.65-158.73c13.02 0.11307 26.115-4.7377 37.755-12.897-3.4833 14.085-4.7608 27.349-0.59884 39.893" fill="#193" stroke="#000" stroke-width="3.5006"/>
+    <use transform="rotate(72 743.13 -118.96)" xlink:href="#a"/>
+    <use transform="rotate(144 743.13 -118.96)" xlink:href="#a"/>
+    <use transform="rotate(216 743.13 -118.96)" xlink:href="#a"/>
+    <use transform="rotate(-72 743.13 -118.96)" xlink:href="#a"/>
+   </g>
+   <g id="b" transform="translate(174)">
+    <path d="m742.81-118.88-21.704-30.945c-5.4609-7.8413 2.9405-21.424 11.062-21.984 2.8705-0.18203 7.1412 3.0525 11.062 3.0525s8.1213-3.2205 11.062-3.0525c8.6394 0.56009 15.543 15.683 11.062 21.984l-22.264 30.945" fill="#c40201" stroke="#000" stroke-width="3.5006"/>
+    <path d="m739.25-124.98c1.5402-1.2602 4.0607-35.426 3.6406-35.426s2.8005 34.026 4.0607 35.426" fill="none" stroke="#000" stroke-width="1.4002"/>
+    <path d="m726.33-156.77c0.11202-1.5963 0.79813-3.1365 1.9183-4.2847 1.1062-1.1482 2.6324-1.8763 4.2007-2.0163 1.8203-0.16803 3.6406 0.39206 5.3769 1.0082 1.7363 0.6021 3.5006 1.2602 5.3209 1.2602s3.6126-0.65811 5.3209-1.2602c1.7363-0.6021 3.5566-1.1762 5.3769-1.0082 1.5823 0.15402 3.0805 0.88214 4.2007 2.0163 1.1062 1.1482 1.8063 2.6604 1.9183 4.2847" fill="none" stroke="#000" stroke-linecap="round" stroke-width="1.4002"/>
+   </g>
+   <use transform="rotate(72 917.13 -118.96)" xlink:href="#b"/>
+   <use transform="rotate(144 917.13 -118.96)" xlink:href="#b"/>
+   <use transform="rotate(216 917.13 -118.96)" xlink:href="#b"/>
+   <use transform="rotate(-72 917.13 -118.96)" xlink:href="#b"/>
+   <circle cx="917.13" cy="-118.96" r="17.223" fill="#fd1" stroke="#000" stroke-width="4.2007"/>
+  </g>
+ </g>
+ <g id="f">
+  <rect x="399.99" y="-6.1035e-7" width="400" height="225" fill="#c40201"/>
+  <g transform="translate(.071074 -.78066)">
+   <g id="e" transform="translate(-143.26 270)">
+    <use transform="translate(-174)" xlink:href="#h"/>
+    <g id="c">
+     <path d="m742.81-118.88-21.704-30.945c-5.4609-7.8413 2.9405-21.424 11.062-21.984 2.8705-0.18203 7.1412 3.0525 11.062 3.0525s8.1213-3.2205 11.062-3.0525c8.6394 0.56009 15.543 15.683 11.062 21.984l-22.264 30.945" fill="#fff" stroke="#000" stroke-width="3.5006"/>
+     <path d="m739.25-124.98c1.5402-1.2602 4.0607-35.426 3.6406-35.426s2.8005 34.026 4.0607 35.426" fill="none" stroke="#000" stroke-width="1.4002"/>
+     <path d="m726.33-156.77c0.11202-1.5963 0.79813-3.1365 1.9183-4.2847 1.1062-1.1482 2.6324-1.8763 4.2007-2.0163 1.8203-0.16803 3.6406 0.39206 5.3769 1.0082 1.7363 0.6021 3.5006 1.2602 5.3209 1.2602s3.6126-0.65811 5.3209-1.2602c1.7363-0.6021 3.5566-1.1762 5.3769-1.0082 1.5823 0.15402 3.0805 0.88214 4.2007 2.0163 1.1062 1.1482 1.8063 2.6604 1.9183 4.2847" fill="none" stroke="#000" stroke-linecap="round" stroke-width="1.4002"/>
+    </g>
+    <use transform="rotate(72 743.13 -118.96)" xlink:href="#c"/>
+    <use transform="rotate(144 743.13 -118.96)" xlink:href="#c"/>
+    <use transform="rotate(216 743.13 -118.96)" xlink:href="#c"/>
+    <use transform="rotate(-72 743.13 -118.96)" xlink:href="#c"/>
+    <circle cx="743.13" cy="-118.96" r="17.223" fill="#fd1" stroke="#000" stroke-width="4.2007"/>
+   </g>
+   <use transform="translate(-129.83 -88.828)" xlink:href="#e"/>
+   <use transform="translate(129.83 -88.828)" xlink:href="#e"/>
+  </g>
+ </g>
+ <use transform="translate(-400,225)" xlink:href="#f"/>
+ <use transform="translate(400,225)" xlink:href="#g"/>
+</svg>
