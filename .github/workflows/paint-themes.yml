@@ -1,9 +1,16 @@
 name: paint-themes
 on:
-  workflow_dispatch: {}           # run by hand from the Actions tab; no cron - a few long sittings
+  schedule:
+    - cron: "45 */2 * * *"       # every 2 hours at :45 (off paint-vault's :00/:30 marks) until the vault is complete
+  workflow_dispatch:             # also runnable by hand from the Actions tab
+    inputs:
+      batch:
+        description: 'Textures per run (default 50)'
+        required: false
+        default: '50'
 permissions:
   contents: write
-  actions: write                 # lets the workflow disable itself when the vault is full
+  actions: write                # lets the workflow disable itself (complete, or key refused)
 concurrency:
   group: vault-painter            # SHARED with paint-vault: one painter in the repo at a time
   cancel-in-progress: false
@@ -35,8 +42,13 @@ jobs:
             echo "THEME VAULT COMPLETE - every dress has its texture. Disabling this workflow."
             curl -s -X POST -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \
               "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/workflows/paint-themes.yml/disable"
+          elif [ "$rc" -eq 3 ]; then
+            echo "KEY REFUSED - credits exhausted or key invalid. Disabling this workflow so the cron stops instead of burning cycles."
+            echo "Re-enable paint-themes from the Actions tab once credits are restored, and run it by hand or let the cron continue."
+            curl -s -X POST -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/workflows/paint-themes.yml/disable"
           else
-            echo "theme painter stopped early (moderation, rate limits, or errors) - run it again from the Actions tab"
+            echo "theme painter stopped early (moderation, rate limits, or errors) - the next scheduled run retries"
             git config user.name "theme-keeper"
             git config user.email "keeper@users.noreply.github.com"
             git add themes/failures.txt
@@ -51,4 +63,5 @@ jobs:
           fi
         env:
           MISTRAL_KEY: ${{ secrets.MISTRAL_KEY }}
+          BATCH: ${{ github.event.inputs.batch || '50' }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
