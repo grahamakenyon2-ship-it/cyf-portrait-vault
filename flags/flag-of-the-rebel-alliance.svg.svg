@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   version="1.0"
+   width="1600"
+   height="1000"
+   id="svg2198"
+   sodipodi:docname="Emblem_of_the_Rebel_Alliance.svg"
+   inkscape:version="1.4.2 (2aeb623e1d, 2025-05-12)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="0.32804434"
+     inkscape:cx="1009.0099"
+     inkscape:cy="534.98866"
+     inkscape:window-width="1854"
+     inkscape:window-height="1011"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2198" />
+  <defs
+     id="defs2200" />
+  <rect
+     style="fill:#ffffff;fill-opacity:1;stroke-width:6.47811;stroke-dasharray:25.9124, 6.47811"
+     id="rect1"
+     width="1600"
+     height="1000"
+     x="0"
+     y="0" />
+  <g
+     transform="translate(222.85721,190.62777)"
+     id="layer1">
+    <path
+       d="M 577.14274,3.3922404 521.39108,65.279638 c 19.5444,28.020999 26.848,61.719202 26.848,78.644002 -16.6006,-29.2744 -34.8368,-37.7272 -52.79278,-49.833803 l -35.91154,39.867203 c 48.83722,16.9434 78.73754,74.75079 78.73754,134.55139 2e-5,28.9036 -9.96678,97.6746 -78.73754,94.6844 v -0.2802 c -50.72567,-6.0032 -98.36687,-64.9478 -102.65779,-129.2878 -4.27814,-64.1486 22.92358,-126.57819 67.77408,-178.405391 h -0.15574 C 342.48137,104.01184 285.56993,191.00623 278.01483,292.27303 c -0.18514,2.4816 -0.34168,4.977 -0.46718,7.475 -0.003,0.052 0.003,0.1038 0,0.1558 -0.12584,2.5296 -0.24754,5.0852 -0.31146,7.6308 -0.0663,2.5926 -0.0934,5.2092 -0.0934,7.8176 0,165.60019 134.39996,299.99999 299.99999,299.99999 165.60001,0 300.00001,-134.3998 300.00001,-299.99999 0,-7.7624 -0.2922,-15.4644 -0.8722,-23.0792 -7.555,-101.2668 -64.4664,-188.26119 -146.4804,-237.053591 h -0.1558 c 44.8506,51.827201 72.0522,114.256791 67.7742,178.405391 -4.291,64.34 -51.9322,123.2846 -102.65779,129.2878 v 0.2802 c -68.7708,2.9902 -78.7376,-65.7808 -78.7376,-94.6844 0,-59.8006 29.9004,-117.60799 78.7376,-134.55139 L 658.8392,94.089837 c -17.956,12.106603 -36.1922,20.559403 -52.7928,49.833803 0,-16.9248 7.3036,-50.623003 26.848,-78.644002 z"
+       style="display:inline;opacity:1;fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.8;stroke-opacity:1"
+       id="path8305" />
+  </g>
+</svg>

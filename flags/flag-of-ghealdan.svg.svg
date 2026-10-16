@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500" height="300" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <rect width="500" height="300" fill="#f00"/>
+ <path id="a" d="m250 155.69 19.14-33.151 38.276-2e-3 -19.145-33.135 19.14-33.151-38.276 0.0022-19.136-33.149-19.14 33.151-38.268-0.0125 19.136 33.149-19.14 33.151 38.276-2e-3z" fill="#ccc"/>
+ <use transform="translate(79.157 121.21)" xlink:href="#a"/>
+ <use transform="translate(-79.157 121.21)" xlink:href="#a"/>
+</svg>
