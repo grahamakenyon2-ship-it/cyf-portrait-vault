@@ -16,3 +16,12 @@ fanart-banner-of-astapor.svg|awoiaf:File:Astapor.svg
 fanart-banner-of-yunkai.svg|awoiaf:File:Yunkai.svg
 fanart-banner-of-qarth.svg|awoiaf:File:Qarth.svg
 fanart-banner-of-asshai.svg|awoiaf:File:Asshai.svg
+# ASOIAF round 2 - real awoiaf coats/symbols for the remaining bannered keys
+fanart-banner-of-driftmark.svg|awoiaf:File:House Velaryon.svg
+fanart-banner-of-umber.svg|awoiaf:File:House Umber.svg
+fanart-banner-of-oldtown.svg|awoiaf:File:House Hightower.svg
+fanart-banner-of-blackfyre.svg|awoiaf:File:House Blackfyre.svg
+fanart-banner-of-golden.svg|awoiaf:File:Golden Company.svg
+fanart-banner-of-night.svg|awoiaf:File:Night's Watch.svg
+fanart-banner-of-faith-militant.svg|awoiaf:File:Star of the Faith.svg
+fanart-banner-of-iron-bank.svg|awoiaf:File:Iron Bank.svg
