@@ -1,17 +1,9 @@
 
-# --- WAVE 3: Halo (Halopedia official symbol art)
-fanart-banner-of-covenant.svg.svg|https://www.halopedia.org/wiki/Special:FilePath/Covenant%20LogoHD.png
-fanart-banner-of-banished.svg.svg|https://www.halopedia.org/wiki/Special:FilePath/Banished%20Emblem.png
-fanart-banner-of-unsc.svg.svg|https://www.halopedia.org/wiki/Special:FilePath/UNSC%20insignia%20(post-war).png
-fanart-banner-of-naval-intelligence.svg.svg|https://www.halopedia.org/wiki/Special:FilePath/ONI%20Seal.png
-fanart-banner-of-sanghelios.svg.svg|https://www.halopedia.org/wiki/Special:FilePath/Swords%20of%20Sanghelios%20symbol.png
-fanart-banner-of-insurrectionists.svg.svg|https://www.halopedia.org/wiki/Special:FilePath/Colonial%20Militia%20Logo.svg
-fanart-banner-of-forerunners.svg.svg|https://www.halopedia.org/wiki/Special:FilePath/DidactsHandMarking.png
-# --- WAVE 3: Wheel of Time (wot.fandom)
-fanart-banner-of-two-rivers.svg.svg|https://wot.fandom.com/wiki/Special:FilePath/Two%20Rivers%20flag.svg
-# --- WAVE 3: Elder Scrolls holds (UESP in-game banner art)
-fanart-banner-of-whiterun.svg.svg|https://en.uesp.net/wiki/Special:FilePath/SR-banner-Whiterun.jpg
-fanart-banner-of-windhelm.svg.svg|https://en.uesp.net/wiki/Special:FilePath/SR-banner-Eastmarch.jpg
-fanart-banner-of-solitude.svg.svg|https://en.uesp.net/wiki/Special:FilePath/SR-banner-Haafingar.jpg
-fanart-banner-of-riften.svg.svg|https://en.uesp.net/wiki/Special:FilePath/SR-banner-Rift.jpg
-fanart-banner-of-markarth.svg.svg|https://en.uesp.net/wiki/Special:FilePath/SR-banner-Reach.jpg
+# --- WAVE 4: Dune + Tolkien Gateway banners
+fanart-banner-of-caladan.svg.svg|commons:Villeneuve's Dune, Emblem of House Atreides.svg
+fanart-banner-of-rivendell.svg.svg|https://tolkiengateway.net/wiki/Special:FilePath/Grond_-_Banner_of_the_Household_of_Rivendell.png
+fanart-banner-of-dale.svg.svg|https://tolkiengateway.net/wiki/Special:FilePath/John_Howe_-_Icon_Dale.png
+fanart-banner-of-gondolin.svg.svg|https://tolkiengateway.net/wiki/Special:FilePath/J.R.R._Tolkien_-_Heraldic_device_(of_Man).jpg
+# --- WAVE 4: Genshin extras (guesses, keeper verifies)
+fanart-banner-of-khaenriah.svg.svg|https://genshin-impact.fandom.com/wiki/Special:FilePath/Emblem%20Khaenri%27ah.png
+fanart-banner-of-nod-krai.svg.svg|https://genshin-impact.fandom.com/wiki/Special:FilePath/Emblem%20Nod-Krai.png
