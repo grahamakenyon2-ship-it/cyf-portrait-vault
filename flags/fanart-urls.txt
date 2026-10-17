@@ -1,27 +1,44 @@
-# fan-art flag replacements - vault-filename.svg | source
-# source schemes: awoiaf:File:Name.svg | commons:Name.svg | https://...
-# ASOIAF - the Free Cities (awoiaf Category:SVG symbols of the Free Cities, CC BY-SA)
-fanart-banner-of-braavos.svg|awoiaf:File:Braavos.svg
-fanart-banner-of-pentos.svg|awoiaf:File:Pentos.svg
-fanart-banner-of-volantis.svg|awoiaf:File:Volantis.svg
-fanart-banner-of-lorath.svg|awoiaf:File:Lorath.svg
-fanart-banner-of-lys.svg|awoiaf:File:Lys.svg
-fanart-banner-of-myr.svg|awoiaf:File:Myr.svg
-fanart-banner-of-norvos.svg|awoiaf:File:Norvos.svg
-fanart-banner-of-qohor.svg|awoiaf:File:Qohor.svg
-# ASOIAF - guesses the keeper verifies (misses land in flags/fanart-failures.txt)
-fanart-banner-of-dothraki.svg|awoiaf:File:Dothraki.svg
-fanart-banner-of-meereen.svg|awoiaf:File:Meereen.svg
-fanart-banner-of-astapor.svg|awoiaf:File:Astapor.svg
-fanart-banner-of-yunkai.svg|awoiaf:File:Yunkai.svg
-fanart-banner-of-qarth.svg|awoiaf:File:Qarth.svg
-fanart-banner-of-asshai.svg|awoiaf:File:Asshai.svg
-# ASOIAF round 2 - real awoiaf coats/symbols for the remaining bannered keys
-fanart-banner-of-driftmark.svg|awoiaf:File:House Velaryon.svg
-fanart-banner-of-umber.svg|awoiaf:File:House Umber.svg
-fanart-banner-of-oldtown.svg|awoiaf:File:House Hightower.svg
-fanart-banner-of-blackfyre.svg|awoiaf:File:House Blackfyre.svg
-fanart-banner-of-golden.svg|awoiaf:File:Golden Company.svg
-fanart-banner-of-night.svg|awoiaf:File:Night's Watch.svg
-fanart-banner-of-faith-militant.svg|awoiaf:File:Star of the Faith.svg
-fanart-banner-of-iron-bank.svg|awoiaf:File:Iron Bank.svg
+# fan-art flag replacements - vault-filename | source
+# NOTE: vault filenames are the FULLY SLUGIFIED RW_FLAGS title (incl. its ".svg"), then + ".svg"
+#       e.g. "Fanart Banner of Driftmark.svg" -> fanart-banner-of-driftmark.svg.svg
+# source schemes: awoiaf:File:Name.svg | commons:Name.ext | https://...
+
+# --- ASOIAF: Free Cities (awoiaf Category:SVG symbols of the Free Cities, CC BY-SA)
+fanart-banner-of-braavos.svg.svg|awoiaf:File:Braavos.svg
+fanart-banner-of-pentos.svg.svg|awoiaf:File:Pentos.svg
+fanart-banner-of-volantis.svg.svg|awoiaf:File:Volantis.svg
+fanart-banner-of-lorath.svg.svg|awoiaf:File:Lorath.svg
+fanart-banner-of-lys.svg.svg|awoiaf:File:Lys.svg
+fanart-banner-of-myr.svg.svg|awoiaf:File:Myr.svg
+fanart-banner-of-norvos.svg.svg|awoiaf:File:Norvos.svg
+fanart-banner-of-qohor.svg.svg|awoiaf:File:Qohor.svg
+# --- ASOIAF: keeper-verified guesses
+fanart-banner-of-dothraki.svg.svg|awoiaf:File:Dothraki.svg
+fanart-banner-of-meereen.svg.svg|awoiaf:File:Meereen.svg
+fanart-banner-of-astapor.svg.svg|awoiaf:File:Astapor.svg
+fanart-banner-of-yunkai.svg.svg|awoiaf:File:Yunkai.svg
+fanart-banner-of-qarth.svg.svg|awoiaf:File:Qarth.svg
+fanart-banner-of-asshai.svg.svg|awoiaf:File:Asshai.svg
+# --- ASOIAF: houses & organizations (awoiaf)
+fanart-banner-of-driftmark.svg.svg|awoiaf:File:House Velaryon.svg
+fanart-banner-of-umber.svg.svg|awoiaf:File:House Umber.svg
+fanart-banner-of-oldtown.svg.svg|awoiaf:File:House Hightower.svg
+fanart-banner-of-blackfyre.svg.svg|awoiaf:File:House Blackfyre.svg
+fanart-banner-of-golden.svg.svg|awoiaf:File:Golden Company.svg
+fanart-banner-of-night.svg.svg|awoiaf:File:Night's Watch.svg
+fanart-banner-of-faith-militant.svg.svg|awoiaf:File:Star of the Faith.svg
+fanart-banner-of-iron-bank.svg.svg|awoiaf:File:Iron Bank.svg
+# --- Middle-earth (Wikimedia Commons: SVG flags of Middle-earth)
+fanart-banner-of-angband.svg.svg|commons:Flag of Morgoth.svg
+fanart-banner-of-angmar.svg.svg|commons:Angmar flag.png
+fanart-banner-of-dol-amroth.svg.svg|commons:Flag of Dol Amroth.svg
+fanart-banner-of-minas-morgul.svg.svg|commons:Flag of Minas Morgul.svg
+fanart-banner-of-umbar.svg.svg|commons:Flag of Umbar.svg
+fanart-banner-of-harad.svg.svg|commons:Flag of Harad.svg
+fanart-banner-of-nmenor.svg.svg|commons:Flag of Númenor.png
+fanart-banner-of-khazad-dm.svg.svg|commons:Emblema Durin.svg
+fanart-banner-of-moria.svg.svg|commons:Emblema Durin.svg
+# --- Historical stragglers (Commons)
+fanart-banner-of-the-khazar-khaganate.svg.svg|commons:Flag of the Khazar Kaghanate.png
+fanart-banner-of-srivijaya.svg.svg|commons:Bendera Kerajaan Sriwijaya.png
+fanart-banner-of-minoan-crete.svg.svg|commons:Labyrinthus.svg
