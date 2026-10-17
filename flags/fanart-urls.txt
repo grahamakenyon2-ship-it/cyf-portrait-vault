@@ -116,3 +116,5 @@ fanart-banner-of-the-confederacy.svg.svg|commons:Flag of the Confederacy of Inde
 fanart-banner-of-the-restored-empire.svg.svg|commons:Flag of the Restored Empire.png
 # --- WAVE 7: Misc (Commons)
 fanart-banner-of-the-avar-khaganate.svg.svg|commons:Flag of the Khazars (16 Great Turkic Empires).svg
+# --- WAVE 8: ASOIAF stragglers (awoiaf Heraldry / harpy, keeper-verified guesses)
+fanart-banner-of-newghis.svg.svg|awoiaf:File:Harpy.svg
