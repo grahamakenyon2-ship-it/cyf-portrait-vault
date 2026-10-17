@@ -1,0 +1,18 @@
+# fan-art flag replacements - vault-filename.svg | source
+# source schemes: awoiaf:File:Name.svg | commons:Name.svg | https://...
+# ASOIAF - the Free Cities (awoiaf Category:SVG symbols of the Free Cities, CC BY-SA)
+fanart-banner-of-braavos.svg|awoiaf:File:Braavos.svg
+fanart-banner-of-pentos.svg|awoiaf:File:Pentos.svg
+fanart-banner-of-volantis.svg|awoiaf:File:Volantis.svg
+fanart-banner-of-lorath.svg|awoiaf:File:Lorath.svg
+fanart-banner-of-lys.svg|awoiaf:File:Lys.svg
+fanart-banner-of-myr.svg|awoiaf:File:Myr.svg
+fanart-banner-of-norvos.svg|awoiaf:File:Norvos.svg
+fanart-banner-of-qohor.svg|awoiaf:File:Qohor.svg
+# ASOIAF - guesses the keeper verifies (misses land in flags/fanart-failures.txt)
+fanart-banner-of-dothraki.svg|awoiaf:File:Dothraki.svg
+fanart-banner-of-meereen.svg|awoiaf:File:Meereen.svg
+fanart-banner-of-astapor.svg|awoiaf:File:Astapor.svg
+fanart-banner-of-yunkai.svg|awoiaf:File:Yunkai.svg
+fanart-banner-of-qarth.svg|awoiaf:File:Qarth.svg
+fanart-banner-of-asshai.svg|awoiaf:File:Asshai.svg

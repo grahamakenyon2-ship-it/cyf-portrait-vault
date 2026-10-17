@@ -46,6 +46,82 @@ titles = [...new Set(titles)].sort();
 console.log('the keeper knows ' + titles.length + ' banner titles');
 
 mkdirSync(FLAGS_DIR, { recursive: true });
+
+// v5: FAN ART FROM THE WIDER WEB - flags/fanart-urls.txt replaces the generated
+// per-universe banners with REAL artwork found on the wider web. Each line:
+//   vault-filename.svg | source
+// where source is one of:
+//   awoiaf:File:Name.svg   -> resolved + fetched from A Wiki of Ice and Fire (MediaWiki API)
+//   commons:Name.svg       -> resolved via the Commons API (same door as titles.txt)
+//   https://...            -> fetched directly (png/jpg are wrapped into an svg sheet,
+//                             so the game's svg door never changes)
+// Entries are re-fetched only when the source changes (index.json records src).
+const FANART = 'flags/fanart-urls.txt';
+
+{
+  const lines = existsSync(FANART) ? readFileSync(FANART, 'utf8').split('\n').map(s => s.trim()).filter(l => l && !l.startsWith('#')) : [];
+  if (lines.length) {
+    let okF = 0; const failF = [];
+    console.log('fan art: ' + lines.length + ' replacement(s) requested');
+    for (const line of lines) {
+      const bar = line.indexOf('|');
+      if (bar < 0) { failF.push(line + ' (no | separator)'); continue; }
+      const fname = line.slice(0, bar).trim(); const src = line.slice(bar + 1).trim();
+      if (!fname.endsWith('.svg')) { failF.push(line + ' (target must be .svg)'); continue; }
+      const done = index.files['fanart:' + fname];
+      if (done && done.src === src && existsSync(FLAGS_DIR + '/' + fname)) { okF++; continue; }   // mirrored already
+      let url = null;
+      try {
+        if (/^https?:\/\//.test(src)) url = src;
+        else if (src.startsWith('awoiaf:')) {
+          const ttl = src.slice(7).replace(/^File:/i, '');
+          const r = await fetch('https://awoiaf.westeros.org/api.php?action=query&format=json&prop=imageinfo&iiprop=url&titles=' + encodeURIComponent('File:' + ttl), { headers: { 'User-Agent': UA } });
+          if (!r.ok) throw new Error('awoiaf API HTTP ' + r.status);
+          const j = await r.json();
+          for (const p of Object.values((j.query && j.query.pages) || {})) if (p && p.imageinfo && p.imageinfo[0] && p.imageinfo[0].url) { url = p.imageinfo[0].url; break; }
+          if (!url) throw new Error('no such file on awoiaf: ' + ttl);
+        } else if (src.startsWith('commons:')) {
+          const ttl = src.slice(8).replace(/^File:/i, '');
+          const r = await fetch('https://commons.wikimedia.org/w/api.php?action=query&format=json&origin=*&prop=imageinfo&iiprop=url&titles=' + encodeURIComponent('File:' + ttl), { headers: { 'User-Agent': UA } });
+          if (!r.ok) throw new Error('Commons API HTTP ' + r.status);
+          const j = await r.json();
+          for (const p of Object.values((j.query && j.query.pages) || {})) if (p && p.imageinfo && p.imageinfo[0] && p.imageinfo[0].url) { url = p.imageinfo[0].url; break; }
+          if (!url) throw new Error('no such banner on Commons: ' + ttl);
+        } else throw new Error('unrecognized source scheme');
+        let buf = null, err = null;
+        for (let attempt = 0; attempt <= BACKOFF.length; attempt++) {
+          try {
+            const r = await fetch(url, { headers: { 'User-Agent': UA } });
+            if (r.status === 429 && attempt < BACKOFF.length) { await sleep(BACKOFF[attempt]); continue; }
+            if (!r.ok) throw new Error('HTTP ' + r.status);
+            buf = Buffer.from(await r.arrayBuffer());
+            break;
+          } catch (e) { err = e; if (attempt < BACKOFF.length) await sleep(BACKOFF[attempt]); }
+        }
+        if (!buf) throw new Error((err && err.message) || 'exhausted retries');
+        const head = buf.slice(0, 1).toString('latin1');
+        let text = null;
+        if (head === '<' && buf.length <= 1200000) text = buf.toString('utf8');
+        else {
+          const mime = (/\.png/i.test(url) ? 'image/png' : (/\.gif/i.test(url) ? 'image/gif' : 'image/jpeg'));
+          text = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="600" height="400" viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice"><image x="0" y="0" width="600" height="400" preserveAspectRatio="xMidYMid slice" xlink:href="data:' + mime + ';base64,' + buf.toString('base64') + '"/></svg>';
+        }
+        if (text.length > 1100000) throw new Error('too heavy after wrapping (' + Math.round(buf.length / 1024) + 'KB raw)');
+        writeFileSync(FLAGS_DIR + '/' + fname, text);
+        index.files['fanart:' + fname] = { f: fname, m: 'image/svg+xml', bytes: Buffer.byteLength(text), src };
+        okF++;
+        console.log('fanart ok ' + okF + ': ' + fname + ' <- ' + src);
+      } catch (e) {
+        console.warn('FANART FAIL ' + fname + ': ' + (e && e.message));
+        failF.push(fname + ' (' + ((e && e.message) || 'unknown') + ')');
+      }
+      await sleep(CRAWL_MS);
+    }
+    writeFileSync(INDEX, JSON.stringify(index, null, 1) + '\n');
+    if (failF.length) writeFileSync('flags/fanart-failures.txt', failF.join('\n') + '\n');
+    console.log('fan art: replaced ' + okF + ', failed ' + failF.length);
+  }
+}
 const have = new Set(readdirSync(FLAGS_DIR).filter(f => f.endsWith('.svg')));
 let missing = titles.filter(t => !have.has(slug(t) + '.svg'));
 console.log(have.size + ' already in the vault; ' + missing.length + ' still to fetch.');
