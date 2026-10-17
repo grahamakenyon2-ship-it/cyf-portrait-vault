@@ -104,3 +104,15 @@ fanart-banner-of-orsinium.svg.svg|https://en.uesp.net/wiki/Special:FilePath/DF-b
 fanart-banner-of-caowei.svg.svg|https://koei.fandom.com/wiki/Special:FilePath/DW-Wei.png
 fanart-banner-of-shuhan.svg.svg|https://koei.fandom.com/wiki/Special:FilePath/DW-Shu.png
 fanart-banner-of-easternwu.svg.svg|https://koei.fandom.com/wiki/Special:FilePath/DW-Wu.png
+# --- WAVE 7: Star Wars full flags (Commons Category:Star Wars flags, user-curated)
+fanart-banner-of-first.svg.svg|commons:Flag of the First Order.png
+fanart-banner-of-trade-federation.svg.svg|commons:Flag of the Trade Federation.png
+fanart-banner-of-new-sith.svg.svg|commons:Flag of the Sith Empire.png
+fanart-banner-of-exegol.svg.svg|commons:Flag of the Sith Eternal.png
+fanart-banner-of-fel.svg.svg|commons:Flag of the Fel Empire.png
+# --- WAVE 7: new v274 keys (Pentastar/CIS/Restored Empire - user-donated picks)
+fanart-banner-of-the-pentastar-alignment.svg.svg|commons:Flag of the Pentastar Alignment.png
+fanart-banner-of-the-confederacy.svg.svg|commons:Flag of the Confederacy of Independent Systems.png
+fanart-banner-of-the-restored-empire.svg.svg|commons:Flag of the Restored Empire.png
+# --- WAVE 7: Misc (Commons)
+fanart-banner-of-the-avar-khaganate.svg.svg|commons:Flag of the Khazars (16 Great Turkic Empires).svg
