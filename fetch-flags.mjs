@@ -1,23 +1,20 @@
 #!/usr/bin/env node
 /**
- * FLAG KEEPER v4 - mirrors every banner the game's RW_FLAGS table names
+ * FLAG KEEPER v5.1 - mirrors every banner the game's RW_FLAGS table names
  * from Wikimedia Commons into flags/ in this repo (the portrait vault),
  * so the game reads banners from GitHub Pages instead of hammering
  * Commons on every fresh session (playtest 429 storms).
  *
- * v4 (SLOW AND STEADY): even 90s backoffs got 429'd on the v3 run -
- * Wikimedia throttles GitHub Actions runner IPs hard, so patience WITHIN
- * one request is not enough. The keeper now (a) crawls at a steady 2.5s
- * between files, (b) backs off 30s/60s/120s on a 429 with x3 retries,
- * (c) works in CHUNKS: one run fetches at most BATCH banners (default
- * 80), commits what it got, and you simply re-run the workflow until it
- * reports the vault complete - so a cancelled or throttled run never
- * loses progress, and the host never sees a long burst.
+ * v5 added the FAN-ART phase (flags/fanart-urls.txt) that replaces the old
+ * generated banners with REAL web art. v5.1 fixes the crash that made every
+ * keeper run die without committing: the fan-art block referenced 'index'
+ * and 'BACKOFF' before their declarations (temporal dead zone ReferenceError).
+ * v5.1 moves both declarations to the top, before the fan-art block.
  *
- * v2/v1 history: the title list travels in this repo as flags/titles.txt
- * (the game repo is private - a cross-repo checkout 404'd on this repo's
- * GITHUB_TOKEN). If a game repo happens to be checked out at game/, its
- * titles are merged in too.
+ * v4 (SLOW AND STEADY): crawls at a steady 2.5s between files, backs off
+ * 30s/60s/120s on a 429 with retries, and works in CHUNKS: one run fetches
+ * at most BATCH banners (default 80), commits what it got, and you simply
+ * re-run the workflow until it reports the vault complete.
  *
  * exit 0 = fetched some or nothing new - rerun to continue
  * exit 1 = every attempted banner failed this run - throttling or errors; rerun later
@@ -47,6 +44,13 @@ console.log('the keeper knows ' + titles.length + ' banner titles');
 
 mkdirSync(FLAGS_DIR, { recursive: true });
 
+const FANART = 'flags/fanart-urls.txt';
+
+// v5.1: index + BACKOFF are declared BEFORE the fan-art block (it uses both).
+let index = { v: 1, files: {} };
+try { index = JSON.parse(readFileSync(INDEX, 'utf8')); if (!index.files) index.files = {}; } catch {}
+const BACKOFF = [30000, 60000, 120000];
+
 // v5: FAN ART FROM THE WIDER WEB - flags/fanart-urls.txt replaces the generated
 // per-universe banners with REAL artwork found on the wider web. Each line:
 //   vault-filename.svg | source
@@ -56,8 +60,6 @@ mkdirSync(FLAGS_DIR, { recursive: true });
 //   https://...            -> fetched directly (png/jpg are wrapped into an svg sheet,
 //                             so the game's svg door never changes)
 // Entries are re-fetched only when the source changes (index.json records src).
-const FANART = 'flags/fanart-urls.txt';
-
 {
   const lines = existsSync(FANART) ? readFileSync(FANART, 'utf8').split('\n').map(s => s.trim()).filter(l => l && !l.startsWith('#')) : [];
   if (lines.length) {
@@ -133,9 +135,6 @@ if (!missing.length) {
 const batch = missing.slice(0, BATCH);
 console.log('this run will fetch ' + batch.length + ' (BATCH=' + BATCH + '); ' + (missing.length - batch.length) + ' remain for later runs.');
 
-let index = { v: 1, files: {} };
-try { index = JSON.parse(readFileSync(INDEX, 'utf8')); if (!index.files) index.files = {}; } catch {}
-
 // resolve direct upload.wikimedia.org URLs via the CORS-clean MediaWiki API (50 titles per query)
 const API = 'https://commons.wikimedia.org/w/api.php?action=query&format=json&origin=*&prop=imageinfo&iiprop=url%7Csize&titles=';
 const directFor = new Map();
@@ -155,7 +154,6 @@ for (let i = 0; i < batch.length; i += 50) {
 // the steady crawl: 2.5s between files, 30s/60s/120s backoff on a 429
 let ok = 0;
 const fail = [];
-const BACKOFF = [30000, 60000, 120000];
 for (const t of batch) {
   const u = directFor.get(t);
   const f = slug(t) + '.svg';
