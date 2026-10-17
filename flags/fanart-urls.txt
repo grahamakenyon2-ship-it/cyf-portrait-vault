@@ -87,3 +87,20 @@ fanart-banner-of-gondolin.svg.svg|https://tolkiengateway.net/wiki/Special:FilePa
 # --- WAVE 4: Genshin extras (guesses, keeper verifies)
 fanart-banner-of-khaenriah.svg.svg|https://genshin-impact.fandom.com/wiki/Special:FilePath/Emblem%20Khaenri%27ah.png
 fanart-banner-of-nod-krai.svg.svg|https://genshin-impact.fandom.com/wiki/Special:FilePath/Emblem%20Nod-Krai.png
+# --- WAVE 5: Wheel of Time (Commons Category:Flags from The Wheel of Time, 53 files)
+fanart-banner-of-manetheren.svg.svg|commons:Flag of Manetheren.svg
+fanart-banner-of-theredhand.svg.svg|commons:Flag of the Band of the Red Hand.svg
+fanart-banner-of-hawkwing.svg.svg|commons:Personal flag of Guaire Amalasan.svg
+# --- WAVE 5: Witcher (witcher.fandom COAs)
+fanart-banner-of-novigrad.svg.svg|https://witcher.fandom.com/wiki/Special:FilePath/COA%20Novigrad.svg
+# --- WAVE 5: Warhammer 40k (Lexicanum)
+fanart-banner-of-man.svg.svg|https://wh40k.lexicanum.com/mediawiki/index.php?title=Special:FilePath/Aquila1transparent.png
+fanart-banner-of-tau.svg.svg|https://wh40k.lexicanum.com/mediawiki/index.php?title=Special:FilePath/Tau.png
+# --- WAVE 5: Elder Scrolls (UESP Daggerfall banners, filename guesses)
+fanart-banner-of-daggerfall.svg.svg|https://en.uesp.net/wiki/Special:FilePath/DF-banner-Daggerfall.gif
+fanart-banner-of-wayrest.svg.svg|https://en.uesp.net/wiki/Special:FilePath/DF-banner-Wayrest.gif
+fanart-banner-of-orsinium.svg.svg|https://en.uesp.net/wiki/Special:FilePath/DF-banner-Orsinium.gif
+# --- WAVE 6: Three Kingdoms (Koei Wiki official faction emblems)
+fanart-banner-of-caowei.svg.svg|https://koei.fandom.com/wiki/Special:FilePath/DW-Wei.png
+fanart-banner-of-shuhan.svg.svg|https://koei.fandom.com/wiki/Special:FilePath/DW-Shu.png
+fanart-banner-of-easternwu.svg.svg|https://koei.fandom.com/wiki/Special:FilePath/DW-Wu.png
