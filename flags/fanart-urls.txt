@@ -118,3 +118,17 @@ fanart-banner-of-the-restored-empire.svg.svg|commons:Flag of the Restored Empire
 fanart-banner-of-the-avar-khaganate.svg.svg|commons:Flag of the Khazars (16 Great Turkic Empires).svg
 # --- WAVE 8: ASOIAF stragglers (awoiaf Heraldry / harpy, keeper-verified guesses)
 fanart-banner-of-newghis.svg.svg|awoiaf:File:Harpy.svg
+# --- WAVE 9: Westerosi minor houses (awoiaf House X.svg, keys added v275)
+fanart-banner-of-house-manderly.svg.svg|awoiaf:File:House Manderly.svg
+fanart-banner-of-house-reed.svg.svg|awoiaf:File:House Reed.svg
+fanart-banner-of-house-blackwood.svg.svg|awoiaf:File:House Blackwood.svg
+fanart-banner-of-house-connington.svg.svg|awoiaf:File:House Connington.svg
+fanart-banner-of-house-tarth.svg.svg|awoiaf:File:House Tarth.svg
+fanart-banner-of-house-swann.svg.svg|awoiaf:File:House Swann.svg
+fanart-banner-of-house-piper.svg.svg|awoiaf:File:House Piper.svg
+fanart-banner-of-house-sunglass.svg.svg|awoiaf:File:House Sunglass.svg
+fanart-banner-of-house-rosby.svg.svg|awoiaf:File:House Rosby.svg
+fanart-banner-of-house-merryweather.svg.svg|awoiaf:File:House Merryweather.svg
+fanart-banner-of-house-slate.svg.svg|awoiaf:File:House Slate.svg
+fanart-banner-of-house-belmore.svg.svg|awoiaf:File:House Belmore.svg
+fanart-banner-of-house-waxley.svg.svg|awoiaf:File:House Waxley.svg
