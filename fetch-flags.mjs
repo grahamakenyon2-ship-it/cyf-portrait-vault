@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * FLAG KEEPER v5.1 - mirrors every banner the game's RW_FLAGS table names
+ * FLAG KEEPER v5.2 - mirrors every banner the game's RW_FLAGS table names
  * from Wikimedia Commons into flags/ in this repo (the portrait vault),
  * so the game reads banners from GitHub Pages instead of hammering
  * Commons on every fresh session (playtest 429 storms).
@@ -10,6 +10,11 @@
  * keeper run die without committing: the fan-art block referenced 'index'
  * and 'BACKOFF' before their declarations (temporal dead zone ReferenceError).
  * v5.1 moves both declarations to the top, before the fan-art block.
+ * v5.2 fixes 50-min workflow timeouts: (a) backoff sleeps now happen ONLY on
+ * 429/network errors - a 403/404 fails the entry instantly instead of burning
+ * 30+60+120s per miss; (b) a wall-clock budget (BUDGET_MIN, default 35) makes the
+ * keeper stop fetching and hand off to the commit step, so every run commits what
+ * it got instead of being killed by the job timeout with nothing.
  *
  * v4 (SLOW AND STEADY): crawls at a steady 2.5s between files, backs off
  * 30s/60s/120s on a 429 with retries, and works in CHUNKS: one run fetches
@@ -31,6 +36,7 @@ const CRAWL_MS = 2500;                            // steady crawl between files
 const UA = 'cyf-flag-vault/1.0 (https://github.com/grahamakenyon2-ship-it/cyf-portrait-vault)';
 const slug = t => String(t).toLowerCase().replace(/[^a-z0-9.]+/g, '-').replace(/^-+|-+$/g, '');
 const sleep = ms => new Promise(r => setTimeout(r, ms));
+class Unrecoverable extends Error {}
 
 let titles = readFileSync(TITLES, 'utf8').split('\n').map(s => s.trim()).filter(s => s.endsWith('.svg'));
 if (existsSync(GAME_PART)) {
@@ -50,6 +56,9 @@ const FANART = 'flags/fanart-urls.txt';
 let index = { v: 1, files: {} };
 try { index = JSON.parse(readFileSync(INDEX, 'utf8')); if (!index.files) index.files = {}; } catch {}
 const BACKOFF = [30000, 60000, 120000];
+const BUDGET_MS = parseInt(process.env.BUDGET_MIN || '35', 10) * 60 * 1000;   // hand off to commit before the 50-min job timeout
+const T0 = Date.now();
+const outOfTime = () => Date.now() - T0 > BUDGET_MS;
 
 // v5: FAN ART FROM THE WIDER WEB - flags/fanart-urls.txt replaces the generated
 // per-universe banners with REAL artwork found on the wider web. Each line:
@@ -64,8 +73,9 @@ const BACKOFF = [30000, 60000, 120000];
   const lines = existsSync(FANART) ? readFileSync(FANART, 'utf8').split('\n').map(s => s.trim()).filter(l => l && !l.startsWith('#')) : [];
   if (lines.length) {
     let okF = 0; const failF = [];
-    console.log('fan art: ' + lines.length + ' replacement(s) requested');
+    console.log('fan art: ' + lines.length + ' replacement(s) requested (budget ' + (BUDGET_MS / 60000) + 'min)');
     for (const line of lines) {
+      if (outOfTime()) { console.log('fan art: budget spent - resuming next run at ' + line.split('|')[0]); break; }
       const bar = line.indexOf('|');
       if (bar < 0) { failF.push(line + ' (no | separator)'); continue; }
       const fname = line.slice(0, bar).trim(); const src = line.slice(bar + 1).trim();
@@ -94,11 +104,14 @@ const BACKOFF = [30000, 60000, 120000];
         for (let attempt = 0; attempt <= BACKOFF.length; attempt++) {
           try {
             const r = await fetch(url, { headers: { 'User-Agent': UA } });
-            if (r.status === 429 && attempt < BACKOFF.length) { await sleep(BACKOFF[attempt]); continue; }
-            if (!r.ok) throw new Error('HTTP ' + r.status);
+            if (r.status === 429) { if (attempt < BACKOFF.length) { console.log('429 fanart - backoff ' + BACKOFF[attempt] / 1000 + 's'); await sleep(BACKOFF[attempt]); continue; } throw new Unrecoverable('429 even after backoffs'); }
+            if (!r.ok) throw new Unrecoverable('HTTP ' + r.status);   // 403/404 etc: retrying will not help
             buf = Buffer.from(await r.arrayBuffer());
             break;
-          } catch (e) { err = e; if (attempt < BACKOFF.length) await sleep(BACKOFF[attempt]); }
+          } catch (e) {
+            if (e instanceof Unrecoverable || attempt >= BACKOFF.length) { err = e; break; }
+            err = e; await sleep(BACKOFF[attempt]);                   // network error: backoff and try again
+          }
         }
         if (!buf) throw new Error((err && err.message) || 'exhausted retries');
         const head = buf.slice(0, 1).toString('latin1');
@@ -155,6 +168,7 @@ for (let i = 0; i < batch.length; i += 50) {
 let ok = 0;
 const fail = [];
 for (const t of batch) {
+  if (outOfTime()) { console.log('budget spent - committing what we have; the rest remain for the next run'); break; }
   const u = directFor.get(t);
   const f = slug(t) + '.svg';
   if (!u) { console.warn('MISS (no such banner on Commons): ' + t); fail.push(t + ' (missing on Commons)'); await sleep(CRAWL_MS); continue; }
@@ -162,15 +176,17 @@ for (const t of batch) {
   for (let attempt = 0; attempt <= BACKOFF.length; attempt++) {
     try {
       const r = await fetch(u, { headers: { 'User-Agent': UA } });
-      if (r.status === 429 && attempt < BACKOFF.length) {
-        console.warn('429 on ' + t + ' - backing off ' + (BACKOFF[attempt] / 1000) + 's (attempt ' + (attempt + 1) + '/' + (BACKOFF.length + 1) + ')');
-        await sleep(BACKOFF[attempt]);
-        continue;
+      if (r.status === 429) {
+        if (attempt < BACKOFF.length) { console.warn('429 on ' + t + ' - backing off ' + (BACKOFF[attempt] / 1000) + 's'); await sleep(BACKOFF[attempt]); continue; }
+        throw new Unrecoverable('429 even after backoffs');
       }
-      if (!r.ok) throw new Error('HTTP ' + r.status);
+      if (!r.ok) throw new Unrecoverable('HTTP ' + r.status);
       text = await r.text();
       break;
-    } catch (e) { err = e; if (attempt < BACKOFF.length) await sleep(BACKOFF[attempt]); }
+    } catch (e) {
+      if (e instanceof Unrecoverable || attempt >= BACKOFF.length) { err = e; break; }
+      err = e; await sleep(BACKOFF[attempt]);
+    }
   }
   if (text && text.charCodeAt(0) === 60 && text.length <= 1200000) {
     writeFileSync(FLAGS_DIR + '/' + f, text);
