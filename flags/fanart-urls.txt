@@ -1,23 +1,17 @@
 
-# --- WAVE 2: Star Wars (Commons Category:Star Wars emblems)
-fanart-banner-of-crimson-dawn.svg.svg|commons:Crimson Dawn Emblem.svg
-fanart-banner-of-first.svg.svg|commons:Emblem of the First Order.svg
-fanart-banner-of-old-sith.svg.svg|commons:Flag of the Old Sith Empire.png
-fanart-banner-of-new-sith.svg.svg|commons:Logo-sith-empire.svg
-fanart-banner-of-black-sun.svg.svg|commons:Black Sun.svg
-fanart-banner-of-exegol.svg.svg|commons:Sith Eternal insignia.png
-# --- WAVE 2: Star Trek (Commons + Memory Alpha Special:FilePath)
-fanart-banner-of-vulcan.svg.svg|commons:Vulcan Flag.svg
-fanart-banner-of-ferengi-alliance.svg.svg|commons:Logo Ferengi.svg
-fanart-banner-of-bajor.svg.svg|https://memory-alpha.fandom.com/wiki/Special:FilePath/Bajoran%20logo.svg
-# --- WAVE 2: Genshin region emblems (official loading-screen art, Genshin wiki)
-fanart-banner-of-liyue.svg.svg|https://genshin-impact.fandom.com/wiki/Special:FilePath/Emblem%20Liyue.png
-fanart-banner-of-inazuma.svg.svg|https://genshin-impact.fandom.com/wiki/Special:FilePath/Emblem%20Inazuma.png
-fanart-banner-of-mondstadt.svg.svg|https://genshin-impact.fandom.com/wiki/Special:FilePath/Emblem%20Mondstadt.png
-fanart-banner-of-sumeru.svg.svg|https://genshin-impact.fandom.com/wiki/Special:FilePath/Emblem%20Sumeru.png
-fanart-banner-of-fontaine.svg.svg|https://genshin-impact.fandom.com/wiki/Special:FilePath/Emblem%20Fontaine.png
-fanart-banner-of-natlan.svg.svg|https://genshin-impact.fandom.com/wiki/Special:FilePath/Emblem%20Natlan.png
-fanart-banner-of-snezhnaya.svg.svg|https://genshin-impact.fandom.com/wiki/Special:FilePath/Emblem%20Snezhnaya.png
-# --- WAVE 2: ASOIAF extras (awoiaf SVG symbols)
-fanart-banner-of-summer.svg.svg|awoiaf:File:Naath.svg
-fanart-banner-of-slaver-bay.svg.svg|awoiaf:File:Unsullied.svg
+# --- WAVE 3: Halo (Halopedia official symbol art)
+fanart-banner-of-covenant.svg.svg|https://www.halopedia.org/wiki/Special:FilePath/Covenant%20LogoHD.png
+fanart-banner-of-banished.svg.svg|https://www.halopedia.org/wiki/Special:FilePath/Banished%20Emblem.png
+fanart-banner-of-unsc.svg.svg|https://www.halopedia.org/wiki/Special:FilePath/UNSC%20insignia%20(post-war).png
+fanart-banner-of-naval-intelligence.svg.svg|https://www.halopedia.org/wiki/Special:FilePath/ONI%20Seal.png
+fanart-banner-of-sanghelios.svg.svg|https://www.halopedia.org/wiki/Special:FilePath/Swords%20of%20Sanghelios%20symbol.png
+fanart-banner-of-insurrectionists.svg.svg|https://www.halopedia.org/wiki/Special:FilePath/Colonial%20Militia%20Logo.svg
+fanart-banner-of-forerunners.svg.svg|https://www.halopedia.org/wiki/Special:FilePath/DidactsHandMarking.png
+# --- WAVE 3: Wheel of Time (wot.fandom)
+fanart-banner-of-two-rivers.svg.svg|https://wot.fandom.com/wiki/Special:FilePath/Two%20Rivers%20flag.svg
+# --- WAVE 3: Elder Scrolls holds (UESP in-game banner art)
+fanart-banner-of-whiterun.svg.svg|https://en.uesp.net/wiki/Special:FilePath/SR-banner-Whiterun.jpg
+fanart-banner-of-windhelm.svg.svg|https://en.uesp.net/wiki/Special:FilePath/SR-banner-Eastmarch.jpg
+fanart-banner-of-solitude.svg.svg|https://en.uesp.net/wiki/Special:FilePath/SR-banner-Haafingar.jpg
+fanart-banner-of-riften.svg.svg|https://en.uesp.net/wiki/Special:FilePath/SR-banner-Rift.jpg
+fanart-banner-of-markarth.svg.svg|https://en.uesp.net/wiki/Special:FilePath/SR-banner-Reach.jpg
