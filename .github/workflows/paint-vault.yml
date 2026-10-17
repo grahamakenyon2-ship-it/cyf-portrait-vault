@@ -49,6 +49,6 @@ jobs:
           fi
         env:
           MISTRAL_KEY: ${{ secrets.MISTRAL_KEY }}
-          BATCH: ${{ github.event.inputs.batch || G40G }}
+          BATCH: ${{ github.event.inputs.batch || '40' }}
           CONC: 4
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
