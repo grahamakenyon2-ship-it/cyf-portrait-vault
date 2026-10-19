@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>FATEBLADE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=EB+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --gold:#c9a24b; --gold-dim:#8a6d2f; --panel:#14100a; --bg:#0a0806;
+    --hp:#c33; --atk:#e2b93b; --ink:#e8dcc0;
+    /* theme art (set per realm at runtime) */
+    --theme-bg: none; --theme-panel: none; --theme-btn: none;
+  }
+  *{box-sizing:border-box; user-select:none;}
+  body{margin:0; background:var(--bg); color:var(--ink); font:14px/1.3 Georgia,serif; overflow:hidden;}
+  body.themed{ background-image:var(--theme-bg); background-size:cover; background-position:center; }
+  body.themed::before{content:''; position:fixed; inset:0; background:#000a; pointer-events:none; z-index:-1;}
+  h1{font-size:46px; letter-spacing:8px; color:var(--gold); margin:0 0 4px; text-shadow:0 0 30px #000;}
+  h1 small{display:block; font-size:13px; letter-spacing:4px; color:var(--gold-dim); font-weight:normal;}
+  .screen{display:none; height:100vh; flex-direction:column; align-items:center; justify-content:center; gap:14px; overflow:auto; padding:20px;}
+  .screen.on{display:flex;}
+  button{background:linear-gradient(#2a2216,#191308); border:1px solid var(--gold-dim); color:var(--gold);
+    font:inherit; letter-spacing:2px; padding:10px 26px; cursor:pointer;}
+  button.themebtn{
+    background:var(--theme-btn, linear-gradient(#2a2216,#191308)); background-size:100% 100%;
+    border:2px solid var(--gold-dim); border-image:none; color:var(--ink); text-shadow:0 1px 2px #000;}
+  button.themebtn:hover{border-color:var(--gold); box-shadow:0 0 14px #0009;}
+  button:disabled{opacity:.35; cursor:default;}
+  .row{display:flex; gap:12px; flex-wrap:wrap; justify-content:center; max-width:1200px;}
+  .cardpick{width:180px; border:10px solid transparent; border-image:var(--theme-panel, linear-gradient(#2a2216,#191308)) 40 fill; background:#0d0a07; padding:6px; cursor:pointer; text-align:center;}
+  .cardpick:hover{outline:2px solid var(--gold);}
+  .cardpick img{width:164px; height:196px; object-fit:cover; display:block;}
+  .cardpick .lbl{margin-top:6px; color:var(--gold); letter-spacing:1px;}
+  .cardpick .sub{font-size:11px; color:#9b8a63;}
+  .cardpick .passive{font-size:11px; color:#8fd; font-style:italic; margin-top:4px; min-height:44px;}
+  .cardpick .idn{font-size:11px; color:#f9c; font-style:italic; margin-top:4px;}
+
+  /* ===== main menu ===== */
+  #menu .menubtn{width:340px; font-size:16px; padding:14px; margin:4px;}
+  #menu .menubtn small{display:block; font-size:11px; letter-spacing:1px; color:#9b8a63; margin-top:2px; text-transform:none;}
+  #poolRow{margin-top:10px;}
+
+  /* ===== match ===== */
+  #match{justify-content:flex-start; padding:8px;}
+  .lane{display:flex; justify-content:center; align-items:center; gap:10px; min-height:150px;}
+  .board{display:flex; gap:10px; justify-content:center; min-height:150px; align-items:center;}
+  .hero{width:110px; height:118px; border:2px solid var(--gold-dim); background:#000; text-align:center; cursor:pointer; position:relative;}
+  .hero img{width:100%; height:78px; object-fit:cover; display:block;}
+  .hero .hp{position:absolute; bottom:2px; left:50%; transform:translateX(-50%); font-size:20px; color:var(--hp); text-shadow:0 0 4px #000;}
+  .hero .nm{position:absolute; top:2px; width:100%; font-size:9px; background:#000a; letter-spacing:1px; white-space:nowrap; overflow:hidden;}
+  .hero .sov{position:absolute; bottom:20px; width:100%; font-size:7.5px; color:#8fd; background:#000b; padding:1px 2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+  .hero.targetable{border-color:var(--hp); box-shadow:0 0 10px var(--hp);}
+  .minion{width:96px; height:128px; border:6px solid transparent; border-image:var(--theme-panel, linear-gradient(#2a2216,#191308)) 40 fill; background:#0d0a07; position:relative; cursor:pointer;}
+  .minion img{width:100%; height:96px; object-fit:cover; display:block;}
+  .minion .nm{font-size:9px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding:1px 3px; background:#000c;}
+  .minion .atk{position:absolute; bottom:2px; left:4px; font-size:15px; color:var(--atk); text-shadow:0 0 4px #000;}
+  .minion .hp{position:absolute; bottom:2px; right:4px; font-size:15px; color:var(--hp); text-shadow:0 0 4px #000;}
+  .minion .kw{position:absolute; top:2px; left:2px; font-size:8px; background:#000d; padding:1px 3px; color:#8fd; cursor:help;}
+  .minion.ready{border-image:var(--theme-panel) 40 fill; outline:1px solid var(--gold); box-shadow:0 0 8px #000;}
+  .minion.selected{outline:2px solid #fff;}
+  .minion.targetable{border-color:var(--hp); box-shadow:0 0 8px var(--hp);}
+  .minion.guard .kw{color:#f96; font-weight:bold;}
+  .hand{display:flex; gap:8px; justify-content:center; min-height:170px; align-items:flex-end;}
+  .hcard{width:104px; height:150px; border:6px solid transparent; border-image:var(--theme-panel, linear-gradient(#2a2216,#191308)) 40 fill; background:#0d0a07; cursor:pointer; position:relative; transition:transform .12s;}
+  .hcard:hover{transform:translateY(-10px);}
+  .hcard.playable{outline:1px solid var(--gold); box-shadow:0 0 10px #000;}
+  .hcard img{width:100%; height:100px; object-fit:cover; display:block;}
+  .hcard .nm{font-size:8.5px; white-space:nowrap; overflow:hidden; padding:0 2px;}
+  .hcard .cost{position:absolute; top:-7px; left:-7px; width:22px; height:22px; border-radius:50%;
+    background:#1c4d8a; color:#fff; font-size:13px; font-weight:bold; display:flex; align-items:center; justify-content:center; border:1px solid #6ea8ff;}
+  .hcard .st{font-size:11px; text-align:center;}
+  .hcard .st .a{color:var(--atk);} .hcard .st .h{color:var(--hp);}
+  .hcard .kw{font-size:8px; color:#8fd; text-align:center; cursor:help; height:10px;}
+  .hcard .abil{font-size:7.5px; color:#f9c; text-align:center; height:18px; overflow:hidden;}
+  @keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+  .hcard.shake{animation:shake .35s; border-color:var(--hp);}
+  #topbar{width:100%; display:flex; align-items:center; justify-content:center; gap:18px; font-size:12px; letter-spacing:1px; color:#c9b87a; background:#000a;}
+  #topbar b{color:var(--gold);}
+  #topbar .fat{color:var(--hp);}
+  #log{width:100%; text-align:center; height:18px; color:#c9b87a; font-size:12px; text-shadow:0 1px 2px #000;}
+  #overlay{position:fixed; inset:0; background:#000d; display:none; align-items:center; justify-content:center; flex-direction:column; gap:16px; z-index:50;}
+  #overlay.on{display:flex;}
+  #overlay .big{font-size:52px; letter-spacing:8px; color:var(--gold); text-shadow:0 0 24px #000;}
+  #feedback{max-width:560px; background:var(--panel); border:1px solid var(--gold-dim); padding:14px 22px; font-size:13px; display:none;}
+  #feedback.on{display:block;}
+  #feedback h3{margin:0 0 8px; color:var(--gold); letter-spacing:2px; font-size:14px;}
+  #feedback li{margin:5px 0; color:#c9b87a;}
+  #powerbtn{padding:6px 12px; font-size:11px;}
+  #patchhud{position:fixed; top:8px; right:12px; font-size:11px; color:#9b8a63; z-index:60; display:none; background:#000c; padding:4px 10px; border:1px solid var(--gold-dim);}
+
+  /* ===== hover-zoom big card ===== */
+  #zoom{position:fixed; z-index:40; display:none; width:250px; pointer-events:none;
+    border:12px solid transparent; border-image:var(--theme-panel) 40 fill; background:#0d0a07; box-shadow:0 8px 30px #000c; padding:6px;}
+  #zoom img{width:226px; height:226px; object-fit:cover; display:block;}
+  #zoom .zn{color:var(--gold); font-size:14px; letter-spacing:1px; margin-top:6px;}
+  #zoom .zr{font-size:10px; color:#9b8a63; letter-spacing:2px; text-transform:uppercase; margin-bottom:4px;}
+  #zoom .zk{font-size:12px; color:#8fd; margin:2px 0;}
+  #zoom .zk b{letter-spacing:1px;}
+  #zoom .zs{font-size:18px; margin-top:4px;}
+  #zoom .zs .a{color:var(--atk); font-weight:bold;} #zoom .zs .h{color:var(--hp); font-weight:bold;}
+  #zoom .zpv{font-size:11px; color:#f9c; font-style:italic; margin-top:4px; border-top:1px solid #2a2216; padding-top:4px;}
+  #zoom .zf{font-size:11px; font-style:italic; color:#9b8a63; margin-top:6px; border-top:1px solid #2a2216; padding-top:6px;}
+  #zoom .zc{float:right; font-size:16px; color:#6ea8ff; font-weight:bold;}
+
+  /* ===== help overlay ===== */
+  #help{position:fixed; inset:0; background:#000e; display:none; align-items:center; justify-content:center; z-index:70;}
+  #help.on{display:flex;}
+  #helpbox{max-width:540px; max-height:90vh; overflow:auto; background:var(--panel); border:1px solid var(--gold); padding:24px 30px;}
+  #helpbox h2{color:var(--gold); letter-spacing:3px; font-size:18px; margin:0 0 12px;}
+  #helpbox .kwrow{margin:8px 0;}
+  #helpbox .kwrow b{color:#8fd; letter-spacing:1px;}
+  #helpbox p{font-size:12px; color:#c9b87a; margin:4px 0;}
+  #helpbtn{position:fixed; top:8px; left:12px; z-index:30; padding:4px 12px; font-size:12px;}
+
+
+  /* ===== pool picker ===== */
+  .poolbtn{display:block; width:min(420px,90vw); margin:12px auto; padding:18px 26px; text-align:left;
+    background:#191308; border:2px solid var(--gold-dim); color:var(--ink); font:inherit; cursor:pointer;}
+  .poolbtn:hover{border-color:var(--gold); box-shadow:0 0 12px #c9a24b44;}
+  .poolbtn b{display:block; font-size:18px; letter-spacing:3px; color:var(--gold);}
+  .poolbtn span{font-size:12px; color:#9b8a63;}
+
+  /* ===== deck builder (Arena-style two panes) ===== */
+  #deckb .dbwrap{display:flex; gap:14px; width:100%; max-width:1500px; height:calc(100vh - 190px); min-height:420px; align-items:stretch; margin:0 auto;}
+  #deckb .dbdeck{flex:0 0 300px; overflow-y:auto; border:10px solid transparent; border-image:var(--theme-panel) 40 fill; background:#0d0a07; padding:8px;}
+  #deckb .dbcoll{flex:1 1 auto; overflow-y:auto; border:10px solid transparent; border-image:var(--theme-panel) 40 fill; background:#0d0a07; padding:8px;}
+  #deckb .dbhead{width:100%; max-width:1500px; margin:0 auto 10px; display:flex; gap:10px; align-items:center; justify-content:center; flex-wrap:wrap;}
+  #deckb .dbhead button{padding:6px 14px;}
+  #dbDeckList{display:flex; flex-direction:column; gap:2px;}
+  .dbrow{display:flex; gap:6px; align-items:center; padding:3px 6px; cursor:pointer; background:#141008; border:1px solid #2a2216;}
+  .dbrow:hover{border-color:var(--gold-dim);}
+  .dbrow .cost{flex:0 0 20px; text-align:center; font-weight:bold; color:#6ea8ff; font-size:12px;
+    background:#0a0f18; border:1px solid #233; border-radius:3px;}
+  .dbrow .nm{flex:1 1 auto; font-size:11px; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+  .dbrow .st{flex:0 0 auto; font-size:10px; color:#c9b87a;}
+  .dbrow .x{color:#f66; font-size:12px; padding:0 3px;}
+  .dbrow.guild .nm{color:#f9c;}
+  .dbdecktitle{font-size:11px; letter-spacing:2px; color:var(--gold); text-align:center; margin:6px 0 8px;}
+  #deckb .dbGrid{display:flex; gap:10px; flex-wrap:wrap; justify-content:center;}
+  #deckb .dbcard{width:118px; border:8px solid transparent; border-image:var(--theme-panel) 40 fill; background:#0d0a07; padding:4px; cursor:pointer; position:relative;}
+  #deckb .dbcard img{width:100%; height:108px; object-fit:cover; display:block;}
+  #deckb .dbcard .nm{font-size:9px; white-space:nowrap; overflow:hidden; color:var(--ink);}
+  #deckb .dbcard .st{font-size:10px; text-align:center; color:#c9b87a;}
+  #deckb .dbcard .ab{font-size:7.5px; color:#f9c; min-height:20px; overflow:hidden;}
+  #deckb .dbcard.sel{outline:3px solid var(--gold); box-shadow:0 0 14px #c9a24b66;}
+  #deckb .dbcard.sel::after{content:'✓ IN DECK'; position:absolute; top:4px; right:4px; background:#2c5d1e; color:#cfe; font-size:8px; padding:1px 4px; letter-spacing:1px;}
+  .dbsection{width:100%; margin:14px 0 6px; text-align:center; color:var(--gold); font-size:12px; letter-spacing:2px;}
+  #dbCount{font-size:13px; color:var(--gold); letter-spacing:1px;}
+  #dbSaveBtn:disabled{opacity:.45;}
+
+  /* ===== watch mode commentary ===== */
+  #commentary{position:fixed; right:0; top:0; bottom:0; width:270px; background:#000c; border-left:1px solid var(--gold-dim);
+    padding:40px 14px 14px; font-size:12px; color:#c9b87a; display:none; overflow:hidden; z-index:20;}
+  #commentary.on{display:block;}
+  #commentary .cline{margin:6px 0; border-left:2px solid var(--gold-dim); padding-left:8px; font-style:italic;}
+  #commentary .cline.big{border-left-color:var(--hp); color:#f0c;}
+  #watchctl{position:fixed; bottom:10px; right:284px; z-index:25; display:none; gap:6px;}
+  #watchctl.on{display:flex;}
+  #watchctl button{padding:4px 10px; font-size:11px;}
+
+  /* ===== settings ===== */
+  #settingsbox{max-width:460px; background:var(--panel); border:1px solid var(--gold); padding:24px 30px; font-size:13px;}
+  #settingsbox h2{color:var(--gold); letter-spacing:3px; font-size:18px; margin:0 0 14px;}
+  #settingsbox label{display:block; margin:12px 0 4px; color:#9b8a63; letter-spacing:1px; font-size:11px; text-transform:uppercase;}
+  #settingsbox select{background:#191308; color:var(--ink); border:1px solid var(--gold-dim); padding:6px; font:inherit; width:100%;}
+  .modal{position:fixed; inset:0; background:#000d; display:none; align-items:center; justify-content:center; z-index:80;}
+  .modal.on{display:flex;}
+  .modal .mbox{max-width:420px; background:var(--panel); border:1px solid var(--gold); padding:26px 32px; text-align:center;}
+
+  /* ================= v0.5.2 VISUAL OVERHAUL ================= */
+  body{font-family:'EB Garamond', Georgia, 'Times New Roman', serif;}
+  h1, h2, #menu .menubtn, #overlay .big, .coinface, .dfloat, .dbdecktitle,
+  .poolbtn b, .dbsection, #zoom .zn, #coin .cointxt{font-family:'Cinzel', 'Palatino Linotype', Georgia, serif;}
+
+  /* ---- rarity colors ---- */
+  .r-common{--rc:#9aa7b2;} .r-rare{--rc:#4f8cd6;} .r-epic{--rc:#a45cc9;} .r-legendary{--rc:#f0b13d;}
+
+  /* ---- ornate hand cards: full-bleed portrait, name plate, stat gems ---- */
+  .hcard{overflow:visible; background:#0d0a07; box-shadow:inset 0 0 0 3px var(--rc,#333), inset 0 0 0 4px #000;}
+  .hcard img{width:100%; height:100%; object-fit:cover; position:absolute; inset:0; border:none;}
+  .hcard .vig{position:absolute; inset:0; pointer-events:none;
+    background:linear-gradient(180deg, #0008 0%, transparent 22%, transparent 58%, #000e 100%);}
+  .hcard .nm{position:absolute; bottom:21px; left:0; right:0; text-align:center; font-size:9px;
+    letter-spacing:.5px; color:#f3e6c8; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding:1px 3px;
+    background:linear-gradient(90deg, transparent, #000d 25%, #000d 75%, transparent);}
+  .hcard .kw{position:absolute; top:3px; right:3px; font-size:8px; background:#000c; color:#8fd;
+    padding:1px 4px; letter-spacing:1px; cursor:help; height:auto;}
+  .hcard .abilglyph{position:absolute; top:22px; right:3px; font-size:10px; color:#f9c; background:#000c; padding:1px 4px;}
+  .hcard.playable{outline:1px solid var(--gold);}
+  .hcard.r-legendary{animation:legpulse 2.4s ease-in-out infinite;}
+  @keyframes legpulse{
+    0%,100%{box-shadow:inset 0 0 0 3px #f0b13d, inset 0 0 0 4px #000, 0 0 6px #f0b13d66;}
+    50%{box-shadow:inset 0 0 0 3px #ffd76e, inset 0 0 0 4px #000, 0 0 18px #f0b13dcc;}}
+
+  /* ---- stat gems ---- */
+  .gem{position:absolute; width:26px; height:26px; border-radius:50%; display:flex; align-items:center;
+    justify-content:center; font-weight:bold; font-size:14px; color:#fff; text-shadow:0 1px 2px #000;
+    border:2px solid #0009; box-shadow:0 2px 4px #0008; pointer-events:none; z-index:2;}
+  .gem.atk{background:radial-gradient(circle at 35% 30%, #ff9a8a, #b41f0f 75%);}
+  .gem.hp{background:radial-gradient(circle at 35% 30%, #a9efa0, #1d7a2a 75%);}
+  .gem.cost{background:radial-gradient(circle at 35% 30%, #9cc4ff, #1c4d8a 75%); z-index:3;}
+  .hcard .gem.cost{left:-8px; top:-8px;}
+  .hcard .gem.atk{left:3px; bottom:3px;}
+  .hcard .gem.hp{right:3px; bottom:3px;}
+
+  /* ---- board minions: clean tiles, small gems ---- */
+  .minion .gem{width:21px; height:21px; font-size:11px; border-width:1px;}
+  .minion .gem.atk{left:2px; bottom:2px;}
+  .minion .gem.hp{right:2px; bottom:2px;}
+  .minion .atk, .minion .hp{display:none;}
+  .minion .nm{background:#000d; text-align:center; letter-spacing:.5px;}
+  .minion .kw{z-index:2;}
+
+  /* ---- hero HP gem ---- */
+  .hero{border:6px solid transparent; border-image:var(--theme-panel, linear-gradient(#2a2216,#191308)) 40 fill; background:#0d0a07;}
+  .hero .hp{position:absolute; bottom:-6px; left:50%; transform:translateX(-50%); width:26px; height:26px;
+    border-radius:50%; background:radial-gradient(circle at 35% 30%, #a9efa0, #1d7a2a 75%); border:2px solid #0009;
+    color:#fff; font-weight:bold; font-size:13px; display:flex; align-items:center; justify-content:center;
+    text-shadow:0 1px 2px #000; box-shadow:0 2px 4px #0008; z-index:3;}
+  .hero .nm{top:0;}
+  .hero .sov{bottom:26px;}
+  .hero.hitflash{animation:hitflash .45s;}
+  @keyframes hitflash{0%,100%{filter:none}30%{filter:brightness(2) saturate(2) drop-shadow(0 0 12px #f44)}}
+
+  /* ---- mana crystals ---- */
+  .manarow{display:inline-flex; gap:3px; align-items:center; vertical-align:middle; margin:0 4px;}
+  .crystal{display:inline-block; width:10px; height:10px; transform:rotate(45deg);
+    background:radial-gradient(circle at 35% 30%, #9cc4ff, #1c4d8a 75%); border:1px solid #6ea8ff;
+    box-shadow:0 0 4px #3b6dc98c;}
+  .crystal.empty{background:#141a26; border-color:#2a3a52; box-shadow:none;}
+
+  /* ---- floating damage numbers ---- */
+  #fx{position:fixed; inset:0; pointer-events:none; z-index:65;}
+  .dfloat{position:absolute; font-family:'Cinzel', Georgia, serif; font-weight:900; font-size:26px;
+    color:#ff5a4a; text-shadow:0 2px 4px #000, 0 0 12px #f006; animation:dfloat 1.15s ease-out forwards;}
+  .dfloat.heal{color:#6fe08f; text-shadow:0 2px 4px #000, 0 0 12px #0f06;}
+  @keyframes dfloat{from{opacity:1; transform:translateY(0) scale(.8);} 30%{transform:translateY(-16px) scale(1.2);}
+    to{opacity:0; transform:translateY(-48px) scale(1);}}
+
+  /* ---- coin flip ceremony ---- */
+  #coin{position:fixed; inset:0; background:#000c; display:none; align-items:center; justify-content:center;
+    flex-direction:column; gap:18px; z-index:75;}
+  #coin.on{display:flex;}
+  .coin3d{width:110px; height:110px; perspective:700px;}
+  .coinface{width:100%; height:100%; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #ffe9a8, #c9a24b 55%, #7a5a1e 95%);
+    border:4px solid #f3e0a0; box-shadow:0 8px 26px #000c, inset 0 0 18px #f3e0a066;
+    display:flex; align-items:center; justify-content:center; font-size:44px; color:#3a2a08;
+    animation:coinspin 1.4s cubic-bezier(.2,.7,.3,1);}
+  @keyframes coinspin{0%{transform:rotateY(0) translateY(-40px);} 100%{transform:rotateY(1080deg) translateY(0);}}
+  #coin .cointxt{font-size:15px; letter-spacing:3px; color:var(--gold); opacity:0; transition:opacity .4s;
+    text-shadow:0 2px 8px #000; text-align:center;}
+
+  /* ---- victory / defeat screen ---- */
+  #overlay .big{font-size:64px; letter-spacing:14px; font-weight:900;
+    text-shadow:0 0 30px #000, 0 0 60px #c9a24b33;}
+  #ovImg{width:170px; height:170px; object-fit:cover; border:8px solid transparent;
+    border-image:var(--theme-panel) 40 fill; background:#0d0a07; box-shadow:0 10px 34px #000c;}
+  #ovSub{font-size:14px; color:#c9b87a; letter-spacing:2px; font-style:italic;}
+  #overlay button{font-family:'Cinzel', serif; letter-spacing:2px; padding:10px 26px;}
+
+  /* ---- menu polish ---- */
+  #menu.on{animation:bgpan 70s linear infinite alternate;}
+  @keyframes bgpan{from{background-position:0 0;} to{background-position:160px 90px;}}
+  #menu h1{margin-bottom:26px; background:linear-gradient(100deg, #c9a24b 30%, #fff3cf 48%, #c9a24b 62%);
+    background-size:250% 100%; -webkit-background-clip:text; background-clip:text; color:transparent;
+    animation:shine 4s linear infinite;}
+  @keyframes shine{to{background-position:-250% 0;}}
+  .cardpick{transition:transform .16s, box-shadow .16s;}
+  .cardpick:hover{transform:translateY(-6px) scale(1.03); box-shadow:0 12px 30px #000b;}
+  .poolbtn b{font-weight:700;}
+
+  /* ---- rarity tint on zoom + deck builder ---- */
+  #zoom .zr{color:var(--rc,#9b8a63);}
+  #deckb .dbcard{box-shadow:inset 0 0 0 2px var(--rc,#333);}
+  #deckb .dbcard.r-legendary{box-shadow:inset 0 0 0 2px #f0b13d, 0 0 10px #f0b13d55;}
+</style>
+</head>
+<body>
+
+<!-- ============ MAIN MENU ============ -->
+<div id="menu" class="screen on">
+  <h1>FATEBLADE<small>CARDS FROM THE VAULT · v0.6</small></h1>
+  <button class="menubtn themebtn" onclick="menuSingle()">⚔ SINGLE PLAYER<small>battle the AI with your realm's deck</small></button>
+  <button class="menubtn themebtn" onclick="menuDeckBuilder()">▦ DECK BUILDER<small>choose 10 warlords from your realm's roster</small></button>
+  <button class="menubtn themebtn" onclick="watchMatch()">▶ WATCH AN AI DUEL<small>visual playtest with live commentary</small></button>
+  <button class="menubtn themebtn" onclick="showMultiplayer()">✦ MULTIPLAYER<small>online duels — coming soon</small></button>
+  <button class="menubtn themebtn" onclick="showSettings()">⚙ SETTINGS<small>theme art, AI difficulty, watch speed, saved decks</small></button>
+</div>
+
+<div id="factions" class="screen">
+  <h1 style="font-size:22px" id="facTitle">CHOOSE YOUR BANNER</h1>
+  <div class="row" id="facRow"></div>
+  <button onclick="backToMenu()">Back</button>
+</div>
+
+<div id="poolpick" class="screen">
+  <h1 style="font-size:22px" id="poolTitle">CHOOSE YOUR CARD POOL</h1>
+  <div class="row" id="poolRow"></div>
+  <button onclick="backToMenu()">Back</button>
+</div>
+
+<div id="deckb" class="screen">
+  <h1 style="font-size:20px" id="dbTitle">DECK BUILDER</h1>
+  <div class="dbhead">
+    <span id="dbCount"></span>
+    <button onclick="dbReset()">↺ Restore Doctrine</button>
+    <button onclick="dbSave()" id="dbSaveBtn">💾 Save Deck</button>
+    <button onclick="dbDone()">Done</button>
+  </div>
+  <div class="dbwrap">
+    <div class="dbdeck"><div class="dbdecktitle">YOUR DECK — CLICK TO REMOVE</div><div id="dbDeckList"></div></div>
+    <div class="dbcoll" id="dbColl"></div>
+  </div>
+</div>
+
+<div id="sovereigns" class="screen">
+  <h1 style="font-size:22px" id="sovTitle">CHOOSE YOUR SOVEREIGN</h1>
+  <div style="font-size:12px;color:#9b8a63">Your Sovereign leads the deck from the hero box — their passive ability shapes the whole match.</div>
+  <div class="row" id="sovRow"></div>
+  <button onclick="menuSingle()">Back</button>
+</div>
+
+<div id="match" class="screen">
+  <div id="topbar"></div>
+  <div class="lane"><div class="hero" id="aiHero"></div></div>
+  <div class="board" id="aiBoard"></div>
+  <div style="height:10px"></div>
+  <div class="board" id="myBoard"></div>
+  <div class="lane"><div class="hero" id="myHero"></div></div>
+  <div id="log"></div>
+  <div class="hand" id="hand"></div>
+  <div style="display:flex; gap:10px; align-items:center">
+    <button id="powerbtn" class="themebtn">SKIRMISH (2)</button>
+    <button id="endbtn" class="themebtn">END TURN</button>
+    <button onclick="quitMatch()" class="themebtn">Resign</button>
+  </div>
+</div>
+
+<div id="overlay">
+  <img id="ovImg" style="display:none" alt="sovereign">
+  <div class="big" id="ovText"></div>
+  <div id="ovSub"></div>
+  <div id="feedback"></div>
+  <button onclick="rematch()">REMATCH</button><button onclick="backToMenu()">MENU</button>
+</div>
+<div id="coin"></div>
+<div id="patchhud"></div>
+<button id="helpbtn" onclick="document.getElementById('help').classList.add('on')">? RULES</button>
+<div id="help" onclick="this.classList.remove('on')"><div id="helpbox">
+  <h2>HOW TO PLAY</h2>
+  <p>Reduce the enemy Sovereign to 0 HP. Play cards with mana (ramps +1 per turn, max 10), attack with your minions once each per turn. Your deck is 10 warlords × 2 copies, led by a Sovereign.</p>
+  <div class="kwrow"><b>SOVEREIGN</b><p>Each deck is led by one of its realm's Legendary cards. The Sovereign sits in the hero box and grants a passive ability all game (hover the hero to read it).</p></div>
+  <div class="kwrow"><b>REALM IDENTITY</b><p>Every realm has a gameplay identity (its own "color") — the Chaguan Horde charges, the Frosthold Dominion walls, the Ionaran Empire out-draws. Hover a realm on the pick screen to read its doctrine.</p></div>
+  <div class="kwrow"><b>COIN FLIP</b><p>Each match flips a coin for who acts first. The second player draws an extra card; the first player's Sovereign gets <b>First Rites</b> — passive ×2, +1 mana, and 1-mana Skirmish for their first three turns.</p></div>
+  <div class="kwrow"><b>FATIGUE</b><p>Drawing from an empty deck deals escalating damage to your hero (1, 2, 3…). Long games end — Guard walls cannot save you.</p></div>
+  <div class="kwrow"><b>BATTLECRY</b><p>Does something the moment the card is played (damage, heal, draw, buff, or summon a Conscript).</p></div>
+  <div class="kwrow"><b>DEATHRATTLE</b><p>Does something when the minion dies.</p></div>
+  <div class="kwrow"><b>GUARD</b><p>Enemies must attack this minion before any other target.</p></div>
+  <div class="kwrow"><b>CHARGE</b><p>This minion can attack the turn it is played.</p></div>
+  <div class="kwrow"><b>LIFESTEAL</b><p>Damage this minion deals also heals your hero.</p></div>
+  <div class="kwrow"><b>RANGED</b><p>This minion attacks without taking retaliation damage.</p></div>
+  <p style="margin-top:12px">Skirmish (hero power, 2 mana, once/turn): deal 1 damage to any target. Board holds 6 minions; hand holds 8 cards.</p>
+  <p>Click anywhere to close. Hover any card to zoom in.</p>
+</div></div>
+<div id="zoom"></div>
+<div id="fx"></div>
+<div id="commentary"></div>
+<div id="watchctl">
+  <button id="wspeed">⏩ SPEED ×1</button>
+  <button onclick="stopWatch()">STOP</button>
+</div>
+
+<!-- offline desktop build: local bundled assets take priority; browser build falls back to remote vault -->
+<script src="../data/cards.local.js"></script>
+<script src="../data/cards.js"></script>
+<script src="../src/engine.js"></script>
+<script>
+let DATA = window.CARDS_LOCAL || window.CARDS;
+const THEMES = (DATA.themes || 'https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes');
+window.FB_PATCH = function(msg, pct){ const h = document.getElementById('patchhud'); h.style.display='block'; h.textContent = 'PATCHING: ' + msg + (pct ? ' — ' + pct + '%' : ''); };
+const E = window.FBEngine;
+const KWTXT = E.KWTXT, KWDESC = E.KWDESC;
+let S = null; // engine match state; you are side 'A' (or watching)
+let me = { pool: null, faction: null, sov: null, deck: null };
+let sel = null, powTargeting = false;
+let watch = { on: false, timer: null, speed: 1 };
+const legends = (f) => f.cards.filter(c => c.rarity === 'legendary');
+const facOf = (id) => DATA.factions.find(f => f.id === id);
+const guild = () => DATA.factions.find(f => f.pool === 'neutral');
+const guildCards = () => (guild() ? guild().cards : []);
+const isGuildCard = (id) => guildCards().some(c => c.id === id);
+const guildCount = (sel) => [...sel].filter(isGuildCard).length;
+
+/* ---------- settings (localStorage) ---------- */
+const SKEY = 'fateblade-settings-v1';
+let settings = Object.assign({ theme: 'auto', watchSpeed: 1, aiLevel: 'normal' }, JSON.parse(localStorage.getItem(SKEY) || '{}'));
+function saveSettings(){ localStorage.setItem(SKEY, JSON.stringify(settings)); }
+const WORLDTHEMES = ['ironhall','inkwash','starmaps','dunes','tamriel','teyvat','roshar','antiquity','regency','modern'];
+function applyTheme(factionId){
+  const root = document.documentElement;
+  const fr = factionId ? facOf(factionId) : null;
+  const key = settings.theme === 'auto' ? (fr ? fr.theme : 'ironhall')
+            : settings.theme === 'pool' ? 'ironhall'
+            : settings.theme;
+  root.style.setProperty('--theme-bg', `url(${THEMES}/${key}/bg.jpg)`);
+  root.style.setProperty('--theme-panel', `url(${THEMES}/${key}/panel.jpg)`);
+  root.style.setProperty('--theme-btn', `url(${THEMES}/${key}/btn.jpg)`);
+  document.body.classList.add('themed');
+}
+
+/* ---------- saved decks (localStorage) ---------- */
+const DKEY = 'fateblade-decks-v1';
+let savedDecks = JSON.parse(localStorage.getItem(DKEY) || '{}');
+function saveDeck(facId, deck){ savedDecks[facId] = deck; localStorage.setItem(DKEY, JSON.stringify(savedDecks)); }
+function loadDeck(facId){ return savedDecks[facId] || (facOf(facId) ? facOf(facId).defaultDeck.slice() : null); }
+
+/* ---------- screens ---------- */
+function show(id){ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on')); document.getElementById(id).classList.add('on'); }
+function backToMenu(){ show('menu'); sel=null; powTargeting=false; S=null; stopWatch(); applyTheme(null); }
+
+function menuSingle(){ showPoolPick('play'); }
+function menuDeckBuilder(){ showPoolPick('db'); }
+
+function showPoolPick(mode){
+  me.poolMode = mode; applyTheme(null);
+  document.getElementById('poolTitle').textContent = 'CHOOSE YOUR CARD POOL';
+  const pools = [
+    { id:'history', label:'THE ANNALS', tag:'the five historical realms — fleets, legions, sultanates, hordes' },
+    { id:'fandom',  label:'THE CANON',  tag:'the four fandom realms — marches, starfleets, dynasties, crusades' },
+  ];
+  document.getElementById('poolRow').innerHTML = pools.map(p=>`
+    <button class="poolbtn" onclick="${mode==='play'?'pickPool':'pickPoolDB'}('${p.id}')">
+      <b>${p.label}</b><span>${p.tag}</span></button>`).join('');
+  show('poolpick');
+}
+
+function pickPool(p){ me.pool = p; applyTheme(null);
+  document.getElementById('facTitle').textContent = (p==='history'?'THE ANNALS':'THE CANON')+' — CHOOSE YOUR BANNER';
+  const row = document.getElementById('facRow');
+  row.innerHTML = DATA.factions.filter(f=>f.pool===p).map(f=>`
+    <div class="cardpick" onclick="pickFaction('${f.id}')">
+      <img src="${f.commander}" loading="lazy" alt="${f.label}">
+      <div class="lbl">${f.label}</div>
+      <div class="idn"><b>${f.identity.name}</b> — ${f.identity.tag}</div>
+      <div class="sub">${f.cards.length} warlords · ${legends(f).length} sovereigns · ${savedDecks[f.id] ? 'custom deck' : 'default doctrine deck'}</div></div>`).join('');
+  show('factions');
+}
+function pickFaction(id){
+  me.faction = id; applyTheme(id);
+  me.deck = loadDeck(id);
+  const f = facOf(id);
+  document.getElementById('sovTitle').textContent = (f.label).toUpperCase() + ' — CHOOSE YOUR SOVEREIGN';
+  document.getElementById('sovRow').innerHTML = legends(f).map((c,i)=>`
+    <div class="cardpick" onclick="pickSovereign(${i})">
+      <img src="${c.img}" loading="lazy" alt="${c.name}">
+      <div class="lbl">${c.name}</div>
+      <div class="passive"><b style="color:#f9c">${c.passive.name}:</b> ${c.passive.desc}</div></div>`).join('');
+  show('sovereigns');
+}
+function pickSovereign(i){ me.sov = legends(facOf(me.faction))[i]; startMatch(); }
+
+/* ---------- match ---------- */
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+
+function startMatch(){
+  const myF = facOf(me.faction);
+  const enemyPool = DATA.factions.filter(f=>f.pool===myF.pool && f.id!==me.faction);
+  const enF = enemyPool[Math.floor(Math.random()*enemyPool.length)];
+  const enLegs = legends(enF);
+  const enSov = enLegs[Math.floor(Math.random()*enLegs.length)];
+  const iAmFirst = Math.random() < 0.5;
+  const lvl = settings.aiLevel || 'normal';
+  S = E.startMatch(myF, enF, shuffle, { sovA: me.sov, sovB: enSov, first: iAmFirst ? 'A' : 'B',
+    deckA: me.deck, deckB: loadDeck(enF.id), extraCards: guildCards(), aiB: lvl });
+  sel=null; powTargeting=false;
+  lastSeen = { hpA:null, hpB:null, minions:{} };
+  document.getElementById('overlay').classList.remove('on');
+  show('match'); render();
+  log(iAmFirst
+    ? `🪙 You won the coin flip — First Rites blesses ${me.sov.name} for your first three turns.`
+    : `🪙 ${enF.label} won the coin flip — their Sovereign is blessed. You draw 4.`);
+  showCoin(iAmFirst, enF);
+}
+function log(t){ document.getElementById('log').textContent = t; }
+function checkEnd(){
+  if(!S) return true;
+  const w = E.checkEnd(S);
+  const ov = document.getElementById('overlay');
+  if(w){
+    const won = w==='A';
+    const sov = won ? (S.A.sov||{}) : (S.B.sov||{});
+    const fac = won ? S.A.fac : S.B.fac;
+    document.getElementById('ovText').textContent = won ? 'VICTORY' : 'DEFEAT';
+    document.getElementById('ovText').style.color = won ? '' : '#c96a5a';
+    const img = document.getElementById('ovImg');
+    img.src = sov.img || fac.commander;
+    img.style.display = 'block';
+    document.getElementById('ovSub').textContent = sov.name
+      ? 'Sovereign ' + sov.name + (sov.passive ? ' — ' + sov.passive.name : '') + ' holds the field.'
+      : fac.label + ' prevails.';
+    ov.classList.add('on');
+    return true;
+  }
+  return false;
+}
+function rematch(){ if(me.faction && me.sov) startMatch(); }
+function quitMatch(){ S=null; backToMenu(); }
+
+function endTurn(){
+  E.endTurn(S);
+  render();
+  if(checkEnd()) return;
+  if(S.active==='B'){ setTimeout(aiTurn, 700); }
+  else log(`Turn ${Math.ceil(S.turn/2)} — your move.`);
+}
+function aiTurn(){
+  if(!S || S.active!=='B') return;
+  E.aiTurn(S, 'B');
+  if(checkEnd()) return;
+  E.endTurn(S);
+  render();
+  if(checkEnd()) return;
+  log(`Turn ${Math.ceil(S.turn/2)} — your move.`);
+}
+
+/* ---------- hover-zoom ---------- */
+const zoom = document.getElementById('zoom');
+function showZoom(c, ev){
+  zoom.className = 'r-' + (c.rarity || 'common');
+  zoom.innerHTML = `<div class="zc">${c.cost}</div><img src="${c.img}">
+    <div class="zn">${c.name}</div>
+    <div class="zr">${c.rarity}${c.passive ? ' · sovereign' : ''}</div>
+    ${c.kw?`<div class="zk"><b>${KWTXT[c.kw]}</b> — ${KWDESC[c.kw]}</div>`:''}
+    ${c.ability?`<div class="zpv">${c.ability}</div>`:''}
+    ${c.passive?`<div class="zpv"><b>${c.passive.name}</b> (Sovereign passive): ${c.passive.desc}</div>`:''}
+    <div class="zs"><span class="a">${c.atk} ATK</span> · <span class="h">${c.hp} HP</span></div>`;
+  zoom.style.display='block';
+  moveZoom(ev);
+}
+function moveZoom(ev){
+  const pad = 14, w = 270, h = zoom.offsetHeight || 420;
+  let x = ev.clientX + pad, y = ev.clientY - h/2;
+  if(x + w > innerWidth) x = ev.clientX - w - pad;
+  y = Math.max(8, Math.min(innerHeight - h - 8, y));
+  zoom.style.left = x+'px'; zoom.style.top = y+'px';
+}
+function hideZoom(){ zoom.style.display='none'; }
+
+/* ---------- v0.5.2 visual helpers ---------- */
+function crystals(n, max){
+  let out = '';
+  for(let i=0;i<Math.max(max, n);i++) out += '<span class="crystal ' + (i<n?'':'empty') + '"></span>';
+  return '<span class="manarow" title="mana ' + n + '/' + max + '">' + out + '</span>';
+}
+function floatAt(el, txt, heal){
+  if(!el) return;
+  const r = el.getBoundingClientRect();
+  const d = document.createElement('div');
+  d.className = 'dfloat' + (heal ? ' heal' : '');
+  d.textContent = txt;
+  d.style.left = (r.left + r.width/2 - 14) + 'px';
+  d.style.top = (r.top + r.height*0.3) + 'px';
+  document.getElementById('fx').appendChild(d);
+  setTimeout(()=>d.remove(), 1200);
+}
+let lastSeen = { hpA:null, hpB:null, minions:{} };
+function showCoin(iAmFirst, enF){
+  const el = document.getElementById('coin');
+  el.classList.add('on');
+  el.innerHTML = '<div class="coin3d"><div class="coinface">&#9819;</div></div>' +
+    '<div class="cointxt">' + (iAmFirst
+      ? 'YOU ACT FIRST — FIRST RITES BLESS YOUR SOVEREIGN'
+      : (enF.label.toUpperCase() + ' WON THE TOSS — THEY ACT FIRST')) + '</div>';
+  const t = el.querySelector('.cointxt');
+  setTimeout(()=>{ if(t) t.style.opacity='1'; }, 1200);
+  setTimeout(()=>{ el.classList.remove('on'); if(!iAmFirst) setTimeout(aiTurn, 450); }, 2100);
+}
+
+/* ---------- rendering ---------- */
+function render(){
+  if(!S) return;
+  const my = S.A, ai = S.B;
+  const tb = document.getElementById('topbar');
+  tb.innerHTML = `<b>${my.fac.label}</b> ${crystals(my.mana, my.maxmana)}
+    <b style="color:#888">vs ${ai.fac.label}</b> ${crystals(ai.mana, ai.maxmana)}
+    <span>${S.active==='A'?'YOUR TURN':'ENEMY TURN'}</span> <span>decks ${my.deck.length} / ${ai.deck.length}</span>
+    ${!watch.on && (S.aiB||'normal')!=='normal' ? `<span>AI: ${(S.aiB||'normal').toUpperCase()}</span>`:''}
+    ${my.fatigue||ai.fatigue?`<span class="fat">fatigue ${my.fatigue||0} / ${ai.fatigue||0}</span>`:''}`;
+  document.getElementById('endbtn').disabled = S.active!=='A';
+  document.getElementById('powerbtn').disabled = !E.canPower(S,'A');
+  document.getElementById('powerbtn').textContent = `SKIRMISH (${E.powerCost(S,'A')}) — deal ${E.powerDmg(S,'A')}`;
+
+  const mk = (p, id, side)=>{
+    const el = document.getElementById(id);
+    const sov = p.sov ? `<div class="sov" title="${(p.sov.passive.desc||'').replace(/"/g,'&quot;')}">♦ ${p.sov.name}</div>` : '';
+    el.innerHTML = `<img src="${p.sov ? p.sov.img : p.fac.commander}"><div class="nm">${p.fac.label.toUpperCase()}</div>${sov}<div class="hp">${p.hp}</div>`;
+    el.title = p.sov ? `${p.sov.name} — ${p.sov.passive.name}: ${p.sov.passive.desc}` : '';
+    el.className = 'hero' + (side==='B' && !watch.on && (sel||powTargeting) && !ai.board.some(m=>m.kw==='Guard') ? ' targetable' : '');
+    el.onclick = ()=>heroClick(side);
+    const prev = side==='A' ? lastSeen.hpA : lastSeen.hpB;
+    if(prev !== null && p.hp !== prev){
+      floatAt(el, (p.hp > prev ? '+' : '−') + Math.abs(p.hp - prev), p.hp > prev);
+      if(p.hp < prev){ el.classList.remove('hitflash'); void el.offsetWidth; el.classList.add('hitflash'); }
+    }
+    if(side==='A') lastSeen.hpA = p.hp; else lastSeen.hpB = p.hp;
+  };
+  mk(my, 'myHero', 'A'); mk(ai, 'aiHero', 'B');
+
+  const boardEl = (p, id, side)=>{
+    const el = document.getElementById(id);
+    el.innerHTML = p.board.map(m=>{
+      const targetable = !watch.on && side==='B' && S.active==='A' && (sel||powTargeting);
+      return `<div class="minion ${m.kw==='Guard'?'guard':''} ${m.ready&&side===S.active?'ready':''} ${targetable?'targetable':''} ${sel===m.uid&&side==='A'?'selected':''}"
+        data-uid="${m.uid}">
+        <img src="${m.img}" loading="lazy"><div class="nm">${m.name}</div>
+        ${m.kw?`<div class="kw" data-kw="${m.kw}">${KWTXT[m.kw]}</div>`:''}
+        <div class="gem atk">${m.atk}</div><div class="gem hp">${m.hp}</div></div>`;
+    }).join('');
+    el.querySelectorAll('.minion').forEach(div=>{
+      div.onclick = ()=>minionClick(side, div.dataset.uid);
+      div.onmouseenter = (ev)=>{ const m = p.board.find(x=>x.uid===div.dataset.uid); if(m) showZoom(m, ev); };
+      div.onmousemove = moveZoom;
+      div.onmouseleave = hideZoom;
+      const kwEl = div.querySelector('.kw');
+      if(kwEl) kwEl.title = KWDESC[kwEl.dataset.kw];
+    });
+  };
+  boardEl(my, 'myBoard', 'A'); boardEl(ai, 'aiBoard', 'B');
+  // floating damage numbers for minions (diff vs last render)
+  const nowBoard = {};
+  for(const m of my.board) nowBoard[m.uid] = m.hp;
+  for(const m of ai.board) nowBoard[m.uid] = m.hp;
+  for(const uid of Object.keys(lastSeen.minions)){
+    if(uid in nowBoard && nowBoard[uid] !== lastSeen.minions[uid]){
+      const diff = nowBoard[uid] - lastSeen.minions[uid];
+      const el = document.querySelector('[data-uid="' + uid + '"]');
+      floatAt(el, (diff > 0 ? '+' : '−') + Math.abs(diff), diff > 0);
+    }
+  }
+  lastSeen.minions = nowBoard;
+
+  const hd = document.getElementById('hand');
+  hd.innerHTML = my.hand.map((c,i)=>`
+    <div class="hcard r-${c.rarity||'common'} ${E.canPlay(S,'A',i)?'playable':''}" data-i="${i}">
+      <img src="${c.img}" loading="lazy"><div class="vig"></div>
+      <div class="gem cost">${c.cost}</div>
+      ${c.kw?`<div class="kw" data-kw="${c.kw}">${KWTXT[c.kw]}</div>`:''}
+      ${c.ability?`<div class="abilglyph">${c.ability.startsWith('Battlecry')?'▸':'☠'}</div>`:''}
+      <div class="nm">${c.name}</div>
+      <div class="gem atk">${c.atk}</div><div class="gem hp">${c.hp}</div></div>`).join('');
+  hd.querySelectorAll('.hcard').forEach(d=>{
+    d.onclick = ()=>handClick(+d.dataset.i, d);
+    d.onmouseenter = (ev)=>showZoom(my.hand[+d.dataset.i], ev);
+    d.onmousemove = moveZoom;
+    d.onmouseleave = hideZoom;
+    const kwEl = d.querySelector('.kw[data-kw]');
+    if(kwEl) kwEl.title = KWDESC[kwEl.dataset.kw];
+  });
+}
+
+function handClick(i, el){
+  if(watch.on || S.active!=='A') return;
+  const c = S.A.hand[i];
+  if(E.playCard(S, 'A', i)){ sel=null; render(); checkEnd(); }
+  else {
+    const reason = S.A.mana < E.effCost(S, 'A', c) ? 'Not enough mana.' : 'Your battle line is full (6 minions max).';
+    log(reason);
+    el.classList.remove('shake'); void el.offsetWidth; el.classList.add('shake');
+  }
+}
+function heroClick(side){
+  if(watch.on || S.active!=='A' || side!=='B') return;
+  if(powTargeting){ if(E.power(S,'A',{hero:true})){ powTargeting=false; render(); checkEnd(); } return; }
+  if(sel){ if(E.attack(S,'A',sel,{hero:true})){ sel=null; render(); checkEnd(); } else log('A Guard blocks the way.'); }
+}
+function minionClick(side, uid){
+  if(watch.on || S.active!=='A') return;
+  if(side==='A'){ const m = S.A.board.find(x=>x.uid===uid); sel = (sel===uid||!m.ready)?null:uid; powTargeting=false; render(); return; }
+  if(powTargeting){ if(E.power(S,'A',{uid})){ powTargeting=false; render(); checkEnd(); } return; }
+  if(sel){ if(E.attack(S,'A',sel,{uid})){ sel=null; render(); checkEnd(); } else log('A Guard blocks the way.'); }
+}
+document.getElementById('powerbtn').onclick = ()=>{
+  if(S && !watch.on && S.active==='A' && E.canPower(S,'A')){ powTargeting = true; sel=null; render(); log('Choose a target for Skirmish.'); }
+};
+document.getElementById('endbtn').onclick = ()=>{ if(S && !watch.on && S.active==='A') endTurn(); };
+
+/* ================= DECK BUILDER ================= */
+let dbFac = null, dbSel = null;
+function pickPoolDB(p){
+  me.pool = p; applyTheme(null);
+  document.getElementById('facTitle').textContent = (p==='history'?'THE ANNALS':'THE CANON')+' — DECK BUILDER: CHOOSE REALM';
+  const row = document.getElementById('facRow');
+  row.innerHTML = DATA.factions.filter(f=>f.pool===p).map(f=>`
+    <div class="cardpick" onclick="openDeckBuilder('${f.id}')">
+      <img src="${f.commander}" loading="lazy" alt="${f.label}">
+      <div class="lbl">${f.label}</div>
+      <div class="idn"><b>${f.identity.name}</b></div>
+      <div class="sub">${f.cards.length} warlords in the roster</div></div>`).join('');
+  show('factions');
+}
+function openDeckBuilder(facId){
+  dbFac = facId; applyTheme(facId);
+  const f = facOf(facId);
+  dbSel = new Set(loadDeck(facId));
+  document.getElementById('dbTitle').textContent = f.label.toUpperCase() + ' — ' + f.identity.name.toUpperCase();
+  show('deckb');
+  renderDB();
+}
+function dbCardHtml(c){
+  return `    <div class="dbcard r-${c.rarity||'common'} ${dbSel.has(c.id)?'sel':''}" onclick="dbToggle('${c.id.replace(/'/g,"\\'")}')" data-id="${c.id}">
+      <div class="cost" style="position:absolute;top:2px;left:2px;font-size:12px;color:#6ea8ff;font-weight:bold">${c.cost}</div>
+      <img src="${c.img}" loading="lazy" alt="${c.name}">
+      <div class="nm">${c.name}</div>
+      <div class="ab">${c.ability ? c.ability.replace('Battlecry: ','▸ ').replace('Deathrattle: ','☠ ') : (c.kw ? KWTXT[c.kw] : '')}</div>
+      <div class="st"><span style="color:var(--atk)">${c.atk}</span>/<span style="color:var(--hp)">${c.hp}</span>${c.rarity==='legendary'?' · ★':''}</div>
+    </div>`;
+}
+function renderDB(){
+  const f = facOf(dbFac);
+  const coll = document.getElementById('dbColl');
+  const listEl = document.getElementById('dbDeckList');
+  if(!coll || !listEl) return;
+  const gc = guildCards();
+  // collection: realm cards, then Guild section (Arena-style grid, scrollable pane)
+  coll.innerHTML = '<div class="dbGrid">' + f.cards.map(dbCardHtml).join('')
+    + (gc.length ? '</div><div class="dbsection">THE WAYFARERS&rsquo; GUILD — HIRES FOR ANY BANNER (MAX 4)</div><div class="dbGrid">' + gc.map(dbCardHtml).join('') : '')
+    + '</div>';
+  const all = f.cards.concat(gc);
+  coll.querySelectorAll('.dbcard').forEach(d=>{
+    d.onmouseenter = (ev)=>{ const c = all.find(x=>x.id===d.dataset.id); if(c) showZoom(c, ev); };
+    d.onmousemove = moveZoom; d.onmouseleave = hideZoom;
+  });
+  // deck list: sorted by cost, click to remove (Arena-style list)
+  const inDeck = [...dbSel].map(id=>all.find(c=>c.id===id)).filter(Boolean)
+    .sort((a,b)=>a.cost-b.cost || a.name.localeCompare(b.name));
+  listEl.innerHTML = inDeck.length ? inDeck.map(c=>`
+    <div class="dbrow ${isGuildCard(c.id)?'guild':''}" data-id="${c.id}" onclick="dbToggle('${c.id.replace(/'/g,"\\'")}')">
+      <span class="cost">${c.cost}</span><span class="nm">${c.name} ×2</span>
+      <span class="st">${c.atk}/${c.hp}</span><span class="x">✕</span></div>`).join('')
+    : '<div style="text-align:center;color:#9b8a63;font-size:11px;padding:10px">empty — click cards on the right</div>';
+  listEl.querySelectorAll('.dbrow').forEach(r=>{
+    r.onmouseenter = (ev)=>{ const c = all.find(x=>x.id===r.dataset.id); if(c) showZoom(c, ev); };
+    r.onmousemove = moveZoom; r.onmouseleave = hideZoom;
+  });
+  const cnt = document.getElementById('dbCount');
+  if(cnt) cnt.textContent = `DECK: ${dbSel.size} / 10 warlords (×2 copies each) · Guild hires: ${guildCount(dbSel)} / 4`;
+  const saveBtn = document.getElementById('dbSaveBtn');
+  if(saveBtn) saveBtn.disabled = dbSel.size !== 10;
+}
+function dbReset(){ dbSel = new Set(facOf(dbFac).defaultDeck.slice()); renderDB(); }
+function dbSave(){ if(dbSel.size===10){ saveDeck(dbFac, [...dbSel].sort()); } }
+function dbDone(){ dbSave(); pickPoolDB(me.pool || 'history'); }
+
+/* ================= SETTINGS ================= */
+function showSettings(){
+  const box = document.getElementById('settingsbox');
+  if(!box){ backToMenu(); return; }
+  document.getElementById('setTheme').value = settings.theme;
+  document.getElementById('setWatch').value = String(settings.watchSpeed);
+  document.getElementById('setAI').value = settings.aiLevel || 'normal';
+  document.getElementById('settings').classList.add('on');
+}
+function setTheme(v){ settings.theme = v; saveSettings(); applyTheme(me.faction || null); }
+function setWatch(v){ settings.watchSpeed = Number(v); saveSettings(); }
+function setAI(v){ settings.aiLevel = v; saveSettings(); }
+function clearDecks(){ savedDecks = {}; localStorage.removeItem(DKEY); alert('Custom decks cleared — realms return to their doctrine decks.'); location.reload(); }
+
+/* ================= MULTIPLAYER (v0.5 teaser) ================= */
+function showMultiplayer(){
+  document.getElementById('mp').classList.add('on');
+}
+
+/* ================= WATCH MODE — visual AI playtester ================= */
+const commEl = document.getElementById('commentary');
+let commLines = [];
+function watchMatch(){
+  const pool = Math.random() < 0.5 ? 'history' : 'fandom';
+  const pool2 = pool === 'history' ? 'fandom' : 'history'; // realms can cross pools in exhibitions
+  const fa = DATA.factions.filter(f=>f.pool===pool);
+  const fb = DATA.factions.filter(f=>f.pool===pool2);
+  const fA = fa[Math.floor(Math.random()*fa.length)];
+  const fB = fb[Math.floor(Math.random()*fb.length)];
+  const sovsOf = (f)=>{ const L = legends(f); return L[Math.floor(Math.random()*L.length)]; };
+  const first = Math.random() < 0.5 ? 'A' : 'B'; // coin flip
+  S = E.startMatch(fA, fB, shuffle, { sovA: sovsOf(fA), sovB: sovsOf(fB), first,
+    deckA: loadDeck(fA.id), deckB: loadDeck(fB.id), extraCards: guildCards() });
+  applyTheme(fA.id);
+  watch.on = true; watch.speed = settings.watchSpeed || 1;
+  document.getElementById('wspeed').textContent = `⏩ SPEED ×${watch.speed}`;
+  commLines = [];
+  commEl.classList.add('on'); commEl.innerHTML = '';
+  document.getElementById('watchctl').classList.add('on');
+  document.getElementById('overlay').classList.remove('on');
+  show('match'); render();
+  const firstSide = S[first], secondSide = S[first==='A'?'B':'A'];
+  comment(`Exhibition: ${fA.label} — ${fA.identity.name} vs ${fB.label} — ${fB.identity.name}.`);
+  comment(`🪙 ${firstSide.fac.label} won the coin flip — First Rites doubles their passive, +1 mana and cheap Skirmish for three turns.`);
+  watchStep();
+}
+function stopWatch(){
+  if(watch.timer) clearTimeout(watch.timer);
+  watch.on = false; watch.timer = null;
+  commEl.classList.remove('on'); document.getElementById('watchctl').classList.remove('on');
+}
+document.getElementById('wspeed').onclick = ()=>{
+  watch.speed = watch.speed === 1 ? 3 : watch.speed === 3 ? 10 : 1;
+  document.getElementById('wspeed').textContent = `⏩ SPEED ×${watch.speed}`;
+};
+function watchStep(){
+  if(!watch.on || !S) return;
+  const prevLen = S.events.length;
+  E.aiTurn(S, S.active);
+  const newEv = S.events.slice(prevLen);
+  const sideName = (side)=>S[side].fac.label;
+  for(const e of newEv){
+    const who = e.side==='A' ? sideName('A') : sideName('B');
+    if(e.t==='play' && e.id!=='TOKEN') comment(`${who} plays ${cardName(e.id)} (${e.cost}${e.kw?' · '+e.kw:''}).`);
+    else if(e.t==='play' && e.id==='TOKEN') comment(`${who} summons a Conscript.`);
+    else if(e.t==='heroHit'){ comment(`${cardName(e.id)} hits the ${S[e.side==='A'?'B':'A'].fac.label} hero for ${e.dmg}!`, e.dmg>=6); }
+    else if(e.t==='fatigue') comment(`${who} draws from an empty deck — FATIGUE bites for ${e.dmg}!`, true);
+    else if(e.t==='bc') comment(`${cardName(e.src)}'s battlecry goes off.`);
+    else if(e.t==='dr') comment(`${cardName(e.src)}'s deathrattle triggers.`);
+    else if(e.t==='passive') comment(`${who}'s passive ${e.id} triggers.`);
+  }
+  evMark = S.events.length;
+  render();
+  if(E.checkEnd(S) || S.turn >= 60){ watchEnd(); return; }
+  E.endTurn(S);
+  render();
+  watch.timer = setTimeout(watchStep, 900 / watch.speed);
+}
+let evMark = 0;
+function cardName(id){
+  if(id==='POWER') return 'Skirmish';
+  if(id==='DEATHGIFT') return 'Deathgift';
+  if(id==='BC' || id==='DR' || id==='TOKEN') return 'A battle ability';
+  for(const f of DATA.factions){ const c = f.cards.find(x=>x.id===id); if(c) return c.name; }
+  return id;
+}
+function comment(text, big){
+  commLines.push({ text, big });
+  if(commLines.length > 9) commLines.shift();
+  commEl.innerHTML = commLines.map(l=>`<div class="cline ${l.big?'big':''}">${l.text}</div>`).join('');
+}
+function watchEnd(){
+  const w = E.checkEnd(S) || 'STALL';
+  const winner = S[w==='STALL'?'A':w];
+  const loser = S[w==='STALL'?'B':(w==='A'?'B':'A')];
+  document.getElementById('ovText').textContent = w==='STALL' ? 'STALEMATE' : `${winner.fac.label.toUpperCase()} WINS`;
+  const dmg = {}, plays = {};
+  let biggest = { dmg: 0, id: null };
+  let fatTicks = 0;
+  for(const e of S.events){
+    if(e.t==='fatigue') fatTicks++;
+    if(e.t==='heroHit'){ dmg[e.id] = (dmg[e.id]||0) + e.dmg; if(e.dmg > biggest.dmg) biggest = { dmg: e.dmg, id: e.id }; }
+    if(e.t==='play' && e.id!=='TOKEN') plays[e.id] = (plays[e.id]||0) + 1;
+  }
+  const ids = Object.keys(dmg).sort((a,b)=>dmg[b]-dmg[a]);
+  const mvp = ids.find(i=>i!=='POWER' && i!=='BC' && i!=='DR' && i!=='DEATHGIFT') || ids[0];
+  const mostPlayed = Object.keys(plays).sort((a,b)=>plays[b]-plays[a])[0];
+  const fbNotes = [
+    `<li>${biggest.id ? `<b>${cardName(biggest.id)}</b> landed the biggest blow of the match: <b>${biggest.dmg} damage</b> in one hit.` : 'A grindy war of attrition — no single decisive blow.'}</li>`,
+    `<li>${mvp ? `<b>${cardName(mvp)}</b> was the MVP, dealing <b>${dmg[mvp]}</b> total hero damage.` : 'No hero damage recorded.'}</li>`,
+    `<li>Most-deployed warlord: <b>${mostPlayed ? cardName(mostPlayed) : '—'}</b> (${mostPlayed?plays[mostPlayed]:0} copies thrown into the fray).</li>`,
+    `<li>${fatTicks ? `Fatigue struck <b>${fatTicks}</b> time${fatTicks>1?'s':''} — this one went deep.` : 'Both decks held to the end — no fatigue needed.'}</li>`,
+    `<li>${winner.sov ? `<b>${winner.sov.name}</b>'s ${winner.sov.passive.name} passive earned its keep for ${winner.fac.label} (${winner.fac.identity.name}).` : ''} Final HP: ${Math.max(0,winner.hp)} vs ${Math.max(0,loser.hp)} after ${S.turn} player-turns.</li>`,
+  ];
+  const fbEl = document.getElementById('feedback');
+  fbEl.innerHTML = `<h3>🤖 AI PLAYTESTER FEEDBACK</h3><ul>${fbNotes.join('')}</ul>`;
+  fbEl.classList.add('on');
+  document.getElementById('overlay').classList.add('on');
+  render();
+  watch.on = false; watch.timer = null;
+  commEl.classList.remove('on'); document.getElementById('watchctl').classList.remove('on');
+}
+
+/* ---------- settings + multiplayer modals (injected) ---------- */
+(function injectModals(){
+  const s = document.createElement('div'); s.className='modal'; s.id='settings';
+  s.innerHTML = `<div class="mbox" id="settingsbox">
+    <h2>⚙ SETTINGS</h2>
+    <label>Theme art</label>
+    <select id="setTheme" onchange="setTheme(this.value)">
+      <option value="auto">Auto — follow your realm's banners</option>
+      ${WORLDTHEMES.map(t=>`<option value="${t}">World theme: ${t}</option>`).join('')}
+    </select>
+    <label>AI difficulty (single player)</label>
+    <select id="setAI" onchange="setAI(this.value)">
+      <option value="easy">Easy — a careless levy: sloppy trades, forgets Skirmish</option>
+      <option value="normal">Normal — the classic greedy AI</option>
+      <option value="hard">Hard — a veteran marshal: reads lethal, trades for value</option>
+    </select>
+    <label>Watch-mode default speed</label>
+    <select id="setWatch" onchange="setWatch(this.value)">
+      <option value="1">×1 — savour it</option>
+      <option value="3">×3 — brisk</option>
+      <option value="10">×10 —results only</option>
+    </select>
+    <label>Saved decks</label>
+    <div style="margin:8px 0"><button onclick="clearDecks()">Clear all custom decks</button></div>
+    <div style="margin-top:14px"><button onclick="document.getElementById('settings').classList.remove('on')">Close</button></div>
+  </div>`;
+  const m = document.createElement('div'); m.className='modal'; m.id='mp';
+  m.innerHTML = `<div class="mbox">
+    <h2 style="color:var(--gold);letter-spacing:3px;margin:0 0 12px">✦ MULTIPLAYER</h2>
+    <p style="font-size:13px;color:#c9b87a">Online duels are coming soon — the rules engine is already command-log based, so two clients can replay the same match over a relay.</p>
+    <p style="font-size:12px;color:#9b8a63">Until then: sharpen your doctrine in Single Player, or watch the AI fight itself.</p>
+    <div style="margin-top:14px"><button onclick="document.getElementById('mp').classList.remove('on')">Close</button></div>
+  </div>`;
+  document.body.appendChild(s); document.body.appendChild(m);
+})();
+
+applyTheme(null);
+</script>
+</body>
+</html>
