@@ -276,14 +276,32 @@
   #zoom .zr{color:var(--rc,#9b8a63);}
   #deckb .dbcard{box-shadow:inset 0 0 0 2px var(--rc,#333);}
   #deckb .dbcard.r-legendary{box-shadow:inset 0 0 0 2px #f0b13d, 0 0 10px #f0b13d55;}
+
+  /* ===== campaigns (v0.7.0) ===== */
+  .chaprow{display:flex; gap:12px; align-items:center; width:min(700px,92vw); padding:8px 14px; background:#191308;
+    border:1px solid #2a2216; cursor:pointer; text-align:left;}
+  .chaprow:hover{border-color:var(--gold);}
+  .chaprow.done{border-color:#2c5d1e;} .chaprow.done .cnum{background:#2c5d1e; color:#cfe;}
+  .chaprow.locked{opacity:.38; cursor:default;}
+  .chaprow.boss{border-color:#8a3030;} .chaprow.boss .cnum{color:#f88; border-color:#8a3030;}
+  .cnum{flex:0 0 30px; height:30px; border-radius:50%; background:#0d0a07; border:1px solid var(--gold-dim);
+    color:var(--gold); font-weight:bold; display:flex; align-items:center; justify-content:center; font-size:14px;}
+  .cbody{flex:1 1 auto; min-width:0;}
+  .cbody b{display:block; font-size:15px; color:var(--ink); letter-spacing:1px; font-family:'Cinzel', Georgia, serif;}
+  .cbody span{font-size:12px; color:#c9b78e;}
+  .camphead{width:min(700px,92vw); margin-bottom:10px; display:flex; flex-direction:column; gap:5px; align-items:center;
+    color:#8fd; font-size:13px; letter-spacing:2px;}
+  .campbar{width:100%; height:7px; background:#0d0a07; border:1px solid #2a2216;}
+  .campbar div{height:100%; background:linear-gradient(90deg,#8a6d2f,#c9a24b);}
 </style>
 </head>
 <body>
 
 <!-- ============ MAIN MENU ============ -->
 <div id="menu" class="screen on">
-  <h1>FATEBLADE<small>CARDS FROM THE VAULT · v0.6</small></h1>
+  <h1>FATEBLADE<small>CARDS FROM THE VAULT · v0.7</small></h1>
   <button class="menubtn themebtn" onclick="menuSingle()">⚔ SINGLE PLAYER<small>battle the AI with your realm's deck</small></button>
+  <button class="menubtn themebtn" onclick="showCampaigns()">📜 CAMPAIGNS<small>eight-chapter sagas — The Ironroad &amp; The Broken Oath</small></button>
   <button class="menubtn themebtn" onclick="menuDeckBuilder()">▦ DECK BUILDER<small>choose 10 warlords from your realm's roster</small></button>
   <button class="menubtn themebtn" onclick="watchMatch()">▶ WATCH AN AI DUEL<small>visual playtest with live commentary</small></button>
   <button class="menubtn themebtn" onclick="showMultiplayer()">✦ MULTIPLAYER<small>online duels — coming soon</small></button>
@@ -299,6 +317,13 @@
 <div id="poolpick" class="screen">
   <h1 style="font-size:22px" id="poolTitle">CHOOSE YOUR CARD POOL</h1>
   <div class="row" id="poolRow"></div>
+  <button onclick="backToMenu()">Back</button>
+</div>
+
+<div id="campaigns" class="screen">
+  <h1 style="font-size:22px" id="campTitle">CAMPAIGNS</h1>
+  <div style="max-width:760px;text-align:center;font-size:14px;color:#c9b78e">Eight-chapter sagas. Swear one banner per campaign, bring its deck, and fight the arc — each chapter's foe brings its own twists, and the last of them is a boss.</div>
+  <div id="campRow" style="display:flex;flex-direction:column;gap:8px;align-items:center;max-height:62vh;overflow:auto;padding:4px"></div>
   <button onclick="backToMenu()">Back</button>
 </div>
 
@@ -344,7 +369,7 @@
   <div class="big" id="ovText"></div>
   <div id="ovSub"></div>
   <div id="feedback"></div>
-  <button onclick="rematch()">REMATCH</button><button onclick="backToMenu()">MENU</button>
+  <button onclick="rematch()">REMATCH</button><button onclick="backToMenu()">MENU</button><button id="ovCampBtn" style="display:none" onclick="campNext()"></button>
 </div>
 <div id="coin"></div>
 <div id="patchhud"></div>
@@ -423,9 +448,9 @@ function loadDeck(facId){ return savedDecks[facId] || (facOf(facId) ? facOf(facI
 
 /* ---------- screens ---------- */
 function show(id){ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on')); document.getElementById(id).classList.add('on'); }
-function backToMenu(){ show('menu'); sel=null; powTargeting=false; S=null; stopWatch(); applyTheme(null); }
+function backToMenu(){ camp.active=null; camp.rule=null; show('menu'); sel=null; powTargeting=false; S=null; stopWatch(); applyTheme(null); }
 
-function menuSingle(){ showPoolPick('play'); }
+function menuSingle(){ camp.active=null; camp.rule=null; showPoolPick('play'); }
 function menuDeckBuilder(){ showPoolPick('db'); }
 
 function showPoolPick(mode){
@@ -464,7 +489,7 @@ function pickFaction(id){
       <div class="passive"><b style="color:#f9c">${c.passive.name}:</b> ${c.passive.desc}</div></div>`).join('');
   show('sovereigns');
 }
-function pickSovereign(i){ me.sov = legends(facOf(me.faction))[i]; startMatch(); }
+function pickSovereign(i){ camp.active=null; camp.rule=null; me.sov = legends(facOf(me.faction))[i]; startMatch(); }
 
 /* ---------- match ---------- */
 function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
@@ -505,16 +530,29 @@ function checkEnd(){
     document.getElementById('ovSub').textContent = sov.name
       ? 'Sovereign ' + sov.name + (sov.passive ? ' — ' + sov.passive.name : '') + ' holds the field.'
       : fac.label + ' prevails.';
+    // v0.7.0: campaign bookkeeping — win records progress, outro + CONTINUE button
+    const campBtn = document.getElementById('ovCampBtn');
+    if(camp.active && won){
+      const { cid, idx } = camp.active;
+      const cc = CAMPAIGNS.find(x=>x.id===cid);
+      const ch = cc.chapters[idx];
+      campProgFor(cid).done[idx] = true; campSaveProg();
+      const last = idx >= cc.chapters.length - 1;
+      document.getElementById('ovSub').textContent = ch.outro + (last ? ' — ' + cc.name + ' COMPLETE!' : '');
+      campBtn.textContent = last ? '📜 CAMPAIGN' : '➤ NEXT CHAPTER';
+      campBtn.style.display = '';
+    } else { campBtn.style.display = 'none'; }
     ov.classList.add('on');
     return true;
   }
   return false;
 }
-function rematch(){ if(me.faction && me.sov) startMatch(); }
+function rematch(){ if(camp.active){ campLaunch(); return; } if(me.faction && me.sov) startMatch(); } // v0.7.0: campaign retry
 function quitMatch(){ S=null; backToMenu(); }
 
 function endTurn(){
   E.endTurn(S);
+  if(camp.active && camp.rule && camp.rule.extraDraw && S.active==='B'){ E.draw(S,'B'); } // v0.7.0: campaign Furnace/Chapter/Worthy rule
   render();
   if(checkEnd()) return;
   if(S.active==='B'){ setTimeout(aiTurn, 700); }
@@ -935,6 +973,237 @@ function watchEnd(){
   </div>`;
   document.body.appendChild(s); document.body.appendChild(m);
 })();
+
+
+/* ================= CAMPAIGNS (v0.7.0) ================= */
+// Two eight-chapter single-player sagas. The player picks one banner per
+// campaign (any faction in the campaign's pool) and brings their own deck
+// (saved custom deck or the default doctrine). Boss rules are applied AFTER
+// E.startMatch() by mutating the fresh state — engine.js is untouched.
+const CKEY = 'fateblade-campaigns-v1';
+let campProg = JSON.parse(localStorage.getItem(CKEY) || '{}');
+function campSaveProg(){ localStorage.setItem(CKEY, JSON.stringify(campProg)); }
+function campProgFor(id){ if(!campProg[id]) campProg[id] = { faction: null, sovIdx: 0, done: {} }; if(!campProg[id].done) campProg[id].done = {}; return campProg[id]; }
+const camp = { active: null, rule: null, pending: null }; // {cid, idx} while a campaign match is live
+
+const CAMPAIGNS = [
+  {
+    id: 'ironroad', name: 'THE IRONROAD', pool: 'history',
+    tag: "Conquest down the salt road — five realms of the Annals, one banner: yours. Ends at the Marshal's gate.",
+    chapters: [
+      { name: 'The Salt Road', fac: 'ironsteppes', ai: 'easy', rule: {},
+        intro: "Every grain of salt that reaches the coast pays tribute to the Ironsteppes Compact — their riders have taxed this road for a generation. You have signed no such treaty. The wastes are silent, the watch fires are lit, and the first riders are already turning toward your camp.",
+        outro: "The Compact's outriders scatter into the hills. The first league of the salt road flies your banner — and every realm down the line now knows your name." },
+      { name: 'Chalk and Powder', fac: 'barning', ai: 'normal', rule: { hp: 5 },
+        intro: "The Barning Crown does not contest the road; it contests the sky above it. Gunners dug into the chalk cliffs can shell a caravan for hours before the first rider appears — and their gun-captain is a stubborn old admiral with thirty-five years of scars.",
+        outro: "The cliff guns fall silent one battery at a time. The Crown's colours come down, and their admiral salutes you with his sword before he goes." },
+      { name: "The Twin Courts' Gambit", fac: 'fenorian', ai: 'normal', rule: { guard: 1 },
+        intro: "The Fenorian Twin Courts never fight a war with fewer than three plans. Their shield-wall already holds the bridge at Saint's Ford — a Guard stands watch from the first horn — and both courts are watching to see which of them you will insult first.",
+        outro: "The bridge is yours, and both courts blame each other for it. The Twin Courts' Gambit is over before either court finished guessing your move." },
+      { name: 'The Gallop Doctrine', fac: 'lucerre', ai: 'normal', rule: { enemyFirst: true },
+        intro: "The Lucerre Palatinate wrote the book on the charge — their Gallop Doctrine has never been reprinted, because no one has ever survived long enough to demand a second edition. Their lances form up before your scouts have even sat down to breakfast.",
+        outro: "The Gilded Lances are unhorsed, and the Doctrine with them. The Palatinate's riders withdraw in perfect, seething order." },
+      { name: 'Four Thrones, One Drumbeat', fac: 'crescent', ai: 'normal', rule: { conscripts: 2 },
+        intro: "The Crescent Sultanates field armies the way other realms field patrols. Four thrones, one drumbeat: the moment the drums start, conscripts pour onto the road from every village between here and the sea — two of them are already standing on it.",
+        outro: "The drumbeat falters, then stops. For the first time in living memory, the Sultanates' thrones hear silence instead." },
+      { name: 'The Long Bombardment', fac: 'barning', ai: 'hard', rule: { hp: 5, guard: 1 },
+        intro: "The Crown has come back with everything: fresh gunners, a dug-in Guard, and an admiral who has decided that you personally are a matter of honour. The chalk cliffs are awake again, and this time the bombardment will not stop for weather.",
+        outro: "The second bombardment ends like the first — with the Crown's colours folded and their honour, somehow, still intact. They will not be back." },
+      { name: 'The Furnace Lessons', fac: 'ironsteppes', ai: 'hard', rule: { extraDraw: true },
+        intro: "The Ironsteppes Compact is done pretending you are a bandit problem. Their war-school has spent a generation in the furnace of the wastes, and their marshals replenish their lines faster than you can thin them — every horn brings fresh riders.",
+        outro: "The Compact breaks off the chase. The furnace lessons taught them everything except how to beat you." },
+      { name: 'The Ironroad Marshal', fac: 'lucerre', ai: 'hard', rule: { hp: 10, guard: 1, conscripts: 2 }, boss: true,
+        intro: "At the end of the salt road waits the man who built it. The Ironroad Marshal commands the Palatinate's veterans, a Guard of hand-picked champions, and two ranks of conscripted road-wards sworn to his banner — and he holds the gate at forty wounds deep. Take the gate, and the road is yours to its last league.",
+        outro: "The Marshal unbuckles his sword and lays it on the road he built. From the wastes to the sea, every league-stone now bears your mark. THE IRONROAD IS YOURS." },
+    ],
+  },
+  {
+    id: 'brokenoath', name: 'THE BROKEN OATH', pool: 'fandom',
+    tag: "A murdered oath, an erased name, and the Crusade's frame. Clear your legend across the Canon. Ends at the Oathbreaker.",
+    chapters: [
+      { name: 'Ashes of the Vigil', fac: 'stormlit', ai: 'easy', rule: {},
+        intro: "You woke to the Vigil chapel in ashes and your oath-banner — the one you swore your life on — lying folded on the altar like an accusation. The Stormlit Marches have posted a watch for a killer, and the crows on the walls are voting with their eyes.",
+        outro: "The Marches' watch withdraws, shaken but honest. The crows kept their own counsel, as crows do — but the trail leads off the Marches and toward the salt." },
+      { name: 'Salt and Starlight', fac: 'starwind', ai: 'normal', rule: { hp: 5 },
+        intro: "The Malval Starwind Concord runs the smugglers' lanes that hug the coast, and they sold the killer's ship a berth — for the right price. Their harbour-master is a hard-bitten navigator with salt in his blood, and he does not give up manifests to strangers.",
+        outro: "The manifest is yours: the killer's ship, and a name in the cargo log that has been deliberately erased. Someone paid the Concord to forget it." },
+      { name: 'The Element Songs', fac: 'tigerpass', ai: 'normal', rule: { guard: 1 },
+        intro: "In the Tiger Pass, the warlords keep their histories as songs, and there is a new verse about the night the chapel burned. The singer's Guard is already on the pass road — the Concordant does not like strangers auditing their songs.",
+        outro: "The verse is sung for you, note-perfect, and it names the buyer: an Ironclad officer of the Crusade, paying in Crusade coin." },
+      { name: 'Only the Worthy Endure', fac: 'zephek', ai: 'normal', rule: { extraDraw: true },
+        intro: "The Zephek Ironclad Crusade screens its own — only the worthy endure. Their chapter-house keeps the ledgers that would prove the officer acted on orders, and their quartermasters never run out of paper, steel, or witnesses.",
+        outro: "The chapter-house ledgers fall open. The officer's payments were authorized — signed by the man whose life your oath was sworn to protect." },
+      { name: 'The Long Wall', fac: 'stormlit', ai: 'hard', rule: { guard: 2 },
+        intro: "You bring the proof home to the Marches, and the Marches bring a wall: two Guards of the Vigil stand at the gate, under orders to see no evidence and no pilgrim. Your name is still an accusation here, and walls are how the Marches argue.",
+        outro: "The wall comes down, gate by gate. The Vigil reads the ledgers in silence, and for the first time since the fire, someone says your name without flinching." },
+      { name: 'A Hundred Starfighters', fac: 'starwind', ai: 'hard', rule: { hp: 10 },
+        intro: "The Concord wants its ledger-page back — the one you took — and they have sent the honour of the whole fleet to retrieve it. Their flagship captain is forty scars deep and commands a hundred starfighters who have never lost a boarding action.",
+        outro: "The boarding action is lost, and with it the Concord's stake in the cover-up. The captain, beaten, points her sword at the horizon: the Crusade fleet, coming for you both." },
+      { name: "The Generals' Verse", fac: 'tigerpass', ai: 'hard', rule: { extraDraw: true, conscripts: 1 },
+        intro: "Every realm you have cleared now stands behind you, but the Tiger Pass warlords follow no one's banner — only a verse. The Crusade has bought the singers, the pass is filling with hired swords, and their generals feed fresh companies into the pass faster than the road can hold them.",
+        outro: "The new verse ends the old one: the frame was ordered from the top, by the Marshal's own oath-brother — the man they now call the Oathbreaker." },
+      { name: 'The Oathbreaker', fac: 'zephek', ai: 'hard', rule: { hp: 10, guard: 1, conscripts: 2 }, boss: true,
+        intro: "The Ironclad Crusade has chosen its champion, and it is the Oathbreaker himself — your oath-brother, in his fortress plate, behind a Guard of oath-eaters and two ranks of Crusade conscripts sworn on your erased name. He will not yield at thirty wounds, and he will not explain himself. Make him.",
+        outro: "The Oathbreaker's plate cracks, and with it the lie. Your name comes back to the rolls of the Vigil in the hearing of every banner you beat — the oath was never broken; it was stolen. THE STORY IS YOURS NOW, AND SO IS THE LEGEND." },
+    ],
+  },
+];
+
+function campRuleTxt(ch){
+  const r = ch.rule || {}; const parts = [];
+  if(r.enemyFirst) parts.push('the enemy acts first');
+  if(r.hp) parts.push('+' + r.hp + ' enemy HP');
+  if(r.guard) parts.push(r.guard + (r.guard > 1 ? ' Guards' : ' Guard') + ' on the field at the start');
+  if(r.conscripts) parts.push(r.conscripts + ' Conscript' + (r.conscripts > 1 ? 's' : '') + ' at the start');
+  if(r.extraDraw) parts.push('the enemy draws an extra card every turn');
+  return parts.join(' · ');
+}
+
+function showCampaigns(){
+  camp.active = null; applyTheme(null);
+  const row = document.getElementById('campRow');
+  row.innerHTML = CAMPAIGNS.map(c=>{
+    const p = campProg[c.id] || {};
+    const done = Object.keys(p.done || {}).length;
+    return `<button class="poolbtn" onclick="openCampaign('${c.id}')">
+      <b>${c.name}</b><span>${c.tag}</span>
+      <span style="color:#8fd;font-size:13px">${p.faction ? ('Your banner: ' + facOf(p.faction).label) : 'No banner chosen yet'} · ${done}/8 chapters won</span></button>`;
+  }).join('');
+  document.getElementById('campTitle').textContent = 'CAMPAIGNS';
+  show('campaigns');
+}
+
+function openCampaign(id){
+  camp.active = null; applyTheme(null);
+  const c = CAMPAIGNS.find(x=>x.id===id);
+  const p = campProgFor(id);
+  document.getElementById('campTitle').textContent = c.name;
+  const row = document.getElementById('campRow');
+  if(!p.faction){
+    row.innerHTML = `<div style="max-width:640px;text-align:center;font-size:14px;color:#e6d8b2;font-style:italic;padding:10px">Choose a banner to swear to this saga — any realm of ${c.pool==='history'?'the Annals':'the Canon'}. You will bring that realm's deck to every chapter, and keep it until the arc is done.</div>
+      <button class="themebtn" style="margin-top:8px" onclick="campPickFaction('${c.id}')">CHOOSE YOUR BANNER</button>`;
+  } else {
+    const myF = facOf(p.faction);
+    const doneCount = Object.keys(p.done).length;
+    row.innerHTML = `<div class="camphead"><span>${doneCount} / 8 CHAPTERS WON — BANNER OF ${myF.label.toUpperCase()}</span>
+        <div class="campbar"><div style="width:${(doneCount/8*100)}%"></div></div></div>` +
+      c.chapters.map((ch, i)=>{
+        const done = !!p.done[i];
+        const unlocked = done || i === 0 || !!p.done[i-1];
+        const rules = campRuleTxt(ch);
+        return `<div class="chaprow ${done?'done':''} ${unlocked?'':'locked'} ${ch.boss?'boss':''}" ${unlocked?`onclick="campIntro('${c.id}',${i})"`:''}>
+          <span class="cnum">${done?'✔':(i+1)}</span>
+          <span class="cbody"><b>${ch.boss?'☠ ':''}${ch.name}</b>
+          <span>${facOf(ch.fac).label} · ${ch.ai.toUpperCase()}${rules?' · '+rules:''}</span></span>
+          ${unlocked?'':'<span style="font-size:18px">🔒</span>'}</div>`;
+      }).join('') +
+      `<div style="margin-top:12px;display:flex;gap:10px">
+        <button onclick="campPickFaction('${c.id}')">↺ CHANGE BANNER (RESETS PROGRESS)</button>
+        <button onclick="showCampaigns()">All Campaigns</button></div>`;
+  }
+  show('campaigns');
+}
+
+function campPickFaction(id){
+  const c = CAMPAIGNS.find(x=>x.id===id);
+  camp.pending = id;
+  document.getElementById('facTitle').textContent = c.name + ' — CHOOSE YOUR BANNER';
+  document.getElementById('facRow').innerHTML = DATA.factions.filter(f=>f.pool===c.pool).map(f=>`
+    <div class="cardpick" onclick="campFacPick('${f.id}')">
+      <img src="${f.commander}" loading="lazy" alt="${f.label}">
+      <div class="lbl">${f.label}</div>
+      <div class="idn"><b>${f.identity.name}</b> — ${f.identity.tag}</div>
+      <div class="sub">${f.cards.length} warlords · ${savedDecks[f.id] ? 'custom deck' : 'default doctrine deck'}</div></div>`).join('');
+  show('factions');
+}
+function campFacPick(fid){
+  const id = camp.pending; if(!id) return;
+  campProgFor(id).faction = fid; campSaveProg();
+  const f = facOf(fid);
+  document.getElementById('sovTitle').textContent = f.label.toUpperCase() + ' — CHOOSE YOUR SOVEREIGN';
+  document.getElementById('sovRow').innerHTML = legends(f).map((card, i)=>`
+    <div class="cardpick" onclick="campSovPick(${i})">
+      <img src="${card.img}" loading="lazy" alt="${card.name}">
+      <div class="lbl">${card.name}</div>
+      <div class="passive"><b style="color:#f9c">${card.passive.name}:</b> ${card.passive.desc}</div></div>`).join('');
+  show('sovereigns');
+}
+function campSovPick(i){
+  const id = camp.pending; if(!id) return;
+  campProgFor(id).sovIdx = i; campSaveProg();
+  camp.pending = null;
+  openCampaign(id);
+}
+
+// chapter-intro modal (injected once)
+(function injectCampModal(){
+  const m = document.createElement('div'); m.className='modal'; m.id='campintro';
+  m.innerHTML = '<div class="mbox" id="campbox"></div>';
+  document.body.appendChild(m);
+})();
+function campIntro(cid, idx){
+  const c = CAMPAIGNS.find(x=>x.id===cid);
+  const ch = c.chapters[idx];
+  const enF = facOf(ch.fac);
+  const rules = campRuleTxt(ch);
+  document.getElementById('campbox').innerHTML = `
+    <div style="font-size:12px;letter-spacing:3px;color:#c9b78e">CHAPTER ${idx+1} OF 8${ch.boss?' — FINAL BOSS':''}</div>
+    <h2 style="color:var(--gold);letter-spacing:3px;margin:6px 0 12px">${ch.name.toUpperCase()}</h2>
+    <img src="${enF.commander}" alt="${enF.label}" style="width:150px;height:150px;object-fit:cover;border:2px solid var(--gold-dim);display:block;margin:0 auto">
+    <div style="color:#f9c;font-size:13.5px;margin:10px 0">vs <b>${enF.label}</b> — ${enF.identity.name}${rules?` · <b style="color:#8fd">${rules}</b>`:''}</div>
+    <p style="font-size:14px;color:#e6d8b2;font-style:italic;max-width:440px;margin:6px auto">${ch.intro}</p>
+    <div style="margin-top:14px;display:flex;gap:10px;justify-content:center">
+      <button class="themebtn" onclick="campBegin('${cid}',${idx})">⚔ TO BATTLE</button>
+      <button onclick="document.getElementById('campintro').classList.remove('on')">Not yet</button>
+    </div>`;
+  document.getElementById('campintro').classList.add('on');
+}
+function campBegin(cid, idx){
+  document.getElementById('campintro').classList.remove('on');
+  camp.active = { cid, idx };
+  campLaunch();
+}
+function campLaunch(){
+  const { cid, idx } = camp.active;
+  const c = CAMPAIGNS.find(x=>x.id===cid);
+  const ch = c.chapters[idx];
+  const r = ch.rule || {}; camp.rule = r;
+  const p = campProgFor(cid);
+  const myF = facOf(p.faction);
+  const mySov = legends(myF)[p.sovIdx || 0];
+  const enF = facOf(ch.fac);
+  const enLegs = legends(enF);
+  const enSov = enLegs[Math.floor(Math.random()*enLegs.length)];
+  me.faction = myF.id; me.sov = mySov; me.deck = loadDeck(myF.id);
+  S = E.startMatch(myF, enF, shuffle, { sovA: mySov, sovB: enSov,
+    first: r.enemyFirst ? 'B' : 'A', deckA: me.deck, deckB: loadDeck(enF.id), extraCards: guildCards(), aiB: ch.ai });
+  // campaign rule mutations — applied post-start, engine untouched
+  if(r.hp) S.B.hp += r.hp;
+  for(let i=0; i<(r.guard||0); i++){
+    const g = enF.cards.find(x=>x.kw==='Guard') || guildCards().find(x=>x.kw==='Guard');
+    if(g && S.B.board.length < 6) S.B.board.push({ ...g, uid: 'CAMP-GRD-' + i + '-' + Math.floor(Math.random()*1e9), ready: false });
+  }
+  for(let i=0; i<(r.conscripts||0); i++){
+    if(S.B.board.length < 6) S.B.board.push({ id: 'TOKEN@'+enF.id, name: 'Conscript', cost: 1, atk: 1, hp: 1, kw: null,
+      uid: 'CAMP-TOK-' + i + '-' + Math.floor(Math.random()*1e9), img: enF.commander, file: enF.commanderFile, fl: 'Sworn to the banner.', ready: false });
+  }
+  sel=null; powTargeting=false;
+  lastSeen = { hpA:null, hpB:null, minions:{} };
+  document.getElementById('overlay').classList.remove('on');
+  applyTheme(myF.id);
+  show('match'); render();
+  log(r.enemyFirst
+    ? `📜 Chapter ${idx+1}: ${ch.name} — ${enF.label} struck first. Your Sovereign draws an extra card.`
+    : `📜 Chapter ${idx+1}: ${ch.name} — you hold the initiative. ${enF.label} awaits.`);
+  if(r.enemyFirst) setTimeout(aiTurn, 900);
+}
+function campNext(){
+  document.getElementById('overlay').classList.remove('on');
+  const { cid, idx } = camp.active;
+  const c = CAMPAIGNS.find(x=>x.id===cid);
+  if(idx >= c.chapters.length - 1){ camp.active = null; camp.rule = null; openCampaign(cid); }
+  else campIntro(cid, idx + 1);
+}
 
 applyTheme(null);
 </script>
