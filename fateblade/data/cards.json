@@ -8086,8 +8086,6 @@
     "mon mothma@starwind",
     "paul@starwind",
     "paul@starwind",
-    "poggle@starwind",
-    "poggle@starwind",
     "robert watts@starwind",
     "robert watts@starwind",
     "rogal dorn@starwind",
@@ -8104,7 +8102,9 @@
     "the borg queen@starwind",
     "valorum@starwind",
     "valorum@starwind",
-    "wensicia corrino@starwind"
+    "wensicia corrino@starwind",
+    "xizor@starwind",
+    "xizor@starwind"
    ],
    "cards": [
     {
@@ -12717,5 +12717,5 @@
    ]
   }
  ],
- "version": "0.10.0"
+ "version": "0.10.1"
 }
