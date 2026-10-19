@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-19T03:09:16.386Z",
+ "generated": "2026-10-19T05:24:42.227Z",
  "pages": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault",
  "themes": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes",
  "factions": [
@@ -15,16 +15,16 @@
    "commander": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/history/united-kingdom/alex_20salmond.jpg",
    "commanderFile": "history/united-kingdom/alex_20salmond.jpg",
    "defaultDeck": [
-    "lawson@barning",
-    "ernest bevin@barning",
+    "alan milburn@barning",
+    "byng@barning",
+    "campbell bannerman@barning",
+    "carrington@barning",
+    "douglas hurd@barning",
     "foot@barning",
-    "robin cook@barning",
-    "birkenhead@barning",
-    "austen chamberlain@barning",
-    "herbert morrison@barning",
-    "duke of wellington@barning",
-    "jellicoe@barning",
-    "salisbury@barning"
+    "joseph chamberlain@barning",
+    "kinnock@barning",
+    "lord aberdeen@barning",
+    "major@barning"
    ],
    "cards": [
     {
@@ -1297,16 +1297,16 @@
    "commander": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/history/france/soult.jpg",
    "commanderFile": "history/france/soult.jpg",
    "defaultDeck": [
-    "catherine de medici@lucerre",
-    "elisa bonaparte@lucerre",
-    "laval@lucerre",
-    "lafayette@lucerre",
-    "thiers@lucerre",
-    "marshal macdonald@lucerre",
-    "kl�ber of egypt@lucerre",
-    "marshal oudinot@lucerre",
-    "petain@lucerre",
-    "alexandre ribot@lucerre"
+    "armand fallieres@lucerre",
+    "caroline bonaparte@lucerre",
+    "chirac@lucerre",
+    "duc d orleans@lucerre",
+    "duc de berry@lucerre",
+    "felix faure@lucerre",
+    "ferry@lucerre",
+    "jerome bonaparte@lucerre",
+    "jules ferry@lucerre",
+    "lafayette@lucerre"
    ],
    "cards": [
     {
@@ -2545,16 +2545,16 @@
    "commander": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/history/byzantine-empire/marcian.jpg",
    "commanderFile": "history/byzantine-empire/marcian.jpg",
    "defaultDeck": [
-    "tiberius iii@fenorian",
-    "nerva@fenorian",
-    "michael iv@fenorian",
-    "antony@fenorian",
-    "anastasios ii@fenorian",
-    "leo v@fenorian",
-    "pompey@fenorian",
-    "alexios@fenorian",
+    "augustus@fenorian",
+    "gaius marius@fenorian",
     "heraclius@fenorian",
-    "brutus@fenorian"
+    "john@fenorian",
+    "manuel i@fenorian",
+    "marcus licinius crassus@fenorian",
+    "mark antony@fenorian",
+    "romanos iv@fenorian",
+    "septimius@fenorian",
+    "sulla@fenorian"
    ],
    "cards": [
     {
@@ -3835,16 +3835,16 @@
    "commander": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/history/mamluk-egypt/khushqadam.jpg",
    "commanderFile": "history/mamluk-egypt/khushqadam.jpg",
    "defaultDeck": [
-    "baibars@crescent",
-    "cyrus@crescent",
-    "suleiman@crescent",
-    "tutankhamun@crescent",
-    "xerxes@crescent",
-    "barquq restored@crescent",
-    "ramesses vii xii@crescent",
-    "abdul@crescent",
-    "qaitbay@crescent",
-    "darius i@crescent"
+    "al nasir muhammad@crescent",
+    "amenhotep i@crescent",
+    "artaxerxes i@crescent",
+    "artaxerxes@crescent",
+    "barsbay@crescent",
+    "esther@crescent",
+    "jaqmaq@crescent",
+    "mehmed v@crescent",
+    "mehmed@crescent",
+    "murad ii@crescent"
    ],
    "cards": [
     {
@@ -4815,16 +4815,16 @@
    "commander": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/history/assyria/sennacherib.jpg",
    "commanderFile": "history/assyria/sennacherib.jpg",
    "defaultDeck": [
+    "ashurbanipal@ironsteppes",
+    "esarhaddon@ironsteppes",
+    "genghis@ironsteppes",
+    "georgy malenkov@ironsteppes",
+    "konstantin chernenko@ironsteppes",
     "lenin@ironsteppes",
     "leonid brezhnev@ironsteppes",
-    "guyuk@ironsteppes",
-    "georgy malenkov@ironsteppes",
-    "brezhnev@ironsteppes",
-    "tolui regent@ironsteppes",
-    "tiglath pileser@ironsteppes",
-    "kublai@ironsteppes",
-    "vladimir lenin@ironsteppes",
-    "ogedei@ironsteppes"
+    "mikhail gorbachev@ironsteppes",
+    "tiglath pileser i@ironsteppes",
+    "tolui regent@ironsteppes"
    ],
    "cards": [
     {
@@ -5483,16 +5483,16 @@
    "commander": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/the-stormlight-archive/alethkar/navani.jpg",
    "commanderFile": "the-stormlight-archive/alethkar/navani.jpg",
    "defaultDeck": [
-    "elisif@stormlit",
-    "alicent hightower@stormlit",
+    "aerys ii@stormlit",
+    "elayne@stormlit",
+    "elrond@stormlit",
+    "eorl the young@stormlit",
+    "fen sagenmay@stormlit",
     "george brown@stormlit",
-    "healey@stormlit",
-    "kaladin@stormlit",
-    "tuon@stormlit",
-    "suladan the serpent@stormlit",
-    "thorin@stormlit",
-    "stannis@stormlit",
-    "viserys i@stormlit"
+    "khamul the easterling@stormlit",
+    "melisandre of asshai@stormlit",
+    "rand al thor@stormlit",
+    "sansa stark@stormlit"
    ],
    "cards": [
     {
@@ -6783,16 +6783,16 @@
    "commander": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/halo/the-covenant/the_20prophet_20of.jpg",
    "commanderFile": "halo/the-covenant/the_20prophet_20of.jpg",
    "defaultDeck": [
+    "dooku@starwind",
+    "farad n corrino@starwind",
+    "feyd@starwind",
     "jabba@starwind",
-    "kang@starwind",
-    "the didact@starwind",
-    "cortana@starwind",
-    "shinzon the reman@starwind",
-    "xizor@starwind",
-    "koloth@starwind",
-    "jonathan archer@starwind",
-    "stilgar@starwind",
-    "wensicia corrino@starwind"
+    "james t kirk@starwind",
+    "mon mothma@starwind",
+    "paul@starwind",
+    "philip the arab@starwind",
+    "poggle@starwind",
+    "rabban@starwind"
    ],
    "cards": [
     {
@@ -8071,16 +8071,16 @@
    "commander": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/romance-of-the-three-kingdoms/uncategorized/sima_20yi.jpg",
    "commanderFile": "romance-of-the-three-kingdoms/uncategorized/sima_20yi.jpg",
    "defaultDeck": [
-    "xian of han@tigerpass",
-    "liu bei@tigerpass",
-    "liu shan@tigerpass",
-    "rex lapis morax@tigerpass",
-    "sun hao@tigerpass",
-    "xbalanque@tigerpass",
-    "dainsleif@tigerpass",
-    "sun quan@tigerpass",
-    "ningguang@tigerpass",
-    "sima zhao@tigerpass"
+    "cao pi@tigerpass",
+    "gongsun zan@tigerpass",
+    "kokomi@tigerpass",
+    "lu bu@tigerpass",
+    "nahida@tigerpass",
+    "sima yan@tigerpass",
+    "yuan shao@tigerpass",
+    "yuan shu@tigerpass",
+    "zhang fei@tigerpass",
+    "zhong hui@tigerpass"
    ],
    "cards": [
     {
@@ -8941,16 +8941,16 @@
    "commander": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/warhammer-40-000/imperium/leman_20russ.jpg",
    "commanderFile": "warhammer-40-000/imperium/leman_20russ.jpg",
    "defaultDeck": [
-    "imotekh@zephek",
-    "logan grimnar@zephek",
-    "vect@zephek",
-    "farsight@zephek",
-    "curzon@zephek",
-    "lion el jonson@zephek",
-    "lorgar@zephek",
+    "alpharius@zephek",
     "commander shadowsun@zephek",
-    "vulkan@zephek",
-    "ghazghkull@zephek"
+    "fulgrim@zephek",
+    "jaghatai khan@zephek",
+    "konrad curze@zephek",
+    "logan grimnar@zephek",
+    "mortarion@zephek",
+    "perturabo@zephek",
+    "sanguinius@zephek",
+    "vulkan@zephek"
    ],
    "cards": [
     {
