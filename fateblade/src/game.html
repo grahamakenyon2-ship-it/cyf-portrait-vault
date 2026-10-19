@@ -103,13 +103,14 @@
 
   /* ===== hover-zoom big card ===== */
   #zoom{position:fixed; z-index:40; display:none; width:280px; pointer-events:none;
-    border:12px solid transparent; border-image:var(--theme-panel) 40 fill; background:#0d0a07; box-shadow:0 8px 30px #000c; padding:6px;}
+    border:12px solid transparent; border-image:var(--theme-panel) 40 fill; background:#0d0a07; box-shadow:0 8px 30px #000c;
+    padding:14px 18px 16px;}  /* v0.10.2: text and gems clear the ornate frame art, not flush against it */
   #zoom img{width:254px; height:254px; object-fit:cover; display:block;}
   #zoom .zn{color:var(--gold); font-size:17px; letter-spacing:1px; margin-top:6px;}
   #zoom .zr{font-size:12px; color:#c9b78e; letter-spacing:2px; text-transform:uppercase; margin-bottom:4px;}
   #zoom .zk{font-size:14px; color:#8fd; margin:2px 0;}
   #zoom .zk b{letter-spacing:1px;}
-  #zoom .zs{font-size:21px; margin-top:4px;}
+  #zoom .zs{font-size:21px; margin:6px 0;}  /* v0.10.2: ATK/HP gems never ride the bottom border art */
   #zoom .zs .a{color:var(--atk); font-weight:bold;} #zoom .zs .h{color:var(--hp); font-weight:bold;}
   #zoom .zpv{font-size:13.5px; color:#f9c; font-style:italic; margin-top:4px; border-top:1px solid #2a2216; padding-top:4px;}
   #zoom .zf{font-size:13px; font-style:italic; color:#c9b78e; margin-top:6px; border-top:1px solid #2a2216; padding-top:6px;}
@@ -386,6 +387,8 @@
   <button class="menubtn themebtn" onclick="watchMatch()">▶ WATCH AN AI DUEL<small>visual playtest with live commentary</small></button>
   <button class="menubtn themebtn" onclick="showMultiplayer()">✦ MULTIPLAYER<small>online duels — coming soon</small></button>
   <button class="menubtn themebtn" onclick="showSettings()">⚙ SETTINGS<small>theme art, AI difficulty, watch speed, saved decks</small></button>
+  <button class="menubtn themebtn" onclick="quitToDesktop()">✖ QUIT TO DESKTOP<small>close Fateblade</small></button>
+  <div id="quitNote" style="display:none;max-width:420px;text-align:center;font-size:13px;color:#c9b78e">Your browser kept this tab open — close the tab to exit. (The desktop app closes itself.)</div>
 </div>
 
 <div id="factions" class="screen">
@@ -513,15 +516,22 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.10.0';
+const GAME_VERSION = '0.10.2';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
   : window.CARDS_LOCAL;
 { const el = document.getElementById('dver'); if (el) el.textContent = 'CARDS FROM THE VAULT · v' + (_older(DATA.version || '0', GAME_VERSION) ? GAME_VERSION : (DATA.version || '0.9')); }
-// v0.9.5: open in fullscreen by default — Electron allows it without a user
-// gesture; plain browsers reject the request and stay windowed (harmless).
-try{ const p = document.documentElement.requestFullscreen(); if(p && p.catch) p.catch(()=>{}); }catch(e){}
+// v0.10.2: NO launch-time requestFullscreen. The Electron window already opens
+// fullscreen (BrowserWindow fullscreen:true) — layering HTML5 fullscreen on top
+// left the document in a fullscreen state the renderer could only leave via the
+// windowed transition that froze the app. Browsers cannot request fullscreen
+// without a user gesture anyway; they get it on the first pointerdown instead.
+const IS_ELECTRON = /Electron/i.test(navigator.userAgent);
+if(!IS_ELECTRON){
+  const goFS = () => { try{ const p = document.documentElement.requestFullscreen(); if(p && p.catch) p.catch(()=>{}); }catch(e){} window.removeEventListener('pointerdown', goFS); };
+  window.addEventListener('pointerdown', goFS);
+}
 const THEMES = (DATA.themes || 'https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes');
 const ART = (DATA.art || 'https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art'); // v0.6.7 universal art
 window.FB_PATCH = function(msg, pct){ const h = document.getElementById('patchhud'); h.style.display='block'; h.textContent = 'PATCHING: ' + msg + (pct ? ' — ' + pct + '%' : ''); };
@@ -584,6 +594,9 @@ function show(id){ document.querySelectorAll('.screen').forEach(s=>s.classList.r
 function fitScreen(){
   const el = document.querySelector('.screen.on');
   if(!el) return;
+  // v0.10.2: fullscreen->windowed transitions report transient garbage viewports;
+  // scaling on them left the screen at a broken micro-scale (looked frozen).
+  if(innerWidth < 400 || innerHeight < 240) return;
   el.style.transform=''; el.style.transformOrigin=''; el.style.overflow=''; el.style.justifyContent='';
 // v0.9.3: the desktop window is a FIXED 1280x900 — on small laptops or scaled
 // displays it can be taller than the visible work area, so innerHeight reports
@@ -600,7 +613,12 @@ function fitScreen(){
     el.style.transform = 'scale(' + s + ')';
   }
 }
-window.addEventListener('resize', fitScreen);
+// v0.10.2: coalesce resize storms (fullscreen/windowed transitions fire dozens
+// of resize events with in-between sizes), then refit once after the dust settles.
+let fitT = null;
+function fitDebounced(){ if(fitT) clearTimeout(fitT); fitT = setTimeout(() => requestAnimationFrame(fitScreen), 120); }
+window.addEventListener('resize', fitDebounced);
+document.addEventListener('fullscreenchange', fitDebounced);
 // v0.9.1: re-fit whenever content may have settled after show() — images, fonts,
 // late DOM — so the match screen's bottom bar (END TURN / RESIGN) is never left
 // off-screen by a measurement taken on an empty screen.
@@ -752,6 +770,14 @@ function checkEnd(){
 }
 function rematch(){ if(camp.active){ campLaunch(); return; } if(me.faction && me.sov) startMatch(); } // v0.7.0: campaign retry
 function quitMatch(){ S=null; backToMenu(); }
+/* v0.10.2: QUIT TO DESKTOP — in the Electron app window.close() closes the
+   BrowserWindow and the app quits with it. Plain browsers only allow
+   script-opened windows to close themselves, so if the tab is still alive a
+   moment later we surface a note telling the player to close the tab. */
+function quitToDesktop(){
+  try{ window.close(); }catch(e){}
+  setTimeout(()=>{ const n = document.getElementById('quitNote'); if(n) n.style.display='block'; }, 400);
+}
 
 function endTurn(){
   E.endTurn(S);
@@ -1047,7 +1073,7 @@ function showZoom(c, ev){
     <div class="zn">${c.name}</div>
     <div class="zr">${c.rarity}${c.passive ? ' · sovereign' : ''}</div>
     ${c.kw?`<div class="zk"><b>${KWTXT[c.kw]}</b> — ${KWDESC[c.kw]}</div>`:''}
-    ${c.ability?`<div class="zpv" title="${esc(c.ability)}">${c.ability}</div>`:''}
+    ${c.ability?`<div class="zpv">${c.ability}</div>`:''}  /* v0.10.2: no native title tooltip — it duplicated the visible text on hover */
     ${c.passive?`<div class="zpv"><b>${c.passive.name}</b> (Sovereign passive): ${c.passive.desc}</div>`:''}
     <div class="zs">${(c.type==='edict'||c.type==='relic') ? `<span style="color:#f9c;letter-spacing:1px">${c.type==='edict'?'EDICT — ONE-SHOT':'RELIC — PERSISTENT'}</span>` : `<span class="statgem atk">${c.atk}</span><span class="slab">ATK</span> <span class="statgem hp">${c.hp}</span><span class="slab">HP</span>`}</div>`;
   zoom.style.display='block';
