@@ -467,7 +467,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.9.7';
+const GAME_VERSION = '0.9.8';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
@@ -548,7 +548,9 @@ window.addEventListener('resize', fitScreen);
 window.addEventListener('load', fitScreen);
 if(document.fonts && document.fonts.ready) document.fonts.ready.then(()=>fitScreen());
 function refit(){ requestAnimationFrame(fitScreen); }
-function backToMenu(){ camp.active=null; camp.rule=null; aiAnimSeq++; show('menu'); sel=null; powTargeting=false; S=null; stopWatch(); applyTheme(null); }
+function backToMenu(){ // v0.9.8: leaving a match must also drop the victory/defeat overlay — MENU after VICTORY used to strand it open over the main menu with no way to close it
+  const ov = document.getElementById('overlay'); if(ov) ov.classList.remove('on');
+  camp.active=null; camp.rule=null; aiAnimSeq++; show('menu'); sel=null; powTargeting=false; S=null; stopWatch(); applyTheme(null); }
 
 function menuSingle(){ camp.active=null; camp.rule=null; showPoolPick('play'); }
 function menuDeckBuilder(){ showPoolPick('db'); }
@@ -996,6 +998,7 @@ function showCoin(iAmFirst, enF){
 function render(){
   if(!S) return;
   blogDiff(S); // v0.9.6: every render flushes new engine events to the battle log
+  hideZoom(); // v0.9.8: the rebuild below can remove the hovered card — its mouseleave never fires, so the zoom would freeze on screen
   const my = S.A, ai = S.B;
   const tb = document.getElementById('topbar');
   tb.innerHTML = `<b>${my.fac.label}</b> ${crystals(my.mana, my.maxmana)}
@@ -1169,6 +1172,7 @@ function renderDB(){
   const coll = document.getElementById('dbColl');
   const listEl = document.getElementById('dbDeckList');
   if(!coll || !listEl) return;
+  hideZoom(); // v0.9.8: filtering rebuilds the grid — never strand a frozen zoom from the card that was hovered
   const gc = guildCards();
   // v0.9.5: filter chips (search + cost + type + keyword, Arena/HS style)
   dbChipRow('dbCostChips', [{t:'ALL',v:null},{t:'1',v:'1'},{t:'2',v:'2'},{t:'3',v:'3'},{t:'4',v:'4'},{t:'5',v:'5'},{t:'6',v:'6'},{t:'7+',v:'7+'}], dbFilters.cost, 'cost');
