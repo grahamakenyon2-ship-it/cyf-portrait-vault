@@ -330,7 +330,9 @@
         damageMinion(S, other(next), t.uid, 1);
       }
     }
-    if (hasP(np, 'SECOND_SIGHT') && np.hand.length <= 3 && np.deck.length) {
+    // v0.9.4 buff: threshold 3 -> 4 (deep playtest 9.6M games: Second Sight
+    // 28.7% when leading = weakest passive; the <=3 gate rarely fired).
+    if (hasP(np, 'SECOND_SIGHT') && np.hand.length <= 4 && np.deck.length) {
       S.events.push({ t: 'passive', side: next, id: 'SECOND_SIGHT' });
       for (let i = 0; i < r; i++) draw(S, next);
     }

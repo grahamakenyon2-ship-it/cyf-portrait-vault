@@ -1112,7 +1112,7 @@
      "passive": {
       "id": "SECOND_SIGHT",
       "name": "Second Sight",
-      "desc": "At the start of your turn, if you hold 3 or fewer cards, draw a card."
+      "desc": "At the start of your turn, if you hold 4 or fewer cards, draw a card."
      }
     },
     {
@@ -4248,7 +4248,7 @@
      "passive": {
       "id": "SECOND_SIGHT",
       "name": "Second Sight",
-      "desc": "At the start of your turn, if you hold 3 or fewer cards, draw a card."
+      "desc": "At the start of your turn, if you hold 4 or fewer cards, draw a card."
      }
     },
     {
@@ -5914,15 +5914,16 @@
    "commander": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/the-stormlight-archive/alethkar/navani.jpg",
    "commanderFile": "the-stormlight-archive/alethkar/navani.jpg",
    "defaultDeck": [
-    "aerys ii@stormlit",
-    "elayne@stormlit",
+    "aerys@stormlit",
+    "balgruuf@stormlit",
+    "denis healey@stormlit",
     "elrond@stormlit",
     "eorl the young@stormlit",
-    "fen sagenmay@stormlit",
-    "george brown@stormlit",
-    "khamul the easterling@stormlit",
-    "melisandre of asshai@stormlit",
-    "rain-of-arrows@stormlit"
+    "grand-archive@stormlit",
+    "rain-of-arrows@stormlit",
+    "tiber@stormlit",
+    "viserys i@stormlit",
+    "vstim@stormlit"
    ],
    "cards": [
     {
@@ -7269,15 +7270,16 @@
    "commander": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/halo/the-covenant/the_20prophet_20of.jpg",
    "commanderFile": "halo/the-covenant/the_20prophet_20of.jpg",
    "defaultDeck": [
-    "dooku@starwind",
     "farad n corrino@starwind",
     "feyd@starwind",
-    "jabba@starwind",
-    "james t kirk@starwind",
+    "grand admiral thrawn@starwind",
+    "great-granary@starwind",
     "mon mothma@starwind",
-    "paul@starwind",
-    "philip the arab@starwind",
-    "star-charts@starwind"
+    "star-charts@starwind",
+    "stilgar@starwind",
+    "the arbiter@starwind",
+    "the borg queen@starwind",
+    "wensicia corrino@starwind"
    ],
    "cards": [
     {
@@ -8612,15 +8614,15 @@
    "commander": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/romance-of-the-three-kingdoms/uncategorized/sima_20yi.jpg",
    "commanderFile": "romance-of-the-three-kingdoms/uncategorized/sima_20yi.jpg",
    "defaultDeck": [
+    "ambush-at-the-pass@tigerpass",
     "cao pi@tigerpass",
+    "furina@tigerpass",
     "gongsun zan@tigerpass",
+    "guan yu@tigerpass",
+    "hiiragi shinsuke@tigerpass",
     "kokomi@tigerpass",
-    "lu bu@tigerpass",
-    "nahida@tigerpass",
-    "sima yan@tigerpass",
-    "yuan shao@tigerpass",
-    "yuan shu@tigerpass",
-    "ambush-at-the-pass@tigerpass"
+    "liu zhang@tigerpass",
+    "zhongli@tigerpass"
    ],
    "cards": [
     {
@@ -9537,15 +9539,17 @@
    "commander": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/warhammer-40-000/imperium/leman_20russ.jpg",
    "commanderFile": "warhammer-40-000/imperium/leman_20russ.jpg",
    "defaultDeck": [
-    "alpharius@zephek",
+    "abaddon@zephek",
+    "asdrubael vect@zephek",
     "commander shadowsun@zephek",
+    "curzon@zephek",
+    "eldrad@zephek",
     "fulgrim@zephek",
-    "jaghatai khan@zephek",
-    "konrad curze@zephek",
-    "logan grimnar@zephek",
-    "mortarion@zephek",
-    "perturabo@zephek",
-    "crusade-bull@zephek"
+    "ghazghkull@zephek",
+    "horus@zephek",
+    "the hive mind@zephek",
+    "training-grounds@zephek",
+    "zealot-fervor@zephek"
    ],
    "cards": [
     {
@@ -11433,5 +11437,5 @@
    ]
   }
  ],
- "version": "0.9.3"
+ "version": "0.9.4"
 }
