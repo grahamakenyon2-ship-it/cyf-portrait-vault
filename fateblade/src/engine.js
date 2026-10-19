@@ -52,7 +52,8 @@
   // opts: { sovA, sovB, first, deckA, deckB, aiA, aiB, rng }
   //   sovA/sovB — the Legendary cards leading each deck (their .passive is used)
   //   first     — 'A' | 'B', who won the coin flip and acts first
-  //   deckA/deckB — arrays of card ids (10 types → ×2 copies each). If omitted,
+  //   deckA/deckB — arrays of card ids (v0.10: explicit copy lists, e.g. 30
+  //                 cards; copy caps are the deck builder's job). If omitted,
   //                 falls back to the faction's defaultDeck, then all its cards.
   //   aiA/aiB   — AI difficulty for that side ('easy'|'normal'|'hard', default 'normal')
   //   rng       — randomness source for random passives (STORMCALL) & random targets
@@ -65,11 +66,15 @@
       // v0.5: decks may hire Wayfarers' Guild (neutral) cards — index them too
       for (const c of (opts.extraCards || [])) if (!byId.has(c.id)) byId.set(c.id, c);
       const d = [];
+      const counts = {};
       for (const id of ids) {
         const c = byId.get(id);
         if (!c) continue;
-        d.push({ ...c, uid: c.id + '-1' });
-        d.push({ ...c, uid: c.id + '-2' });
+        // v0.10: deck lists carry explicit copy counts (30-card decks, 2x
+        // common/rare, 1x epic) — instance numbering follows the list, no
+        // hidden duplication.
+        counts[id] = (counts[id] || 0) + 1;
+        d.push({ ...c, uid: c.id + '-' + counts[id] });
       }
       return shuffle(d);
     };
