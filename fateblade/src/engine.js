@@ -1,4 +1,9 @@
 // engine.js — FATEBLADE rules engine v0.5 (pure, headless-testable).
+// v0.11 KEYWORDS: Shock (attack minions the turn played, not the Sovereign),
+//       Aegis (first damage instance negated), Bane (destroys any minion it
+//       damages, incl. via retaliation), Relentless (attacks twice per turn).
+//       All four are gated on the new kw values — the v0.10.1 card pool behaves
+//       byte-identically under this engine (regression-verified).
 // Shared by src/game.html (browser), tools/simulate.mjs (AI playtesting), and the
 // in-game WATCH mode. No DOM access in here.
 // v0.3: Sovereign system — each deck is led by one of its Legendary cards; the
@@ -37,12 +42,17 @@
   const MAX_BOARD = 6, MAX_HAND = 8, MAX_HP = 30, MAX_MANA = 10, MAX_RELICS = 2;
   const AI_LEVELS = ['easy', 'normal', 'hard'];
 
-  const KWTXT = { Guard: 'GUARD', Charge: 'CHARGE', Lifesteal: 'LIFESTEAL', Ranged: 'RANGED' };
+  const KWTXT = { Guard: 'GUARD', Charge: 'CHARGE', Lifesteal: 'LIFESTEAL', Ranged: 'RANGED',
+    Shock: 'SHOCK', Aegis: 'AEGIS', Bane: 'BANE', Relentless: 'RELENTLESS' };
   const KWDESC = {
     Guard: 'Enemies must attack this minion before any other target.',
     Charge: 'This minion can attack the turn it is played.',
     Lifesteal: 'Damage this minion deals also heals your hero.',
     Ranged: 'This minion attacks without taking retaliation damage.',
+    Shock: 'The turn this is played, it can attack enemy minions — but not the enemy Sovereign.',
+    Aegis: 'The first damage this would take is negated.',
+    Bane: 'Any minion this damages is destroyed, whatever its remaining health.',
+    Relentless: 'This minion can attack twice each turn.',
   };
 
   const other = (side) => (side === 'A' ? 'B' : 'A');
@@ -122,6 +132,8 @@
     const vp = S[victimSide], foeSide = other(victimSide);
     const t = vp.board.find((x) => x.uid === uid);
     if (!t) return;
+    // v0.11 AEGIS: one absorbed damage instance (attacks, retaliation, pings, AOE)
+    if (t.shield > 0) { t.shield -= 1; S.events.push({ t: 'shield', side: victimSide, id: t.id, uid }); return; }
     t.hp -= dmg;
     if (t.hp <= 0) {
       vp.board = vp.board.filter((x) => x.uid !== uid);
@@ -201,7 +213,10 @@
 
     // Sovereign entry passives (First Rites doubles the bonus in the opening)
     const r = rites(S, side);
-    const m = { ...c, ready: c.kw === 'Charge', uid: c.uid };
+    const m = { ...c, ready: c.kw === 'Charge' || c.kw === 'Shock', uid: c.uid };
+    if (m.kw === 'Shock') m.shocked = true; // v0.11: can hit minions, not the hero, this turn
+    if (m.kw === 'Aegis') m.shield = 1;    // v0.11: absorbs the first damage instance
+    if (m.kw === 'Relentless') m.attacks = 0; // v0.11: attack counter for the second swing
     if (m.kw === 'Guard' && hasRelic(p, 'rlStandards')) m.atk += 1; // Legion Standards: every Guard musters +1 atk
     if (m.kw === 'Ranged' && hasRelic(p, 'rlLookout')) m.atk += 1; // The Lookout: every gun is sighted
     if (m.kw === 'Guard' && hasP(p, 'BULWARK')) m.hp += 2 * r; // v0.6.4 buff: +2 HP (was +1)
@@ -254,6 +269,8 @@
     const p = S[side], foe = S[other(side)];
     const m = p.board.find((x) => x.uid === uid);
     if (!m || !m.ready) return false;
+    if (m.kw === 'Relentless' && (m.attacks || 0) >= 2) return false; // v0.11: two swings max
+    if (target.hero && m.shocked) return false; // v0.11: Shock cannot reach the Sovereign this turn
     const guards = foe.board.filter((x) => x.kw === 'Guard');
     if (target.hero) return guards.length === 0;
     const t = foe.board.find((x) => x.uid === target.uid);
@@ -264,7 +281,8 @@
     if (!canAttack(S, side, uid, target)) return false;
     const p = S[side], foe = S[other(side)];
     const m = p.board.find((x) => x.uid === uid);
-    m.ready = false;
+    m.attacks = (m.attacks || 0) + 1;
+    m.ready = m.kw === 'Relentless' && m.attacks < 2; // v0.11: Relentless swings twice
     if (target.hero) {
       const dealt = heroDamage(S, other(side), m.atk, true);
       if (m.kw === 'Lifesteal') p.hp = Math.min(MAX_HP, p.hp + dealt);
@@ -274,10 +292,10 @@
       S.events.push({ t: 'hit', side, id: m.id, dmg: m.atk, on: t.id });
       if (m.kw !== 'Ranged' && t.atk > 0) {
         // retaliation can kill the attacker (their own Deathrattle/DEATHGIFT may fire)
-        damageMinion(S, side, m.uid, t.atk);
+        damageMinion(S, side, m.uid, t.kw === 'Bane' ? 999 : t.atk); // v0.11: Bane's touch destroys the attacker too
       }
       if (m.kw === 'Lifesteal' && m.hp > 0) p.hp = Math.min(MAX_HP, p.hp + m.atk);
-      damageMinion(S, other(side), t.uid, m.atk);
+      damageMinion(S, other(side), t.uid, m.kw === 'Bane' ? 999 : m.atk); // v0.11: Bane destroys what it damages
     }
     return true;
   }
@@ -312,13 +330,15 @@
   }
 
   function endTurn(S) {
+    // v0.11: the ending side's Shock window closes and Relentless counters settle
+    S[S.active].board.forEach((m) => { m.shocked = false; m.attacks = 0; });
     const next = other(S.active);
     S.active = next; S.turn++;
     const np = S[next], foe = S[other(next)];
     np.maxmana = Math.min(MAX_MANA, np.maxmana + 1);
     np.mana = np.maxmana + (S.first === next && S.turn <= 5 ? 1 : 0) + (S.first === next && S.turn <= 1 ? 1 : 0); // First Rites v0.6.4: +1 mana on the winner's first three turns, +2 on turn one (tuned: 55.7% → 34% → 43.6% → target 50)
     np.power = false;
-    np.board.forEach((m) => { m.ready = true; });
+    np.board.forEach((m) => { m.ready = true; m.shocked = false; m.attacks = 0; }); // v0.11: Aegis (m.shield) intentionally persists across turns
     // relic hooks (v0.6)
     if (hasRelic(np, 'rlGranary')) np.hp = Math.min(MAX_HP, np.hp + 1);
     if (hasRelic(foe, 'rlLibrary') && foe.mana >= 2) { draw(S, other(next)); S.events.push({ t: 'relicfx', side: other(next), id: 'rlLibrary' }); }
@@ -432,10 +452,10 @@
 
     // attacks
     const guard = () => foe.board.some((m) => m.kw === 'Guard');
-    me.board.slice().forEach((m) => {
+    const sweep = () => me.board.slice().forEach((m) => {
       if (!me.board.find((x) => x.uid === m.uid) || !m.ready) return; // died mid-loop
-      if (!foe.board.length && !guard()) { atk(m.uid, { hero: true }); return; }
-      if (foe.hp <= m.atk && !guard()) { atk(m.uid, { hero: true }); return; }
+      if (!foe.board.length && !guard() && !m.shocked) { atk(m.uid, { hero: true }); return; }
+      if (foe.hp <= m.atk && !guard() && !m.shocked) { atk(m.uid, { hero: true }); return; }
       // favorable trades: kill something without dying (or dying to something smaller than us)
       const opts = foe.board.filter((t) =>
         t.hp <= m.atk && (m.kw === 'Ranged' || m.hp > t.atk || t.atk < m.atk));
@@ -444,7 +464,7 @@
         atk(m.uid, { uid: t.uid });
         return;
       }
-      if (!guard()) { atk(m.uid, { hero: true }); return; }
+      if (!guard() && !m.shocked) { atk(m.uid, { hero: true }); return; }
       // v0.6.4: never pass forever into a Guard wall — kill one if possible,
       // otherwise chip the weakest Guard (the old pass-only behavior stalled
       // 12-14% of games at the turn cap).
@@ -455,6 +475,10 @@
         atk(m.uid, { uid: chip.uid });
       }
     });
+    sweep();
+    // v0.11: Relentless's second swing. Gated so failed attackers in the old
+    // pool never get a retry the original single pass didn't give them.
+    if (me.board.some((m) => m.kw === 'Relentless' && m.ready)) sweep();
   }
 
   // HARD — a veteran marshal: plays greedy, reads lethal before anything else,
@@ -502,6 +526,10 @@
     else if (c.kw === 'Charge') v += 1.8;
     else if (c.kw === 'Ranged') v += 1.2;
     else if (c.kw === 'Lifesteal') v += 1.0;
+    else if (c.kw === 'Shock') v += 1.4;       // v0.11: pseudo-charge, hero locked out
+    else if (c.kw === 'Aegis') v += 1.5;       // v0.11: negates one damage instance
+    else if (c.kw === 'Bane') v += 1.6;        // v0.11: destroys anything it touches
+    else if (c.kw === 'Relentless') v += 1.8;  // v0.11: two swings a turn
     if (c.bc === 'bcDraw') v += 1.6;
     if (c.bc === 'bcPing') v += 0.4 + foe.board.length * 0.4;
     if (c.bc === 'bcHeal2') v += Math.min(2, MAX_HP - p.hp) * 0.5;
@@ -559,13 +587,14 @@
     }
 
     // attacks: biggest attackers decide first, so small minions clean up after them
-    me.board.slice().sort((a, b) => b.atk - a.atk).forEach((m) => {
+    const sweep = () => me.board.slice().sort((a, b) => b.atk - a.atk).forEach((m) => {
       if (!me.board.find((x) => x.uid === m.uid) || !m.ready) return; // died mid-loop
-      if (lethal && !guards().length) { atk(m.uid, { hero: true }); return; }
+      if (lethal && !guards().length && !m.shocked) { atk(m.uid, { hero: true }); return; }
 
       // value trades: prefer kills we survive; among them, kill the most valuable
-      const kills = foe.board.filter((t) => t.hp <= m.atk);
-      const safe = kills.filter((t) => m.kw === 'Ranged' || m.hp > t.atk);
+      // v0.11: Bane's touch kills anything it can reach
+      const kills = m.kw === 'Bane' ? foe.board.slice() : foe.board.filter((t) => t.hp <= m.atk);
+      const safe = kills.filter((t) => m.kw === 'Ranged' || m.kw === 'Bane' || m.hp > t.atk);
       const pool = safe.length ? safe : kills;
       if (pool.length) {
         const t = pool.slice().sort((a, b) => (b.atk + b.hp) - (a.atk + a.hp))[0];
@@ -575,12 +604,16 @@
       }
 
       const gs = guards();
-      if (!gs.length) { atk(m.uid, { hero: true }); return; }
+      if (!gs.length) { if (!m.shocked) atk(m.uid, { hero: true }); return; }
       // must chew through a Guard: kill one if possible, otherwise bleed the weakest
       const killable = gs.filter((g) => g.hp <= m.atk).sort((a, b) => b.atk - a.atk)[0];
       const g = killable || gs.slice().sort((a, b) => a.hp - b.hp)[0];
       atk(m.uid, { uid: g.uid });
     });
+    sweep();
+    // v0.11: Relentless's second swing. Gated so failed attackers in the old
+    // pool never get a retry the original single pass didn't give them.
+    if (me.board.some((m) => m.kw === 'Relentless' && m.ready)) sweep();
   }
 
   // dispatch: aiTurn(S, side, level, onAction) — level falls back to the side's declared

@@ -73,6 +73,7 @@
   .minion.selected{outline:2px solid #fff;}
   .minion.targetable{border-color:var(--hp); box-shadow:0 0 8px var(--hp);}
   .minion.guard .kw{color:#f96; font-weight:bold;}
+  .minion.shielded{outline:2px solid #9cf; box-shadow:0 0 10px #9cf9, inset 0 0 12px #9cf4;}
   .hand{display:flex; gap:8px; justify-content:center; min-height:185px; align-items:flex-end;}
   .hcard{width:118px; height:164px; border:6px solid transparent; border-image:var(--theme-panel, linear-gradient(#2a2216,#191308)) 40 fill; background:#0d0a07; cursor:pointer; position:relative; transition:transform .12s;}
   .hcard:hover{transform:translateY(-10px);}
@@ -516,7 +517,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.10.2';
+const GAME_VERSION = '0.11.0';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
@@ -872,6 +873,7 @@ function evLine(ev){
       return { s: vic, x:`${vic === 'A' ? 'You' : 'Enemy'} take ${ev.dmg} hero damage (${lb})` };
     }
     case 'death':  return { s:ev.side, x:`☠ ${blName(ev.id)} falls` };
+    case 'shield': return { s:ev.side, x:`⛨ ${blName(ev.id)} absorbs the blow` };
     case 'buff':   return { s:ev.side, x:`✚ ${blName(ev.id)} is blessed (+1/+1)` };
     case 'passive': return { s:ev.side, x:`✦ ${BL_LABELS[ev.id] || blName(ev.id)} triggers for ${who.toLowerCase()}` };
     case 'fatigue': return { s:ev.side, x:`${who} exhaust the deck — fatigue ${ev.dmg}` };
@@ -1051,6 +1053,7 @@ function fxEvent(ev){
       break; // the victim hero's hitflash + damage number come from the render diff
     }
     case 'death': deathGhost(ev.uid); break;
+    case 'shield': SFX.buff(); break; // v0.11: Aegis absorption ping
     case 'buff': SFX.buff(); break;
     case 'passive': SFX.passive(); break;
     case 'fatigue': SFX.fatigue(); break;
@@ -1160,7 +1163,7 @@ function render(){
     const el = document.getElementById(id);
     el.innerHTML = p.board.map(m=>{
       const targetable = !watch.on && side==='B' && S.active==='A' && (sel||powTargeting);
-      return `<div class="minion ${m.kw==='Guard'?'guard':''} ${m.ready&&side===S.active?'ready':''} ${targetable?'targetable':''} ${sel===m.uid&&side==='A'?'selected':''}"
+      return `<div class="minion ${m.kw==='Guard'?'guard':''} ${m.ready&&side===S.active?'ready':''} ${targetable?'targetable':''} ${sel===m.uid&&side==='A'?'selected':''} ${m.shield>0?'shielded':''}"
         data-uid="${m.uid}" data-cid="${m.id}">
         <img src="${m.img}" loading="lazy"><div class="nm">${m.name}</div>
         ${m.kw?`<div class="kw" data-kw="${m.kw}">${KWTXT[m.kw]}</div>`:''}
