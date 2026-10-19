@@ -64,7 +64,7 @@
   .hcard.spell{box-shadow:inset 0 0 0 3px #7a5a1a, inset 0 0 0 4px #000;}
   .hero.targetable{border-color:var(--hp); box-shadow:0 0 10px var(--hp);}
   .minion{width:108px; height:140px; border:6px solid transparent; border-image:var(--theme-panel, linear-gradient(#2a2216,#191308)) 40 fill; background:#0d0a07; position:relative; cursor:pointer;}
-  .minion img{width:100%; height:104px; object-fit:cover; display:block;}
+  .minion img{width:100%; height:104px; object-fit:cover; object-position:50% 20%; display:block;}
   .minion .nm{font-size:11px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding:1px 3px; background:#000c;}
   .minion .atk{position:absolute; bottom:2px; left:4px; font-size:15px; color:var(--atk); text-shadow:0 0 4px #000;}
   .minion .hp{position:absolute; bottom:2px; right:4px; font-size:15px; color:var(--hp); text-shadow:0 0 4px #000;}
@@ -197,6 +197,40 @@
     background:radial-gradient(circle at 35% 30%, #9cc4ff, #1c4d8a 75%); border:1px solid #6ea8ff; color:#fff;
     font-size:17px; font-weight:bold; text-shadow:0 1px 2px #000;}
 
+  /* ===== v0.10: attack/HP gem badges (same treatment as the mana cost gem),
+     portrait framing, and card-text containment ===== */
+  .statgem{display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; border-radius:50%;
+    font-weight:bold; font-size:13px; color:#fff; text-shadow:0 1px 2px #000; border:1px solid #0009;
+    box-shadow:0 1px 3px #0008; margin:0 3px; vertical-align:middle; font-family:'Cinzel', Georgia, serif;}
+  .statgem.atk{background:radial-gradient(circle at 35% 30%, #ff9a8a, #b41f0f 75%); border-color:#7a1a0d;}
+  .statgem.hp{background:radial-gradient(circle at 35% 30%, #a9efa0, #1d7a2a 75%); border-color:#144d1c;}
+  #zoom .zs .statgem{width:30px; height:30px; font-size:17px;}
+  .slab{font-size:12px; color:#c9b78e; letter-spacing:2px; vertical-align:middle;}
+  /* portraits: face-biased crop, and a visible mat rim so they sit INSIDE the
+     frame art instead of covering it edge-to-edge */
+  #zoom img{width:236px; height:236px; margin:0 auto; object-fit:cover; object-position:50% 16%; display:block;
+    border:2px solid #000a; box-shadow:0 2px 8px #000a;}
+  #deckb .dbcard img{object-position:50% 20%; box-shadow:0 0 0 1px #000a;}
+  #deckb .dbcard .ab{max-height:30px;}      /* v0.10: ability text never runs past the frame */
+  #zoom .zpv{max-height:92px; overflow:hidden;}  /* full text rides in the title tooltip */
+  .cardpick .passive{max-height:64px; overflow:hidden;}
+  /* deck-builder count badge on collection cards */
+  #deckb .dbcard .dbn{position:absolute; top:2px; right:4px; background:#000d; border:1px solid var(--gold-dim); color:var(--gold);
+    font-size:11px; padding:1px 5px; letter-spacing:1px; z-index:2;}
+  /* named-deck picker rows */
+  .dprow{display:flex; gap:14px; align-items:center; width:min(680px,92vw); padding:10px 16px; background:#191308;
+    border:1px solid var(--gold-dim); cursor:pointer; text-align:left; margin:4px 0;}
+  .dprow:hover{border-color:var(--gold); box-shadow:0 0 12px #c9a24b44;}
+  .dprow .dpl{flex:1 1 auto; color:var(--gold); letter-spacing:2px; font-size:15px;}
+  .dprow .dps{font-size:12.5px; color:#c9b78e; letter-spacing:1px;}
+  .dprow .del{color:#f88; font-size:13px; padding:2px 8px; border:1px solid #8a3030;}
+  .dprow .del:hover{background:#8a3030; color:#fff;}
+  /* enemy hand: HS/MTGA-style card backs next to the enemy hero */
+  #foeHand{display:flex; gap:3px; align-items:center; margin-right:14px;}
+  #foeHand .fcard{width:26px; height:38px; border-radius:3px; background:linear-gradient(160deg,#31281a,#0d0a07);
+    border:1px solid var(--gold-dim); box-shadow:0 1px 3px #000;}
+  #foeHand .fcnt{margin-left:6px; font-size:14px; color:#e8a2a2; letter-spacing:1px; background:#000c; padding:2px 7px; border:1px solid #2a2216;}
+
   /* ===== v0.9.6: animated enemy turn + battle log ===== */
   #match{position:relative;}
   #battlelog{position:absolute; right:10px; top:36px; width:222px; max-height:52vh; overflow-y:auto;
@@ -219,7 +253,7 @@
 
   /* ---- ornate hand cards: full-bleed portrait, name plate, stat gems ---- */
   .hcard{overflow:visible; background:#0d0a07; box-shadow:inset 0 0 0 3px var(--rc,#333), inset 0 0 0 4px #000;}
-  .hcard img{width:100%; height:100%; object-fit:cover; position:absolute; inset:0; border:none;}
+  .hcard img{width:100%; height:100%; object-fit:cover; object-position:50% 18%; position:absolute; inset:0; border:none;}
   .hcard .vig{position:absolute; inset:0; pointer-events:none;
     background:linear-gradient(180deg, #0008 0%, transparent 22%, transparent 58%, #000e 100%);}
   .hcard .nm{position:absolute; bottom:23px; left:0; right:0; text-align:center; font-size:10.5px;
@@ -377,6 +411,7 @@
   <h1 style="font-size:20px" id="dbTitle">DECK BUILDER</h1>
   <div class="dbhead">
     <span id="dbCount"></span>
+    <input id="dbName" type="text" placeholder="deck name…" style="background:#191308;color:var(--ink);border:1px solid var(--gold-dim);padding:6px 10px;font:inherit;width:160px">
     <button onclick="dbReset()">↺ Restore Doctrine</button>
     <button onclick="dbSave()" id="dbSaveBtn">💾 Save Deck</button>
     <button onclick="dbDone()">Done</button>
@@ -400,10 +435,21 @@
   <button onclick="menuSingle()">Back</button>
 </div>
 
+<div id="deckpick" class="screen">
+  <h1 style="font-size:22px" id="dpTitle">CHOOSE YOUR DECK</h1>
+  <div style="font-size:14px;color:#c9b78e">The doctrine is the realm's tuned 30-card deck. Saved decks are your own builds.</div>
+  <div id="dpMigrate" style="display:none;font-size:13px;color:#f9c;background:#141008;border:1px solid var(--gold-dim);padding:8px 14px;max-width:640px">
+    ⚠ Pre-v0.10 custom decks were cleared — the old 20-card format is not legal under the new
+    30-card rules. Build and save a new deck from the Deck Builder any time.
+  </div>
+  <div id="dpRow" style="display:flex;flex-direction:column;align-items:center"></div>
+  <button onclick="dpBack()">Back</button>
+</div>
+
 <div id="match" class="screen">
   <div id="battlelog"></div>
   <div id="topbar"></div>
-  <div class="lane"><div class="hero" id="aiHero"></div></div>
+  <div class="lane"><div id="foeHand" title="cards in the enemy hand"></div><div class="hero" id="aiHero"></div></div>
   <div class="board" id="aiBoard"></div>
   <div style="height:10px"></div>
   <div class="board" id="myBoard"></div>
@@ -467,7 +513,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.9.8';
+const GAME_VERSION = '0.10.0';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
@@ -513,10 +559,23 @@ function applyTheme(factionId){
 }
 
 /* ---------- saved decks (localStorage) ---------- */
+// v0.10: MULTIPLE NAMED 30-CARD DECKS per realm. The old v1 format (one 10-id
+// deck per realm, implicitly doubled by the engine) is incompatible with the
+// new 30-card copy-count rules, so it is migrated away once with a notice —
+// realms fall back to their tuned doctrine decks until you save new builds.
 const DKEY = 'fateblade-decks-v1';
-let savedDecks = JSON.parse(localStorage.getItem(DKEY) || '{}');
-function saveDeck(facId, deck){ savedDecks[facId] = deck; localStorage.setItem(DKEY, JSON.stringify(savedDecks)); }
-function loadDeck(facId){ return savedDecks[facId] || (facOf(facId) ? facOf(facId).defaultDeck.slice() : null); }
+const DKEY2 = 'fateblade-decks-v2';
+let decksMigrated = false;
+try {
+  const oldV1 = JSON.parse(localStorage.getItem(DKEY) || '{}');
+  if (Object.keys(oldV1).length) { decksMigrated = true; localStorage.removeItem(DKEY); }
+} catch (e) {}
+let savedDecks = JSON.parse(localStorage.getItem(DKEY2) || '{}');
+function decksOf(facId){ return savedDecks[facId] || []; }
+function saveDeckList(facId, list){ if (list.length) savedDecks[facId] = list; else delete savedDecks[facId]; localStorage.setItem(DKEY2, JSON.stringify(savedDecks)); }
+function saveDeck(facId, name, cards){ saveDeckList(facId, decksOf(facId).filter(d => d.name !== name).concat([{ name, cards: cards.slice().sort() }])); }
+function deleteDeck(facId, name){ saveDeckList(facId, decksOf(facId).filter(d => d.name !== name)); }
+function loadDeck(facId){ return facOf(facId) ? facOf(facId).defaultDeck.slice() : null; } // v0.10: the tuned 30-card doctrine deck
 
 /* ---------- screens ---------- */
 function show(id){ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on')); document.getElementById(id).classList.add('on'); fitScreen(); }
@@ -576,19 +635,58 @@ function pickPool(p){ me.pool = p; applyTheme(null);
       <img src="${f.commander}" loading="lazy" alt="${f.label}">
       <div class="lbl">${f.label}</div>
       <div class="idn"><b>${f.identity.name}</b> — ${f.identity.tag}</div>
-      <div class="sub">${f.cards.length} warlords · ${legends(f).length} sovereigns · ${savedDecks[f.id] ? 'custom deck' : 'default doctrine deck'}</div></div>`).join('');
+      <div class="sub">${f.cards.length} warlords · ${legends(f).length} sovereigns · ${decksOf(f.id).length ? decksOf(f.id).length + ' saved deck' + (decksOf(f.id).length > 1 ? 's' : '') : 'doctrine deck'}</div></div>`).join('');
   show('factions');
 }
 function pickFaction(id){
   me.faction = id; applyTheme(id);
-  me.deck = loadDeck(id);
-  const f = facOf(id);
+  me.deck = null; me.deckName = null; dpConfirmDel = -1; // doctrine until a saved deck is picked
+  if (decksOf(id).length) { showDeckPick(id, false); return; }
+  toSovSelect(facOf(id));
+}
+/* v0.10: deck picker — doctrine or any saved named deck (singleplayer + campaign) */
+let dpCtx = { fid: null, campaign: false }, dpConfirmDel = -1;
+function showDeckPick(fid, forCampaign){
+  dpCtx = { fid, campaign: !!forCampaign }; // note: dpConfirmDel is NOT reset here — dpDel re-renders through this fn to show CONFIRM ✕
+  const f = facOf(fid);
+  document.getElementById('dpTitle').textContent = f.label.toUpperCase() + ' — CHOOSE YOUR DECK';
+  const note = document.getElementById('dpMigrate');
+  if (note) note.style.display = decksMigrated ? 'block' : 'none';
+  const rows = [{ name: null, label: '★ DOCTRINE — ' + f.identity.name.toUpperCase(), sub: 'the realm\'s tuned 30-card deck' }]
+    .concat(decksOf(fid).map(d => ({ name: d.name, label: d.name, sub: d.cards.length + ' cards' })));
+  document.getElementById('dpRow').innerHTML = rows.map((r, i) => `
+    <div class="dprow" onclick="dpPick(${i})">
+      <span class="dpl">${r.label}</span><span class="dps">${r.sub}</span>
+      ${i > 0 ? `<span class="del" onclick="event.stopPropagation(); dpDel(${i})">${dpConfirmDel === i ? 'CONFIRM ✕' : '✕ delete'}</span>` : ''}
+    </div>`).join('');
+  show('deckpick');
+}
+function dpPick(i){
+  const d = decksOf(dpCtx.fid)[i - 1];
+  me.deck = d ? d.cards.slice() : null;
+  me.deckName = d ? d.name : null;
+  dpConfirmDel = -1;
+  const f = facOf(dpCtx.fid);
+  if (dpCtx.campaign) campToSov(f); else toSovSelect(f);
+}
+function dpDel(i){
+  if (dpConfirmDel !== i) { dpConfirmDel = i; showDeckPick(dpCtx.fid, dpCtx.campaign); return; }
+  const d = decksOf(dpCtx.fid)[i - 1];
+  if (d) { deleteDeck(dpCtx.fid, d.name); log('Deck deleted: ' + d.name); }
+  dpConfirmDel = -1;
+  showDeckPick(dpCtx.fid, dpCtx.campaign);
+}
+function dpBack(){
+  if (dpCtx.campaign && camp.pending) campPickFaction(camp.pending);
+  else pickPool(me.pool || 'history');
+}
+function toSovSelect(f){
   document.getElementById('sovTitle').textContent = (f.label).toUpperCase() + ' — CHOOSE YOUR SOVEREIGN';
   document.getElementById('sovRow').innerHTML = legends(f).map((c,i)=>`
     <div class="cardpick" onclick="pickSovereign(${i})">
       <img src="${c.img}" loading="lazy" alt="${c.name}">
       <div class="lbl">${c.name}</div>
-      <div class="passive"><b style="color:#f9c">${c.passive.name}:</b> ${c.passive.desc}</div></div>`).join('');
+      <div class="passive" title="${(c.passive.desc||'').replace(/"/g,'&quot;')}"><b style="color:#f9c">${c.passive.name}:</b> ${c.passive.desc}</div></div>`).join('');
   show('sovereigns');
 }
 function pickSovereign(i){ camp.active=null; camp.rule=null; me.sov = legends(facOf(me.faction))[i]; startMatch(); }
@@ -943,14 +1041,15 @@ document.addEventListener('click', (e) => { if (e.target.closest('button')) SFX.
 /* ---------- hover-zoom ---------- */
 const zoom = document.getElementById('zoom');
 function showZoom(c, ev){
+  const esc = (s)=>String(s||'').replace(/"/g,'&quot;');
   zoom.className = 'r-' + (c.rarity || 'common');
   zoom.innerHTML = `<div class="zc">${c.cost}</div><img src="${c.img}">
     <div class="zn">${c.name}</div>
     <div class="zr">${c.rarity}${c.passive ? ' · sovereign' : ''}</div>
     ${c.kw?`<div class="zk"><b>${KWTXT[c.kw]}</b> — ${KWDESC[c.kw]}</div>`:''}
-    ${c.ability?`<div class="zpv">${c.ability}</div>`:''}
+    ${c.ability?`<div class="zpv" title="${esc(c.ability)}">${c.ability}</div>`:''}
     ${c.passive?`<div class="zpv"><b>${c.passive.name}</b> (Sovereign passive): ${c.passive.desc}</div>`:''}
-    <div class="zs">${(c.type==='edict'||c.type==='relic') ? `<span style="color:#f9c;letter-spacing:1px">${c.type==='edict'?'EDICT — ONE-SHOT':'RELIC — PERSISTENT'}</span>` : `<span class="a">${c.atk} ATK</span> · <span class="h">${c.hp} HP</span>`}</div>`;
+    <div class="zs">${(c.type==='edict'||c.type==='relic') ? `<span style="color:#f9c;letter-spacing:1px">${c.type==='edict'?'EDICT — ONE-SHOT':'RELIC — PERSISTENT'}</span>` : `<span class="statgem atk">${c.atk}</span><span class="slab">ATK</span> <span class="statgem hp">${c.hp}</span><span class="slab">HP</span>`}</div>`;
   zoom.style.display='block';
   moveZoom(ev);
 }
@@ -1004,8 +1103,12 @@ function render(){
   tb.innerHTML = `<b>${my.fac.label}</b> ${crystals(my.mana, my.maxmana)}
     <b style="color:#ccc">vs ${ai.fac.label}</b> ${crystals(ai.mana, ai.maxmana)}
     <span>${S.active==='A'?'YOUR TURN':'ENEMY TURN'}</span> <span>decks ${my.deck.length} / ${ai.deck.length}</span>
+    <span title="cards in the enemy hand">enemy hand ${ai.hand.length}</span>
     ${!watch.on && (S.aiB||'normal')!=='normal' ? `<span>AI: ${(S.aiB||'normal').toUpperCase()}</span>`:''}
     ${my.fatigue||ai.fatigue?`<span class="fat">fatigue ${my.fatigue||0} / ${ai.fatigue||0}</span>`:''}`;
+  // v0.10: HS/MTGA-style enemy hand — a card back for every card they hold
+  const fh = document.getElementById('foeHand');
+  if(fh) fh.innerHTML = '<div class="fcard"></div>'.repeat(ai.hand.length) + `<span class="fcnt">✋ ${ai.hand.length}</span>`;
   document.getElementById('endbtn').disabled = S.active!=='A';
   document.getElementById('powerbtn').disabled = !E.canPower(S,'A');
   document.getElementById('powerbtn').textContent = `SKIRMISH (${E.powerCost(S,'A')}) — deal ${E.powerDmg(S,'A')}`;
@@ -1119,7 +1222,19 @@ document.getElementById('powerbtn').onclick = ()=>{
 document.getElementById('endbtn').onclick = ()=>{ if(S && !watch.on && S.active==='A') endTurn(); };
 
 /* ================= DECK BUILDER ================= */
-let dbFac = null, dbSel = null;
+let dbFac = null;
+let dbCnt = new Map();   // v0.10: card id -> copy count (30-card decks)
+let dbDirty = false;
+function deckSize(){ let n = 0; for (const k of dbCnt.values()) n += k; return n; }
+function capOf(c){ return c.rarity === 'epic' ? 1 : 2; } // v0.10: 2x common/rare, 1x epic, Sovereigns never deck
+function relicTotal(){
+  let n = 0;
+  for (const id of dbCnt.keys()) {
+    const c = facOf(dbFac).cards.find(x => x.id === id) || guildCards().find(x => x.id === id);
+    if (c && c.type === 'relic') n += dbCnt.get(id);
+  }
+  return n;
+}
 let dbFilters = { q:'', cost:null, type:null, kw:null }; // v0.9.5: Arena-style filters
 function dbFilterSet(k, v){ dbFilters[k] = v; if(k==='q'){ /* input keeps its own text */ } else { const inp = document.getElementById('dbSearch'); if(inp && inp.value !== dbFilters.q) inp.value = dbFilters.q; } renderDB(); }
 function dbChipRow(elId, opts, cur, key){
@@ -1151,20 +1266,24 @@ function pickPoolDB(p){
 function openDeckBuilder(facId){
   dbFac = facId; applyTheme(facId);
   const f = facOf(facId);
-  dbSel = new Set(); // v0.6.5: clean slate — build from scratch (↺ Restore Doctrine loads the default)
+  dbCnt = new Map(); dbDirty = false; // clean slate — ↺ Restore Doctrine loads the tuned 30-card default
   dbFilters = { q:'', cost:null, type:null, kw:null }; // v0.9.5: fresh filters per realm
   const inp = document.getElementById('dbSearch'); if(inp) inp.value = '';
+  const nm = document.getElementById('dbName'); if(nm) nm.value = '';
   document.getElementById('dbTitle').textContent = f.label.toUpperCase() + ' — ' + f.identity.name.toUpperCase();
   show('deckb');
   renderDB();
 }
 function dbCardHtml(c){
-  return `    <div class="dbcard r-${c.rarity||'common'} ${dbSel.has(c.id)?'sel':''}" onclick="dbToggle('${c.id.replace(/'/g,"\\'")}')" data-id="${c.id}">
+  const n = dbCnt.get(c.id) || 0;
+  const esc = (s)=>String(s||'').replace(/"/g,'&quot;');
+  return `    <div class="dbcard r-${c.rarity||'common'} ${n?'sel':''}" onclick="dbAdd('${c.id.replace(/'/g,"\\'")}')" data-id="${c.id}" title="${esc(c.ability || (c.kw ? c.kw + ': ' + KWDESC[c.kw] : ''))}">
       <div class="dbcost">${c.cost}</div>
+      ${n?`<div class="dbn">×${n}</div>`:''}
       <img src="${c.img}" loading="lazy" alt="${c.name}">
       <div class="nm">${c.name}</div>
-      <div class="ab">${c.ability ? c.ability.replace('Battlecry: ','▸ ').replace('Deathrattle: ','☠ ') : (c.kw ? KWTXT[c.kw] : '')}</div>
-      <div class="st">${(c.type==='edict'||c.type==='relic')?`<span style="color:#f9c;letter-spacing:1px">${c.type.toUpperCase()}</span>`:`<span style="color:var(--atk)">${c.atk}</span>/<span style="color:var(--hp)">${c.hp}</span>${c.rarity==='legendary'?' · ★':''}`}</div>
+      <div class="ab" title="${esc(c.ability)}">${c.ability ? c.ability.replace('Battlecry: ','▸ ').replace('Deathrattle: ','☠ ') : (c.kw ? KWTXT[c.kw] : '')}</div>
+      <div class="st">${(c.type==='edict'||c.type==='relic')?`<span style="color:#f9c;letter-spacing:1px">${c.type.toUpperCase()}</span>`:`<span class="statgem atk">${c.atk}</span><span class="statgem hp">${c.hp}</span>`}</div>
     </div>`;
 }
 function renderDB(){
@@ -1179,44 +1298,59 @@ function renderDB(){
   dbChipRow('dbTypeChips', [{t:'ALL',v:null},{t:'MINIONS',v:'minion'},{t:'EDICTS',v:'edict'},{t:'RELICS',v:'relic'}], dbFilters.type, 'type');
   dbChipRow('dbKwChips', [{t:'ALL',v:null},{t:'RANGED',v:'Ranged'},{t:'CHARGE',v:'Charge'},{t:'GUARD',v:'Guard'},{t:'LIFESTEAL',v:'Lifesteal'}], dbFilters.kw, 'kw');
   const byCost = (a,b)=>a.cost-b.cost || a.name.localeCompare(b.name); // v0.9.5: grid sorted by cost (HS/MTGA style)
+  // v0.10: Sovereigns (legendaries) lead from the hero box — they never appear in the deck grid
+  const legal = (c)=>c.rarity !== 'legendary';
   // collection: realm cards, then Guild section (Arena-style grid, scrollable pane)
-  coll.innerHTML = '<div class="dbGrid">' + f.cards.filter(dbPass).sort(byCost).map(dbCardHtml).join('')
-    + (gc.length ? '</div><div class="dbsection">THE WAYFARERS&rsquo; GUILD — HIRES FOR ANY BANNER (MAX 4)</div><div class="dbGrid">' + gc.filter(dbPass).sort(byCost).map(dbCardHtml).join('') : '')
+  coll.innerHTML = '<div class="dbGrid">' + f.cards.filter(legal).filter(dbPass).sort(byCost).map(dbCardHtml).join('')
+    + (gc.length ? '</div><div class="dbsection">THE WAYFARERS&rsquo; GUILD — HIRES FOR ANY BANNER (MAX 4)</div><div class="dbGrid">' + gc.filter(legal).filter(dbPass).sort(byCost).map(dbCardHtml).join('') : '')
     + '</div>';
   const all = f.cards.concat(gc);
   coll.querySelectorAll('.dbcard').forEach(d=>{
     d.onmouseenter = (ev)=>{ const c = all.find(x=>x.id===d.dataset.id); if(c) showZoom(c, ev); };
     d.onmousemove = moveZoom; d.onmouseleave = hideZoom;
   });
-  // deck list: sorted by cost, click to remove (Arena-style list)
-  const inDeck = [...dbSel].map(id=>all.find(c=>c.id===id)).filter(Boolean)
-    .sort((a,b)=>a.cost-b.cost || a.name.localeCompare(b.name));
-  listEl.innerHTML = inDeck.length ? inDeck.map(c=>`
-    <div class="dbrow ${isGuildCard(c.id)?'guild':''}" data-id="${c.id}" onclick="dbToggle('${c.id.replace(/'/g,"\\'")}')">
-      <span class="cost">${c.cost}</span><span class="nm">${c.name} ×2</span>
-      <span class="st">${(c.type==='edict'||c.type==='relic')?'✦ '+c.type.toUpperCase():c.atk+'/'+c.hp}</span><span class="x">✕</span></div>`).join('')
+  // deck list: one row per distinct card with its copy count; click removes ONE copy
+  const inDeck = [...dbCnt.entries()].map(([id,n])=>({ c: all.find(x=>x.id===id), n })).filter(e=>e.c)
+    .sort((a,b)=>a.c.cost-b.c.cost || a.c.name.localeCompare(b.c.name));
+  listEl.innerHTML = inDeck.length ? inDeck.map(({c,n})=>`
+    <div class="dbrow ${isGuildCard(c.id)?'guild':''}" data-id="${c.id}" onclick="dbRemove('${c.id.replace(/'/g,"\\'")}')">
+      <span class="cost">${c.cost}</span><span class="nm">${c.name} ×${n}</span>
+      <span class="st">${(c.type==='edict'||c.type==='relic')?'✦ '+c.type.toUpperCase():`<span class="statgem atk">${c.atk}</span><span class="statgem hp">${c.hp}</span>`}</span><span class="x">✕</span></div>`).join('')
     : '<div style="text-align:center;color:#c9b78e;font-size:13px;padding:10px">empty — click cards on the right</div>';
   listEl.querySelectorAll('.dbrow').forEach(r=>{
     r.onmouseenter = (ev)=>{ const c = all.find(x=>x.id===r.dataset.id); if(c) showZoom(c, ev); };
     r.onmousemove = moveZoom; r.onmouseleave = hideZoom;
   });
+  const size = deckSize();
   const cnt = document.getElementById('dbCount');
-  if(cnt) cnt.textContent = `DECK: ${dbSel.size} / 10 cards (×2 copies each) · Guild hires: ${guildCount(dbSel)} / 4`;
+  if(cnt) cnt.textContent = `DECK: ${size} / 30 cards · Guild hires: ${[...dbCnt.keys()].filter(isGuildCard).length} / 4 · Relic seats: ${relicTotal()} / 2`;
   const saveBtn = document.getElementById('dbSaveBtn');
-  if(saveBtn) saveBtn.disabled = dbSel.size !== 10;
+  if(saveBtn) saveBtn.disabled = size !== 30;
 }
-function dbReset(){ dbSel = new Set(facOf(dbFac).defaultDeck.slice()); renderDB(); }
+function dbReset(){
+  dbCnt = new Map();
+  for (const id of facOf(dbFac).defaultDeck) dbCnt.set(id, (dbCnt.get(id) || 0) + 1);
+  dbDirty = true; renderDB();
+}
 
-// v0.6.5: dbToggle — the click handler every deck card/row calls. It simply did not
-// exist before, so removing (or adding) cards by clicking silently did nothing.
-function dbToggle(id){
-  if(dbSel.has(id)){ dbSel.delete(id); renderDB(); return; }
-  if(dbSel.size >= 10){ dbFlash('DECK FULL — remove a card first'); return; }
-  if(isGuildCard(id) && guildCount(dbSel) >= 4){ dbFlash('GUILD HIRES MAXED — 4 per deck'); return; }
+// v0.10: dbAdd (collection click) / dbRemove (deck-list click) — copy-count aware.
+function dbAdd(id){
   const all = facOf(dbFac).cards.concat(guildCards());
-  const picked = all.find(c=>c.id===id);
-  if(picked && picked.type==='relic' && [...dbSel].map(x=>all.find(c=>c.id===x)).filter(c=>c&&c.type==='relic').length >= 2){ dbFlash('RELIC SEATS MAXED — 2 per deck'); return; }
-  dbSel.add(id); renderDB();
+  const c = all.find(x=>x.id===id);
+  if(!c) return;
+  if(c.rarity === 'legendary'){ dbFlash('SOVEREIGNS LEAD — they never join the deck'); return; }
+  if(deckSize() >= 30){ dbFlash('DECK FULL — remove a card first'); return; }
+  const n = dbCnt.get(id) || 0;
+  if(n >= capOf(c)){ dbFlash(c.rarity==='epic' ? 'EPIC — max 1 copy per deck' : 'MAX COPIES — 2 per card'); return; }
+  if(c.type==='relic' && relicTotal() >= 2){ dbFlash('RELIC SEATS MAXED — 2 per deck'); return; }
+  if(isGuildCard(id) && [...dbCnt.keys()].filter(isGuildCard).length >= 4){ dbFlash('GUILD HIRES MAXED — 4 per deck'); return; }
+  dbCnt.set(id, n + 1); dbDirty = true; renderDB();
+}
+function dbRemove(id){
+  if(!dbCnt.has(id)) return;
+  const n = dbCnt.get(id) - 1;
+  if(n <= 0) dbCnt.delete(id); else dbCnt.set(id, n);
+  dbDirty = true; renderDB();
 }
 // transient warning in the count line (no alert spam)
 let dbFlashTimer = null;
@@ -1228,8 +1362,19 @@ function dbFlash(msg){
   if(dbFlashTimer) clearTimeout(dbFlashTimer);
   dbFlashTimer = setTimeout(()=>{ cnt.style.color = ''; renderDB(); }, 1600);
 }
-function dbSave(){ if(dbSel.size===10){ saveDeck(dbFac, [...dbSel].sort()); } }
-function dbDone(){ dbSave(); pickPoolDB(me.pool || 'history'); }
+function dbSave(){
+  if(deckSize() !== 30){ dbFlash('SAVE NEEDS EXACTLY 30 CARDS'); return; }
+  const inp = document.getElementById('dbName');
+  let name = (inp && inp.value.trim()) || ('Deck ' + (decksOf(dbFac).length + 1));
+  name = name.slice(0, 28);
+  const cards = [];
+  for (const [id, n] of dbCnt) for (let i = 0; i < n; i++) cards.push(id);
+  saveDeck(dbFac, name, cards); // same name = overwrite that saved deck
+  dbDirty = false;
+  if(inp) inp.value = name;
+  dbFlash('SAVED ✔ "' + name + '" — choose it when you pick this realm');
+}
+function dbDone(){ if(dbDirty && deckSize() === 30) dbSave(); pickPoolDB(me.pool || 'history'); }
 
 /* ================= SETTINGS ================= */
 function showSettings(){
@@ -1249,7 +1394,7 @@ function setWatch(v){ settings.watchSpeed = Number(v); saveSettings(); }
 function setAI(v){ settings.aiLevel = v; saveSettings(); }
 function setPace(v){ settings.enemyPace = Number(v); saveSettings(); }
 function setSfxVol(v){ settings.sfxVol = Number(v); saveSettings(); SND.init(); SND.setVol(); }
-function clearDecks(){ savedDecks = {}; localStorage.removeItem(DKEY); alert('Custom decks cleared — realms return to their doctrine decks.'); location.reload(); }
+function clearDecks(){ savedDecks = {}; localStorage.removeItem(DKEY2); localStorage.removeItem(DKEY); alert('Saved decks cleared — realms return to their doctrine decks.'); location.reload(); }
 
 /* ================= MULTIPLAYER (v0.5 teaser) ================= */
 function showMultiplayer(){
@@ -1605,13 +1750,18 @@ function campPickFaction(id){
       <img src="${f.commander}" loading="lazy" alt="${f.label}">
       <div class="lbl">${f.label}</div>
       <div class="idn"><b>${f.identity.name}</b> — ${f.identity.tag}</div>
-      <div class="sub">${f.cards.length} warlords · ${savedDecks[f.id] ? 'custom deck' : 'default doctrine deck'}</div></div>`).join('');
+      <div class="sub">${f.cards.length} warlords · ${decksOf(f.id).length ? decksOf(f.id).length + ' saved deck' + (decksOf(f.id).length > 1 ? 's' : '') : 'doctrine deck'}</div></div>`).join('');
   show('factions');
 }
 function campFacPick(fid){
   const id = camp.pending; if(!id) return;
   campProgFor(id).faction = fid; campSaveProg();
+  me.deck = null; me.deckName = null; dpConfirmDel = -1; // v0.10: doctrine until a saved deck is picked
   const f = facOf(fid);
+  if (decksOf(fid).length) { showDeckPick(fid, true); return; } // v0.10: choose doctrine or a saved build
+  campToSov(f);
+}
+function campToSov(f){
   document.getElementById('sovTitle').textContent = f.label.toUpperCase() + ' — CHOOSE YOUR SOVEREIGN';
   document.getElementById('sovRow').innerHTML = legends(f).map((card, i)=>`
     <div class="cardpick" onclick="campSovPick(${i})">
@@ -1666,7 +1816,7 @@ function campLaunch(){
   const enF = facOf(ch.fac);
   const enLegs = legends(enF);
   const enSov = enLegs[Math.floor(Math.random()*enLegs.length)];
-  me.faction = myF.id; me.sov = mySov; me.deck = loadDeck(myF.id);
+  me.faction = myF.id; me.sov = mySov; me.deck = me.deck || loadDeck(myF.id); // v0.10: chosen saved deck, else the 30-card doctrine
   S = E.startMatch(myF, enF, shuffle, { sovA: mySov, sovB: enSov,
     first: r.enemyFirst ? 'B' : 'A', deckA: me.deck, deckB: loadDeck(enF.id), extraCards: guildCards(), aiB: ch.ai });
   // campaign rule mutations — applied post-start, engine untouched
