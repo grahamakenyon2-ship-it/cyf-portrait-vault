@@ -22,10 +22,14 @@
   h1 small{display:block; font-size:13px; letter-spacing:4px; color:var(--gold-dim); font-weight:normal;}
   .screen{display:none; height:100vh; flex-direction:column; align-items:center; justify-content:center; gap:14px; overflow:auto; padding:20px;}
   .screen.on{display:flex;}
-  button{background:var(--fb-btn, linear-gradient(#2a2216,#191308)) center/100% 100% no-repeat; border:1px solid var(--gold-dim); color:var(--gold);
+  button{background:var(--fb-btn, none) center/cover no-repeat, linear-gradient(#2a2216,#191308); border:1px solid var(--gold-dim); color:var(--gold);
     font:inherit; letter-spacing:2px; font-size:15px; padding:12px 28px; cursor:pointer;}
+  /* v0.9.1: plate art is COVER-cropped (fills the frame edge-to-edge, no stretched
+     margins) with the dark gradient layered underneath as a fallback if the art
+     is missing. The old 100% 100% stretch smeared a square plate onto wide
+     buttons, leaving pale empty bands around the label. */
   button.themebtn{
-    background:var(--theme-btn, linear-gradient(#2a2216,#191308)); background-size:100% 100%;
+    background:var(--theme-btn, none) center/cover no-repeat, linear-gradient(#2a2216,#191308);
     border:2px solid var(--gold-dim); border-image:none; color:var(--ink); text-shadow:0 1px 2px #000;}
   button.themebtn:hover{border-color:var(--gold); box-shadow:0 0 14px #0009;} button.themebtn{font-size:15px;}
   button:disabled{opacity:.35; cursor:default;}
@@ -472,6 +476,12 @@ function fitScreen(){
   }
 }
 window.addEventListener('resize', fitScreen);
+// v0.9.1: re-fit whenever content may have settled after show() — images, fonts,
+// late DOM — so the match screen's bottom bar (END TURN / RESIGN) is never left
+// off-screen by a measurement taken on an empty screen.
+window.addEventListener('load', fitScreen);
+if(document.fonts && document.fonts.ready) document.fonts.ready.then(()=>fitScreen());
+function refit(){ requestAnimationFrame(fitScreen); }
 function backToMenu(){ camp.active=null; camp.rule=null; show('menu'); sel=null; powTargeting=false; S=null; stopWatch(); applyTheme(null); }
 
 function menuSingle(){ camp.active=null; camp.rule=null; showPoolPick('play'); }
@@ -728,6 +738,7 @@ function render(){
     const kwEl = d.querySelector('.kw[data-kw]');
     if(kwEl) kwEl.title = KWDESC[kwEl.dataset.kw];
   });
+  refit(); // v0.9.1: keep the fit-to-window scale correct as the board/hand change
 }
 
 function handClick(i, el){
