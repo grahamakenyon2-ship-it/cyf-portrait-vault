@@ -23,8 +23,8 @@
     "nigel-lawson-2@barning",
     "michael-havers@barning",
     "bonar-law@barning",
-    "ernest-bevin@barning",
-    "f-m-french@barning"
+    "volley-fire@barning",
+    "the-masthead-lookout@barning"
    ],
    "cards": [
     {
@@ -1268,6 +1268,118 @@
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/history/united-kingdom/alex_20salmond.jpg",
      "bc": "bcSummon",
      "ability": "Battlecry: summon a 1/1 Conscript."
+    },
+    {
+     "id": "the-reform-act-1832@barning",
+     "name": "The Reform Act, 1832",
+     "fl": "Parliament redrawn; the Ministry draws new strength.",
+     "faction": "barning",
+     "pool": "history",
+     "cost": 2,
+     "type": "edict",
+     "fx": "fxDraw2",
+     "rarity": "rare",
+     "file": "themes/britannia/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/britannia/bg.jpg",
+     "ability": "Draw two cards."
+    },
+    {
+     "id": "volley-fire@barning",
+     "name": "Volley Fire",
+     "fl": "A rolling wall of musketry down the line.",
+     "faction": "barning",
+     "pool": "history",
+     "cost": 1,
+     "type": "edict",
+     "fx": "fxVolley",
+     "rarity": "common",
+     "file": "themes/britannia/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/britannia/bg.jpg",
+     "ability": "Deal 1 damage to the enemy hero for each Ranged minion you control."
+    },
+    {
+     "id": "the-blockade-1805@barning",
+     "name": "The Blockade, 1805",
+     "fl": "No harbor burns, every harbor starves.",
+     "faction": "barning",
+     "pool": "history",
+     "cost": 2,
+     "type": "edict",
+     "fx": "fxPingAll",
+     "rarity": "common",
+     "file": "themes/britannia/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/britannia/bg.jpg",
+     "ability": "Deal 1 damage to all enemy minions."
+    },
+    {
+     "id": "naval-broadside@barning",
+     "name": "Naval Broadside",
+     "fl": "Gun decks open along the whole enemy line.",
+     "faction": "barning",
+     "pool": "history",
+     "cost": 3,
+     "type": "edict",
+     "fx": "fxAoe2",
+     "rarity": "rare",
+     "file": "themes/britannia/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/britannia/bg.jpg",
+     "ability": "Deal 2 damage to all enemy minions."
+    },
+    {
+     "id": "the-iron-duke-s-dispatch@barning",
+     "name": "The Iron Duke's Dispatch",
+     "fl": "One battery, one target, no reply.",
+     "faction": "barning",
+     "pool": "history",
+     "cost": 3,
+     "type": "edict",
+     "fx": "fxSnipe3",
+     "rarity": "rare",
+     "file": "themes/britannia/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/britannia/bg.jpg",
+     "ability": "Deal 3 damage to the strongest enemy minion."
+    },
+    {
+     "id": "the-field-marshal-s-review@barning",
+     "name": "The Field Marshal's Review",
+     "fl": "Every redcoat stands taller for it.",
+     "faction": "barning",
+     "pool": "history",
+     "cost": 4,
+     "type": "edict",
+     "fx": "fxRallyBoard",
+     "rarity": "epic",
+     "file": "themes/britannia/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/britannia/bg.jpg",
+     "ability": "Give your minions +1/+1."
+    },
+    {
+     "id": "the-foreign-office@barning",
+     "name": "The Foreign Office",
+     "fl": "Dispatches at dusk; nothing is ever fully spent.",
+     "faction": "barning",
+     "pool": "history",
+     "cost": 3,
+     "type": "relic",
+     "rl": "rlLibrary",
+     "rarity": "epic",
+     "file": "themes/britannia/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/britannia/bg.jpg",
+     "ability": "End of your turn: if you have unspent Mana, draw a card."
+    },
+    {
+     "id": "the-masthead-lookout@barning",
+     "name": "The Masthead Lookout",
+     "fl": "Every gun is sighted before the order.",
+     "faction": "barning",
+     "pool": "history",
+     "cost": 2,
+     "type": "relic",
+     "rl": "rlLookout",
+     "rarity": "epic",
+     "file": "themes/britannia/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/britannia/bg.jpg",
+     "ability": "Your Ranged minions have +1 Attack."
     }
    ]
   },
@@ -1291,8 +1403,8 @@
     "aristide-briand@lucerre",
     "oudinot@lucerre",
     "kl-ber-2@lucerre",
-    "daladier@lucerre",
-    "davout@lucerre"
+    "cavalry-trumpet@lucerre",
+    "the-royal-standard@lucerre"
    ],
    "cards": [
     {
@@ -2526,6 +2638,118 @@
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/history/france/odillon_20barrot.jpg",
      "bc": "bcDraw",
      "ability": "Battlecry: draw a card."
+    },
+    {
+     "id": "declaration-of-the-rights-of-man-1789@lucerre",
+     "name": "Declaration of the Rights of Man, 1789",
+     "fl": "New men, new laws, new hands.",
+     "faction": "lucerre",
+     "pool": "history",
+     "cost": 2,
+     "type": "edict",
+     "fx": "fxDraw2",
+     "rarity": "rare",
+     "file": "themes/bourbon/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/bourbon/bg.jpg",
+     "ability": "Draw two cards."
+    },
+    {
+     "id": "cavalry-trumpet@lucerre",
+     "name": "Cavalry Trumpet",
+     "fl": "The horns sound; the lances lower.",
+     "faction": "lucerre",
+     "pool": "history",
+     "cost": 2,
+     "type": "edict",
+     "fx": "fxMomentum",
+     "rarity": "common",
+     "file": "themes/bourbon/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/bourbon/bg.jpg",
+     "ability": "Give your Charge minions +2 Attack."
+    },
+    {
+     "id": "the-continental-system-1806@lucerre",
+     "name": "The Continental System, 1806",
+     "fl": "Europe closed at the Emperor's word.",
+     "faction": "lucerre",
+     "pool": "history",
+     "cost": 2,
+     "type": "edict",
+     "fx": "fxPingAll",
+     "rarity": "common",
+     "file": "themes/bourbon/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/bourbon/bg.jpg",
+     "ability": "Deal 1 damage to all enemy minions."
+    },
+    {
+     "id": "the-terror-1793@lucerre",
+     "name": "The Terror, 1793",
+     "fl": "The strongest head falls to the blade.",
+     "faction": "lucerre",
+     "pool": "history",
+     "cost": 5,
+     "type": "edict",
+     "fx": "fxExecute",
+     "rarity": "epic",
+     "file": "themes/bourbon/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/bourbon/bg.jpg",
+     "ability": "Destroy the enemy minion with the highest attack."
+    },
+    {
+     "id": "the-sun-king-s-court@lucerre",
+     "name": "The Sun King's Court",
+     "fl": "All of Versailles rises at once.",
+     "faction": "lucerre",
+     "pool": "history",
+     "cost": 3,
+     "type": "edict",
+     "fx": "fxRallyBoard",
+     "rarity": "rare",
+     "file": "themes/bourbon/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/bourbon/bg.jpg",
+     "ability": "Give your minions +1/+1."
+    },
+    {
+     "id": "napoleon-s-hundred-days@lucerre",
+     "name": "Napoleon's Hundred Days",
+     "fl": "One target, all the artillery of Elba's grudge.",
+     "faction": "lucerre",
+     "pool": "history",
+     "cost": 4,
+     "type": "edict",
+     "fx": "fxSnipe3",
+     "rarity": "epic",
+     "file": "themes/bourbon/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/bourbon/bg.jpg",
+     "ability": "Deal 3 damage to the strongest enemy minion."
+    },
+    {
+     "id": "the-salons-of-paris@lucerre",
+     "name": "The Salons of Paris",
+     "fl": "Wit at evening; advantage by morning.",
+     "faction": "lucerre",
+     "pool": "history",
+     "cost": 3,
+     "type": "relic",
+     "rl": "rlLibrary",
+     "rarity": "epic",
+     "file": "themes/bourbon/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/bourbon/bg.jpg",
+     "ability": "End of your turn: if you have unspent Mana, draw a card."
+    },
+    {
+     "id": "the-royal-standard@lucerre",
+     "name": "The Royal Standard",
+     "fl": "The lilies rise with the guard.",
+     "faction": "lucerre",
+     "pool": "history",
+     "cost": 2,
+     "type": "relic",
+     "rl": "rlStandards",
+     "rarity": "epic",
+     "file": "themes/bourbon/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/bourbon/bg.jpg",
+     "ability": "Your Guards have +1 Attack."
     }
    ]
   },
@@ -2549,8 +2773,8 @@
     "tiberius-gracchus@fenorian",
     "antoninus-pius@fenorian",
     "cincinnatus@fenorian",
-    "constantine-iv@fenorian",
-    "antony@fenorian"
+    "the-testudo@fenorian",
+    "the-legion-standards@fenorian"
    ],
    "cards": [
     {
@@ -3762,6 +3986,118 @@
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/history/roman-republic/sulla.jpg",
      "bc": "bcPing",
      "ability": "Battlecry: deal 1 damage to a random enemy minion."
+    },
+    {
+     "id": "divide-and-rule@fenorian",
+     "name": "Divide and Rule",
+     "fl": "Two enemies, one dispatch, no war.",
+     "faction": "fenorian",
+     "pool": "history",
+     "cost": 2,
+     "type": "edict",
+     "fx": "fxDraw2",
+     "rarity": "rare",
+     "file": "themes/rome/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/rome/bg.jpg",
+     "ability": "Draw two cards."
+    },
+    {
+     "id": "the-testudo@fenorian",
+     "name": "The Testudo",
+     "fl": "Shields lock; the legion breathes as one.",
+     "faction": "fenorian",
+     "pool": "history",
+     "cost": 2,
+     "type": "edict",
+     "fx": "fxFormation",
+     "rarity": "common",
+     "file": "themes/rome/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/rome/bg.jpg",
+     "ability": "Give your Guards +2 Health."
+    },
+    {
+     "id": "roman-roads@fenorian",
+     "name": "Roman Roads",
+     "fl": "All roads, all speed, one empire.",
+     "faction": "fenorian",
+     "pool": "history",
+     "cost": 1,
+     "type": "edict",
+     "fx": "fxMana2",
+     "rarity": "common",
+     "file": "themes/rome/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/rome/bg.jpg",
+     "ability": "Gain 2 Mana this turn."
+    },
+    {
+     "id": "legionary-discipline@fenorian",
+     "name": "Legionary Discipline",
+     "fl": "The standard advances; every man advances.",
+     "faction": "fenorian",
+     "pool": "history",
+     "cost": 3,
+     "type": "edict",
+     "fx": "fxRallyBoard",
+     "rarity": "rare",
+     "file": "themes/rome/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/rome/bg.jpg",
+     "ability": "Give your minions +1/+1."
+    },
+    {
+     "id": "the-praetorian-edict@fenorian",
+     "name": "The Praetorian Edict",
+     "fl": "The Guard decides who rules.",
+     "faction": "fenorian",
+     "pool": "history",
+     "cost": 4,
+     "type": "edict",
+     "fx": "fxExecute",
+     "rarity": "epic",
+     "file": "themes/rome/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/rome/bg.jpg",
+     "ability": "Destroy the enemy minion with the highest attack."
+    },
+    {
+     "id": "the-censor-s-list@fenorian",
+     "name": "The Censor's List",
+     "fl": "Struck from the rolls, struck from the field.",
+     "faction": "fenorian",
+     "pool": "history",
+     "cost": 2,
+     "type": "edict",
+     "fx": "fxAoe2",
+     "rarity": "common",
+     "file": "themes/rome/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/rome/bg.jpg",
+     "ability": "Deal 2 damage to all enemy minions."
+    },
+    {
+     "id": "the-legion-standards@fenorian",
+     "name": "The Legion Standards",
+     "fl": "Where the aquila stands, the line stands.",
+     "faction": "fenorian",
+     "pool": "history",
+     "cost": 3,
+     "type": "relic",
+     "rl": "rlStandards",
+     "rarity": "epic",
+     "file": "themes/rome/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/rome/bg.jpg",
+     "ability": "Your Guards have +1 Attack."
+    },
+    {
+     "id": "the-public-granaries@fenorian",
+     "name": "The Public Granaries",
+     "fl": "The grain dole never misses a day.",
+     "faction": "fenorian",
+     "pool": "history",
+     "cost": 2,
+     "type": "relic",
+     "rl": "rlGranary",
+     "rarity": "epic",
+     "file": "themes/rome/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/rome/bg.jpg",
+     "ability": "Start of your turn: restore 1 Health to your hero."
     }
    ]
   },
@@ -3785,8 +4121,8 @@
     "amenhotep-iii@crescent",
     "thutmose-iii@crescent",
     "abd-laziz@crescent",
-    "horemheb@crescent",
-    "seti-i@crescent"
+    "bazaar-levies@crescent",
+    "the-nilometer@crescent"
    ],
    "cards": [
     {
@@ -4514,6 +4850,118 @@
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/history/mamluk-egypt/barsbay.jpg",
      "bc": "bcDraw",
      "ability": "Battlecry: draw a card."
+    },
+    {
+     "id": "capitulations-of-the-porte@crescent",
+     "name": "Capitulations of the Porte",
+     "fl": "Favor on paper, strength in hand.",
+     "faction": "crescent",
+     "pool": "history",
+     "cost": 2,
+     "type": "edict",
+     "fx": "fxDraw2",
+     "rarity": "rare",
+     "file": "themes/ottoman/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/ottoman/bg.jpg",
+     "ability": "Draw two cards."
+    },
+    {
+     "id": "the-devshirme-levy@crescent",
+     "name": "The Devshirme Levy",
+     "fl": "The courts swell with the provinces' sons.",
+     "faction": "crescent",
+     "pool": "history",
+     "cost": 3,
+     "type": "edict",
+     "fx": "fxRally",
+     "rarity": "common",
+     "file": "themes/ottoman/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/ottoman/bg.jpg",
+     "ability": "Summon two 1/1 Conscripts."
+    },
+    {
+     "id": "bazaar-levies@crescent",
+     "name": "Bazaar Levies",
+     "fl": "Every stall a muster point.",
+     "faction": "crescent",
+     "pool": "history",
+     "cost": 1,
+     "type": "edict",
+     "fx": "fxLevy",
+     "rarity": "common",
+     "file": "themes/ottoman/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/ottoman/bg.jpg",
+     "ability": "Give your Conscripts +1/+1, then summon a Conscript."
+    },
+    {
+     "id": "the-pilgrimage-roads@crescent",
+     "name": "The Pilgrimage Roads",
+     "fl": "The roads crawl with the faithful — and the fleeced.",
+     "faction": "crescent",
+     "pool": "history",
+     "cost": 2,
+     "type": "edict",
+     "fx": "fxPingAll",
+     "rarity": "common",
+     "file": "themes/ottoman/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/ottoman/bg.jpg",
+     "ability": "Deal 1 damage to all enemy minions."
+    },
+    {
+     "id": "siege-of-acre-1291@crescent",
+     "name": "Siege of Acre, 1291",
+     "fl": "The walls come down all along the line.",
+     "faction": "crescent",
+     "pool": "history",
+     "cost": 3,
+     "type": "edict",
+     "fx": "fxAoe2",
+     "rarity": "rare",
+     "file": "themes/ottoman/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/ottoman/bg.jpg",
+     "ability": "Deal 2 damage to all enemy minions."
+    },
+    {
+     "id": "the-caliph-s-decree@crescent",
+     "name": "The Caliph's Decree",
+     "fl": "One name, one arrow, no appeal.",
+     "faction": "crescent",
+     "pool": "history",
+     "cost": 4,
+     "type": "edict",
+     "fx": "fxSnipe3",
+     "rarity": "rare",
+     "file": "themes/ottoman/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/ottoman/bg.jpg",
+     "ability": "Deal 3 damage to the strongest enemy minion."
+    },
+    {
+     "id": "the-nilometer@crescent",
+     "name": "The Nilometer",
+     "fl": "The flood is measured; the people are fed.",
+     "faction": "crescent",
+     "pool": "history",
+     "cost": 2,
+     "type": "relic",
+     "rl": "rlGranary",
+     "rarity": "epic",
+     "file": "themes/ottoman/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/ottoman/bg.jpg",
+     "ability": "Start of your turn: restore 1 Health to your hero."
+    },
+    {
+     "id": "the-caravanserais@crescent",
+     "name": "The Caravanserais",
+     "fl": "The road refills itself.",
+     "faction": "crescent",
+     "pool": "history",
+     "cost": 3,
+     "type": "relic",
+     "rl": "rlForage",
+     "rarity": "epic",
+     "file": "themes/ottoman/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/ottoman/bg.jpg",
+     "ability": "End of your turn: if you control fewer than 3 minions, summon a Conscript."
     }
    ]
   },
@@ -4537,8 +4985,8 @@
     "nikita-khrushchev@ironsteppes",
     "ariq-b-ke@ironsteppes",
     "brezhnev-2@ironsteppes",
-    "genghis-khan-2@ironsteppes",
-    "stalin@ironsteppes"
+    "tribute-caravans@ironsteppes",
+    "the-iron-yards@ironsteppes"
    ],
    "cards": [
     {
@@ -5340,6 +5788,117 @@
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/history/achaemenid-persia/artaxerxes_20ii.jpg",
      "bc": "bcDraw",
      "ability": "Battlecry: draw a card."
+    },
+    {
+     "id": "the-king-s-peace@ironsteppes",
+     "name": "The King's Peace",
+     "fl": "What the roads keep, the crown keeps.",
+     "faction": "ironsteppes",
+     "pool": "history",
+     "cost": 2,
+     "type": "edict",
+     "fx": "fxHealHero4",
+     "rarity": "common",
+     "file": "themes/muscovy/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/muscovy/bg.jpg",
+     "ability": "Restore 4 Health to your hero."
+    },
+    {
+     "id": "the-great-purge@ironsteppes",
+     "name": "The Great Purge",
+     "fl": "The tallest blade is the first to fall.",
+     "faction": "ironsteppes",
+     "pool": "history",
+     "cost": 5,
+     "type": "edict",
+     "fx": "fxExecute",
+     "rarity": "epic",
+     "file": "themes/muscovy/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/muscovy/bg.jpg",
+     "ability": "Destroy the enemy minion with the highest attack."
+    },
+    {
+     "id": "royal-roads-520-bc@ironsteppes",
+     "name": "Royal Roads, 520 BC",
+     "fl": "Distance collapses at the King's command.",
+     "faction": "ironsteppes",
+     "pool": "history",
+     "cost": 1,
+     "type": "edict",
+     "fx": "fxMana2",
+     "rarity": "common",
+     "file": "themes/muscovy/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/muscovy/bg.jpg",
+     "ability": "Gain 2 Mana this turn."
+    },
+    {
+     "id": "the-horde-descends@ironsteppes",
+     "name": "The Horde Descends",
+     "fl": "The storm breaks on the far rim of the world.",
+     "faction": "ironsteppes",
+     "pool": "history",
+     "cost": 2,
+     "type": "edict",
+     "fx": "fxMomentum",
+     "rarity": "common",
+     "file": "themes/muscovy/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/muscovy/bg.jpg",
+     "ability": "Give your Charge minions +2 Attack."
+    },
+    {
+     "id": "scorched-earth@ironsteppes",
+     "name": "Scorched Earth",
+     "fl": "Salt where the orchards were.",
+     "faction": "ironsteppes",
+     "pool": "history",
+     "cost": 3,
+     "type": "edict",
+     "fx": "fxAoe2",
+     "rarity": "rare",
+     "file": "themes/muscovy/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/muscovy/bg.jpg",
+     "ability": "Deal 2 damage to all enemy minions."
+    },
+    {
+     "id": "tribute-caravans@ironsteppes",
+     "name": "Tribute Caravans",
+     "fl": "What they carry, they carry to you.",
+     "faction": "ironsteppes",
+     "pool": "history",
+     "cost": 2,
+     "type": "edict",
+     "fx": "fxPillage",
+     "rarity": "common",
+     "file": "themes/muscovy/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/muscovy/bg.jpg",
+     "ability": "Deal 2 damage to the enemy hero. If you have more minions, draw a card."
+    },
+    {
+     "id": "the-library-of-nineveh@ironsteppes",
+     "name": "The Library of Nineveh",
+     "fl": "The king reads; the empire remembers.",
+     "faction": "ironsteppes",
+     "pool": "history",
+     "cost": 3,
+     "type": "relic",
+     "rl": "rlLibrary",
+     "rarity": "epic",
+     "file": "themes/muscovy/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/muscovy/bg.jpg",
+     "ability": "End of your turn: if you have unspent Mana, draw a card."
+    },
+    {
+     "id": "the-iron-yards@ironsteppes",
+     "name": "The Iron Yards",
+     "fl": "Levies enter as boys and leave as iron.",
+     "faction": "ironsteppes",
+     "pool": "history",
+     "cost": 2,
+     "type": "relic",
+     "rl": "rlDrillyyard",
+     "rarity": "epic",
+     "file": "themes/muscovy/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/muscovy/bg.jpg"
     }
    ]
   },
@@ -5363,8 +5922,7 @@
     "george brown@stormlit",
     "khamul the easterling@stormlit",
     "melisandre of asshai@stormlit",
-    "rand al thor@stormlit",
-    "sansa stark@stormlit"
+    "rain-of-arrows@stormlit"
    ],
    "cards": [
     {
@@ -6640,6 +7198,62 @@
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/the-stormlight-archive/alethkar/navani.jpg",
      "dr": "drDraw",
      "ability": "Deathrattle: draw a card."
+    },
+    {
+     "id": "war-council@stormlit",
+     "name": "War Council",
+     "fl": "The captains speak; the maps are redrawn.",
+     "faction": "stormlit",
+     "pool": "fandom",
+     "cost": 2,
+     "type": "edict",
+     "fx": "fxDraw2",
+     "rarity": "common",
+     "file": "themes/ironhall/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/ironhall/bg.jpg",
+     "ability": "Draw two cards."
+    },
+    {
+     "id": "rain-of-arrows@stormlit",
+     "name": "Rain of Arrows",
+     "fl": "The sky darkens over the enemy line.",
+     "faction": "stormlit",
+     "pool": "fandom",
+     "cost": 1,
+     "type": "edict",
+     "fx": "fxVolley",
+     "rarity": "common",
+     "file": "themes/ironhall/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/ironhall/bg.jpg",
+     "ability": "Deal 1 damage to the enemy hero for each Ranged minion you control."
+    },
+    {
+     "id": "cataclysm@stormlit",
+     "name": "Cataclysm",
+     "fl": "The heavens answer first.",
+     "faction": "stormlit",
+     "pool": "fandom",
+     "cost": 4,
+     "type": "edict",
+     "fx": "fxAoe2",
+     "rarity": "epic",
+     "file": "themes/ironhall/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/ironhall/bg.jpg",
+     "ability": "Deal 2 damage to all enemy minions."
+    },
+    {
+     "id": "grand-archive@stormlit",
+     "name": "Grand Archive",
+     "fl": "Storm-lit shelves, answer-lit wars.",
+     "faction": "stormlit",
+     "pool": "fandom",
+     "cost": 3,
+     "type": "relic",
+     "rl": "rlLibrary",
+     "rarity": "epic",
+     "file": "themes/ironhall/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/ironhall/bg.jpg",
+     "ability": "End of your turn: if you have unspent Mana, draw a card."
     }
    ]
   },
@@ -6663,8 +7277,7 @@
     "mon mothma@starwind",
     "paul@starwind",
     "philip the arab@starwind",
-    "poggle@starwind",
-    "rabban@starwind"
+    "star-charts@starwind"
    ],
    "cards": [
     {
@@ -7928,6 +8541,62 @@
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/halo/the-covenant/the_20prophet_20of.jpg",
      "bc": "bcDraw",
      "ability": "Battlecry: draw a card."
+    },
+    {
+     "id": "star-charts@starwind",
+     "name": "Star Charts",
+     "fl": "New courses plotted in old light.",
+     "faction": "starwind",
+     "pool": "fandom",
+     "cost": 2,
+     "type": "edict",
+     "fx": "fxDraw2",
+     "rarity": "common",
+     "file": "themes/galacticemp/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/galacticemp/bg.jpg",
+     "ability": "Draw two cards."
+    },
+    {
+     "id": "solar-flare@starwind",
+     "name": "Solar Flare",
+     "fl": "The corona spat; the shields did not.",
+     "faction": "starwind",
+     "pool": "fandom",
+     "cost": 3,
+     "type": "edict",
+     "fx": "fxAoe2",
+     "rarity": "rare",
+     "file": "themes/galacticemp/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/galacticemp/bg.jpg",
+     "ability": "Deal 2 damage to all enemy minions."
+    },
+    {
+     "id": "assassination-order@starwind",
+     "name": "Assassination Order",
+     "fl": "One name, one vector.",
+     "faction": "starwind",
+     "pool": "fandom",
+     "cost": 4,
+     "type": "edict",
+     "fx": "fxSnipe3",
+     "rarity": "epic",
+     "file": "themes/galacticemp/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/galacticemp/bg.jpg",
+     "ability": "Deal 3 damage to the strongest enemy minion."
+    },
+    {
+     "id": "great-granary@starwind",
+     "name": "Great Granary",
+     "fl": "The colony ships keep their promise.",
+     "faction": "starwind",
+     "pool": "fandom",
+     "cost": 2,
+     "type": "relic",
+     "rl": "rlGranary",
+     "rarity": "epic",
+     "file": "themes/galacticemp/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/galacticemp/bg.jpg",
+     "ability": "Start of your turn: restore 1 Health to your hero."
     }
    ]
   },
@@ -7951,8 +8620,7 @@
     "sima yan@tigerpass",
     "yuan shao@tigerpass",
     "yuan shu@tigerpass",
-    "zhang fei@tigerpass",
-    "zhong hui@tigerpass"
+    "ambush-at-the-pass@tigerpass"
    ],
    "cards": [
     {
@@ -8798,6 +9466,62 @@
       "name": "Deathgift",
       "desc": "Whenever one of your minions dies, deal 1 damage to the enemy hero."
      }
+    },
+    {
+     "id": "ambush-at-the-pass@tigerpass",
+     "name": "Ambush at the Pass",
+     "fl": "The mountain yields its dead.",
+     "faction": "tigerpass",
+     "pool": "fandom",
+     "cost": 2,
+     "type": "edict",
+     "fx": "fxPingAll",
+     "rarity": "common",
+     "file": "themes/inkwash/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/inkwash/bg.jpg",
+     "ability": "Deal 1 damage to all enemy minions."
+    },
+    {
+     "id": "call-to-arms@tigerpass",
+     "name": "Call to Arms",
+     "fl": "Every village answers the drum.",
+     "faction": "tigerpass",
+     "pool": "fandom",
+     "cost": 3,
+     "type": "edict",
+     "fx": "fxRally",
+     "rarity": "common",
+     "file": "themes/inkwash/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/inkwash/bg.jpg",
+     "ability": "Summon two 1/1 Conscripts."
+    },
+    {
+     "id": "shieldwall@tigerpass",
+     "name": "Shieldwall",
+     "fl": "The valley narrows; the shields close.",
+     "faction": "tigerpass",
+     "pool": "fandom",
+     "cost": 2,
+     "type": "edict",
+     "fx": "fxFormation",
+     "rarity": "common",
+     "file": "themes/inkwash/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/inkwash/bg.jpg",
+     "ability": "Give your Guards +2 Health."
+    },
+    {
+     "id": "war-banner@tigerpass",
+     "name": "War Banner",
+     "fl": "The pass belongs to whoever holds it.",
+     "faction": "tigerpass",
+     "pool": "fandom",
+     "cost": 2,
+     "type": "relic",
+     "rl": "rlStandards",
+     "rarity": "epic",
+     "file": "themes/inkwash/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/inkwash/bg.jpg",
+     "ability": "Your Guards have +1 Attack."
     }
    ]
   },
@@ -8821,8 +9545,7 @@
     "logan grimnar@zephek",
     "mortarion@zephek",
     "perturabo@zephek",
-    "sanguinius@zephek",
-    "vulkan@zephek"
+    "crusade-bull@zephek"
    ],
    "cards": [
     {
@@ -9324,6 +10047,62 @@
       "name": "Deathgift",
       "desc": "Whenever one of your minions dies, deal 1 damage to the enemy hero."
      }
+    },
+    {
+     "id": "crusade-bull@zephek",
+     "name": "Crusade Bull",
+     "fl": "The words march before the armies.",
+     "faction": "zephek",
+     "pool": "fandom",
+     "cost": 2,
+     "type": "edict",
+     "fx": "fxDraw2",
+     "rarity": "common",
+     "file": "themes/imperium40k/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/imperium40k/bg.jpg",
+     "ability": "Draw two cards."
+    },
+    {
+     "id": "excommunicado@zephek",
+     "name": "Excommunicado",
+     "fl": "Struck from the rolls of the faithful.",
+     "faction": "zephek",
+     "pool": "fandom",
+     "cost": 5,
+     "type": "edict",
+     "fx": "fxExecute",
+     "rarity": "epic",
+     "file": "themes/imperium40k/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/imperium40k/bg.jpg",
+     "ability": "Destroy the enemy minion with the highest attack."
+    },
+    {
+     "id": "zealot-fervor@zephek",
+     "name": "Zealot Fervor",
+     "fl": "The banner rises; the ranks surge.",
+     "faction": "zephek",
+     "pool": "fandom",
+     "cost": 2,
+     "type": "edict",
+     "fx": "fxMomentum",
+     "rarity": "common",
+     "file": "themes/imperium40k/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/imperium40k/bg.jpg",
+     "ability": "Give your Charge minions +2 Attack."
+    },
+    {
+     "id": "training-grounds@zephek",
+     "name": "Training Grounds",
+     "fl": "Faith drills as well as steel.",
+     "faction": "zephek",
+     "pool": "fandom",
+     "cost": 2,
+     "type": "relic",
+     "rl": "rlDrillyard",
+     "rarity": "epic",
+     "file": "themes/imperium40k/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/imperium40k/bg.jpg",
+     "ability": "Your Conscripts are summoned as 2/2."
     }
    ]
   },
@@ -10608,6 +11387,48 @@
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/history/france/ferdinand_20foch.jpg",
      "bc": "bcPing",
      "ability": "Battlecry: deal 1 damage to a random enemy minion."
+    },
+    {
+     "id": "the-wayfarer-s-atlas@wayfarers",
+     "name": "The Wayfarer's Atlas",
+     "fl": "Every road once walked is a road kept.",
+     "faction": "wayfarers",
+     "pool": "neutral",
+     "cost": 3,
+     "type": "relic",
+     "rl": "rlLibrary",
+     "rarity": "epic",
+     "file": "themes/steppe/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/steppe/bg.jpg",
+     "ability": "End of your turn: if you have unspent Mana, draw a card."
+    },
+    {
+     "id": "the-silver-road-ledger@wayfarers",
+     "name": "The Silver Road Ledger",
+     "fl": "Every name the road has kept.",
+     "faction": "wayfarers",
+     "pool": "neutral",
+     "cost": 2,
+     "type": "edict",
+     "fx": "fxDraw2",
+     "rarity": "rare",
+     "file": "themes/dunes/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/dunes/bg.jpg",
+     "ability": "Draw two cards."
+    },
+    {
+     "id": "toll-of-the-high-roads@wayfarers",
+     "name": "Toll of the High Roads",
+     "fl": "The crossing is paid either way.",
+     "faction": "wayfarers",
+     "pool": "neutral",
+     "cost": 1,
+     "type": "edict",
+     "fx": "fxPillage",
+     "rarity": "common",
+     "file": "themes/dunes/bg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes/dunes/bg.jpg",
+     "ability": "Deal 2 damage to the enemy hero. If you have more minions, draw a card."
     }
    ]
   }
