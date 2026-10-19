@@ -320,7 +320,9 @@
     if (hasRelic(foe, 'rlForage') && foe.board.length < 3 && foe.board.length < MAX_BOARD) { foe.board.push(token(foe, S)); S.events.push({ t: 'relicfx', side: other(next), id: 'rlForage' }); }
     const r = rites(S, next);
     // start-of-turn Sovereign passives
-    if (hasP(np, 'STORMCALL') && foe.board.length) {
+    // STORMCALL (v0.9.2 nerf): only fires while behind on the board — was the
+    // strongest passive in sims (63.5% when leading) as unconditional chip.
+    if (hasP(np, 'STORMCALL') && foe.board.length && np.board.length < foe.board.length) {
       for (let i = 0; i < r; i++) {
         if (!foe.board.length) break;
         const t = foe.board[Math.floor(S.rng() * foe.board.length)];
