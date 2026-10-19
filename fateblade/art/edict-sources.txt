@@ -1,0 +1,87 @@
+# FATEBLADE EDICT & RELIC ART — source map
+# Each line:  <vault-filename> | <source>
+# Sources:
+#   commons:<search query>   -> Commons search (first bitmap hit, 1200px thumb)
+#   commons:File:<exact name> -> exact Commons file
+#   https://...              -> direct URL
+# Re-run fetch-edict-art.mjs until it reports the vault complete.
+# Filename = card id slug (before the @) so wiring cards.json later is trivial.
+
+# --- Barning (The British Empire) ---
+the-reform-act-1832.jpg | commons:Reform Act 1832 cartoon
+volley-fire.jpg | commons:British infantry firing volley painting
+the-blockade-1805.jpg | commons:Napoleonic blockade Trafalgar painting
+naval-broadside.jpg | commons:HMS Victory broadside painting
+the-iron-duke-s-dispatch.jpg | commons:Duke of Wellington Waterloo dispatch painting
+the-field-marshal-s-review.jpg | commons:Wellington reviewing troops painting
+the-foreign-office.jpg | commons:Foreign Office building London
+the-masthead-lookout.jpg | commons:crow's nest sailor ship
+
+# --- Lucerre (The Kingdom of France) ---
+declaration-of-the-rights-of-man-1789.jpg | commons:Declaration of the Rights of Man painting
+cavalry-trumpet.jpg | commons:French cavalry trumpeter painting
+the-continental-system-1806.jpg | commons:Napoleon Berlin 1806 painting
+the-terror-1793.jpg | commons:Reign of Terror execution painting
+the-sun-king-s-court.jpg | commons:Louis XIV Versailles court painting
+napoleon-s-hundred-days.jpg | commons:Napoleon return from Elba painting
+the-salons-of-paris.jpg | commons:Paris Salon painting 19th century
+the-royal-standard.jpg | commons:Royal Standard of France
+
+# --- Fenorian (The Roman World) ---
+the-testudo.jpg | commons:Roman testudo formation reenactment
+roman-roads.jpg | commons:Appian Way Roman road
+legionary-discipline.jpg | commons:Roman legionary soldiers marching
+the-praetorian-edict.jpg | commons:Praetorian Guard painting
+the-censor-s-list.jpg | commons:Roman census relief
+the-legion-standards.jpg | commons:Roman aquila legion standard
+the-public-granaries.jpg | commons:Roman granary horreum
+divide-and-rule.jpg | commons:Roman Empire provinces map
+
+# --- Ironsteppes (The Iron Empires) ---
+royal-roads-520-bc.jpg | commons:Persepolis relief Darius
+the-horde-descends.jpg | commons:Mongol cavalry painting
+the-great-purge.jpg | commons:Kremlin Moscow 1930s photograph
+scorched-earth.jpg | commons:burning village war painting
+the-king-s-peace.jpg | commons:Persepolis Apadana relief
+tribute-caravans.jpg | commons:Persepolis tribute relief
+the-library-of-nineveh.jpg | commons:Nineveh Ashurbanipal library tablet
+the-iron-yards.jpg | commons:Joseph Wright iron forge
+
+# --- Crescent (The Crescent & the Nile) ---
+capitulations-of-the-porte.jpg | commons:Ottoman Divan miniature painting
+the-devshirme-levy.jpg | commons:devshirme Ottoman miniature
+bazaar-levies.jpg | commons:Grand Bazaar Istanbul painting 19th century
+the-pilgrimage-roads.jpg | commons:Hajj caravan painting
+siege-of-acre-1291.jpg | commons:Siege of Acre 1291
+the-caliph-s-decree.jpg | commons:Ottoman firman document
+the-nilometer.jpg | commons:Nilometer Cairo
+the-caravanserais.jpg | commons:caravanserai Iran
+
+# --- Wayfarers' Guild (neutral) ---
+the-wayfarer-s-atlas.jpg | commons:Ptolemy world map
+the-silver-road-ledger.jpg | commons:Silk Road caravan painting
+toll-of-the-high-roads.jpg | commons:caravan mountain pass painting
+
+# --- Starwind (fandom pool) ---
+assassination-order.jpg | commons:Charlotte Corday Marat painting
+great-granary.jpg | commons:ancient Egyptian granary
+solar-flare.jpg | commons:solar flare NASA
+star-charts.jpg | commons:celestial star chart atlas
+
+# --- Stormlit (fandom pool) ---
+war-council.jpg | commons:war council painting
+rain-of-arrows.jpg | commons:Battle of Agincourt
+grand-archive.jpg | commons:old library books
+cataclysm.jpg | commons:volcano eruption painting
+
+# --- Tigerpass (fandom pool) ---
+ambush-at-the-pass.jpg | commons:Thermopylae battle painting
+call-to-arms.jpg | commons:medieval tournament knights painting
+shieldwall.jpg | commons:shield wall battle reenactment
+war-banner.jpg | commons:medieval war banner flag
+
+# --- Zephek (fandom pool) ---
+crusade-bull.jpg | commons:papal bull document
+excommunicado.jpg | commons:medieval excommunication miniature
+zealot-fervor.jpg | commons:preaching crusade medieval painting
+training-grounds.jpg | commons:sword fight medieval painting
