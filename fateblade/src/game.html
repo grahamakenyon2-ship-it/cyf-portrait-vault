@@ -447,7 +447,24 @@ function saveDeck(facId, deck){ savedDecks[facId] = deck; localStorage.setItem(D
 function loadDeck(facId){ return savedDecks[facId] || (facOf(facId) ? facOf(facId).defaultDeck.slice() : null); }
 
 /* ---------- screens ---------- */
-function show(id){ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on')); document.getElementById(id).classList.add('on'); }
+function show(id){ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on')); document.getElementById(id).classList.add('on'); fitScreen(); }
+// v0.7.1 FIT-TO-WINDOW: scale any screen that is taller/wider than the window, so the
+// whole interface (menu buttons, board, hand, END TURN / RESIGN) always fits — no scrolling.
+function fitScreen(){
+  const el = document.querySelector('.screen.on');
+  if(!el) return;
+  el.style.transform=''; el.style.transformOrigin=''; el.style.overflow=''; el.style.justifyContent='';
+  const w = innerWidth - 12, h = innerHeight - 12;
+  const cw = Math.max(el.scrollWidth, el.offsetWidth), ch = Math.max(el.scrollHeight, el.offsetHeight);
+  const s = Math.min(w / cw, h / ch, 1);
+  if(s < 0.99){
+    el.style.justifyContent = 'flex-start'; // overflow breaks centering anyway — anchor to top
+    el.style.overflow = 'hidden';
+    el.style.transformOrigin = 'center top';
+    el.style.transform = 'scale(' + s + ')';
+  }
+}
+window.addEventListener('resize', fitScreen);
 function backToMenu(){ camp.active=null; camp.rule=null; show('menu'); sel=null; powTargeting=false; S=null; stopWatch(); applyTheme(null); }
 
 function menuSingle(){ camp.active=null; camp.rule=null; showPoolPick('play'); }
