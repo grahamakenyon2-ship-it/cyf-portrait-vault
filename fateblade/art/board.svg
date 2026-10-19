@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+  <!-- FATEBLADE war-council map table — universal gameboard, v0.6.7 -->
+  <defs>
+    <linearGradient id="base" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1b130a"/>
+      <stop offset=".45" stop-color="#140e07"/>
+      <stop offset="1" stop-color="#1b130a"/>
+    </linearGradient>
+    <filter id="leather" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.009" numOctaves="5" seed="11" result="n"/>
+      <feDiffuseLighting in="n" lighting-color="#8a6a3a" surfaceScale="1.4" diffuseConstant="1.05" result="tex">
+        <feDistantLight azimuth="235" elevation="58"/>
+      </feDiffuseLighting>
+      <feComposite in="tex" in2="SourceGraphic" operator="in" result="texin"/>
+      <feBlend in="texin" in2="SourceGraphic" mode="multiply"/>
+    </filter>
+    <radialGradient id="candle" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#d99a45" stop-opacity=".38"/>
+      <stop offset=".45" stop-color="#8a5a1e" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="vig" cx=".5" cy=".5" r=".72">
+      <stop offset=".5" stop-color="#000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000" stop-opacity=".82"/>
+    </radialGradient>
+    <linearGradient id="band" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#000" stop-opacity="0"/>
+      <stop offset=".22" stop-color="#000" stop-opacity=".68"/>
+      <stop offset=".78" stop-color="#000" stop-opacity=".68"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="sealshine" cx=".35" cy=".3" r=".8">
+      <stop offset="0" stop-color="#8a3a2a" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#3a120c"/>
+    </radialGradient>
+  </defs>
+
+  <!-- table surface -->
+  <rect width="1920" height="1080" fill="url(#base)"/>
+  <rect width="1920" height="1080" fill="#6a4a26" filter="url(#leather)" opacity=".22"/>
+
+  <!-- faint chalk map lines (north enemy territory) -->
+  <g stroke="#d8c9a0" fill="none" opacity=".10" stroke-linecap="round">
+    <path d="M-40,180 C240,120 420,220 640,160 C860,100 1080,210 1280,150 C1480,95 1700,190 1960,130" stroke-width="2.5"/>
+    <path d="M-40,300 C300,260 520,340 820,290 C1120,240 1420,330 1960,270" stroke-width="1.6"/>
+    <path d="M300,60 C330,160 280,240 320,330" stroke-width="1.2" stroke-dasharray="9 7"/>
+    <path d="M1180,80 C1150,180 1210,260 1170,350" stroke-width="1.2" stroke-dasharray="9 7"/>
+    <circle cx="560" cy="215" r="5" stroke-width="1.5"/>
+    <circle cx="940" cy="150" r="4" stroke-width="1.5"/>
+    <circle cx="1420" cy="235" r="5" stroke-width="1.5"/>
+  </g>
+  <!-- faint chalk map lines (south, your territory) -->
+  <g stroke="#c9b87a" fill="none" opacity=".08" stroke-linecap="round">
+    <path d="M-40,830 C280,780 520,880 820,830 C1120,780 1440,870 1960,810" stroke-width="2.2"/>
+    <path d="M-40,950 C300,915 560,985 900,940 C1240,900 1560,975 1960,920" stroke-width="1.4"/>
+    <path d="M640,790 C660,890 610,970 650,1060" stroke-width="1.2" stroke-dasharray="9 7"/>
+    <path d="M1380,800 C1410,900 1360,980 1400,1070" stroke-width="1.2" stroke-dasharray="9 7"/>
+  </g>
+
+  <!-- brass compass rose, right edge -->
+  <g transform="translate(1830,540)" opacity=".5">
+    <circle r="46" fill="none" stroke="#c9a24b" stroke-width="2" opacity=".6"/>
+    <circle r="36" fill="none" stroke="#c9a24b" stroke-width="1" opacity=".5"/>
+    <path d="M0,-40 L7,-7 L40,0 L7,7 L0,40 L-7,7 L-40,0 L-7,-7 Z" fill="#a8843e" opacity=".55"/>
+    <path d="M0,-40 L7,-7 L-7,-7 Z" fill="#e8d8a8" opacity=".8"/>
+    <circle r="4" fill="#c9a24b"/>
+  </g>
+
+  <!-- wax seals, left edge -->
+  <g opacity=".55">
+    <circle cx="70" cy="880" r="26" fill="url(#sealshine)"/>
+    <circle cx="70" cy="880" r="17" fill="none" stroke="#000" stroke-opacity=".35"/>
+    <circle cx="118" cy="925" r="18" fill="url(#sealshine)"/>
+    <circle cx="56" cy="940" r="12" fill="url(#sealshine)"/>
+    <circle cx="66" cy="200" r="20" fill="url(#sealshine)" opacity=".8"/>
+  </g>
+
+  <!-- ribbon banners, top corners -->
+  <path d="M60,0 L150,0 L128,64 L60,52 Z" fill="#4a1a14" opacity=".55"/>
+  <path d="M60,0 L150,0 L145,8 L65,8 Z" fill="#c9a24b" opacity=".35"/>
+  <path d="M1770,0 L1860,0 L1862,52 L1792,64 Z" fill="#4a1a14" opacity=".55"/>
+  <path d="M1770,0 L1860,0 L1855,8 L1775,8 Z" fill="#c9a24b" opacity=".35"/>
+
+  <!-- candlelight pools, four corners -->
+  <circle cx="0" cy="0" r="430" fill="url(#candle)"/>
+  <circle cx="1920" cy="0" r="430" fill="url(#candle)"/>
+  <circle cx="0" cy="1080" r="430" fill="url(#candle)"/>
+  <circle cx="1920" cy="1080" r="430" fill="url(#candle)"/>
+
+  <!-- table edge: dark frame + gold hairline -->
+  <rect x="1" y="1" width="1918" height="1078" fill="none" stroke="#000" stroke-width="14" opacity=".55"/>
+  <rect x="16" y="16" width="1888" height="1048" fill="none" stroke="#c9a24b" stroke-width="1.6" opacity=".28"/>
+  <rect x="10" y="10" width="1900" height="1060" fill="none" stroke="#000" stroke-width="2" opacity=".5"/>
+
+  <!-- deep central band: the play strip -->
+  <rect x="0" y="240" width="1920" height="600" fill="url(#band)"/>
+  <!-- vignette -->
+  <rect width="1920" height="1080" fill="url(#vig)"/>
+</svg>

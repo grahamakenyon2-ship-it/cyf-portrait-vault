@@ -11,6 +11,7 @@
     --hp:#c33; --atk:#e2b93b; --ink:#e8dcc0;
     /* theme art (set per realm at runtime) */
     --theme-bg: none; --theme-panel: none; --theme-btn: none;
+    --board-bg: none; --menu-bg: none; --fb-btn: none;
   }
   *{box-sizing:border-box; user-select:none;}
   body{margin:0; background:var(--bg); color:var(--ink); font:15px/1.4 Georgia,serif; overflow:hidden;}
@@ -20,7 +21,7 @@
   h1 small{display:block; font-size:13px; letter-spacing:4px; color:var(--gold-dim); font-weight:normal;}
   .screen{display:none; height:100vh; flex-direction:column; align-items:center; justify-content:center; gap:14px; overflow:auto; padding:20px;}
   .screen.on{display:flex;}
-  button{background:linear-gradient(#2a2216,#191308); border:1px solid var(--gold-dim); color:var(--gold);
+  button{background:var(--fb-btn, linear-gradient(#2a2216,#191308)) center/100% 100% no-repeat; border:1px solid var(--gold-dim); color:var(--gold);
     font:inherit; letter-spacing:2px; font-size:15px; padding:12px 28px; cursor:pointer;}
   button.themebtn{
     background:var(--theme-btn, linear-gradient(#2a2216,#191308)); background-size:100% 100%;
@@ -43,6 +44,7 @@
 
   /* ===== match ===== */
   #match{justify-content:flex-start; padding:8px;}
+  #match.on{background-image:var(--board-bg); background-size:cover; background-position:center;}
   .lane{display:flex; justify-content:center; align-items:center; gap:10px; min-height:165px;}
   .board{display:flex; gap:10px; justify-content:center; min-height:165px; align-items:center;}
   .hero{width:110px; height:118px; border:2px solid var(--gold-dim); background:#000; text-align:center; cursor:pointer; position:relative;}
@@ -260,7 +262,7 @@
   #overlay button{font-family:'Cinzel', serif; letter-spacing:2px; padding:10px 26px;}
 
   /* ---- menu polish ---- */
-  #menu.on{animation:bgpan 70s linear infinite alternate;}
+  #menu.on{background-image:var(--menu-bg); background-size:cover; background-position:center;}
   @keyframes bgpan{from{background-position:0 0;} to{background-position:160px 90px;}}
   #menu h1{margin-bottom:26px; background:linear-gradient(100deg, #c9a24b 30%, #fff3cf 48%, #c9a24b 62%);
     background-size:250% 100%; -webkit-background-clip:text; background-clip:text; color:transparent;
@@ -378,6 +380,7 @@
 <script>
 let DATA = window.CARDS_LOCAL || window.CARDS;
 const THEMES = (DATA.themes || 'https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes');
+const ART = (DATA.art || 'https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art'); // v0.6.7 universal art
 window.FB_PATCH = function(msg, pct){ const h = document.getElementById('patchhud'); h.style.display='block'; h.textContent = 'PATCHING: ' + msg + (pct ? ' — ' + pct + '%' : ''); };
 const E = window.FBEngine;
 const KWTXT = E.KWTXT, KWDESC = E.KWDESC;
@@ -405,7 +408,9 @@ function applyTheme(factionId){
             : settings.theme;
   root.style.setProperty('--theme-bg', `url(${THEMES}/${key}/bg.jpg)`);
   root.style.setProperty('--theme-panel', `url(${THEMES}/${key}/panel.jpg)`);
-  root.style.setProperty('--theme-btn', `url(${THEMES}/${key}/btn.jpg)`);
+  root.style.setProperty('--theme-btn', `url(${ART}/btn.svg)`); // v0.6.7: universal Fateblade plate
+  root.style.setProperty('--board-bg', `url(${ART}/board.svg)`);
+  root.style.setProperty('--menu-bg', `url(${ART}/menu.svg)`);
   document.body.classList.add('themed');
 }
 
