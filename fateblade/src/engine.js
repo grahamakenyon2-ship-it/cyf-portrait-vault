@@ -18,6 +18,12 @@
 //       55-61% to win); passive doubling and the 1-mana Skirmish remain.
 //       NORMAL AI stall fix: when walled by Guards it chips the weakest one
 //       instead of passing forever (was 12-14% of games hitting the turn cap).
+// v0.6: CARD TYPES & STRATEGY — Edicts (type:'edict', fx: one-shot effects),
+//       Relics (type:'relic', rl: persistent, max 2 per side), faction
+//       archetype synergies (VOLLEY/MOMENTUM/FORMATION/SWARM/ATTRITION fx),
+//       and the HARD AI becomes a play evaluator: every legal card is scored
+//       by expected value in context (situational edicts, hold vs dump),
+//       lethal is checked including spell face damage.
 // v0.5: AI DIFFICULTY TIERS — opts.aiA/opts.aiB = 'easy' | 'normal' | 'hard'
 //       (default 'normal'). aiTurn(S, side, level) dispatches to the right brain:
 //       easy  — sloppy: cheapest plays, hesitates, misses trades, forgets Skirmish
@@ -28,7 +34,7 @@
   if (typeof module === 'object' && module.exports) module.exports = factory();
   else root.FBEngine = factory();
 })(typeof globalThis !== 'undefined' ? globalThis : this, function () {
-  const MAX_BOARD = 6, MAX_HAND = 8, MAX_HP = 30, MAX_MANA = 10;
+  const MAX_BOARD = 6, MAX_HAND = 8, MAX_HP = 30, MAX_MANA = 10, MAX_RELICS = 2;
   const AI_LEVELS = ['easy', 'normal', 'hard'];
 
   const KWTXT = { Guard: 'GUARD', Charge: 'CHARGE', Lifesteal: 'LIFESTEAL', Ranged: 'RANGED' };
@@ -69,7 +75,7 @@
     };
     const side = (fac, sov, deckIds) => ({
       hp: MAX_HP, mana: 1, maxmana: 1, power: false, fac,
-      deck: mk(fac, deckIds), hand: [], board: [],
+      deck: mk(fac, deckIds), hand: [], board: [], relics: [],
       sov: sov ? { id: sov.id, name: sov.name, img: sov.img, passive: sov.passive } : null,
       discountUsed: false,
       fatigue: 0,
@@ -137,9 +143,12 @@
   }
   // 1/1 Conscript token (uses the realm commander portrait)
   function token(p, S) {
-    return { id: 'TOKEN@' + p.fac.id, name: 'Conscript', cost: 1, atk: 1, hp: 1, kw: null,
+    const t = { id: 'TOKEN@' + p.fac.id, name: 'Conscript', cost: 1, atk: 1, hp: 1, kw: null,
       uid: 'TOKEN-' + Math.floor(S.rng() * 1e9), img: p.fac.commander, file: p.fac.commanderFile, fl: 'Sworn to the banner.' };
+    if (hasRelic(p, 'rlDrillyard')) { t.atk += 1; t.hp += 1; } // Iron Yards: sworn levies drill to 2/2
+    return t;
   }
+  const hasRelic = (p, rl) => p.relics.some((x) => x.rl === rl);
   // damage to a hero, respecting EMBERWARD (only vs attacks)
   function heroDamage(S, victimSide, dmg, fromAttack) {
     const vp = S[victimSide];
@@ -156,7 +165,10 @@
   }
   function canPlay(S, side, i) {
     const p = S[side], c = p.hand[i];
-    return !!c && p.mana >= effCost(S, side, c) && p.board.length < MAX_BOARD;
+    if (!c || p.mana < effCost(S, side, c)) return false;
+    if (c.type === 'edict') return true;                       // spells never need board space
+    if (c.type === 'relic') return p.relics.length < MAX_RELICS;
+    return p.board.length < MAX_BOARD;
   }
   function playCard(S, side, i) {
     if (!canPlay(S, side, i)) return false;
@@ -165,9 +177,28 @@
     const cost = effCost(S, side, c);
     if (hasP(p, 'SWIFTRANKS') && !p.discountUsed) p.discountUsed = true; // stays spent for the whole game (v0.6.4)
     p.mana -= cost;
+
+    // ---- EDICTS: one-shot command cards; resolve and vanish ----
+    if (c.type === 'edict') {
+      S.events.push({ t: 'edict', side, id: c.id, fx: c.fx });
+      resolveEdict(S, side, c.fx, c);
+      return true;
+    }
+    // ---- RELICS: persistent seats of power; take a relic slot ----
+    if (c.type === 'relic') {
+      if (p.relics.length >= MAX_RELICS) { p.hand.splice(i, 0, c); p.mana += cost; return false; }
+      p.relics.push({ ...c });
+      S.events.push({ t: 'relic', side, id: c.id, rl: c.rl });
+      if (c.rl === 'rlStandards') p.board.forEach((m) => { if (m.kw === 'Guard') m.atk += 1; }); // eagles rise for the standing army
+      if (c.rl === 'rlLookout') p.board.forEach((m) => { if (m.kw === 'Ranged') m.atk += 1; }); // the masthead watches
+      return true;
+    }
+
     // Sovereign entry passives (First Rites doubles the bonus in the opening)
     const r = rites(S, side);
     const m = { ...c, ready: c.kw === 'Charge', uid: c.uid };
+    if (m.kw === 'Guard' && hasRelic(p, 'rlStandards')) m.atk += 1; // Legion Standards: every Guard musters +1 atk
+    if (m.kw === 'Ranged' && hasRelic(p, 'rlLookout')) m.atk += 1; // The Lookout: every gun is sighted
     if (m.kw === 'Guard' && hasP(p, 'BULWARK')) m.hp += 2 * r; // v0.6.4 buff: +2 HP (was +1)
     if (m.kw === 'Charge' && hasP(p, 'VANGUARD')) m.atk += r;
     if (m.kw === 'Lifesteal' && hasP(p, 'SOULTITHE')) m.atk += r;
@@ -191,6 +222,27 @@
       else if (c.bc === 'bcDraw') { draw(S, side); }
     }
     return true;
+  }
+
+  // ---------- EDICT EFFECTS (v0.6) ----------
+  function resolveEdict(S, side, fx, c) {
+    const p = S[side], foe = S[other(side)];
+    switch (fx) {
+      case 'fxDraw2': draw(S, side); draw(S, side); break;
+      case 'fxPingAll': foe.board.slice().forEach((t) => damageMinion(S, other(side), t.uid, 1)); break;
+      case 'fxAoe2':   foe.board.slice().forEach((t) => damageMinion(S, other(side), t.uid, 2)); break;
+      case 'fxSnipe3': { const t = foe.board.slice().sort((a,b) => (b.atk+b.hp)-(a.atk+a.hp))[0]; if (t) damageMinion(S, other(side), t.uid, 3); break; }
+      case 'fxExecute': { const t = foe.board.slice().sort((a,b) => b.atk-a.atk)[0]; if (t) damageMinion(S, other(side), t.uid, t.hp + 99); break; }
+      case 'fxHealHero4': p.hp = Math.min(MAX_HP, p.hp + 4); break;
+      case 'fxMana2': p.mana += 2; break;
+      case 'fxRally': { if (p.board.length < MAX_BOARD) p.board.push(token(p, S)); if (p.board.length < MAX_BOARD) p.board.push(token(p, S)); break; }
+      case 'fxRallyBoard': p.board.forEach((m) => { m.atk += 1; m.hp += 1; }); break;
+      case 'fxVolley': { const n = p.board.filter((m) => m.kw === 'Ranged').length; const d = n * 1; if (d > 0) { foe.hp -= d; S.events.push({ t: 'heroHit', side: other(side), id: 'VOLLEY', dmg: d }); } break; }
+      case 'fxMomentum': p.board.forEach((m) => { if (m.kw === 'Charge') m.atk += 2; }); break;
+      case 'fxFormation': p.board.forEach((m) => { if (m.kw === 'Guard') m.hp += 2; }); break;
+      case 'fxLevy': { p.board.forEach((m) => { if (m.id.startsWith('TOKEN@')) { m.atk += 1; m.hp += 1; } }); if (p.board.length < MAX_BOARD) p.board.push(token(p, S)); break; }
+      case 'fxPillage': { foe.hp -= 2; S.events.push({ t: 'heroHit', side: other(side), id: 'PILLAGE', dmg: 2 }); if (p.board.length > foe.board.length) draw(S, side); break; }
+    }
   }
 
   function canAttack(S, side, uid, target) {
@@ -262,6 +314,10 @@
     np.mana = np.maxmana + (S.first === next && S.turn <= 5 ? 1 : 0) + (S.first === next && S.turn <= 1 ? 1 : 0); // First Rites v0.6.4: +1 mana on the winner's first three turns, +2 on turn one (tuned: 55.7% → 34% → 43.6% → target 50)
     np.power = false;
     np.board.forEach((m) => { m.ready = true; });
+    // relic hooks (v0.6)
+    if (hasRelic(np, 'rlGranary')) np.hp = Math.min(MAX_HP, np.hp + 1);
+    if (hasRelic(foe, 'rlLibrary') && foe.mana >= 2) { draw(S, other(next)); S.events.push({ t: 'relicfx', side: other(next), id: 'rlLibrary' }); }
+    if (hasRelic(foe, 'rlForage') && foe.board.length < 3 && foe.board.length < MAX_BOARD) { foe.board.push(token(foe, S)); S.events.push({ t: 'relicfx', side: other(next), id: 'rlForage' }); }
     const r = rites(S, next);
     // start-of-turn Sovereign passives
     if (hasP(np, 'STORMCALL') && foe.board.length) {
@@ -387,26 +443,90 @@
   // HARD — a veteran marshal: plays greedy, reads lethal before anything else,
   // trades for maximum value (survives when it can, kills threats when it must),
   // and spends Skirmish to remove the biggest thing it can kill.
+  // HARD AI play evaluator (v0.6): every legal card gets an expected-value
+  // score in context; the AI plays the highest-EV line it can afford, and
+  // HOLDS cards whose value is situational (no AOE into empty boards, no
+  // relic spam over bodies). This is what makes edicts/relics strategic.
+  function evScore(S, side, c) {
+    const p = S[side], foe = S[other(side)];
+    if (c.type === 'edict') {
+      switch (c.fx) {
+        case 'fxDraw2': return 2.6;
+        case 'fxPingAll': return foe.board.reduce((s2, t) => s2 + Math.min(1, t.hp) * (t.hp <= 1 ? 2.0 : 1.1), 0);
+        case 'fxAoe2': return foe.board.reduce((s2, t) => s2 + (t.hp <= 2 ? (t.atk + t.hp) * 1.2 : 2.4), 0);
+        case 'fxSnipe3': { const t = foe.board.slice().sort((a,b) => (b.atk+b.hp)-(a.atk+a.hp))[0]; return t ? (t.hp <= 3 ? (t.atk + t.hp) * 1.3 : 3.6) : 0; }
+        case 'fxExecute': { const t = foe.board.slice().sort((a,b) => b.atk-a.atk)[0]; return t ? (t.atk + t.hp) * 1.4 : 0; }
+        case 'fxHealHero4': return Math.min(4, MAX_HP - p.hp) * 0.55;
+        case 'fxMana2': return p.hand.length > 2 ? 2.2 : 0.8;
+        case 'fxRally': return (p.board.length <= MAX_BOARD - 2) ? 2 * 2 * 0.9 : 0;
+        case 'fxRallyBoard': return p.board.reduce((s2, m) => s2 + 2, 0) * 0.95;
+        case 'fxVolley': return p.board.filter((m) => m.kw === 'Ranged').length * 1.35;
+        case 'fxMomentum': return p.board.filter((m) => m.kw === 'Charge').length * 1.6;
+        case 'fxFormation': return p.board.filter((m) => m.kw === 'Guard').length * 1.9;
+        case 'fxLevy': return p.board.filter((m) => m.id.startsWith('TOKEN@')).length * 2.1 + 1.5;
+        case 'fxPillage': return 2 * 1.4 + (p.board.length > foe.board.length ? 1.6 : 0);
+        default: return 1;
+      }
+    }
+    if (c.type === 'relic') {
+      switch (c.rl) {
+        case 'rlLibrary': return 2.3;
+        case 'rlStandards': return 1.2 + p.board.filter((m) => m.kw === 'Guard').length * 1.4;
+        case 'rlGranary': return 1.9;
+        case 'rlDrillyard': return 1.8;
+        case 'rlForage': return 2.0;
+        case 'rlLookout': return 1.2 + p.board.filter((m) => m.kw === 'Ranged').length * 1.3;
+        default: return 1.5;
+      }
+    }
+    // minion: tempo + keyword + ability value
+    let v = c.atk + c.hp;
+    if (c.kw === 'Guard') v += 1.2;
+    else if (c.kw === 'Charge') v += 1.8;
+    else if (c.kw === 'Ranged') v += 1.2;
+    else if (c.kw === 'Lifesteal') v += 1.0;
+    if (c.bc === 'bcDraw') v += 1.6;
+    if (c.bc === 'bcPing') v += 0.4 + foe.board.length * 0.4;
+    if (c.bc === 'bcHeal2') v += Math.min(2, MAX_HP - p.hp) * 0.5;
+    if (c.bc === 'bcSummon') v += 1.7;
+    if (c.bc === 'bcBuff') v += p.board.length * 1.1;
+    if (c.dr) v += 0.9;
+    if (c.rarity === 'legendary') v += 1.2;
+    return v;
+  }
+
+  const p2manaOK = (S, side, i) => { try { return canPlay(S, side, i); } catch (e) { return false; } };
+
   function aiHard(S, side) {
     const foeSide = other(side);
     const me = S[side], foe = S[foeSide];
 
-    // play greedily by cost, highest affordable first (same curve discipline as normal)
+    // THE PLAY EVALUATOR: score every affordable card in context; play the best
+    // EV above a hold threshold, repeat while plays remain worthwhile.
     let played = true;
     while (played) {
       played = false;
-      let bi = -1;
+      let bi = -1, bv = 0;
       me.hand.forEach((c, i) => {
-        if (canPlay(S, side, i) && (bi < 0 || effCost(S, side, c) > effCost(S, side, me.hand[bi]))) bi = i;
+        if (!canPlay(S, side, i)) return;
+        const v = evScore(S, side, c) - effCost(S, side, c) * 0.2;
+        if (v > bv) { bv = v; bi = i; }
       });
-      if (bi >= 0) { playCard(S, side, bi); played = true; }
+      if (bi >= 0 && bv >= 1.2) { playCard(S, side, bi); played = true; }
     }
 
     // lethal check BEFORE acting: if the board can end it, everything goes face
     const guards = () => foe.board.filter((m) => m.kw === 'Guard');
     const readyAtk = me.board.filter((m) => m.ready).reduce((s, m) => s + m.atk, 0);
     const pd = canPower(S, side) ? powerDmg(S, side) : 0;
-    const lethal = !guards().length && foe.hp <= readyAtk + pd;
+    // spell lethal: face-damage edicts in hand count toward the kill
+    let spellDmg = 0;
+    me.hand.forEach((c, i) => {
+      if (c.type === 'edict' && (c.fx === 'fxVolley' || c.fx === 'fxPillage') && p2manaOK(S, side, i)) {
+        spellDmg += c.fx === 'fxVolley' ? me.board.filter((m) => m.kw === 'Ranged').length : 2;
+      }
+    });
+    const lethal = !guards().length && foe.hp <= readyAtk + pd + spellDmg;
 
     // hero power: on lethal it's damage; otherwise remove the juiciest minion we can kill
     if (canPower(S, side)) {
@@ -454,7 +574,7 @@
   }
 
   return {
-    MAX_BOARD, MAX_HAND, MAX_HP, MAX_MANA, AI_LEVELS,
+    MAX_BOARD, MAX_HAND, MAX_HP, MAX_MANA, MAX_RELICS, AI_LEVELS,
     KWTXT, KWDESC, hasP, powerDmg, powerCost, effCost,
     other, startMatch, draw,
     canPlay, playCard, canAttack, attack, canPower, power, endTurn, checkEnd, aiTurn,

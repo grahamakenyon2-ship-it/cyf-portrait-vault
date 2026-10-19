@@ -53,6 +53,10 @@
   .hero .hp{position:absolute; bottom:2px; left:50%; transform:translateX(-50%); font-size:20px; color:var(--hp); text-shadow:0 0 4px #000;}
   .hero .nm{position:absolute; top:2px; width:100%; font-size:10.5px; background:#000a; letter-spacing:1px; white-space:nowrap; overflow:hidden;}
   .hero .sov{position:absolute; bottom:20px; width:100%; font-size:9.5px; color:#8fd; background:#000b; padding:1px 2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+  .hero .relics{position:absolute; top:-15px; left:0; width:100%; display:flex; gap:2px; justify-content:center; pointer-events:auto;}
+  .hero .relics .rk{font-size:9px; background:#000d; border:1px solid var(--gold-dim); color:#f9c; padding:0 4px; cursor:help; white-space:nowrap; max-width:64px; overflow:hidden; text-overflow:ellipsis; line-height:13px;}
+  .hcard .typerow{position:absolute; top:24px; left:3px; font-size:9px; letter-spacing:1px; color:#f9c; background:#000c; padding:1px 4px;}
+  .hcard.spell{box-shadow:inset 0 0 0 3px #7a5a1a, inset 0 0 0 4px #000;}
   .hero.targetable{border-color:var(--hp); box-shadow:0 0 10px var(--hp);}
   .minion{width:108px; height:140px; border:6px solid transparent; border-image:var(--theme-panel, linear-gradient(#2a2216,#191308)) 40 fill; background:#0d0a07; position:relative; cursor:pointer;}
   .minion img{width:100%; height:104px; object-fit:cover; display:block;}
@@ -303,7 +307,7 @@
   <h1>FATEBLADE<small>CARDS FROM THE VAULT · v0.8</small></h1>
   <button class="menubtn themebtn" onclick="menuSingle()">⚔ SINGLE PLAYER<small>battle the AI with your realm's deck</small></button>
   <button class="menubtn themebtn" onclick="showCampaigns()">📜 CAMPAIGNS<small>eight-chapter sagas — The Ironroad &amp; The Broken Oath</small></button>
-  <button class="menubtn themebtn" onclick="menuDeckBuilder()">▦ DECK BUILDER<small>choose 10 warlords from your realm's roster</small></button>
+  <button class="menubtn themebtn" onclick="menuDeckBuilder()">▦ DECK BUILDER<small>choose 10 cards from your realm's roster</small></button>
   <button class="menubtn themebtn" onclick="watchMatch()">▶ WATCH AN AI DUEL<small>visual playtest with live commentary</small></button>
   <button class="menubtn themebtn" onclick="showMultiplayer()">✦ MULTIPLAYER<small>online duels — coming soon</small></button>
   <button class="menubtn themebtn" onclick="showSettings()">⚙ SETTINGS<small>theme art, AI difficulty, watch speed, saved decks</small></button>
@@ -384,6 +388,8 @@
   <div class="kwrow"><b>FATIGUE</b><p>Drawing from an empty deck deals escalating damage to your hero (1, 2, 3…). Long games end — Guard walls cannot save you.</p></div>
   <div class="kwrow"><b>BATTLECRY</b><p>Does something the moment the card is played (damage, heal, draw, buff, or summon a Conscript).</p></div>
   <div class="kwrow"><b>DEATHRATTLE</b><p>Does something when the minion dies.</p></div>
+  <div class="kwrow"><b>EDICT</b><p>A one-shot command — it resolves the moment it's played and is gone. Edicts ignore the 6-minion board limit.</p></div>
+  <div class="kwrow"><b>RELIC</b><p>A persistent seat of power that sits beside your Sovereign all game (shown as gold chips above the hero). Max 2 relics per deck and 2 relic seats per side.</p></div>
   <div class="kwrow"><b>GUARD</b><p>Enemies must attack this minion before any other target.</p></div>
   <div class="kwrow"><b>CHARGE</b><p>This minion can attack the turn it is played.</p></div>
   <div class="kwrow"><b>LIFESTEAL</b><p>Damage this minion deals also heals your hero.</p></div>
@@ -596,7 +602,7 @@ function showZoom(c, ev){
     ${c.kw?`<div class="zk"><b>${KWTXT[c.kw]}</b> — ${KWDESC[c.kw]}</div>`:''}
     ${c.ability?`<div class="zpv">${c.ability}</div>`:''}
     ${c.passive?`<div class="zpv"><b>${c.passive.name}</b> (Sovereign passive): ${c.passive.desc}</div>`:''}
-    <div class="zs"><span class="a">${c.atk} ATK</span> · <span class="h">${c.hp} HP</span></div>`;
+    <div class="zs">${(c.type==='edict'||c.type==='relic') ? `<span style="color:#f9c;letter-spacing:1px">${c.type==='edict'?'EDICT — ONE-SHOT':'RELIC — PERSISTENT'}</span>` : `<span class="a">${c.atk} ATK</span> · <span class="h">${c.hp} HP</span>`}</div>`;
   zoom.style.display='block';
   moveZoom(ev);
 }
@@ -656,7 +662,8 @@ function render(){
   const mk = (p, id, side)=>{
     const el = document.getElementById(id);
     const sov = p.sov ? `<div class="sov" title="${(p.sov.passive.desc||'').replace(/"/g,'&quot;')}">♦ ${p.sov.name}</div>` : '';
-    el.innerHTML = `<img src="${p.sov ? p.sov.img : p.fac.commander}"><div class="nm">${p.fac.label.toUpperCase()}</div>${sov}<div class="hp">${p.hp}</div>`;
+    el.innerHTML = `<img src="${p.sov ? p.sov.img : p.fac.commander}"><div class="nm">${p.fac.label.toUpperCase()}</div>${sov}<div class="hp">${p.hp}</div>` +
+      (p.relics && p.relics.length ? `<div class="relics">${p.relics.map(r=>`<span class="rk" title="${r.name}: ${(r.ability||'').replace(/"/g,'&quot;')}">${r.name}</span>`).join('')}</div>` : '');
     el.title = p.sov ? `${p.sov.name} — ${p.sov.passive.name}: ${p.sov.passive.desc}` : '';
     el.className = 'hero' + (side==='B' && !watch.on && (sel||powTargeting) && !ai.board.some(m=>m.kw==='Guard') ? ' targetable' : '');
     el.onclick = ()=>heroClick(side);
@@ -703,14 +710,16 @@ function render(){
   lastSeen.minions = nowBoard;
 
   const hd = document.getElementById('hand');
+  const isSpell = (c)=>c.type==='edict'||c.type==='relic';
   hd.innerHTML = my.hand.map((c,i)=>`
-    <div class="hcard r-${c.rarity||'common'} ${E.canPlay(S,'A',i)?'playable':''}" data-i="${i}">
+    <div class="hcard r-${c.rarity||'common'} ${isSpell(c)?'spell':''} ${E.canPlay(S,'A',i)?'playable':''}" data-i="${i}">
       <img src="${c.img}" loading="lazy"><div class="vig"></div>
       <div class="gem cost">${c.cost}</div>
+      ${isSpell(c)?`<div class="typerow">${c.type==='edict'?'EDICT':'RELIC'}</div>`:''}
       ${c.kw?`<div class="kw" data-kw="${c.kw}">${KWTXT[c.kw]}</div>`:''}
-      ${c.ability?`<div class="abilglyph">${c.ability.startsWith('Battlecry')?'▸':'☠'}</div>`:''}
+      ${c.ability?`<div class="abilglyph">${isSpell(c)?'✦':(c.ability.startsWith('Battlecry')?'▸':'☠')}</div>`:''}
       <div class="nm">${c.name}</div>
-      <div class="gem atk">${c.atk}</div><div class="gem hp">${c.hp}</div></div>`).join('');
+      ${isSpell(c)?'':`<div class="gem atk">${c.atk}</div><div class="gem hp">${c.hp}</div>`}</div>`).join('');
   hd.querySelectorAll('.hcard').forEach(d=>{
     d.onclick = ()=>handClick(+d.dataset.i, d);
     d.onmouseenter = (ev)=>showZoom(my.hand[+d.dataset.i], ev);
@@ -726,7 +735,9 @@ function handClick(i, el){
   const c = S.A.hand[i];
   if(E.playCard(S, 'A', i)){ sel=null; render(); checkEnd(); }
   else {
-    const reason = S.A.mana < E.effCost(S, 'A', c) ? 'Not enough mana.' : 'Your battle line is full (6 minions max).';
+    const reason = S.A.mana < E.effCost(S, 'A', c) ? 'Not enough mana.'
+      : (c.type === 'relic' && S.A.relics.length >= E.MAX_RELICS) ? 'Your relic seats are full (2 max).'
+      : 'Your battle line is full (6 minions max).';
     log(reason);
     el.classList.remove('shake'); void el.offsetWidth; el.classList.add('shake');
   }
@@ -775,7 +786,7 @@ function dbCardHtml(c){
       <img src="${c.img}" loading="lazy" alt="${c.name}">
       <div class="nm">${c.name}</div>
       <div class="ab">${c.ability ? c.ability.replace('Battlecry: ','▸ ').replace('Deathrattle: ','☠ ') : (c.kw ? KWTXT[c.kw] : '')}</div>
-      <div class="st"><span style="color:var(--atk)">${c.atk}</span>/<span style="color:var(--hp)">${c.hp}</span>${c.rarity==='legendary'?' · ★':''}</div>
+      <div class="st">${(c.type==='edict'||c.type==='relic')?`<span style="color:#f9c;letter-spacing:1px">${c.type.toUpperCase()}</span>`:`<span style="color:var(--atk)">${c.atk}</span>/<span style="color:var(--hp)">${c.hp}</span>${c.rarity==='legendary'?' · ★':''}`}</div>
     </div>`;
 }
 function renderDB(){
@@ -799,14 +810,14 @@ function renderDB(){
   listEl.innerHTML = inDeck.length ? inDeck.map(c=>`
     <div class="dbrow ${isGuildCard(c.id)?'guild':''}" data-id="${c.id}" onclick="dbToggle('${c.id.replace(/'/g,"\\'")}')">
       <span class="cost">${c.cost}</span><span class="nm">${c.name} ×2</span>
-      <span class="st">${c.atk}/${c.hp}</span><span class="x">✕</span></div>`).join('')
+      <span class="st">${(c.type==='edict'||c.type==='relic')?'✦ '+c.type.toUpperCase():c.atk+'/'+c.hp}</span><span class="x">✕</span></div>`).join('')
     : '<div style="text-align:center;color:#c9b78e;font-size:13px;padding:10px">empty — click cards on the right</div>';
   listEl.querySelectorAll('.dbrow').forEach(r=>{
     r.onmouseenter = (ev)=>{ const c = all.find(x=>x.id===r.dataset.id); if(c) showZoom(c, ev); };
     r.onmousemove = moveZoom; r.onmouseleave = hideZoom;
   });
   const cnt = document.getElementById('dbCount');
-  if(cnt) cnt.textContent = `DECK: ${dbSel.size} / 10 warlords (×2 copies each) · Guild hires: ${guildCount(dbSel)} / 4`;
+  if(cnt) cnt.textContent = `DECK: ${dbSel.size} / 10 cards (×2 copies each) · Guild hires: ${guildCount(dbSel)} / 4`;
   const saveBtn = document.getElementById('dbSaveBtn');
   if(saveBtn) saveBtn.disabled = dbSel.size !== 10;
 }
@@ -818,6 +829,9 @@ function dbToggle(id){
   if(dbSel.has(id)){ dbSel.delete(id); renderDB(); return; }
   if(dbSel.size >= 10){ dbFlash('DECK FULL — remove a card first'); return; }
   if(isGuildCard(id) && guildCount(dbSel) >= 4){ dbFlash('GUILD HIRES MAXED — 4 per deck'); return; }
+  const all = facOf(dbFac).cards.concat(guildCards());
+  const picked = all.find(c=>c.id===id);
+  if(picked && picked.type==='relic' && [...dbSel].map(x=>all.find(c=>c.id===x)).filter(c=>c&&c.type==='relic').length >= 2){ dbFlash('RELIC SEATS MAXED — 2 per deck'); return; }
   dbSel.add(id); renderDB();
 }
 // transient warning in the count line (no alert spam)
@@ -902,6 +916,8 @@ function watchStep(){
     else if(e.t==='fatigue') comment(`${who} draws from an empty deck — FATIGUE bites for ${e.dmg}!`, true);
     else if(e.t==='bc') comment(`${cardName(e.src)}'s battlecry goes off.`);
     else if(e.t==='dr') comment(`${cardName(e.src)}'s deathrattle triggers.`);
+    else if(e.t==='edict') comment(`${who} declares the edict ${cardName(e.id)}.`);
+    else if(e.t==='relic') comment(`${who} takes the relic ${cardName(e.id)}.`);
     else if(e.t==='passive') comment(`${who}'s passive ${e.id} triggers.`);
   }
   evMark = S.events.length;
