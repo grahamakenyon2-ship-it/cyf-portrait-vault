@@ -1,5 +1,5 @@
 {
- "version": "0.6.8",
+ "version": "0.6.9",
  "files": [
   {
    "path": "src/engine.js",
@@ -9,17 +9,12 @@
   {
    "path": "src/game.html",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/src/game.html",
-   "sha256": "ddb93278d9cb0d1ca1197ba1c84c4540dc5f6c7160585785435e0a57ee85e163"
+   "sha256": "5a754fac946298ddafbe7709379818496aeaa731de6a67523ef6247c3a33a215"
   },
   {
    "path": "data/cards.json",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/data/cards.json",
    "sha256": "f1ace62dffb5627de144f759e772c97c43bd785ad4134a3bfaa948c7498877d4"
-  },
-  {
-   "path": "art/menu.svg",
-   "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/menu.svg",
-   "sha256": "475886172edb842f55f42928471e0752f93ce97db35314e37bf30ad151a2ba70"
   },
   {
    "path": "art/af4a2781-01b1-45ea-9a22-498eefb5543c.jpg",
@@ -30,6 +25,11 @@
    "path": "art/5b572857-1561-4de3-933e-9e2ced9432e1.jpg",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/5b572857-1561-4de3-933e-9e2ced9432e1.jpg",
    "sha256": "7f026ef58e99a6f71283129bdca833dbff92fe47a07398a07d30d045517daf32"
+  },
+  {
+   "path": "art/76054395-130d-4733-b8ae-547067638433.jpg",
+   "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/76054395-130d-4733-b8ae-547067638433.jpg",
+   "sha256": "e93421be8a57fd6e53e3c0e6d578576ea5dfbbcebb588321ea682fdb94d17700"
   }
  ]
 }
