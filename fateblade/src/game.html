@@ -196,6 +196,15 @@
   #zoom .zc{float:right; width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center;
     background:radial-gradient(circle at 35% 30%, #9cc4ff, #1c4d8a 75%); border:1px solid #6ea8ff; color:#fff;
     font-size:17px; font-weight:bold; text-shadow:0 1px 2px #000;}
+
+  /* ===== v0.9.6: animated enemy turn + battle log ===== */
+  #match{position:relative;}
+  #battlelog{position:absolute; right:10px; top:36px; width:222px; max-height:52vh; overflow-y:auto;
+    background:#0009; border:1px solid var(--gold-dim); padding:5px 8px; font-size:11.5px; line-height:1.5;
+    color:#c9b78e; z-index:30;}
+  #battlelog .bl-a{color:#a8d8b0;}
+  #battlelog .bl-b{color:#e8a2a2;}
+  #battlelog .bl-turn{color:var(--gold); letter-spacing:1px; margin:6px 0 1px; font-size:10.5px; border-bottom:1px solid #2a2216;}
   .modal{position:fixed; inset:0; background:#000d; display:none; align-items:center; justify-content:center; z-index:80;}
   .modal.on{display:flex;}
   .modal .mbox{max-width:420px; background:var(--panel); border:1px solid var(--gold); padding:26px 32px; text-align:center;}
@@ -384,6 +393,7 @@
 </div>
 
 <div id="match" class="screen">
+  <div id="battlelog"></div>
   <div id="topbar"></div>
   <div class="lane"><div class="hero" id="aiHero"></div></div>
   <div class="board" id="aiBoard"></div>
@@ -449,7 +459,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.9.5';
+const GAME_VERSION = '0.9.6';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
@@ -476,7 +486,7 @@ const guildCount = (sel) => [...sel].filter(isGuildCard).length;
 
 /* ---------- settings (localStorage) ---------- */
 const SKEY = 'fateblade-settings-v1';
-let settings = Object.assign({ theme: 'auto', watchSpeed: 1, aiLevel: 'normal' }, JSON.parse(localStorage.getItem(SKEY) || '{}'));
+let settings = Object.assign({ theme: 'auto', watchSpeed: 1, aiLevel: 'normal', enemyPace: 850 }, JSON.parse(localStorage.getItem(SKEY) || '{}'));
 function saveSettings(){ localStorage.setItem(SKEY, JSON.stringify(settings)); }
 const WORLDTHEMES = ['ironhall','inkwash','starmaps','dunes','tamriel','teyvat','roshar','antiquity','regency','modern'];
 function applyTheme(factionId){
@@ -530,7 +540,7 @@ window.addEventListener('resize', fitScreen);
 window.addEventListener('load', fitScreen);
 if(document.fonts && document.fonts.ready) document.fonts.ready.then(()=>fitScreen());
 function refit(){ requestAnimationFrame(fitScreen); }
-function backToMenu(){ camp.active=null; camp.rule=null; show('menu'); sel=null; powTargeting=false; S=null; stopWatch(); applyTheme(null); }
+function backToMenu(){ camp.active=null; camp.rule=null; aiAnimSeq++; show('menu'); sel=null; powTargeting=false; S=null; stopWatch(); applyTheme(null); }
 
 function menuSingle(){ camp.active=null; camp.rule=null; showPoolPick('play'); }
 function menuDeckBuilder(){ showPoolPick('db'); }
@@ -588,6 +598,8 @@ function startMatch(){
     deckA: me.deck, deckB: loadDeck(enF.id), extraCards: guildCards(), aiB: lvl });
   sel=null; powTargeting=false;
   lastSeen = { hpA:null, hpB:null, minions:{} };
+  aiAnimSeq++; blogReset(); // v0.9.6: fresh battle log per duel, kill any stale animation
+  blogTurn(iAmFirst ? 'YOUR TURN 1' : 'ENEMY TURN 1');
   document.getElementById('overlay').classList.remove('on');
   show('match'); render();
   log(iAmFirst
@@ -640,15 +652,120 @@ function endTurn(){
   if(S.active==='B'){ setTimeout(aiTurn, 700); }
   else log(`Turn ${Math.ceil(S.turn/2)} — your move.`);
 }
+// v0.9.6: THE ENEMY TURN NOW PLAYS OUT VISIBLY. The engine still resolves the
+// whole turn synchronously (sim behavior is byte-identical), but calls snap()
+// after every play/power/attack; we record a display clone of the state at
+// each step, then walk the player through them at a human pace so they can
+// see exactly what the AI did. Every action is also written to the battle
+// log (right side) — the full game record, MTG Arena style.
+let aiAnimSeq = 0; // bumped on new match/menu exit so stale animation timers die
+function aiPace(){ const v = Number(settings.enemyPace); return isNaN(v) ? 850 : v; }
 function aiTurn(){
   if(!S || S.active!=='B') return;
-  E.aiTurn(S, 'B');
-  if(checkEnd()) return;
-  E.endTurn(S);
-  render();
-  if(checkEnd()) return;
-  log(`Turn ${Math.ceil(S.turn/2)} — your move.`);
+  const finalS = S;
+  const steps = [];
+  E.aiTurn(finalS, 'B', null, (st)=>steps.push(JSON.parse(JSON.stringify(st))));
+  const pace = aiPace();
+  const seq = ++aiAnimSeq;
+  if(pace === 0 || !steps.length){ // instant (classic) or AI had no visible actions
+    S = finalS; blogTurn('ENEMY TURN ' + Math.ceil(S.turn/2)); render();
+    if(checkEnd()) return;
+    E.endTurn(S); render();
+    if(checkEnd()) return;
+    log(`Turn ${Math.ceil(S.turn/2)} — your move.`);
+    return;
+  }
+  log('The enemy is acting…');
+  let i = 0;
+  const step = ()=>{
+    if(seq !== aiAnimSeq) return;          // duel ended/restarted mid-animation
+    if(i >= steps.length){ finish(); return; }
+    S = steps[i++];                         // display clone — input is locked (active 'B')
+    render();
+    setTimeout(step, pace);
+  };
+  const finish = ()=>{
+    if(seq !== aiAnimSeq) return;
+    S = finalS; render();                   // flushes any trailing events to the log
+    if(checkEnd()) return;                  // defeat overlay AFTER the show, not before
+    log('Enemy ends their turn.');
+    setTimeout(()=>{
+      if(seq !== aiAnimSeq || !S) return;
+      E.endTurn(S); render();               // your draw + start-of-turn passives, logged too
+      if(checkEnd()) return;
+      blogTurn('YOUR TURN ' + Math.ceil(S.turn/2));
+      log(`Turn ${Math.ceil(S.turn/2)} — your move.`);
+    }, Math.max(300, Math.round(pace/2)));
+  };
+  blogTurn('ENEMY TURN ' + Math.ceil(finalS.turn/2));
+  setTimeout(step, 120);
 }
+
+/* ---------- v0.9.6 battle log: human-readable record of every engine event ---------- */
+let blLastEv = 0, blNames = null, blLastDivider = '';
+const BL_LABELS = { POWER:'Skirmish', BC:'battlecry', DR:'deathrattle', DEATHGIFT:'Deathgift', VOLLEY:'volley',
+  PILLAGE:'pillage', STORMCALL:'Stormcall', FIRST_RITES:'First Rites', SECOND_SIGHT:'Second Sight',
+  EMBERWARD:'Emberward', BLOODLETTER:'Bloodletter', BULWARK:'Bulwark', SWIFTRANKS:'Swiftranks' };
+function blName(id){
+  if(!blNames){ blNames = new Map(); for(const f of DATA.factions) for(const c of f.cards) blNames.set(c.id, c.name); }
+  if(blNames.has(id)) return blNames.get(id);
+  return String(id || '?').split('@')[0];
+}
+function evLine(ev){
+  const who = ev.side==='B' ? 'Enemy' : ev.side==='A' ? 'You' : '';
+  switch(ev.t){
+    case 'play':
+      return String(ev.id||'').startsWith('TOKEN')
+        ? { s:ev.side, x:`${who} summon a Conscript` }
+        : { s:ev.side, x:`${who} play ${blName(ev.id)}` };
+    case 'edict':  return { s:ev.side, x:`${who} decree: ${blName(ev.id)}` };
+    case 'relic':  return { s:ev.side, x:`${who} seat the relic ${blName(ev.id)}` };
+    case 'relicfx': return { s:ev.side, x:`${blName(ev.id)} relic triggers for ${who.toLowerCase()}` };
+    case 'hit':    return { s:ev.side, x:`${blName(ev.id)} strikes ${blName(ev.on)} for ${ev.dmg}` };
+    case 'heroHit': {
+      const nm = blName(ev.id); // builds the name map on first use
+      if (blNames.has(ev.id)) { // a named attacker struck the hero
+        const victim = ev.side === 'A' ? 'your' : 'the enemy';
+        return { s:ev.side, x:`${nm} hits ${victim} hero for ${ev.dmg}` };
+      }
+      const lb = BL_LABELS[ev.id] || ev.id;
+      return { s:ev.side, x:`${who} take ${ev.dmg} hero damage (${lb})` };
+    }
+    case 'death':  return { s:ev.side, x:`☠ ${blName(ev.id)} falls` };
+    case 'buff':   return { s:ev.side, x:`✚ ${blName(ev.id)} is blessed (+1/+1)` };
+    case 'passive': return { s:ev.side, x:`✦ ${BL_LABELS[ev.id] || blName(ev.id)} triggers for ${who.toLowerCase()}` };
+    case 'fatigue': return { s:ev.side, x:`${who} exhaust the deck — fatigue ${ev.dmg}` };
+    default: return null; // bc/dr/play internals are already covered by their follow-up events
+  }
+}
+function blogDiff(st){
+  const el = document.getElementById('battlelog');
+  if(!el || !st || !st.events) return;
+  let added = false;
+  while(blLastEv < st.events.length){
+    const line = evLine(st.events[blLastEv++]);
+    if(!line) continue;
+    const div = document.createElement('div');
+    div.className = 'bl-' + String(line.s || '').toLowerCase();
+    div.textContent = line.x;
+    el.appendChild(div); added = true;
+  }
+  while(el.children.length > 240) el.removeChild(el.firstChild);
+  if(added) el.scrollTop = el.scrollHeight;
+}
+function blogTurn(text){
+  const el = document.getElementById('battlelog'); if(!el) return;
+  if(text === blLastDivider) return; blLastDivider = text;
+  const div = document.createElement('div');
+  div.className = 'bl-turn';
+  div.textContent = '— ' + text + ' —';
+  el.appendChild(div); el.scrollTop = el.scrollHeight;
+}
+function blogReset(){
+  const el = document.getElementById('battlelog'); if(el) el.innerHTML = '';
+  blLastEv = 0; blNames = null; blLastDivider = '';
+}
+function aiTurnLegacy(){} // (kept for clarity: the pre-0.9.6 instant behavior is the pace=0 path above)
 
 /* ---------- hover-zoom ---------- */
 const zoom = document.getElementById('zoom');
@@ -706,6 +823,7 @@ function showCoin(iAmFirst, enF){
 /* ---------- rendering ---------- */
 function render(){
   if(!S) return;
+  blogDiff(S); // v0.9.6: every render flushes new engine events to the battle log
   const my = S.A, ai = S.B;
   const tb = document.getElementById('topbar');
   tb.innerHTML = `<b>${my.fac.label}</b> ${crystals(my.mana, my.maxmana)}
@@ -936,11 +1054,14 @@ function showSettings(){
   document.getElementById('setTheme').value = settings.theme;
   document.getElementById('setWatch').value = String(settings.watchSpeed);
   document.getElementById('setAI').value = settings.aiLevel || 'normal';
+  const paceEl = document.getElementById('setPace');
+  if(paceEl) paceEl.value = String(settings.enemyPace === undefined ? 850 : settings.enemyPace);
   document.getElementById('settings').classList.add('on');
 }
 function setTheme(v){ settings.theme = v; saveSettings(); applyTheme(me.faction || null); }
 function setWatch(v){ settings.watchSpeed = Number(v); saveSettings(); }
 function setAI(v){ settings.aiLevel = v; saveSettings(); }
+function setPace(v){ settings.enemyPace = Number(v); saveSettings(); }
 function clearDecks(){ savedDecks = {}; localStorage.removeItem(DKEY); alert('Custom decks cleared — realms return to their doctrine decks.'); location.reload(); }
 
 /* ================= MULTIPLAYER (v0.5 teaser) ================= */
@@ -1075,6 +1196,12 @@ function watchEnd(){
       <option value="1">×1 — savour it</option>
       <option value="3">×3 — brisk</option>
       <option value="10">×10 —results only</option>
+    </select>
+    <label>Enemy turn pace</label>
+    <select id="setPace" onchange="setPace(this.value)">
+      <option value="850">Animated — watch every enemy action (recommended)</option>
+      <option value="450">Animated — fast</option>
+      <option value="0">Instant — classic behavior</option>
     </select>
     <label>Saved decks</label>
     <div style="margin:8px 0"><button onclick="clearDecks()">Clear all custom decks</button></div>
@@ -1360,9 +1487,11 @@ function campLaunch(){
   }
   sel=null; powTargeting=false;
   lastSeen = { hpA:null, hpB:null, minions:{} };
+  aiAnimSeq++; blogReset(); // v0.9.6: fresh battle log per chapter, kill stale animation
   document.getElementById('overlay').classList.remove('on');
   applyTheme(myF.id);
   show('match'); render();
+  blogTurn(r.enemyFirst ? 'ENEMY TURN 1' : 'YOUR TURN 1');
   log(r.enemyFirst
     ? `📜 Chapter ${idx+1}: ${ch.name} — ${enF.label} struck first. Your Sovereign draws an extra card.`
     : `📜 Chapter ${idx+1}: ${ch.name} — you hold the initiative. ${enF.label} awaits.`);

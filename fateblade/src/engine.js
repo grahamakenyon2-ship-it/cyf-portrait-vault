@@ -355,9 +355,14 @@
   // EASY — a careless levy: reasonable tempo but sloppy aim, occasionally
   // fumbles its best play, picks attack targets on a whim, and half the time
   // forgets Skirmish exists.
-  function aiEasy(S, side) {
+  function aiEasy(S, side, snap) {
     const foeSide = other(side);
     const me = S[side], foe = S[foeSide];
+    // v0.9.6: snap(S) fires after each visible action when the UI animates the
+    // AI's turn; sims never pass it, so behavior is unchanged.
+    const pc = (i) => { playCard(S, side, i); if (snap) snap(S); };
+    const pw = (t) => { power(S, side, t); if (snap) snap(S); };
+    const atk = (u, t) => { attack(S, side, u, t); if (snap) snap(S); };
 
     // usually plays greedy like anyone would, but sometimes grabs the cheapest
     // card instead of the best one
@@ -369,13 +374,13 @@
       const a = effCost(S, side, c), b = effCost(S, side, me.hand[bi]);
       if (fumble ? a < b : a > b) bi = i;
     });
-    if (bi >= 0) playCard(S, side, bi);
+    if (bi >= 0) pc(bi);
 
     // hero power: remembers it exists about half the time
     if (canPower(S, side) && S.rng() > 0.5) {
       const pd = powerDmg(S, side);
       const t = foe.board.filter((m) => m.hp <= pd).sort((a, b) => b.atk - a.atk)[0];
-      if (t || foe.hp <= pd) power(S, side, t ? { uid: t.uid } : { hero: true });
+      if (t || foe.hp <= pd) pw(t ? { uid: t.uid } : { hero: true });
     }
 
     // attacks: aims face more often than it should, trades at random otherwise
@@ -390,14 +395,17 @@
       if (!me.board.find((x) => x.uid === m.uid) || !m.ready) return; // died mid-loop
       const opts = legalTargets();
       const pick = opts[Math.floor(S.rng() * opts.length)];
-      attack(S, side, m.uid, pick);
+      atk(m.uid, pick);
     });
   }
 
   // NORMAL — the classic greedy AI (unchanged behavior; prior sim reports reproduce)
-  function aiNormal(S, side) {
+  function aiNormal(S, side, snap) {
     const foeSide = other(side);
     const me = S[side], foe = S[foeSide];
+    const pc = (i) => { playCard(S, side, i); if (snap) snap(S); };
+    const pw = (t) => { power(S, side, t); if (snap) snap(S); };
+    const atk = (u, t) => { attack(S, side, u, t); if (snap) snap(S); };
 
     // play greedily by cost, highest affordable first
     let played = true;
@@ -407,31 +415,31 @@
       me.hand.forEach((c, i) => {
         if (canPlay(S, side, i) && (bi < 0 || effCost(S, side, c) > effCost(S, side, me.hand[bi]))) bi = i;
       });
-      if (bi >= 0) { playCard(S, side, bi); played = true; }
+      if (bi >= 0) { pc(bi); played = true; }
     }
 
     // hero power: finish a wounded minion, or push lethal-ish damage
     if (canPower(S, side)) {
       const pd = powerDmg(S, side);
       const t = foe.board.filter((m) => m.hp <= pd).sort((a, b) => b.atk - a.atk)[0];
-      if (t || foe.hp <= pd) power(S, side, t ? { uid: t.uid } : { hero: true });
+      if (t || foe.hp <= pd) pw(t ? { uid: t.uid } : { hero: true });
     }
 
     // attacks
     const guard = () => foe.board.some((m) => m.kw === 'Guard');
     me.board.slice().forEach((m) => {
       if (!me.board.find((x) => x.uid === m.uid) || !m.ready) return; // died mid-loop
-      if (!foe.board.length && !guard()) { attack(S, side, m.uid, { hero: true }); return; }
-      if (foe.hp <= m.atk && !guard()) { attack(S, side, m.uid, { hero: true }); return; }
+      if (!foe.board.length && !guard()) { atk(m.uid, { hero: true }); return; }
+      if (foe.hp <= m.atk && !guard()) { atk(m.uid, { hero: true }); return; }
       // favorable trades: kill something without dying (or dying to something smaller than us)
       const opts = foe.board.filter((t) =>
         t.hp <= m.atk && (m.kw === 'Ranged' || m.hp > t.atk || t.atk < m.atk));
       if (opts.length) {
         const t = opts.sort((a, b) => b.atk - a.atk)[0];
-        attack(S, side, m.uid, { uid: t.uid });
+        atk(m.uid, { uid: t.uid });
         return;
       }
-      if (!guard()) { attack(S, side, m.uid, { hero: true }); return; }
+      if (!guard()) { atk(m.uid, { hero: true }); return; }
       // v0.6.4: never pass forever into a Guard wall — kill one if possible,
       // otherwise chip the weakest Guard (the old pass-only behavior stalled
       // 12-14% of games at the turn cap).
@@ -439,7 +447,7 @@
       if (gs2.length) {
         const kill = gs2.filter((t) => t.hp <= m.atk).sort((a, b) => b.atk - a.atk)[0];
         const chip = kill || gs2.slice().sort((a, b) => a.hp - b.hp)[0];
-        attack(S, side, m.uid, { uid: chip.uid });
+        atk(m.uid, { uid: chip.uid });
       }
     });
   }
@@ -501,9 +509,12 @@
 
   const p2manaOK = (S, side, i) => { try { return canPlay(S, side, i); } catch (e) { return false; } };
 
-  function aiHard(S, side) {
+  function aiHard(S, side, snap) {
     const foeSide = other(side);
     const me = S[side], foe = S[foeSide];
+    const pc = (i) => { playCard(S, side, i); if (snap) snap(S); };
+    const pw = (t) => { power(S, side, t); if (snap) snap(S); };
+    const atk = (u, t) => { attack(S, side, u, t); if (snap) snap(S); };
 
     // THE PLAY EVALUATOR: score every affordable card in context; play the best
     // EV above a hold threshold, repeat while plays remain worthwhile.
@@ -516,7 +527,7 @@
         const v = evScore(S, side, c) - effCost(S, side, c) * 0.2;
         if (v > bv) { bv = v; bi = i; }
       });
-      if (bi >= 0 && bv >= 1.2) { playCard(S, side, bi); played = true; }
+      if (bi >= 0 && bv >= 1.2) { pc(bi); played = true; }
     }
 
     // lethal check BEFORE acting: if the board can end it, everything goes face
@@ -534,18 +545,18 @@
 
     // hero power: on lethal it's damage; otherwise remove the juiciest minion we can kill
     if (canPower(S, side)) {
-      if (lethal) power(S, side, { hero: true });
+      if (lethal) pw({ hero: true });
       else {
         const t = foe.board.filter((m) => m.hp <= pd).sort((a, b) => (b.atk + b.hp) - (a.atk + a.hp))[0];
-        if (t) power(S, side, { uid: t.uid });
-        else if (foe.hp <= pd) power(S, side, { hero: true });
+        if (t) pw({ uid: t.uid });
+        else if (foe.hp <= pd) pw({ hero: true });
       }
     }
 
     // attacks: biggest attackers decide first, so small minions clean up after them
     me.board.slice().sort((a, b) => b.atk - a.atk).forEach((m) => {
       if (!me.board.find((x) => x.uid === m.uid) || !m.ready) return; // died mid-loop
-      if (lethal && !guards().length) { attack(S, side, m.uid, { hero: true }); return; }
+      if (lethal && !guards().length) { atk(m.uid, { hero: true }); return; }
 
       // value trades: prefer kills we survive; among them, kill the most valuable
       const kills = foe.board.filter((t) => t.hp <= m.atk);
@@ -555,26 +566,29 @@
         const t = pool.slice().sort((a, b) => (b.atk + b.hp) - (a.atk + a.hp))[0];
         // don't suicide a big body into chaff unless it's a real threat
         const worthIt = safe.length || (t.atk + t.hp) * 2 >= m.atk + m.hp;
-        if (worthIt) { attack(S, side, m.uid, { uid: t.uid }); return; }
+        if (worthIt) { atk(m.uid, { uid: t.uid }); return; }
       }
 
       const gs = guards();
-      if (!gs.length) { attack(S, side, m.uid, { hero: true }); return; }
+      if (!gs.length) { atk(m.uid, { hero: true }); return; }
       // must chew through a Guard: kill one if possible, otherwise bleed the weakest
       const killable = gs.filter((g) => g.hp <= m.atk).sort((a, b) => b.atk - a.atk)[0];
       const g = killable || gs.slice().sort((a, b) => a.hp - b.hp)[0];
-      attack(S, side, m.uid, { uid: g.uid });
+      atk(m.uid, { uid: g.uid });
     });
   }
 
-  // dispatch: aiTurn(S, side, level) — level falls back to the side's declared
+  // dispatch: aiTurn(S, side, level, onAction) — level falls back to the side's declared
   // difficulty (S.aiA/S.aiB from startMatch opts), then to 'normal'.
-  function aiTurn(S, side, level) {
+  // v0.9.6: optional onAction(state) fires after every visible AI action
+  // (play / power / attack) so the UI can animate the enemy turn step by
+  // step; the sim harness passes nothing, so sim behavior is byte-identical.
+  function aiTurn(S, side, level, onAction) {
     const brain = AI_LEVELS.includes(level) ? level
       : (side === 'A' ? S.aiA : S.aiB) || 'normal';
-    if (brain === 'easy') return aiEasy(S, side);
-    if (brain === 'hard') return aiHard(S, side);
-    return aiNormal(S, side);
+    if (brain === 'easy') return aiEasy(S, side, onAction);
+    if (brain === 'hard') return aiHard(S, side, onAction);
+    return aiNormal(S, side, onAction);
   }
 
   return {
