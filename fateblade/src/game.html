@@ -408,8 +408,9 @@ function applyTheme(factionId){
             : settings.theme;
   root.style.setProperty('--theme-bg', `url(${THEMES}/${key}/bg.jpg)`);
   root.style.setProperty('--theme-panel', `url(${THEMES}/${key}/panel.jpg)`);
-  root.style.setProperty('--theme-btn', `url(${ART}/btn.svg)`); // v0.6.7: universal Fateblade plate
-  root.style.setProperty('--board-bg', `url(${ART}/board.svg)`);
+  root.style.setProperty('--theme-btn', `url(${ART}/${'${BTN}'})`); // v0.6.8: universal Fateblade plate (AI art from the vault)
+  root.style.setProperty('--fb-btn', `url(${ART}/${'${BTN}'})`);
+  root.style.setProperty('--board-bg', `url(${ART}/${'${BOARD}'})`);
   root.style.setProperty('--menu-bg', `url(${ART}/menu.svg)`);
   document.body.classList.add('themed');
 }
