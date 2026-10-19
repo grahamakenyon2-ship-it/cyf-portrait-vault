@@ -205,10 +205,9 @@
   .hcard .gem.hp{right:3px; bottom:3px;}
 
   /* ---- board minions: clean tiles, small gems ---- */
-  .minion .gem{width:21px; height:21px; font-size:11px; border-width:1px;}
+  .minion .gem{width:24px; height:24px; font-size:13px; border-width:1px; font-family:'Cinzel', Georgia, serif;}
   .minion .gem.atk{left:2px; bottom:2px;}
   .minion .gem.hp{right:2px; bottom:2px;}
-  .minion .atk, .minion .hp{display:none;}
   .minion .nm{background:#000d; text-align:center; letter-spacing:.5px;}
   .minion .kw{z-index:2;}
 
@@ -703,7 +702,7 @@ function pickPoolDB(p){
 function openDeckBuilder(facId){
   dbFac = facId; applyTheme(facId);
   const f = facOf(facId);
-  dbSel = new Set(loadDeck(facId));
+  dbSel = new Set(); // v0.6.5: clean slate — build from scratch (↺ Restore Doctrine loads the default)
   document.getElementById('dbTitle').textContent = f.label.toUpperCase() + ' — ' + f.identity.name.toUpperCase();
   show('deckb');
   renderDB();
@@ -750,6 +749,25 @@ function renderDB(){
   if(saveBtn) saveBtn.disabled = dbSel.size !== 10;
 }
 function dbReset(){ dbSel = new Set(facOf(dbFac).defaultDeck.slice()); renderDB(); }
+
+// v0.6.5: dbToggle — the click handler every deck card/row calls. It simply did not
+// exist before, so removing (or adding) cards by clicking silently did nothing.
+function dbToggle(id){
+  if(dbSel.has(id)){ dbSel.delete(id); renderDB(); return; }
+  if(dbSel.size >= 10){ dbFlash('DECK FULL — remove a card first'); return; }
+  if(isGuildCard(id) && guildCount(dbSel) >= 4){ dbFlash('GUILD HIRES MAXED — 4 per deck'); return; }
+  dbSel.add(id); renderDB();
+}
+// transient warning in the count line (no alert spam)
+let dbFlashTimer = null;
+function dbFlash(msg){
+  const cnt = document.getElementById('dbCount');
+  if(!cnt) return;
+  cnt.textContent = '⚠ ' + msg;
+  cnt.style.color = '#f66';
+  if(dbFlashTimer) clearTimeout(dbFlashTimer);
+  dbFlashTimer = setTimeout(()=>{ cnt.style.color = ''; renderDB(); }, 1600);
+}
 function dbSave(){ if(dbSel.size===10){ saveDeck(dbFac, [...dbSel].sort()); } }
 function dbDone(){ dbSave(); pickPoolDB(me.pool || 'history'); }
 
