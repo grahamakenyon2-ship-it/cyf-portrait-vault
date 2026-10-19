@@ -308,7 +308,7 @@
 
 <!-- ============ MAIN MENU ============ -->
 <div id="menu" class="screen on">
-  <h1>FATEBLADE<small>CARDS FROM THE VAULT · v0.8</small></h1>
+  <h1>FATEBLADE<small id="dver">CARDS FROM THE VAULT · v0.8</small></h1>
   <button class="menubtn themebtn" onclick="menuSingle()">⚔ SINGLE PLAYER<small>battle the AI with your realm's deck</small></button>
   <button class="menubtn themebtn" onclick="showCampaigns()">📜 CAMPAIGNS<small>eight-chapter sagas — The Ironroad &amp; The Broken Oath</small></button>
   <button class="menubtn themebtn" onclick="menuDeckBuilder()">▦ DECK BUILDER<small>choose 10 cards from your realm's roster</small></button>
@@ -414,7 +414,18 @@
 <script src="../data/cards.js"></script>
 <script src="../src/engine.js"></script>
 <script>
-let DATA = window.CARDS_LOCAL || window.CARDS;
+// v0.9.3: cards.local.js is NOT in the patch manifest, so the patcher never
+// updates it — a stale one packaged by an old installer used to shadow the
+// live data forever (old realms + fictional names on a "fully patched" game).
+// Pick by version stamp (added in v0.9.3): unversioned = pre-0.9.3 = stale.
+// Local still wins ties so offline bundled assets keep priority in dev.
+const _ver = v => String(v || '0.0.0').split('.').map(Number);
+const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
+let DATA = !window.CARDS_LOCAL ? window.CARDS
+  : !window.CARDS ? window.CARDS_LOCAL
+  : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
+  : window.CARDS_LOCAL;
+{ const el = document.getElementById('dver'); if (el) el.textContent = 'CARDS FROM THE VAULT · v' + (DATA.version || '0.9'); }
 const THEMES = (DATA.themes || 'https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes');
 const ART = (DATA.art || 'https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art'); // v0.6.7 universal art
 window.FB_PATCH = function(msg, pct){ const h = document.getElementById('patchhud'); h.style.display='block'; h.textContent = 'PATCHING: ' + msg + (pct ? ' — ' + pct + '%' : ''); };
@@ -465,7 +476,12 @@ function fitScreen(){
   const el = document.querySelector('.screen.on');
   if(!el) return;
   el.style.transform=''; el.style.transformOrigin=''; el.style.overflow=''; el.style.justifyContent='';
-  const w = innerWidth - 12, h = innerHeight - 12;
+// v0.9.3: the desktop window is a FIXED 1280x900 — on small laptops or scaled
+// displays it can be taller than the visible work area, so innerHeight reports
+// more room than is really on screen and the bottom bar (END TURN / Resign)
+// ends up behind the taskbar. Clamp the fit budget to the VISIBLE work area.
+  const availW = (screen.availWidth || innerWidth), availH = (screen.availHeight || innerHeight);
+  const w = Math.min(innerWidth, availW) - 12, h = Math.min(innerHeight, availH - Math.max(0, window.screenY || 0)) - 12;
   const cw = Math.max(el.scrollWidth, el.offsetWidth), ch = Math.max(el.scrollHeight, el.offsetHeight);
   const s = Math.min(w / cw, h / ch, 1);
   if(s < 0.99){
