@@ -100,6 +100,201 @@
    "f": "the-praetorian-edict.jpg",
    "src": "commons:Praetorian Guard painting",
    "bytes": 330412
+  },
+  "the-censor-s-list.jpg": {
+   "f": "the-censor-s-list.jpg",
+   "src": "commons:Roman census relief",
+   "bytes": 393951
+  },
+  "the-legion-standards.jpg": {
+   "f": "the-legion-standards.jpg",
+   "src": "commons:Roman aquila legion standard",
+   "bytes": 178859
+  },
+  "the-public-granaries.jpg": {
+   "f": "the-public-granaries.jpg",
+   "src": "commons:Roman granary horreum",
+   "bytes": 288586
+  },
+  "divide-and-rule.jpg": {
+   "f": "divide-and-rule.jpg",
+   "src": "commons:Roman Empire provinces map",
+   "bytes": 685037
+  },
+  "royal-roads-520-bc.jpg": {
+   "f": "royal-roads-520-bc.jpg",
+   "src": "commons:Persepolis relief Darius",
+   "bytes": 1089328
+  },
+  "the-horde-descends.jpg": {
+   "f": "the-horde-descends.jpg",
+   "src": "commons:Mongol cavalry painting",
+   "bytes": 65679
+  },
+  "the-great-purge.jpg": {
+   "f": "the-great-purge.jpg",
+   "src": "commons:Kremlin Moscow 1930s photograph",
+   "bytes": 89850
+  },
+  "scorched-earth.jpg": {
+   "f": "scorched-earth.jpg",
+   "src": "commons:burning village war painting",
+   "bytes": 398576
+  },
+  "the-king-s-peace.jpg": {
+   "f": "the-king-s-peace.jpg",
+   "src": "commons:Persepolis Apadana relief",
+   "bytes": 557072
+  },
+  "tribute-caravans.jpg": {
+   "f": "tribute-caravans.jpg",
+   "src": "commons:Persepolis tribute relief",
+   "bytes": 379681
+  },
+  "the-library-of-nineveh.jpg": {
+   "f": "the-library-of-nineveh.jpg",
+   "src": "commons:Nineveh Ashurbanipal library tablet",
+   "bytes": 852713
+  },
+  "the-iron-yards.jpg": {
+   "f": "the-iron-yards.jpg",
+   "src": "commons:Joseph Wright iron forge",
+   "bytes": 154114
+  },
+  "capitulations-of-the-porte.jpg": {
+   "f": "capitulations-of-the-porte.jpg",
+   "src": "commons:Ottoman Divan miniature painting",
+   "bytes": 1069308
+  },
+  "the-devshirme-levy.jpg": {
+   "f": "the-devshirme-levy.jpg",
+   "src": "commons:devshirme Ottoman miniature",
+   "bytes": 1475373
+  },
+  "bazaar-levies.jpg": {
+   "f": "bazaar-levies.jpg",
+   "src": "commons:Grand Bazaar Istanbul painting 19th century",
+   "bytes": 380364
+  },
+  "the-pilgrimage-roads.jpg": {
+   "f": "the-pilgrimage-roads.jpg",
+   "src": "commons:Hajj caravan painting",
+   "bytes": 658752
+  },
+  "siege-of-acre-1291.jpg": {
+   "f": "siege-of-acre-1291.jpg",
+   "src": "commons:Siege of Acre 1291",
+   "bytes": 613927
+  },
+  "the-caliph-s-decree.jpg": {
+   "f": "the-caliph-s-decree.jpg",
+   "src": "commons:Ottoman firman document",
+   "bytes": 1119068
+  },
+  "the-nilometer.jpg": {
+   "f": "the-nilometer.jpg",
+   "src": "commons:Nilometer Cairo",
+   "bytes": 358633
+  },
+  "the-caravanserais.jpg": {
+   "f": "the-caravanserais.jpg",
+   "src": "commons:caravanserai Iran",
+   "bytes": 89072
+  },
+  "the-wayfarer-s-atlas.jpg": {
+   "f": "the-wayfarer-s-atlas.jpg",
+   "src": "commons:Ptolemy world map",
+   "bytes": 437625
+  },
+  "the-silver-road-ledger.jpg": {
+   "f": "the-silver-road-ledger.jpg",
+   "src": "commons:Silk Road caravan painting",
+   "bytes": 774176
+  },
+  "toll-of-the-high-roads.jpg": {
+   "f": "toll-of-the-high-roads.jpg",
+   "src": "commons:caravan mountain pass painting",
+   "bytes": 457100
+  },
+  "assassination-order.jpg": {
+   "f": "assassination-order.jpg",
+   "src": "commons:Charlotte Corday Marat painting",
+   "bytes": 680054
+  },
+  "great-granary.jpg": {
+   "f": "great-granary.jpg",
+   "src": "commons:ancient Egyptian granary",
+   "bytes": 148460
+  },
+  "solar-flare.jpg": {
+   "f": "solar-flare.jpg",
+   "src": "commons:solar flare NASA",
+   "bytes": 262495
+  },
+  "star-charts.jpg": {
+   "f": "star-charts.jpg",
+   "src": "commons:celestial star chart atlas",
+   "bytes": 456082
+  },
+  "war-council.jpg": {
+   "f": "war-council.jpg",
+   "src": "commons:war council painting",
+   "bytes": 313140
+  },
+  "rain-of-arrows.jpg": {
+   "f": "rain-of-arrows.jpg",
+   "src": "commons:Battle of Agincourt",
+   "bytes": 584747
+  },
+  "grand-archive.jpg": {
+   "f": "grand-archive.jpg",
+   "src": "commons:old library books",
+   "bytes": 135622
+  },
+  "cataclysm.jpg": {
+   "f": "cataclysm.jpg",
+   "src": "commons:volcano eruption painting",
+   "bytes": 335409
+  },
+  "ambush-at-the-pass.jpg": {
+   "f": "ambush-at-the-pass.jpg",
+   "src": "commons:Thermopylae battle painting",
+   "bytes": 574755
+  },
+  "call-to-arms.jpg": {
+   "f": "call-to-arms.jpg",
+   "src": "commons:medieval tournament knights painting",
+   "bytes": 219436
+  },
+  "shieldwall.jpg": {
+   "f": "shieldwall.jpg",
+   "src": "commons:shield wall battle reenactment",
+   "bytes": 233594
+  },
+  "war-banner.jpg": {
+   "f": "war-banner.jpg",
+   "src": "commons:medieval war banner flag",
+   "bytes": 974741
+  },
+  "crusade-bull.jpg": {
+   "f": "crusade-bull.jpg",
+   "src": "commons:papal bull document",
+   "bytes": 316191
+  },
+  "excommunicado.jpg": {
+   "f": "excommunicado.jpg",
+   "src": "commons:medieval excommunication miniature",
+   "bytes": 182661
+  },
+  "zealot-fervor.jpg": {
+   "f": "zealot-fervor.jpg",
+   "src": "commons:preaching crusade medieval painting",
+   "bytes": 132607
+  },
+  "training-grounds.jpg": {
+   "f": "training-grounds.jpg",
+   "src": "commons:sword fight medieval painting",
+   "bytes": 394132
   }
  }
 }
