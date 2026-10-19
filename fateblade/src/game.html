@@ -274,6 +274,14 @@
   .dfloat{position:absolute; font-family:'Cinzel', Georgia, serif; font-weight:900; font-size:26px;
     color:#ff5a4a; text-shadow:0 2px 4px #000, 0 0 12px #f006; animation:dfloat 1.15s ease-out forwards;}
   .dfloat.heal{color:#6fe08f; text-shadow:0 2px 4px #000, 0 0 12px #0f06;}
+  /* v0.9.7 battle FX */
+  .dghost{position:absolute; z-index:30; pointer-events:none; border:6px solid transparent;
+    border-image:var(--theme-panel, linear-gradient(#2a2216,#191308)) 40 fill; background:#0d0a07;
+    animation:dissolve .8s ease-in forwards;}
+  .dghost img{width:100%; height:104px; object-fit:cover; display:block;}
+  @keyframes dissolve{0%{opacity:1; transform:scale(1)}100%{opacity:0; transform:scale(.68) rotate(7deg)}}
+  .minion.spawn{animation:spawn .3s ease-out;}
+  @keyframes spawn{0%{transform:scale(.55); opacity:0}100%{transform:scale(1); opacity:1}}
   @keyframes dfloat{from{opacity:1; transform:translateY(0) scale(.8);} 30%{transform:translateY(-16px) scale(1.2);}
     to{opacity:0; transform:translateY(-48px) scale(1);}}
 
@@ -459,7 +467,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.9.6';
+const GAME_VERSION = '0.9.7';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
@@ -486,7 +494,7 @@ const guildCount = (sel) => [...sel].filter(isGuildCard).length;
 
 /* ---------- settings (localStorage) ---------- */
 const SKEY = 'fateblade-settings-v1';
-let settings = Object.assign({ theme: 'auto', watchSpeed: 1, aiLevel: 'normal', enemyPace: 850 }, JSON.parse(localStorage.getItem(SKEY) || '{}'));
+let settings = Object.assign({ theme: 'auto', watchSpeed: 1, aiLevel: 'normal', enemyPace: 850, sfxVol: 0.7 }, JSON.parse(localStorage.getItem(SKEY) || '{}'));
 function saveSettings(){ localStorage.setItem(SKEY, JSON.stringify(settings)); }
 const WORLDTHEMES = ['ironhall','inkwash','starmaps','dunes','tamriel','teyvat','roshar','antiquity','regency','modern'];
 function applyTheme(factionId){
@@ -637,6 +645,7 @@ function checkEnd(){
       campBtn.style.display = '';
     } else { campBtn.style.display = 'none'; }
     ov.classList.add('on');
+    (won ? SFX.win : SFX.lose)(); // v0.9.7: the field deserves a fanfare (or a dirge)
     return true;
   }
   return false;
@@ -724,12 +733,17 @@ function evLine(ev){
     case 'hit':    return { s:ev.side, x:`${blName(ev.id)} strikes ${blName(ev.on)} for ${ev.dmg}` };
     case 'heroHit': {
       const nm = blName(ev.id); // builds the name map on first use
+      // v0.9.7 fix: the event side is the ATTACKER for minion strikes and
+      // Skirmish (POWER), but the VICTIM for passive/relic/battlecry hero
+      // damage (DEATHGIFT, VOLLEY, PILLAGE, BC, DR). v0.9.6 printed these
+      // two cases with the hero swapped — now the log names the real victim.
+      const atkSide = (blNames.has(ev.id) || ev.id === 'POWER') ? ev.side : (ev.side === 'A' ? 'B' : 'A');
+      const vic = atkSide === 'A' ? 'B' : 'A';
       if (blNames.has(ev.id)) { // a named attacker struck the hero
-        const victim = ev.side === 'A' ? 'your' : 'the enemy';
-        return { s:ev.side, x:`${nm} hits ${victim} hero for ${ev.dmg}` };
+        return { s: ev.side, x:`${nm} hits ${vic === 'A' ? 'your' : 'the enemy'} hero for ${ev.dmg}` };
       }
       const lb = BL_LABELS[ev.id] || ev.id;
-      return { s:ev.side, x:`${who} take ${ev.dmg} hero damage (${lb})` };
+      return { s: vic, x:`${vic === 'A' ? 'You' : 'Enemy'} take ${ev.dmg} hero damage (${lb})` };
     }
     case 'death':  return { s:ev.side, x:`☠ ${blName(ev.id)} falls` };
     case 'buff':   return { s:ev.side, x:`✚ ${blName(ev.id)} is blessed (+1/+1)` };
@@ -760,12 +774,169 @@ function blogTurn(text){
   div.className = 'bl-turn';
   div.textContent = '— ' + text + ' —';
   el.appendChild(div); el.scrollTop = el.scrollHeight;
+  // v0.9.7: a horn for each new turn
+  if(text.startsWith('YOUR TURN')) SFX.turnYou();
+  else if(text.startsWith('ENEMY TURN')) SFX.turnEn();
 }
 function blogReset(){
   const el = document.getElementById('battlelog'); if(el) el.innerHTML = '';
   blLastEv = 0; blNames = null; blLastDivider = '';
+  fxReset(); // v0.9.7: the FX cursor tracks the same event stream
 }
 function aiTurnLegacy(){} // (kept for clarity: the pre-0.9.6 instant behavior is the pace=0 path above)
+
+/* ================= v0.9.7 SOUND ENGINE =================
+   Procedural WebAudio — zero audio assets, zero new files to ship. Every sound
+   is synthesized at runtime (oscillators + filtered noise + gain envelopes),
+   so the patcher never downloads a single mp3. Browsers/Electron require a
+   user gesture before audio: the context spins up on the first pointerdown. */
+const SND = {
+  ctx: null, master: null,
+  vol(){ const v = Number(settings.sfxVol); return isNaN(v) ? 0.7 : v; },
+  ready(){ return !!(SND.ctx && SND.ctx.state === 'running' && SND.vol() > 0.001); },
+  init(){
+    if (SND.ctx) { if (SND.ctx.state === 'suspended') SND.ctx.resume(); return; }
+    const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return;
+    SND.ctx = new AC();
+    SND.master = SND.ctx.createGain();
+    SND.master.gain.value = SND.vol();
+    SND.master.connect(SND.ctx.destination);
+    if (SND.ctx.state === 'suspended') SND.ctx.resume();
+  },
+  setVol(){ if (SND.master) SND.master.gain.value = SND.vol(); },
+  // one voice: oscillator or white noise -> optional lowpass -> gain envelope
+  v(o){
+    if (!SND.ready()) return;
+    const c = SND.ctx, dur = o.dur || 0.15, t0 = c.currentTime + (o.delay || 0);
+    const g = c.createGain();
+    g.gain.setValueAtTime(0.0001, t0);
+    g.gain.exponentialRampToValueAtTime(Math.max(0.001, o.vol || 0.3), t0 + 0.01);
+    g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+    g.connect(SND.master);
+    if (o.noise) {
+      const n = c.createBufferSource();
+      const len = Math.max(64, Math.floor(c.sampleRate * dur));
+      const buf = c.createBuffer(1, len, c.sampleRate);
+      const dd = buf.getChannelData(0);
+      for (let i = 0; i < len; i++) dd[i] = Math.random() * 2 - 1;
+      n.buffer = buf;
+      let node = n;
+      if (o.lp) {
+        const f = c.createBiquadFilter(); f.type = 'lowpass';
+        f.frequency.setValueAtTime(o.lp, t0);
+        if (o.lp2) f.frequency.exponentialRampToValueAtTime(Math.max(40, o.lp2), t0 + dur);
+        n.connect(f); node = f;
+      }
+      node.connect(g);
+      n.start(t0); n.stop(t0 + dur + 0.05);
+    } else {
+      const os = c.createOscillator();
+      os.type = o.type || 'sine';
+      os.frequency.setValueAtTime(o.f || 440, t0);
+      if (o.f2) os.frequency.exponentialRampToValueAtTime(Math.max(1, o.f2), t0 + dur);
+      os.connect(g);
+      os.start(t0); os.stop(t0 + dur + 0.05);
+    }
+  }
+};
+const SFX = {
+  click:   () => SND.v({ f: 1500, f2: 900, dur: .05, vol: .10 }),
+  play:    () => { SND.v({ f: 130, f2: 70, type: 'triangle', dur: .12, vol: .5 }); SND.v({ noise: true, lp: 700, dur: .07, vol: .3 }); }, // card hits the table
+  edict:   () => { SND.v({ f: 392, f2: 523, type: 'sawtooth', dur: .22, vol: .16 }); SND.v({ f: 784, dur: .3, vol: .1, delay: .05 }); },
+  relic:   () => { [660, 990, 1320].forEach((f, i) => SND.v({ f, dur: .5, vol: .11, delay: i * .07 })); }, // a seated chime
+  hit:     () => { SND.v({ f: 95, f2: 55, type: 'triangle', dur: .13, vol: .55 }); SND.v({ noise: true, lp: 1400, dur: .05, vol: .35 }); }, // steel on steel
+  heroHit: () => { SND.v({ f: 70, f2: 40, dur: .3, vol: .6 }); SND.v({ noise: true, lp: 500, dur: .12, vol: .4 }); }, // the banner reels
+  death:   () => { SND.v({ f: 330, f2: 60, type: 'sawtooth', dur: .35, vol: .18 }); SND.v({ noise: true, lp: 900, lp2: 200, dur: .3, vol: .22 }); },
+  buff:    () => { [523, 659, 784].forEach((f, i) => SND.v({ f, f2: f * 1.02, dur: .12, vol: .13, delay: i * .06 })); },
+  passive: () => SND.v({ f: 1046, dur: .16, vol: .11 }),
+  fatigue: () => SND.v({ f: 110, f2: 55, dur: .5, vol: .3 }),
+  turnYou: () => { SND.v({ f: 262, type: 'sawtooth', dur: .25, vol: .11 }); SND.v({ f: 392, type: 'sawtooth', dur: .4, vol: .11, delay: .12 }); }, // rising fifth
+  turnEn:  () => { SND.v({ f: 196, type: 'sawtooth', dur: .25, vol: .11 }); SND.v({ f: 147, type: 'sawtooth', dur: .4, vol: .11, delay: .12 }); }, // falling third
+  coin:    () => { SND.v({ f: 2000, f2: 3000, dur: .12, vol: .13 }); SND.v({ f: 2500, f2: 1500, dur: .35, vol: .1, delay: .12 }); },
+  win:     () => { [523, 659, 784, 1046].forEach((f, i) => SND.v({ f, type: 'sawtooth', dur: .45, vol: .13, delay: i * .12 })); },
+  lose:    () => { [392, 330, 262, 196].forEach((f, i) => SND.v({ f, type: 'sawtooth', dur: .5, vol: .13, delay: i * .14 })); }
+};
+
+/* ---------- v0.9.7 battle FX: lunges, death ghosts, event sounds ----------
+   Runs AFTER the DOM rebuild each render (unlike blogDiff, which runs before),
+   so attacker/target elements exist at their new positions. Cursor-based like
+   the log: every engine event is FX'd exactly once. */
+let fxLastEv = 0, prevRects = {};
+function fxReset(){ fxLastEv = 0; prevRects = {}; }
+function fxLunge(el, tgt){
+  if (!el || !tgt) return;
+  const a = el.getBoundingClientRect(), b = tgt.getBoundingClientRect();
+  const dx = (b.left + b.width / 2 - (a.left + a.width / 2)) * 0.35;
+  const dy = (b.top + b.height / 2 - (a.top + a.height / 2)) * 0.35;
+  el.animate([{ transform: 'translate(0,0)' },
+    { transform: `translate(${dx}px,${dy}px) scale(1.1)`, offset: .55 },
+    { transform: 'translate(0,0)' }], { duration: 280, easing: 'ease-in-out' });
+}
+function fxShake(el){
+  if (!el) return;
+  el.animate([{ transform: 'translate(0,0)' }, { transform: 'translate(-7px,0)' },
+    { transform: 'translate(6px,0)' }, { transform: 'translate(-4px,0)' },
+    { transform: 'translate(0,0)' }], { duration: 240 });
+}
+function findMinion(side, cid){
+  const b = document.getElementById(side === 'A' ? 'myBoard' : 'aiBoard');
+  if (!b) return null;
+  try { return b.querySelector('[data-cid="' + String(cid).replace(/"/g, '\\"') + '"]'); } catch (e) { return null; }
+}
+function heroOf(side){ return document.getElementById(side === 'A' ? 'myHero' : 'aiHero'); }
+function deathGhost(uid){
+  const info = prevRects[uid];
+  if (info) { // dissolve in place where the card last stood
+    const d = document.createElement('div');
+    d.className = 'dghost';
+    d.innerHTML = '<img src="' + info.img + '" alt="">';
+    d.style.left = info.left + 'px'; d.style.top = info.top + 'px';
+    d.style.width = info.width + 'px'; d.style.height = info.height + 'px';
+    document.getElementById('fx').appendChild(d);
+    setTimeout(() => d.remove(), 850);
+  }
+  SFX.death();
+}
+function fxEvent(ev){
+  switch (ev.t) {
+    case 'play': {
+      SFX.play();
+      const el = document.querySelector('[data-uid="' + String(ev.uid || '').replace(/"/g, '\\"') + '"]');
+      if (el) { el.classList.add('spawn'); setTimeout(() => el.classList.remove('spawn'), 320); }
+      break;
+    }
+    case 'edict': SFX.edict(); break;
+    case 'relic':
+    case 'relicfx': SFX.relic(); break;
+    case 'hit': {
+      SFX.hit();
+      const atkEl = findMinion(ev.side, ev.id);
+      const vicSide = ev.side === 'A' ? 'B' : 'A';
+      const tgtEl = findMinion(vicSide, ev.on);
+      fxLunge(atkEl, tgtEl || heroOf(vicSide)); // POWER strikes have no attacker card — just sound
+      fxShake(tgtEl);
+      break;
+    }
+    case 'heroHit': {
+      SFX.heroHit();
+      blName(ev.id); // builds the name map on first use
+      const atkSide = (blNames.has(ev.id) || ev.id === 'POWER') ? ev.side : (ev.side === 'A' ? 'B' : 'A');
+      if (blNames.has(ev.id)) fxLunge(findMinion(atkSide, ev.id), heroOf(atkSide === 'A' ? 'B' : 'A'));
+      break; // the victim hero's hitflash + damage number come from the render diff
+    }
+    case 'death': deathGhost(ev.uid); break;
+    case 'buff': SFX.buff(); break;
+    case 'passive': SFX.passive(); break;
+    case 'fatigue': SFX.fatigue(); break;
+  }
+}
+function fxDiff(st){
+  if (!st || !st.events) return;
+  while (fxLastEv < st.events.length) fxEvent(st.events[fxLastEv++]);
+}
+// audio needs a user gesture to start: spin the context up on the first touch
+document.addEventListener('pointerdown', () => SND.init());
+document.addEventListener('click', (e) => { if (e.target.closest('button')) SFX.click(); });
 
 /* ---------- hover-zoom ---------- */
 const zoom = document.getElementById('zoom');
@@ -811,6 +982,7 @@ let lastSeen = { hpA:null, hpB:null, minions:{} };
 function showCoin(iAmFirst, enF){
   const el = document.getElementById('coin');
   el.classList.add('on');
+  SFX.coin(); // v0.9.7: the toss rings
   el.innerHTML = '<div class="coin3d"><div class="coinface">&#9819;</div></div>' +
     '<div class="cointxt">' + (iAmFirst
       ? 'YOU ACT FIRST — FIRST RITES BLESS YOUR SOVEREIGN'
@@ -857,7 +1029,7 @@ function render(){
     el.innerHTML = p.board.map(m=>{
       const targetable = !watch.on && side==='B' && S.active==='A' && (sel||powTargeting);
       return `<div class="minion ${m.kw==='Guard'?'guard':''} ${m.ready&&side===S.active?'ready':''} ${targetable?'targetable':''} ${sel===m.uid&&side==='A'?'selected':''}"
-        data-uid="${m.uid}">
+        data-uid="${m.uid}" data-cid="${m.id}">
         <img src="${m.img}" loading="lazy"><div class="nm">${m.name}</div>
         ${m.kw?`<div class="kw" data-kw="${m.kw}">${KWTXT[m.kw]}</div>`:''}
         <div class="gem atk">${m.atk}</div><div class="gem hp">${m.hp}</div></div>`;
@@ -871,6 +1043,13 @@ function render(){
       if(kwEl) kwEl.title = KWDESC[kwEl.dataset.kw];
     });
   };
+  // v0.9.7: remember where the living minions stand — death ghosts dissolve here
+  prevRects = {};
+  document.querySelectorAll('.minion').forEach(d => {
+    const r = d.getBoundingClientRect();
+    prevRects[d.dataset.uid] = { left: r.left, top: r.top, width: r.width, height: r.height,
+      img: (d.querySelector('img') || {}).src || '' };
+  });
   boardEl(my, 'myBoard', 'A'); boardEl(ai, 'aiBoard', 'B');
   // floating damage numbers for minions (diff vs last render)
   const nowBoard = {};
@@ -905,6 +1084,7 @@ function render(){
     if(kwEl) kwEl.title = KWDESC[kwEl.dataset.kw];
   });
   refit(); // v0.9.1: keep the fit-to-window scale correct as the board/hand change
+  fxDiff(S); // v0.9.7: lunges, death ghosts + sounds, after the DOM is rebuilt
 }
 
 function handClick(i, el){
@@ -1056,12 +1236,15 @@ function showSettings(){
   document.getElementById('setAI').value = settings.aiLevel || 'normal';
   const paceEl = document.getElementById('setPace');
   if(paceEl) paceEl.value = String(settings.enemyPace === undefined ? 850 : settings.enemyPace);
+  const sfxEl = document.getElementById('setSfx');
+  if(sfxEl) sfxEl.value = String(settings.sfxVol === undefined ? 0.7 : settings.sfxVol);
   document.getElementById('settings').classList.add('on');
 }
 function setTheme(v){ settings.theme = v; saveSettings(); applyTheme(me.faction || null); }
 function setWatch(v){ settings.watchSpeed = Number(v); saveSettings(); }
 function setAI(v){ settings.aiLevel = v; saveSettings(); }
 function setPace(v){ settings.enemyPace = Number(v); saveSettings(); }
+function setSfxVol(v){ settings.sfxVol = Number(v); saveSettings(); SND.init(); SND.setVol(); }
 function clearDecks(){ savedDecks = {}; localStorage.removeItem(DKEY); alert('Custom decks cleared — realms return to their doctrine decks.'); location.reload(); }
 
 /* ================= MULTIPLAYER (v0.5 teaser) ================= */
@@ -1202,6 +1385,13 @@ function watchEnd(){
       <option value="850">Animated — watch every enemy action (recommended)</option>
       <option value="450">Animated — fast</option>
       <option value="0">Instant — classic behavior</option>
+    </select>
+    <label>Sound volume</label>
+    <select id="setSfx" onchange="setSfxVol(this.value)">
+      <option value="1">Loud — full sound</option>
+      <option value="0.7">Normal — balanced (recommended)</option>
+      <option value="0.3">Soft — subtle cues</option>
+      <option value="0">Off — silent duels</option>
     </select>
     <label>Saved decks</label>
     <div style="margin:8px 0"><button onclick="clearDecks()">Clear all custom decks</button></div>
