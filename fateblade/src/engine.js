@@ -180,10 +180,11 @@
     return t;
   }
   const hasRelic = (p, rl) => p.relics.some((x) => x.rl === rl);
-  // damage to a hero, respecting EMBERWARD (only vs attacks)
+  // damage to a hero; EMBERWARD shaves ALL incoming hero damage (v0.14.2 buff: was attacks only —
+  // the passive sat at 38.5% when leading in the 1.86M-game deep playtest).
   function heroDamage(S, victimSide, dmg, fromAttack) {
     const vp = S[victimSide];
-    if (fromAttack && hasP(vp, 'EMBERWARD')) dmg = Math.max(1, dmg - rites(S, victimSide));
+    if (hasP(vp, 'EMBERWARD')) dmg = Math.max(1, dmg - rites(S, victimSide));
     vp.hp -= dmg;
     return dmg;
   }
@@ -236,7 +237,7 @@
     if (m.kw === 'Guard' && hasP(p, 'BULWARK')) m.hp += 2 * r; // v0.6.4 buff: +2 HP (was +1)
     if (m.kw === 'Charge' && hasP(p, 'VANGUARD')) m.atk += r;
     if (m.kw === 'Lifesteal' && hasP(p, 'SOULTITHE')) m.atk += r;
-    if (m.kw === 'Ranged' && hasP(p, 'LONGSIGHT')) m.hp += r;
+    if (m.kw === 'Ranged' && hasP(p, 'LONGSIGHT')) { m.atk += r; m.hp += r; } // v0.14.2 buff: +1 HP -> +1/+1 (37.2% when leading, weakest passive)
     p.board.push(m);
     S.events.push({ t: 'play', side, id: c.id, uid: c.uid, kw: c.kw || null, cost: c.cost });
     // Battlecry templates (fixed/fair automatic targeting)
