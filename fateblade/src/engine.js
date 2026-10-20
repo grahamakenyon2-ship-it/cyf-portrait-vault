@@ -142,10 +142,24 @@
       const dr = t.dr;
       if (dr) {
         S.events.push({ t: 'dr', side: victimSide, id: dr, src: t.id });
+        // v0.12: parameterized magnitudes — drHero1/drPing/drHeal2/drSummon/drDraw
+        // keep their exact v0.11 behavior (byte-identical on the same seeds);
+        // drPing2/drPing3 hit a random enemy minion for N; drAoe1/drAoe2 sweep
+        // the enemy board; drAoeAll1 is the nuclear option — every minion on
+        // BOTH boards takes 1, including the rest of yours; drHero2 burns face.
+        const drDmg = { drPing: 1, drPing2: 2, drPing3: 3 }[dr];
+        const drAoe = { drAoe1: 1, drAoe2: 2 }[dr];
         if (dr === 'drHero1') { S[foeSide].hp -= 1; S.events.push({ t: 'heroHit', side: foeSide, id: 'DR', dmg: 1 }); }
-        else if (dr === 'drPing' && S[foeSide].board.length) {
+        else if (dr === 'drHero2') { S[foeSide].hp -= 2; S.events.push({ t: 'heroHit', side: foeSide, id: 'DR', dmg: 2 }); }
+        else if (drDmg && S[foeSide].board.length) {
           const m = S[foeSide].board[Math.floor(S.rng() * S[foeSide].board.length)];
-          damageMinion(S, foeSide, m.uid, 1);
+          damageMinion(S, foeSide, m.uid, drDmg);
+        }
+        else if (drAoe) { S[foeSide].board.slice().forEach((m) => damageMinion(S, foeSide, m.uid, drAoe)); }
+        else if (dr === 'drAoeAll1') {
+          // both boards, in a stable order; each hit can chain further dr's
+          S[victimSide === 'A' ? 'B' : 'A'].board.slice().forEach((m) => damageMinion(S, victimSide === 'A' ? 'B' : 'A', m.uid, 1));
+          vp.board.slice().forEach((m) => damageMinion(S, victimSide, m.uid, 1));
         }
         else if (dr === 'drHeal2') { vp.hp = Math.min(MAX_HP, vp.hp + 2); }
         else if (dr === 'drSummon' && vp.board.length < MAX_BOARD) { vp.board.push(token(vp, S)); S.events.push({ t: 'play', side: victimSide, id: 'TOKEN', uid: 'TOKEN' + vp.board.length, kw: null, cost: 1 }); }
@@ -228,10 +242,21 @@
     // Battlecry templates (fixed/fair automatic targeting)
     if (c.bc) {
       S.events.push({ t: 'bc', side, id: c.bc, src: c.id });
+      // v0.12: parameterized magnitudes — bcHero1/bcPing/bcHeal2 keep their exact
+      // v0.11 behavior; bcPing2/bcPing3 hit a random enemy minion for N;
+      // bcAoe1 sweeps the enemy board; bcAoeAll1 sweeps BOTH boards (yours too);
+      // bcHero2 burns the enemy Sovereign for 2.
+      const bcDmg = { bcPing: 1, bcPing2: 2, bcPing3: 3 }[c.bc];
       if (c.bc === 'bcHero1') { foe.hp -= 1; S.events.push({ t: 'heroHit', side: other(side), id: 'BC', dmg: 1 }); }
-      else if (c.bc === 'bcPing' && foe.board.length) {
+      else if (c.bc === 'bcHero2') { foe.hp -= 2; S.events.push({ t: 'heroHit', side: other(side), id: 'BC', dmg: 2 }); }
+      else if (bcDmg && foe.board.length) {
         const t = foe.board[Math.floor(S.rng() * foe.board.length)];
-        damageMinion(S, other(side), t.uid, 1);
+        damageMinion(S, other(side), t.uid, bcDmg);
+      }
+      else if (c.bc === 'bcAoe1') { foe.board.slice().forEach((t) => damageMinion(S, other(side), t.uid, 1)); }
+      else if (c.bc === 'bcAoeAll1') {
+        foe.board.slice().forEach((t) => damageMinion(S, other(side), t.uid, 1));
+        p.board.slice().forEach((t) => { if (t.uid !== m.uid) damageMinion(S, side, t.uid, 1); });
       }
       else if (c.bc === 'bcHeal2') { p.hp = Math.min(MAX_HP, p.hp + 2); }
       else if (c.bc === 'bcBuff') {
@@ -262,6 +287,17 @@
       case 'fxFormation': p.board.forEach((m) => { if (m.kw === 'Guard') m.hp += 2; }); break;
       case 'fxLevy': { p.board.forEach((m) => { if (m.id.startsWith('TOKEN@')) { m.atk += 1; m.hp += 1; } }); if (p.board.length < MAX_BOARD) p.board.push(token(p, S)); break; }
       case 'fxPillage': { foe.hp -= 2; S.events.push({ t: 'heroHit', side: other(side), id: 'PILLAGE', dmg: 2 }); if (p.board.length > foe.board.length) draw(S, side); break; }
+      // v0.12: stronger variants — the edict tier the audit asked for
+      case 'fxPingAll2': foe.board.slice().forEach((t) => damageMinion(S, other(side), t.uid, 2)); break;
+      case 'fxAoe3':     foe.board.slice().forEach((t) => damageMinion(S, other(side), t.uid, 3)); break;
+      case 'fxSnipe4': { const t = foe.board.slice().sort((a,b) => (b.atk+b.hp)-(a.atk+a.hp))[0]; if (t) damageMinion(S, other(side), t.uid, 4); break; }
+      case 'fxVolley2': { const n = p.board.filter((m) => m.kw === 'Ranged').length; const d = n * 2; if (d > 0) { foe.hp -= d; S.events.push({ t: 'heroHit', side: other(side), id: 'VOLLEY', dmg: d }); } break; }
+      case 'fxHero3': { foe.hp -= 3; S.events.push({ t: 'heroHit', side: other(side), id: 'BURN', dmg: 3 }); break; }
+      case 'fxDraw3': draw(S, side); draw(S, side); draw(S, side); break;
+      case 'fxHealHero6': p.hp = Math.min(MAX_HP, p.hp + 6); break;
+      case 'fxRally3': { for (let i = 0; i < 3; i++) if (p.board.length < MAX_BOARD) p.board.push(token(p, S)); break; }
+      case 'fxMana3': p.mana += 3; break;
+      case 'fxExecute2': { foe.board.slice().sort((a,b) => b.atk-a.atk).slice(0, 2).forEach((t) => damageMinion(S, other(side), t.uid, t.hp + 99)); break; }
     }
   }
 
@@ -532,10 +568,21 @@
     else if (c.kw === 'Relentless') v += 1.8;  // v0.11: two swings a turn
     if (c.bc === 'bcDraw') v += 1.6;
     if (c.bc === 'bcPing') v += 0.4 + foe.board.length * 0.4;
+    if (c.bc === 'bcPing2') v += 0.8 + foe.board.length * 0.7;
+    if (c.bc === 'bcPing3') v += 1.2 + foe.board.length * 0.9;
+    if (c.bc === 'bcAoe1') v += foe.board.reduce((s2, t) => s2 + (t.hp <= 1 ? (t.atk + t.hp) * 1.1 : 1.1), 0);
+    if (c.bc === 'bcAoeAll1') v += (foe.board.reduce((s2, t) => s2 + (t.hp <= 1 ? (t.atk + t.hp) * 1.1 : 1.1), 0) - p.board.length * 1.0);
+    if (c.bc === 'bcHero2') v += 1.2;
     if (c.bc === 'bcHeal2') v += Math.min(2, MAX_HP - p.hp) * 0.5;
     if (c.bc === 'bcSummon') v += 1.7;
     if (c.bc === 'bcBuff') v += p.board.length * 1.1;
-    if (c.dr) v += 0.9;
+    // v0.12: deathrattle value scales with magnitude (dr quality mattered in the audit)
+    // v0.12: every v0.11 dr template keeps its exact old score (flat 0.9);
+    // only the NEW magnitude templates scale — old data must play identically
+    const drVal = { drPing2: 1.7, drPing3: 2.5, drAoe1: 1.0 + foe.board.length * 0.9,
+      drAoe2: 1.6 + foe.board.length * 1.5, drAoeAll1: 0.6 + (foe.board.length - p.board.length) * 0.9,
+      drHero2: 1.7 }[c.dr];
+    if (c.dr) v += (drVal !== undefined ? drVal : 0.9);
     if (c.rarity === 'legendary') v += 1.2;
     return v;
   }
