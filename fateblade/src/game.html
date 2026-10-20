@@ -75,8 +75,10 @@
   .minion.guard .kw{color:#f96; font-weight:bold;}
   .minion.shielded{outline:2px solid #9cf; box-shadow:0 0 10px #9cf9, inset 0 0 12px #9cf4;}
   .hand{display:flex; gap:8px; justify-content:center; min-height:185px; align-items:flex-end;}
-  .hcard{width:118px; height:164px; border:6px solid transparent; border-image:var(--theme-panel, linear-gradient(#2a2216,#191308)) 40 fill; background:#0d0a07; cursor:pointer; position:relative; transition:transform .12s;}
-  .hcard:hover{transform:translateY(-10px);}
+  /* v0.13 JUICE: the hand fans in an arc — per-card rotation/lift come from
+     the --fr/--fy custom properties render() writes on each .hcard */
+  .hcard{width:118px; height:164px; border:6px solid transparent; border-image:var(--theme-panel, linear-gradient(#2a2216,#191308)) 40 fill; background:#0d0a07; cursor:pointer; position:relative; transition:transform .14s; transform:translateY(var(--fy,0px)) rotate(var(--fr,0deg)); transform-origin:50% 130%;}
+  .hcard:hover{transform:translateY(calc(var(--fy,0px) - 16px)) rotate(var(--fr,0deg)) scale(1.07); z-index:5;}
   .hcard.playable{outline:1px solid var(--gold); box-shadow:0 0 10px #000;}
   .hcard img{width:100%; height:100px; object-fit:cover; display:block;}
   .hcard .nm{font-size:10.5px; white-space:nowrap; overflow:hidden; padding:0 2px;}
@@ -331,6 +333,32 @@
   .dfloat{position:absolute; font-family:'Cinzel', Georgia, serif; font-weight:900; font-size:26px;
     color:#ff5a4a; text-shadow:0 2px 4px #000, 0 0 12px #f006; animation:dfloat 1.15s ease-out forwards;}
   .dfloat.heal{color:#6fe08f; text-shadow:0 2px 4px #000, 0 0 12px #0f06;}
+  /* v0.13 JUICE: the played card arcs from your hand onto the field */
+  .playarc{position:fixed; z-index:70; pointer-events:none; border:6px solid transparent;
+    border-image:var(--theme-panel, linear-gradient(#2a2216,#191308)) 40 fill; background:#0d0a07;
+    transition:transform .42s cubic-bezier(.3,.7,.4,1), opacity .42s ease-in;}
+  .playarc img{width:100%; height:100%; object-fit:cover; display:block;}
+  /* v0.13 JUICE: damage preview badges — hover a target while an attacker is
+     selected (or Skirmish is armed) and both fighters preview the outcome */
+  .dprev{position:absolute; top:-18px; left:50%; transform:translateX(-50%); font-size:14px; font-weight:900;
+    background:#000d; padding:2px 7px; border:1px solid var(--gold-dim); white-space:nowrap; z-index:6;
+    color:#ff5a4a; text-shadow:0 1px 2px #000; pointer-events:none;}
+  .dprev.blk{color:#e8dcc0;}
+  .dprev.lethal{color:#ff2a1a; border-color:#ff2a1a; font-size:15px; box-shadow:0 0 12px #f006;}
+  /* v0.13 JUICE: the mulligan screen */
+  .mullrow{display:flex; gap:10px; justify-content:center; margin:14px 0; flex-wrap:wrap;}
+  .mcard{width:118px; height:164px; border:6px solid transparent; border-image:var(--theme-panel, linear-gradient(#2a2216,#191308)) 40 fill;
+    background:#0d0a07; cursor:pointer; position:relative; transition:transform .12s, filter .12s;}
+  .mcard:hover{transform:translateY(-8px);}
+  .mcard.repl{filter:saturate(.25) brightness(.6); transform:translateY(10px);}
+  .mcard.repl:hover{transform:translateY(4px);}
+  .mcard .rtag{position:absolute; top:-14px; left:50%; transform:translateX(-50%); font-size:11px; letter-spacing:1px;
+    background:#7a1f1f; color:#fff; padding:2px 6px; border:1px solid #ff5a4a; white-space:nowrap;}
+  .mcard img{width:100%; height:100px; object-fit:cover; display:block;}
+  .mcard .nm{font-size:10.5px; white-space:nowrap; overflow:hidden; padding:0 2px;}
+  .mcard .st{font-size:13px; text-align:center;}
+  .mcard .cost{position:absolute; top:-7px; left:-7px; width:22px; height:22px; border-radius:50%;
+    background:#1c4d8a; color:#fff; font-size:13px; font-weight:bold; display:flex; align-items:center; justify-content:center; border:1px solid #6ea8ff;}
   /* v0.9.7 battle FX */
   .dghost{position:absolute; z-index:30; pointer-events:none; border:6px solid transparent;
     border-image:var(--theme-panel, linear-gradient(#2a2216,#191308)) 40 fill; background:#0d0a07;
@@ -539,7 +567,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.12.2';
+const GAME_VERSION = '0.13.0';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
@@ -754,12 +782,14 @@ function startMatch(){
   lastSeen = { hpA:null, hpB:null, minions:{} };
   aiAnimSeq++; blogReset(); // v0.9.6: fresh battle log per duel, kill any stale animation
   blogTurn(iAmFirst ? 'YOUR TURN 1' : 'ENEMY TURN 1');
-  document.getElementById('overlay').classList.remove('on');
-  show('match'); render();
-  log(iAmFirst
-    ? `🪙 You won the coin flip — First Rites blesses ${me.sov.name} for your first three turns.`
-    : `🪙 ${enF.label} won the coin flip — their Sovereign is blessed. You draw 4.`);
-  showCoin(iAmFirst, enF);
+  openMull(()=>{ // v0.13: shape the opening hand before the banners fly
+    document.getElementById('overlay').classList.remove('on');
+    show('match'); render();
+    log((mullTook ? `🧹 ${mullTook} card${mullTook>1?'s':''} exchanged. ` : '') + (iAmFirst
+      ? `🪙 You won the coin flip — First Rites blesses ${me.sov.name} for your first three turns.`
+      : `🪙 ${enF.label} won the coin flip — their Sovereign is blessed. You draw 4.`));
+    showCoin(iAmFirst, enF);
+  });
 }
 function log(t){ document.getElementById('log').textContent = t; }
 function checkEnd(){
@@ -1202,6 +1232,130 @@ function showCoin(iAmFirst, enF){
   setTimeout(()=>{ el.classList.remove('on'); if(!iAmFirst) setTimeout(aiTurn, 450); }, 2100);
 }
 
+/* ---------- v0.13 MULLIGAN (opening hand) ----------
+   Both duels and campaign chapters offer an HS-style opening-hand redraw:
+   click cards to send them back, they're shuffled into the deck and you draw
+   fresh ones. The foe mulligans too (overpriced openers go back, threshold
+   one lower when they act second). Pure UI-layer: the engine is untouched —
+   swaps happen after startMatch drew the opening hands, before turn one. */
+let mullReveal = null;      // what runs when the duel actually begins
+let mullMarked = new Set(); // hand indices to replace
+let mullTook = 0;           // exchanged count, for the reveal banner
+(function injectMullModal(){
+  const m = document.createElement('div'); m.className='modal'; m.id='mull';
+  m.innerHTML = '<div class="mbox" id="mullbox"></div>';
+  document.body.appendChild(m);
+})();
+function openMull(reveal){
+  mullReveal = reveal; mullMarked = new Set(); mullTook = 0;
+  const box = document.getElementById('mullbox');
+  box.innerHTML = `
+    <div style="font-size:12px;letter-spacing:3px;color:#c9b78e">THE OPENING HAND</div>
+    <h2 style="color:var(--gold);letter-spacing:3px;margin:6px 0 4px">MULLIGAN</h2>
+    <div style="font-size:13.5px;color:#e6d8b2;font-style:italic;max-width:420px;margin:0 auto">
+      Click a card to send it back into the deck and draw a fresh one; click again to keep it.
+      Your foe reshuffles their openers too.</div>
+    <div class="mullrow" id="mullRow"></div>
+    <div style="display:flex;gap:10px;justify-content:center">
+      <button class="themebtn" onclick="mullConfirm()">⚔ TO BATTLE</button></div>`;
+  document.getElementById('mullRow').innerHTML = S.A.hand.map((c,i)=>{
+    const isSpell = c.type==='edict'||c.type==='relic';
+    return `<div class="mcard" onclick="mullToggle(${i},this)">
+      <img src="${c.img}" loading="lazy"><div class="nm">${c.name}</div>
+      <div class="cost">${c.cost}</div>
+      <div class="st">${isSpell?`<span style="color:#f9c;letter-spacing:1px">${c.type.toUpperCase()}</span>`:`<span style="color:var(--atk)">${c.atk} ATK</span> · <span style="color:var(--hp)">${c.hp} HP</span>`}</div>
+      ${c.kw?`<div style="font-size:10px;color:#8fd;text-align:center">${KWTXT[c.kw]}</div>`:''}</div>`;
+  }).join('');
+  document.getElementById('mull').classList.add('on');
+}
+function mullToggle(i, el){
+  const tag = el.querySelector('.rtag');
+  if(mullMarked.has(i)){ mullMarked.delete(i); el.classList.remove('repl'); if(tag) tag.remove(); }
+  else { mullMarked.add(i); el.classList.add('repl'); const t = document.createElement('div'); t.className='rtag'; t.textContent='↺ REPLACE'; el.appendChild(t); }
+}
+function mullConfirm(){
+  document.getElementById('mull').classList.remove('on');
+  const rep = [...mullMarked].sort((a,b)=>b-a); // splice high-first so indices stay true
+  for(const i of rep) S.A.deck.push(S.A.hand.splice(i,1)[0]);
+  shuffle(S.A.deck); for(let i=0;i<rep.length;i++) E.draw(S,'A');
+  mullTook = rep.length;
+  // the foe mulligans like a sensible rival: overpriced openers go back
+  const thr = S.first === 'B' ? 5 : 4;
+  const eb = []; S.B.hand.forEach((c,i)=>{ if(c.cost >= thr) eb.push(i); });
+  for(const i of eb.sort((a,b)=>b-a)) S.B.deck.push(S.B.hand.splice(i,1)[0]);
+  shuffle(S.B.deck); for(let i=0;i<eb.length;i++) E.draw(S,'B');
+  const r = mullReveal; mullReveal = null;
+  if(r) r();
+}
+
+/* ---------- v0.13 JUICE: play arc + damage preview ---------- */
+function playArc(r0, card){
+  // where the card lands: its own board slot (minions keep the card uid), else the field
+  let tr = null;
+  if(card.type!=='edict' && card.type!=='relic'){
+    const m = document.querySelector('#myBoard .minion[data-uid="'+card.uid+'"]');
+    if(m) tr = m.getBoundingClientRect();
+  }
+  if(!tr){ const b = document.getElementById('myBoard'); tr = b ? b.getBoundingClientRect() : r0; }
+  const d = document.createElement('div'); d.className = 'playarc';
+  d.innerHTML = `<img src="${card.img}">`;
+  d.style.left = r0.left+'px'; d.style.top = r0.top+'px';
+  d.style.width = r0.width+'px'; d.style.height = r0.height+'px';
+  document.getElementById('fx').appendChild(d);
+  const dx = tr.left + tr.width/2 - (r0.left + r0.width/2);
+  const dy = tr.top + tr.height/2 - (r0.top + r0.height/2);
+  requestAnimationFrame(()=>{ requestAnimationFrame(()=>{
+    d.style.transform = `translate(${dx}px,${dy}px) scale(.4) rotate(${dx>0?7:-7}deg)`;
+    d.style.opacity = '0';
+  }); });
+  setTimeout(()=>d.remove(), 520);
+}
+function clearDprev(){ document.querySelectorAll('.dprev').forEach(d=>d.remove()); }
+function dprevAt(host, txt, cls){
+  if(!host) return;
+  const d = document.createElement('div'); d.className = 'dprev ' + (cls||''); d.textContent = txt;
+  host.appendChild(d);
+}
+function showDprevMinion(div){
+  clearDprev();
+  const t = S.B.board.find(x=>x.uid===div.dataset.uid); if(!t) return;
+  if(!powTargeting){
+    if(!E.canAttack(S,'A',sel,{uid:t.uid})){ dprevAt(div, '⛔ A GUARD BLOCKS THE WAY', 'blk'); return; }
+  }
+  const bane = !powTargeting && (S.A.board.find(x=>x.uid===sel)||{}).kw === 'Bane';
+  const dmg = powTargeting ? E.powerDmg(S,'A') : (bane ? 999 : (S.A.board.find(x=>x.uid===sel)||{}).atk);
+  if(t.shield > 0) dprevAt(div, '🛡 AEGIS ABSORBS', 'blk');
+  else if(bane) dprevAt(div, '☠ BANE DESTROYS');
+  else dprevAt(div, '−' + dmg + (t.hp <= dmg ? ' ☠' : ''));
+  // attacker retaliation badge (attacks only — Skirmish never takes retaliation)
+  if(!powTargeting){
+    const m = S.A.board.find(x=>x.uid===sel);
+    const atkEl = document.querySelector('#myBoard .minion[data-uid="'+sel+'"]');
+    if(m && atkEl){
+      if(t.kw === 'Bane') dprevAt(atkEl, '☠ BANE DESTROYS YOU');
+      else if(m.kw !== 'Ranged' && t.atk > 0){
+        if(m.shield > 0) dprevAt(atkEl, '🛡 AEGIS ABSORBS', 'blk');
+        else dprevAt(atkEl, '−' + t.atk + (m.hp <= t.atk ? ' ☠' : ''));
+      }
+    }
+  }
+}
+function showDprevHero(){
+  clearDprev();
+  const heroEl = document.getElementById('aiHero');
+  let dmg;
+  if(powTargeting){ dmg = E.powerDmg(S,'A'); } // Skirmish: no EMBERWARD shave on heroes
+  else {
+    const m = S.A.board.find(x=>x.uid===sel); if(!m) return;
+    if(m.shocked){ dprevAt(heroEl, 'SHOCK CANNOT HIT THE SOVEREIGN', 'blk'); return; }
+    if(!E.canAttack(S,'A',sel,{hero:true})){ dprevAt(heroEl, '⛔ A GUARD BLOCKS THE WAY', 'blk'); return; }
+    const ember = S.B.sov && S.B.sov.passive && S.B.sov.passive.id === 'EMBERWARD';
+    dmg = ember ? Math.max(1, m.atk - ((S.first==='B' && S.turn<=5) ? 2 : 1)) : m.atk;
+  }
+  const after = S.B.hp - dmg;
+  dprevAt(heroEl, after <= 0 ? '−' + dmg + ' · ☠ LETHAL' : '−' + dmg + ' → ' + after, after <= 0 ? 'lethal' : '');
+}
+
 /* ---------- rendering ---------- */
 function render(){
   if(!S) return;
@@ -1232,6 +1386,10 @@ function render(){
     el.title = p.sov ? `${p.sov.name} — ${p.sov.passive.name}: ${p.sov.passive.desc}` : '';
     el.className = 'hero' + (side==='B' && !watch.on && (sel||powTargeting) && !ai.board.some(m=>m.kw==='Guard') ? ' targetable' : '');
     el.onclick = ()=>heroClick(side);
+    if(side==='B'){ // v0.13: hover the enemy Sovereign while targeting → damage preview
+      el.onmouseenter = ()=>{ if(!watch.on && S && S.active==='A' && (sel||powTargeting)) showDprevHero(); };
+      el.onmouseleave = ()=>clearDprev();
+    }
     const prev = side==='A' ? lastSeen.hpA : lastSeen.hpB;
     if(prev !== null && p.hp !== prev){
       floatAt(el, (p.hp > prev ? '+' : '−') + Math.abs(p.hp - prev), p.hp > prev);
@@ -1253,9 +1411,10 @@ function render(){
     }).join('');
     el.querySelectorAll('.minion').forEach(div=>{
       div.onclick = ()=>minionClick(side, div.dataset.uid);
-      div.onmouseenter = (ev)=>{ const m = p.board.find(x=>x.uid===div.dataset.uid); if(m) showZoom(m, ev); };
+      div.onmouseenter = (ev)=>{ const m = p.board.find(x=>x.uid===div.dataset.uid); if(m) showZoom(m, ev);
+        if(side==='B' && !watch.on && S && S.active==='A' && (sel||powTargeting)) showDprevMinion(div); };
       div.onmousemove = moveZoom;
-      div.onmouseleave = hideZoom;
+      div.onmouseleave = ()=>{ hideZoom(); clearDprev(); };
       const kwEl = div.querySelector('.kw');
       if(kwEl) kwEl.title = KWDESC[kwEl.dataset.kw];
     });
@@ -1283,8 +1442,11 @@ function render(){
 
   const hd = document.getElementById('hand');
   const isSpell = (c)=>c.type==='edict'||c.type==='relic';
+  const hn = my.hand.length; // v0.13: fan arc vars — gentle rotation + arc lift
+  const fanR = (i)=>((i-(hn-1)/2)*Math.min(3.5, 28/hn)).toFixed(1);
+  const fanY = (i)=>(Math.pow(Math.abs(i-(hn-1)/2),1.35)*6).toFixed(1);
   hd.innerHTML = my.hand.map((c,i)=>`
-    <div class="hcard r-${c.rarity||'common'} ${isSpell(c)?'spell':''} ${E.canPlay(S,'A',i)?'playable':''}" data-i="${i}">
+    <div class="hcard r-${c.rarity||'common'} ${isSpell(c)?'spell':''} ${E.canPlay(S,'A',i)?'playable':''}" data-i="${i}" style="--fr:${fanR(i)}deg;--fy:${fanY(i)}px">
       <img src="${c.img}" loading="lazy"><div class="vig"></div>
       <div class="gem cost">${c.cost}</div>
       ${isSpell(c)?`<div class="typerow">${c.type==='edict'?'EDICT':'RELIC'}</div>`:''}
@@ -1307,7 +1469,7 @@ function render(){
 function handClick(i, el){
   if(watch.on || S.active!=='A') return;
   const c = S.A.hand[i];
-  if(E.playCard(S, 'A', i)){ sel=null; render(); checkEnd(); }
+  if(E.playCard(S, 'A', i)){ sel=null; const r0 = el.getBoundingClientRect(); render(); playArc(r0, c); checkEnd(); }
   else {
     const reason = S.A.mana < E.effCost(S, 'A', c) ? 'Not enough mana.'
       : (c.type === 'relic' && S.A.relics.length >= E.MAX_RELICS) ? 'Your relic seats are full (2 max).'
@@ -1955,12 +2117,14 @@ function campLaunch(){
   aiAnimSeq++; blogReset(); // v0.9.6: fresh battle log per chapter, kill stale animation
   document.getElementById('overlay').classList.remove('on');
   applyTheme(myF.id);
-  show('match'); render();
-  blogTurn(r.enemyFirst ? 'ENEMY TURN 1' : 'YOUR TURN 1');
-  log(r.enemyFirst
-    ? `📜 Chapter ${idx+1}: ${ch.name} — ${enF.label} struck first. Your Sovereign draws an extra card.`
-    : `📜 Chapter ${idx+1}: ${ch.name} — you hold the initiative. ${enF.label} awaits.`);
-  if(r.enemyFirst) setTimeout(aiTurn, 900);
+  openMull(()=>{ // v0.13: mulligan before the chapter banner
+    show('match'); render();
+    blogTurn(r.enemyFirst ? 'ENEMY TURN 1' : 'YOUR TURN 1');
+    log((mullTook ? `🧹 ${mullTook} card${mullTook>1?'s':''} exchanged. ` : '') + (r.enemyFirst
+      ? `📜 Chapter ${idx+1}: ${ch.name} — ${enF.label} struck first. Your Sovereign draws an extra card.`
+      : `📜 Chapter ${idx+1}: ${ch.name} — you hold the initiative. ${enF.label} awaits.`));
+    if(r.enemyFirst) setTimeout(aiTurn, 900);
+  });
 }
 function campNext(){
   document.getElementById('overlay').classList.remove('on');
