@@ -485,6 +485,7 @@
     <span class="dblab">COST</span><span id="dbCostChips"></span>
     <span class="dblab">TYPE</span><span id="dbTypeChips"></span>
     <span class="dblab">KEYWORD</span><span id="dbKwChips"></span>
+  <span class="dblab">SORT</span><span id="dbSortChips"></span>
   </div>
   <div class="dbwrap">
     <div class="dbdeck"><div class="dbdecktitle">YOUR DECK — CLICK TO REMOVE</div><div id="dbDeckList"></div></div>
@@ -578,7 +579,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.18.0';
+const GAME_VERSION = '0.19.1';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
@@ -1225,13 +1226,14 @@ document.addEventListener('click', (e) => { if (e.target.closest('button')) SFX.
 
 /* ---------- hover-zoom ---------- */
 const zoom = document.getElementById('zoom');
+function kwList(c){ return (c.kw||'').split(/[+,]/).map(s=>s.trim()).filter(Boolean).map(k=>`<b>${KWTXT[k]||k}</b> — ${KWDESC[k]||''}`).join('<br>'); } // v0.20-ready: renders multi-keyword lists
 function showZoom(c, ev){
   const esc = (s)=>String(s||'').replace(/"/g,'&quot;');
   zoom.className = 'r-' + (c.rarity || 'common');
   zoom.innerHTML = `<div class="zc">${c.cost}</div><img src="${c.img}">
     <div class="zn">${c.name}</div>
     <div class="zr">${c.rarity}${c.passive ? ' · sovereign' : ''}</div>
-    ${c.kw?`<div class="zk"><b>${KWTXT[c.kw]}</b> — ${KWDESC[c.kw]}</div>`:''}
+    ${kwList(c)?`<div class="zk">${kwList(c)}</div>`:''}
     ${c.ability?`<div class="zpv">${c.ability}</div>`:''}
     ${c.passive?`<div class="zpv"><b>${c.passive.name}</b> (Sovereign passive): ${c.passive.desc}</div>`:''}
     <div class="zs">${(c.type==='edict'||c.type==='relic') ? `<span style="color:#f9c;letter-spacing:1px">${c.type==='edict'?'EDICT — ONE-SHOT':'RELIC — PERSISTENT'}</span>` : `<span class="statgem atk">${c.atk}<i>ATK</i></span><span class="statgem hp">${c.hp}<i>HP</i></span>`}</div>`;
@@ -1568,7 +1570,7 @@ function dbPass(c){
     else if(c.cost !== Number(dbFilters.cost)) return false;
   }
   if(dbFilters.type !== null && (c.type || 'minion') !== dbFilters.type) return false;
-  if(dbFilters.kw !== null && c.kw !== dbFilters.kw) return false;
+  if(dbFilters.kw !== null && !(c.kw||'').split(/[+,]/).map(s=>s.trim()).includes(dbFilters.kw)) return false; // v0.20-ready: matches inside multi-keyword lists
   return true;
 }
 function pickPoolDB(p){
@@ -1587,7 +1589,7 @@ function openDeckBuilder(facId){
   dbFac = facId; applyTheme(facId);
   const f = facOf(facId);
   dbCnt = new Map(); dbDirty = false; dbSov = null; // clean slate — ↺ Restore Doctrine loads the tuned 30-card default
-  dbFilters = { q:'', cost:null, type:null, kw:null }; // v0.9.5: fresh filters per realm
+  dbFilters = { q:'', cost:null, type:null, kw:null, sort:'cost' }; // v0.9.5 fresh filters; v0.19.1 sort chips
   const inp = document.getElementById('dbSearch'); if(inp) inp.value = '';
   const nm = document.getElementById('dbName'); if(nm) nm.value = '';
   document.getElementById('dbTitle').textContent = f.label.toUpperCase() + ' — ' + f.identity.name.toUpperCase();
@@ -1602,7 +1604,7 @@ function dbCardHtml(c){
       ${n?`<div class="dbn">×${n}</div>`:''}
       <img src="${c.img}" loading="lazy" alt="${c.name}">
       <div class="nm">${c.name}</div>
-      <div class="ab" title="${esc(c.ability)}">${c.ability ? c.ability.replace('Battlecry: ','▸ ').replace('Deathrattle: ','☠ ') : (c.kw ? KWTXT[c.kw] : '')}</div>
+      <div class="ab" title="${esc(c.ability)}">${c.ability ? c.ability.replace('Battlecry: ','▸ ').replace('Deathrattle: ','☠ ') : (c.kw ? kwList(c).replace(/<\/?b>/g,'').replace(/<br>/g,' · ') : '')}</div>
       <div class="st">${(c.type==='edict'||c.type==='relic')?`<span style="color:#f9c;letter-spacing:1px">${c.type.toUpperCase()}</span>`:`<span class="statgem atk">${c.atk}<i>ATK</i></span><span class="statgem hp">${c.hp}<i>HP</i></span>`}</div>
     </div>`;
 }
@@ -1616,8 +1618,13 @@ function renderDB(){
   // v0.9.5: filter chips (search + cost + type + keyword, Arena/HS style)
   dbChipRow('dbCostChips', [{t:'ALL',v:null},{t:'1',v:'1'},{t:'2',v:'2'},{t:'3',v:'3'},{t:'4',v:'4'},{t:'5',v:'5'},{t:'6',v:'6'},{t:'7+',v:'7+'}], dbFilters.cost, 'cost');
   dbChipRow('dbTypeChips', [{t:'ALL',v:null},{t:'MINIONS',v:'minion'},{t:'EDICTS',v:'edict'},{t:'RELICS',v:'relic'}], dbFilters.type, 'type');
-  dbChipRow('dbKwChips', [{t:'ALL',v:null},{t:'RANGED',v:'Ranged'},{t:'CHARGE',v:'Charge'},{t:'GUARD',v:'Guard'},{t:'LIFESTEAL',v:'Lifesteal'}], dbFilters.kw, 'kw');
-  const byCost = (a,b)=>a.cost-b.cost || a.name.localeCompare(b.name); // v0.9.5: grid sorted by cost (HS/MTGA style)
+  dbChipRow('dbKwChips', [{t:'ALL',v:null},{t:'RANGED',v:'Ranged'},{t:'CHARGE',v:'Charge'},{t:'GUARD',v:'Guard'},{t:'LIFESTEAL',v:'Lifesteal'},{t:'SHOCK',v:'Shock'},{t:'BANE',v:'Bane'},{t:'RELENTLESS',v:'Relentless'},{t:'AEGIS',v:'Aegis'}], dbFilters.kw, 'kw'); // v0.19.1: all 8 keywords
+  dbChipRow('dbSortChips', [{t:'COST',v:'cost'},{t:'NAME',v:'name'},{t:'RARITY',v:'rarity'}], dbFilters.sort, 'sort'); // v0.19.1: sort chips
+  const RORD = { common:0, rare:1, epic:2, legendary:3 };
+  const cmpName = (a,b)=>a.name.localeCompare(b.name);
+  const byCost = dbFilters.sort==='name' ? cmpName // v0.19.1: sort = cost | name A-Z | rarity (HS/MTGA style)
+    : dbFilters.sort==='rarity' ? ((a,b)=>((RORD[a.rarity||'common']-RORD[b.rarity||'common'])||cmpName(a,b)))
+    : ((a,b)=>a.cost-b.cost || cmpName(a,b));
   // v0.10: Sovereigns (legendaries) lead from the hero box — they never appear in the deck grid
   const legal = (c)=>c.rarity !== 'legendary';
   // v0.15: SOVEREIGN SEAT — pick who the deck is built around while you build it
@@ -1625,7 +1632,7 @@ function renderDB(){
   const sovSel = sovs.find(c => c.id === dbSov);
   const sovHtml = '<div class="dbsection">YOUR SOVEREIGN — PICK WHO THIS DECK IS BUILT AROUND</div>'
     + '<div class="dbsovrow">' + sovs.map(c => `
-      <div class="dbsovcard ${dbSov===c.id?'on':''}" onclick="pickDbSov('${c.id}')">
+      <div class="dbsovcard ${dbSov===c.id?'on':''}" data-id="${c.id}" onclick="pickDbSov('${c.id}')">
         <img src="${c.img}" loading="lazy" alt="${c.name}">
         <div class="nm">${c.name}</div>
         <div class="passive" title="${(c.passive.desc||'').replace(/"/g,'&quot;')}"><b style="color:#f9c">${c.passive.name}:</b> ${c.passive.desc}</div>
@@ -1637,6 +1644,10 @@ function renderDB(){
   const all = f.cards.concat(gc);
   coll.querySelectorAll('.dbcard').forEach(d=>{
     d.onmouseenter = (ev)=>{ const c = all.find(x=>x.id===d.dataset.id); if(c) showZoom(c, ev); };
+    d.onmousemove = moveZoom; d.onmouseleave = hideZoom;
+  });
+  coll.querySelectorAll('.dbsovcard').forEach(d=>{ // v0.19.1: sovereign hover gets the zoom view too
+    d.onmouseenter = (ev)=>{ const c = sovs.find(x=>x.id===d.dataset.id); if(c) showZoom(c, ev); };
     d.onmousemove = moveZoom; d.onmouseleave = hideZoom;
   });
   // deck list: one row per distinct card with its copy count; click removes ONE copy
