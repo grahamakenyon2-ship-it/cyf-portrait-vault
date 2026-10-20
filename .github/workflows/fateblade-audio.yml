@@ -1,0 +1,56 @@
+name: fateblade-audio
+on:
+  workflow_dispatch:             # run by hand from the Actions tab; re-run until it reports the vault complete
+    inputs:
+      batch:
+        description: 'Files per run (default 20 - all 19 fit in one run)'
+        required: false
+        default: '20'
+permissions:
+  contents: write
+  actions: write                 # lets the workflow disable itself when the vault is complete
+concurrency:
+  group: vault-painter           # SHARED with flag-vault/paint-themes/edict-art: one painter in the repo at a time
+  cancel-in-progress: false
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Fetch the missing audio (chunked)
+        id: fetch
+        run: |
+          set +e
+          node fetch-fateblade-audio.mjs
+          rc=$?
+          echo "rc=$rc" >> "$GITHUB_OUTPUT"
+          echo "fetch-fateblade-audio exit code: $rc"
+          exit 0
+        env:
+          BATCH: ${{ github.event.inputs.batch || '20' }}
+      - name: Commit the chunk
+        run: |
+          git config user.name "audio-keeper"
+          git config user.email "keeper@users.noreply.github.com"
+          git add fateblade/audio fateblade/manifest.json
+          git diff --cached --quiet && echo "nothing new" && exit 0
+          git commit -m "fateblade: audio vault chunk (CC0 SFX + public-domain music)"
+          for i in 1 2 3; do
+            if git push; then exit 0; fi
+            echo "push rejected - rebasing on remote and retrying (attempt $i)"
+            git pull --rebase origin "$GITHUB_REF_NAME" || exit 1
+          done
+          echo "push failed after 3 attempts" && exit 1
+      - name: Complete - disable this workflow
+        if: steps.fetch.outputs.rc == '2'
+        run: |
+          echo "FATEBLADE AUDIO VAULT COMPLETE - every SFX and music track is mirrored. Disabling this workflow."
+          echo "(To add more sounds later: append to fateblade/audio/audio-sources.txt, re-enable and re-run from the Actions tab.)"
+          curl -s -X POST -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/workflows/fateblade-audio.yml/disable"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

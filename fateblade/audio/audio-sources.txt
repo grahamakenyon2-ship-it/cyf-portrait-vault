@@ -1,0 +1,26 @@
+# FATEBLADE AUDIO KEEPER SOURCES v1.0
+# slug | license | source
+# Sources:
+#   kenney:<pack>:<member>  -> file inside a Kenney CC0 pack zip (pack URLs pinned
+#                              in fetch-fateblade-audio.mjs; re-pin if Kenney moves them)
+#   https://...             -> direct URL (Wikimedia Commons public-domain oggs)
+# SFX — Kenney packs (CC0): combat, cards, UI
+sfx/play-card.ogg | CC0 | kenney:casino-audio:Audio/card-place-1.ogg
+sfx/draw-card.ogg | CC0 | kenney:casino-audio:Audio/card-slide-2.ogg
+sfx/hit.ogg | CC0 | kenney:impact-sounds:Audio/impactMetal_medium_000.ogg
+sfx/hero-hit.ogg | CC0 | kenney:impact-sounds:Audio/impactPlate_heavy_000.ogg
+sfx/death.ogg | CC0 | kenney:rpg-audio:Audio/dropLeather.ogg
+sfx/shield.ogg | CC0 | kenney:impact-sounds:Audio/impactPlate_light_000.ogg
+sfx/click.ogg | CC0 | kenney:interface-sounds:Audio/click_002.ogg
+sfx/confirm.ogg | CC0 | kenney:interface-sounds:Audio/confirmation_002.ogg
+sfx/turn-you.ogg | CC0 | kenney:interface-sounds:Audio/confirmation_003.ogg
+sfx/turn-en.ogg | CC0 | kenney:interface-sounds:Audio/back_004.ogg
+sfx/coin.ogg | CC0 | kenney:casino-audio:Audio/chips-collide-1.ogg
+sfx/buff.ogg | CC0 | kenney:interface-sounds:Audio/glass_002.ogg
+sfx/edict.ogg | CC0 | kenney:rpg-audio:Audio/bookFlip2.ogg
+sfx/relic.ogg | CC0 | kenney:rpg-audio:Audio/bookOpen.ogg
+sfx/fatigue.ogg | CC0 | kenney:interface-sounds:Audio/error_004.ogg
+# MUSIC — Wikimedia Commons public-domain orchestral recordings
+music/menu-theme.ogg | Public domain | https://upload.wikimedia.org/wikipedia/commons/b/be/Modest_Mussorgsky_-_pictures_at_an_exhibition_-_x._la_grande_porte_de_kiev_-_allegro_alla_breve._maestoso._con_grandezza.ogg
+music/match-annals.ogg | Public domain | https://upload.wikimedia.org/wikipedia/commons/b/bb/Musopen_-_In_the_Hall_Of_The_Mountain_King.ogg
+music/match-canon.ogg | Public domain | https://upload.wikimedia.org/wikipedia/commons/5/5b/Ludwig_van_Beethoven_-_Symphonie_5_c-moll_-_1._Allegro_con_brio.ogg
