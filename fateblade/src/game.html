@@ -579,7 +579,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.20.0';
+const GAME_VERSION = '0.20.2';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
@@ -1577,12 +1577,21 @@ let dbCnt = new Map();   // v0.10: card id -> copy count (30-card decks)
 let dbDirty = false;
 let dbSov = null;        // v0.15: the sovereign this deck is built around (card id) — saved with the deck
 function deckSize(){ let n = 0; for (const k of dbCnt.values()) n += k; return n; }
-function capOf(c){ return c.rarity === 'epic' ? 1 : 2; } // v0.10: 2x common/rare, 1x epic, Sovereigns never deck
+function capOf(c){ return (c.rarity === 'epic' || c.rarity === 'legendary') ? 1 : 2; } // v0.20.2: 2x common/rare, 1x epic, 1x legendary (legends may now join the deck — max 2, distinct)
 function relicTotal(){
   let n = 0;
   for (const id of dbCnt.keys()) {
     const c = facOf(dbFac).cards.find(x => x.id === id) || guildCards().find(x => x.id === id);
     if (c && c.type === 'relic') n += dbCnt.get(id);
+  }
+  return n;
+}
+// v0.20.2: legendaries may join the deck — max 2, distinct names, 1 copy each
+function legTotal(){
+  let n = 0;
+  for (const id of dbCnt.keys()) {
+    const c = facOf(dbFac).cards.find(x => x.id === id) || guildCards().find(x => x.id === id);
+    if (c && c.rarity === 'legendary') n += dbCnt.get(id);
   }
   return n;
 }
@@ -1628,7 +1637,7 @@ function openDeckBuilder(facId){
 function dbCardHtml(c){
   const n = dbCnt.get(c.id) || 0;
   const esc = (s)=>String(s||'').replace(/"/g,'&quot;');
-  return `    <div class="dbcard r-${c.rarity||'common'} ${n?'sel':''}" onclick="dbAdd('${c.id.replace(/'/g,"\\'")}')" data-id="${c.id}" title="${esc(c.ability || (c.kw ? c.kw + ': ' + KWDESC[c.kw] : ''))}">
+  return `    <div class="dbcard r-${c.rarity||'common'} ${n?'sel':''}" onclick="dbAdd('${c.id.replace(/'/g,"\\'")}')" data-id="${c.id}" title="${esc(c.ability || (c.passive ? 'Legend (passive inactive unless your Sovereign): ' + c.passive.name + ' — ' + c.passive.desc : (c.kw ? c.kw + ': ' + KWDESC[c.kw] : '')))}">
       <div class="dbcost">${c.cost}</div>
       ${n?`<div class="dbn">×${n}</div>`:''}
       <img src="${c.img}" loading="lazy" alt="${c.name}">
@@ -1654,8 +1663,8 @@ function renderDB(){
   const byCost = dbFilters.sort==='name' ? cmpName // v0.19.1: sort = cost | name A-Z | rarity (HS/MTGA style)
     : dbFilters.sort==='rarity' ? ((a,b)=>((RORD[a.rarity||'common']-RORD[b.rarity||'common'])||cmpName(a,b)))
     : ((a,b)=>a.cost-b.cost || cmpName(a,b));
-  // v0.10: Sovereigns (legendaries) lead from the hero box — they never appear in the deck grid
-  const legal = (c)=>c.rarity !== 'legendary';
+  // v0.10→v0.20.2: Sovereigns lead from the hero box; OTHER legends may join the deck (max 2, distinct)
+  const legal = (c)=> c.rarity !== 'legendary' || c.id !== dbSov;
   // v0.15: SOVEREIGN SEAT — pick who the deck is built around while you build it
   const sovs = legends(f);
   const sovSel = sovs.find(c => c.id === dbSov);
@@ -1668,7 +1677,7 @@ function renderDB(){
       </div>`).join('') + '</div>';
   // collection: realm cards, then Guild section (Arena-style grid, scrollable pane)
   coll.innerHTML = sovHtml + '<div class="dbGrid">' + f.cards.filter(legal).filter(dbPass).sort(byCost).map(dbCardHtml).join('')
-    + (gc.length ? '</div><div class="dbsection">THE WAYFARERS&rsquo; GUILD — HIRES FOR ANY BANNER (MAX 4)</div><div class="dbGrid">' + gc.filter(legal).filter(dbPass).sort(byCost).map(dbCardHtml).join('') : '')
+    + (gc.length ? '</div><div class="dbsection">THE WAYFARERS&rsquo; GUILD — HIRES FOR ANY BANNER (MAX 4)</div><div class="dbGrid">' + gc.filter(c=>c.rarity !== 'legendary').filter(dbPass).sort(byCost).map(dbCardHtml).join('') : '')
     + '</div>';
   const all = f.cards.concat(gc);
   coll.querySelectorAll('.dbcard').forEach(d=>{
@@ -1693,7 +1702,7 @@ function renderDB(){
   });
   const size = deckSize();
   const cnt = document.getElementById('dbCount');
-  if(cnt) cnt.textContent = `DECK: ${size} / 30 cards · Sovereign: ${sovSel ? sovSel.name : '— none chosen —'} · Guild hires: ${[...dbCnt.keys()].filter(isGuildCard).length} / 4 · Relic seats: ${relicTotal()} / 2`;
+  if(cnt) cnt.textContent = `DECK: ${size} / 30 cards · Sovereign: ${sovSel ? sovSel.name : '— none chosen —'} · Guild hires: ${[...dbCnt.keys()].filter(isGuildCard).length} / 4 · Relic seats: ${relicTotal()} / 2 · Legends: ${legTotal()} / 2`;
   const saveBtn = document.getElementById('dbSaveBtn');
   if(saveBtn) saveBtn.disabled = size !== 30;
 }
@@ -1708,10 +1717,13 @@ function dbAdd(id){
   const all = facOf(dbFac).cards.concat(guildCards());
   const c = all.find(x=>x.id===id);
   if(!c) return;
-  if(c.rarity === 'legendary'){ dbFlash('SOVEREIGNS LEAD — they never join the deck'); return; }
+  if(c.rarity === 'legendary'){
+    if(c.id === dbSov){ dbFlash('THIS LEGEND LEADS THE DECK — declare a different Sovereign'); return; }
+    if(legTotal() >= 2){ dbFlash('LEGENDS — max 2 per deck, different names'); return; }
+  }
   if(deckSize() >= 30){ dbFlash('DECK FULL — remove a card first'); return; }
   const n = dbCnt.get(id) || 0;
-  if(n >= capOf(c)){ dbFlash(c.rarity==='epic' ? 'EPIC — max 1 copy per deck' : 'MAX COPIES — 2 per card'); return; }
+  if(n >= capOf(c)){ dbFlash(c.rarity==='epic' ? 'EPIC — max 1 copy per deck' : c.rarity==='legendary' ? 'LEGENDS — max 1 copy, different names' : 'MAX COPIES — 2 per card'); return; }
   if(c.type==='relic' && relicTotal() >= 2){ dbFlash('RELIC SEATS MAXED — 2 per deck'); return; }
   if(isGuildCard(id) && [...dbCnt.keys()].filter(isGuildCard).length >= 4){ dbFlash('GUILD HIRES MAXED — 4 per deck'); return; }
   dbCnt.set(id, n + 1); dbDirty = true; renderDB();
@@ -1725,6 +1737,7 @@ function dbRemove(id){
 // v0.15: sovereign seat — click a portrait to declare who this deck is built around
 function pickDbSov(id){
   dbSov = (dbSov === id) ? null : id; // clicking the chosen one again clears it
+  if(dbSov && dbCnt.has(dbSov)) dbCnt.delete(dbSov); // v0.20.2: a legend who takes the throne leaves the deck
   dbDirty = true; renderDB();
 }
 // transient warning in the count line (no alert spam)
