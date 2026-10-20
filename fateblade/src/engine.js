@@ -530,6 +530,59 @@
     return null;
   }
 
+  // ---------- v0.17 AI: perception — reading the board like a player ----------
+  // threat(): the damage the foe can put on our hero next turn, and whether
+  // lethal is on the table (their reach vs our HP + our Guard wall).
+  function threat(S, side) {
+    const p = S[side], foe = S[other(side)];
+    const foeReach = foe.board.reduce((s, m) => s + m.atk * (m.kw === 'Relentless' ? 2 : 1), 0);
+    const guardHp = p.board.filter((m) => m.kw === 'Guard').reduce((s, m) => s + m.hp, 0);
+    return { foeReach, guardHp, danger: foeReach > 0 && foeReach >= p.hp + guardHp };
+  }
+  // burnInHand(): hero damage available in hand right now (for lethal reads)
+  function burnInHand(S, side) {
+    const p = S[side];
+    let d = 0;
+    p.hand.forEach((c, i) => {
+      if (c.type !== 'edict' || !canPlay(S, side, i)) return;
+      const ci = hasP(p, 'COURT_INTRIGUE') ? rites(S, side) : 0;
+      if (c.fx === 'fxPillage') d += 2 + ci;
+      if (c.fx === 'fxHero3') d += 3;
+      if (c.fx === 'fxVolley' || c.fx === 'fxVolley2') { const k = p.board.filter((m) => m.kw === 'Ranged').length; if (k) d += k * (c.fx === 'fxVolley' ? 1 : 2) + (ci ? k * ci : 0); }
+    });
+    return d;
+  }
+  // survivalBonus(): under a live lethal threat, defensive lines gain value —
+  // the "do I play my Guard to not die?" read.
+  function survivalBonus(S, side, c, th) {
+    let b = 0;
+    if (c.kw === 'Guard') b += 2.5 + c.hp * 0.3;   // a wall buys a turn
+    if (c.kw === 'Aegis') b += 1.5;
+    if (c.fx === 'fxHealHero4' || c.fx === 'fxHealHero6') b += 2;
+    if (c.rl === 'rlBasilica' || c.rl === 'rlRampart' || c.rl === 'rlWard') b += 1.5;
+    if (['fxPingAll', 'fxPingAll2', 'fxAoe2', 'fxAoe3', 'fxSnipe3', 'fxSnipe4', 'fxExecute', 'fxExecute2'].includes(c.fx)) b += Math.min(2, th.foeReach * 0.4); // takes attackers off the table
+    return b;
+  }
+  // deckPlan(): the AI knows its OWN decklist (order-agnostic, like a player)
+  // and derives an archetype — aggro (Charge/burn), control (Guard/removal) —
+  // plus live synergy carrier counts. Cached per side; deterministic.
+  function deckPlan(S, side) {
+    const p = S[side];
+    if (p.plan) return p.plan;
+    const pool = [...p.deck, ...p.hand, ...p.board, ...p.relics];
+    let charge = 0, guard = 0, ranged = 0, burn = 0, removal = 0, tokens = 0;
+    for (const c of pool) {
+      if (c.kw === 'Charge') charge++;
+      if (c.kw === 'Guard') guard++;
+      if (c.kw === 'Ranged') ranged++;
+      if (['fxPillage', 'fxHero3', 'fxVolley', 'fxVolley2'].includes(c.fx)) burn++;
+      if (['fxPingAll', 'fxPingAll2', 'fxAoe2', 'fxAoe3', 'fxSnipe3', 'fxSnipe4', 'fxExecute', 'fxExecute2'].includes(c.fx)) removal++;
+      if (['fxRally', 'fxRally3', 'fxLevy', 'fxDecreeMuster'].includes(c.fx)) tokens++;
+    }
+    p.plan = { aggro: (charge + burn) >= 6, control: (guard + removal) >= 8, guard, ranged, tokens };
+    return p.plan;
+  }
+
   // ---------- AI brains ----------
   // EASY — a careless levy: reasonable tempo but sloppy aim, occasionally
   // fumbles its best play, picks attack targets on a whim, and half the time
@@ -578,7 +631,8 @@
     });
   }
 
-  // NORMAL — the classic greedy AI (unchanged behavior; prior sim reports reproduce)
+  // NORMAL v0.17 — a decent player: reads lethal, respects threats, and holds
+  // situational cards for a better moment instead of vomiting the curve.
   function aiNormal(S, side, snap) {
     const foeSide = other(side);
     const me = S[side], foe = S[foeSide];
@@ -586,22 +640,42 @@
     const pw = (t) => { power(S, side, t); if (snap) snap(S); };
     const atk = (u, t) => { attack(S, side, u, t); if (snap) snap(S); };
 
-    // play greedily by cost, highest affordable first
+    const th = threat(S, side);
+    const pd0 = canPower(S, side) ? powerDmg(S, side) : 0;
+    const readyAtk0 = me.board.filter((m) => m.ready).reduce((s, m) => s + m.atk, 0);
+    const lethal = !foe.board.some((m) => m.kw === 'Guard') && foe.hp <= readyAtk0 + pd0 + burnInHand(S, side);
+
+    // v0.17 plays: contextual value with a hold threshold — no AOE into thin
+    // boards, no buffs with no carriers; Guards/removal jump the queue under fire.
     let played = true;
     while (played) {
       played = false;
-      let bi = -1;
+      let bi = -1, bv = 0;
+      // v0.17.1: the danger tax only applies when a defensive line EXISTS in hand —
+      // with no way to survive, keep playing offense.
+      const hasDef = th.danger && me.hand.some((c, i) => { try { return canPlay(S, side, i) && survivalBonus(S, side, c, th) > 0; } catch (e) { return false; } });
       me.hand.forEach((c, i) => {
-        if (canPlay(S, side, i) && (bi < 0 || effCost(S, side, c) > effCost(S, side, me.hand[bi]))) bi = i;
+        if (!canPlay(S, side, i)) return;
+        let nv = evScore(S, side, c) - effCost(S, side, c) * 0.2;
+        // v0.17.1: under lethal threat, defensive lines are DOUBLED and
+        // non-defensive lines are taxed — "don't die" beats "big body".
+        const sb = survivalBonus(S, side, c, th);
+        if (th.danger) nv += sb * 2 - (sb ? 0 : (hasDef ? 2 : 0));
+        if (nv > bv) { bv = nv; bi = i; }
       });
-      if (bi >= 0) { pc(bi); played = true; }
+      // v0.17.1: anti-stall — after turn 40, stop holding situational cards
+      const holdN = S.turn > 40 ? 0.1 : 1.0;
+      if (bi >= 0 && bv >= holdN) { pc(bi); played = true; }
     }
 
-    // hero power: finish a wounded minion, or push lethal-ish damage
+    // hero power: lethal first, then finish a wounded minion, then push face
     if (canPower(S, side)) {
       const pd = powerDmg(S, side);
-      const t = foe.board.filter((m) => m.hp <= pd).sort((a, b) => b.atk - a.atk)[0];
-      if (t || foe.hp <= pd) pw(t ? { uid: t.uid } : { hero: true });
+      if (lethal) pw({ hero: true });
+      else {
+        const t = foe.board.filter((m) => m.hp <= pd).sort((a, b) => b.atk - a.atk)[0];
+        if (t || foe.hp <= pd) pw(t ? { uid: t.uid } : { hero: true });
+      }
     }
 
     // attacks
@@ -638,63 +712,79 @@
   // HARD — a veteran marshal: plays greedy, reads lethal before anything else,
   // trades for maximum value (survives when it can, kills threats when it must),
   // and spends Skirmish to remove the biggest thing it can kill.
-  // HARD AI play evaluator (v0.6): every legal card gets an expected-value
-  // score in context; the AI plays the highest-EV line it can afford, and
-  // HOLDS cards whose value is situational (no AOE into empty boards, no
-  // relic spam over bodies). This is what makes edicts/relics strategic.
+  // v0.17 PLAY EVALUATOR: CONTEXTUAL — every template is priced by what it can
+  // actually accomplish against THIS board right now. Sweeps are worth their
+  // kills, removal is worth its target, buffs need live carriers. (The v0.12
+  // templates previously fell through to default=1 and were never played at all
+  // — the clearest "the AI doesn't understand its cards" bug in the old engine.)
   function evScore(S, side, c) {
     const p = S[side], foe = S[other(side)];
+    const th = threat(S, side);
     if (c.type === 'edict') {
+      const wv = hasP(p, 'WEAVE') ? rites(S, side) : 0;
+      const kills = (d) => foe.board.reduce((s2, t) => s2 + (t.hp <= d ? (t.atk + t.hp) * 1.25 : d * 0.5), 0);
+      const top = (cmp) => foe.board.slice().sort(cmp)[0];
       switch (c.fx) {
-        case 'fxDraw2': return 2.6;
-        case 'fxPingAll': return foe.board.reduce((s2, t) => s2 + Math.min(1, t.hp) * (t.hp <= 1 ? 2.0 : 1.1), 0);
-        case 'fxAoe2': return foe.board.reduce((s2, t) => s2 + (t.hp <= 2 ? (t.atk + t.hp) * 1.2 : 2.4), 0);
-        case 'fxSnipe3': { const t = foe.board.slice().sort((a,b) => (b.atk+b.hp)-(a.atk+a.hp))[0]; return t ? (t.hp <= 3 ? (t.atk + t.hp) * 1.3 : 3.6) : 0; }
-        case 'fxExecute': { const t = foe.board.slice().sort((a,b) => b.atk-a.atk)[0]; return t ? (t.atk + t.hp) * 1.4 : 0; }
-        case 'fxHealHero4': return Math.min(4, MAX_HP - p.hp) * 0.55;
+        case 'fxDraw2': return 2.6 + (p.hand.length <= 2 ? 1.2 : 0);
+        case 'fxDraw3': return 3.1 + (p.hand.length <= 3 ? 1.0 : 0) - (p.hand.length >= 7 ? 1.2 : 0);
+        case 'fxPingAll': return kills(1 + wv);
+        case 'fxPingAll2': return kills(2 + wv);
+        case 'fxAoe2': return kills(2 + wv);
+        case 'fxAoe3': return kills(3 + wv) - 1;
+        case 'fxSnipe3': { const t = top((a, b) => (b.atk + b.hp) - (a.atk + a.hp)); return t ? (t.hp <= 3 ? (t.atk + t.hp) * 1.3 : 3.6) : 0; }
+        case 'fxSnipe4': { const t = top((a, b) => (b.atk + b.hp) - (a.atk + a.hp)); return t ? (t.hp <= 4 ? (t.atk + t.hp) * 1.3 : 3.4) : 0; }
+        case 'fxExecute': { const t = top((a, b) => b.atk - a.atk); return t ? (t.atk + t.hp) * 1.45 : 0; }
+        case 'fxExecute2': { return foe.board.slice().sort((a, b) => b.atk - a.atk).slice(0, 2).reduce((s2, t) => s2 + (t.atk + t.hp) * 1.3, 0); }
+        case 'fxHealHero4': return Math.min(4, MAX_HP - p.hp) * 0.55 + (th.danger ? 1.5 : 0);
+        case 'fxHealHero6': return Math.min(6, MAX_HP - p.hp) * 0.55 + (th.danger ? 1.5 : 0);
         case 'fxMana2': return p.hand.length > 2 ? 2.2 : 0.8;
-        case 'fxRally': return (p.board.length <= MAX_BOARD - 2) ? 2 * 2 * 0.9 : 0;
-        case 'fxRallyBoard': return p.board.reduce((s2, m) => s2 + 2, 0) * 0.95;
-        case 'fxVolley': return p.board.filter((m) => m.kw === 'Ranged').length * 1.35;
-        case 'fxVolley2': return p.board.filter((m) => m.kw === 'Ranged').length * 2.7;
-        case 'fxMomentum': return p.board.filter((m) => m.kw === 'Charge').length * 1.6;
-        case 'fxFormation': return p.board.filter((m) => m.kw === 'Guard').length * 1.9;
-        case 'fxLevy': return p.board.filter((m) => m.id.startsWith('TOKEN@')).length * 2.1 + 1.5;
-        case 'fxPillage': return 2 * 1.4 + (p.board.length > foe.board.length ? 1.6 : 0);
-        // v0.16: laws, decrees, scry, espionage
-        case 'fxLawTariff': return 1.4 + foe.hand.length * 0.3;
-        case 'fxLawMuster': return 1.2 + p.board.length * 0.5;
-        case 'fxDecreeMuster': return 2.2;
-        case 'fxDecreeDraw': return 2.4;
+        case 'fxMana3': return p.hand.length > 2 ? 3.0 : 1.0;
+        case 'fxRally': return (p.board.length <= MAX_BOARD - 2) ? 3.4 : 0.8;
+        case 'fxRally3': { const nn = Math.min(3, MAX_BOARD - p.board.length); return nn * 1.7; }
+        case 'fxRallyBoard': return p.board.reduce((s2, m) => s2 + 2, 0) * 0.95 + (p.board.length >= 3 ? 1 : 0);
+        case 'fxVolley': { const k = p.board.filter((m) => m.kw === 'Ranged').length; const d = k * (1 + (hasP(p, 'COURT_INTRIGUE') ? rites(S, side) : 0)); return d > 0 ? d * 1.35 : 0.2; }
+        case 'fxVolley2': { const k = p.board.filter((m) => m.kw === 'Ranged').length; const d = k * (2 + (hasP(p, 'COURT_INTRIGUE') ? rites(S, side) : 0)); return d > 0 ? d * 1.3 : 0.2; }
+        case 'fxMomentum': { const k = p.board.filter((m) => m.kw === 'Charge').length; return k ? k * 1.6 : -0.5; }
+        case 'fxFormation': { const k = p.board.filter((m) => m.kw === 'Guard').length; return k ? k * 1.9 + (th.danger ? 0.8 : 0) : -0.5; }
+        case 'fxLevy': return p.board.filter((m) => m.id.startsWith('TOKEN@')).length * 2.1 + 1.5 + (p.board.length < MAX_BOARD ? 0.4 : 0);
+        case 'fxPillage': return 2.8 + (p.board.length > foe.board.length ? 1.6 : 0) + (foe.hp <= 6 ? 2.5 : 0);
+        case 'fxHero3': return 3 * (foe.hp <= 4 ? 2 : 1);
+        // v0.16 templates, contextually priced
+        case 'fxLawTariff': return 1.4 + foe.hand.length * 0.35 + (S.turn <= 4 ? 0.5 : 0);
+        case 'fxLawMuster': return 1.2 + Math.min(3, MAX_BOARD - p.board.length) * 0.9;
+        case 'fxDecreeMuster': return 2.2 + (p.board.length < 3 ? 0.6 : 0);
+        case 'fxDecreeDraw': return 2.4 + (p.hand.length <= 3 ? 0.6 : 0);
         case 'fxDecreeMana': return 2.1;
-        case 'fxScry2': return 2.3;
-        case 'fxScry3': return 2.6;
+        case 'fxScry2': return 2.2 + (p.hand.length <= 2 ? 0.6 : 0);
+        case 'fxScry3': return 2.5 + (p.hand.length <= 3 ? 0.6 : 0);
         case 'fxEspionage': return 2.0 + (foe.hand.length >= 4 ? 1.2 : 0);
         default: return 1;
       }
     }
     if (c.type === 'relic') {
+      const g = p.board.filter((m) => m.kw === 'Guard').length;
+      const r = p.board.filter((m) => m.kw === 'Ranged').length;
       switch (c.rl) {
         case 'rlLibrary': return 2.3;
-        case 'rlStandards': return 1.2 + p.board.filter((m) => m.kw === 'Guard').length * 1.4;
+        case 'rlStandards': return 1.2 + g * 1.4;
         case 'rlGranary': return 1.9;
         case 'rlDrillyard': return 1.8;
         case 'rlForage': return 2.0;
-        case 'rlLookout': return 1.2 + p.board.filter((m) => m.kw === 'Ranged').length * 1.3;
-        // v0.16: terrain / hero-mode / recursion / politics relics
+        case 'rlLookout': return 1.2 + r * 1.3;
+        // v0.16 relics, contextually priced
         case 'rlFlame': return 1.9;
         case 'rlTent': return 1.7;
-        case 'rlRampart': return 1.0 + p.board.filter((m) => m.kw === 'Guard').length * 0.4;
-        case 'rlWard': return 1.5;
+        case 'rlRampart': return 1.0 + g * 0.4;
+        case 'rlWard': return 1.5 + (p.hp <= 15 ? 0.6 : 0);
         case 'rlHearth': return 1.5;
-        case 'rlMusketeers': return 1.1 + p.board.filter((m) => m.kw === 'Ranged').length * 0.35;
+        case 'rlMusketeers': return 1.1 + r * 0.35;
         case 'rlCistern': return 1.6;
         case 'rlCuria': return 1.6;
         case 'rlWarStandard': return 1.5;
         case 'rlQuill': return 1.7;
         case 'rlMoonwell': return 1.5;
         case 'rlTrophy': return 1.5;
-        case 'rlBasilica': return 1.0 + p.board.filter((m) => m.kw === 'Guard').length * 0.4;
+        case 'rlBasilica': return 1.0 + g * 0.4 + (th.danger ? 1.0 : 0);
         case 'rlReliquary': return 1.9;
         case 'rlBanner': return 1.4;
         case 'rlVault': return 1.8;
@@ -748,31 +838,42 @@
     const pw = (t) => { power(S, side, t); if (snap) snap(S); };
     const atk = (u, t) => { attack(S, side, u, t); if (snap) snap(S); };
 
+    const plan = deckPlan(S, side); // v0.17: the marshal knows what deck he's piloting
+    const th = threat(S, side);      // v0.17: and whether lethal is coming back at him
+
     // THE PLAY EVALUATOR: score every affordable card in context; play the best
     // EV above a hold threshold, repeat while plays remain worthwhile.
     let played = true;
     while (played) {
       played = false;
       let bi = -1, bv = 0;
+      // v0.17.1: the danger tax only applies when a defensive line EXISTS in hand —
+      // with no way to survive, keep playing offense.
+      const hasDef = th.danger && me.hand.some((c, i) => { try { return canPlay(S, side, i) && survivalBonus(S, side, c, th) > 0; } catch (e) { return false; } });
       me.hand.forEach((c, i) => {
         if (!canPlay(S, side, i)) return;
-        const v = evScore(S, side, c) - effCost(S, side, c) * 0.2;
+        let v = evScore(S, side, c) - effCost(S, side, c) * 0.2;
+        // v0.17: plan-weighted lines — aggro decks push face damage and Charges,
+        // control decks prize removal and walls; under lethal threat, survive first.
+        if (plan.aggro && (c.fx === 'fxPillage' || c.fx === 'fxHero3' || c.fx === 'fxVolley' || c.fx === 'fxVolley2' || c.kw === 'Charge')) v += 0.4;
+        if (plan.control && (c.kw === 'Guard' || ['fxExecute', 'fxExecute2', 'fxSnipe3', 'fxSnipe4', 'fxPingAll', 'fxPingAll2', 'fxAoe2', 'fxAoe3'].includes(c.fx))) v += 0.4;
+        // v0.17.1: under lethal threat, defensive lines are DOUBLED and
+        // non-defensive lines are taxed — "don't die" beats "big body".
+        const sb = survivalBonus(S, side, c, th);
+        if (th.danger) v += sb * 2 - (sb ? 0 : (hasDef ? 2 : 0));
         if (v > bv) { bv = v; bi = i; }
       });
-      if (bi >= 0 && bv >= 1.2) { pc(bi); played = true; }
+      // v0.17.1: anti-stall — after turn 40, stop holding situational cards
+      const holdH = S.turn > 40 ? 0.1 : 1.2;
+      if (bi >= 0 && bv >= holdH) { pc(bi); played = true; }
     }
 
     // lethal check BEFORE acting: if the board can end it, everything goes face
     const guards = () => foe.board.filter((m) => m.kw === 'Guard');
     const readyAtk = me.board.filter((m) => m.ready).reduce((s, m) => s + m.atk, 0);
     const pd = canPower(S, side) ? powerDmg(S, side) : 0;
-    // spell lethal: face-damage edicts in hand count toward the kill
-    let spellDmg = 0;
-    me.hand.forEach((c, i) => {
-      if (c.type === 'edict' && (c.fx === 'fxVolley' || c.fx === 'fxPillage') && p2manaOK(S, side, i)) {
-        spellDmg += c.fx === 'fxVolley' ? me.board.filter((m) => m.kw === 'Ranged').length : 2;
-      }
-    });
+    // spell lethal: the full burn read (pillage, hero-burn, both volleys) counts toward the kill
+    const spellDmg = burnInHand(S, side); // v0.17: was volley/pillage only
     const lethal = !guards().length && foe.hp <= readyAtk + pd + spellDmg;
 
     // hero power: on lethal it's damage; otherwise remove the juiciest minion we can kill
