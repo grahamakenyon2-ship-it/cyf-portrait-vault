@@ -95,6 +95,7 @@
       discountUsed: false,
       fatigue: 0,
       sovOnce: {}, turnDraws: 0, tookHeroDmg: false, heroDmgOnce: false, // v0.15: per-turn sovereign hook state
+      pending: [], fallen: [], // v0.16: delayed decrees queue + graveyard-lite (recursion)
     });
     const first = opts.first === 'B' ? 'B' : 'A';
     const lvl = (v) => (AI_LEVELS.includes(v) ? v : 'normal');
@@ -102,6 +103,7 @@
       turn: 1, active: first, first, events: [], rng: opts.rng || Math.random,
       aiA: lvl(opts.aiA), aiB: lvl(opts.aiB),
       A: side(facA, opts.sovA, opts.deckA), B: side(facB, opts.sovB, opts.deckB),
+      laws: [], // v0.16: round-scoped Temporary Laws
     };
     const n = (side) => (side === first ? 3 : 4); // going-second compensation: +1 card
     for (let i = 0; i < n('A'); i++) draw(S, 'A', true); // v0.15: draw-phase deal
@@ -113,7 +115,7 @@
 
   // First Rites: for the coin-flip winner's first three turns (S.turn 1, 3, 5), their
   // Sovereign passive magnitudes are doubled (+1s become +2s, pings deal 2, …).
-  const rites = (S, side) => (S.first === side && S.turn <= 5 ? 2 : 1);
+  const rites = (S, side) => (S.first === side && S.turn <= 5 ? 2 : 1) + (S[side].relics.some((x) => x.rl === 'rlReliquary') ? 1 : 0); // v0.16: Saint's Reliquary
 
   function draw(S, side, phase) { // v0.15: phase=true marks draw-phase draws (startMatch deal + start-of-turn draw)
     const p = S[side];
@@ -130,8 +132,10 @@
       if (hasP(p, 'CHAOS_LADDER')) p.turnDraws += 1;
       const foe = S[other(side)];
       if (hasP(p, 'PRIVATEERING')) { const d = 1 * rites(S, side); foe.hp -= d; S.events.push({ t: 'heroHit', side: other(side), id: 'PRIVATEERING', dmg: d }); }
-      if (p.turnDraws >= 2 && hasP(p, 'CHAOS_LADDER') && foe.board.length) { const t = foe.board[Math.floor(S.rng() * foe.board.length)]; S.events.push({ t: 'passive', side, id: 'CHAOS_LADDER', on: t.id }); damageMinion(S, other(side), t.uid, 1); }
+      if (p.turnDraws >= 2 && hasP(p, 'CHAOS_LADDER') && foe.board.length) { const t = foe.board[Math.floor(S.rng() * foe.board.length)]; S.events.push({ t: 'passive', side, id: 'CHAOS_LADDER', on: t.id }); damageMinion(S, other(side), t.uid, 2); } // v0.16 buff: 1 -> 2
     }
+    // v0.16: Satrap's Court — every non-phase draw by the relic's opponent burns their hero
+    if (!phase && hasRelic(S[other(side)], 'rlSatrap')) { p.hp -= 1; S.events.push({ t: 'heroHit', side, id: 'RL_SATRAP', dmg: 1 }); }
   }
 
   // ---------- helpers ----------
@@ -144,6 +148,7 @@
     if (t.shield > 0) { t.shield -= 1; S.events.push({ t: 'shield', side: victimSide, id: t.id, uid }); return; }
     // v0.15 TESTUDO: your Guard minions take 1 less combat damage (min 1)
     if (combat && hasP(vp, 'TESTUDO') && t.kw === 'Guard') dmg = Math.max(1, dmg - 1 * rites(S, victimSide));
+    if (combat && t.kw === 'Guard' && hasRelic(vp, 'rlBasilica')) dmg = Math.max(1, dmg - 1); // v0.16: Iron Basilica
     t.hp -= dmg;
     if (t.hp <= 0) {
       vp.board = vp.board.filter((x) => x.uid !== uid);
@@ -159,8 +164,8 @@
         // BOTH boards takes 1, including the rest of yours; drHero2 burns face.
         const drDmg = { drPing: 1, drPing2: 2, drPing3: 3 }[dr];
         const drAoe = { drAoe1: 1, drAoe2: 2 }[dr];
-        if (dr === 'drHero1') { const ci = 1 + (hasP(vp, 'COURT_INTRIGUE') ? rites(S, victimSide) : 0); S[foeSide].hp -= ci; S.events.push({ t: 'heroHit', side: foeSide, id: 'DR', dmg: ci }); } // v0.15: COURT_INTRIGUE
-        else if (dr === 'drHero2') { const ci = 2 + (hasP(vp, 'COURT_INTRIGUE') ? rites(S, victimSide) : 0); S[foeSide].hp -= ci; S.events.push({ t: 'heroHit', side: foeSide, id: 'DR', dmg: ci }); } // v0.15.1: COURT_INTRIGUE
+        if (dr === 'drHero1') { const ci = 1 + (hasP(vp, 'COURT_INTRIGUE') ? 2 * rites(S, victimSide) : 0); S[foeSide].hp -= ci; S.events.push({ t: 'heroHit', side: foeSide, id: 'DR', dmg: ci }); } // v0.15: COURT_INTRIGUE
+        else if (dr === 'drHero2') { const ci = 2 + (hasP(vp, 'COURT_INTRIGUE') ? 2 * rites(S, victimSide) : 0); S[foeSide].hp -= ci; S.events.push({ t: 'heroHit', side: foeSide, id: 'DR', dmg: ci }); } // v0.15.1: COURT_INTRIGUE
         else if (drDmg && S[foeSide].board.length) {
           const m = S[foeSide].board[Math.floor(S.rng() * S[foeSide].board.length)];
           damageMinion(S, foeSide, m.uid, drDmg);
@@ -175,6 +180,10 @@
         else if (dr === 'drSummon') { const hn = 1 + (hasP(vp, 'HORDEMASTER') ? rites(S, victimSide) : 0); for (let hi = 0; hi < hn && vp.board.length < MAX_BOARD; hi++) vp.board.push(token(vp, S)); S.events.push({ t: 'play', side: victimSide, id: 'TOKEN', uid: 'TOKEN' + vp.board.length, kw: null, cost: 1 }); } // v0.15: HORDEMASTER
         else if (dr === 'drDraw') { draw(S, victimSide); }
       }
+      // v0.16 graveyard-lite + recursion/politics relic hooks
+      vp.fallen.push({ id: t.id, name: t.name, img: t.img, file: t.file }); if (vp.fallen.length > 24) vp.fallen.shift();
+      if (hasRelic(vp, 'rlMoonwell') && !vp.moonwellOnce && vp.hand.length <= 2 && vp.deck.length) { vp.moonwellOnce = true; draw(S, victimSide); S.events.push({ t: 'passive', side: victimSide, id: 'RL_MOONWELL' }); }
+      if (combat && hasRelic(S[foeSide], 'rlTrophy')) { const ap2 = S[foeSide]; ap2.hp = Math.min(MAX_HP, ap2.hp + 1); S.events.push({ t: 'passive', side: foeSide, id: 'RL_TROPHY' }); }
       if (hasP(vp, 'DEATHGIFT')) {
         const d = 1 * rites(S, victimSide);
         S[foeSide].hp -= d;
@@ -198,6 +207,7 @@
     const t = { id: 'TOKEN@' + p.fac.id, name: 'Conscript', cost: 1, atk: 1, hp: 1, kw: null,
       uid: 'TOKEN-' + Math.floor(S.rng() * 1e9), img: p.fac.commander, file: p.fac.commanderFile, fl: 'Sworn to the banner.' };
     if (hasRelic(p, 'rlDrillyard')) { t.atk += 1; t.hp += 1; } // Iron Yards: sworn levies drill to 2/2
+    if (hasRelic(p, 'rlDrum')) t.atk += 1; // v0.16: Warlord's Drum — every summoned levy hits harder
     return t;
   }
   const hasRelic = (p, rl) => p.relics.some((x) => x.rl === rl);
@@ -226,7 +236,13 @@
     if (hasP(p, 'SWIFTRANKS') && !p.discountUsed && c.cost <= 3) return Math.max(0, c.cost - rites(S, side)); // v0.6.4: once per game, cheap cards only
     // v0.15: once-per-turn sovereign discounts
     if (hasP(p, 'ORIFLAMME') && c.kw === 'Charge' && !p.sovOnce.oriflamme) return Math.max(0, c.cost - rites(S, side));
-    if (hasP(p, 'BAZAAR') && c.type === 'edict' && !p.sovOnce.bazaar) return Math.max(0, c.cost - rites(S, side));
+    if (hasP(p, 'BAZAAR') && c.type === 'edict' && (p.sovOnce.bazaar || 0) < 2) return Math.max(0, c.cost - rites(S, side)); // v0.16 buff: two edicts/turn
+    // v0.16: laws + relic economy/politics hooks
+    if (S.laws.some((l) => l.id === 'lawTariff' && l.side !== side)) return c.cost + 1; // Temporary Law: the tariff
+    if (hasRelic(p, 'rlAmulet') && c.type === 'edict') return Math.max(0, c.cost - 1);
+    if (hasRelic(p, 'rlIdol') && c.cost >= 5) return Math.max(0, c.cost - 1);
+    if (hasRelic(p, 'rlVault') && !p.sovOnce.vault) return Math.max(0, c.cost - 1);
+    if (hasRelic(S[other(side)], 'rlScales') && c.cost >= 4) return c.cost + 1;
     return c.cost;
   }
   function canPlay(S, side, i) {
@@ -243,7 +259,8 @@
     const cost = effCost(S, side, c);
     if (hasP(p, 'SWIFTRANKS') && !p.discountUsed) p.discountUsed = true; // stays spent for the whole game (v0.6.4)
     if (hasP(p, 'ORIFLAMME') && c.kw === 'Charge') p.sovOnce.oriflamme = true; // v0.15: once per turn
-    if (hasP(p, 'BAZAAR') && c.type === 'edict') p.sovOnce.bazaar = true; // v0.15: once per turn
+    if (hasP(p, 'BAZAAR') && c.type === 'edict') p.sovOnce.bazaar = (p.sovOnce.bazaar || 0) + 1; // v0.16 buff: two/turn
+    if (hasRelic(p, 'rlVault') && cost < c.cost) p.sovOnce.vault = true; // v0.16: Gilded Vault — once per turn
     p.mana -= cost;
 
     // ---- EDICTS: one-shot command cards; resolve and vanish ----
@@ -259,7 +276,8 @@
       p.relics.push({ ...c });
       S.events.push({ t: 'relic', side, id: c.id, rl: c.rl });
       if (c.rl === 'rlStandards') p.board.forEach((m) => { if (m.kw === 'Guard') m.atk += 1; }); // eagles rise for the standing army
-      if (c.rl === 'rlLookout') p.board.forEach((m) => { if (m.kw === 'Ranged') m.atk += 1; }); // the masthead watches
+      if (c.rl === 'rlLookout') p.board.forEach((m) => { if (m.kw === 'Ranged') { m.atk += 1; m.hp += 1; } }); // v0.16 buff: +1/+1
+      if (c.rl === 'rlMirror') { const top = p.deck.splice(-Math.min(2, p.deck.length)); const val = (cc) => cc.type === 'minion' ? (cc.atk + cc.hp + (cc.bc ? 2 : 0) + (cc.dr ? 1 : 0)) : 6; top.sort((a, b) => val(b) - val(a)); while (top.length) p.deck.push(top.pop()); } // v0.16: Dreamer's Mirror — the best of the top two surfaces
       return true;
     }
 
@@ -270,7 +288,8 @@
     if (m.kw === 'Aegis') m.shield = 1;    // v0.11: absorbs the first damage instance
     if (m.kw === 'Relentless') m.attacks = 0; // v0.11: attack counter for the second swing
     if (m.kw === 'Guard' && hasRelic(p, 'rlStandards')) m.atk += 1; // Legion Standards: every Guard musters +1 atk
-    if (m.kw === 'Ranged' && hasRelic(p, 'rlLookout')) m.atk += 1; // The Lookout: every gun is sighted
+    if (S.laws.some((l) => l.id === 'lawMuster' && l.side === side)) { m.atk += 1; m.hp += 1; } // v0.16: Temporary Law: the muster
+    if (m.kw === 'Ranged' && hasRelic(p, 'rlLookout')) { m.atk += 1; m.hp += 1; } // v0.16 buff: +1/+1
     if (m.kw === 'Guard' && hasP(p, 'BULWARK')) m.hp += 2 * r; // v0.6.4 buff: +2 HP (was +1)
     if (m.kw === 'Charge' && hasP(p, 'VANGUARD')) m.atk += r;
     if (m.kw === 'Lifesteal' && hasP(p, 'SOULTITHE')) m.atk += r;
@@ -291,8 +310,8 @@
       // bcAoe1 sweeps the enemy board; bcAoeAll1 sweeps BOTH boards (yours too);
       // bcHero2 burns the enemy Sovereign for 2.
       const bcDmg = { bcPing: 1, bcPing2: 2, bcPing3: 3 }[c.bc];
-      if (c.bc === 'bcHero1') { const ci = 1 + (hasP(p, 'COURT_INTRIGUE') ? rites(S, side) : 0); foe.hp -= ci; S.events.push({ t: 'heroHit', side: other(side), id: 'BC', dmg: ci }); } // v0.15: COURT_INTRIGUE
-      else if (c.bc === 'bcHero2') { const ci = 2 + (hasP(p, 'COURT_INTRIGUE') ? rites(S, side) : 0); foe.hp -= ci; S.events.push({ t: 'heroHit', side: other(side), id: 'BC', dmg: ci }); } // v0.15.1: COURT_INTRIGUE
+      if (c.bc === 'bcHero1') { const ci = 1 + (hasP(p, 'COURT_INTRIGUE') ? 2 * rites(S, side) : 0); foe.hp -= ci; S.events.push({ t: 'heroHit', side: other(side), id: 'BC', dmg: ci }); } // v0.15: COURT_INTRIGUE
+      else if (c.bc === 'bcHero2') { const ci = 2 + (hasP(p, 'COURT_INTRIGUE') ? 2 * rites(S, side) : 0); foe.hp -= ci; S.events.push({ t: 'heroHit', side: other(side), id: 'BC', dmg: ci }); } // v0.15.1: COURT_INTRIGUE
       else if (bcDmg && foe.board.length) {
         const t = foe.board[Math.floor(S.rng() * foe.board.length)];
         damageMinion(S, other(side), t.uid, bcDmg);
@@ -327,22 +346,42 @@
       case 'fxMana2': p.mana += 2; break;
       case 'fxRally': { if (p.board.length < MAX_BOARD) p.board.push(token(p, S)); if (p.board.length < MAX_BOARD) p.board.push(token(p, S)); break; }
       case 'fxRallyBoard': p.board.forEach((m) => { m.atk += 1; m.hp += 1; }); break;
-      case 'fxVolley': { const n = p.board.filter((m) => m.kw === 'Ranged').length; const d = n * (1 + (hasP(p, 'COURT_INTRIGUE') ? rites(S, side) : 0)); if (d > 0) { foe.hp -= d; S.events.push({ t: 'heroHit', side: other(side), id: 'VOLLEY', dmg: d }); } break; } // v0.15.1: COURT_INTRIGUE
+      case 'fxVolley': { const n = p.board.filter((m) => m.kw === 'Ranged').length; const d = n * (1 + (hasP(p, 'COURT_INTRIGUE') ? 2 * rites(S, side) : 0)); if (d > 0) { foe.hp -= d; S.events.push({ t: 'heroHit', side: other(side), id: 'VOLLEY', dmg: d }); } break; } // v0.15.1: COURT_INTRIGUE
       case 'fxMomentum': p.board.forEach((m) => { if (m.kw === 'Charge') m.atk += 2; }); break;
       case 'fxFormation': p.board.forEach((m) => { if (m.kw === 'Guard') m.hp += 2; }); break;
       case 'fxLevy': { p.board.forEach((m) => { if (m.id.startsWith('TOKEN@')) { m.atk += 1; m.hp += 1; } }); if (p.board.length < MAX_BOARD) p.board.push(token(p, S)); break; }
-      case 'fxPillage': { const pi = 2 + (hasP(p, 'COURT_INTRIGUE') ? rites(S, side) : 0); foe.hp -= pi; S.events.push({ t: 'heroHit', side: other(side), id: 'PILLAGE', dmg: pi }); if (p.board.length > foe.board.length) draw(S, side); break; } // v0.15.1: COURT_INTRIGUE
+      case 'fxPillage': { const pi = 2 + (hasP(p, 'COURT_INTRIGUE') ? 2 * rites(S, side) : 0); foe.hp -= pi; S.events.push({ t: 'heroHit', side: other(side), id: 'PILLAGE', dmg: pi }); if (p.board.length > foe.board.length) draw(S, side); break; } // v0.15.1: COURT_INTRIGUE
       // v0.12: stronger variants — the edict tier the audit asked for
       case 'fxPingAll2': foe.board.slice().forEach((t) => damageMinion(S, other(side), t.uid, 2 + wv)); break;
       case 'fxAoe3':     foe.board.slice().forEach((t) => damageMinion(S, other(side), t.uid, 3 + wv)); break;
       case 'fxSnipe4': { const t = foe.board.slice().sort((a,b) => (b.atk+b.hp)-(a.atk+a.hp))[0]; if (t) damageMinion(S, other(side), t.uid, 4); break; }
-      case 'fxVolley2': { const n = p.board.filter((m) => m.kw === 'Ranged').length; const d = n * (2 + (hasP(p, 'COURT_INTRIGUE') ? rites(S, side) : 0)); if (d > 0) { foe.hp -= d; S.events.push({ t: 'heroHit', side: other(side), id: 'VOLLEY', dmg: d }); } break; } // v0.15.1: COURT_INTRIGUE
+      case 'fxVolley2': { const n = p.board.filter((m) => m.kw === 'Ranged').length; const d = n * (2 + (hasP(p, 'COURT_INTRIGUE') ? 2 * rites(S, side) : 0)); if (d > 0) { foe.hp -= d; S.events.push({ t: 'heroHit', side: other(side), id: 'VOLLEY', dmg: d }); } break; } // v0.15.1: COURT_INTRIGUE
       case 'fxHero3': { foe.hp -= 3; S.events.push({ t: 'heroHit', side: other(side), id: 'BURN', dmg: 3 }); break; }
       case 'fxDraw3': draw(S, side); draw(S, side); draw(S, side); break;
       case 'fxHealHero6': p.hp = Math.min(MAX_HP, p.hp + 6); break;
       case 'fxRally3': { for (let i = 0; i < 3; i++) if (p.board.length < MAX_BOARD) p.board.push(token(p, S)); break; }
       case 'fxMana3': p.mana += 3; break;
       case 'fxExecute2': { foe.board.slice().sort((a,b) => b.atk-a.atk).slice(0, 2).forEach((t) => damageMinion(S, other(side), t.uid, t.hp + 99)); break; }
+      // v0.16: Temporary Laws, Delayed decrees, Hand-quality scry, Espionage
+      case 'fxLawTariff': S.laws.push({ id: 'lawTariff', side, until: S.turn + 3 }); S.events.push({ t: 'passive', side, id: 'LAW_TARIFF' }); break;
+      case 'fxLawMuster': S.laws.push({ id: 'lawMuster', side, until: S.turn + 3 }); S.events.push({ t: 'passive', side, id: 'LAW_MUSTER' }); break;
+      case 'fxDecreeMuster': p.pending.push({ fx: 'decreeMuster' }); break;
+      case 'fxDecreeDraw': p.pending.push({ fx: 'decreeDraw' }); break;
+      case 'fxDecreeMana': p.pending.push({ fx: 'decreeMana' }); break;
+      case 'fxScry2': case 'fxScry3': {
+        const k = fx === 'fxScry2' ? 2 : 3;
+        const top = p.deck.splice(-Math.min(k, p.deck.length));
+        const val = (cc) => cc.type === 'minion' ? (cc.atk + cc.hp + (cc.bc ? 2 : 0) + (cc.dr ? 1 : 0)) : 6;
+        top.sort((a, b) => val(b) - val(a));
+        while (top.length > 1) p.deck.push(top.pop());
+        if (top.length) { p.deck.push(top[0]); draw(S, side); }
+        break;
+      }
+      case 'fxEspionage': {
+        draw(S, side);
+        if (foe.hand.length >= 4) { const hi = foe.hand.reduce((acc, cc, i2) => (cc.cost > foe.hand[acc].cost ? i2 : acc), 0); const dc = foe.hand.splice(hi, 1)[0]; S.events.push({ t: 'passive', side: other(side), id: 'RL_DISCARD', on: dc.id }); }
+        break;
+      }
     }
   }
 
@@ -391,7 +430,7 @@
   }
   // Bloodletter's Skirmish deals 2; First Rites doubles it in the opening.
   function powerDmg(S, side) {
-    return (hasP(S[side], 'BLOODLETTER') ? 2 : 1) * rites(S, side);
+    return (hasP(S[side], 'BLOODLETTER') ? 2 : 1) * rites(S, side) + (S[side].relics.some((x) => x.rl === 'rlBanner') ? 1 : 0); // v0.16: Unbowed Banner
   }
   function power(S, side, target) {
     if (!canPower(S, side)) return false;
@@ -421,11 +460,33 @@
     np.power = false;
     np.board.forEach((m) => { m.ready = true; m.shocked = false; m.attacks = 0; }); // v0.11: Aegis (m.shield) intentionally persists across turns
     // relic hooks (v0.6)
-    if (hasRelic(np, 'rlGranary')) np.hp = Math.min(MAX_HP, np.hp + 1);
+    if (hasRelic(np, 'rlGranary')) np.hp = Math.min(MAX_HP, np.hp + 2); // v0.16 buff: 1 -> 2
     if (hasRelic(foe, 'rlLibrary') && foe.mana >= 2) { draw(S, other(next)); S.events.push({ t: 'relicfx', side: other(next), id: 'rlLibrary' }); }
     if (hasRelic(foe, 'rlForage') && foe.board.length < 3 && foe.board.length < MAX_BOARD) { foe.board.push(token(foe, S)); S.events.push({ t: 'relicfx', side: other(next), id: 'rlForage' }); }
     const r = rites(S, next);
     np.sovOnce = {}; np.turnDraws = 0; np.heroDmgOnce = false; // v0.15: per-turn sovereign state (tookHeroDmg resets below, after STILLNESS checks it)
+    np.moonwellOnce = false; // v0.16: Moonwell Vial per-turn gate
+    // v0.16: Temporary Laws expire with the round (created on turn T, live through your turn T+2)
+    S.laws = S.laws.filter((l) => S.turn < l.until);
+    // v0.16: Delayed decrees fire at the start of their owner's turn
+    const pend = np.pending; np.pending = [];
+    for (const pr of pend) {
+      if (pr.fx === 'decreeMuster') { for (let pi = 0; pi < 2; pi++) if (np.board.length < MAX_BOARD) np.board.push(token(np, S)); S.events.push({ t: 'passive', side: next, id: 'DECREE_MUSTER' }); }
+      else if (pr.fx === 'decreeDraw') { draw(S, next); draw(S, next); S.events.push({ t: 'passive', side: next, id: 'DECREE_DRAW' }); }
+      else if (pr.fx === 'decreeMana') { np.mana += 2; S.events.push({ t: 'passive', side: next, id: 'DECREE_MANA' }); }
+    }
+    // v0.16 relic turn-start hooks (terrain, recursion, politics, sustain, engines)
+    if (hasRelic(np, 'rlFlame') && foe.board.length) { const wf = foe.board.slice().sort((a, b) => (a.atk + a.hp) - (b.atk + b.hp))[0]; S.events.push({ t: 'passive', side: next, id: 'RL_FLAME', on: wf.id }); damageMinion(S, other(next), wf.uid, 1); } // Silver Flame
+    if (hasRelic(np, 'rlTent') && np.board.length) { const wt = np.board.slice().sort((a, b) => (a.atk + a.hp) - (b.atk + b.hp))[0]; wt.atk += 1; wt.hp += 1; S.events.push({ t: 'passive', side: next, id: 'RL_TENT', on: wt.id }); } // The Great Tent
+    if (hasRelic(np, 'rlRampart')) np.board.forEach((m) => { if (m.kw === 'Guard') m.hp += 1; }); // Rampart of Skulls: the wall grows
+    if (hasRelic(np, 'rlWard') && !np.tookHeroDmg) np.hp = Math.min(MAX_HP, np.hp + 2); // Glade Ward
+    if (hasRelic(np, 'rlHearth') && np.hand.length >= 5) np.hp = Math.min(MAX_HP, np.hp + 2); // Winter Hearth: rewards a full hand
+    if (hasRelic(np, 'rlMusketeers')) np.board.forEach((m) => { if (m.kw === 'Ranged') m.atk += 1; }); // King's Musketeers
+    if (hasRelic(np, 'rlCistern') && S.turn % 3 === 0) np.mana += 1; // Grand Cistern: every third turn
+    if (hasRelic(np, 'rlCuria') && foe.board.length > np.board.length && np.deck.length) { draw(S, next); S.events.push({ t: 'passive', side: next, id: 'RL_CURIA' }); } // Curia Julia: the senate reacts
+    if (hasRelic(np, 'rlWarStandard') && np.board.length >= 4) np.board.forEach((m) => { m.atk += 1; }); // War Standard of the Houses
+    if (hasRelic(np, 'rlQuill') && np.fallen.length && np.board.length < MAX_BOARD) { const gc = np.fallen.pop(); np.board.push({ id: 'ECHO@' + gc.id, name: 'Echo of ' + gc.name, cost: 1, atk: 1, hp: 1, kw: null, uid: 'ECHO-' + Math.floor(S.rng() * 1e9), img: gc.img, file: gc.file, fl: 'Called back beyond the veil.' }); S.events.push({ t: 'play', side: next, id: 'ECHO', uid: 'ECHO' + np.board.length, kw: null, cost: 1 }); } // Chronicler's Quill: the last of the fallen returns as a 1/1 Echo
+    if (hasRelic(np, 'rlDebt') && foe.hand.length >= 7) { const hi = foe.hand.reduce((acc, cc, i2) => (cc.cost > foe.hand[acc].cost ? i2 : acc), 0); const dc = foe.hand.splice(hi, 1)[0]; S.events.push({ t: 'passive', side: other(next), id: 'RL_DISCARD', on: dc.id }); } // The Crown's Debt: hoarders pay
     // STORMCALL (v0.9.2 nerf): only fires while behind on the board — was the
     // strongest passive in sims (63.5% when leading) as unconditional chip.
     if (hasP(np, 'STORMCALL') && foe.board.length && np.board.length < foe.board.length) {
@@ -438,7 +499,7 @@
     }
     // v0.9.4 buff: threshold 3 -> 4 (deep playtest 9.6M games: Second Sight
     // 28.7% when leading = weakest passive; the <=3 gate rarely fired).
-    if (hasP(np, 'SECOND_SIGHT') && np.hand.length <= 4 && np.deck.length) {
+    if (hasP(np, 'SECOND_SIGHT') && np.hand.length <= 5 && np.deck.length) { // v0.16 buff: 4 -> 5
       S.events.push({ t: 'passive', side: next, id: 'SECOND_SIGHT' });
       for (let i = 0; i < r; i++) draw(S, next);
     }
@@ -600,6 +661,15 @@
         case 'fxFormation': return p.board.filter((m) => m.kw === 'Guard').length * 1.9;
         case 'fxLevy': return p.board.filter((m) => m.id.startsWith('TOKEN@')).length * 2.1 + 1.5;
         case 'fxPillage': return 2 * 1.4 + (p.board.length > foe.board.length ? 1.6 : 0);
+        // v0.16: laws, decrees, scry, espionage
+        case 'fxLawTariff': return 1.4 + foe.hand.length * 0.3;
+        case 'fxLawMuster': return 1.2 + p.board.length * 0.5;
+        case 'fxDecreeMuster': return 2.2;
+        case 'fxDecreeDraw': return 2.4;
+        case 'fxDecreeMana': return 2.1;
+        case 'fxScry2': return 2.3;
+        case 'fxScry3': return 2.6;
+        case 'fxEspionage': return 2.0 + (foe.hand.length >= 4 ? 1.2 : 0);
         default: return 1;
       }
     }
@@ -611,6 +681,30 @@
         case 'rlDrillyard': return 1.8;
         case 'rlForage': return 2.0;
         case 'rlLookout': return 1.2 + p.board.filter((m) => m.kw === 'Ranged').length * 1.3;
+        // v0.16: terrain / hero-mode / recursion / politics relics
+        case 'rlFlame': return 1.9;
+        case 'rlTent': return 1.7;
+        case 'rlRampart': return 1.0 + p.board.filter((m) => m.kw === 'Guard').length * 0.4;
+        case 'rlWard': return 1.5;
+        case 'rlHearth': return 1.5;
+        case 'rlMusketeers': return 1.1 + p.board.filter((m) => m.kw === 'Ranged').length * 0.35;
+        case 'rlCistern': return 1.6;
+        case 'rlCuria': return 1.6;
+        case 'rlWarStandard': return 1.5;
+        case 'rlQuill': return 1.7;
+        case 'rlMoonwell': return 1.5;
+        case 'rlTrophy': return 1.5;
+        case 'rlBasilica': return 1.0 + p.board.filter((m) => m.kw === 'Guard').length * 0.4;
+        case 'rlReliquary': return 1.9;
+        case 'rlBanner': return 1.4;
+        case 'rlVault': return 1.8;
+        case 'rlMirror': return 1.7;
+        case 'rlAmulet': return 1.3 + p.hand.filter((c2) => c2.type === 'edict').length * 0.25;
+        case 'rlIdol': return 1.5;
+        case 'rlDrum': return 1.5;
+        case 'rlScales': return 1.6;
+        case 'rlSatrap': return 1.5;
+        case 'rlDebt': return 1.4;
         default: return 1.5;
       }
     }
