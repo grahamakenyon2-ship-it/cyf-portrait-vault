@@ -303,8 +303,8 @@
   },
   "the-crown-s-debt.jpg": {
    "f": "the-crown-s-debt.jpg",
-   "src": "commons:Renaissance gold coins painting",
-   "bytes": 97459
+   "src": "commons:moneylender and his wife",
+   "bytes": 687811
   },
   "the-small-council.jpg": {
    "f": "the-small-council.jpg",
@@ -328,8 +328,8 @@
   },
   "the-marches-aflame.jpg": {
    "f": "the-marches-aflame.jpg",
-   "src": "commons:medieval castle siege painting",
-   "bytes": 12657
+   "src": "commons:Siege of Orleans",
+   "bytes": 366813
   },
   "the-border-truce.jpg": {
    "f": "the-border-truce.jpg",
@@ -483,8 +483,8 @@
   },
   "the-guild-purse.jpg": {
    "f": "the-guild-purse.jpg",
-   "src": "commons:Ottoman coins treasure",
-   "bytes": 46444
+   "src": "commons:Ottoman akce coin",
+   "bytes": 510700
   },
   "the-astrologer-s-court.jpg": {
    "f": "the-astrologer-s-court.jpg",
@@ -503,8 +503,8 @@
   },
   "the-steppe-courier.jpg": {
    "f": "the-steppe-courier.jpg",
-   "src": "commons:Mongol horseman painting",
-   "bytes": 52649
+   "src": "commons:Mongolian horseman riding",
+   "bytes": 107132
   },
   "the-great-tent.jpg": {
    "f": "the-great-tent.jpg",
@@ -1185,6 +1185,321 @@
    "f": "coin-hoard-buried.jpg",
    "src": "commons:Viking silver hoard coins",
    "bytes": 407372
+  },
+  "the-gilded-ledger.jpg": {
+   "f": "the-gilded-ledger.jpg",
+   "src": "commons:Luca Pacioli",
+   "bytes": 288294
+  },
+  "whispers-at-court.jpg": {
+   "f": "whispers-at-court.jpg",
+   "src": "commons:Las Meninas",
+   "bytes": 364585
+  },
+  "the-judicial-duel.jpg": {
+   "f": "the-judicial-duel.jpg",
+   "src": "commons:trial by combat",
+   "bytes": 228849
+  },
+  "the-winter-levy.jpg": {
+   "f": "the-winter-levy.jpg",
+   "src": "commons:Peasants' Revolt",
+   "bytes": 650107
+  },
+  "the-watcher-s-vigil.jpg": {
+   "f": "the-watcher-s-vigil.jpg",
+   "src": "commons:monk praying painting",
+   "bytes": 529924
+  },
+  "the-silver-flame.jpg": {
+   "f": "the-silver-flame.jpg",
+   "src": "commons:Magdalen with the Smoking Flame",
+   "bytes": 349828
+  },
+  "the-elder-moot.jpg": {
+   "f": "the-elder-moot.jpg",
+   "src": "commons:Arthur Rackham",
+   "bytes": 1075842
+  },
+  "the-glade-ward.jpg": {
+   "f": "the-glade-ward.jpg",
+   "src": "commons:sacred grove",
+   "bytes": 371309
+  },
+  "the-moonwell-vial.jpg": {
+   "f": "the-moonwell-vial.jpg",
+   "src": "commons:moonlight landscape painting",
+   "bytes": 202756
+  },
+  "the-vigil-of-steel.jpg": {
+   "f": "the-vigil-of-steel.jpg",
+   "src": "commons:medieval knight armor",
+   "bytes": 423567
+  },
+  "the-wayfarer-s-compass.jpg": {
+   "f": "the-wayfarer-s-compass.jpg",
+   "src": "commons:compass rose",
+   "bytes": 519514
+  },
+  "desert-caravan.jpg": {
+   "f": "desert-caravan.jpg",
+   "src": "commons:desert caravan",
+   "bytes": 279186
+  },
+  "spice-bazaar.jpg": {
+   "f": "spice-bazaar.jpg",
+   "src": "commons:spice market",
+   "bytes": 449452
+  },
+  "the-guildhall-banquet.jpg": {
+   "f": "the-guildhall-banquet.jpg",
+   "src": "commons:Wedding at Cana Veronese",
+   "bytes": 195753
+  },
+  "the-chart-room.jpg": {
+   "f": "the-chart-room.jpg",
+   "src": "commons:nautical chart",
+   "bytes": 432153
+  },
+  "redcoat-volley.jpg": {
+   "f": "redcoat-volley.jpg",
+   "src": "commons:Scotland Forever Lady Butler",
+   "bytes": 367675
+  },
+  "the-coaling-station.jpg": {
+   "f": "the-coaling-station.jpg",
+   "src": "commons:steamship painting",
+   "bytes": 51906
+  },
+  "musketeer-duel-at-dawn.jpg": {
+   "f": "musketeer-duel-at-dawn.jpg",
+   "src": "commons:The Duel After the Masquerade Gerome",
+   "bytes": 231937
+  },
+  "the-vintner-s-harvest.jpg": {
+   "f": "the-vintner-s-harvest.jpg",
+   "src": "commons:grape harvest painting",
+   "bytes": 555784
+  },
+  "the-khans-yam-route.jpg": {
+   "f": "the-khans-yam-route.jpg",
+   "src": "commons:Mongolian horse racing",
+   "bytes": 325573
+  },
+  "falcon-of-the-steppes.jpg": {
+   "f": "falcon-of-the-steppes.jpg",
+   "src": "commons:eagle hunting Mongolia",
+   "bytes": 405107
+  },
+  "wind-swept-dunes-fortress.jpg": {
+   "f": "wind-swept-dunes-fortress.jpg",
+   "src": "commons:Palmyra ruins",
+   "bytes": 296809
+  },
+  "the-war-drum-camp.jpg": {
+   "f": "the-war-drum-camp.jpg",
+   "src": "commons:Mongol Empire map",
+   "bytes": 469298
+  },
+  "the-bazaar-of-spices.jpg": {
+   "f": "the-bazaar-of-spices.jpg",
+   "src": "commons:Grand Bazaar Istanbul",
+   "bytes": 470580
+  },
+  "the-siege-cannon.jpg": {
+   "f": "the-siege-cannon.jpg",
+   "src": "commons:Dardanelles gun",
+   "bytes": 387019
+  },
+  "whirling-dervishes.jpg": {
+   "f": "whirling-dervishes.jpg",
+   "src": "commons:Sufi whirling",
+   "bytes": 74011
+  },
+  "palm-oasis-caravan.jpg": {
+   "f": "palm-oasis-caravan.jpg",
+   "src": "commons:Siwa Oasis",
+   "bytes": 378513
+  },
+  "poison-ring.jpg": {
+   "f": "poison-ring.jpg",
+   "src": "commons:signet ring museum",
+   "bytes": 306249
+  },
+  "the-venetian-council.jpg": {
+   "f": "the-venetian-council.jpg",
+   "src": "commons:Doge Palace interior",
+   "bytes": 472336
+  },
+  "the-borgia-chalice.jpg": {
+   "f": "the-borgia-chalice.jpg",
+   "src": "commons:chalice museum",
+   "bytes": 33239
+  },
+  "cipher-letter.jpg": {
+   "f": "cipher-letter.jpg",
+   "src": "commons:Voynich manuscript",
+   "bytes": 301113
+  },
+  "the-cardinal-s-ring.jpg": {
+   "f": "the-cardinal-s-ring.jpg",
+   "src": "commons:The Cardinal Vibert",
+   "bytes": 71189
+  },
+  "the-longbow-yeomen.jpg": {
+   "f": "the-longbow-yeomen.jpg",
+   "src": "commons:Battle of Poitiers",
+   "bytes": 531392
+  },
+  "the-quartermaster-s-wagon.jpg": {
+   "f": "the-quartermaster-s-wagon.jpg",
+   "src": "commons:The Hay Wain",
+   "bytes": 404853
+  },
+  "iron-shod-warhorse.jpg": {
+   "f": "iron-shod-warhorse.jpg",
+   "src": "commons:Bartolomeo Colleoni statue",
+   "bytes": 554290
+  },
+  "the-orb-of-foresight.jpg": {
+   "f": "the-orb-of-foresight.jpg",
+   "src": "commons:Fortune Teller Caravaggio",
+   "bytes": 287099
+  },
+  "the-storm-summoner.jpg": {
+   "f": "the-storm-summoner.jpg",
+   "src": "commons:The Tempest Giorgione",
+   "bytes": 492476
+  },
+  "the-eye-of-the-tower.jpg": {
+   "f": "the-eye-of-the-tower.jpg",
+   "src": "commons:owl painting",
+   "bytes": 980329
+  },
+  "willow-lantern.jpg": {
+   "f": "willow-lantern.jpg",
+   "src": "commons:Monet willows",
+   "bytes": 92667
+  },
+  "the-silverwood-bow.jpg": {
+   "f": "the-silverwood-bow.jpg",
+   "src": "commons:English longbow",
+   "bytes": 190849
+  },
+  "moonlit-stone-bridge.jpg": {
+   "f": "moonlit-stone-bridge.jpg",
+   "src": "commons:Nocturne Whistler",
+   "bytes": 665669
+  },
+  "the-bone-golem.jpg": {
+   "f": "the-bone-golem.jpg",
+   "src": "commons:Dance of Death Holbein",
+   "bytes": 966653
+  },
+  "wyvern-s-shadow.jpg": {
+   "f": "wyvern-s-shadow.jpg",
+   "src": "commons:Saint George and the Dragon Raphael",
+   "bytes": 764436
+  },
+  "the-berserker-s-rage.jpg": {
+   "f": "the-berserker-s-rage.jpg",
+   "src": "commons:Viking reenactment",
+   "bytes": 406080
+  },
+  "the-werebeast-moon.jpg": {
+   "f": "the-werebeast-moon.jpg",
+   "src": "commons:full moon photograph",
+   "bytes": 222886
+  },
+  "the-derelict-hulk.jpg": {
+   "f": "the-derelict-hulk.jpg",
+   "src": "commons:shipwreck painting",
+   "bytes": 331217
+  },
+  "the-hive-spire.jpg": {
+   "f": "the-hive-spire.jpg",
+   "src": "commons: Devils Tower Wyoming",
+   "bytes": 560787
+  },
+  "the-lighthouse-storm.jpg": {
+   "f": "the-lighthouse-storm.jpg",
+   "src": "commons:The Ninth Wave Aivazovsky",
+   "bytes": 225329
+  },
+  "salt-fog-harbor.jpg": {
+   "f": "salt-fog-harbor.jpg",
+   "src": "commons:Fog Impression Monet",
+   "bytes": 92287
+  },
+  "barnacled-hull.jpg": {
+   "f": "barnacled-hull.jpg",
+   "src": "commons:HMS Victory dry dock",
+   "bytes": 649973
+  },
+  "the-catacomb-shelves.jpg": {
+   "f": "the-catacomb-shelves.jpg",
+   "src": "commons:Sedlec ossuary",
+   "bytes": 358354
+  },
+  "the-ash-archive.jpg": {
+   "f": "the-ash-archive.jpg",
+   "src": "commons:Pompeii ruins",
+   "bytes": 437327
+  },
+  "the-map-of-elsewhere.jpg": {
+   "f": "the-map-of-elsewhere.jpg",
+   "src": "commons:Mappa mundi",
+   "bytes": 433251
+  },
+  "the-blind-oracle.jpg": {
+   "f": "the-blind-oracle.jpg",
+   "src": "commons:Delphic Sibyl Michelangelo",
+   "bytes": 942961
+  },
+  "siege-ladders.jpg": {
+   "f": "siege-ladders.jpg",
+   "src": "commons:Siege of Constantinople miniature",
+   "bytes": 514410
+  },
+  "countermine-tunnel.jpg": {
+   "f": "countermine-tunnel.jpg",
+   "src": "commons:tunnel warfare",
+   "bytes": 1921096
+  },
+  "the-sapper-s-charge.jpg": {
+   "f": "the-sapper-s-charge.jpg",
+   "src": "commons:Siege of Tyre",
+   "bytes": 29188
+  },
+  "the-merchant-s-scale.jpg": {
+   "f": "the-merchant-s-scale.jpg",
+   "src": "commons:money changer painting Metsys",
+   "bytes": 687811
+  },
+  "guild-seal-wax.jpg": {
+   "f": "guild-seal-wax.jpg",
+   "src": "commons:seal matrix medieval",
+   "bytes": 178103
+  },
+  "the-moneylender-s-table.jpg": {
+   "f": "the-moneylender-s-table.jpg",
+   "src": "commons:Shylock illustration",
+   "bytes": 3242702
+  },
+  "the-granary-tithe.jpg": {
+   "f": "the-granary-tithe.jpg",
+   "src": "commons:The Gleaners Millet",
+   "bytes": 358730
+  },
+  "the-harbor-customs.jpg": {
+   "f": "the-harbor-customs.jpg",
+   "src": "commons:Canaletto Thames",
+   "bytes": 189675
+  },
+  "apprentice-s-masterpiece.jpg": {
+   "f": "apprentice-s-masterpiece.jpg",
+   "src": "commons:painter studio painting",
+   "bytes": 463051
   }
  }
 }
