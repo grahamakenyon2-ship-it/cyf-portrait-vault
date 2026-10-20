@@ -56,6 +56,64 @@
   };
 
   const other = (side) => (side === 'A' ? 'B' : 'A');
+  // ---------- v0.20 MULTI-KEYWORD ----------
+  // kw may be a list: "Guard, Lifesteal" (comma/plus separated). hasKw(o, k) is the
+  // ONLY sanctioned way to test a keyword from now on (cards, board minions, tokens).
+  // Perf: per-object cached Set (WeakMap) — hot combat loops don't re-split strings.
+  const KW_CACHE = new WeakMap();
+  const kwsOf = (o) => {
+    if (!o) return new Set();
+    let s = KW_CACHE.get(o);
+    if (!s) { s = new Set(String(o.kw || '').split(/[+,]/).map((x) => x.trim()).filter(Boolean)); KW_CACHE.set(o, s); }
+    return s;
+  };
+  const hasKw = (o, k) => kwsOf(o).has(k);
+  const kwsStr = (o) => [...kwsOf(o)].join(', ');
+  // ---------- v0.20 TARGETING (A3) ----------
+  // opts.target = { uid } — the chosen target for single-target templates.
+  // pickTarget validates against the pool and returns it, or null when absent
+  // or invalid; callers fall back to the legacy random/auto pick, so a
+  // no-target play consumes S.rng() exactly as before (byte-identical).
+  // Deathrattles stay random on purpose (HS-style: you can't aim a deathrattle).
+  const pickTarget = (opts, pool) => {
+    const t = opts && opts.target;
+    if (!t || !t.uid) return null;
+    return pool.find((m) => m.uid === t.uid) || null;
+  };
+  // which cards can be aimed, and at what (null = not targetable)
+  const TGT_BC = { bcPing: 'foe', bcPing2: 'foe', bcPing3: 'foe', bcBuff: 'friend' };
+  const TGT_FX = { fxSnipe3: 'foe', fxSnipe4: 'foe', fxExecute: 'foe', fxExecute2: 'foe' };
+  const targetSpec = (c) => TGT_BC[c.bc || ''] || TGT_FX[c.fx || ''] || null;
+  const validTargets = (S, side, c) => {
+    const spec = targetSpec(c);
+    if (!spec) return null;
+    if (spec === 'foe') return S[other(side)].board.map((m) => m.uid);
+    return S[side].board.filter((m) => m.uid !== c.uid).map((m) => m.uid);
+  };
+  // ---------- v0.20 A6: AI TARGETING — all difficulties aim well ----------
+  // User decision: the game tests deck quality, not aim. The human's no-target
+  // play still falls back to the legacy random pick (browser unchanged until
+  // the UI flow lands); the AI never leaves targeting to chance.
+  const tgtDmg = (c) => ({ bcPing: 1, bcPing2: 2, bcPing3: 3, fxSnipe3: 3, fxSnipe4: 4 }[c.bc || c.fx] || 0);
+  const aiTarget = (S, side, c) => {
+    const spec = targetSpec(c);
+    if (!spec) return null;
+    if (spec === 'foe') {
+      const pool = S[other(side)].board;
+      if (!pool.length) return null;
+      const byThreat = (a, b) => (b.atk - a.atk) || (b.hp - a.hp);
+      const byValue = (a, b) => (b.atk + b.hp) - (a.atk + a.hp);
+      if (c.fx === 'fxExecute' || c.fx === 'fxExecute2') return { uid: pool.slice().sort(byThreat)[0].uid }; // Execute: kill the biggest threat
+      const d = tgtDmg(c);
+      const killable = d ? pool.filter((t) => t.hp > 0 && t.hp <= d) : [];
+      if (killable.length) return { uid: killable.slice().sort(byValue)[0].uid }; // cleanest kill, best value
+      return { uid: pool.slice().sort(byThreat)[0].uid };                          // nothing kills: chip the biggest
+    }
+    // friend (bcBuff): feed the strongest body that isn't the card itself
+    const own = S[side].board.filter((m) => m.uid !== c.uid);
+    if (!own.length) return null;
+    return { uid: own.slice().sort((a, b) => (b.atk + b.hp) - (a.atk + a.hp))[0].uid };
+  };
   const hasP = (p, id) => !!(p.sov && p.sov.passive && p.sov.passive.id === id);
 
   // ---------- state ----------
@@ -147,8 +205,8 @@
     // v0.11 AEGIS: one absorbed damage instance (attacks, retaliation, pings, AOE)
     if (t.shield > 0) { t.shield -= 1; S.events.push({ t: 'shield', side: victimSide, id: t.id, uid }); return; }
     // v0.15 TESTUDO: your Guard minions take 1 less combat damage (min 1)
-    if (combat && hasP(vp, 'TESTUDO') && t.kw === 'Guard') dmg = Math.max(1, dmg - 1 * rites(S, victimSide));
-    if (combat && t.kw === 'Guard' && hasRelic(vp, 'rlBasilica')) dmg = Math.max(1, dmg - 1); // v0.16: Iron Basilica
+    if (combat && hasP(vp, 'TESTUDO') && hasKw(t, 'Guard')) dmg = Math.max(1, dmg - 1 * rites(S, victimSide));
+    if (combat && hasKw(t, 'Guard') && hasRelic(vp, 'rlBasilica')) dmg = Math.max(1, dmg - 1); // v0.16: Iron Basilica
     t.hp -= dmg;
     if (t.hp <= 0) {
       vp.board = vp.board.filter((x) => x.uid !== uid);
@@ -235,7 +293,7 @@
     const p = S[side];
     if (hasP(p, 'SWIFTRANKS') && !p.discountUsed && c.cost <= 3) return Math.max(0, c.cost - rites(S, side)); // v0.6.4: once per game, cheap cards only
     // v0.15: once-per-turn sovereign discounts
-    if (hasP(p, 'ORIFLAMME') && c.kw === 'Charge' && !p.sovOnce.oriflamme) return Math.max(0, c.cost - rites(S, side));
+    if (hasP(p, 'ORIFLAMME') && hasKw(c, 'Charge') && !p.sovOnce.oriflamme) return Math.max(0, c.cost - rites(S, side));
     if (hasP(p, 'BAZAAR') && c.type === 'edict' && (p.sovOnce.bazaar || 0) < 2) return Math.max(0, c.cost - rites(S, side)); // v0.16 buff: two edicts/turn
     // v0.16: laws + relic economy/politics hooks
     if (S.laws.some((l) => l.id === 'lawTariff' && l.side !== side)) return c.cost + 1; // Temporary Law: the tariff
@@ -252,57 +310,9 @@
     if (c.type === 'relic') return p.relics.length < MAX_RELICS;
     return p.board.length < MAX_BOARD;
   }
-  function playCard(S, side, i) {
-    if (!canPlay(S, side, i)) return false;
+  // v0.20 A9: battlecry resolver shared by minion plays and multi-part edict riders.
+  function resolveBc(S, side, c, opts, selfUid) {
     const p = S[side], foe = S[other(side)];
-    const c = p.hand.splice(i, 1)[0];
-    const cost = effCost(S, side, c);
-    if (hasP(p, 'SWIFTRANKS') && !p.discountUsed) p.discountUsed = true; // stays spent for the whole game (v0.6.4)
-    if (hasP(p, 'ORIFLAMME') && c.kw === 'Charge') p.sovOnce.oriflamme = true; // v0.15: once per turn
-    if (hasP(p, 'BAZAAR') && c.type === 'edict') p.sovOnce.bazaar = (p.sovOnce.bazaar || 0) + 1; // v0.16 buff: two/turn
-    if (hasRelic(p, 'rlVault') && cost < c.cost) p.sovOnce.vault = true; // v0.16: Gilded Vault — once per turn
-    p.mana -= cost;
-
-    // ---- EDICTS: one-shot command cards; resolve and vanish ----
-    if (c.type === 'edict') {
-      S.events.push({ t: 'edict', side, id: c.id, fx: c.fx });
-      if (hasP(p, 'NENYA')) { p.hp = Math.min(MAX_HP, p.hp + 1 * rites(S, side)); S.events.push({ t: 'passive', side, id: 'NENYA' }); } // v0.15: edicts also mend the Sovereign
-      resolveEdict(S, side, c.fx, c);
-      return true;
-    }
-    // ---- RELICS: persistent seats of power; take a relic slot ----
-    if (c.type === 'relic') {
-      if (p.relics.length >= MAX_RELICS) { p.hand.splice(i, 0, c); p.mana += cost; return false; }
-      p.relics.push({ ...c });
-      S.events.push({ t: 'relic', side, id: c.id, rl: c.rl });
-      if (c.rl === 'rlStandards') p.board.forEach((m) => { if (m.kw === 'Guard') m.atk += 1; }); // eagles rise for the standing army
-      if (c.rl === 'rlLookout') p.board.forEach((m) => { if (m.kw === 'Ranged') { m.atk += 1; m.hp += 1; } }); // v0.16 buff: +1/+1
-      if (c.rl === 'rlMirror') { const top = p.deck.splice(-Math.min(2, p.deck.length)); const val = (cc) => cc.type === 'minion' ? (cc.atk + cc.hp + (cc.bc ? 2 : 0) + (cc.dr ? 1 : 0)) : 6; top.sort((a, b) => val(b) - val(a)); while (top.length) p.deck.push(top.pop()); } // v0.16: Dreamer's Mirror — the best of the top two surfaces
-      return true;
-    }
-
-    // Sovereign entry passives (First Rites doubles the bonus in the opening)
-    const r = rites(S, side);
-    const m = { ...c, ready: c.kw === 'Charge' || c.kw === 'Shock', uid: c.uid };
-    if (m.kw === 'Shock') m.shocked = true; // v0.11: can hit minions, not the hero, this turn
-    if (m.kw === 'Aegis') m.shield = 1;    // v0.11: absorbs the first damage instance
-    if (m.kw === 'Relentless') m.attacks = 0; // v0.11: attack counter for the second swing
-    if (m.kw === 'Guard' && hasRelic(p, 'rlStandards')) m.atk += 1; // Legion Standards: every Guard musters +1 atk
-    if (S.laws.some((l) => l.id === 'lawMuster' && l.side === side)) { m.atk += 1; m.hp += 1; } // v0.16: Temporary Law: the muster
-    if (m.kw === 'Ranged' && hasRelic(p, 'rlLookout')) { m.atk += 1; m.hp += 1; } // v0.16 buff: +1/+1
-    if (m.kw === 'Guard' && hasP(p, 'BULWARK')) m.hp += 2 * r; // v0.6.4 buff: +2 HP (was +1)
-    if (m.kw === 'Charge' && hasP(p, 'VANGUARD')) m.atk += r;
-    if (m.kw === 'Lifesteal' && hasP(p, 'SOULTITHE')) m.atk += r;
-    if (m.kw === 'Ranged' && hasP(p, 'LONGSIGHT')) { m.atk += r; m.hp += r; } // v0.14.2 buff: +1 HP -> +1/+1 (37.2% when leading, weakest passive)
-    // v0.15 sovereign entry passives
-    if (m.kw === 'Lifesteal' && hasP(p, 'OATHBOUND')) { m.atk += r; m.hp += r; } // v0.15.1 buff: +1 HP -> +1/+1
-    if (m.kw === 'Relentless' && hasP(p, 'BROTHERHOOD')) { m.atk += r; m.hp += r; }
-    if (m.kw === 'Ranged' && hasP(p, 'STRAFING') && !p.sovOnce.strafing) { m.atk += r; m.hp += r; p.sovOnce.strafing = true; } // v0.15.1 buff: +1 ATK -> +1/+1
-    if (c.cost <= 2 && hasP(p, 'PICKET')) { m.atk += r; m.hp += r; } // v0.15.1 buff: +1 HP -> +1/+1
-    if (m.kw === 'Charge' && hasP(p, 'NIZARI')) m.shield = (m.shield || 0) + r; // v0.15.1 buff: every Charge, not just the first
-    p.board.push(m);
-    S.events.push({ t: 'play', side, id: c.id, uid: c.uid, kw: c.kw || null, cost: c.cost });
-    // Battlecry templates (fixed/fair automatic targeting)
     if (c.bc) {
       S.events.push({ t: 'bc', side, id: c.bc, src: c.id });
       // v0.12: parameterized magnitudes — bcHero1/bcPing/bcHeal2 keep their exact
@@ -313,55 +323,115 @@
       if (c.bc === 'bcHero1') { const ci = 1 + (hasP(p, 'COURT_INTRIGUE') ? 2 * rites(S, side) : 0); foe.hp -= ci; S.events.push({ t: 'heroHit', side: other(side), id: 'BC', dmg: ci }); } // v0.15: COURT_INTRIGUE
       else if (c.bc === 'bcHero2') { const ci = 2 + (hasP(p, 'COURT_INTRIGUE') ? 2 * rites(S, side) : 0); foe.hp -= ci; S.events.push({ t: 'heroHit', side: other(side), id: 'BC', dmg: ci }); } // v0.15.1: COURT_INTRIGUE
       else if (bcDmg && foe.board.length) {
-        const t = foe.board[Math.floor(S.rng() * foe.board.length)];
+        const t = pickTarget(opts, foe.board) || foe.board[Math.floor(S.rng() * foe.board.length)]; // v0.20: aimed, else legacy random
         damageMinion(S, other(side), t.uid, bcDmg);
       }
       else if (c.bc === 'bcAoe1') { const wv = 1 + (hasP(p, 'WEAVE') ? rites(S, side) : 0); foe.board.slice().forEach((t) => damageMinion(S, other(side), t.uid, wv)); } // v0.15: WEAVE
       else if (c.bc === 'bcAoeAll1') {
         foe.board.slice().forEach((t) => damageMinion(S, other(side), t.uid, 1));
-        p.board.slice().forEach((t) => { if (t.uid !== m.uid) damageMinion(S, side, t.uid, 1); });
+        p.board.slice().forEach((t) => { if (t.uid !== selfUid) damageMinion(S, side, t.uid, 1); });
       }
       else if (c.bc === 'bcHeal2') { p.hp = Math.min(MAX_HP, p.hp + 2); }
       else if (c.bc === 'bcBuff') {
-        const others = p.board.filter((x) => x.uid !== m.uid);
-        if (others.length) { const sq = 1 + (hasP(p, 'SQUIG_FRENZY') ? 2 : 0); const b = others[Math.floor(S.rng() * others.length)]; b.atk += sq; b.hp += sq; S.events.push({ t: 'buff', side, id: b.id }); } // v0.15: SQUIG_FRENZY
+        const others = p.board.filter((x) => x.uid !== selfUid);
+        if (others.length) { const sq = 1 + (hasP(p, 'SQUIG_FRENZY') ? 2 : 0); const b = pickTarget(opts, others) || others[Math.floor(S.rng() * others.length)]; b.atk += sq; b.hp += sq; S.events.push({ t: 'buff', side, id: b.id }); } // v0.20: aimed, else legacy random; v0.15: SQUIG_FRENZY
       }
       else if (c.bc === 'bcSummon' && p.board.length < MAX_BOARD) { p.board.push(token(p, S)); }
       else if (c.bc === 'bcDraw') { draw(S, side); }
     }
+  }
+  function playCard(S, side, i, opts) { // v0.20: opts.target = { uid } aims single-target effects
+    opts = opts || {};
+    if (!canPlay(S, side, i)) return false;
+    const p = S[side], foe = S[other(side)];
+    const c = p.hand.splice(i, 1)[0];
+    const cost = effCost(S, side, c);
+    if (hasP(p, 'SWIFTRANKS') && !p.discountUsed) p.discountUsed = true; // stays spent for the whole game (v0.6.4)
+    if (hasP(p, 'ORIFLAMME') && hasKw(c, 'Charge')) p.sovOnce.oriflamme = true; // v0.15: once per turn
+    if (hasP(p, 'BAZAAR') && c.type === 'edict') p.sovOnce.bazaar = (p.sovOnce.bazaar || 0) + 1; // v0.16 buff: two/turn
+    if (hasRelic(p, 'rlVault') && cost < c.cost) p.sovOnce.vault = true; // v0.16: Gilded Vault — once per turn
+    p.mana -= cost;
+
+    // ---- EDICTS: one-shot command cards; resolve and vanish ----
+    if (c.type === 'edict') {
+      S.events.push({ t: 'edict', side, id: c.id, fx: c.fx });
+      if (hasP(p, 'NENYA')) { p.hp = Math.min(MAX_HP, p.hp + 1 * rites(S, side)); S.events.push({ t: 'passive', side, id: 'NENYA' }); } // v0.15: edicts also mend the Sovereign
+      resolveEdict(S, side, c.fx, c, opts); // v0.20: target flows into the edict switch
+      if (c.bc) resolveBc(S, side, c, opts, null); // v0.20 A9: multi-part edicts — the battlecry rider resolves after the fx
+      return true;
+    }
+    // ---- RELICS: persistent seats of power; take a relic slot ----
+    if (c.type === 'relic') {
+      if (p.relics.length >= MAX_RELICS) { p.hand.splice(i, 0, c); p.mana += cost; return false; }
+      p.relics.push({ ...c });
+      S.events.push({ t: 'relic', side, id: c.id, rl: c.rl });
+      if (c.rl === 'rlStandards') p.board.forEach((m) => { if (hasKw(m, 'Guard')) m.atk += 1; }); // eagles rise for the standing army
+      if (c.rl === 'rlLookout') p.board.forEach((m) => { if (hasKw(m, 'Ranged')) { m.atk += 1; m.hp += 1; } }); // v0.16 buff: +1/+1
+      if (c.rl === 'rlMirror') { const top = p.deck.splice(-Math.min(2, p.deck.length)); const val = (cc) => cc.type === 'minion' ? (cc.atk + cc.hp + (cc.bc ? 2 : 0) + (cc.dr ? 1 : 0)) : 6; top.sort((a, b) => val(b) - val(a)); while (top.length) p.deck.push(top.pop()); } // v0.16: Dreamer's Mirror — the best of the top two surfaces
+      return true;
+    }
+
+    // Sovereign entry passives (First Rites doubles the bonus in the opening)
+    const r = rites(S, side);
+    const m = { ...c, ready: hasKw(c, 'Charge') || hasKw(c, 'Shock'), uid: c.uid };
+    if (hasKw(m, 'Shock')) m.shocked = true; // v0.11: can hit minions, not the hero, this turn
+    if (hasKw(m, 'Aegis')) m.shield = 1;    // v0.11: absorbs the first damage instance
+    if (hasKw(m, 'Relentless')) m.attacks = 0; // v0.11: attack counter for the second swing
+    if (hasKw(m, 'Guard') && hasRelic(p, 'rlStandards')) m.atk += 1; // Legion Standards: every Guard musters +1 atk
+    if (S.laws.some((l) => l.id === 'lawMuster' && l.side === side)) { m.atk += 1; m.hp += 1; } // v0.16: Temporary Law: the muster
+    if (hasKw(m, 'Ranged') && hasRelic(p, 'rlLookout')) { m.atk += 1; m.hp += 1; } // v0.16 buff: +1/+1
+    if (hasKw(m, 'Guard') && hasP(p, 'BULWARK')) m.hp += 2 * r; // v0.6.4 buff: +2 HP (was +1)
+    if (hasKw(m, 'Charge') && hasP(p, 'VANGUARD')) m.atk += r;
+    if (hasKw(m, 'Lifesteal') && hasP(p, 'SOULTITHE')) m.atk += r;
+    if (hasKw(m, 'Ranged') && hasP(p, 'LONGSIGHT')) { m.atk += r; m.hp += r; } // v0.14.2 buff: +1 HP -> +1/+1 (37.2% when leading, weakest passive)
+    // v0.15 sovereign entry passives
+    if (hasKw(m, 'Lifesteal') && hasP(p, 'OATHBOUND')) { m.atk += r; m.hp += r; } // v0.15.1 buff: +1 HP -> +1/+1
+    if (hasKw(m, 'Relentless') && hasP(p, 'BROTHERHOOD')) { m.atk += r; m.hp += r; }
+    if (hasKw(m, 'Ranged') && hasP(p, 'STRAFING') && !p.sovOnce.strafing) { m.atk += r; m.hp += r; p.sovOnce.strafing = true; } // v0.15.1 buff: +1 ATK -> +1/+1
+    if (c.cost <= 2 && hasP(p, 'PICKET')) { m.atk += r; m.hp += r; } // v0.15.1 buff: +1 HP -> +1/+1
+    if (hasKw(m, 'Charge') && hasP(p, 'NIZARI')) m.shield = (m.shield || 0) + r; // v0.15.1 buff: every Charge, not just the first
+    p.board.push(m);
+    S.events.push({ t: 'play', side, id: c.id, uid: c.uid, kw: c.kw || null, cost: c.cost });
+    // v0.20 A9: shared battlecry resolver — minions pass their uid; multi-part
+    // edicts pass null (their fx already resolved, the rider lands second).
+    if (c.bc) resolveBc(S, side, c, opts, m.uid);
     return true;
   }
 
   // ---------- EDICT EFFECTS (v0.6) ----------
-  function resolveEdict(S, side, fx, c) {
+  function resolveEdict(S, side, fx, c, opts) { // v0.20: opts.target aims single-target edicts
     const p = S[side], foe = S[other(side)];
     const wv = hasP(p, 'WEAVE') ? rites(S, side) : 0; // v0.15: the Weave empowers every sweep
     switch (fx) {
       case 'fxDraw2': draw(S, side); draw(S, side); break;
       case 'fxPingAll': foe.board.slice().forEach((t) => damageMinion(S, other(side), t.uid, 1 + wv)); break;
       case 'fxAoe2':   foe.board.slice().forEach((t) => damageMinion(S, other(side), t.uid, 2 + wv)); break;
-      case 'fxSnipe3': { const t = foe.board.slice().sort((a,b) => (b.atk+b.hp)-(a.atk+a.hp))[0]; if (t) damageMinion(S, other(side), t.uid, 3); break; }
-      case 'fxExecute': { const t = foe.board.slice().sort((a,b) => b.atk-a.atk)[0]; if (t) damageMinion(S, other(side), t.uid, t.hp + 99); break; }
+      case 'fxSnipe3': { const t = pickTarget(opts, foe.board) || foe.board.slice().sort((a,b) => (b.atk+b.hp)-(a.atk+a.hp))[0]; if (t) damageMinion(S, other(side), t.uid, 3); break; } // v0.20: aimed, else auto-best
+      case 'fxExecute': { const t = pickTarget(opts, foe.board) || foe.board.slice().sort((a,b) => b.atk-a.atk)[0]; if (t) damageMinion(S, other(side), t.uid, t.hp + 99); break; } // v0.20: aimed, else auto-biggest
       case 'fxHealHero4': p.hp = Math.min(MAX_HP, p.hp + 4); break;
       case 'fxMana2': p.mana += 2; break;
       case 'fxRally': { if (p.board.length < MAX_BOARD) p.board.push(token(p, S)); if (p.board.length < MAX_BOARD) p.board.push(token(p, S)); break; }
       case 'fxRallyBoard': p.board.forEach((m) => { m.atk += 1; m.hp += 1; }); break;
-      case 'fxVolley': { const n = p.board.filter((m) => m.kw === 'Ranged').length; const d = n * (1 + (hasP(p, 'COURT_INTRIGUE') ? 2 * rites(S, side) : 0)); if (d > 0) { foe.hp -= d; S.events.push({ t: 'heroHit', side: other(side), id: 'VOLLEY', dmg: d }); } break; } // v0.15.1: COURT_INTRIGUE
-      case 'fxMomentum': p.board.forEach((m) => { if (m.kw === 'Charge') m.atk += 2; }); break;
-      case 'fxFormation': p.board.forEach((m) => { if (m.kw === 'Guard') m.hp += 2; }); break;
+      case 'fxVolley': { const n = p.board.filter((m) => hasKw(m, 'Ranged')).length; const d = n * (1 + (hasP(p, 'COURT_INTRIGUE') ? 2 * rites(S, side) : 0)); if (d > 0) { foe.hp -= d; S.events.push({ t: 'heroHit', side: other(side), id: 'VOLLEY', dmg: d }); } break; } // v0.15.1: COURT_INTRIGUE
+      case 'fxMomentum': p.board.forEach((m) => { if (hasKw(m, 'Charge')) m.atk += 2; }); break;
+      case 'fxFormation': p.board.forEach((m) => { if (hasKw(m, 'Guard')) m.hp += 2; }); break;
       case 'fxLevy': { p.board.forEach((m) => { if (m.id.startsWith('TOKEN@')) { m.atk += 1; m.hp += 1; } }); if (p.board.length < MAX_BOARD) p.board.push(token(p, S)); break; }
       case 'fxPillage': { const pi = 2 + (hasP(p, 'COURT_INTRIGUE') ? 2 * rites(S, side) : 0); foe.hp -= pi; S.events.push({ t: 'heroHit', side: other(side), id: 'PILLAGE', dmg: pi }); if (p.board.length > foe.board.length) draw(S, side); break; } // v0.15.1: COURT_INTRIGUE
       // v0.12: stronger variants — the edict tier the audit asked for
       case 'fxPingAll2': foe.board.slice().forEach((t) => damageMinion(S, other(side), t.uid, 2 + wv)); break;
       case 'fxAoe3':     foe.board.slice().forEach((t) => damageMinion(S, other(side), t.uid, 3 + wv)); break;
-      case 'fxSnipe4': { const t = foe.board.slice().sort((a,b) => (b.atk+b.hp)-(a.atk+a.hp))[0]; if (t) damageMinion(S, other(side), t.uid, 4); break; }
-      case 'fxVolley2': { const n = p.board.filter((m) => m.kw === 'Ranged').length; const d = n * (2 + (hasP(p, 'COURT_INTRIGUE') ? 2 * rites(S, side) : 0)); if (d > 0) { foe.hp -= d; S.events.push({ t: 'heroHit', side: other(side), id: 'VOLLEY', dmg: d }); } break; } // v0.15.1: COURT_INTRIGUE
+      case 'fxSnipe4': { const t = pickTarget(opts, foe.board) || foe.board.slice().sort((a,b) => (b.atk+b.hp)-(a.atk+a.hp))[0]; if (t) damageMinion(S, other(side), t.uid, 4); break; } // v0.20: aimed, else auto-best
+      case 'fxVolley2': { const n = p.board.filter((m) => hasKw(m, 'Ranged')).length; const d = n * (2 + (hasP(p, 'COURT_INTRIGUE') ? 2 * rites(S, side) : 0)); if (d > 0) { foe.hp -= d; S.events.push({ t: 'heroHit', side: other(side), id: 'VOLLEY', dmg: d }); } break; } // v0.15.1: COURT_INTRIGUE
       case 'fxHero3': { foe.hp -= 3; S.events.push({ t: 'heroHit', side: other(side), id: 'BURN', dmg: 3 }); break; }
       case 'fxDraw3': draw(S, side); draw(S, side); draw(S, side); break;
       case 'fxHealHero6': p.hp = Math.min(MAX_HP, p.hp + 6); break;
       case 'fxRally3': { for (let i = 0; i < 3; i++) if (p.board.length < MAX_BOARD) p.board.push(token(p, S)); break; }
       case 'fxMana3': p.mana += 3; break;
-      case 'fxExecute2': { foe.board.slice().sort((a,b) => b.atk-a.atk).slice(0, 2).forEach((t) => damageMinion(S, other(side), t.uid, t.hp + 99)); break; }
+      case 'fxExecute2': { // v0.20: aimed target dies first, auto picks the second
+        const pick = pickTarget(opts, foe.board);
+        const rest = foe.board.filter((x) => !pick || x.uid !== pick.uid).sort((a,b) => b.atk-a.atk);
+        (pick ? [pick, ...rest] : rest).slice(0, 2).forEach((t) => damageMinion(S, other(side), t.uid, t.hp + 99)); break;
+      }
       // v0.16: Temporary Laws, Delayed decrees, Hand-quality scry, Espionage
       case 'fxLawTariff': S.laws.push({ id: 'lawTariff', side, until: S.turn + 3 }); S.events.push({ t: 'passive', side, id: 'LAW_TARIFF' }); break;
       case 'fxLawMuster': S.laws.push({ id: 'lawMuster', side, until: S.turn + 3 }); S.events.push({ t: 'passive', side, id: 'LAW_MUSTER' }); break;
@@ -389,33 +459,33 @@
     const p = S[side], foe = S[other(side)];
     const m = p.board.find((x) => x.uid === uid);
     if (!m || !m.ready) return false;
-    if (m.kw === 'Relentless' && (m.attacks || 0) >= 2) return false; // v0.11: two swings max
+    if (hasKw(m, 'Relentless') && (m.attacks || 0) >= 2) return false; // v0.11: two swings max
     if (target.hero && m.shocked) return false; // v0.11: Shock cannot reach the Sovereign this turn
-    const guards = foe.board.filter((x) => x.kw === 'Guard');
+    const guards = foe.board.filter((x) => hasKw(x, 'Guard'));
     if (target.hero) return guards.length === 0;
     const t = foe.board.find((x) => x.uid === target.uid);
     if (!t) return false;
-    return guards.length === 0 || t.kw === 'Guard';
+    return guards.length === 0 || hasKw(t, 'Guard');
   }
   function attack(S, side, uid, target) {
     if (!canAttack(S, side, uid, target)) return false;
     const p = S[side], foe = S[other(side)];
     const m = p.board.find((x) => x.uid === uid);
     m.attacks = (m.attacks || 0) + 1;
-    m.ready = m.kw === 'Relentless' && m.attacks < 2; // v0.11: Relentless swings twice
+    m.ready = hasKw(m, 'Relentless') && m.attacks < 2; // v0.11: Relentless swings twice
     if (target.hero) {
       const dealt = heroDamage(S, other(side), m.atk, true);
-      if (m.kw === 'Lifesteal') p.hp = Math.min(MAX_HP, p.hp + dealt);
+      if (hasKw(m, 'Lifesteal')) p.hp = Math.min(MAX_HP, p.hp + dealt);
       S.events.push({ t: 'heroHit', side, id: m.id, dmg: dealt });
     } else {
       const t = foe.board.find((x) => x.uid === target.uid);
       S.events.push({ t: 'hit', side, id: m.id, dmg: m.atk, on: t.id });
       if (m.kw !== 'Ranged' && t.atk > 0) {
         // retaliation can kill the attacker (their own Deathrattle/DEATHGIFT may fire)
-        damageMinion(S, side, m.uid, t.kw === 'Bane' ? 999 : t.atk, 'retal'); // v0.11 Bane; v0.15 combat tag for GLORY/TESTUDO
+        damageMinion(S, side, m.uid, hasKw(t, 'Bane') ? 999 : t.atk, 'retal'); // v0.11 Bane; v0.15 combat tag for GLORY/TESTUDO
       }
-      if (m.kw === 'Lifesteal' && m.hp > 0) p.hp = Math.min(MAX_HP, p.hp + m.atk);
-      damageMinion(S, other(side), t.uid, m.kw === 'Bane' ? 999 : m.atk, 'hit'); // v0.11 Bane; v0.15 combat tag for BLOOD_MONEY/TESTUDO
+      if (hasKw(m, 'Lifesteal') && m.hp > 0) p.hp = Math.min(MAX_HP, p.hp + m.atk);
+      damageMinion(S, other(side), t.uid, hasKw(m, 'Bane') ? 999 : m.atk, 'hit'); // v0.11 Bane; v0.15 combat tag for BLOOD_MONEY/TESTUDO
     }
     return true;
   }
@@ -478,10 +548,10 @@
     // v0.16 relic turn-start hooks (terrain, recursion, politics, sustain, engines)
     if (hasRelic(np, 'rlFlame') && foe.board.length) { const wf = foe.board.slice().sort((a, b) => (a.atk + a.hp) - (b.atk + b.hp))[0]; S.events.push({ t: 'passive', side: next, id: 'RL_FLAME', on: wf.id }); damageMinion(S, other(next), wf.uid, 1); } // Silver Flame
     if (hasRelic(np, 'rlTent') && np.board.length) { const wt = np.board.slice().sort((a, b) => (a.atk + a.hp) - (b.atk + b.hp))[0]; wt.atk += 1; wt.hp += 1; S.events.push({ t: 'passive', side: next, id: 'RL_TENT', on: wt.id }); } // The Great Tent
-    if (hasRelic(np, 'rlRampart')) np.board.forEach((m) => { if (m.kw === 'Guard') m.hp += 1; }); // Rampart of Skulls: the wall grows
+    if (hasRelic(np, 'rlRampart')) np.board.forEach((m) => { if (hasKw(m, 'Guard')) m.hp += 1; }); // Rampart of Skulls: the wall grows
     if (hasRelic(np, 'rlWard') && !np.tookHeroDmg) np.hp = Math.min(MAX_HP, np.hp + 2); // Glade Ward
     if (hasRelic(np, 'rlHearth') && np.hand.length >= 5) np.hp = Math.min(MAX_HP, np.hp + 2); // Winter Hearth: rewards a full hand
-    if (hasRelic(np, 'rlMusketeers')) np.board.forEach((m) => { if (m.kw === 'Ranged') m.atk += 1; }); // King's Musketeers
+    if (hasRelic(np, 'rlMusketeers')) np.board.forEach((m) => { if (hasKw(m, 'Ranged')) m.atk += 1; }); // King's Musketeers
     if (hasRelic(np, 'rlCistern') && S.turn % 3 === 0) np.mana += 1; // Grand Cistern: every third turn
     if (hasRelic(np, 'rlCuria') && foe.board.length > np.board.length && np.deck.length) { draw(S, next); S.events.push({ t: 'passive', side: next, id: 'RL_CURIA' }); } // Curia Julia: the senate reacts
     if (hasRelic(np, 'rlWarStandard') && np.board.length >= 4) np.board.forEach((m) => { m.atk += 1; }); // War Standard of the Houses
@@ -509,11 +579,11 @@
     if (hasP(np, 'FOR_THE_EMPEROR') && np.board.length >= 4) { const w = weak(np.board); w.atk += 1 * r; S.events.push({ t: 'passive', side: next, id: 'FOR_THE_EMPEROR', on: w.id }); }
     if (hasP(np, 'MARCHING_ORDERS') && np.board.length) { const w = weak(np.board); w.atk += r; w.hp += r; S.events.push({ t: 'passive', side: next, id: 'MARCHING_ORDERS', on: w.id }); }
     if (hasP(np, 'BLOCKADE') && foe.board.length - np.board.length >= 2 && np.board.length < MAX_BOARD) { np.board.push(token(np, S)); S.events.push({ t: 'passive', side: next, id: 'BLOCKADE' }); } // v0.15.1 buff: 3 -> 2
-    if (hasP(np, 'STANDARDS') && np.board.filter((m) => m.kw === 'Guard').length >= 3 && np.deck.length) { S.events.push({ t: 'passive', side: next, id: 'STANDARDS' }); draw(S, next); }
+    if (hasP(np, 'STANDARDS') && np.board.filter((m) => hasKw(m, 'Guard')).length >= 3 && np.deck.length) { S.events.push({ t: 'passive', side: next, id: 'STANDARDS' }); draw(S, next); }
     if (hasP(np, 'TARGETING_GRID') && np.hand.length >= 4 && foe.board.length) { const t = foe.board.slice().sort((a, b) => (b.atk + b.hp) - (a.atk + a.hp))[0]; S.events.push({ t: 'passive', side: next, id: 'TARGETING_GRID', on: t.id }); damageMinion(S, other(next), t.uid, 1 * r); }
-    if (hasP(np, 'MOONLIGHT') && np.board.some((m) => m.kw === 'Lifesteal')) { np.hp = Math.min(MAX_HP, np.hp + 3 * r); S.events.push({ t: 'passive', side: next, id: 'MOONLIGHT' }); } // v0.15.1 buff: 2 -> 3
+    if (hasP(np, 'MOONLIGHT') && np.board.some((m) => hasKw(m, 'Lifesteal'))) { np.hp = Math.min(MAX_HP, np.hp + 3 * r); S.events.push({ t: 'passive', side: next, id: 'MOONLIGHT' }); } // v0.15.1 buff: 2 -> 3
     if (hasP(np, 'STILLNESS') && !np.tookHeroDmg) { np.hp = Math.min(MAX_HP, np.hp + 3 * r); S.events.push({ t: 'passive', side: next, id: 'STILLNESS' }); }
-    if (hasP(np, 'ART_OF_WAR') && np.board.filter((m) => m.kw === 'Guard').length > foe.board.length) { foe.hp -= 1 * r; S.events.push({ t: 'heroHit', side: other(next), id: 'ART_OF_WAR', dmg: 1 * r }); }
+    if (hasP(np, 'ART_OF_WAR') && np.board.filter((m) => hasKw(m, 'Guard')).length > foe.board.length) { foe.hp -= 1 * r; S.events.push({ t: 'heroHit', side: other(next), id: 'ART_OF_WAR', dmg: 1 * r }); }
     np.tookHeroDmg = false; // v0.15: STILLNESS window reopens (after the check above)
     draw(S, next, true); // v0.15: draw-phase draw — sovereign draw hooks skip it
   }
@@ -535,10 +605,10 @@
   // lethal is on the table (their reach vs our HP + our Guard wall).
   function threat(S, side) {
     const p = S[side], foe = S[other(side)];
-    const foeReach = foe.board.reduce((s, m) => s + m.atk * (m.kw === 'Relentless' ? 2 : 1), 0)
+    const foeReach = foe.board.reduce((s, m) => s + m.atk * (hasKw(m, 'Relentless') ? 2 : 1), 0)
       + powerDmg(S, other(side)) // v0.18: their Skirmish comes back around — a player counts it
-      + (hasP(foe, 'ART_OF_WAR') && foe.board.filter((m) => m.kw === 'Guard').length > p.board.length ? 1 : 0); // v0.18: their cannon is loaded
-    const guardHp = p.board.filter((m) => m.kw === 'Guard').reduce((s, m) => s + m.hp, 0);
+      + (hasP(foe, 'ART_OF_WAR') && foe.board.filter((m) => hasKw(m, 'Guard')).length > p.board.length ? 1 : 0); // v0.18: their cannon is loaded
+    const guardHp = p.board.filter((m) => hasKw(m, 'Guard')).reduce((s, m) => s + m.hp, 0);
     return { foeReach, guardHp, danger: foeReach > 0 && foeReach >= p.hp + guardHp };
   }
   // burnInHand(): hero damage available in hand right now (for lethal reads)
@@ -550,7 +620,7 @@
       const ci = hasP(p, 'COURT_INTRIGUE') ? rites(S, side) : 0;
       if (c.fx === 'fxPillage') d += 2 + ci;
       if (c.fx === 'fxHero3') d += 3;
-      if (c.fx === 'fxVolley' || c.fx === 'fxVolley2') { const k = p.board.filter((m) => m.kw === 'Ranged').length; if (k) d += k * (c.fx === 'fxVolley' ? 1 : 2) + (ci ? k * ci : 0); }
+      if (c.fx === 'fxVolley' || c.fx === 'fxVolley2') { const k = p.board.filter((m) => hasKw(m, 'Ranged')).length; if (k) d += k * (c.fx === 'fxVolley' ? 1 : 2) + (ci ? k * ci : 0); }
     });
     return d;
   }
@@ -558,8 +628,8 @@
   // the "do I play my Guard to not die?" read.
   function survivalBonus(S, side, c, th) {
     let b = 0;
-    if (c.kw === 'Guard') b += 2.5 + c.hp * 0.3;   // a wall buys a turn
-    if (c.kw === 'Aegis') b += 1.5;
+    if (hasKw(c, 'Guard')) b += 2.5 + c.hp * 0.3;   // a wall buys a turn
+    if (hasKw(c, 'Aegis')) b += 1.5;
     if (c.fx === 'fxHealHero4' || c.fx === 'fxHealHero6') b += 2;
     if (c.rl === 'rlBasilica' || c.rl === 'rlRampart' || c.rl === 'rlWard') b += 1.5;
     if (['fxPingAll', 'fxPingAll2', 'fxAoe2', 'fxAoe3', 'fxSnipe3', 'fxSnipe4', 'fxExecute', 'fxExecute2'].includes(c.fx)) b += Math.min(2, th.foeReach * 0.4); // takes attackers off the table
@@ -574,9 +644,9 @@
     const pool = [...p.deck, ...p.hand, ...p.board, ...p.relics];
     let charge = 0, guard = 0, ranged = 0, burn = 0, removal = 0, tokens = 0;
     for (const c of pool) {
-      if (c.kw === 'Charge') charge++;
-      if (c.kw === 'Guard') guard++;
-      if (c.kw === 'Ranged') ranged++;
+      if (hasKw(c, 'Charge')) charge++;
+      if (hasKw(c, 'Guard')) guard++;
+      if (hasKw(c, 'Ranged')) ranged++;
       if (['fxPillage', 'fxHero3', 'fxVolley', 'fxVolley2'].includes(c.fx)) burn++;
       if (['fxPingAll', 'fxPingAll2', 'fxAoe2', 'fxAoe3', 'fxSnipe3', 'fxSnipe4', 'fxExecute', 'fxExecute2'].includes(c.fx)) removal++;
       if (['fxRally', 'fxRally3', 'fxLevy', 'fxDecreeMuster'].includes(c.fx)) tokens++;
@@ -644,13 +714,13 @@
     const burnFx = c.fx && ['fxPillage', 'fxHero3', 'fxVolley', 'fxVolley2'].includes(c.fx);
     if (hasP(p, 'WEAVE') && sweepFx) v += 0.5;                 // rites amplify every sweep
     if (hasP(p, 'COURT_INTRIGUE') && burnFx) v += 0.3;         // rites amplify the burn
-    if (hasP(p, 'STANDARDS') && c.kw === 'Guard') v += p.board.filter((m) => m.kw === 'Guard').length < 3 ? 0.4 : 0.3; // 3 Guards = the draw engine
-    else if ((hasP(p, 'BULWARK') || hasP(p, 'TESTUDO') || hasP(p, 'ART_OF_WAR') || hasP(p, 'VANGUARD')) && c.kw === 'Guard') v += 0.3;
-    if (hasP(p, 'MOONLIGHT') && c.kw === 'Lifesteal') v += 0.6; // the engine is live
-    if (hasP(p, 'SOULTITHE') && c.kw === 'Lifesteal') v += 0.4;
-    if (hasP(p, 'ORIFLAMME') && c.kw === 'Charge') v += 0.3;
-    if (hasP(p, 'NIZARI') && c.kw === 'Charge') v += 0.3;
-    if (hasP(p, 'STRAFING') && c.kw === 'Ranged') v += 0.3;
+    if (hasP(p, 'STANDARDS') && hasKw(c, 'Guard')) v += p.board.filter((m) => hasKw(m, 'Guard')).length < 3 ? 0.4 : 0.3; // 3 Guards = the draw engine
+    else if ((hasP(p, 'BULWARK') || hasP(p, 'TESTUDO') || hasP(p, 'ART_OF_WAR') || hasP(p, 'VANGUARD')) && hasKw(c, 'Guard')) v += 0.3;
+    if (hasP(p, 'MOONLIGHT') && hasKw(c, 'Lifesteal')) v += 0.6; // the engine is live
+    if (hasP(p, 'SOULTITHE') && hasKw(c, 'Lifesteal')) v += 0.4;
+    if (hasP(p, 'ORIFLAMME') && hasKw(c, 'Charge')) v += 0.3;
+    if (hasP(p, 'NIZARI') && hasKw(c, 'Charge')) v += 0.3;
+    if (hasP(p, 'STRAFING') && hasKw(c, 'Ranged')) v += 0.3;
     if (hasP(p, 'PICKET') && c.type === 'minion' && c.cost <= 2) v += 0.25;
     if (hasP(p, 'BAZAAR') && c.type === 'edict') v += 0.25;
     if (hasP(p, 'TARGETING_GRID') && drawish && p.hand.length <= 4) v += 0.5; // fuel the grid
@@ -668,8 +738,8 @@
     if (spy.sweep === 0 && wide) v += 0.3;                        // their clears are spent — the board is safe
     if (spy.removal === 0 && c.type === 'minion' && c.atk + c.hp >= 10) v += 0.4; // no Execute left: big bodies are free
     if (spy.burn === 0 && spy.heal === 0 && c.fx === 'fxPillage') v += 0.2;       // no outs: close the door
-    if (spy.handEmpty && (c.kw === 'Charge' || (c.fx && ['fxPillage', 'fxHero3'].includes(c.fx)))) v += 0.4; // topdeck town: all-in
-    if (spy.foeFatigue && p.deck.length > 0 && (c.kw === 'Guard' || (c.fx && ['fxHealHero4', 'fxHealHero6'].includes(c.fx)))) v += 0.3; // they're decking: walls win the race
+    if (spy.handEmpty && (hasKw(c, 'Charge') || (c.fx && ['fxPillage', 'fxHero3'].includes(c.fx)))) v += 0.4; // topdeck town: all-in
+    if (spy.foeFatigue && p.deck.length > 0 && (hasKw(c, 'Guard') || (c.fx && ['fxHealHero4', 'fxHealHero6'].includes(c.fx)))) v += 0.3; // they're decking: walls win the race
     return v;
   }
 
@@ -682,7 +752,7 @@
     const me = S[side], foe = S[foeSide];
     // v0.9.6: snap(S) fires after each visible action when the UI animates the
     // AI's turn; sims never pass it, so behavior is unchanged.
-    const pc = (i) => { playCard(S, side, i); if (snap) snap(S); };
+    const pc = (i) => { playCard(S, side, i, { target: aiTarget(S, side, S[side].hand[i]) }); if (snap) snap(S); }; // v0.20 A6: the AI aims
     const pw = (t) => { power(S, side, t); if (snap) snap(S); };
     const atk = (u, t) => { attack(S, side, u, t); if (snap) snap(S); };
 
@@ -707,7 +777,7 @@
 
     // attacks: aims face more often than it should, trades at random otherwise
     const legalTargets = () => {
-      const guards = foe.board.filter((m) => m.kw === 'Guard');
+      const guards = foe.board.filter((m) => hasKw(m, 'Guard'));
       if (guards.length) return guards.map((g) => ({ uid: g.uid }));
       if (S.rng() < 0.65 || !foe.board.length) return [{ hero: true }];
       const opts = foe.board.map((t) => ({ uid: t.uid }));
@@ -726,7 +796,7 @@
   function aiNormal(S, side, snap) {
     const foeSide = other(side);
     const me = S[side], foe = S[foeSide];
-    const pc = (i) => { playCard(S, side, i); if (snap) snap(S); };
+    const pc = (i) => { playCard(S, side, i, { target: aiTarget(S, side, S[side].hand[i]) }); if (snap) snap(S); }; // v0.20 A6: the AI aims
     const pw = (t) => { power(S, side, t); if (snap) snap(S); };
     const atk = (u, t) => { attack(S, side, u, t); if (snap) snap(S); };
 
@@ -734,7 +804,7 @@
     const spy = spyRead(S, side); // v0.18: count their outs
     const pd0 = canPower(S, side) ? powerDmg(S, side) : 0;
     const readyAtk0 = me.board.filter((m) => m.ready).reduce((s, m) => s + m.atk, 0);
-    const lethal = !foe.board.some((m) => m.kw === 'Guard') && foe.hp <= readyAtk0 + pd0 + burnInHand(S, side);
+    const lethal = !foe.board.some((m) => hasKw(m, 'Guard')) && foe.hp <= readyAtk0 + pd0 + burnInHand(S, side);
 
     // v0.17 plays: contextual value with a hold threshold — no AOE into thin
     // boards, no buffs with no carriers; Guards/removal jump the queue under fire.
@@ -771,7 +841,7 @@
     }
 
     // attacks
-    const guard = () => foe.board.some((m) => m.kw === 'Guard');
+    const guard = () => foe.board.some((m) => hasKw(m, 'Guard'));
     // v0.18: against Scorched Earth, going face sweeps our own 1-HP board —
     // a player checks their leader before swinging
     const scorchCautious = spy.foeScorched && me.board.filter((m) => m.hp === 1).length >= 3 && foe.hp > 15 && !lethal;
@@ -781,7 +851,7 @@
       if (foe.hp <= m.atk && !guard() && !m.shocked) { atk(m.uid, { hero: true }); return; }
       // favorable trades: kill something without dying (or dying to something smaller than us)
       const opts = foe.board.filter((t) =>
-        t.hp <= m.atk && (m.kw === 'Ranged' || m.hp > t.atk || t.atk < m.atk));
+        t.hp <= m.atk && (hasKw(m, 'Ranged') || m.hp > t.atk || t.atk < m.atk));
       if (opts.length) {
         const t = opts.sort((a, b) => b.atk - a.atk)[0];
         atk(m.uid, { uid: t.uid });
@@ -791,7 +861,7 @@
       // v0.6.4: never pass forever into a Guard wall — kill one if possible,
       // otherwise chip the weakest Guard (the old pass-only behavior stalled
       // 12-14% of games at the turn cap).
-      const gs2 = foe.board.filter((t) => t.kw === 'Guard');
+      const gs2 = foe.board.filter((t) => hasKw(t, 'Guard'));
       if (gs2.length) {
         const kill = gs2.filter((t) => t.hp <= m.atk).sort((a, b) => b.atk - a.atk)[0];
         const chip = kill || gs2.slice().sort((a, b) => a.hp - b.hp)[0];
@@ -801,7 +871,7 @@
     sweep();
     // v0.11: Relentless's second swing. Gated so failed attackers in the old
     // pool never get a retry the original single pass didn't give them.
-    if (me.board.some((m) => m.kw === 'Relentless' && m.ready)) sweep();
+    if (me.board.some((m) => hasKw(m, 'Relentless') && m.ready)) sweep();
   }
 
   // HARD — a veteran marshal: plays greedy, reads lethal before anything else,
@@ -837,10 +907,10 @@
         case 'fxRally': return (p.board.length <= MAX_BOARD - 2) ? 3.4 : 0.8;
         case 'fxRally3': { const nn = Math.min(3, MAX_BOARD - p.board.length); return nn * 1.7; }
         case 'fxRallyBoard': return p.board.reduce((s2, m) => s2 + 2, 0) * 0.95 + (p.board.length >= 3 ? 1 : 0);
-        case 'fxVolley': { const k = p.board.filter((m) => m.kw === 'Ranged').length; const d = k * (1 + (hasP(p, 'COURT_INTRIGUE') ? rites(S, side) : 0)); return d > 0 ? d * 1.35 : 0.2; }
-        case 'fxVolley2': { const k = p.board.filter((m) => m.kw === 'Ranged').length; const d = k * (2 + (hasP(p, 'COURT_INTRIGUE') ? rites(S, side) : 0)); return d > 0 ? d * 1.3 : 0.2; }
-        case 'fxMomentum': { const k = p.board.filter((m) => m.kw === 'Charge').length; return k ? k * 1.6 : -0.5; }
-        case 'fxFormation': { const k = p.board.filter((m) => m.kw === 'Guard').length; return k ? k * 1.9 + (th.danger ? 0.8 : 0) : -0.5; }
+        case 'fxVolley': { const k = p.board.filter((m) => hasKw(m, 'Ranged')).length; const d = k * (1 + (hasP(p, 'COURT_INTRIGUE') ? rites(S, side) : 0)); return d > 0 ? d * 1.35 : 0.2; }
+        case 'fxVolley2': { const k = p.board.filter((m) => hasKw(m, 'Ranged')).length; const d = k * (2 + (hasP(p, 'COURT_INTRIGUE') ? rites(S, side) : 0)); return d > 0 ? d * 1.3 : 0.2; }
+        case 'fxMomentum': { const k = p.board.filter((m) => hasKw(m, 'Charge')).length; return k ? k * 1.6 : -0.5; }
+        case 'fxFormation': { const k = p.board.filter((m) => hasKw(m, 'Guard')).length; return k ? k * 1.9 + (th.danger ? 0.8 : 0) : -0.5; }
         case 'fxLevy': return p.board.filter((m) => m.id.startsWith('TOKEN@')).length * 2.1 + 1.5 + (p.board.length < MAX_BOARD ? 0.4 : 0);
         case 'fxPillage': return 2.8 + (p.board.length > foe.board.length ? 1.6 : 0) + (foe.hp <= 6 ? 2.5 : 0);
         case 'fxHero3': return 3 * (foe.hp <= 4 ? 2 : 1);
@@ -857,8 +927,8 @@
       }
     }
     if (c.type === 'relic') {
-      const g = p.board.filter((m) => m.kw === 'Guard').length;
-      const r = p.board.filter((m) => m.kw === 'Ranged').length;
+      const g = p.board.filter((m) => hasKw(m, 'Guard')).length;
+      const r = p.board.filter((m) => hasKw(m, 'Ranged')).length;
       switch (c.rl) {
         case 'rlLibrary': return 2.3;
         case 'rlStandards': return 1.2 + g * 1.4;
@@ -895,14 +965,14 @@
     }
     // minion: tempo + keyword + ability value
     let v = c.atk + c.hp;
-    if (c.kw === 'Guard') v += 1.2;
-    else if (c.kw === 'Charge') v += 1.8;
-    else if (c.kw === 'Ranged') v += 1.2;
-    else if (c.kw === 'Lifesteal') v += 1.0;
-    else if (c.kw === 'Shock') v += 1.4;       // v0.11: pseudo-charge, hero locked out
-    else if (c.kw === 'Aegis') v += 1.5;       // v0.11: negates one damage instance
-    else if (c.kw === 'Bane') v += 1.6;        // v0.11: destroys anything it touches
-    else if (c.kw === 'Relentless') v += 1.8;  // v0.11: two swings a turn
+    if (hasKw(c, 'Guard')) v += 1.2;
+    else if (hasKw(c, 'Charge')) v += 1.8;
+    else if (hasKw(c, 'Ranged')) v += 1.2;
+    else if (hasKw(c, 'Lifesteal')) v += 1.0;
+    else if (hasKw(c, 'Shock')) v += 1.4;       // v0.11: pseudo-charge, hero locked out
+    else if (hasKw(c, 'Aegis')) v += 1.5;       // v0.11: negates one damage instance
+    else if (hasKw(c, 'Bane')) v += 1.6;        // v0.11: destroys anything it touches
+    else if (hasKw(c, 'Relentless')) v += 1.8;  // v0.11: two swings a turn
     if (c.bc === 'bcDraw') v += 1.6;
     if (c.bc === 'bcPing') v += 0.4 + foe.board.length * 0.4;
     if (c.bc === 'bcPing2') v += 0.8 + foe.board.length * 0.7;
@@ -929,7 +999,7 @@
   function aiHard(S, side, snap) {
     const foeSide = other(side);
     const me = S[side], foe = S[foeSide];
-    const pc = (i) => { playCard(S, side, i); if (snap) snap(S); };
+    const pc = (i) => { playCard(S, side, i, { target: aiTarget(S, side, S[side].hand[i]) }); if (snap) snap(S); }; // v0.20 A6: the AI aims
     const pw = (t) => { power(S, side, t); if (snap) snap(S); };
     const atk = (u, t) => { attack(S, side, u, t); if (snap) snap(S); };
 
@@ -952,8 +1022,8 @@
         v += sovSynergy(S, side, c) + spyAdjust(S, side, c, spy); // v0.18: leader lines + counting their outs
         // v0.17: plan-weighted lines — aggro decks push face damage and Charges,
         // control decks prize removal and walls; under lethal threat, survive first.
-        if (plan.aggro && (c.fx === 'fxPillage' || c.fx === 'fxHero3' || c.fx === 'fxVolley' || c.fx === 'fxVolley2' || c.kw === 'Charge')) v += 0.4;
-        if (plan.control && (c.kw === 'Guard' || ['fxExecute', 'fxExecute2', 'fxSnipe3', 'fxSnipe4', 'fxPingAll', 'fxPingAll2', 'fxAoe2', 'fxAoe3'].includes(c.fx))) v += 0.4;
+        if (plan.aggro && (c.fx === 'fxPillage' || c.fx === 'fxHero3' || c.fx === 'fxVolley' || c.fx === 'fxVolley2' || hasKw(c, 'Charge'))) v += 0.4;
+        if (plan.control && (hasKw(c, 'Guard') || ['fxExecute', 'fxExecute2', 'fxSnipe3', 'fxSnipe4', 'fxPingAll', 'fxPingAll2', 'fxAoe2', 'fxAoe3'].includes(c.fx))) v += 0.4;
         // v0.17.1: under lethal threat, defensive lines are DOUBLED and
         // non-defensive lines are taxed — "don't die" beats "big body".
         const sb = survivalBonus(S, side, c, th);
@@ -966,7 +1036,7 @@
     }
 
     // lethal check BEFORE acting: if the board can end it, everything goes face
-    const guards = () => foe.board.filter((m) => m.kw === 'Guard');
+    const guards = () => foe.board.filter((m) => hasKw(m, 'Guard'));
     const readyAtk = me.board.filter((m) => m.ready).reduce((s, m) => s + m.atk, 0);
     const pd = canPower(S, side) ? powerDmg(S, side) : 0;
     // spell lethal: the full burn read (pillage, hero-burn, both volleys) counts toward the kill
@@ -992,8 +1062,8 @@
 
       // value trades: prefer kills we survive; among them, kill the most valuable
       // v0.11: Bane's touch kills anything it can reach
-      const kills = m.kw === 'Bane' ? foe.board.slice() : foe.board.filter((t) => t.hp <= m.atk);
-      const safe = kills.filter((t) => m.kw === 'Ranged' || m.kw === 'Bane' || m.hp > t.atk);
+      const kills = hasKw(m, 'Bane') ? foe.board.slice() : foe.board.filter((t) => t.hp <= m.atk);
+      const safe = kills.filter((t) => hasKw(m, 'Ranged') || hasKw(m, 'Bane') || m.hp > t.atk);
       const pool = safe.length ? safe : kills;
       if (pool.length) {
         const t = pool.slice().sort((a, b) => (b.atk + b.hp) - (a.atk + a.hp))[0];
@@ -1012,7 +1082,7 @@
     sweep();
     // v0.11: Relentless's second swing. Gated so failed attackers in the old
     // pool never get a retry the original single pass didn't give them.
-    if (me.board.some((m) => m.kw === 'Relentless' && m.ready)) sweep();
+    if (me.board.some((m) => hasKw(m, 'Relentless') && m.ready)) sweep();
   }
 
   // dispatch: aiTurn(S, side, level, onAction) — level falls back to the side's declared
@@ -1034,5 +1104,7 @@
     other, startMatch, draw,
     canPlay, playCard, canAttack, attack, canPower, power, endTurn, checkEnd, aiTurn,
     threat, spyRead, seenPlays, sovSynergy, spyAdjust, deckPlan,
+    hasKw, kwsOf, // v0.20: multi-keyword helpers exported for tests (inert in browser)
+    pickTarget, targetSpec, validTargets, aiTarget, resolveBc, // v0.20 A3+A6+A9: targeting + multi-part riders exported
   };
 });

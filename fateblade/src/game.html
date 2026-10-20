@@ -579,7 +579,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.19.1';
+const GAME_VERSION = '0.20.0';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
@@ -599,10 +599,12 @@ const THEMES = (DATA.themes || 'https://grahamakenyon2-ship-it.github.io/cyf-por
 const ART = (DATA.art || 'https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art'); // v0.6.7 universal art
 window.FB_PATCH = function(msg, pct){ const h = document.getElementById('patchhud'); h.style.display='block'; h.textContent = 'PATCHING: ' + msg + (pct ? ' — ' + pct + '%' : ''); };
 const E = window.FBEngine;
+const hasKw = (o, k) => E.hasKw(o, k); // v0.20: multi-keyword-safe checks
+const kwBadges = (c) => [...E.kwsOf(c)].map((k) => `<div class="kw" data-kw="${k}">${KWTXT[k]||k}</div>`).join(''); // v0.20: one badge per keyword
 const KWTXT = E.KWTXT, KWDESC = E.KWDESC;
 let S = null; // engine match state; you are side 'A' (or watching)
 let me = { pool: null, faction: null, sov: null, deck: null };
-let sel = null, powTargeting = false;
+let sel = null, powTargeting = false, castTargeting = null; // v0.20: castTargeting = { i, card } while a targetable play awaits its target
 let watch = { on: false, timer: null, speed: 1 };
 const legends = (f) => f.cards.filter(c => c.rarity === 'legendary');
 const facOf = (id) => DATA.factions.find(f => f.id === id);
@@ -705,7 +707,7 @@ if(document.fonts && document.fonts.ready) document.fonts.ready.then(()=>fitScre
 function refit(){ requestAnimationFrame(fitScreen); }
 function backToMenu(){ // v0.9.8: leaving a match must also drop the victory/defeat overlay — MENU after VICTORY used to strand it open over the main menu with no way to close it
   const ov = document.getElementById('overlay'); if(ov) ov.classList.remove('on');
-  camp.active=null; camp.rule=null; aiAnimSeq++; show('menu'); sel=null; powTargeting=false; S=null; stopWatch(); applyTheme(null); }
+  camp.active=null; camp.rule=null; aiAnimSeq++; show('menu'); sel=null; powTargeting=false; castTargeting=null; S=null; stopWatch(); applyTheme(null); }
 
 function menuSingle(){ camp.active=null; camp.rule=null; showPoolPick('play'); }
 function menuDeckBuilder(){ showPoolPick('db'); }
@@ -811,7 +813,7 @@ function startMatch(){
   const lvl = settings.aiLevel || 'normal';
   S = E.startMatch(myF, enF, shuffle, { sovA: me.sov, sovB: enSov, first: iAmFirst ? 'A' : 'B',
     deckA: me.deck, deckB: loadDeck(enF.id), extraCards: guildCards(), aiB: lvl });
-  sel=null; powTargeting=false;
+  sel=null; powTargeting=false; castTargeting=null;
   lastSeen = { hpA:null, hpB:null, minions:{} };
   aiAnimSeq++; blogReset(); // v0.9.6: fresh battle log per duel, kill any stale animation
   blogTurn(iAmFirst ? 'YOUR TURN 1' : 'ENEMY TURN 1');
@@ -873,6 +875,7 @@ function quitToDesktop(){
 
 function endTurn(){
   E.endTurn(S);
+  castTargeting=null; // v0.20: never carry an unfinished aim across turns
   if(camp.active && camp.rule && camp.rule.extraDraw && S.active==='B'){ E.draw(S,'B'); } // v0.7.0: campaign Furnace/Chapter/Worthy rule
   render();
   if(checkEnd()) return;
@@ -1312,7 +1315,7 @@ function openMull(reveal){
       <img src="${c.img}" loading="lazy"><div class="nm">${c.name}</div>
       <div class="cost">${c.cost}</div>
       <div class="st">${isSpell?`<span style="color:#f9c;letter-spacing:1px">${c.type.toUpperCase()}</span>`:`<span style="color:var(--atk)">${c.atk} ATK</span> · <span style="color:var(--hp)">${c.hp} HP</span>`}</div>
-      ${c.kw?`<div style="font-size:10px;color:#8fd;text-align:center">${KWTXT[c.kw]}</div>`:''}</div>`;
+      ${kwBadges(c)}</div>`;
   }).join('');
   document.getElementById('mull').classList.add('on');
 }
@@ -1367,10 +1370,17 @@ function dprevAt(host, txt, cls){
 function showDprevMinion(div){
   clearDprev();
   const t = S.B.board.find(x=>x.uid===div.dataset.uid); if(!t) return;
+  if(castTargeting){ // v0.20: damage preview while aiming a single-target play
+    const cc = castTargeting.card;
+    const d = ({bcPing:1,bcPing2:2,bcPing3:3,fxSnipe3:3,fxSnipe4:4}[cc.bc||cc.fx]||((cc.fx==='fxExecute'||cc.fx==='fxExecute2')?999:0));
+    if(t.shield > 0) dprevAt(div, '🛡 AEGIS ABSORBS', 'blk');
+    else dprevAt(div, '−' + d + (t.hp <= d ? ' ☠' : ''));
+    return;
+  }
   if(!powTargeting){
     if(!E.canAttack(S,'A',sel,{uid:t.uid})){ dprevAt(div, '⛔ A GUARD BLOCKS THE WAY', 'blk'); return; }
   }
-  const bane = !powTargeting && (S.A.board.find(x=>x.uid===sel)||{}).kw === 'Bane';
+  const bane = !powTargeting && hasKw(S.A.board.find(x=>x.uid===sel)||{}, 'Bane');
   const dmg = powTargeting ? E.powerDmg(S,'A') : (bane ? 999 : (S.A.board.find(x=>x.uid===sel)||{}).atk);
   if(t.shield > 0) dprevAt(div, '🛡 AEGIS ABSORBS', 'blk');
   else if(bane) dprevAt(div, '☠ BANE DESTROYS');
@@ -1380,8 +1390,8 @@ function showDprevMinion(div){
     const m = S.A.board.find(x=>x.uid===sel);
     const atkEl = document.querySelector('#myBoard .minion[data-uid="'+sel+'"]');
     if(m && atkEl){
-      if(t.kw === 'Bane') dprevAt(atkEl, '☠ BANE DESTROYS YOU');
-      else if(m.kw !== 'Ranged' && t.atk > 0){
+      if(hasKw(t, 'Bane')) dprevAt(atkEl, '☠ BANE DESTROYS YOU');
+      else if(!hasKw(m, 'Ranged') && t.atk > 0){
         if(m.shield > 0) dprevAt(atkEl, '🛡 AEGIS ABSORBS', 'blk');
         else dprevAt(atkEl, '−' + t.atk + (m.hp <= t.atk ? ' ☠' : ''));
       }
@@ -1432,7 +1442,7 @@ function render(){
     el.innerHTML = `<img src="${p.sov ? p.sov.img : p.fac.commander}"><div class="nm">${p.fac.label.toUpperCase()}</div>${sov}<div class="hp">${p.hp}</div>` +
       (p.relics && p.relics.length ? `<div class="relics">${p.relics.map(r=>`<span class="rk" title="${r.name}: ${(r.ability||'').replace(/"/g,'&quot;')}">${r.name}</span>`).join('')}</div>` : '');
     el.title = p.sov ? `${p.sov.name} — ${p.sov.passive.name}: ${p.sov.passive.desc}` : '';
-    el.className = 'hero' + (side==='B' && !watch.on && (sel||powTargeting) && !ai.board.some(m=>m.kw==='Guard') ? ' targetable' : '');
+    el.className = 'hero' + (side==='B' && !watch.on && ((sel&&!castTargeting)||powTargeting) && !ai.board.some((m)=>hasKw(m,'Guard')) ? ' targetable' : '');
     el.onclick = ()=>heroClick(side);
     if(side==='B'){ // v0.13: hover the enemy Sovereign while targeting → damage preview
       el.onmouseenter = ()=>{ if(!watch.on && S && S.active==='A' && (sel||powTargeting)) showDprevHero(); };
@@ -1450,21 +1460,21 @@ function render(){
   const boardEl = (p, id, side)=>{
     const el = document.getElementById(id);
     el.innerHTML = p.board.map(m=>{
-      const targetable = !watch.on && side==='B' && S.active==='A' && (sel||powTargeting);
-      return `<div class="minion ${m.kw==='Guard'?'guard':''} ${m.ready&&side===S.active?'ready':''} ${targetable?'targetable':''} ${sel===m.uid&&side==='A'?'selected':''} ${m.shield>0?'shielded':''}"
+      const castable = !!castTargeting && (E.targetSpec(castTargeting.card)==='foe' ? side==='B' : side==='A'); // v0.20: aiming highlights the valid side
+      const targetable = !watch.on && S.active==='A' && ((side==='B'&&(sel||powTargeting)) || castable);
+      return `<div class="minion ${hasKw(m,'Guard')?'guard':''} ${m.ready&&side===S.active?'ready':''} ${targetable?'targetable':''} ${sel===m.uid&&side==='A'?'selected':''} ${m.shield>0?'shielded':''}"
         data-uid="${m.uid}" data-cid="${m.id}">
         <img src="${m.img}" loading="lazy"><div class="nm">${m.name}</div>
-        ${m.kw?`<div class="kw" data-kw="${m.kw}">${KWTXT[m.kw]}</div>`:''}
+        ${kwBadges(m)}
         <div class="gem atk">${m.atk}<i>ATK</i></div><div class="gem hp">${m.hp}<i>HP</i></div></div>`;
     }).join('');
     el.querySelectorAll('.minion').forEach(div=>{
       div.onclick = ()=>minionClick(side, div.dataset.uid);
       div.onmouseenter = (ev)=>{ const m = p.board.find(x=>x.uid===div.dataset.uid); if(m) showZoom(m, ev);
-        if(side==='B' && !watch.on && S && S.active==='A' && (sel||powTargeting)) showDprevMinion(div); };
+        if(side==='B' && !watch.on && S && S.active==='A' && (sel||powTargeting||castTargeting)) showDprevMinion(div); };
       div.onmousemove = moveZoom;
       div.onmouseleave = ()=>{ hideZoom(); clearDprev(); };
-      const kwEl = div.querySelector('.kw');
-      if(kwEl) kwEl.title = KWDESC[kwEl.dataset.kw];
+      div.querySelectorAll('.kw').forEach((kwEl)=>{ kwEl.title = KWDESC[kwEl.dataset.kw]; });
     });
   };
   // v0.9.7: remember where the living minions stand — death ghosts dissolve here
@@ -1498,7 +1508,7 @@ function render(){
       <img src="${c.img}" loading="lazy"><div class="vig"></div>
       <div class="gem cost">${c.cost}</div>
       ${isSpell(c)?`<div class="typerow">${c.type==='edict'?'EDICT':'RELIC'}</div>`:''}
-      ${c.kw?`<div class="kw" data-kw="${c.kw}">${KWTXT[c.kw]}</div>`:''}
+      ${kwBadges(c)}
       ${c.ability?`<div class="abilglyph">${isSpell(c)?'✦':(c.ability.startsWith('Battlecry')?'▸':'☠')}</div>`:''}
       <div class="nm">${c.name}</div>
       ${isSpell(c)?'':`<div class="gem atk">${c.atk}<i>ATK</i></div><div class="gem hp">${c.hp}<i>HP</i></div>`}</div>`).join('');
@@ -1507,8 +1517,7 @@ function render(){
     d.onmouseenter = (ev)=>showZoom(my.hand[+d.dataset.i], ev);
     d.onmousemove = moveZoom;
     d.onmouseleave = hideZoom;
-    const kwEl = d.querySelector('.kw[data-kw]');
-    if(kwEl) kwEl.title = KWDESC[kwEl.dataset.kw];
+    d.querySelectorAll('.kw[data-kw]').forEach((kwEl)=>{ kwEl.title = KWDESC[kwEl.dataset.kw]; });
   });
   refit(); // v0.9.1: keep the fit-to-window scale correct as the board/hand change
   fxDiff(S); // v0.9.7: lunges, death ghosts + sounds, after the DOM is rebuilt
@@ -1516,7 +1525,14 @@ function render(){
 
 function handClick(i, el){
   if(watch.on || S.active!=='A') return;
+  if(castTargeting){ const same = castTargeting.i===i; castTargeting=null; if(same){ render(); return; } } // v0.20: re-click the aiming card = cancel; a different card cancels + processes normally
   const c = S.A.hand[i];
+  const spec = E.targetSpec(c); // v0.20: aimable single-target cards enter targeting mode instead of resolving blind
+  if(spec){
+    const vt = E.validTargets(S,'A',c);
+    if(vt && vt.length){ castTargeting = { i, card: c }; sel=null; powTargeting=false; render(); log('Choose a target for ' + c.name + '.'); return; }
+    // no valid targets: fall through and play unaimed (legacy no-op / random behavior)
+  }
   if(E.playCard(S, 'A', i)){ sel=null; const r0 = el.getBoundingClientRect(); render(); playArc(r0, c); checkEnd(); }
   else {
     const reason = S.A.mana < E.effCost(S, 'A', c) ? 'Not enough mana.'
@@ -1528,17 +1544,30 @@ function handClick(i, el){
 }
 function heroClick(side){
   if(watch.on || S.active!=='A' || side!=='B') return;
+  if(castTargeting){ castTargeting=null; render(); return; } // v0.20: no hero-target templates yet — clicking the Sovereign cancels aiming
   if(powTargeting){ if(E.power(S,'A',{hero:true})){ powTargeting=false; render(); checkEnd(); } return; }
   if(sel){ if(E.attack(S,'A',sel,{hero:true})){ sel=null; render(); checkEnd(); } else log('A Guard blocks the way.'); }
 }
 function minionClick(side, uid){
   if(watch.on || S.active!=='A') return;
+  if(castTargeting){ // v0.20: resolve or cancel the aimed play
+    const wantFoe = E.targetSpec(castTargeting.card)==='foe';
+    if((wantFoe && side==='B') || (!wantFoe && side==='A')){
+      const ct = castTargeting; castTargeting=null;
+      const hdEl = document.querySelector('#hand .hcard[data-i="'+ct.i+'"]');
+      if(E.playCard(S,'A',ct.i,{target:{uid}})){
+        const r0 = hdEl ? hdEl.getBoundingClientRect() : null; if(r0) playArc(r0, ct.card);
+        render(); checkEnd();
+      } else render(); // play refused (mana/board changed since aiming) — drop the aim cleanly
+    } else { castTargeting=null; render(); } // clicked the wrong side: cancel
+    return;
+  }
   if(side==='A'){ const m = S.A.board.find(x=>x.uid===uid); sel = (sel===uid||!m.ready)?null:uid; powTargeting=false; render(); return; }
   if(powTargeting){ if(E.power(S,'A',{uid})){ powTargeting=false; render(); checkEnd(); } return; }
   if(sel){ if(E.attack(S,'A',sel,{uid})){ sel=null; render(); checkEnd(); } else log('A Guard blocks the way.'); }
 }
 document.getElementById('powerbtn').onclick = ()=>{
-  if(S && !watch.on && S.active==='A' && E.canPower(S,'A')){ powTargeting = true; sel=null; render(); log('Choose a target for Skirmish.'); }
+  if(S && !watch.on && S.active==='A' && E.canPower(S,'A')){ powTargeting = true; sel=null; castTargeting=null; render(); log('Choose a target for Skirmish.'); }
 };
 document.getElementById('endbtn').onclick = ()=>{ if(S && !watch.on && S.active==='A') endTurn(); };
 
@@ -2200,14 +2229,14 @@ function campLaunch(){
   // campaign rule mutations — applied post-start, engine untouched
   if(r.hp) S.B.hp += r.hp;
   for(let i=0; i<(r.guard||0); i++){
-    const g = enF.cards.find(x=>x.kw==='Guard') || guildCards().find(x=>x.kw==='Guard');
+    const g = enF.cards.find((x)=>hasKw(x,'Guard')) || guildCards().find((x)=>hasKw(x,'Guard'));
     if(g && S.B.board.length < 6) S.B.board.push({ ...g, uid: 'CAMP-GRD-' + i + '-' + Math.floor(Math.random()*1e9), ready: false });
   }
   for(let i=0; i<(r.conscripts||0); i++){
     if(S.B.board.length < 6) S.B.board.push({ id: 'TOKEN@'+enF.id, name: 'Conscript', cost: 1, atk: 1, hp: 1, kw: null,
       uid: 'CAMP-TOK-' + i + '-' + Math.floor(Math.random()*1e9), img: enF.commander, file: enF.commanderFile, fl: 'Sworn to the banner.', ready: false });
   }
-  sel=null; powTargeting=false;
+  sel=null; powTargeting=false; castTargeting=null;
   lastSeen = { hpA:null, hpB:null, minions:{} };
   aiAnimSeq++; blogReset(); // v0.9.6: fresh battle log per chapter, kill stale animation
   document.getElementById('overlay').classList.remove('on');
