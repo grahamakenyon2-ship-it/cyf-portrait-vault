@@ -791,6 +791,566 @@
       "path": "art/battle-standard.jpg",
       "sha256": "c83ab9fc264124472e35f1740de0dcd5e63ea9634a6d6cd84d45857af1d27a01",
       "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/battle-standard.jpg"
+    },
+    {
+      "path": "art/trafalgar-signal-flags.jpg",
+      "sha256": "94d66da12f74e253b8eaee1c4de6342c4b3372030bef2e22d7e854c55b56b577",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/trafalgar-signal-flags.jpg"
+    },
+    {
+      "path": "art/press-gang-midnight.jpg",
+      "sha256": "a550904df407514cae5eee4f3cb829030d326373331329e31658d3ab678a0418",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/press-gang-midnight.jpg"
+    },
+    {
+      "path": "art/the-lighthouse-keeper.jpg",
+      "sha256": "4bd49b25ae17ae1cf6bd12a7957e6d02c323d8687a29f991f003467b36c2d226",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-lighthouse-keeper.jpg"
+    },
+    {
+      "path": "art/ironclad-broadside.jpg",
+      "sha256": "2d6690eab071703fabb07309ffbae63cc55a05eafe27832ab4cabdcd68827c4e",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/ironclad-broadside.jpg"
+    },
+    {
+      "path": "art/highland-charge.jpg",
+      "sha256": "8b1ca4b43653d7f2833fc473febbbe797b8ff1e28ea8083e58c179330cbbb362",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/highland-charge.jpg"
+    },
+    {
+      "path": "art/the-throne-speech.jpg",
+      "sha256": "45b3a335efe6442dbe1d3768181e20bef5731490ec85655b0bfb5b6c9a9decea",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-throne-speech.jpg"
+    },
+    {
+      "path": "art/the-admiral-s-glass.jpg",
+      "sha256": "e8c208a0616f0422e0824345511676f4cc45c7ad5a2088b3e241a526ec1d9a24",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-admiral-s-glass.jpg"
+    },
+    {
+      "path": "art/drummers-of-the-line.jpg",
+      "sha256": "571f50ac1f756d8706f4e37029c2114eb3137782991b05dd3039c0c20acdafe4",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/drummers-of-the-line.jpg"
+    },
+    {
+      "path": "art/the-coronation-oil.jpg",
+      "sha256": "f4d251d5328821906b4b99c51d4b00f400a144ccd6c20009a98bc30e93df0cca",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-coronation-oil.jpg"
+    },
+    {
+      "path": "art/versailles-hall-of-mirrors.jpg",
+      "sha256": "71b17034b694b633c8b9e14374ddf448189c9c3138635c307e35114a6013b061",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/versailles-hall-of-mirrors.jpg"
+    },
+    {
+      "path": "art/the-bastille-key.jpg",
+      "sha256": "31b0782dfd253fa967de1c69feca4a6267ba12c2485727ec8ae814fabbfefef4",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-bastille-key.jpg"
+    },
+    {
+      "path": "art/fleur-de-lis-banner.jpg",
+      "sha256": "c071974dc4e5e5a33e22f58edf928754cdeb274ae72da7429d1da0e05e4623b5",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/fleur-de-lis-banner.jpg"
+    },
+    {
+      "path": "art/the-imperial-eagle-standard.jpg",
+      "sha256": "483a0eaa7c2dca863815011d9710e0c2935375f86bf2bfe311ab54a3e009ad55",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-imperial-eagle-standard.jpg"
+    },
+    {
+      "path": "art/notre-dame-rose-window.jpg",
+      "sha256": "3b7bd4229a20905ae4ee5ec5515106f8c81be2739f2f1b59f3b1a186f56fb4a2",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/notre-dame-rose-window.jpg"
+    },
+    {
+      "path": "art/the-louvre-courtyard.jpg",
+      "sha256": "ed99761e3710a4af6777c2e307f68243185cca890803fb64c52bfd8b12527590",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-louvre-courtyard.jpg"
+    },
+    {
+      "path": "art/gascon-adventurers.jpg",
+      "sha256": "eba06b4fe9674d87745320543fba2fe7c3aee04fdd40f6d200ad3812cbb82b7f",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/gascon-adventurers.jpg"
+    },
+    {
+      "path": "art/the-triumphal-arch.jpg",
+      "sha256": "d5a5de945288e61fabe10bf4291947eec66615a501a3d0f8726b1bb79791a9e0",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-triumphal-arch.jpg"
+    },
+    {
+      "path": "art/legion-siege-ramp.jpg",
+      "sha256": "6e1b4c7a20915092b70c68337febf944f9a25522647dea88a3e52bb7f40221e0",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/legion-siege-ramp.jpg"
+    },
+    {
+      "path": "art/the-aqueduct-span.jpg",
+      "sha256": "8814d3056a6069baa0bad39fd5d08ef4d76cf14ffc4c7377a46cfea86113cd0d",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-aqueduct-span.jpg"
+    },
+    {
+      "path": "art/gladiator-gate.jpg",
+      "sha256": "97897f287faab4bad1f6500ae4b6978e4f51ccec8154bb9f8c0e80955d9e5dd9",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/gladiator-gate.jpg"
+    },
+    {
+      "path": "art/the-vestal-flame.jpg",
+      "sha256": "8c6d10a367000fde76d4870f7a850211caeab84ffcd96c3ff263b46d7ef363df",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-vestal-flame.jpg"
+    },
+    {
+      "path": "art/chariot-race-circus.jpg",
+      "sha256": "56e8b217a5c41a5e0cb9bf633cda05e2733f4317b42195bfc6c8b7cdf970aba3",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/chariot-race-circus.jpg"
+    },
+    {
+      "path": "art/the-consul-s-fasces.jpg",
+      "sha256": "90c9382c2c729a8c0a7b258f2604fbe94d89490f1226dada0871d24377309eed",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-consul-s-fasces.jpg"
+    },
+    {
+      "path": "art/hadrian-s-wall-march.jpg",
+      "sha256": "467dd98505a91a9ab57f9a4d920febd0a1d99865ed3b80795b67bd39fb0c4f87",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/hadrian-s-wall-march.jpg"
+    },
+    {
+      "path": "art/the-eagle-and-the-wolf.jpg",
+      "sha256": "a952f6520b93570cefba74e33984ae62ff56513223e8ba42c1dd5f429c2ba9fa",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-eagle-and-the-wolf.jpg"
+    },
+    {
+      "path": "art/trajan-s-column-relief.jpg",
+      "sha256": "57af965a0476c009c9db06ff03f67a866917a3149c26bf3373477b8478b8fa63",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/trajan-s-column-relief.jpg"
+    },
+    {
+      "path": "art/the-immortal-guard.jpg",
+      "sha256": "5b7d75712189cd13c517ed0203598c0bb1ad60faab267701acc32fdc8cf9b7a5",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-immortal-guard.jpg"
+    },
+    {
+      "path": "art/the-royal-treasury.jpg",
+      "sha256": "5542173791099bce3c510b20b9facee97788d6ed1c5e47a7af07c41e1ae50c5d",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-royal-treasury.jpg"
+    },
+    {
+      "path": "art/steppe-horse-archers.jpg",
+      "sha256": "794ee4011cb0b7987c94cb766076b643ec411de66d7dcf39d041ab9e0982c8a7",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/steppe-horse-archers.jpg"
+    },
+    {
+      "path": "art/the-kurgan-barrow.jpg",
+      "sha256": "a7bbe9c3d25f51d2117b5e1b9337969f2d3b928155b9d39075af070e8a1b5837",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-kurgan-barrow.jpg"
+    },
+    {
+      "path": "art/samarkand-blue-dome.jpg",
+      "sha256": "77efd82ad3f402f668b5884776ff60879d945f254279ba149d7d250e4770643f",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/samarkand-blue-dome.jpg"
+    },
+    {
+      "path": "art/the-copper-bazaar.jpg",
+      "sha256": "cc3270045e1ea64052f70c5f39935924962887c174cfd5a57647bd85fd97ea10",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-copper-bazaar.jpg"
+    },
+    {
+      "path": "art/the-grand-mosque-lamps.jpg",
+      "sha256": "bd444d7eaae106c1a190ef32a998e44a096aee4e5efa935f5bb96b277e23247d",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-grand-mosque-lamps.jpg"
+    },
+    {
+      "path": "art/ottoman-war-galleys.jpg",
+      "sha256": "97a8691857b14f2114635ad92dda992da11fe3c12a81ca0269a6fd1265083732",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/ottoman-war-galleys.jpg"
+    },
+    {
+      "path": "art/sultan-s-tughra.jpg",
+      "sha256": "bb8fe44d58e87861f0cff2d9caea7ff01d60a06dbd12a2a5f6fe08b4f2fc2196",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/sultan-s-tughra.jpg"
+    },
+    {
+      "path": "art/the-cistern-medusa.jpg",
+      "sha256": "3ee5362adb3172afa2f582500b87b2041b35c6184ed19d03eab37cd6523949b9",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-cistern-medusa.jpg"
+    },
+    {
+      "path": "art/damascus-steel-blade.jpg",
+      "sha256": "64f51a904757a1b0868d61d0ef57a597417c5bb935ca285d4ae5cef495e1ca9b",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/damascus-steel-blade.jpg"
+    },
+    {
+      "path": "art/the-cairo-gate.jpg",
+      "sha256": "9608e235f7d1cebb245bdeafd3211c2acb336a7a537293dd12c9ddabcd86b2fe",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-cairo-gate.jpg"
+    },
+    {
+      "path": "art/the-masked-ball.jpg",
+      "sha256": "22333b6ee1580c7c803b1bcdfd64e1128ceec58b58faab9deb5c2c4bb42eb8db",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-masked-ball.jpg"
+    },
+    {
+      "path": "art/assassin-s-dagger.jpg",
+      "sha256": "c3efaa3d2f9c2bea39d9b4dd055145eac32c3984bd32cf6a3f9b63813950f306",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/assassin-s-dagger.jpg"
+    },
+    {
+      "path": "art/the-spymaster-s-mask.jpg",
+      "sha256": "4718801f2ae2b8b7863c33bf3efba81f2bf8be04ed4cda455caf97d85b9932fb",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-spymaster-s-mask.jpg"
+    },
+    {
+      "path": "art/the-poet-s-laurel.jpg",
+      "sha256": "4d40b239568c83f035b693af2c585d3694bde3e89b10e5106559bf4ecff51414",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-poet-s-laurel.jpg"
+    },
+    {
+      "path": "art/the-senator-s-toga.jpg",
+      "sha256": "97fd62cc904df34aed5dcffab82f7001ab34852fe8c8665fa821b40bfc2a9872",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-senator-s-toga.jpg"
+    },
+    {
+      "path": "art/the-sword-in-the-stone.jpg",
+      "sha256": "061f0f5f335c816cc7c30772df2a803bfcf542a55471bc986ec1d086cabf560b",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-sword-in-the-stone.jpg"
+    },
+    {
+      "path": "art/anvil-of-kings.jpg",
+      "sha256": "b0c27967ef38d14ac016b33101e219fe031cb2189aa2c5d2adccb5dc9204415a",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/anvil-of-kings.jpg"
+    },
+    {
+      "path": "art/drawbridge-portcullis.jpg",
+      "sha256": "491017be69fb26330e557f97aa3496f0ca761573ddf0b8d40b399d86b4759590",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/drawbridge-portcullis.jpg"
+    },
+    {
+      "path": "art/the-white-hart-banner.jpg",
+      "sha256": "a78aa36eb5c66ba63a3e5ac7fcbb94dd2d1977de1530fa47d37916f765f22835",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-white-hart-banner.jpg"
+    },
+    {
+      "path": "art/the-shield-of-the-nine.jpg",
+      "sha256": "ef55895a19805c236187d49d7be9ff31f4f787f3d8d58ae6aac29309d58a4939",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-shield-of-the-nine.jpg"
+    },
+    {
+      "path": "art/siegeworks-trenches.jpg",
+      "sha256": "36ea55a907ecc3b84c38d87ef0ba3a0e5dd8568293eebe56f100583ff451ac31",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/siegeworks-trenches.jpg"
+    },
+    {
+      "path": "art/the-beacon-fires.jpg",
+      "sha256": "653c7ba4251ef86f0fce8491b73c8cd415754dc902ca12d9342701b4212bdff4",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-beacon-fires.jpg"
+    },
+    {
+      "path": "art/the-celestial-astrolabe.jpg",
+      "sha256": "3f8acac8081ddcdcb83d85e49a731b817f3a3d29fd4efb3e1cce1d37d3b78842",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-celestial-astrolabe.jpg"
+    },
+    {
+      "path": "art/the-summoning-circle.jpg",
+      "sha256": "9b368ca2b809ace736ecd1a36d7c3bbabcc070ab74e60c0a1424526bc67312ef",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-summoning-circle.jpg"
+    },
+    {
+      "path": "art/the-codex-of-nine.jpg",
+      "sha256": "eeb98b8183af4bb6b12457c9eb4d9ca13d85a152d2d99d76476b9e22f2df6c93",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-codex-of-nine.jpg"
+    },
+    {
+      "path": "art/candle-of-insight.jpg",
+      "sha256": "126c6f57711e543983c0eabc3a1957d544c2e68a86267183df57164c21cab124",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/candle-of-insight.jpg"
+    },
+    {
+      "path": "art/the-tarot-table.jpg",
+      "sha256": "66df682be5ed5de0353278c03b74d4f51e9b57cc982f4fb0685bccdbeb8d4901",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-tarot-table.jpg"
+    },
+    {
+      "path": "art/the-bronze-telescope.jpg",
+      "sha256": "babd77d0d663787f4b090acf2bdf90b652b1f1346e28bdf26a9b912edcd94001",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-bronze-telescope.jpg"
+    },
+    {
+      "path": "art/the-star-sanctum.jpg",
+      "sha256": "b3350cb1cebf2c06bf15a910cd81b6bc4c7a42b9330dbaf02540c11475cdfebf",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-star-sanctum.jpg"
+    },
+    {
+      "path": "art/the-ancient-oak-council.jpg",
+      "sha256": "858d620e6118440e48c55ef14b5b4a827a6db28a25acb1d772ab3807982099c4",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-ancient-oak-council.jpg"
+    },
+    {
+      "path": "art/mushroom-ring-fairy.jpg",
+      "sha256": "1f3ca2c741a3f3c91f6389d0a322a6ccdfbaedcb0e720024cede26ebc22f1fa3",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/mushroom-ring-fairy.jpg"
+    },
+    {
+      "path": "art/the-green-knight.jpg",
+      "sha256": "0f947d7eac6e85c209be663058ca9a45eaf34133715658a4a625bd968d0ca1d6",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-green-knight.jpg"
+    },
+    {
+      "path": "art/the-elder-tree-spirit.jpg",
+      "sha256": "be0bc8aa62a1feb176f8403bf776ec2244ee50d9dd6d1e459e625d5aede3a161",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-elder-tree-spirit.jpg"
+    },
+    {
+      "path": "art/stag-of-the-grove.jpg",
+      "sha256": "d714705c1a1e1fd6b4c92722466a842bca48519adb2ecb897a2d3d38a5d6291a",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stag-of-the-grove.jpg"
+    },
+    {
+      "path": "art/the-hearthfire-glen.jpg",
+      "sha256": "5dc4ff8ca60343c79e86dab647445ab53681e785c61142f4e4d425960b3b3bc5",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-hearthfire-glen.jpg"
+    },
+    {
+      "path": "art/raven-messenger.jpg",
+      "sha256": "c4e06e00f8604267067c8045a226324aee0688fc529f32e68f2e5a536bcd6c25",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/raven-messenger.jpg"
+    },
+    {
+      "path": "art/the-wolfpack-howl.jpg",
+      "sha256": "1793101787023cfc4cccee21a84db124b645fd1686d9eea2e9a8950eba6be890",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-wolfpack-howl.jpg"
+    },
+    {
+      "path": "art/troll-bridge-toll.jpg",
+      "sha256": "f692408a228df1f12b75cc93f6fe6b682df8f3fa8ffd77e6bdb51f1016aa3224",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/troll-bridge-toll.jpg"
+    },
+    {
+      "path": "art/rat-catchers-plague.jpg",
+      "sha256": "6194a4db398f382401be1958fe2d9caf15c7d14b437165d7b94d9ab30eef1d7d",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/rat-catchers-plague.jpg"
+    },
+    {
+      "path": "art/the-ogre-s-larder.jpg",
+      "sha256": "9b22aaced481d21ef10955b43661a4f76f82c609df9befd97f4173a7da93f419",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-ogre-s-larder.jpg"
+    },
+    {
+      "path": "art/carrion-crows-field.jpg",
+      "sha256": "3c5f6f611321c6651558e673855115bf6e6629ae55216ccd0b72013d8b949a00",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/carrion-crows-field.jpg"
+    },
+    {
+      "path": "art/mammoth-of-the-tundra.jpg",
+      "sha256": "74a1d0191e06e82b18acfcea212c53eaeced60c9023ce59fedb3705b2f4f718e",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/mammoth-of-the-tundra.jpg"
+    },
+    {
+      "path": "art/the-nebula-crown.jpg",
+      "sha256": "1032a404b09ac32d26bb5e1c792e2682872b82b27cf234bb3077912abc513e07",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-nebula-crown.jpg"
+    },
+    {
+      "path": "art/singularity-s-eye.jpg",
+      "sha256": "830d766541acdd88e19ec9a765e4171ed2f4f9167354a4007dd737d6854ac7ee",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/singularity-s-eye.jpg"
+    },
+    {
+      "path": "art/the-stellar-forge.jpg",
+      "sha256": "c92ad76040f393f09c160aa3f99812727ffb631b679c82a4f7a028fcbb1122de",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-stellar-forge.jpg"
+    },
+    {
+      "path": "art/xenoform-crystal.jpg",
+      "sha256": "8d1f56bd3dc19326e897ee1c8481302006517dd46ea89f6e1a23f2469b49c61a",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/xenoform-crystal.jpg"
+    },
+    {
+      "path": "art/ion-trail-ambush.jpg",
+      "sha256": "8b4d505679094a8ac4b5bb163117c82c2afff6dd893c11f05c97835f9a70df0d",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/ion-trail-ambush.jpg"
+    },
+    {
+      "path": "art/red-sands-canyon.jpg",
+      "sha256": "05cb8e89a20f07f7df6ca23e7c635ca9b8b8d4101859826cd8ff1004fd940d24",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/red-sands-canyon.jpg"
+    },
+    {
+      "path": "art/the-belt-miners.jpg",
+      "sha256": "ecf2369240ea2805d4ffa1c62252abf52da81bd449d07033a32aedd57c134cd8",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-belt-miners.jpg"
+    },
+    {
+      "path": "art/quasar-beacon.jpg",
+      "sha256": "3979ce803bffdacaa33aa1aae2637219c7bc32f5073fae7172900b961e2a5951",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/quasar-beacon.jpg"
+    },
+    {
+      "path": "art/the-observatory-bunker.jpg",
+      "sha256": "d78afbefcf574f41f9a090ec08ae4b689fca472ce0fca48f7243ecfcecb86770",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-observatory-bunker.jpg"
+    },
+    {
+      "path": "art/battleship-grey-harbor.jpg",
+      "sha256": "19ea891ad99258287f25c61fa58e62788ff4f5260f942369713b9db073f2e8b7",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/battleship-grey-harbor.jpg"
+    },
+    {
+      "path": "art/iron-fist-artillery.jpg",
+      "sha256": "0db592b81dab9cd7929437011d7091c25b4267031d264cbf85f3f50745a6f58e",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/iron-fist-artillery.jpg"
+    },
+    {
+      "path": "art/the-induction-furnace.jpg",
+      "sha256": "03a920d7da29a4b514e672f17d15b70cbf57a0bb544d8a6857be2bbd775286b6",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-induction-furnace.jpg"
+    },
+    {
+      "path": "art/reactor-core-blue.jpg",
+      "sha256": "880153796e4526d6d1554604ee9cec5c6e0fdc8586a7b9303be36b939e44c44a",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/reactor-core-blue.jpg"
+    },
+    {
+      "path": "art/the-citadel-perimeter.jpg",
+      "sha256": "cb26868b17f20c048aba098cc03e3575f65a83ef4fab2e9dd3b9025905d34d73",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-citadel-perimeter.jpg"
+    },
+    {
+      "path": "art/salvage-yards.jpg",
+      "sha256": "603f4b90f310cc809cadc60282c6e3435ae2ede1299b9a455d4b9b2bd52b8f0f",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/salvage-yards.jpg"
+    },
+    {
+      "path": "art/the-vault-of-records.jpg",
+      "sha256": "7844ccc9ae6904019e4c6d0f6968a90eb5f900b9fdca89a70077247da0c83a7c",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-vault-of-records.jpg"
+    },
+    {
+      "path": "art/perpetual-engine.jpg",
+      "sha256": "83e9969c4f6d12e919cade7f6b601aed4b417b48c20ff76df7b5f8b3aac1150b",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/perpetual-engine.jpg"
+    },
+    {
+      "path": "art/the-inquisitor-s-seal.jpg",
+      "sha256": "c39a854d3fb44cb02543ab0e88542b1cc2f5948f691be50321b4919de85fd69a",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-inquisitor-s-seal.jpg"
+    },
+    {
+      "path": "art/the-admiral-s-cabin.jpg",
+      "sha256": "46861d1f66dfa4946d66cfd5e6a811cc25d8e4a86d5f0cd6a4bc6d85f6586ee0",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-admiral-s-cabin.jpg"
+    },
+    {
+      "path": "art/kraken-s-coil.jpg",
+      "sha256": "9224e8be204a8d4c02753c77c61f8296cb0a1e6310af7d8f53277b625fcb92b3",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/kraken-s-coil.jpg"
+    },
+    {
+      "path": "art/whaler-s-harpoon.jpg",
+      "sha256": "48685dafa3ab496c918ee884c0af6e7a380e847e5fb46f4a1dbcc4d33892a4c9",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/whaler-s-harpoon.jpg"
+    },
+    {
+      "path": "art/the-tidal-gauge.jpg",
+      "sha256": "01d86ec34a60b16bfeee583617bf758ddcd0494f2e1684e9e04576a30faf4c81",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-tidal-gauge.jpg"
+    },
+    {
+      "path": "art/mutiny-at-midnight.jpg",
+      "sha256": "0a4c7fdcd03322117c890d5cf3a9ef980bf0b4ff8dfbefe16ef29fda4a8bc6b2",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/mutiny-at-midnight.jpg"
+    },
+    {
+      "path": "art/the-signal-semaphore.jpg",
+      "sha256": "7beda511c8eb3b045865ba313d5a2d6411f603b397ed3609c8e962c37501398c",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-signal-semaphore.jpg"
+    },
+    {
+      "path": "art/the-dead-calm.jpg",
+      "sha256": "4b927dabd57eef63f8790d530af8105f2c57a479b1e828e2742349e5d138dcca",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-dead-calm.jpg"
+    },
+    {
+      "path": "art/the-lost-library.jpg",
+      "sha256": "f1666dd50390f2ef1b963c16d0c4c2814c715899accf1042f4489040ab574b92",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-lost-library.jpg"
+    },
+    {
+      "path": "art/the-heretic-s-stake.jpg",
+      "sha256": "4f594ea81ddcee0ef6061edb4dcc4d4a315df54f7bfc243750a8e59da38c8866",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-heretic-s-stake.jpg"
+    },
+    {
+      "path": "art/the-banned-book.jpg",
+      "sha256": "c97f348884813dca3d599a0de75b0b18ef1c7dc3246a8476a72ddf864b9a4876",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-banned-book.jpg"
+    },
+    {
+      "path": "art/the-silent-archivist.jpg",
+      "sha256": "997fb5987f4bb6d9cf8f26cb99fcf3edca34340b745c4e95369d039e36f0ee96",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-silent-archivist.jpg"
+    },
+    {
+      "path": "art/the-ink-of-secrets.jpg",
+      "sha256": "885a96082b089ba71551cc363e257da3a6add321e292ccac5f150645b7b2a13d",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-ink-of-secrets.jpg"
+    },
+    {
+      "path": "art/the-sunken-tablet.jpg",
+      "sha256": "da34a417411e185f00fff0f302621a06edd339f0e33e9c6fe194c6fbd813274b",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-sunken-tablet.jpg"
+    },
+    {
+      "path": "art/the-trebuchet.jpg",
+      "sha256": "f506aefa3de3645e489c9850b6e346c71be645655fbd3062cf0c86e16fd33dfa",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-trebuchet.jpg"
+    },
+    {
+      "path": "art/ballista-bolt.jpg",
+      "sha256": "51ef8dcc6e961fddd0dfc4e053b9815d6d5e11df0c11fcba1d22966b3fe603b8",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/ballista-bolt.jpg"
+    },
+    {
+      "path": "art/the-ironclad-turret.jpg",
+      "sha256": "9cab00b964cf25da862f5c99a38586583e768187d0b62ec16350109a020def68",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-ironclad-turret.jpg"
+    },
+    {
+      "path": "art/the-flame-siphon.jpg",
+      "sha256": "5624837bee955d313e55f2bc7d0b03c1eda5d353b535b359a85ce1febbe013a8",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-flame-siphon.jpg"
+    },
+    {
+      "path": "art/pontoon-bridge.jpg",
+      "sha256": "31249f4f6589eceeaa871ea8a553b1f81f4510ee9d0bc41cc829440f7a64744e",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/pontoon-bridge.jpg"
+    },
+    {
+      "path": "art/the-signaling-heliograph.jpg",
+      "sha256": "ce68634b546e99ae6c201170ccc2c0bd8cde4b43831e403ce5e3c11aef3a4d9e",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-signaling-heliograph.jpg"
+    },
+    {
+      "path": "art/watchtower-relay.jpg",
+      "sha256": "d2b81f8116244c4aa002cea96cf0958d9fff38fbee2d46136025e1a3f2eda647",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/watchtower-relay.jpg"
+    },
+    {
+      "path": "art/silk-bolt-cargo.jpg",
+      "sha256": "ce499c861cd2baab43683a0ecb376b9314c04bce089f024bab7cf75e0184c7a2",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/silk-bolt-cargo.jpg"
+    },
+    {
+      "path": "art/the-roads-toll.jpg",
+      "sha256": "cb01157e9f6443759154fe4196a3261ca43f058e18db8e239c6e5571608dd59a",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-roads-toll.jpg"
+    },
+    {
+      "path": "art/the-quartermaster-s-ledger.jpg",
+      "sha256": "953e0ba6a464079d08fd5c498d7780cae97ee37a00413cb6ecdf4cf5381e4f83",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-quartermaster-s-ledger.jpg"
+    },
+    {
+      "path": "art/coin-hoard-buried.jpg",
+      "sha256": "bb3e3a17c22bd545af0d625871ce6a9a9010de280f192c4d7322f172cca791b7",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/coin-hoard-buried.jpg"
     }
   ]
 }

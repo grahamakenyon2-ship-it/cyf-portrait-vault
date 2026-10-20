@@ -625,6 +625,566 @@
    "f": "battle-standard.jpg",
    "src": "commons:Roman standard reenactment",
    "bytes": 617821
+  },
+  "trafalgar-signal-flags.jpg": {
+   "f": "trafalgar-signal-flags.jpg",
+   "src": "commons:Trafalgar signal flags HMS Victory",
+   "bytes": 287484
+  },
+  "press-gang-midnight.jpg": {
+   "f": "press-gang-midnight.jpg",
+   "src": "commons:Royal Navy press gang cartoon",
+   "bytes": 455774
+  },
+  "the-lighthouse-keeper.jpg": {
+   "f": "the-lighthouse-keeper.jpg",
+   "src": "commons:lighthouse storm sea painting",
+   "bytes": 348209
+  },
+  "ironclad-broadside.jpg": {
+   "f": "ironclad-broadside.jpg",
+   "src": "commons:HMS Warrior ironclad",
+   "bytes": 259943
+  },
+  "highland-charge.jpg": {
+   "f": "highland-charge.jpg",
+   "src": "commons:Highland charge battle painting",
+   "bytes": 86327
+  },
+  "the-throne-speech.jpg": {
+   "f": "the-throne-speech.jpg",
+   "src": "commons:State Opening of Parliament painting",
+   "bytes": 2724094
+  },
+  "the-admiral-s-glass.jpg": {
+   "f": "the-admiral-s-glass.jpg",
+   "src": "commons:antique brass telescope ship",
+   "bytes": 324736
+  },
+  "drummers-of-the-line.jpg": {
+   "f": "drummers-of-the-line.jpg",
+   "src": "commons:military drummers band painting",
+   "bytes": 452847
+  },
+  "the-coronation-oil.jpg": {
+   "f": "the-coronation-oil.jpg",
+   "src": "commons:Reims cathedral coronation painting",
+   "bytes": 900799
+  },
+  "versailles-hall-of-mirrors.jpg": {
+   "f": "versailles-hall-of-mirrors.jpg",
+   "src": "commons:Versailles Hall of Mirrors",
+   "bytes": 434929
+  },
+  "the-bastille-key.jpg": {
+   "f": "the-bastille-key.jpg",
+   "src": "commons:Bastille key Washington",
+   "bytes": 14941
+  },
+  "fleur-de-lis-banner.jpg": {
+   "f": "fleur-de-lis-banner.jpg",
+   "src": "commons:fleur de lis flag medieval",
+   "bytes": 262267
+  },
+  "the-imperial-eagle-standard.jpg": {
+   "f": "the-imperial-eagle-standard.jpg",
+   "src": "commons:Napoleonic eagle standard",
+   "bytes": 1444646
+  },
+  "notre-dame-rose-window.jpg": {
+   "f": "notre-dame-rose-window.jpg",
+   "src": "commons:Notre Dame rose window",
+   "bytes": 149233
+  },
+  "the-louvre-courtyard.jpg": {
+   "f": "the-louvre-courtyard.jpg",
+   "src": "commons:Louvre courtyard painting",
+   "bytes": 603781
+  },
+  "gascon-adventurers.jpg": {
+   "f": "gascon-adventurers.jpg",
+   "src": "commons:Three Musketeers illustration",
+   "bytes": 966660
+  },
+  "the-triumphal-arch.jpg": {
+   "f": "the-triumphal-arch.jpg",
+   "src": "commons:Arch of Titus relief",
+   "bytes": 458415
+  },
+  "legion-siege-ramp.jpg": {
+   "f": "legion-siege-ramp.jpg",
+   "src": "commons:Masada siege ramp",
+   "bytes": 469865
+  },
+  "the-aqueduct-span.jpg": {
+   "f": "the-aqueduct-span.jpg",
+   "src": "commons:Pont du Gard aqueduct",
+   "bytes": 290192
+  },
+  "gladiator-gate.jpg": {
+   "f": "gladiator-gate.jpg",
+   "src": "commons:Colosseum gladiator gate",
+   "bytes": 62587
+  },
+  "the-vestal-flame.jpg": {
+   "f": "the-vestal-flame.jpg",
+   "src": "commons:Vesta temple Rome",
+   "bytes": 450648
+  },
+  "chariot-race-circus.jpg": {
+   "f": "chariot-race-circus.jpg",
+   "src": "commons:Roman circus chariot racing mosaic",
+   "bytes": 205395
+  },
+  "the-consul-s-fasces.jpg": {
+   "f": "the-consul-s-fasces.jpg",
+   "src": "commons:Roman fasces relief",
+   "bytes": 1096757
+  },
+  "hadrian-s-wall-march.jpg": {
+   "f": "hadrian-s-wall-march.jpg",
+   "src": "commons:Hadrian's Wall soldiers",
+   "bytes": 175659
+  },
+  "the-eagle-and-the-wolf.jpg": {
+   "f": "the-eagle-and-the-wolf.jpg",
+   "src": "commons:Capitoline Wolf statue",
+   "bytes": 200240
+  },
+  "trajan-s-column-relief.jpg": {
+   "f": "trajan-s-column-relief.jpg",
+   "src": "commons:Trajan's Column relief detail",
+   "bytes": 462349
+  },
+  "the-immortal-guard.jpg": {
+   "f": "the-immortal-guard.jpg",
+   "src": "commons:Persepolis Immortal guards relief",
+   "bytes": 379681
+  },
+  "the-royal-treasury.jpg": {
+   "f": "the-royal-treasury.jpg",
+   "src": "commons:Oxus treasure gold chariot",
+   "bytes": 276421
+  },
+  "steppe-horse-archers.jpg": {
+   "f": "steppe-horse-archers.jpg",
+   "src": "commons:Mongol horse archers painting",
+   "bytes": 65679
+  },
+  "the-kurgan-barrow.jpg": {
+   "f": "the-kurgan-barrow.jpg",
+   "src": "commons:kurgan burial mound steppe",
+   "bytes": 351586
+  },
+  "samarkand-blue-dome.jpg": {
+   "f": "samarkand-blue-dome.jpg",
+   "src": "commons:Samarkand Registan blue dome",
+   "bytes": 635891
+  },
+  "the-copper-bazaar.jpg": {
+   "f": "the-copper-bazaar.jpg",
+   "src": "commons:coppersmith bazaar painting",
+   "bytes": 203787
+  },
+  "the-grand-mosque-lamps.jpg": {
+   "f": "the-grand-mosque-lamps.jpg",
+   "src": "commons:Blue Mosque interior lamps",
+   "bytes": 308371
+  },
+  "ottoman-war-galleys.jpg": {
+   "f": "ottoman-war-galleys.jpg",
+   "src": "commons:Ottoman galley battle painting",
+   "bytes": 285524
+  },
+  "sultan-s-tughra.jpg": {
+   "f": "sultan-s-tughra.jpg",
+   "src": "commons:Ottoman tughra calligraphy",
+   "bytes": 398710
+  },
+  "the-cistern-medusa.jpg": {
+   "f": "the-cistern-medusa.jpg",
+   "src": "commons:Medusa head Basilica Cistern",
+   "bytes": 251751
+  },
+  "damascus-steel-blade.jpg": {
+   "f": "damascus-steel-blade.jpg",
+   "src": "commons:Damascus steel sword blade",
+   "bytes": 141452
+  },
+  "the-cairo-gate.jpg": {
+   "f": "the-cairo-gate.jpg",
+   "src": "commons:Bab Zuweila Cairo gate",
+   "bytes": 127883
+  },
+  "the-masked-ball.jpg": {
+   "f": "the-masked-ball.jpg",
+   "src": "commons:masquerade ball painting",
+   "bytes": 326205
+  },
+  "assassin-s-dagger.jpg": {
+   "f": "assassin-s-dagger.jpg",
+   "src": "commons:stiletto dagger Renaissance museum",
+   "bytes": 627411
+  },
+  "the-spymaster-s-mask.jpg": {
+   "f": "the-spymaster-s-mask.jpg",
+   "src": "commons:venetian carnival mask black",
+   "bytes": 396505
+  },
+  "the-poet-s-laurel.jpg": {
+   "f": "the-poet-s-laurel.jpg",
+   "src": "commons:laurel wreath poet painting",
+   "bytes": 539997
+  },
+  "the-senator-s-toga.jpg": {
+   "f": "the-senator-s-toga.jpg",
+   "src": "commons:Roman senator toga statue",
+   "bytes": 521776
+  },
+  "the-sword-in-the-stone.jpg": {
+   "f": "the-sword-in-the-stone.jpg",
+   "src": "commons:Excalibur sword stone illustration",
+   "bytes": 662236
+  },
+  "anvil-of-kings.jpg": {
+   "f": "anvil-of-kings.jpg",
+   "src": "commons:blacksmith forging sword painting",
+   "bytes": 471704
+  },
+  "drawbridge-portcullis.jpg": {
+   "f": "drawbridge-portcullis.jpg",
+   "src": "commons:castle drawbridge portcullis",
+   "bytes": 1037322
+  },
+  "the-white-hart-banner.jpg": {
+   "f": "the-white-hart-banner.jpg",
+   "src": "commons:white stag medieval tapestry",
+   "bytes": 214677
+  },
+  "the-shield-of-the-nine.jpg": {
+   "f": "the-shield-of-the-nine.jpg",
+   "src": "commons:round shield viking museum",
+   "bytes": 669245
+  },
+  "siegeworks-trenches.jpg": {
+   "f": "siegeworks-trenches.jpg",
+   "src": "commons:medieval siege warfare illustration",
+   "bytes": 161597
+  },
+  "the-beacon-fires.jpg": {
+   "f": "the-beacon-fires.jpg",
+   "src": "commons:beacon fire hill painting",
+   "bytes": 403819
+  },
+  "the-celestial-astrolabe.jpg": {
+   "f": "the-celestial-astrolabe.jpg",
+   "src": "commons:astronomical clock Prague",
+   "bytes": 495021
+  },
+  "the-summoning-circle.jpg": {
+   "f": "the-summoning-circle.jpg",
+   "src": "commons:John William Waterhouse magic circle",
+   "bytes": 320771
+  },
+  "the-codex-of-nine.jpg": {
+   "f": "the-codex-of-nine.jpg",
+   "src": "commons:illuminated manuscript astronomy",
+   "bytes": 238165
+  },
+  "candle-of-insight.jpg": {
+   "f": "candle-of-insight.jpg",
+   "src": "commons:candle study Rembrandt",
+   "bytes": 395868
+  },
+  "the-tarot-table.jpg": {
+   "f": "the-tarot-table.jpg",
+   "src": "commons:tarot cards table painting",
+   "bytes": 333054
+  },
+  "the-bronze-telescope.jpg": {
+   "f": "the-bronze-telescope.jpg",
+   "src": "commons:old observatory telescope painting",
+   "bytes": 81413
+  },
+  "the-star-sanctum.jpg": {
+   "f": "the-star-sanctum.jpg",
+   "src": "commons:Uraniborg observatory Tycho Brahe",
+   "bytes": 714169
+  },
+  "the-ancient-oak-council.jpg": {
+   "f": "the-ancient-oak-council.jpg",
+   "src": "commons:giant oak tree ancient forest",
+   "bytes": 246827
+  },
+  "mushroom-ring-fairy.jpg": {
+   "f": "mushroom-ring-fairy.jpg",
+   "src": "commons:fairy ring mushrooms illustration",
+   "bytes": 45437
+  },
+  "the-green-knight.jpg": {
+   "f": "the-green-knight.jpg",
+   "src": "commons:Green Knight Gawain illustration",
+   "bytes": 78943
+  },
+  "the-elder-tree-spirit.jpg": {
+   "f": "the-elder-tree-spirit.jpg",
+   "src": "commons:tree spirit face carving",
+   "bytes": 515631
+  },
+  "stag-of-the-grove.jpg": {
+   "f": "stag-of-the-grove.jpg",
+   "src": "commons:white stag forest painting",
+   "bytes": 172179
+  },
+  "the-hearthfire-glen.jpg": {
+   "f": "the-hearthfire-glen.jpg",
+   "src": "commons:forest campfire night painting",
+   "bytes": 339177
+  },
+  "raven-messenger.jpg": {
+   "f": "raven-messenger.jpg",
+   "src": "commons:raven perched painting",
+   "bytes": 1209305
+  },
+  "the-wolfpack-howl.jpg": {
+   "f": "the-wolfpack-howl.jpg",
+   "src": "commons:wolf pack snow night",
+   "bytes": 486936
+  },
+  "troll-bridge-toll.jpg": {
+   "f": "troll-bridge-toll.jpg",
+   "src": "commons:John Bauer troll illustration",
+   "bytes": 318670
+  },
+  "rat-catchers-plague.jpg": {
+   "f": "rat-catchers-plague.jpg",
+   "src": "commons:rats plague medieval miniature",
+   "bytes": 597629
+  },
+  "the-ogre-s-larder.jpg": {
+   "f": "the-ogre-s-larder.jpg",
+   "src": "commons:John Bauer giant illustration",
+   "bytes": 1522001
+  },
+  "carrion-crows-field.jpg": {
+   "f": "carrion-crows-field.jpg",
+   "src": "commons:crows battlefield painting",
+   "bytes": 49591
+  },
+  "mammoth-of-the-tundra.jpg": {
+   "f": "mammoth-of-the-tundra.jpg",
+   "src": "commons:woolly mammoth illustration",
+   "bytes": 255116
+  },
+  "the-nebula-crown.jpg": {
+   "f": "the-nebula-crown.jpg",
+   "src": "commons:Orion nebula Hubble",
+   "bytes": 216119
+  },
+  "singularity-s-eye.jpg": {
+   "f": "singularity-s-eye.jpg",
+   "src": "commons:black hole NASA illustration",
+   "bytes": 1844143
+  },
+  "the-stellar-forge.jpg": {
+   "f": "the-stellar-forge.jpg",
+   "src": "commons:star formation nebula Hubble",
+   "bytes": 196842
+  },
+  "xenoform-crystal.jpg": {
+   "f": "xenoform-crystal.jpg",
+   "src": "commons:crystal formation geode",
+   "bytes": 349397
+  },
+  "ion-trail-ambush.jpg": {
+   "f": "ion-trail-ambush.jpg",
+   "src": "commons:meteor shower night sky",
+   "bytes": 2684363
+  },
+  "red-sands-canyon.jpg": {
+   "f": "red-sands-canyon.jpg",
+   "src": "commons:Mars canyon NASA",
+   "bytes": 396577
+  },
+  "the-belt-miners.jpg": {
+   "f": "the-belt-miners.jpg",
+   "src": "commons:asteroid mining NASA illustration",
+   "bytes": 186726
+  },
+  "quasar-beacon.jpg": {
+   "f": "quasar-beacon.jpg",
+   "src": "commons:quasar galaxy Hubble",
+   "bytes": 443150
+  },
+  "the-observatory-bunker.jpg": {
+   "f": "the-observatory-bunker.jpg",
+   "src": "commons:bunker concrete fortress",
+   "bytes": 778399
+  },
+  "battleship-grey-harbor.jpg": {
+   "f": "battleship-grey-harbor.jpg",
+   "src": "commons:naval battleship harbor painting",
+   "bytes": 446455
+  },
+  "iron-fist-artillery.jpg": {
+   "f": "iron-fist-artillery.jpg",
+   "src": "commons:artillery cannon barrel",
+   "bytes": 394843
+  },
+  "the-induction-furnace.jpg": {
+   "f": "the-induction-furnace.jpg",
+   "src": "commons:steel mill furnace industry",
+   "bytes": 148464
+  },
+  "reactor-core-blue.jpg": {
+   "f": "reactor-core-blue.jpg",
+   "src": "commons:nuclear reactor blue glow",
+   "bytes": 168550
+  },
+  "the-citadel-perimeter.jpg": {
+   "f": "the-citadel-perimeter.jpg",
+   "src": "commons:fortress walls aerial",
+   "bytes": 322092
+  },
+  "salvage-yards.jpg": {
+   "f": "salvage-yards.jpg",
+   "src": "commons:shipbreaking yard",
+   "bytes": 275983
+  },
+  "the-vault-of-records.jpg": {
+   "f": "the-vault-of-records.jpg",
+   "src": "commons:archive boxes vault",
+   "bytes": 1372475
+  },
+  "perpetual-engine.jpg": {
+   "f": "perpetual-engine.jpg",
+   "src": "commons:steam engine machine painting",
+   "bytes": 407888
+  },
+  "the-inquisitor-s-seal.jpg": {
+   "f": "the-inquisitor-s-seal.jpg",
+   "src": "commons:wax seal red stamp",
+   "bytes": 399268
+  },
+  "the-admiral-s-cabin.jpg": {
+   "f": "the-admiral-s-cabin.jpg",
+   "src": "commons:ship captain cabin painting",
+   "bytes": 95172
+  },
+  "kraken-s-coil.jpg": {
+   "f": "kraken-s-coil.jpg",
+   "src": "commons:kraken ship illustration",
+   "bytes": 303893
+  },
+  "whaler-s-harpoon.jpg": {
+   "f": "whaler-s-harpoon.jpg",
+   "src": "commons:whaling harpoon boat painting",
+   "bytes": 220481
+  },
+  "the-tidal-gauge.jpg": {
+   "f": "the-tidal-gauge.jpg",
+   "src": "commons:tide gauge harbor instrument",
+   "bytes": 331261
+  },
+  "mutiny-at-midnight.jpg": {
+   "f": "mutiny-at-midnight.jpg",
+   "src": "commons:mutiny ship painting",
+   "bytes": 406436
+  },
+  "the-signal-semaphore.jpg": {
+   "f": "the-signal-semaphore.jpg",
+   "src": "commons:semaphore signal flags ship",
+   "bytes": 158752
+  },
+  "the-dead-calm.jpg": {
+   "f": "the-dead-calm.jpg",
+   "src": "commons:calm sea sailing ship painting",
+   "bytes": 675609
+  },
+  "the-lost-library.jpg": {
+   "f": "the-lost-library.jpg",
+   "src": "commons:ancient library ruins painting",
+   "bytes": 214994
+  },
+  "the-heretic-s-stake.jpg": {
+   "f": "the-heretic-s-stake.jpg",
+   "src": "commons:Giordano Bruno statue",
+   "bytes": 237730
+  },
+  "the-banned-book.jpg": {
+   "f": "the-banned-book.jpg",
+   "src": "commons:chained library books",
+   "bytes": 752384
+  },
+  "the-silent-archivist.jpg": {
+   "f": "the-silent-archivist.jpg",
+   "src": "commons:monk writing scriptorium painting",
+   "bytes": 346083
+  },
+  "the-ink-of-secrets.jpg": {
+   "f": "the-ink-of-secrets.jpg",
+   "src": "commons:iron gall ink manuscript",
+   "bytes": 297855
+  },
+  "the-sunken-tablet.jpg": {
+   "f": "the-sunken-tablet.jpg",
+   "src": "commons:cuneiform tablet clay",
+   "bytes": 1027246
+  },
+  "the-trebuchet.jpg": {
+   "f": "the-trebuchet.jpg",
+   "src": "commons:trebuchet siege engine",
+   "bytes": 302288
+  },
+  "ballista-bolt.jpg": {
+   "f": "ballista-bolt.jpg",
+   "src": "commons:ballista catapult museum",
+   "bytes": 347534
+  },
+  "the-ironclad-turret.jpg": {
+   "f": "the-ironclad-turret.jpg",
+   "src": "commons:ironclad turret warship",
+   "bytes": 793169
+  },
+  "the-flame-siphon.jpg": {
+   "f": "the-flame-siphon.jpg",
+   "src": "commons:greek fire Byzantine ship",
+   "bytes": 227459
+  },
+  "pontoon-bridge.jpg": {
+   "f": "pontoon-bridge.jpg",
+   "src": "commons:pontoon bridge military painting",
+   "bytes": 437574
+  },
+  "the-signaling-heliograph.jpg": {
+   "f": "the-signaling-heliograph.jpg",
+   "src": "commons:heliograph signal mirror",
+   "bytes": 343638
+  },
+  "watchtower-relay.jpg": {
+   "f": "watchtower-relay.jpg",
+   "src": "commons:Great Wall watchtower",
+   "bytes": 53912
+  },
+  "silk-bolt-cargo.jpg": {
+   "f": "silk-bolt-cargo.jpg",
+   "src": "commons:silk fabric market painting",
+   "bytes": 591795
+  },
+  "the-roads-toll.jpg": {
+   "f": "the-roads-toll.jpg",
+   "src": "commons:medieval toll gate painting",
+   "bytes": 116257
+  },
+  "the-quartermaster-s-ledger.jpg": {
+   "f": "the-quartermaster-s-ledger.jpg",
+   "src": "commons:old ledger book accounts",
+   "bytes": 591993
+  },
+  "coin-hoard-buried.jpg": {
+   "f": "coin-hoard-buried.jpg",
+   "src": "commons:Viking silver hoard coins",
+   "bytes": 407372
   }
  }
 }
