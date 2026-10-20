@@ -257,6 +257,8 @@
   .modal{position:fixed; inset:0; background:#000d; display:none; align-items:center; justify-content:center; z-index:80;}
   .modal.on{display:flex;}
   .modal .mbox{max-width:420px; background:var(--panel); border:1px solid var(--gold); padding:26px 32px; text-align:center;}
+  /* v0.12.2: volume sliders — full continuous control, gold-styled */
+  .modal input[type=range]{width:100%; accent-color:var(--gold); margin:2px 0 8px;}
 
   /* ================= v0.5.2 VISUAL OVERHAUL ================= */
   body{font-family:'EB Garamond', Georgia, 'Times New Roman', serif;}
@@ -537,7 +539,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.12.1';
+const GAME_VERSION = '0.12.2';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
@@ -581,7 +583,12 @@ function applyTheme(factionId){
             : settings.theme === 'pool' ? 'ironhall'
             : settings.theme;
   root.style.setProperty('--theme-bg', `url(${THEMES}/${key}/bg.jpg)`);
-  root.style.setProperty('--theme-panel', `url(${THEMES}/${key}/panel.jpg)`);
+  // v0.12.2: the galacticemp panel art has WHITE outer margins — border-image
+  // slices the outer 40px, so every starwind card rendered with white border
+  // strips. Pin starwind's frame to the dark ornate bothawui panel until a
+  // proper galacticemp panel ships; bg stays galacticemp (it is dark and fine).
+  const PANEL_OVERRIDE = { galacticemp: 'bothawui' };
+  root.style.setProperty('--theme-panel', `url(${THEMES}/${PANEL_OVERRIDE[key] || key}/panel.jpg)`);
   root.style.setProperty('--theme-btn', `url(${ART}/5b572857-1561-4de3-933e-9e2ced9432e1.jpg)`); // v0.6.8: universal Fateblade plate (AI art from the vault)
   root.style.setProperty('--fb-btn', `url(${ART}/5b572857-1561-4de3-933e-9e2ced9432e1.jpg)`);
   root.style.setProperty('--board-bg', `url(${ART}/af4a2781-01b1-45ea-9a22-498eefb5543c.jpg)`);
@@ -1490,17 +1497,26 @@ function showSettings(){
   const paceEl = document.getElementById('setPace');
   if(paceEl) paceEl.value = String(settings.enemyPace === undefined ? 850 : settings.enemyPace);
   const sfxEl = document.getElementById('setSfx');
-  if(sfxEl) sfxEl.value = String(settings.sfxVol === undefined ? 0.7 : settings.sfxVol);
+  if(sfxEl) sfxEl.value = String(Math.round((settings.sfxVol === undefined ? 0.7 : settings.sfxVol) * 100));
   const musEl = document.getElementById('setMusic');
-  if(musEl) musEl.value = String(settings.musicVol === undefined ? 0.35 : settings.musicVol);
+  if(musEl) musEl.value = String(Math.round((settings.musicVol === undefined ? 0.35 : settings.musicVol) * 100));
+  updateVolLabels();
   document.getElementById('settings').classList.add('on');
 }
 function setTheme(v){ settings.theme = v; saveSettings(); applyTheme(me.faction || null); }
 function setWatch(v){ settings.watchSpeed = Number(v); saveSettings(); }
 function setAI(v){ settings.aiLevel = v; saveSettings(); }
 function setPace(v){ settings.enemyPace = Number(v); saveSettings(); }
-function setSfxVol(v){ settings.sfxVol = Number(v); saveSettings(); SND.init(); SND.setVol(); }
-function setMusicVol(v){ settings.musicVol = Number(v); saveSettings(); if(Number(v) === 0 && MUSIC.el){ MUSIC.el.pause(); } else { MUSIC.setVol(); MUSIC.retry(); } }
+function setSfxVol(v){ settings.sfxVol = Number(v)/100; saveSettings(); SND.init(); SND.setVol(); updateVolLabels(); }
+// v0.12.2: sliders send 0-100 — full continuous control, not 4 fixed steps
+function setMusicVol(v){ settings.musicVol = Number(v)/100; saveSettings(); if(Number(v) === 0 && MUSIC.el){ MUSIC.el.pause(); } else { MUSIC.setVol(); MUSIC.retry(); } updateVolLabels(); }
+function updateVolLabels(){
+  const s = document.getElementById('sfxVolPct'), m = document.getElementById('musicVolPct');
+  const sv = Math.round((settings.sfxVol === undefined ? 0.7 : settings.sfxVol) * 100);
+  const mv = Math.round((settings.musicVol === undefined ? 0.35 : settings.musicVol) * 100);
+  if(s) s.textContent = sv + '%';
+  if(m) m.textContent = mv + '%';
+}
 function clearDecks(){ savedDecks = {}; localStorage.removeItem(DKEY2); localStorage.removeItem(DKEY); alert('Saved decks cleared — realms return to their doctrine decks.'); location.reload(); }
 
 /* ================= MULTIPLAYER (v0.5 teaser) ================= */
@@ -1643,20 +1659,10 @@ function watchEnd(){
       <option value="450">Animated — fast</option>
       <option value="0">Instant — classic behavior</option>
     </select>
-    <label>Sound volume</label>
-    <select id="setSfx" onchange="setSfxVol(this.value)">
-      <option value="1">Loud — full sound</option>
-      <option value="0.7">Normal — balanced (recommended)</option>
-      <option value="0.3">Soft — subtle cues</option>
-      <option value="0">Off — silent duels</option>
-    </select>
-    <label>Music volume</label>
-    <select id="setMusic" onchange="setMusicVol(this.value)">
-      <option value="0.6">Bold — front and centre</option>
-      <option value="0.35">Normal — under the steel (recommended)</option>
-      <option value="0.15">Faint — distant halls</option>
-      <option value="0">Off — silence between the horns</option>
-    </select>
+    <label>Sound volume <span id="sfxVolPct" style="color:var(--gold)"></span></label>
+    <input type="range" id="setSfx" min="0" max="100" step="1" oninput="setSfxVol(this.value)">
+    <label>Music volume <span id="musicVolPct" style="color:var(--gold)"></span></label>
+    <input type="range" id="setMusic" min="0" max="100" step="1" oninput="setMusicVol(this.value)">
     <label>Saved decks</label>
     <div style="margin:8px 0"><button onclick="clearDecks()">Clear all custom decks</button></div>
     <div style="margin-top:14px"><button onclick="document.getElementById('settings').classList.remove('on')">Close</button></div>
