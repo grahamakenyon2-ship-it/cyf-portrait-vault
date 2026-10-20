@@ -212,13 +212,15 @@
 
   /* ===== v0.10: attack/HP gem badges (same treatment as the mana cost gem),
      portrait framing, and card-text containment ===== */
-  .statgem{display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; border-radius:50%;
-    font-weight:bold; font-size:13px; color:#fff; text-shadow:0 1px 2px #000; border:1px solid #0009;
-    box-shadow:0 1px 3px #0008; margin:0 3px; vertical-align:middle; font-family:'Cinzel', Georgia, serif;}
+  .statgem{display:inline-flex; align-items:center; justify-content:center; gap:3px; min-width:26px; height:24px; border-radius:12px;
+    font-weight:bold; font-size:14px; color:#fff; text-shadow:0 1px 2px #000; border:1px solid #0009;
+    box-shadow:0 1px 3px #0008; margin:0 3px; vertical-align:middle; font-family:'Cinzel', Georgia, serif; padding:0 7px;}
   .statgem.atk{background:radial-gradient(circle at 35% 30%, #ff9a8a, #b41f0f 75%); border-color:#7a1a0d;}
   .statgem.hp{background:radial-gradient(circle at 35% 30%, #a9efa0, #1d7a2a 75%); border-color:#144d1c;}
-  #zoom .zs .statgem{width:30px; height:30px; font-size:17px;}
-  .slab{font-size:12px; color:#c9b78e; letter-spacing:2px; vertical-align:middle;}
+  .statgem i{font-style:normal; font-size:8px; letter-spacing:1px; padding-bottom:1px; opacity:.92;}
+  #zoom .zs .statgem{min-width:34px; height:30px; border-radius:15px; font-size:18px; padding:0 9px;}
+  #zoom .zs .statgem i{font-size:10px;}
+  .slab{display:none;}
   /* portraits: face-biased crop, and a visible mat rim so they sit INSIDE the
      frame art instead of covering it edge-to-edge */
   #zoom img{width:236px; height:236px; margin:0 auto; object-fit:cover; object-position:50% 16%; display:block;
@@ -296,6 +298,12 @@
   .minion .gem{width:30px; height:30px; font-size:16px; border-width:1px; font-family:'Cinzel', Georgia, serif;}
   .minion .gem.atk{left:2px; bottom:2px;}
   .minion .gem.hp{right:2px; bottom:2px;}
+  /* v0.12.1: ATK/HP ride in enlarged pill emblems with the label INSIDE — the
+     old circles were too small to read the numbers comfortably */
+  .gem.atk, .gem.hp, .minion .gem.atk, .minion .gem.hp{
+    width:auto; min-width:30px; height:26px; border-radius:13px; font-size:14.5px; padding:0 7px; gap:3px;}
+  .gem.atk i, .gem.hp i, .minion .gem.atk i, .minion .gem.hp i{
+    font-style:normal; font-size:8px; letter-spacing:1px; padding-bottom:1px; opacity:.92;}
   .minion .nm{background:#000d; text-align:center; letter-spacing:.5px;}
   .minion .kw{z-index:2;}
 
@@ -529,7 +537,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.12.0';
+const GAME_VERSION = '0.12.1';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
@@ -1141,9 +1149,9 @@ function showZoom(c, ev){
     <div class="zn">${c.name}</div>
     <div class="zr">${c.rarity}${c.passive ? ' · sovereign' : ''}</div>
     ${c.kw?`<div class="zk"><b>${KWTXT[c.kw]}</b> — ${KWDESC[c.kw]}</div>`:''}
-    ${c.ability?`<div class="zpv">${c.ability}</div>`:''}  /* v0.10.2: no native title tooltip — it duplicated the visible text on hover */
+    ${c.ability?`<div class="zpv">${c.ability}</div>`:''}
     ${c.passive?`<div class="zpv"><b>${c.passive.name}</b> (Sovereign passive): ${c.passive.desc}</div>`:''}
-    <div class="zs">${(c.type==='edict'||c.type==='relic') ? `<span style="color:#f9c;letter-spacing:1px">${c.type==='edict'?'EDICT — ONE-SHOT':'RELIC — PERSISTENT'}</span>` : `<span class="statgem atk">${c.atk}</span><span class="slab">ATK</span> <span class="statgem hp">${c.hp}</span><span class="slab">HP</span>`}</div>`;
+    <div class="zs">${(c.type==='edict'||c.type==='relic') ? `<span style="color:#f9c;letter-spacing:1px">${c.type==='edict'?'EDICT — ONE-SHOT':'RELIC — PERSISTENT'}</span>` : `<span class="statgem atk">${c.atk}<i>ATK</i></span><span class="statgem hp">${c.hp}<i>HP</i></span>`}</div>`;
   zoom.style.display='block';
   moveZoom(ev);
 }
@@ -1234,7 +1242,7 @@ function render(){
         data-uid="${m.uid}" data-cid="${m.id}">
         <img src="${m.img}" loading="lazy"><div class="nm">${m.name}</div>
         ${m.kw?`<div class="kw" data-kw="${m.kw}">${KWTXT[m.kw]}</div>`:''}
-        <div class="gem atk">${m.atk}</div><div class="gem hp">${m.hp}</div></div>`;
+        <div class="gem atk">${m.atk}<i>ATK</i></div><div class="gem hp">${m.hp}<i>HP</i></div></div>`;
     }).join('');
     el.querySelectorAll('.minion').forEach(div=>{
       div.onclick = ()=>minionClick(side, div.dataset.uid);
@@ -1276,7 +1284,7 @@ function render(){
       ${c.kw?`<div class="kw" data-kw="${c.kw}">${KWTXT[c.kw]}</div>`:''}
       ${c.ability?`<div class="abilglyph">${isSpell(c)?'✦':(c.ability.startsWith('Battlecry')?'▸':'☠')}</div>`:''}
       <div class="nm">${c.name}</div>
-      ${isSpell(c)?'':`<div class="gem atk">${c.atk}</div><div class="gem hp">${c.hp}</div>`}</div>`).join('');
+      ${isSpell(c)?'':`<div class="gem atk">${c.atk}<i>ATK</i></div><div class="gem hp">${c.hp}<i>HP</i></div>`}</div>`).join('');
   hd.querySelectorAll('.hcard').forEach(d=>{
     d.onclick = ()=>handClick(+d.dataset.i, d);
     d.onmouseenter = (ev)=>showZoom(my.hand[+d.dataset.i], ev);
@@ -1379,7 +1387,7 @@ function dbCardHtml(c){
       <img src="${c.img}" loading="lazy" alt="${c.name}">
       <div class="nm">${c.name}</div>
       <div class="ab" title="${esc(c.ability)}">${c.ability ? c.ability.replace('Battlecry: ','▸ ').replace('Deathrattle: ','☠ ') : (c.kw ? KWTXT[c.kw] : '')}</div>
-      <div class="st">${(c.type==='edict'||c.type==='relic')?`<span style="color:#f9c;letter-spacing:1px">${c.type.toUpperCase()}</span>`:`<span class="statgem atk">${c.atk}</span><span class="statgem hp">${c.hp}</span>`}</div>
+      <div class="st">${(c.type==='edict'||c.type==='relic')?`<span style="color:#f9c;letter-spacing:1px">${c.type.toUpperCase()}</span>`:`<span class="statgem atk">${c.atk}<i>ATK</i></span><span class="statgem hp">${c.hp}<i>HP</i></span>`}</div>
     </div>`;
 }
 function renderDB(){
@@ -1411,7 +1419,7 @@ function renderDB(){
   listEl.innerHTML = inDeck.length ? inDeck.map(({c,n})=>`
     <div class="dbrow ${isGuildCard(c.id)?'guild':''}" data-id="${c.id}" onclick="dbRemove('${c.id.replace(/'/g,"\\'")}')">
       <span class="cost">${c.cost}</span><span class="nm">${c.name} ×${n}</span>
-      <span class="st">${(c.type==='edict'||c.type==='relic')?'✦ '+c.type.toUpperCase():`<span class="statgem atk">${c.atk}</span><span class="statgem hp">${c.hp}</span>`}</span><span class="x">✕</span></div>`).join('')
+      <span class="st">${(c.type==='edict'||c.type==='relic')?'✦ '+c.type.toUpperCase():`<span class="statgem atk">${c.atk}<i>ATK</i></span><span class="statgem hp">${c.hp}<i>HP</i></span>`}</span><span class="x">✕</span></div>`).join('')
     : '<div style="text-align:center;color:#c9b78e;font-size:13px;padding:10px">empty — click cards on the right</div>';
   listEl.querySelectorAll('.dbrow').forEach(r=>{
     r.onmouseenter = (ev)=>{ const c = all.find(x=>x.id===r.dataset.id); if(c) showZoom(c, ev); };
