@@ -567,7 +567,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.13.4';
+const GAME_VERSION = '0.14.0';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
@@ -1973,16 +1973,16 @@ const CAMPAIGNS = [
     tag: "A murdered oath, an erased name, and the Crusade's frame. Clear your legend across the Canon. Ends at the Oathbreaker.",
     chapters: [
       { name: 'Ashes of the Vigil', fac: 'stormlit', ai: 'easy', rule: {},
-        intro: "You woke to the Vigil chapel in ashes and your oath-banner — the one you swore your life on — lying folded on the altar like an accusation. The Stormlit Marches have posted a watch for a killer, and the crows on the walls are voting with their eyes.",
+        intro: "You woke to the Vigil chapel in ashes and your oath-banner — the one you swore your life on — lying folded on the altar like an accusation. The Elderkin have posted a watch for a killer, and their wardens weigh you with ten-thousand-year eyes.",
         outro: "The Marches' watch withdraws, shaken but honest. The crows kept their own counsel, as crows do — but the trail leads off the Marches and toward the salt." },
       { name: 'Salt and Starlight', fac: 'starwind', ai: 'normal', rule: { hp: 5 },
-        intro: "The Malval Starwind Concord runs the smugglers' lanes that hug the coast, and they sold the killer's ship a berth — for the right price. Their harbour-master is a hard-bitten navigator with salt in his blood, and he does not give up manifests to strangers.",
+        intro: "The Alien Dominion runs the smugglers' lanes between the stars, and they sold the killer's ship a berth — for the right price. Their harbour-master is a hard-bitten navigator with salt in his blood, and he does not give up manifests to strangers.",
         outro: "The manifest is yours: the killer's ship, and a name in the cargo log that has been deliberately erased. Someone paid the Concord to forget it." },
       { name: 'The Element Songs', fac: 'tigerpass', ai: 'normal', rule: { guard: 1 },
-        intro: "In the Tiger Pass, the warlords keep their histories as songs, and there is a new verse about the night the chapel burned. The singer's Guard is already on the pass road — the Concordant does not like strangers auditing their songs.",
+        intro: "In the deep passes, the Horde keeps its histories as scars, and there is a fresh scar from the night the chapel burned. The war-chiefs' vanguard is already on the pass road — the Horde does not like strangers reading its scars.",
         outro: "The verse is sung for you, note-perfect, and it names the buyer: an Ironclad officer of the Crusade, paying in Crusade coin." },
       { name: 'Only the Worthy Endure', fac: 'zephek', ai: 'normal', rule: { extraDraw: true },
-        intro: "The Zephek Ironclad Crusade screens its own — only the worthy endure. Their chapter-house keeps the ledgers that would prove the officer acted on orders, and their quartermasters never run out of paper, steel, or witnesses.",
+        intro: "The Human Star Empire screens its own — only the worthy endure. Their chapter-house keeps the ledgers that would prove the officer acted on orders, and their quartermasters never run out of paper, steel, or witnesses.",
         outro: "The chapter-house ledgers fall open. The officer's payments were authorized — signed by the man whose life your oath was sworn to protect." },
       { name: 'The Long Wall', fac: 'stormlit', ai: 'hard', rule: { guard: 2 },
         intro: "You bring the proof home to the Marches, and the Marches bring a wall: two Guards of the Vigil stand at the gate, under orders to see no evidence and no pilgrim. Your name is still an accusation here, and walls are how the Marches argue.",
@@ -1991,7 +1991,7 @@ const CAMPAIGNS = [
         intro: "The Concord wants its ledger-page back — the one you took — and they have sent the honour of the whole fleet to retrieve it. Their flagship captain is forty scars deep and commands a hundred starfighters who have never lost a boarding action.",
         outro: "The boarding action is lost, and with it the Concord's stake in the cover-up. The captain, beaten, points her sword at the horizon: the Crusade fleet, coming for you both." },
       { name: "The Generals' Verse", fac: 'tigerpass', ai: 'hard', rule: { extraDraw: true, conscripts: 1 },
-        intro: "Every realm you have cleared now stands behind you, but the Tiger Pass warlords follow no one's banner — only a verse. The Crusade has bought the singers, the pass is filling with hired swords, and their generals feed fresh companies into the pass faster than the road can hold them.",
+        intro: "Every realm you have cleared now stands behind you, but the Horde's war-chiefs follow no one's banner — only blood. The Crusade has bought the war-chiefs, the passes are filling with hired swords, and their generals feed fresh companies into the pass faster than the road can hold them.",
         outro: "The new verse ends the old one: the frame was ordered from the top, by the Marshal's own oath-brother — the man they now call the Oathbreaker." },
       { name: 'The Oathbreaker', fac: 'zephek', ai: 'hard', rule: { hp: 10, guard: 1, conscripts: 2 }, boss: true,
         intro: "The Ironclad Crusade has chosen its champion, and it is the Oathbreaker himself — your oath-brother, in his fortress plate, behind a Guard of oath-eaters and two ranks of Crusade conscripts sworn on your erased name. He will not yield at thirty wounds, and he will not explain himself. Make him.",
