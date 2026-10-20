@@ -18,7 +18,7 @@
   body{margin:0; background:var(--bg); color:var(--ink); font:15px/1.4 Georgia,serif; overflow:hidden;}
   body.themed{ background-image:var(--theme-bg); background-size:cover; background-position:center; }
   body.themed::before{content:''; position:fixed; inset:0; background:#000a; pointer-events:none; z-index:-1;}
-  h1{font-size:46px; letter-spacing:8px; color:var(--gold); margin:0 0 4px; text-shadow:0 0 30px #000;}
+  h1{font-size:54px; letter-spacing:8px; color:var(--gold); margin:0 0 4px; text-shadow:0 0 30px #000;}
   h1 small{display:block; font-size:13px; letter-spacing:4px; color:var(--gold-dim); font-weight:normal;}
   .screen{display:none; height:100vh; flex-direction:column; align-items:center; justify-content:center; gap:14px; overflow:auto; padding:20px;}
   .screen.on{display:flex;}
@@ -34,66 +34,66 @@
   button.themebtn:hover{border-color:var(--gold); box-shadow:0 0 14px #0009;} button.themebtn{font-size:15px;}
   button:disabled{opacity:.35; cursor:default;}
   .row{display:flex; gap:12px; flex-wrap:wrap; justify-content:center; max-width:1200px;}
-  .cardpick{width:180px; border:10px solid transparent; border-image:var(--theme-panel, linear-gradient(#2a2216,#191308)) 40 fill; background:#0d0a07; padding:6px; cursor:pointer; text-align:center;}
+  .cardpick{width:210px; border:10px solid transparent; border-image:var(--theme-panel, linear-gradient(#2a2216,#191308)) 40 fill; background:#0d0a07; padding:6px; cursor:pointer; text-align:center;}
   .cardpick:hover{outline:2px solid var(--gold);}
-  .cardpick img{width:164px; height:196px; object-fit:cover; display:block;}
+  .cardpick img{width:192px; height:230px; object-fit:cover; display:block;}
   .cardpick .lbl{margin-top:6px; color:var(--gold); letter-spacing:1px;}
   .cardpick .sub{font-size:13px; color:#c9b78e;}
   .cardpick .passive{font-size:13px; color:#8fd; font-style:italic; margin-top:4px; min-height:44px;}
   .cardpick .idn{font-size:13px; color:#f9c; font-style:italic; margin-top:4px;}
 
   /* ===== main menu ===== */
-  #menu .menubtn{width:400px; font-size:19px; padding:16px; margin:4px;}
+  #menu .menubtn{width:480px; font-size:21px; padding:16px; margin:4px;}
   #menu .menubtn small{display:block; font-size:13px; letter-spacing:1px; color:#c9b78e; margin-top:2px; text-transform:none;}
   #poolRow{margin-top:10px;}
 
   /* ===== match ===== */
-  #match{justify-content:flex-start; padding:8px;}
+  #match{justify-content:flex-start; padding:8px; gap:8px;}
   #match.on{background-image:var(--board-bg); background-size:cover; background-position:center;}
-  .lane{display:flex; justify-content:center; align-items:center; gap:10px; min-height:165px;}
-  .board{display:flex; gap:10px; justify-content:center; min-height:165px; align-items:center;}
-  .hero{width:150px; height:150px; border:2px solid var(--gold-dim); background:#000; text-align:center; cursor:pointer; position:relative;}
-  .hero img{width:100%; height:88px; object-fit:cover; display:block;}
-  .hero .hp{position:absolute; bottom:2px; left:50%; transform:translateX(-50%); font-size:20px; color:var(--hp); text-shadow:0 0 4px #000;}
-  .hero .nm{position:absolute; top:2px; width:100%; font-size:10.5px; background:#000a; letter-spacing:1px; white-space:nowrap; overflow:hidden;}
-  .hero .sovname{font-size:10px; color:#8fd; background:#000c; padding:1px 3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; letter-spacing:.5px;}
-  .hero .sovp{font-size:8.5px; line-height:11px; color:#e6d8b2; background:#000c; padding:1px 3px; height:35px; overflow:hidden;}
-  .hero .relics{position:absolute; top:-15px; left:0; width:100%; display:flex; gap:2px; justify-content:center; pointer-events:auto;}
-  .hero .relics .rk{font-size:9px; background:#000d; border:1px solid var(--gold-dim); color:#f9c; padding:0 4px; cursor:help; white-space:nowrap; max-width:64px; overflow:hidden; text-overflow:ellipsis; line-height:13px;}
+  .lane{display:flex; justify-content:center; align-items:center; gap:12px; min-height:175px;}
+  .board{display:flex; gap:14px; justify-content:center; min-height:185px; align-items:center;}
+  .hero{width:170px; height:170px; border:2px solid var(--gold-dim); background:#000; text-align:center; cursor:pointer; position:relative;}
+  .hero img{width:100%; height:100px; object-fit:cover; display:block;}
+  .hero .hp{position:absolute; bottom:2px; left:50%; transform:translateX(-50%); font-size:24px; color:var(--hp); text-shadow:0 0 4px #000;}
+  .hero .nm{position:absolute; top:2px; width:100%; font-size:12px; background:#000a; letter-spacing:1px; white-space:nowrap; overflow:hidden;}
+  .hero .sovname{font-size:11px; color:#8fd; background:#000c; padding:1px 3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; letter-spacing:.5px;}
+  .hero .sovp{font-size:9.5px; line-height:12px; color:#e6d8b2; background:#000c; padding:1px 3px; height:38px; overflow:hidden;}
+  .hero .relics{position:absolute; top:-16px; left:0; width:100%; display:flex; gap:2px; justify-content:center; pointer-events:auto;}
+  .hero .relics .rk{font-size:10px; background:#000d; border:1px solid var(--gold-dim); color:#f9c; padding:0 4px; cursor:help; white-space:nowrap; max-width:72px; overflow:hidden; text-overflow:ellipsis; line-height:14px;}
   .hcard .typerow{position:absolute; top:24px; left:3px; font-size:9px; letter-spacing:1px; color:#f9c; background:#000c; padding:1px 4px;}
   .hcard.spell{box-shadow:inset 0 0 0 3px #7a5a1a, inset 0 0 0 4px #000;}
   .hero.targetable{border-color:var(--hp); box-shadow:0 0 10px var(--hp);}
-  .minion{width:108px; height:140px; border:6px solid transparent; border-image:var(--theme-panel, linear-gradient(#2a2216,#191308)) 40 fill; background:#0d0a07; position:relative; cursor:pointer;}
-  .minion img{width:100%; height:104px; object-fit:cover; object-position:50% 20%; display:block;}
-  .minion .nm{font-size:11px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding:1px 3px; background:#000c;}
-  .minion .atk{position:absolute; bottom:2px; left:4px; font-size:15px; color:var(--atk); text-shadow:0 0 4px #000;}
-  .minion .hp{position:absolute; bottom:2px; right:4px; font-size:15px; color:var(--hp); text-shadow:0 0 4px #000;}
-  .minion .kw{position:absolute; top:2px; left:2px; font-size:10px; background:#000d; padding:1px 3px; color:#8fd; cursor:help;}
+  .minion{width:132px; height:172px; border:6px solid transparent; border-image:var(--theme-panel, linear-gradient(#2a2216,#191308)) 40 fill; background:#0d0a07; position:relative; cursor:pointer;}
+  .minion img{width:100%; height:134px; object-fit:cover; object-position:50% 20%; display:block;}
+  .minion .nm{font-size:13px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding:1px 3px; background:#000c;}
+  .minion .atk{position:absolute; bottom:2px; left:4px; font-size:19px; color:var(--atk); text-shadow:0 0 4px #000;}
+  .minion .hp{position:absolute; bottom:2px; right:4px; font-size:19px; color:var(--hp); text-shadow:0 0 4px #000;}
+  .minion .kw{position:absolute; top:2px; left:2px; font-size:12px; background:#000d; padding:1px 3px; color:#8fd; cursor:help;}
   .minion.ready{border-image:var(--theme-panel) 40 fill; outline:1px solid var(--gold); box-shadow:0 0 8px #000;}
   .minion.selected{outline:2px solid #fff;}
   .minion.targetable{border-color:var(--hp); box-shadow:0 0 8px var(--hp);}
   .minion.guard .kw{color:#f96; font-weight:bold;}
   .minion.shielded{outline:2px solid #9cf; box-shadow:0 0 10px #9cf9, inset 0 0 12px #9cf4;}
-  .hand{display:flex; gap:8px; justify-content:center; min-height:185px; align-items:flex-end;}
+  .hand{display:flex; gap:10px; justify-content:center; min-height:205px; align-items:flex-end;}
   /* v0.13 JUICE: the hand fans in an arc — per-card rotation/lift come from
      the --fr/--fy custom properties render() writes on each .hcard */
-  .hcard{width:118px; height:164px; border:6px solid transparent; border-image:var(--theme-panel, linear-gradient(#2a2216,#191308)) 40 fill; background:#0d0a07; cursor:pointer; position:relative; transition:transform .14s; transform:translateY(var(--fy,0px)) rotate(var(--fr,0deg)); transform-origin:50% 130%;}
+  .hcard{width:140px; height:196px; border:6px solid transparent; border-image:var(--theme-panel, linear-gradient(#2a2216,#191308)) 40 fill; background:#0d0a07; cursor:pointer; position:relative; transition:transform .14s; transform:translateY(var(--fy,0px)) rotate(var(--fr,0deg)); transform-origin:50% 130%;}
   .hcard:hover{transform:translateY(calc(var(--fy,0px) - 16px)) rotate(var(--fr,0deg)) scale(1.07); z-index:5;}
   .hcard.playable{outline:1px solid var(--gold); box-shadow:0 0 10px #000;}
-  .hcard img{width:100%; height:100px; object-fit:cover; display:block;}
-  .hcard .nm{font-size:10.5px; white-space:nowrap; overflow:hidden; padding:0 2px;}
-  .hcard .cost{position:absolute; top:-7px; left:-7px; width:22px; height:22px; border-radius:50%;
-    background:#1c4d8a; color:#fff; font-size:13px; font-weight:bold; display:flex; align-items:center; justify-content:center; border:1px solid #6ea8ff;}
-  .hcard .st{font-size:13px; text-align:center;}
+  .hcard img{width:100%; height:126px; object-fit:cover; display:block;}
+  .hcard .nm{font-size:13px; white-space:nowrap; overflow:hidden; padding:0 2px;}
+  .hcard .cost{position:absolute; top:-8px; left:-8px; width:26px; height:26px; border-radius:50%;
+    background:#1c4d8a; color:#fff; font-size:15px; font-weight:bold; display:flex; align-items:center; justify-content:center; border:1px solid #6ea8ff;}
+  .hcard .st{font-size:15px; text-align:center;}
   .hcard .st .a{color:var(--atk);} .hcard .st .h{color:var(--hp);}
-  .hcard .kw{font-size:10px; color:#8fd; text-align:center; cursor:help; height:10px;}
+  .hcard .kw{font-size:11.5px; color:#8fd; text-align:center; cursor:help; height:12px;}
   .hcard .abil{font-size:9.5px; color:#f9c; text-align:center; height:18px; overflow:hidden;}
   @keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
   .hcard.shake{animation:shake .35s; border-color:var(--hp);}
-  #topbar{width:100%; display:flex; align-items:center; justify-content:center; gap:18px; font-size:14.5px; letter-spacing:1px; color:#e6d8b2; background:#000a;}
+  #topbar{width:100%; display:flex; align-items:center; justify-content:center; gap:18px; font-size:16px; letter-spacing:1px; color:#e6d8b2; background:#000a;}
   #topbar b{color:var(--gold);}
   #topbar .fat{color:var(--hp);}
-  #log{width:100%; text-align:center; height:22px; color:#e6d8b2; font-size:14.5px; text-shadow:0 1px 2px #000;}
+  #log{width:100%; text-align:center; height:24px; color:#e6d8b2; font-size:16px; text-shadow:0 1px 2px #000;}
   #overlay{position:fixed; inset:0; background:#000d; display:none; align-items:center; justify-content:center; flex-direction:column; gap:16px; z-index:50;}
   #overlay.on{display:flex;}
   #overlay .big{font-size:52px; letter-spacing:8px; color:var(--gold); text-shadow:0 0 24px #000;}
@@ -105,11 +105,11 @@
   #patchhud{position:fixed; top:8px; right:12px; font-size:13px; color:#c9b78e; z-index:60; display:none; background:#000c; padding:4px 10px; border:1px solid var(--gold-dim);}
 
   /* ===== hover-zoom big card ===== */
-  #zoom{position:fixed; z-index:40; display:none; width:280px; pointer-events:none;
+  #zoom{position:fixed; z-index:40; display:none; width:320px; pointer-events:none;
     border:12px solid transparent; border-image:var(--theme-panel) 40 fill; background:#0d0a07; box-shadow:0 8px 30px #000c;
     padding:14px 18px 16px;}  /* v0.10.2: text and gems clear the ornate frame art, not flush against it */
   #zoom img{width:254px; height:254px; object-fit:cover; display:block;}
-  #zoom .zn{color:var(--gold); font-size:17px; letter-spacing:1px; margin-top:6px;}
+  #zoom .zn{color:var(--gold); font-size:19px; letter-spacing:1px; margin-top:6px;}
   #zoom .zr{font-size:12px; color:#c9b78e; letter-spacing:2px; text-transform:uppercase; margin-bottom:4px;}
   #zoom .zk{font-size:14px; color:#8fd; margin:2px 0;}
   #zoom .zk b{letter-spacing:1px;}
@@ -225,11 +225,11 @@
   .slab{display:none;}
   /* portraits: face-biased crop, and a visible mat rim so they sit INSIDE the
      frame art instead of covering it edge-to-edge */
-  #zoom img{width:236px; height:236px; margin:0 auto; object-fit:cover; object-position:50% 16%; display:block;
+  #zoom img{width:272px; height:272px; margin:0 auto; object-fit:cover; object-position:50% 16%; display:block;
     border:2px solid #000a; box-shadow:0 2px 8px #000a;}
   #deckb .dbcard img{object-position:50% 20%; box-shadow:0 0 0 1px #000a;}
   #deckb .dbcard .ab{max-height:30px;}      /* v0.10: ability text never runs past the frame */
-  #zoom .zpv{max-height:92px; overflow:hidden;}  /* full text rides in the title tooltip */
+  #zoom .zpv{max-height:110px; overflow:hidden;}  /* full text rides in the title tooltip */
   .cardpick .passive{max-height:64px; overflow:hidden;}
   /* deck-builder count badge on collection cards */
   #deckb .dbcard .dbn{position:absolute; top:2px; right:4px; background:#000d; border:1px solid var(--gold-dim); color:var(--gold);
@@ -567,7 +567,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.13.3';
+const GAME_VERSION = '0.13.4';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
@@ -661,11 +661,21 @@ function fitScreen(){
   const availW = (screen.availWidth || innerWidth), availH = (screen.availHeight || innerHeight);
   const w = Math.min(innerWidth, availW) - 12, h = Math.min(innerHeight, availH - Math.max(0, window.screenY || 0)) - 12;
   const cw = Math.max(el.scrollWidth, el.offsetWidth), ch = Math.max(el.scrollHeight, el.offsetHeight);
-  const s = Math.min(w / cw, h / ch, 1);
+  // v0.14 READABILITY: grow with the monitor, not just shrink. The old hard cap
+  // at 1.0 meant everything rendered at ~1280x900 natural size forever — on a
+  // 1920x1080+ screen the board row spanned 36% of the width and all card text
+  // stayed whisper-sized while half the screen sat empty. Scaling the whole
+  // .screen up (Hearthstone-style) enlarges cards, stats, text and menus
+  // proportionally; s is still capped by min(w/cw, h/ch) so it can never overflow.
+  const s = Math.min(w / cw, h / ch, 1.5);
   if(s < 0.99){
     el.style.justifyContent = 'flex-start'; // overflow breaks centering anyway — anchor to top
     el.style.overflow = 'hidden';
     el.style.transformOrigin = 'center top';
+    el.style.transform = 'scale(' + s + ')';
+  } else if(s > 1.01){
+    el.style.justifyContent = ''; // undo any earlier shrink-anchoring
+    el.style.transformOrigin = 'center center'; // fills the viewport, never overflows it
     el.style.transform = 'scale(' + s + ')';
   }
 }
@@ -1193,7 +1203,7 @@ function showZoom(c, ev){
   moveZoom(ev);
 }
 function moveZoom(ev){
-  const pad = 14, w = 310, h = zoom.offsetHeight || 420;
+  const pad = 14, w = 350, h = zoom.offsetHeight || 460;
   let x = ev.clientX + pad, y = ev.clientY - h/2;
   if(x + w > innerWidth) x = ev.clientX - w - pad;
   y = Math.max(8, Math.min(innerHeight - h - 8, y));
