@@ -196,3 +196,204 @@ blood-moon.jpg | commons:lunar eclipse red moon
 standing-stones.jpg | commons:Stonehenge sunset
 spice-bazaar.jpg | commons:spice market bazaar painting
 battle-standard.jpg | commons:Roman standard reenactment
+
+# ====================================================================
+# STOCKPILE EXPANSION (Oct 20 2026) — "Hundreds and Hundreds"
+# Deep art bank for future edicts/relics/sovereign content. Grouped by
+# theme so future minting turns can pick by flavor. All Wikimedia
+# Commons / NASA public-domain or CC searches. Not wired to cards.
+# ====================================================================
+
+# --- Annals: British/Barning theme bank ---
+trafalgar-signal-flags.jpg | commons:Trafalgar signal flags HMS Victory
+the-guildhall-banquet.jpg | commons:medieval guildhall feast painting
+press-gang-midnight.jpg | commons:Royal Navy press gang cartoon
+the-lighthouse-keeper.jpg | commons:lighthouse storm sea painting
+ironclad-broadside.jpg | commons:HMS Warrior ironclad
+the-chart-room.jpg | commons:ship chart room compass painting
+highland-charge.jpg | commons:Highland charge battle painting
+the-throne-speech.jpg | commons:State Opening of Parliament painting
+redcoat-volley.jpg | commons:British redcoats firing line painting
+the-admiral-s-glass.jpg | commons:antique brass telescope ship
+drummers-of-the-line.jpg | commons:military drummers band painting
+the-coaling-station.jpg | commons:coal steamship harbor painting
+
+# --- Annals: French/Lucerre theme bank ---
+the-coronation-oil.jpg | commons:Reims cathedral coronation painting
+versailles-hall-of-mirrors.jpg | commons:Versailles Hall of Mirrors
+the-bastille-key.jpg | commons:Bastille key Washington
+fleur-de-lis-banner.jpg | commons:fleur de lis flag medieval
+musketeer-duel-at-dawn.jpg | commons:musketeer duel painting
+the-imperial-eagle-standard.jpg | commons:Napoleonic eagle standard
+notre-dame-rose-window.jpg | commons:Notre Dame rose window
+the-vintner-s-harvest.jpg | commons:French vineyard harvest painting
+the-louvre-courtyard.jpg | commons:Louvre courtyard painting
+gascon-adventurers.jpg | commons:Three Musketeers illustration
+
+# --- Annals: Roman/Fenorian theme bank ---
+the-triumphal-arch.jpg | commons:Arch of Titus relief
+legion-siege-ramp.jpg | commons:Masada siege ramp
+the-aqueduct-span.jpg | commons:Pont du Gard aqueduct
+gladiator-gate.jpg | commons:Colosseum gladiator gate
+the-vestal-flame.jpg | commons:Vesta temple Rome
+chariot-race-circus.jpg | commons:Roman circus chariot racing mosaic
+the-consul-s-fasces.jpg | commons:Roman fasces relief
+hadrian-s-wall-march.jpg | commons:Hadrian's Wall soldiers
+the-eagle-and-the-wolf.jpg | commons:Capitoline Wolf statue
+trajan-s-column-relief.jpg | commons:Trajan's Column relief detail
+
+# --- Annals: Persian/Steppe/Ironsteppes theme bank ---
+the-immortal-guard.jpg | commons:Persepolis Immortal guards relief
+the-royal-treasury.jpg | commons:Oxus treasure gold chariot
+steppe-horse-archers.jpg | commons:Mongol horse archers painting
+the-kurgan-barrow.jpg | commons:kurgan burial mound steppe
+samarkand-blue-dome.jpg | commons:Samarkand Registan blue dome
+the-khans-yam-route.jpg | commons:Mongol empire postal relay
+falcon-of-the-steppes.jpg | commons:golden eagle falconer Kazakhstan
+the-copper-bazaar.jpg | commons:coppersmith bazaar painting
+wind-swept-dunes-fortress.jpg | commons:desert fortress caravan painting
+the-war-drum-camp.jpg | commons:Mongol war camp painting
+
+# --- Annals: Ottoman/Crescent theme bank ---
+the-grand-mosque-lamps.jpg | commons:Blue Mosque interior lamps
+ottoman-war-galleys.jpg | commons:Ottoman galley battle painting
+the-bazaar-of-spices.jpg | commons:Istanbul spice market painting
+sultan-s-tughra.jpg | commons:Ottoman tughra calligraphy
+the-siege-cannon.jpg | commons:Ottoman bombard cannon
+whirling-dervishes.jpg | commons:whirling dervish ceremony painting
+the-cistern-medusa.jpg | commons:Medusa head Basilica Cistern
+damascus-steel-blade.jpg | commons:Damascus steel sword blade
+the-cairo-gate.jpg | commons:Bab Zuweila Cairo gate
+palm-oasis-caravan.jpg | commons:oasis palm trees caravan painting
+
+# --- Fantasy: Courts/intrigue theme bank ---
+the-masked-ball.jpg | commons:masquerade ball painting
+poison-ring.jpg | commons:Renaissance poison ring museum
+the-venetian-council.jpg | commons:Venetian Doge palace council painting
+assassin-s-dagger.jpg | commons:stiletto dagger Renaissance museum
+the-borgia-chalice.jpg | commons:Renaissance goblet gold cup
+cipher-letter.jpg | commons:Renaissance cipher letter manuscript
+the-cardinal-s-ring.jpg | commons:cardinal ring Renaissance painting
+the-spymaster-s-mask.jpg | commons:venetian carnival mask black
+the-poet-s-laurel.jpg | commons:laurel wreath poet painting
+the-senator-s-toga.jpg | commons:Roman senator toga statue
+
+# --- Fantasy: Kingdoms/war theme bank ---
+the-sword-in-the-stone.jpg | commons:Excalibur sword stone illustration
+anvil-of-kings.jpg | commons:blacksmith forging sword painting
+the-longbow-yeomen.jpg | commons:English longbowmen Agincourt painting
+drawbridge-portcullis.jpg | commons:castle drawbridge portcullis
+the-quartermaster-s-wagon.jpg | commons:medieval supply wagon painting
+the-white-hart-banner.jpg | commons:white stag medieval tapestry
+iron-shod-warhorse.jpg | commons:medieval warhorse armor statue
+the-shield-of-the-nine.jpg | commons:round shield viking museum
+siegeworks-trenches.jpg | commons:medieval siege warfare illustration
+the-beacon-fires.jpg | commons:beacon fire hill painting
+
+# --- Fantasy: Towers/mystic theme bank ---
+the-orb-of-foresight.jpg | commons:crystal ball fortune painting
+the-celestial-astrolabe.jpg | commons:astronomical clock Prague
+the-summoning-circle.jpg | commons:John William Waterhouse magic circle
+the-codex-of-nine.jpg | commons:illuminated manuscript astronomy
+candle-of-insight.jpg | commons:candle study Rembrandt
+the-tarot-table.jpg | commons:tarot cards table painting
+the-storm-summoner.jpg | commons:magician lightning painting
+the-eye-of-the-tower.jpg | commons:owl night watchtower painting
+the-bronze-telescope.jpg | commons:old observatory telescope painting
+the-star-sanctum.jpg | commons:Uraniborg observatory Tycho Brahe
+
+# --- Fantasy: Elderkin/forest theme bank ---
+the-ancient-oak-council.jpg | commons:giant oak tree ancient forest
+mushroom-ring-fairy.jpg | commons:fairy ring mushrooms illustration
+the-green-knight.jpg | commons:Green Knight Gawain illustration
+willow-lantern.jpg | commons:willow tree river moon painting
+the-elder-tree-spirit.jpg | commons:tree spirit face carving
+stag-of-the-grove.jpg | commons:white stag forest painting
+the-hearthfire-glen.jpg | commons:forest campfire night painting
+raven-messenger.jpg | commons:raven perched painting
+the-silverwood-bow.jpg | commons:longbow yew wood museum
+moonlit-stone-bridge.jpg | commons:stone bridge forest stream painting
+
+# --- Fantasy: Bestial/wild theme bank ---
+the-wolfpack-howl.jpg | commons:wolf pack snow night
+troll-bridge-toll.jpg | commons:John Bauer troll illustration
+the-bone-golem.jpg | commons:skeleton army vanitas painting
+wyvern-s-shadow.jpg | commons:dragon shadow sky painting
+the-berserker-s-rage.jpg | commons:berserker viking battle painting
+rat-catchers-plague.jpg | commons:rats plague medieval miniature
+the-ogre-s-larder.jpg | commons:John Bauer giant illustration
+carrion-crows-field.jpg | commons:crows battlefield painting
+the-werebeast-moon.jpg | commons:werewolf full moon illustration
+mammoth-of-the-tundra.jpg | commons:woolly mammoth illustration
+
+# --- Scifi: Dominion/alien theme bank ---
+the-nebula-crown.jpg | commons:Orion nebula Hubble
+singularity-s-eye.jpg | commons:black hole NASA illustration
+the-stellar-forge.jpg | commons:star formation nebula Hubble
+xenoform-crystal.jpg | commons:crystal formation geode
+the-derelict-hulk.jpg | commons:spacecraft derelict NASA illustration
+ion-trail-ambush.jpg | commons:meteor shower night sky
+the-hive-spire.jpg | commons:termite mound alien landscape
+red-sands-canyon.jpg | commons:Mars canyon NASA
+the-belt-miners.jpg | commons:asteroid mining NASA illustration
+quasar-beacon.jpg | commons:quasar galaxy Hubble
+
+# --- Scifi: Star Empire theme bank ---
+the-observatory-bunker.jpg | commons:bunker concrete fortress
+battleship-grey-harbor.jpg | commons:naval battleship harbor painting
+iron-fist-artillery.jpg | commons:artillery cannon barrel
+the-induction-furnace.jpg | commons:steel mill furnace industry
+reactor-core-blue.jpg | commons:nuclear reactor blue glow
+the-citadel-perimeter.jpg | commons:fortress walls aerial
+salvage-yards.jpg | commons:shipbreaking yard
+the-vault-of-records.jpg | commons:archive boxes vault
+perpetual-engine.jpg | commons:steam engine machine painting
+the-inquisitor-s-seal.jpg | commons:wax seal red stamp
+
+# --- Sea/naval theme bank ---
+the-admiral-s-cabin.jpg | commons:ship captain cabin painting
+kraken-s-coil.jpg | commons:kraken ship illustration
+the-lighthouse-storm.jpg | commons:lighthouse giant wave painting
+whaler-s-harpoon.jpg | commons:whaling harpoon boat painting
+the-tidal-gauge.jpg | commons:tide gauge harbor instrument
+mutiny-at-midnight.jpg | commons:mutiny ship painting
+the-signal-semaphore.jpg | commons:semaphore signal flags ship
+salt-fog-harbor.jpg | commons:foggy harbor ships painting
+the-dead-calm.jpg | commons:calm sea sailing ship painting
+barnacled-hull.jpg | commons:ship hull barnacles dry dock
+
+# --- Arcane/lost-knowledge theme bank ---
+the-lost-library.jpg | commons:ancient library ruins painting
+the-heretic-s-stake.jpg | commons:Giordano Bruno statue
+the-banned-book.jpg | commons:chained library books
+the-silent-archivist.jpg | commons:monk writing scriptorium painting
+the-ink-of-secrets.jpg | commons:iron gall ink manuscript
+the-catacomb-shelves.jpg | commons:catacomb ossuary bones shelves
+the-ash-archive.jpg | commons:Herculaneum papyrus carbonized
+the-map-of-elsewhere.jpg | commons:antique fantasy map cartouche
+the-blind-oracle.jpg | commons:blind oracle painting Delphi
+the-sunken-tablet.jpg | commons:cuneiform tablet clay
+
+# --- War machines/engineering theme bank ---
+the-trebuchet.jpg | commons:trebuchet siege engine
+ballista-bolt.jpg | commons:ballista catapult museum
+the-ironclad-turret.jpg | commons:ironclad turret warship
+siege-ladders.jpg | commons:medieval siege ladder attack painting
+the-flame-siphon.jpg | commons:greek fire Byzantine ship
+countermine-tunnel.jpg | commons:tunnel mining warfare illustration
+the-sapper-s-charge.jpg | commons:sappers destroying fortifications painting
+pontoon-bridge.jpg | commons:pontoon bridge military painting
+the-signaling-heliograph.jpg | commons:heliograph signal mirror
+watchtower-relay.jpg | commons:Great Wall watchtower
+
+# --- Economy/guild theme bank ---
+the-merchant-s-scale.jpg | commons:merchant weighing coins painting
+guild-seal-wax.jpg | commons:medieval guild seal wax
+the-moneylender-s-table.jpg | commons:moneylender painting Geeraerts
+the-granary-tithe.jpg | commons:grain sacks warehouse painting
+silk-bolt-cargo.jpg | commons:silk fabric market painting
+the-harbor-customs.jpg | commons:customs house harbor painting
+the-roads-toll.jpg | commons:medieval toll gate painting
+apprentice-s-masterpiece.jpg | commons:workshop apprentice painting Rembrandt
+the-quartermaster-s-ledger.jpg | commons:old ledger book accounts
+coin-hoard-buried.jpg | commons:Viking silver hoard coins
