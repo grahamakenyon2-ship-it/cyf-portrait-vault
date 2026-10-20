@@ -1,0 +1,95 @@
+{
+ "v": 1,
+ "files": {
+  "sfx/play-card.ogg": {
+   "src": "kenney:casino-audio:Audio/card-place-1.ogg",
+   "license": "CC0",
+   "bytes": 9624
+  },
+  "sfx/draw-card.ogg": {
+   "src": "kenney:casino-audio:Audio/card-slide-2.ogg",
+   "license": "CC0",
+   "bytes": 9042
+  },
+  "sfx/hit.ogg": {
+   "src": "kenney:impact-sounds:Audio/impactMetal_medium_000.ogg",
+   "license": "CC0",
+   "bytes": 7117
+  },
+  "sfx/hero-hit.ogg": {
+   "src": "kenney:impact-sounds:Audio/impactPlate_heavy_000.ogg",
+   "license": "CC0",
+   "bytes": 10032
+  },
+  "sfx/death.ogg": {
+   "src": "kenney:rpg-audio:Audio/dropLeather.ogg",
+   "license": "CC0",
+   "bytes": 11695
+  },
+  "sfx/shield.ogg": {
+   "src": "kenney:impact-sounds:Audio/impactPlate_light_000.ogg",
+   "license": "CC0",
+   "bytes": 10474
+  },
+  "sfx/click.ogg": {
+   "src": "kenney:interface-sounds:Audio/click_002.ogg",
+   "license": "CC0",
+   "bytes": 4275
+  },
+  "sfx/confirm.ogg": {
+   "src": "kenney:interface-sounds:Audio/confirmation_002.ogg",
+   "license": "CC0",
+   "bytes": 14169
+  },
+  "sfx/turn-you.ogg": {
+   "src": "kenney:interface-sounds:Audio/confirmation_003.ogg",
+   "license": "CC0",
+   "bytes": 9535
+  },
+  "sfx/turn-en.ogg": {
+   "src": "kenney:interface-sounds:Audio/back_004.ogg",
+   "license": "CC0",
+   "bytes": 6923
+  },
+  "sfx/coin.ogg": {
+   "src": "kenney:casino-audio:Audio/chips-collide-1.ogg",
+   "license": "CC0",
+   "bytes": 6356
+  },
+  "sfx/buff.ogg": {
+   "src": "kenney:interface-sounds:Audio/glass_002.ogg",
+   "license": "CC0",
+   "bytes": 4917
+  },
+  "sfx/edict.ogg": {
+   "src": "kenney:rpg-audio:Audio/bookFlip2.ogg",
+   "license": "CC0",
+   "bytes": 12393
+  },
+  "sfx/relic.ogg": {
+   "src": "kenney:rpg-audio:Audio/bookOpen.ogg",
+   "license": "CC0",
+   "bytes": 8273
+  },
+  "sfx/fatigue.ogg": {
+   "src": "kenney:interface-sounds:Audio/error_004.ogg",
+   "license": "CC0",
+   "bytes": 6393
+  },
+  "music/menu-theme.ogg": {
+   "src": "https://upload.wikimedia.org/wikipedia/commons/b/be/Modest_Mussorgsky_-_pictures_at_an_exhibition_-_x._la_grande_porte_de_kiev_-_allegro_alla_breve._maestoso._con_grandezza.ogg",
+   "license": "Public domain",
+   "bytes": 6986122
+  },
+  "music/match-annals.ogg": {
+   "src": "https://upload.wikimedia.org/wikipedia/commons/b/bb/Musopen_-_In_the_Hall_Of_The_Mountain_King.ogg",
+   "license": "Public domain",
+   "bytes": 2155317
+  },
+  "music/match-canon.ogg": {
+   "src": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Ludwig_van_Beethoven_-_Symphonie_5_c-moll_-_1._Allegro_con_brio.ogg",
+   "license": "Public domain",
+   "bytes": 7242148
+  }
+ }
+}

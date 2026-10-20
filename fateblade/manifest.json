@@ -335,6 +335,132 @@
       "path": "art/training-grounds.jpg",
       "sha256": "22694bbbc556eb352759424c53917cfa6d3fbfc5cc7e73204525a9d32c11f576",
       "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/training-grounds.jpg"
+    },
+    {
+      "path": "audio/sfx/play-card.ogg",
+      "sha256": "d8f26c33a665dcbdcc6f632f6050bc9dd548feb0d4942d4547615926d3926810",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/play-card.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/draw-card.ogg",
+      "sha256": "e674a1679ec87b507047fe012d068ad2c412125f56186f0e732684705c2a6888",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/draw-card.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/hit.ogg",
+      "sha256": "a96f879fec0864a8938e0c745b6996a6c5679c16a234ce31a01cc995e8401003",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/hit.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/hero-hit.ogg",
+      "sha256": "112d4f93ddcc370b410630f971c0f5d991856102da9c76bc5c5540d388e75aaa",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/hero-hit.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/death.ogg",
+      "sha256": "097e1d3b74949b0145fda0519d40b7e0773ab82ec4858727f95be830927e1a45",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/death.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/shield.ogg",
+      "sha256": "6e797cf8a5bfc52d7ed5eb47c227974c1cf2a674954fec5b539cea7d62c7282c",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/shield.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/click.ogg",
+      "sha256": "adcd1f4adc35f1b41bc1b5bbefeff7aa44f2f3f0d96d3199b544140c7c1e761c",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/click.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/confirm.ogg",
+      "sha256": "33b17a9a9a2397c62b285c52c33a907fdffb476909c99e42dde603f6a7a8b12c",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/confirm.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/turn-you.ogg",
+      "sha256": "3091bf0be0497f825769ee0733ca7bdc3bcd59bd6c6e8f2ba8f93d580ff38022",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/turn-you.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/turn-en.ogg",
+      "sha256": "c22e3c49f42c2a5ba6748e91283efe124f32822469c1258c3e5d7b3d7ab9361c",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/turn-en.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/coin.ogg",
+      "sha256": "f41b3d106360fc68ebc061a211d4265b4cb5fa1fbe86e4d57d3673510e2c3784",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/coin.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/buff.ogg",
+      "sha256": "08e972c73e53c91d6d310e107e80db60edce78ae47225889a028e628a6f3da49",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/buff.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/edict.ogg",
+      "sha256": "3409042acbfaebc24c1a6327dc073e36f9250841712e96c5040da566a97df73c",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/edict.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/relic.ogg",
+      "sha256": "953390534377222bee89ac8cd9e60a58fdc037c71a4d7c18c43cd647c7f34ba8",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/relic.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/fatigue.ogg",
+      "sha256": "0b574cea597d96507e782ae9764f88482ce49f46e931e57054bf7150047f2d69",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/fatigue.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/music/menu-theme.ogg",
+      "sha256": "64ce99b6fc98ce673922a3b830a81d95ef5c8c5c078dbab2db8c30be6fa54dcc",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/music/menu-theme.ogg",
+      "license": "Public domain",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/b/be/Modest_Mussorgsky_-_pictures_at_an_exhibition_-_x._la_grande_porte_de_kiev_-_allegro_alla_breve._maestoso._con_grandezza.ogg"
+    },
+    {
+      "path": "audio/music/match-annals.ogg",
+      "sha256": "3bfa7424d3a148f1482a44688b77eb9138a7cea6cff7474799f1329181ab3342",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/music/match-annals.ogg",
+      "license": "Public domain",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/b/bb/Musopen_-_In_the_Hall_Of_The_Mountain_King.ogg"
+    },
+    {
+      "path": "audio/music/match-canon.ogg",
+      "sha256": "874cc0e66bfe6eda29640711f565d8e7bbdc3f274d662466c5a6df615adde793",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/music/match-canon.ogg",
+      "license": "Public domain",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Ludwig_van_Beethoven_-_Symphonie_5_c-moll_-_1._Allegro_con_brio.ogg"
     }
   ]
 }
