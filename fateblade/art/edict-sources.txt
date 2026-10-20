@@ -85,3 +85,114 @@ crusade-bull.jpg | commons:papal bull document
 excommunicado.jpg | commons:medieval excommunication miniature
 zealot-fervor.jpg | commons:preaching crusade medieval painting
 training-grounds.jpg | commons:sword fight medieval painting
+
+# ====================================================================
+# EXPANSION BATCH 1 (Oct 20 2026) — v0.15.1 edict/relic expansion.
+# Target: every realm reaches 6 edicts + 3 relics (courts/kingdoms/towers
+# had 0/0; canon realms had 3/1). Names are invented-lore for canon realms,
+# real-history for Annals realms. Mechanics get minted separately after art
+# lands — filename = future card id slug.
+# ====================================================================
+
+# --- The Gilded Courts (expansion: +6 edicts +3 relics) ---
+the-gilded-ledger.jpg | commons:Renaissance banking ledger painting
+whispers-at-court.jpg | commons:courtiers whispering palace painting
+the-queen-s-bargain.jpg | commons:Renaissance queen portrait painting
+the-judicial-duel.jpg | commons:judicial duel medieval painting
+the-crown-s-debt.jpg | commons:Renaissance gold coins painting
+the-small-council.jpg | commons:Renaissance council chamber painting
+the-gilded-vault.jpg | commons:treasure vault gold painting
+the-coinmaster-s-scales.jpg | commons:balance scales gold coins painting
+the-court-chronicler.jpg | commons:scribe writing manuscript miniature
+
+# --- The Warring Kingdoms (expansion: +6 edicts +3 relics) ---
+the-winter-levy.jpg | commons:medieval peasant army painting
+the-marches-aflame.jpg | commons:medieval castle siege painting
+the-border-truce.jpg | commons:medieval treaty signing painting
+the-rose-accord.jpg | commons:white rose red rose heraldry
+the-quiet-host.jpg | commons:medieval funeral procession painting
+the-long-winter-watch.jpg | commons:castle snow winter painting
+the-chronicler-s-quill.jpg | commons:medieval manuscript illumination scribe
+the-unbowed-banner.jpg | commons:medieval heraldic banner
+the-winter-hearth.jpg | commons:castle great hall fireplace painting
+
+# --- The Nine Towers (expansion: +6 edicts +3 relics) ---
+the-novice-trials.jpg | commons:candlelit library painting
+the-nine-seals.jpg | commons:medieval wax seal document
+reading-the-weave.jpg | commons:zodiac celestial manuscript
+the-testing-flame.jpg | commons:candle flame in darkness
+the-watcher-s-vigil.jpg | commons:monastery night vigil painting
+the-circle-of-nine.jpg | commons:Raphael School of Athens
+the-silver-flame.jpg | commons:temple lamp flame painting
+the-ninefold-amulet.jpg | commons:ancient amulet talisman museum
+the-dreamer-s-mirror.jpg | commons:antique hand mirror painting
+
+# --- Stormlit / The Elderkin (expansion: +3 edicts +2 relics) ---
+the-elder-moot.jpg | commons:Arthur Rackham forest painting
+wildsong-rising.jpg | commons:Arthur Rackham fairy painting
+the-forge-blessing.jpg | commons:Rackham gnomes illustration
+the-glade-ward.jpg | commons:mystic forest temple painting
+the-moonwell-vial.jpg | commons:moonlit forest pond painting
+
+# --- Starwind / Alien Dominion (expansion: +3 edicts +2 relics) ---
+rite-of-ascension.jpg | commons:nebula NASA Hubble
+the-honor-duel.jpg | commons:meteor crater aerial photo
+the-fleet-muster.jpg | commons:galaxy cluster Hubble
+the-trophy-wall.jpg | commons:Mars surface rover NASA
+the-war-standard-of-the-houses.jpg | commons:aurora borealis photo
+
+# --- Zephek / Human Star Empire (expansion: +3 edicts +2 relics) ---
+the-imperial-tithe.jpg | commons:medieval tax collectors painting
+the-vigil-of-steel.jpg | commons:knight armor hall museum
+the-dawn-edict.jpg | commons:dramatic sunrise over mountains painting
+the-saint-s-reliquary.jpg | commons:gold reliquary museum
+the-iron-basilica.jpg | commons:gothic cathedral interior painting
+
+# --- Tigerpass / Bestial Horde (expansion: +3 edicts +2 relics) ---
+the-wild-hunt.jpg | commons:Wild Hunt painting
+the-bone-feast.jpg | commons:vanitas skull painting
+the-rampart-of-skulls.jpg | commons:Paris catacombs bones
+the-warlord-s-drum.jpg | commons:war drum museum
+the-idol-of-the-deep-woods.jpg | commons:green man carving church
+
+# --- Crescent (expansion: +2 edicts +1 relic — thin pool top-up) ---
+the-guild-purse.jpg | commons:Ottoman coins treasure
+the-astrologer-s-court.jpg | commons:Islamic astronomy manuscript
+the-grand-cistern.jpg | commons:Basilica Cistern Istanbul
+
+# --- Ironsteppes (expansion: +2 edicts +1 relic — weak realm top-up) ---
+the-satrap-s-court.jpg | commons:Persian court miniature painting
+the-steppe-courier.jpg | commons:Mongol horseman painting
+the-great-tent.jpg | commons:yurt mongolian steppe
+
+# --- Wayfarers' Guild (expansion: +2 edicts +1 relic — helps everyone) ---
+the-charter-roads.jpg | commons:medieval bridge road painting
+the-free-ports-act.jpg | commons:old harbor sailing ships painting
+the-wayfarer-s-compass.jpg | commons:antique compass astrolabe
+
+# --- Barning / Lucerre / Fenorian (expansion: +1 relic each — parity) ---
+the-admiralty-charts.jpg | commons:antique nautical chart map
+the-king-s-musketeers.jpg | commons:Musketeers painting
+the-curia-julia.jpg | commons:Roman senate forum painting
+
+# --- STOCKPILE (future edicts/relics/sovereign-art — not yet wired to cards) ---
+armillary-sphere.jpg | commons:armillary sphere antique
+alchemist-s-lab.jpg | commons:alchemist laboratory painting
+siege-tower.jpg | commons:medieval siege engine
+war-elephant.jpg | commons:Hannibal war elephant painting
+astrolabe.jpg | commons:brass astrolabe museum
+rune-stone.jpg | commons:runic stone inscription
+ancient-scroll.jpg | commons:ancient manuscript scroll
+naval-fleet.jpg | commons:tall ships fleet painting
+iron-crown.jpg | commons:medieval crown gold museum
+dragon-prow.jpg | commons:Viking ship dragon carving
+plague-doctor.jpg | commons:plague doctor costume engraving
+executioner-s-blade.jpg | commons:executioner sword museum
+desert-caravan.jpg | commons:desert caravan pyramids painting
+northern-armada.jpg | commons:battleship fleet painting
+cryo-vault.jpg | commons:glacier ice cave blue
+orbital-ring.jpg | commons:International Space Station orbit
+blood-moon.jpg | commons:lunar eclipse red moon
+standing-stones.jpg | commons:Stonehenge sunset
+spice-bazaar.jpg | commons:spice market bazaar painting
+battle-standard.jpg | commons:Roman standard reenactment
