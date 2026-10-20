@@ -295,6 +295,336 @@
    "f": "training-grounds.jpg",
    "src": "commons:sword fight medieval painting",
    "bytes": 394132
+  },
+  "the-queen-s-bargain.jpg": {
+   "f": "the-queen-s-bargain.jpg",
+   "src": "commons:Renaissance queen portrait painting",
+   "bytes": 1040331
+  },
+  "the-crown-s-debt.jpg": {
+   "f": "the-crown-s-debt.jpg",
+   "src": "commons:Renaissance gold coins painting",
+   "bytes": 97459
+  },
+  "the-small-council.jpg": {
+   "f": "the-small-council.jpg",
+   "src": "commons:Renaissance council chamber painting",
+   "bytes": 341661
+  },
+  "the-gilded-vault.jpg": {
+   "f": "the-gilded-vault.jpg",
+   "src": "commons:treasure vault gold painting",
+   "bytes": 512184
+  },
+  "the-coinmaster-s-scales.jpg": {
+   "f": "the-coinmaster-s-scales.jpg",
+   "src": "commons:balance scales gold coins painting",
+   "bytes": 97459
+  },
+  "the-court-chronicler.jpg": {
+   "f": "the-court-chronicler.jpg",
+   "src": "commons:scribe writing manuscript miniature",
+   "bytes": 197227
+  },
+  "the-marches-aflame.jpg": {
+   "f": "the-marches-aflame.jpg",
+   "src": "commons:medieval castle siege painting",
+   "bytes": 12657
+  },
+  "the-border-truce.jpg": {
+   "f": "the-border-truce.jpg",
+   "src": "commons:medieval treaty signing painting",
+   "bytes": 754662
+  },
+  "the-rose-accord.jpg": {
+   "f": "the-rose-accord.jpg",
+   "src": "commons:white rose red rose heraldry",
+   "bytes": 289276
+  },
+  "the-quiet-host.jpg": {
+   "f": "the-quiet-host.jpg",
+   "src": "commons:medieval funeral procession painting",
+   "bytes": 47318
+  },
+  "the-long-winter-watch.jpg": {
+   "f": "the-long-winter-watch.jpg",
+   "src": "commons:castle snow winter painting",
+   "bytes": 441443
+  },
+  "the-chronicler-s-quill.jpg": {
+   "f": "the-chronicler-s-quill.jpg",
+   "src": "commons:medieval manuscript illumination scribe",
+   "bytes": 124352
+  },
+  "the-unbowed-banner.jpg": {
+   "f": "the-unbowed-banner.jpg",
+   "src": "commons:medieval heraldic banner",
+   "bytes": 163590
+  },
+  "the-winter-hearth.jpg": {
+   "f": "the-winter-hearth.jpg",
+   "src": "commons:castle great hall fireplace painting",
+   "bytes": 205516
+  },
+  "the-novice-trials.jpg": {
+   "f": "the-novice-trials.jpg",
+   "src": "commons:candlelit library painting",
+   "bytes": 122351
+  },
+  "the-nine-seals.jpg": {
+   "f": "the-nine-seals.jpg",
+   "src": "commons:medieval wax seal document",
+   "bytes": 693979
+  },
+  "reading-the-weave.jpg": {
+   "f": "reading-the-weave.jpg",
+   "src": "commons:zodiac celestial manuscript",
+   "bytes": 659242
+  },
+  "the-testing-flame.jpg": {
+   "f": "the-testing-flame.jpg",
+   "src": "commons:candle flame in darkness",
+   "bytes": 118414
+  },
+  "the-circle-of-nine.jpg": {
+   "f": "the-circle-of-nine.jpg",
+   "src": "commons:Raphael School of Athens",
+   "bytes": 500058
+  },
+  "the-ninefold-amulet.jpg": {
+   "f": "the-ninefold-amulet.jpg",
+   "src": "commons:ancient amulet talisman museum",
+   "bytes": 245176
+  },
+  "the-dreamer-s-mirror.jpg": {
+   "f": "the-dreamer-s-mirror.jpg",
+   "src": "commons:antique hand mirror painting",
+   "bytes": 102523
+  },
+  "wildsong-rising.jpg": {
+   "f": "wildsong-rising.jpg",
+   "src": "commons:Arthur Rackham fairy painting",
+   "bytes": 99196
+  },
+  "the-forge-blessing.jpg": {
+   "f": "the-forge-blessing.jpg",
+   "src": "commons:Rackham gnomes illustration",
+   "bytes": 414707
+  },
+  "rite-of-ascension.jpg": {
+   "f": "rite-of-ascension.jpg",
+   "src": "commons:nebula NASA Hubble",
+   "bytes": 216119
+  },
+  "the-honor-duel.jpg": {
+   "f": "the-honor-duel.jpg",
+   "src": "commons:meteor crater aerial photo",
+   "bytes": 364293
+  },
+  "the-fleet-muster.jpg": {
+   "f": "the-fleet-muster.jpg",
+   "src": "commons:galaxy cluster Hubble",
+   "bytes": 218402
+  },
+  "the-trophy-wall.jpg": {
+   "f": "the-trophy-wall.jpg",
+   "src": "commons:Mars surface rover NASA",
+   "bytes": 235218
+  },
+  "the-war-standard-of-the-houses.jpg": {
+   "f": "the-war-standard-of-the-houses.jpg",
+   "src": "commons:aurora borealis photo",
+   "bytes": 320255
+  },
+  "the-imperial-tithe.jpg": {
+   "f": "the-imperial-tithe.jpg",
+   "src": "commons:medieval tax collectors painting",
+   "bytes": 274843
+  },
+  "the-dawn-edict.jpg": {
+   "f": "the-dawn-edict.jpg",
+   "src": "commons:dramatic sunrise over mountains painting",
+   "bytes": 199535
+  },
+  "the-saint-s-reliquary.jpg": {
+   "f": "the-saint-s-reliquary.jpg",
+   "src": "commons:gold reliquary museum",
+   "bytes": 71403
+  },
+  "the-iron-basilica.jpg": {
+   "f": "the-iron-basilica.jpg",
+   "src": "commons:gothic cathedral interior painting",
+   "bytes": 443064
+  },
+  "the-wild-hunt.jpg": {
+   "f": "the-wild-hunt.jpg",
+   "src": "commons:Wild Hunt painting",
+   "bytes": 137825
+  },
+  "the-bone-feast.jpg": {
+   "f": "the-bone-feast.jpg",
+   "src": "commons:vanitas skull painting",
+   "bytes": 431635
+  },
+  "the-rampart-of-skulls.jpg": {
+   "f": "the-rampart-of-skulls.jpg",
+   "src": "commons:Paris catacombs bones",
+   "bytes": 1246195
+  },
+  "the-warlord-s-drum.jpg": {
+   "f": "the-warlord-s-drum.jpg",
+   "src": "commons:war drum museum",
+   "bytes": 514140
+  },
+  "the-idol-of-the-deep-woods.jpg": {
+   "f": "the-idol-of-the-deep-woods.jpg",
+   "src": "commons:green man carving church",
+   "bytes": 294624
+  },
+  "the-guild-purse.jpg": {
+   "f": "the-guild-purse.jpg",
+   "src": "commons:Ottoman coins treasure",
+   "bytes": 46444
+  },
+  "the-astrologer-s-court.jpg": {
+   "f": "the-astrologer-s-court.jpg",
+   "src": "commons:Islamic astronomy manuscript",
+   "bytes": 319313
+  },
+  "the-grand-cistern.jpg": {
+   "f": "the-grand-cistern.jpg",
+   "src": "commons:Basilica Cistern Istanbul",
+   "bytes": 712528
+  },
+  "the-satrap-s-court.jpg": {
+   "f": "the-satrap-s-court.jpg",
+   "src": "commons:Persian court miniature painting",
+   "bytes": 468159
+  },
+  "the-steppe-courier.jpg": {
+   "f": "the-steppe-courier.jpg",
+   "src": "commons:Mongol horseman painting",
+   "bytes": 52649
+  },
+  "the-great-tent.jpg": {
+   "f": "the-great-tent.jpg",
+   "src": "commons:yurt mongolian steppe",
+   "bytes": 307033
+  },
+  "the-charter-roads.jpg": {
+   "f": "the-charter-roads.jpg",
+   "src": "commons:medieval bridge road painting",
+   "bytes": 116257
+  },
+  "the-free-ports-act.jpg": {
+   "f": "the-free-ports-act.jpg",
+   "src": "commons:old harbor sailing ships painting",
+   "bytes": 300705
+  },
+  "the-admiralty-charts.jpg": {
+   "f": "the-admiralty-charts.jpg",
+   "src": "commons:antique nautical chart map",
+   "bytes": 327141
+  },
+  "the-king-s-musketeers.jpg": {
+   "f": "the-king-s-musketeers.jpg",
+   "src": "commons:Musketeers painting",
+   "bytes": 103059
+  },
+  "the-curia-julia.jpg": {
+   "f": "the-curia-julia.jpg",
+   "src": "commons:Roman senate forum painting",
+   "bytes": 375885
+  },
+  "armillary-sphere.jpg": {
+   "f": "armillary-sphere.jpg",
+   "src": "commons:armillary sphere antique",
+   "bytes": 135816
+  },
+  "alchemist-s-lab.jpg": {
+   "f": "alchemist-s-lab.jpg",
+   "src": "commons:alchemist laboratory painting",
+   "bytes": 276268
+  },
+  "siege-tower.jpg": {
+   "f": "siege-tower.jpg",
+   "src": "commons:medieval siege engine",
+   "bytes": 52385
+  },
+  "war-elephant.jpg": {
+   "f": "war-elephant.jpg",
+   "src": "commons:Hannibal war elephant painting",
+   "bytes": 461288
+  },
+  "astrolabe.jpg": {
+   "f": "astrolabe.jpg",
+   "src": "commons:brass astrolabe museum",
+   "bytes": 580961
+  },
+  "rune-stone.jpg": {
+   "f": "rune-stone.jpg",
+   "src": "commons:runic stone inscription",
+   "bytes": 753211
+  },
+  "ancient-scroll.jpg": {
+   "f": "ancient-scroll.jpg",
+   "src": "commons:ancient manuscript scroll",
+   "bytes": 134289
+  },
+  "naval-fleet.jpg": {
+   "f": "naval-fleet.jpg",
+   "src": "commons:tall ships fleet painting",
+   "bytes": 219781
+  },
+  "iron-crown.jpg": {
+   "f": "iron-crown.jpg",
+   "src": "commons:medieval crown gold museum",
+   "bytes": 223700
+  },
+  "dragon-prow.jpg": {
+   "f": "dragon-prow.jpg",
+   "src": "commons:Viking ship dragon carving",
+   "bytes": 64395
+  },
+  "plague-doctor.jpg": {
+   "f": "plague-doctor.jpg",
+   "src": "commons:plague doctor costume engraving",
+   "bytes": 1195461
+  },
+  "executioner-s-blade.jpg": {
+   "f": "executioner-s-blade.jpg",
+   "src": "commons:executioner sword museum",
+   "bytes": 104928
+  },
+  "northern-armada.jpg": {
+   "f": "northern-armada.jpg",
+   "src": "commons:battleship fleet painting",
+   "bytes": 283227
+  },
+  "cryo-vault.jpg": {
+   "f": "cryo-vault.jpg",
+   "src": "commons:glacier ice cave blue",
+   "bytes": 511722
+  },
+  "orbital-ring.jpg": {
+   "f": "orbital-ring.jpg",
+   "src": "commons:International Space Station orbit",
+   "bytes": 271478
+  },
+  "blood-moon.jpg": {
+   "f": "blood-moon.jpg",
+   "src": "commons:lunar eclipse red moon",
+   "bytes": 156238
+  },
+  "standing-stones.jpg": {
+   "f": "standing-stones.jpg",
+   "src": "commons:Stonehenge sunset",
+   "bytes": 273698
+  },
+  "battle-standard.jpg": {
+   "f": "battle-standard.jpg",
+   "src": "commons:Roman standard reenactment",
+   "bytes": 617821
   }
  }
 }
