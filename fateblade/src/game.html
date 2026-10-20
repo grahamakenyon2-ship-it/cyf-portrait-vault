@@ -34,7 +34,7 @@
   button.themebtn:hover{border-color:var(--gold); box-shadow:0 0 14px #0009;} button.themebtn{font-size:15px;}
   button:disabled{opacity:.35; cursor:default;}
   .row{display:flex; gap:12px; flex-wrap:wrap; justify-content:center; max-width:1200px;}
-  .cardpick{width:210px; border:10px solid transparent; border-image:var(--theme-panel, linear-gradient(#2a2216,#191308)) 40 fill; background:#0d0a07; padding:6px; cursor:pointer; text-align:center;}
+  .cardpick{width:210px; border:10px solid transparent; border-image:var(--theme-panel, linear-gradient(#2a2216,#191308)) 40 fill; background:#0d0a07; padding:6px; cursor:pointer; text-align:center; position:relative;}
   .cardpick:hover{outline:2px solid var(--gold);}
   .cardpick img{width:192px; height:230px; object-fit:cover; display:block;}
   .cardpick .lbl{margin-top:6px; color:var(--gold); letter-spacing:1px;}
@@ -154,6 +154,17 @@
   #deckb .dbhead{width:100%; max-width:1500px; margin:0 auto 10px; display:flex; gap:10px; align-items:center; justify-content:center; flex-wrap:wrap;}
   #deckb .dbhead button{padding:6px 14px;}
   #dbDeckList{display:flex; flex-direction:column; gap:2px;}
+  /* v0.15 sovereign seat in the deck builder + built-around badge on the sovereign select */
+  .dbsovrow{display:flex; gap:10px; padding:8px 2px 4px; flex-wrap:wrap;}
+  .dbsovcard{width:118px; cursor:pointer; border:2px solid #4a3c22; border-radius:6px; background:#141008; padding:4px; transition:border-color .15s}
+  .dbsovcard img{width:100%; height:84px; object-fit:cover; border-radius:4px; display:block}
+  .dbsovcard .nm{font-size:11px; color:var(--gold); letter-spacing:.5px; margin:3px 0 2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .dbsovcard .passive{font-size:10px; line-height:1.25; color:#cbb98a; height:63px; overflow:hidden}
+  .dbsovcard:hover{border-color:var(--gold-dim)}
+  .dbsovcard.on{border-color:var(--gold); box-shadow:0 0 10px rgba(233,196,90,.35)}
+  .sovchosen{outline:3px solid var(--gold); outline-offset:3px}
+  .sovbadge{position:absolute; top:6px; left:50%; transform:translateX(-50%); background:var(--gold); color:#191308; font-size:10px; font-weight:700; letter-spacing:1px; padding:2px 8px; border-radius:3px; z-index:2; white-space:nowrap}
+  #sovRow{position:relative}
   .dbrow{display:flex; gap:6px; align-items:center; padding:3px 6px; cursor:pointer; background:#141008; border:1px solid #2a2216;}
   .dbrow:hover{border-color:var(--gold-dim);}
   .dbrow .cost{flex:0 0 20px; text-align:center; font-weight:bold; color:#8fc0ff; font-size:14px;
@@ -567,7 +578,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.14.0';
+const GAME_VERSION = '0.15.0';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
@@ -639,7 +650,7 @@ try {
 let savedDecks = JSON.parse(localStorage.getItem(DKEY2) || '{}');
 function decksOf(facId){ return savedDecks[facId] || []; }
 function saveDeckList(facId, list){ if (list.length) savedDecks[facId] = list; else delete savedDecks[facId]; localStorage.setItem(DKEY2, JSON.stringify(savedDecks)); }
-function saveDeck(facId, name, cards){ saveDeckList(facId, decksOf(facId).filter(d => d.name !== name).concat([{ name, cards: cards.slice().sort() }])); }
+function saveDeck(facId, name, cards, sovId){ saveDeckList(facId, decksOf(facId).filter(d => d.name !== name).concat([{ name, cards: cards.slice().sort(), sovId: sovId || null }])); } // v0.15: decks remember the sovereign they were built around
 function deleteDeck(facId, name){ saveDeckList(facId, decksOf(facId).filter(d => d.name !== name)); }
 function loadDeck(facId){ return facOf(facId) ? facOf(facId).defaultDeck.slice() : null; } // v0.10: the tuned 30-card doctrine deck
 
@@ -736,8 +747,10 @@ function showDeckPick(fid, forCampaign){
   document.getElementById('dpTitle').textContent = f.label.toUpperCase() + ' — CHOOSE YOUR DECK';
   const note = document.getElementById('dpMigrate');
   if (note) note.style.display = decksMigrated ? 'block' : 'none';
+  const legs = legends(f); // v0.15: show which sovereign each saved deck is built around
   const rows = [{ name: null, label: '★ DOCTRINE — ' + f.identity.name.toUpperCase(), sub: 'the realm\'s tuned 30-card deck' }]
-    .concat(decksOf(fid).map(d => ({ name: d.name, label: d.name, sub: d.cards.length + ' cards' })));
+    .concat(decksOf(fid).map(d => { const s = d.sovId ? legs.find(c => c.id === d.sovId) : null;
+      return { name: d.name, label: d.name, sub: d.cards.length + ' cards' + (s ? ' · ' + s.name : ' · no sovereign saved' ) }; }));
   document.getElementById('dpRow').innerHTML = rows.map((r, i) => `
     <div class="dprow" onclick="dpPick(${i})">
       <span class="dpl">${r.label}</span><span class="dps">${r.sub}</span>
@@ -751,7 +764,13 @@ function dpPick(i){
   me.deckName = d ? d.name : null;
   dpConfirmDel = -1;
   const f = facOf(dpCtx.fid);
-  if (dpCtx.campaign) campToSov(f); else toSovSelect(f);
+  const dsov = d && d.sovId ? legends(f).find(c => c.id === d.sovId) : null; // v0.15: the deck's sovereign rides along
+  if (dpCtx.campaign) {
+    if (dsov) { const id = camp.pending; campProgFor(id).sovIdx = legends(f).indexOf(dsov); campSaveProg(); camp.pending = null; openCampaign(id); return; }
+    campToSov(f);
+  } else {
+    toSovSelect(f, dsov);
+  }
 }
 function dpDel(i){
   if (dpConfirmDel !== i) { dpConfirmDel = i; showDeckPick(dpCtx.fid, dpCtx.campaign); return; }
@@ -764,13 +783,16 @@ function dpBack(){
   if (dpCtx.campaign && camp.pending) campPickFaction(camp.pending);
   else pickPool(me.pool || 'history');
 }
-function toSovSelect(f){
+function toSovSelect(f, deckSov){
   document.getElementById('sovTitle').textContent = (f.label).toUpperCase() + ' — CHOOSE YOUR SOVEREIGN';
-  document.getElementById('sovRow').innerHTML = legends(f).map((c,i)=>`
-    <div class="cardpick" onclick="pickSovereign(${i})">
+  document.getElementById('sovRow').innerHTML = legends(f).map((c,i)=>{
+    const isDeck = deckSov && deckSov.id === c.id;
+    return `<div class="cardpick ${isDeck?'sovchosen':''}" onclick="pickSovereign(${i})">
+      ${isDeck?'<div class="sovbadge">★ BUILT AROUND THIS SOVEREIGN</div>':''}
       <img src="${c.img}" loading="lazy" alt="${c.name}">
       <div class="lbl">${c.name}</div>
-      <div class="passive" title="${(c.passive.desc||'').replace(/"/g,'&quot;')}"><b style="color:#f9c">${c.passive.name}:</b> ${c.passive.desc}</div></div>`).join('');
+      <div class="passive" title="${(c.passive.desc||'').replace(/"/g,'&quot;')}"><b style="color:#f9c">${c.passive.name}:</b> ${c.passive.desc}</div></div>`;
+  }).join('');
   show('sovereigns');
 }
 function pickSovereign(i){ camp.active=null; camp.rule=null; me.sov = legends(facOf(me.faction))[i]; startMatch(); }
@@ -909,7 +931,15 @@ function aiTurn(){
 let blLastEv = 0, blNames = null, blLastDivider = '';
 const BL_LABELS = { POWER:'Skirmish', BC:'battlecry', DR:'deathrattle', DEATHGIFT:'Deathgift', VOLLEY:'volley',
   PILLAGE:'pillage', STORMCALL:'Stormcall', FIRST_RITES:'First Rites', SECOND_SIGHT:'Second Sight',
-  EMBERWARD:'Emberward', BLOODLETTER:'Bloodletter', BULWARK:'Bulwark', SWIFTRANKS:'Swiftranks' };
+  EMBERWARD:'Emberward', BLOODLETTER:'Bloodletter', BULWARK:'Bulwark', SWIFTRANKS:'Swiftranks',
+  LONGSIGHT:'Longsight', SOULTITHE:'Soultithe', VANGUARD:'Vanguard', ORIFLAMME:'Oriflamme', BAZAAR:'Bazaar',
+  MARCHING_ORDERS:'Marching Orders', PICKET:'Picket Line', TESTUDO:'Testudo', STANDARDS:'Standards',
+  GLORY_IN_BATTLE:'Glory in Battle', NIZARI:'Nizari', CHAOS_LADDER:'Chaos is a Ladder', HORDEMASTER:'Hordemaster',
+  FOR_THE_EMPEROR:'For the Emperor', SCORCHED_EARTH:'Scorched Earth', NENYA:"Nenya's Grace", MOONLIGHT:'Moonlight',
+  TARGETING_GRID:'Targeting Grid', FERAL_HOWL:'Feral Howl', SQUIG_FRENZY:'Squig Frenzy', WEAVE:'The Weave',
+  OATHBOUND:'Oathbound', IRON_RATIONS:'Iron Rations', ART_OF_WAR:'Art of War', BROTHERHOOD:'Brotherhood',
+  STILLNESS:'Stillness', PRIVATEERING:'Privateering', BLOCKADE:'Blockade', COURT_INTRIGUE:'Court Intrigue',
+  STRAFING:'Strafing Run', BLOOD_MONEY:'Blood Money' };
 function blName(id){
   if(!blNames){ blNames = new Map(); for(const f of DATA.factions) for(const c of f.cards) blNames.set(c.id, c.name); }
   if(blNames.has(id)) return blNames.get(id);
@@ -1287,13 +1317,13 @@ function mullConfirm(){
   document.getElementById('mull').classList.remove('on');
   const rep = [...mullMarked].sort((a,b)=>b-a); // splice high-first so indices stay true
   for(const i of rep) S.A.deck.push(S.A.hand.splice(i,1)[0]);
-  shuffle(S.A.deck); for(let i=0;i<rep.length;i++) E.draw(S,'A');
+  shuffle(S.A.deck); for(let i=0;i<rep.length;i++) E.draw(S,'A',true); // v0.15: draw-phase flag keeps PRIVATEERING/CHAOS_LADDER from firing on mulligans
   mullTook = rep.length;
   // the foe mulligans like a sensible rival: overpriced openers go back
   const thr = S.first === 'B' ? 5 : 4;
   const eb = []; S.B.hand.forEach((c,i)=>{ if(c.cost >= thr) eb.push(i); });
   for(const i of eb.sort((a,b)=>b-a)) S.B.deck.push(S.B.hand.splice(i,1)[0]);
-  shuffle(S.B.deck); for(let i=0;i<eb.length;i++) E.draw(S,'B');
+  shuffle(S.B.deck); for(let i=0;i<eb.length;i++) E.draw(S,'B',true);
   const r = mullReveal; mullReveal = null;
   if(r) r();
 }
@@ -1508,6 +1538,7 @@ document.getElementById('endbtn').onclick = ()=>{ if(S && !watch.on && S.active=
 let dbFac = null;
 let dbCnt = new Map();   // v0.10: card id -> copy count (30-card decks)
 let dbDirty = false;
+let dbSov = null;        // v0.15: the sovereign this deck is built around (card id) — saved with the deck
 function deckSize(){ let n = 0; for (const k of dbCnt.values()) n += k; return n; }
 function capOf(c){ return c.rarity === 'epic' ? 1 : 2; } // v0.10: 2x common/rare, 1x epic, Sovereigns never deck
 function relicTotal(){
@@ -1549,7 +1580,7 @@ function pickPoolDB(p){
 function openDeckBuilder(facId){
   dbFac = facId; applyTheme(facId);
   const f = facOf(facId);
-  dbCnt = new Map(); dbDirty = false; // clean slate — ↺ Restore Doctrine loads the tuned 30-card default
+  dbCnt = new Map(); dbDirty = false; dbSov = null; // clean slate — ↺ Restore Doctrine loads the tuned 30-card default
   dbFilters = { q:'', cost:null, type:null, kw:null }; // v0.9.5: fresh filters per realm
   const inp = document.getElementById('dbSearch'); if(inp) inp.value = '';
   const nm = document.getElementById('dbName'); if(nm) nm.value = '';
@@ -1583,8 +1614,18 @@ function renderDB(){
   const byCost = (a,b)=>a.cost-b.cost || a.name.localeCompare(b.name); // v0.9.5: grid sorted by cost (HS/MTGA style)
   // v0.10: Sovereigns (legendaries) lead from the hero box — they never appear in the deck grid
   const legal = (c)=>c.rarity !== 'legendary';
+  // v0.15: SOVEREIGN SEAT — pick who the deck is built around while you build it
+  const sovs = legends(f);
+  const sovSel = sovs.find(c => c.id === dbSov);
+  const sovHtml = '<div class="dbsection">YOUR SOVEREIGN — PICK WHO THIS DECK IS BUILT AROUND</div>'
+    + '<div class="dbsovrow">' + sovs.map(c => `
+      <div class="dbsovcard ${dbSov===c.id?'on':''}" onclick="pickDbSov('${c.id}')">
+        <img src="${c.img}" loading="lazy" alt="${c.name}">
+        <div class="nm">${c.name}</div>
+        <div class="passive" title="${(c.passive.desc||'').replace(/"/g,'&quot;')}"><b style="color:#f9c">${c.passive.name}:</b> ${c.passive.desc}</div>
+      </div>`).join('') + '</div>';
   // collection: realm cards, then Guild section (Arena-style grid, scrollable pane)
-  coll.innerHTML = '<div class="dbGrid">' + f.cards.filter(legal).filter(dbPass).sort(byCost).map(dbCardHtml).join('')
+  coll.innerHTML = sovHtml + '<div class="dbGrid">' + f.cards.filter(legal).filter(dbPass).sort(byCost).map(dbCardHtml).join('')
     + (gc.length ? '</div><div class="dbsection">THE WAYFARERS&rsquo; GUILD — HIRES FOR ANY BANNER (MAX 4)</div><div class="dbGrid">' + gc.filter(legal).filter(dbPass).sort(byCost).map(dbCardHtml).join('') : '')
     + '</div>';
   const all = f.cards.concat(gc);
@@ -1606,7 +1647,7 @@ function renderDB(){
   });
   const size = deckSize();
   const cnt = document.getElementById('dbCount');
-  if(cnt) cnt.textContent = `DECK: ${size} / 30 cards · Guild hires: ${[...dbCnt.keys()].filter(isGuildCard).length} / 4 · Relic seats: ${relicTotal()} / 2`;
+  if(cnt) cnt.textContent = `DECK: ${size} / 30 cards · Sovereign: ${sovSel ? sovSel.name : '— none chosen —'} · Guild hires: ${[...dbCnt.keys()].filter(isGuildCard).length} / 4 · Relic seats: ${relicTotal()} / 2`;
   const saveBtn = document.getElementById('dbSaveBtn');
   if(saveBtn) saveBtn.disabled = size !== 30;
 }
@@ -1635,6 +1676,11 @@ function dbRemove(id){
   if(n <= 0) dbCnt.delete(id); else dbCnt.set(id, n);
   dbDirty = true; renderDB();
 }
+// v0.15: sovereign seat — click a portrait to declare who this deck is built around
+function pickDbSov(id){
+  dbSov = (dbSov === id) ? null : id; // clicking the chosen one again clears it
+  dbDirty = true; renderDB();
+}
 // transient warning in the count line (no alert spam)
 let dbFlashTimer = null;
 function dbFlash(msg){
@@ -1647,12 +1693,13 @@ function dbFlash(msg){
 }
 function dbSave(){
   if(deckSize() !== 30){ dbFlash('SAVE NEEDS EXACTLY 30 CARDS'); return; }
+  if(!dbSov){ dbFlash('PICK A SOVEREIGN FIRST — click a portrait in the sovereign strip'); return; }
   const inp = document.getElementById('dbName');
   let name = (inp && inp.value.trim()) || ('Deck ' + (decksOf(dbFac).length + 1));
   name = name.slice(0, 28);
   const cards = [];
   for (const [id, n] of dbCnt) for (let i = 0; i < n; i++) cards.push(id);
-  saveDeck(dbFac, name, cards); // same name = overwrite that saved deck
+  saveDeck(dbFac, name, cards, dbSov); // same name = overwrite that saved deck
   dbDirty = false;
   if(inp) inp.value = name;
   dbFlash('SAVED ✔ "' + name + '" — choose it when you pick this realm');

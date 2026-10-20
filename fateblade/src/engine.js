@@ -94,6 +94,7 @@
       sov: sov ? { id: sov.id, name: sov.name, img: sov.img, passive: sov.passive } : null,
       discountUsed: false,
       fatigue: 0,
+      sovOnce: {}, turnDraws: 0, tookHeroDmg: false, heroDmgOnce: false, // v0.15: per-turn sovereign hook state
     });
     const first = opts.first === 'B' ? 'B' : 'A';
     const lvl = (v) => (AI_LEVELS.includes(v) ? v : 'normal');
@@ -103,8 +104,8 @@
       A: side(facA, opts.sovA, opts.deckA), B: side(facB, opts.sovB, opts.deckB),
     };
     const n = (side) => (side === first ? 3 : 4); // going-second compensation: +1 card
-    for (let i = 0; i < n('A'); i++) draw(S, 'A');
-    for (let i = 0; i < n('B'); i++) draw(S, 'B');
+    for (let i = 0; i < n('A'); i++) draw(S, 'A', true); // v0.15: draw-phase deal
+    for (let i = 0; i < n('B'); i++) draw(S, 'B', true);
     S[first].mana += 1; // First Rites v0.6.4: turn-one bonus (turns 2-3 come from endTurn)
     S.events.push({ t: 'passive', side: first, id: 'FIRST_RITES' });
     return S;
@@ -114,7 +115,7 @@
   // Sovereign passive magnitudes are doubled (+1s become +2s, pings deal 2, …).
   const rites = (S, side) => (S.first === side && S.turn <= 5 ? 2 : 1);
 
-  function draw(S, side) {
+  function draw(S, side, phase) { // v0.15: phase=true marks draw-phase draws (startMatch deal + start-of-turn draw)
     const p = S[side];
     if (!p.deck.length) {
       // fatigue: each draw from an empty deck escalates (1, 2, 3, …)
@@ -124,16 +125,25 @@
       return;
     }
     if (p.hand.length < MAX_HAND) p.hand.push(p.deck.pop());
+    // v0.15 sovereign draw hooks — only on draws OUTSIDE the draw phase
+    if (!phase && (hasP(p, 'PRIVATEERING') || hasP(p, 'CHAOS_LADDER'))) {
+      if (hasP(p, 'CHAOS_LADDER')) p.turnDraws += 1;
+      const foe = S[other(side)];
+      if (hasP(p, 'PRIVATEERING')) { const d = 1 * rites(S, side); foe.hp -= d; S.events.push({ t: 'heroHit', side: other(side), id: 'PRIVATEERING', dmg: d }); }
+      if (p.turnDraws >= 2 && hasP(p, 'CHAOS_LADDER') && foe.board.length) { const t = foe.board[Math.floor(S.rng() * foe.board.length)]; S.events.push({ t: 'passive', side, id: 'CHAOS_LADDER', on: t.id }); damageMinion(S, other(side), t.uid, 1); }
+    }
   }
 
   // ---------- helpers ----------
   // deal damage to a minion; handles death + Deathrattle + the owner's DEATHGIFT
-  function damageMinion(S, victimSide, uid, dmg) {
+  function damageMinion(S, victimSide, uid, dmg, combat) { // v0.15: combat tag ('retal'|'hit') for TESTUDO/GLORY/BLOOD_MONEY
     const vp = S[victimSide], foeSide = other(victimSide);
     const t = vp.board.find((x) => x.uid === uid);
     if (!t) return;
     // v0.11 AEGIS: one absorbed damage instance (attacks, retaliation, pings, AOE)
     if (t.shield > 0) { t.shield -= 1; S.events.push({ t: 'shield', side: victimSide, id: t.id, uid }); return; }
+    // v0.15 TESTUDO: your Guard minions take 1 less combat damage (min 1)
+    if (combat && hasP(vp, 'TESTUDO') && t.kw === 'Guard') dmg = Math.max(1, dmg - 1 * rites(S, victimSide));
     t.hp -= dmg;
     if (t.hp <= 0) {
       vp.board = vp.board.filter((x) => x.uid !== uid);
@@ -149,26 +159,37 @@
         // BOTH boards takes 1, including the rest of yours; drHero2 burns face.
         const drDmg = { drPing: 1, drPing2: 2, drPing3: 3 }[dr];
         const drAoe = { drAoe1: 1, drAoe2: 2 }[dr];
-        if (dr === 'drHero1') { S[foeSide].hp -= 1; S.events.push({ t: 'heroHit', side: foeSide, id: 'DR', dmg: 1 }); }
-        else if (dr === 'drHero2') { S[foeSide].hp -= 2; S.events.push({ t: 'heroHit', side: foeSide, id: 'DR', dmg: 2 }); }
+        if (dr === 'drHero1') { const ci = 1 + (hasP(vp, 'COURT_INTRIGUE') ? rites(S, victimSide) : 0); S[foeSide].hp -= ci; S.events.push({ t: 'heroHit', side: foeSide, id: 'DR', dmg: ci }); } // v0.15: COURT_INTRIGUE
+        else if (dr === 'drHero2') { const ci = 2 + (hasP(vp, 'COURT_INTRIGUE') ? rites(S, victimSide) : 0); S[foeSide].hp -= ci; S.events.push({ t: 'heroHit', side: foeSide, id: 'DR', dmg: ci }); } // v0.15.1: COURT_INTRIGUE
         else if (drDmg && S[foeSide].board.length) {
           const m = S[foeSide].board[Math.floor(S.rng() * S[foeSide].board.length)];
           damageMinion(S, foeSide, m.uid, drDmg);
         }
-        else if (drAoe) { S[foeSide].board.slice().forEach((m) => damageMinion(S, foeSide, m.uid, drAoe)); }
+        else if (drAoe) { const wv = drAoe + (hasP(vp, 'WEAVE') ? rites(S, victimSide) : 0); S[foeSide].board.slice().forEach((m) => damageMinion(S, foeSide, m.uid, wv)); } // v0.15: WEAVE
         else if (dr === 'drAoeAll1') {
           // both boards, in a stable order; each hit can chain further dr's
           S[victimSide === 'A' ? 'B' : 'A'].board.slice().forEach((m) => damageMinion(S, victimSide === 'A' ? 'B' : 'A', m.uid, 1));
           vp.board.slice().forEach((m) => damageMinion(S, victimSide, m.uid, 1));
         }
-        else if (dr === 'drHeal2') { vp.hp = Math.min(MAX_HP, vp.hp + 2); }
-        else if (dr === 'drSummon' && vp.board.length < MAX_BOARD) { vp.board.push(token(vp, S)); S.events.push({ t: 'play', side: victimSide, id: 'TOKEN', uid: 'TOKEN' + vp.board.length, kw: null, cost: 1 }); }
+        else if (dr === 'drHeal2') { vp.hp = Math.min(MAX_HP, vp.hp + 2 + (hasP(vp, 'IRON_RATIONS') ? 2 * rites(S, victimSide) : 0)); } // v0.15: IRON_RATIONS
+        else if (dr === 'drSummon') { const hn = 1 + (hasP(vp, 'HORDEMASTER') ? rites(S, victimSide) : 0); for (let hi = 0; hi < hn && vp.board.length < MAX_BOARD; hi++) vp.board.push(token(vp, S)); S.events.push({ t: 'play', side: victimSide, id: 'TOKEN', uid: 'TOKEN' + vp.board.length, kw: null, cost: 1 }); } // v0.15: HORDEMASTER
         else if (dr === 'drDraw') { draw(S, victimSide); }
       }
       if (hasP(vp, 'DEATHGIFT')) {
         const d = 1 * rites(S, victimSide);
         S[foeSide].hp -= d;
         S.events.push({ t: 'heroHit', side: foeSide, id: 'DEATHGIFT', dmg: d });
+      }
+      // v0.15 combat-death sovereign passives
+      if (combat === 'retal' && hasP(vp, 'GLORY_IN_BATTLE')) {
+        const d = 3 * rites(S, victimSide); // v0.15.1 buff: 2 -> 3
+        S[foeSide].hp -= d;
+        S.events.push({ t: 'heroHit', side: foeSide, id: 'GLORY_IN_BATTLE', dmg: d });
+      }
+      if (combat === 'hit' && hasP(S[foeSide], 'BLOOD_MONEY')) {
+        const ap = S[foeSide];
+        ap.hp = Math.min(MAX_HP, ap.hp + 1 * rites(S, foeSide));
+        S.events.push({ t: 'passive', side: foeSide, id: 'BLOOD_MONEY' });
       }
     }
   }
@@ -186,6 +207,16 @@
     const vp = S[victimSide];
     if (hasP(vp, 'EMBERWARD')) dmg = Math.max(1, dmg - rites(S, victimSide));
     vp.hp -= dmg;
+    if (dmg > 0) {
+      vp.tookHeroDmg = true; // v0.15: STILLNESS — no hero damage since your last turn
+      // SCORCHED_EARTH: once per turn, when your hero takes damage, deal 1 to ALL enemy minions
+      if (hasP(vp, 'SCORCHED_EARTH') && !vp.heroDmgOnce) {
+        vp.heroDmgOnce = true;
+        const r = rites(S, victimSide);
+        S[other(victimSide)].board.slice().forEach((t) => damageMinion(S, other(victimSide), t.uid, 1 * r));
+        S.events.push({ t: 'passive', side: victimSide, id: 'SCORCHED_EARTH' });
+      }
+    }
     return dmg;
   }
 
@@ -193,6 +224,9 @@
   function effCost(S, side, c) {
     const p = S[side];
     if (hasP(p, 'SWIFTRANKS') && !p.discountUsed && c.cost <= 3) return Math.max(0, c.cost - rites(S, side)); // v0.6.4: once per game, cheap cards only
+    // v0.15: once-per-turn sovereign discounts
+    if (hasP(p, 'ORIFLAMME') && c.kw === 'Charge' && !p.sovOnce.oriflamme) return Math.max(0, c.cost - rites(S, side));
+    if (hasP(p, 'BAZAAR') && c.type === 'edict' && !p.sovOnce.bazaar) return Math.max(0, c.cost - rites(S, side));
     return c.cost;
   }
   function canPlay(S, side, i) {
@@ -208,11 +242,14 @@
     const c = p.hand.splice(i, 1)[0];
     const cost = effCost(S, side, c);
     if (hasP(p, 'SWIFTRANKS') && !p.discountUsed) p.discountUsed = true; // stays spent for the whole game (v0.6.4)
+    if (hasP(p, 'ORIFLAMME') && c.kw === 'Charge') p.sovOnce.oriflamme = true; // v0.15: once per turn
+    if (hasP(p, 'BAZAAR') && c.type === 'edict') p.sovOnce.bazaar = true; // v0.15: once per turn
     p.mana -= cost;
 
     // ---- EDICTS: one-shot command cards; resolve and vanish ----
     if (c.type === 'edict') {
       S.events.push({ t: 'edict', side, id: c.id, fx: c.fx });
+      if (hasP(p, 'NENYA')) { p.hp = Math.min(MAX_HP, p.hp + 1 * rites(S, side)); S.events.push({ t: 'passive', side, id: 'NENYA' }); } // v0.15: edicts also mend the Sovereign
       resolveEdict(S, side, c.fx, c);
       return true;
     }
@@ -238,6 +275,12 @@
     if (m.kw === 'Charge' && hasP(p, 'VANGUARD')) m.atk += r;
     if (m.kw === 'Lifesteal' && hasP(p, 'SOULTITHE')) m.atk += r;
     if (m.kw === 'Ranged' && hasP(p, 'LONGSIGHT')) { m.atk += r; m.hp += r; } // v0.14.2 buff: +1 HP -> +1/+1 (37.2% when leading, weakest passive)
+    // v0.15 sovereign entry passives
+    if (m.kw === 'Lifesteal' && hasP(p, 'OATHBOUND')) { m.atk += r; m.hp += r; } // v0.15.1 buff: +1 HP -> +1/+1
+    if (m.kw === 'Relentless' && hasP(p, 'BROTHERHOOD')) { m.atk += r; m.hp += r; }
+    if (m.kw === 'Ranged' && hasP(p, 'STRAFING') && !p.sovOnce.strafing) { m.atk += r; m.hp += r; p.sovOnce.strafing = true; } // v0.15.1 buff: +1 ATK -> +1/+1
+    if (c.cost <= 2 && hasP(p, 'PICKET')) { m.atk += r; m.hp += r; } // v0.15.1 buff: +1 HP -> +1/+1
+    if (m.kw === 'Charge' && hasP(p, 'NIZARI')) m.shield = (m.shield || 0) + r; // v0.15.1 buff: every Charge, not just the first
     p.board.push(m);
     S.events.push({ t: 'play', side, id: c.id, uid: c.uid, kw: c.kw || null, cost: c.cost });
     // Battlecry templates (fixed/fair automatic targeting)
@@ -248,13 +291,13 @@
       // bcAoe1 sweeps the enemy board; bcAoeAll1 sweeps BOTH boards (yours too);
       // bcHero2 burns the enemy Sovereign for 2.
       const bcDmg = { bcPing: 1, bcPing2: 2, bcPing3: 3 }[c.bc];
-      if (c.bc === 'bcHero1') { foe.hp -= 1; S.events.push({ t: 'heroHit', side: other(side), id: 'BC', dmg: 1 }); }
-      else if (c.bc === 'bcHero2') { foe.hp -= 2; S.events.push({ t: 'heroHit', side: other(side), id: 'BC', dmg: 2 }); }
+      if (c.bc === 'bcHero1') { const ci = 1 + (hasP(p, 'COURT_INTRIGUE') ? rites(S, side) : 0); foe.hp -= ci; S.events.push({ t: 'heroHit', side: other(side), id: 'BC', dmg: ci }); } // v0.15: COURT_INTRIGUE
+      else if (c.bc === 'bcHero2') { const ci = 2 + (hasP(p, 'COURT_INTRIGUE') ? rites(S, side) : 0); foe.hp -= ci; S.events.push({ t: 'heroHit', side: other(side), id: 'BC', dmg: ci }); } // v0.15.1: COURT_INTRIGUE
       else if (bcDmg && foe.board.length) {
         const t = foe.board[Math.floor(S.rng() * foe.board.length)];
         damageMinion(S, other(side), t.uid, bcDmg);
       }
-      else if (c.bc === 'bcAoe1') { foe.board.slice().forEach((t) => damageMinion(S, other(side), t.uid, 1)); }
+      else if (c.bc === 'bcAoe1') { const wv = 1 + (hasP(p, 'WEAVE') ? rites(S, side) : 0); foe.board.slice().forEach((t) => damageMinion(S, other(side), t.uid, wv)); } // v0.15: WEAVE
       else if (c.bc === 'bcAoeAll1') {
         foe.board.slice().forEach((t) => damageMinion(S, other(side), t.uid, 1));
         p.board.slice().forEach((t) => { if (t.uid !== m.uid) damageMinion(S, side, t.uid, 1); });
@@ -262,7 +305,7 @@
       else if (c.bc === 'bcHeal2') { p.hp = Math.min(MAX_HP, p.hp + 2); }
       else if (c.bc === 'bcBuff') {
         const others = p.board.filter((x) => x.uid !== m.uid);
-        if (others.length) { const b = others[Math.floor(S.rng() * others.length)]; b.atk += 1; b.hp += 1; S.events.push({ t: 'buff', side, id: b.id }); }
+        if (others.length) { const sq = 1 + (hasP(p, 'SQUIG_FRENZY') ? 2 : 0); const b = others[Math.floor(S.rng() * others.length)]; b.atk += sq; b.hp += sq; S.events.push({ t: 'buff', side, id: b.id }); } // v0.15: SQUIG_FRENZY
       }
       else if (c.bc === 'bcSummon' && p.board.length < MAX_BOARD) { p.board.push(token(p, S)); }
       else if (c.bc === 'bcDraw') { draw(S, side); }
@@ -273,26 +316,27 @@
   // ---------- EDICT EFFECTS (v0.6) ----------
   function resolveEdict(S, side, fx, c) {
     const p = S[side], foe = S[other(side)];
+    const wv = hasP(p, 'WEAVE') ? rites(S, side) : 0; // v0.15: the Weave empowers every sweep
     switch (fx) {
       case 'fxDraw2': draw(S, side); draw(S, side); break;
-      case 'fxPingAll': foe.board.slice().forEach((t) => damageMinion(S, other(side), t.uid, 1)); break;
-      case 'fxAoe2':   foe.board.slice().forEach((t) => damageMinion(S, other(side), t.uid, 2)); break;
+      case 'fxPingAll': foe.board.slice().forEach((t) => damageMinion(S, other(side), t.uid, 1 + wv)); break;
+      case 'fxAoe2':   foe.board.slice().forEach((t) => damageMinion(S, other(side), t.uid, 2 + wv)); break;
       case 'fxSnipe3': { const t = foe.board.slice().sort((a,b) => (b.atk+b.hp)-(a.atk+a.hp))[0]; if (t) damageMinion(S, other(side), t.uid, 3); break; }
       case 'fxExecute': { const t = foe.board.slice().sort((a,b) => b.atk-a.atk)[0]; if (t) damageMinion(S, other(side), t.uid, t.hp + 99); break; }
       case 'fxHealHero4': p.hp = Math.min(MAX_HP, p.hp + 4); break;
       case 'fxMana2': p.mana += 2; break;
       case 'fxRally': { if (p.board.length < MAX_BOARD) p.board.push(token(p, S)); if (p.board.length < MAX_BOARD) p.board.push(token(p, S)); break; }
       case 'fxRallyBoard': p.board.forEach((m) => { m.atk += 1; m.hp += 1; }); break;
-      case 'fxVolley': { const n = p.board.filter((m) => m.kw === 'Ranged').length; const d = n * 1; if (d > 0) { foe.hp -= d; S.events.push({ t: 'heroHit', side: other(side), id: 'VOLLEY', dmg: d }); } break; }
+      case 'fxVolley': { const n = p.board.filter((m) => m.kw === 'Ranged').length; const d = n * (1 + (hasP(p, 'COURT_INTRIGUE') ? rites(S, side) : 0)); if (d > 0) { foe.hp -= d; S.events.push({ t: 'heroHit', side: other(side), id: 'VOLLEY', dmg: d }); } break; } // v0.15.1: COURT_INTRIGUE
       case 'fxMomentum': p.board.forEach((m) => { if (m.kw === 'Charge') m.atk += 2; }); break;
       case 'fxFormation': p.board.forEach((m) => { if (m.kw === 'Guard') m.hp += 2; }); break;
       case 'fxLevy': { p.board.forEach((m) => { if (m.id.startsWith('TOKEN@')) { m.atk += 1; m.hp += 1; } }); if (p.board.length < MAX_BOARD) p.board.push(token(p, S)); break; }
-      case 'fxPillage': { foe.hp -= 2; S.events.push({ t: 'heroHit', side: other(side), id: 'PILLAGE', dmg: 2 }); if (p.board.length > foe.board.length) draw(S, side); break; }
+      case 'fxPillage': { const pi = 2 + (hasP(p, 'COURT_INTRIGUE') ? rites(S, side) : 0); foe.hp -= pi; S.events.push({ t: 'heroHit', side: other(side), id: 'PILLAGE', dmg: pi }); if (p.board.length > foe.board.length) draw(S, side); break; } // v0.15.1: COURT_INTRIGUE
       // v0.12: stronger variants — the edict tier the audit asked for
-      case 'fxPingAll2': foe.board.slice().forEach((t) => damageMinion(S, other(side), t.uid, 2)); break;
-      case 'fxAoe3':     foe.board.slice().forEach((t) => damageMinion(S, other(side), t.uid, 3)); break;
+      case 'fxPingAll2': foe.board.slice().forEach((t) => damageMinion(S, other(side), t.uid, 2 + wv)); break;
+      case 'fxAoe3':     foe.board.slice().forEach((t) => damageMinion(S, other(side), t.uid, 3 + wv)); break;
       case 'fxSnipe4': { const t = foe.board.slice().sort((a,b) => (b.atk+b.hp)-(a.atk+a.hp))[0]; if (t) damageMinion(S, other(side), t.uid, 4); break; }
-      case 'fxVolley2': { const n = p.board.filter((m) => m.kw === 'Ranged').length; const d = n * 2; if (d > 0) { foe.hp -= d; S.events.push({ t: 'heroHit', side: other(side), id: 'VOLLEY', dmg: d }); } break; }
+      case 'fxVolley2': { const n = p.board.filter((m) => m.kw === 'Ranged').length; const d = n * (2 + (hasP(p, 'COURT_INTRIGUE') ? rites(S, side) : 0)); if (d > 0) { foe.hp -= d; S.events.push({ t: 'heroHit', side: other(side), id: 'VOLLEY', dmg: d }); } break; } // v0.15.1: COURT_INTRIGUE
       case 'fxHero3': { foe.hp -= 3; S.events.push({ t: 'heroHit', side: other(side), id: 'BURN', dmg: 3 }); break; }
       case 'fxDraw3': draw(S, side); draw(S, side); draw(S, side); break;
       case 'fxHealHero6': p.hp = Math.min(MAX_HP, p.hp + 6); break;
@@ -329,10 +373,10 @@
       S.events.push({ t: 'hit', side, id: m.id, dmg: m.atk, on: t.id });
       if (m.kw !== 'Ranged' && t.atk > 0) {
         // retaliation can kill the attacker (their own Deathrattle/DEATHGIFT may fire)
-        damageMinion(S, side, m.uid, t.kw === 'Bane' ? 999 : t.atk); // v0.11: Bane's touch destroys the attacker too
+        damageMinion(S, side, m.uid, t.kw === 'Bane' ? 999 : t.atk, 'retal'); // v0.11 Bane; v0.15 combat tag for GLORY/TESTUDO
       }
       if (m.kw === 'Lifesteal' && m.hp > 0) p.hp = Math.min(MAX_HP, p.hp + m.atk);
-      damageMinion(S, other(side), t.uid, m.kw === 'Bane' ? 999 : m.atk); // v0.11: Bane destroys what it damages
+      damageMinion(S, other(side), t.uid, m.kw === 'Bane' ? 999 : m.atk, 'hit'); // v0.11 Bane; v0.15 combat tag for BLOOD_MONEY/TESTUDO
     }
     return true;
   }
@@ -381,7 +425,7 @@
     if (hasRelic(foe, 'rlLibrary') && foe.mana >= 2) { draw(S, other(next)); S.events.push({ t: 'relicfx', side: other(next), id: 'rlLibrary' }); }
     if (hasRelic(foe, 'rlForage') && foe.board.length < 3 && foe.board.length < MAX_BOARD) { foe.board.push(token(foe, S)); S.events.push({ t: 'relicfx', side: other(next), id: 'rlForage' }); }
     const r = rites(S, next);
-    // start-of-turn Sovereign passives
+    np.sovOnce = {}; np.turnDraws = 0; np.heroDmgOnce = false; // v0.15: per-turn sovereign state (tookHeroDmg resets below, after STILLNESS checks it)
     // STORMCALL (v0.9.2 nerf): only fires while behind on the board — was the
     // strongest passive in sims (63.5% when leading) as unconditional chip.
     if (hasP(np, 'STORMCALL') && foe.board.length && np.board.length < foe.board.length) {
@@ -398,7 +442,19 @@
       S.events.push({ t: 'passive', side: next, id: 'SECOND_SIGHT' });
       for (let i = 0; i < r; i++) draw(S, next);
     }
-    draw(S, next);
+    // v0.15 sovereign start-of-turn passives
+    const weak = (arr) => arr.length ? arr.reduce((a, b) => (a.atk <= b.atk ? a : b)) : null;
+    if (hasP(np, 'FERAL_HOWL') && np.board.length) { const w = weak(np.board); w.atk += 2 * r; S.events.push({ t: 'passive', side: next, id: 'FERAL_HOWL', on: w.id }); }
+    if (hasP(np, 'FOR_THE_EMPEROR') && np.board.length >= 4) { const w = weak(np.board); w.atk += 1 * r; S.events.push({ t: 'passive', side: next, id: 'FOR_THE_EMPEROR', on: w.id }); }
+    if (hasP(np, 'MARCHING_ORDERS') && np.board.length) { const w = weak(np.board); w.atk += r; w.hp += r; S.events.push({ t: 'passive', side: next, id: 'MARCHING_ORDERS', on: w.id }); }
+    if (hasP(np, 'BLOCKADE') && foe.board.length - np.board.length >= 2 && np.board.length < MAX_BOARD) { np.board.push(token(np, S)); S.events.push({ t: 'passive', side: next, id: 'BLOCKADE' }); } // v0.15.1 buff: 3 -> 2
+    if (hasP(np, 'STANDARDS') && np.board.filter((m) => m.kw === 'Guard').length >= 3 && np.deck.length) { S.events.push({ t: 'passive', side: next, id: 'STANDARDS' }); draw(S, next); }
+    if (hasP(np, 'TARGETING_GRID') && np.hand.length >= 4 && foe.board.length) { const t = foe.board.slice().sort((a, b) => (b.atk + b.hp) - (a.atk + a.hp))[0]; S.events.push({ t: 'passive', side: next, id: 'TARGETING_GRID', on: t.id }); damageMinion(S, other(next), t.uid, 1 * r); }
+    if (hasP(np, 'MOONLIGHT') && np.board.some((m) => m.kw === 'Lifesteal')) { np.hp = Math.min(MAX_HP, np.hp + 3 * r); S.events.push({ t: 'passive', side: next, id: 'MOONLIGHT' }); } // v0.15.1 buff: 2 -> 3
+    if (hasP(np, 'STILLNESS') && !np.tookHeroDmg) { np.hp = Math.min(MAX_HP, np.hp + 3 * r); S.events.push({ t: 'passive', side: next, id: 'STILLNESS' }); }
+    if (hasP(np, 'ART_OF_WAR') && np.board.filter((m) => m.kw === 'Guard').length > foe.board.length) { foe.hp -= 1 * r; S.events.push({ t: 'heroHit', side: other(next), id: 'ART_OF_WAR', dmg: 1 * r }); }
+    np.tookHeroDmg = false; // v0.15: STILLNESS window reopens (after the check above)
+    draw(S, next, true); // v0.15: draw-phase draw — sovereign draw hooks skip it
   }
 
   // ---------- end conditions ----------
