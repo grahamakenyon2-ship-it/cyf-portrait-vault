@@ -4082,8 +4082,8 @@
      "rarity": "rare",
      "file": "history/roman-empire/livia.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/history/roman-empire/livia.jpg",
-     "bc": null,
-     "ability": "Deathrattle: draw a card.",
+     "bc": "bcHeal2",
+     "ability": "Battlecry: restore 2 health to your Sovereign. Deathrattle: draw a card.",
      "dr": "drDraw"
     },
     {
@@ -5424,13 +5424,13 @@
      "cost": 5,
      "atk": 2,
      "hp": 5,
-     "kw": "Charge",
+     "kw": "Charge, Relentless",
      "rarity": "epic",
      "file": "history/ottoman-empire/selim.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/history/ottoman-empire/selim.jpg",
      "bc": null,
      "dr": null,
-     "ability": null
+     "ability": "Charge, Relentless — attacks the turn it arrives, and twice each turn."
     },
     {
      "id": "siptah@crescent",
@@ -5475,13 +5475,13 @@
      "cost": 5,
      "atk": 0,
      "hp": 9,
-     "kw": "Guard",
+     "kw": "Guard, Bane",
      "rarity": "epic",
      "file": "history/new-kingdom-egypt/horemheb.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/history/new-kingdom-egypt/horemheb.jpg",
      "bc": null,
      "dr": null,
-     "ability": null
+     "ability": "Guard, Bane — enemies must attack this wall, and whatever it touches dies."
     },
     {
      "id": "al-ashraf-khalil@crescent",
@@ -5526,13 +5526,13 @@
      "cost": 4,
      "atk": 5,
      "hp": 2,
-     "kw": "Charge",
+     "kw": "Charge, Aegis",
      "rarity": "epic",
      "file": "history/new-kingdom-egypt/seti.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/history/new-kingdom-egypt/seti.jpg",
      "bc": null,
      "dr": null,
-     "ability": null
+     "ability": "Charge, Aegis — arrives shielded and strikes at once."
     },
     {
      "id": "akhenaten@crescent",
@@ -5560,13 +5560,13 @@
      "cost": 6,
      "atk": 2,
      "hp": 8,
-     "kw": "Charge",
+     "kw": "Charge, Bane",
      "rarity": "epic",
      "file": "history/new-kingdom-egypt/amenmesse.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/history/new-kingdom-egypt/amenmesse.jpg",
      "bc": null,
      "dr": null,
-     "ability": null
+     "ability": "Charge, Bane — strikes the turn it arrives, and its first blow is a killing one."
     },
     {
      "id": "barquq-2@crescent",
@@ -6467,8 +6467,8 @@
      "file": "history/soviet-union/nikita_20khrushchev.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/history/soviet-union/nikita_20khrushchev.jpg",
      "bc": "bcDraw",
-     "ability": "Battlecry: draw a card.",
-     "dr": null
+     "ability": "Battlecry: draw a card. Deathrattle: snap a random enemy minion for 1.",
+     "dr": "drPing"
     },
     {
      "id": "g-y-k@ironsteppes",
@@ -8845,13 +8845,13 @@
      "cost": 6,
      "atk": 6,
      "hp": 5,
-     "kw": "Ranged",
+     "kw": "Ranged, Bane",
      "rarity": "epic",
      "file": "halo/the-covenant/the_20prophet_20of.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/halo/the-covenant/the_20prophet_20of.jpg",
      "bc": null,
      "dr": null,
-     "ability": null
+     "ability": "Ranged, Bane — its thorns kill whatever they touch, without retaliation."
     },
     {
      "id": "thakiuk-the-thousand-yard@starwind",
@@ -16177,10 +16177,10 @@
      "cost": 1,
      "rarity": "rare",
      "file": "art/whispers-at-court.jpg",
-     "bc": null,
+     "bc": "bcHeal2",
      "dr": null,
      "fx": "fxEspionage",
-     "ability": "Draw a card. If the enemy holds 4 or more cards, they discard their costliest.",
+     "ability": "Draw a card. If the enemy holds 4 or more cards, they discard their costliest. Then your Sovereign mends 2.",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/whispers-at-court.jpg",
      "type": "edict"
     },
@@ -16193,10 +16193,10 @@
      "cost": 2,
      "rarity": "rare",
      "file": "art/the-queen-s-bargain.jpg",
-     "bc": null,
+     "bc": "bcPing",
      "dr": null,
      "fx": "fxDraw3",
-     "ability": "Draw three cards.",
+     "ability": "Draw three cards. Then a lackey strikes a random enemy minion for 1.",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-queen-s-bargain.jpg",
      "type": "edict"
     },
@@ -16241,10 +16241,10 @@
      "cost": 2,
      "rarity": "rare",
      "file": "art/the-small-council.jpg",
-     "bc": null,
+     "bc": "bcSummon",
      "dr": null,
      "fx": "fxDraw2",
-     "ability": "Scry 2 — draw the best of the top 2 cards of your deck.",
+     "ability": "Draw two cards. Then summon a 1/1 clerk of the small council.",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-small-council.jpg",
      "type": "edict"
     },
@@ -19567,10 +19567,10 @@
      "cost": 2,
      "rarity": "rare",
      "file": "art/reading-the-weave.jpg",
-     "bc": null,
+     "bc": "bcPing",
      "dr": null,
      "fx": "fxScry3",
-     "ability": "Scry 3 — draw the best of the top 3 cards of your deck.",
+     "ability": "Scry 3 — draw the best of the top 3 cards of your deck. Then the weave lashes a random enemy minion for 1.",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/reading-the-weave.jpg",
      "type": "edict"
     },
@@ -19673,5 +19673,5 @@
    ]
   }
  ],
- "version": "0.19.0"
+ "version": "0.20.0"
 }
