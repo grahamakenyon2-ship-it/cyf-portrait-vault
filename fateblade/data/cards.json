@@ -822,7 +822,7 @@
      "pool": "history",
      "cost": 4,
      "atk": 1,
-     "hp": 6,
+     "hp": 7,
      "kw": "Aegis",
      "rarity": "rare",
      "file": "history/united-kingdom/burke.jpg",
@@ -1238,7 +1238,7 @@
      "passive": {
       "id": "SECOND_SIGHT",
       "name": "Second Sight",
-      "desc": "At the start of your turn, if you hold 4 or fewer cards, draw a card."
+      "desc": "At the start of your turn, if you hold 5 or fewer cards, draw a card."
      }
     },
     {
@@ -1282,8 +1282,8 @@
      "faction": "barning",
      "pool": "history",
      "cost": 6,
-     "atk": 4,
-     "hp": 9,
+     "atk": 5,
+     "hp": 10,
      "kw": "Bane",
      "rarity": "epic",
      "file": "history/united-kingdom/robin_20cook.jpg",
@@ -1521,7 +1521,7 @@
      "rarity": "epic",
      "file": "art/the-masthead-lookout.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-masthead-lookout.jpg",
-     "ability": "Your Ranged minions get +1 Attack — now and as they arrive."
+     "ability": "Your Ranged minions get +1/+1 — now and as they arrive."
     },
     {
      "id": "william-rufus@barning",
@@ -1583,8 +1583,24 @@
      "passive": {
       "id": "BAZAAR",
       "name": "Bazaar",
-      "desc": "Your first edict each turn costs 1 less."
+      "desc": "Your first two edicts each turn cost 1 less."
      }
+    },
+    {
+     "id": "the-admiralty-charts@barning",
+     "name": "The Admiralty Charts",
+     "fl": "The sea is charted; fate, merely annotated.",
+     "faction": "barning",
+     "pool": "history",
+     "cost": 3,
+     "rarity": "epic",
+     "file": "art/the-admiralty-charts.jpg",
+     "bc": null,
+     "dr": null,
+     "rl": "rlMirror",
+     "ability": "When this seats: the best of the top 2 cards of your deck rises to the top.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-admiralty-charts.jpg",
+     "type": "relic"
     }
    ]
   },
@@ -2647,7 +2663,7 @@
      "pool": "history",
      "cost": 4,
      "atk": 5,
-     "hp": 2,
+     "hp": 3,
      "kw": "Bane",
      "rarity": "rare",
      "file": "history/france/nostradamus.jpg",
@@ -3170,6 +3186,22 @@
       "name": "Picket Line",
       "desc": "Your minions that cost 2 or less enter play with +1/+1."
      }
+    },
+    {
+     "id": "the-king-s-musketeers@lucerre",
+     "name": "The King's Musketeers",
+     "fl": "All for one; every dawn, again.",
+     "faction": "lucerre",
+     "pool": "history",
+     "cost": 2,
+     "rarity": "epic",
+     "file": "art/the-king-s-musketeers.jpg",
+     "bc": null,
+     "dr": null,
+     "rl": "rlMusketeers",
+     "ability": "At the start of your turn, your Ranged minions gain +1 Attack.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-king-s-musketeers.jpg",
+     "type": "relic"
     }
    ]
   },
@@ -4197,7 +4229,7 @@
      "faction": "fenorian",
      "pool": "history",
      "cost": 5,
-     "atk": 6,
+     "atk": 7,
      "hp": 5,
      "kw": "Relentless",
      "rarity": "epic",
@@ -4691,7 +4723,7 @@
      "rarity": "epic",
      "file": "art/the-public-granaries.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-public-granaries.jpg",
-     "ability": "At the start of your turn, restore 1 HP to your hero."
+     "ability": "At the start of your turn, restore 2 HP to your hero."
     },
     {
      "id": "john-iii-vatatzes@fenorian",
@@ -4755,6 +4787,22 @@
       "name": "Glory in Battle",
       "desc": "When your minion dies during your attack, deal 3 damage to the enemy hero."
      }
+    },
+    {
+     "id": "the-curia-julia@fenorian",
+     "name": "The Curia Julia",
+     "fl": "The senate votes late and often.",
+     "faction": "fenorian",
+     "pool": "history",
+     "cost": 2,
+     "rarity": "epic",
+     "file": "art/the-curia-julia.jpg",
+     "bc": null,
+     "dr": null,
+     "rl": "rlCuria",
+     "ability": "At the start of your turn, if you control fewer minions than the enemy, draw a card.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-curia-julia.jpg",
+     "type": "relic"
     }
    ]
   },
@@ -4939,7 +4987,7 @@
      "passive": {
       "id": "SECOND_SIGHT",
       "name": "Second Sight",
-      "desc": "At the start of your turn, if you hold 4 or fewer cards, draw a card."
+      "desc": "At the start of your turn, if you hold 5 or fewer cards, draw a card."
      }
     },
     {
@@ -5718,7 +5766,7 @@
      "rarity": "epic",
      "file": "art/the-nilometer.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-nilometer.jpg",
-     "ability": "At the start of your turn, restore 1 HP to your hero."
+     "ability": "At the start of your turn, restore 2 HP to your hero."
     },
     {
      "id": "the-caravanserais@crescent",
@@ -5773,7 +5821,7 @@
      "passive": {
       "id": "CHAOS_LADDER",
       "name": "Chaos is a Ladder",
-      "desc": "Your 2nd or further card drawn in a turn deals 1 damage to a random enemy minion."
+      "desc": "Your 2nd or further card drawn in a turn deals 2 damage to a random enemy minion"
      }
     },
     {
@@ -5794,8 +5842,56 @@
      "passive": {
       "id": "BAZAAR",
       "name": "Bazaar",
-      "desc": "Your first edict each turn costs 1 less."
+      "desc": "Your first two edicts each turn cost 1 less."
      }
+    },
+    {
+     "id": "the-guild-purse@crescent",
+     "name": "The Guild Purse",
+     "fl": "Strings attached? Naturally.",
+     "faction": "crescent",
+     "pool": "history",
+     "cost": 3,
+     "rarity": "common",
+     "file": "art/the-guild-purse.jpg",
+     "bc": null,
+     "dr": null,
+     "fx": "fxMana2",
+     "ability": "Gain 2 Mana this turn.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-guild-purse.jpg",
+     "type": "edict"
+    },
+    {
+     "id": "the-astrologer-s-court@crescent",
+     "name": "The Astrologer's Court",
+     "fl": "The stars incline; they do not bind. They suggest.",
+     "faction": "crescent",
+     "pool": "history",
+     "cost": 2,
+     "rarity": "rare",
+     "file": "art/the-astrologer-s-court.jpg",
+     "bc": null,
+     "dr": null,
+     "fx": "fxScry3",
+     "ability": "Scry 3 — draw the best of the top 3 cards of your deck.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-astrologer-s-court.jpg",
+     "type": "edict"
+    },
+    {
+     "id": "the-grand-cistern@crescent",
+     "name": "The Grand Cistern",
+     "fl": "The city drinks; the city pays.",
+     "faction": "crescent",
+     "pool": "history",
+     "cost": 2,
+     "rarity": "epic",
+     "file": "art/the-grand-cistern.jpg",
+     "bc": null,
+     "dr": null,
+     "rl": "rlCistern",
+     "ability": "Every third turn of the match, gain 1 Mana.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-grand-cistern.jpg",
+     "type": "relic"
     }
    ]
   },
@@ -6905,6 +7001,54 @@
       "name": "Scorched Earth",
       "desc": "Once per turn, when your hero takes damage, deal 1 damage to ALL enemy minions."
      }
+    },
+    {
+     "id": "the-satrap-s-court@ironsteppes",
+     "name": "The Satrap's Court",
+     "fl": "Sealed with the satrap's own ring, at his leisure.",
+     "faction": "ironsteppes",
+     "pool": "history",
+     "cost": 3,
+     "rarity": "rare",
+     "file": "art/the-satrap-s-court.jpg",
+     "bc": null,
+     "dr": null,
+     "fx": "fxDecreeMana",
+     "ability": "Decree: at the start of your next turn, gain 2 Mana.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-satrap-s-court.jpg",
+     "type": "edict"
+    },
+    {
+     "id": "the-steppe-courier@ironsteppes",
+     "name": "The Steppe Courier",
+     "fl": "Ride fast, shoot faster.",
+     "faction": "ironsteppes",
+     "pool": "history",
+     "cost": 3,
+     "rarity": "common",
+     "file": "art/the-steppe-courier.jpg",
+     "bc": null,
+     "dr": null,
+     "fx": "fxVolley",
+     "ability": "Deal 1 damage to the enemy hero for each Ranged minion you control.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-steppe-courier.jpg",
+     "type": "edict"
+    },
+    {
+     "id": "the-great-tent@ironsteppes",
+     "name": "The Great Tent",
+     "fl": "An empire under canvas.",
+     "faction": "ironsteppes",
+     "pool": "history",
+     "cost": 3,
+     "rarity": "epic",
+     "file": "art/the-great-tent.jpg",
+     "bc": null,
+     "dr": null,
+     "rl": "rlTent",
+     "ability": "At the start of your turn, your weakest minion gains +1/+1.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-great-tent.jpg",
+     "type": "relic"
     }
    ]
   },
@@ -8438,6 +8582,86 @@
       "name": "Moonlight",
       "desc": "At the start of your turn, if you control a Lifesteal minion, restore 3 HP to your hero."
      }
+    },
+    {
+     "id": "the-elder-moot@stormlit",
+     "name": "The Elder Moot",
+     "fl": "The old tongues carry far.",
+     "faction": "stormlit",
+     "pool": "fandom",
+     "cost": 4,
+     "rarity": "rare",
+     "file": "art/the-elder-moot.jpg",
+     "bc": null,
+     "dr": null,
+     "fx": "fxLawMuster",
+     "ability": "Law for a round: your minions enter with +1/+1.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-elder-moot.jpg",
+     "type": "edict"
+    },
+    {
+     "id": "wildsong-rising@stormlit",
+     "name": "Wildsong Rising",
+     "fl": "First a hum, then a chorus, then the horns.",
+     "faction": "stormlit",
+     "pool": "fandom",
+     "cost": 4,
+     "rarity": "rare",
+     "file": "art/wildsong-rising.jpg",
+     "bc": null,
+     "dr": null,
+     "fx": "fxDecreeMuster",
+     "ability": "Decree: at the start of your next turn, summon two Conscripts.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/wildsong-rising.jpg",
+     "type": "edict"
+    },
+    {
+     "id": "the-forge-blessing@stormlit",
+     "name": "The Forge Blessing",
+     "fl": "Strike while the iron sings.",
+     "faction": "stormlit",
+     "pool": "fandom",
+     "cost": 2,
+     "rarity": "common",
+     "file": "art/the-forge-blessing.jpg",
+     "bc": null,
+     "dr": null,
+     "fx": "fxMomentum",
+     "ability": "Give your Charge minions +2 Attack.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-forge-blessing.jpg",
+     "type": "edict"
+    },
+    {
+     "id": "the-glade-ward@stormlit",
+     "name": "The Glade Ward",
+     "fl": "The forest keeps its own.",
+     "faction": "stormlit",
+     "pool": "fandom",
+     "cost": 2,
+     "rarity": "epic",
+     "file": "art/the-glade-ward.jpg",
+     "bc": null,
+     "dr": null,
+     "rl": "rlWard",
+     "ability": "At the start of your turn, if your hero took no damage since your last turn, restore 2 HP.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-glade-ward.jpg",
+     "type": "relic"
+    },
+    {
+     "id": "the-moonwell-vial@stormlit",
+     "name": "The Moonwell Vial",
+     "fl": "Moonlight, bottled grief.",
+     "faction": "stormlit",
+     "pool": "fandom",
+     "cost": 1,
+     "rarity": "epic",
+     "file": "art/the-moonwell-vial.jpg",
+     "bc": null,
+     "dr": null,
+     "rl": "rlMoonwell",
+     "ability": "Once per turn, when a friendly minion dies while you hold 2 or fewer cards, draw a card.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-moonwell-vial.jpg",
+     "type": "relic"
     }
    ]
   },
@@ -9907,7 +10131,7 @@
      "rarity": "epic",
      "file": "art/great-granary.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/great-granary.jpg",
-     "ability": "At the start of your turn, restore 1 HP to your hero."
+     "ability": "At the start of your turn, restore 2 HP to your hero."
     },
     {
      "id": "talorath-the-unbowed@starwind",
@@ -9971,6 +10195,86 @@
       "name": "Stormcall",
       "desc": "At the start of your turn, if you have fewer minions than your opponent, deal 1 damage to a random enemy minion."
      }
+    },
+    {
+     "id": "rite-of-ascension@starwind",
+     "name": "Rite of Ascension",
+     "fl": "Rise, or make room for those who will.",
+     "faction": "starwind",
+     "pool": "fandom",
+     "cost": 2,
+     "rarity": "common",
+     "file": "art/rite-of-ascension.jpg",
+     "bc": null,
+     "dr": null,
+     "fx": "fxRallyBoard",
+     "ability": "Give your minions +1/+1.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/rite-of-ascension.jpg",
+     "type": "edict"
+    },
+    {
+     "id": "the-honor-duel@starwind",
+     "name": "The Honor Duel",
+     "fl": "Challenge issued; challenge answered.",
+     "faction": "starwind",
+     "pool": "fandom",
+     "cost": 4,
+     "rarity": "epic",
+     "file": "art/the-honor-duel.jpg",
+     "bc": null,
+     "dr": null,
+     "fx": "fxExecute",
+     "ability": "Destroy the enemy minion with the highest Attack.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-honor-duel.jpg",
+     "type": "edict"
+    },
+    {
+     "id": "the-fleet-muster@starwind",
+     "name": "The Fleet Muster",
+     "fl": "The banners rise; the bays fill.",
+     "faction": "starwind",
+     "pool": "fandom",
+     "cost": 3,
+     "rarity": "common",
+     "file": "art/the-fleet-muster.jpg",
+     "bc": null,
+     "dr": null,
+     "fx": "fxRally",
+     "ability": "Summon two 1/1 Conscripts.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-fleet-muster.jpg",
+     "type": "edict"
+    },
+    {
+     "id": "the-trophy-wall@starwind",
+     "name": "The Trophy Wall",
+     "fl": "Every victory, mounted and labeled.",
+     "faction": "starwind",
+     "pool": "fandom",
+     "cost": 3,
+     "rarity": "epic",
+     "file": "art/the-trophy-wall.jpg",
+     "bc": null,
+     "dr": null,
+     "rl": "rlTrophy",
+     "ability": "When one of your minions kills an enemy minion in combat, restore 1 HP to your hero.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-trophy-wall.jpg",
+     "type": "relic"
+    },
+    {
+     "id": "the-war-standard-of-the-houses@starwind",
+     "name": "The War Standard of the Houses",
+     "fl": "Five houses, one quarrel.",
+     "faction": "starwind",
+     "pool": "fandom",
+     "cost": 3,
+     "rarity": "epic",
+     "file": "art/the-war-standard-of-the-houses.jpg",
+     "bc": null,
+     "dr": null,
+     "rl": "rlWarStandard",
+     "ability": "At the start of your turn, if you control 4 or more minions, they all gain +1 Attack.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-war-standard-of-the-houses.jpg",
+     "type": "relic"
     }
    ]
   },
@@ -11062,6 +11366,86 @@
       "name": "Squig Frenzy",
       "desc": "Your Battlecry: buff effects grant +2 extra stats."
      }
+    },
+    {
+     "id": "the-wild-hunt@tigerpass",
+     "name": "The Wild Hunt",
+     "fl": "You do not join the hunt. The hunt joins you.",
+     "faction": "tigerpass",
+     "pool": "fandom",
+     "cost": 5,
+     "rarity": "common",
+     "file": "art/the-wild-hunt.jpg",
+     "bc": null,
+     "dr": null,
+     "fx": "fxMomentum",
+     "ability": "Give your Charge minions +2 Attack.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-wild-hunt.jpg",
+     "type": "edict"
+    },
+    {
+     "id": "the-bone-feast@tigerpass",
+     "name": "The Bone Feast",
+     "fl": "Nothing is wasted. Nothing is buried.",
+     "faction": "tigerpass",
+     "pool": "fandom",
+     "cost": 3,
+     "rarity": "common",
+     "file": "art/the-bone-feast.jpg",
+     "bc": null,
+     "dr": null,
+     "fx": "fxLevy",
+     "ability": "Give your Conscripts +1/+1, then summon a Conscript.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-bone-feast.jpg",
+     "type": "edict"
+    },
+    {
+     "id": "the-rampart-of-skulls@tigerpass",
+     "name": "The Rampart of Skulls",
+     "fl": "The wall remembers.",
+     "faction": "tigerpass",
+     "pool": "fandom",
+     "cost": 4,
+     "rarity": "common",
+     "file": "art/the-rampart-of-skulls.jpg",
+     "bc": null,
+     "dr": null,
+     "fx": "fxFormation",
+     "ability": "Give your Guards +2 Health.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-rampart-of-skulls.jpg",
+     "type": "edict"
+    },
+    {
+     "id": "the-warlord-s-drum@tigerpass",
+     "name": "The Warlord's Drum",
+     "fl": "It has never missed a beat. Or a skull.",
+     "faction": "tigerpass",
+     "pool": "fandom",
+     "cost": 2,
+     "rarity": "epic",
+     "file": "art/the-warlord-s-drum.jpg",
+     "bc": null,
+     "dr": null,
+     "rl": "rlDrum",
+     "ability": "Your Conscripts are summoned with +1 Attack.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-warlord-s-drum.jpg",
+     "type": "relic"
+    },
+    {
+     "id": "the-idol-of-the-deep-woods@tigerpass",
+     "name": "The Idol of the Deep Woods",
+     "fl": "It was old when the trees were young.",
+     "faction": "tigerpass",
+     "pool": "fandom",
+     "cost": 3,
+     "rarity": "epic",
+     "file": "art/the-idol-of-the-deep-woods.jpg",
+     "bc": null,
+     "dr": null,
+     "rl": "rlIdol",
+     "ability": "Your cards that cost 5 or more cost 1 less.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-idol-of-the-deep-woods.jpg",
+     "type": "relic"
     }
    ]
   },
@@ -11724,7 +12108,7 @@
      "faction": "zephek",
      "pool": "fandom",
      "cost": 3,
-     "atk": 2,
+     "atk": 3,
      "hp": 1,
      "kw": "Charge",
      "bc": "bcHero1",
@@ -12595,6 +12979,86 @@
       "name": "Oathbound",
       "desc": "Your Lifesteal minions enter play with +1/+1."
      }
+    },
+    {
+     "id": "the-imperial-tithe@zephek",
+     "name": "The Imperial Tithe",
+     "fl": "The Emperor's share is taken first.",
+     "faction": "zephek",
+     "pool": "fandom",
+     "cost": 4,
+     "rarity": "rare",
+     "file": "art/the-imperial-tithe.jpg",
+     "bc": null,
+     "dr": null,
+     "fx": "fxMana3",
+     "ability": "Gain 3 Mana this turn.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-imperial-tithe.jpg",
+     "type": "edict"
+    },
+    {
+     "id": "the-vigil-of-steel@zephek",
+     "name": "The Vigil of Steel",
+     "fl": "Steel does not sleep.",
+     "faction": "zephek",
+     "pool": "fandom",
+     "cost": 2,
+     "rarity": "common",
+     "file": "art/the-vigil-of-steel.jpg",
+     "bc": null,
+     "dr": null,
+     "fx": "fxFormation",
+     "ability": "Give your Guards +2 Health.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-vigil-of-steel.jpg",
+     "type": "edict"
+    },
+    {
+     "id": "the-dawn-edict@zephek",
+     "name": "The Dawn Edict",
+     "fl": "Signed at dusk, delivered at first light.",
+     "faction": "zephek",
+     "pool": "fandom",
+     "cost": 3,
+     "rarity": "rare",
+     "file": "art/the-dawn-edict.jpg",
+     "bc": null,
+     "dr": null,
+     "fx": "fxDecreeMuster",
+     "ability": "Decree: at the start of your next turn, summon two Conscripts.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-dawn-edict.jpg",
+     "type": "edict"
+    },
+    {
+     "id": "the-saint-s-reliquary@zephek",
+     "name": "The Saint's Reliquary",
+     "fl": "Faith, gilded and locked.",
+     "faction": "zephek",
+     "pool": "fandom",
+     "cost": 3,
+     "rarity": "epic",
+     "file": "art/the-saint-s-reliquary.jpg",
+     "bc": null,
+     "dr": null,
+     "rl": "rlReliquary",
+     "ability": "Blessed: your Sovereign's passive magnitudes are all increased by 1.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-saint-s-reliquary.jpg",
+     "type": "relic"
+    },
+    {
+     "id": "the-iron-basilica@zephek",
+     "name": "The Iron Basilica",
+     "fl": "A cathedral with a firing plan.",
+     "faction": "zephek",
+     "pool": "fandom",
+     "cost": 3,
+     "rarity": "epic",
+     "file": "art/the-iron-basilica.jpg",
+     "bc": null,
+     "dr": null,
+     "rl": "rlBasilica",
+     "ability": "Your Guards take 1 less combat damage (minimum 1).",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-iron-basilica.jpg",
+     "type": "relic"
     }
    ]
   },
@@ -14096,6 +14560,54 @@
      "file": "art/toll-of-the-high-roads.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/toll-of-the-high-roads.jpg",
      "ability": "Deal 2 damage to the enemy hero. If you have more minions, draw a card."
+    },
+    {
+     "id": "the-charter-roads@wayfarers",
+     "name": "The Charter Roads",
+     "fl": "The toll is patience.",
+     "faction": "wayfarers",
+     "pool": "neutral",
+     "cost": 1,
+     "rarity": "common",
+     "file": "art/the-charter-roads.jpg",
+     "bc": null,
+     "dr": null,
+     "fx": "fxDecreeMana",
+     "ability": "Decree: at the start of your next turn, gain 2 Mana.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-charter-roads.jpg",
+     "type": "edict"
+    },
+    {
+     "id": "the-free-ports-act@wayfarers",
+     "name": "The Free Ports Act",
+     "fl": "Free trade, and a few things that aren't.",
+     "faction": "wayfarers",
+     "pool": "neutral",
+     "cost": 3,
+     "rarity": "rare",
+     "file": "art/the-free-ports-act.jpg",
+     "bc": null,
+     "dr": null,
+     "fx": "fxEspionage",
+     "ability": "Draw a card. If the enemy holds 4 or more cards, they discard their costliest.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-free-ports-act.jpg",
+     "type": "edict"
+    },
+    {
+     "id": "the-wayfarer-s-compass@wayfarers",
+     "name": "The Wayfarer's Compass",
+     "fl": "It points wherever help is needed most.",
+     "faction": "wayfarers",
+     "pool": "neutral",
+     "cost": 4,
+     "rarity": "epic",
+     "file": "art/the-wayfarer-s-compass.jpg",
+     "bc": null,
+     "dr": null,
+     "rl": "rlForage",
+     "ability": "At the end of your turn, if you control fewer than 3 minions, summon a Conscript.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-wayfarer-s-compass.jpg",
+     "type": "relic"
     }
    ]
   },
@@ -15553,7 +16065,7 @@
      "passive": {
       "id": "SECOND_SIGHT",
       "name": "Second Sight",
-      "desc": "At the start of your turn, if you hold 4 or fewer cards, draw a card."
+      "desc": "At the start of your turn, if you hold 5 or fewer cards, draw a card."
      },
      "ability": null
     },
@@ -15573,7 +16085,7 @@
      "passive": {
       "id": "COURT_INTRIGUE",
       "name": "Court Intrigue",
-      "desc": "Your hero-damage effects deal 1 more."
+      "desc": "Your hero-damage effects deal 2 more."
      },
      "ability": null
     },
@@ -15595,7 +16107,7 @@
      "passive": {
       "id": "CHAOS_LADDER",
       "name": "Chaos is a Ladder",
-      "desc": "Your 2nd or further card drawn in a turn deals 1 damage to a random enemy minion."
+      "desc": "Your 2nd or further card drawn in a turn deals 2 damage to a random enemy minion"
      }
     },
     {
@@ -15639,6 +16151,150 @@
       "name": "Bulwark",
       "desc": "Your Guard minions enter play with +1 HP."
      }
+    },
+    {
+     "id": "the-gilded-ledger@courts",
+     "name": "The Gilded Ledger",
+     "fl": "Every line item, duly collected.",
+     "faction": "courts",
+     "pool": "fandom",
+     "cost": 2,
+     "rarity": "rare",
+     "file": "art/the-gilded-ledger.jpg",
+     "bc": null,
+     "dr": null,
+     "fx": "fxLawTariff",
+     "ability": "Law for a round: enemy cards cost 1 more.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-gilded-ledger.jpg",
+     "type": "edict"
+    },
+    {
+     "id": "whispers-at-court@courts",
+     "name": "Whispers at Court",
+     "fl": "A word in the right ear is worth ten armies.",
+     "faction": "courts",
+     "pool": "fandom",
+     "cost": 2,
+     "rarity": "rare",
+     "file": "art/whispers-at-court.jpg",
+     "bc": null,
+     "dr": null,
+     "fx": "fxEspionage",
+     "ability": "Draw a card. If the enemy holds 4 or more cards, they discard their costliest.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/whispers-at-court.jpg",
+     "type": "edict"
+    },
+    {
+     "id": "the-queen-s-bargain@courts",
+     "name": "The Queen's Bargain",
+     "fl": "Everything has a price; she simply knows yours.",
+     "faction": "courts",
+     "pool": "fandom",
+     "cost": 3,
+     "rarity": "rare",
+     "file": "art/the-queen-s-bargain.jpg",
+     "bc": null,
+     "dr": null,
+     "fx": "fxDraw3",
+     "ability": "Draw three cards.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-queen-s-bargain.jpg",
+     "type": "edict"
+    },
+    {
+     "id": "the-judicial-duel@courts",
+     "name": "The Judicial Duel",
+     "fl": "Let the strongest argue their case.",
+     "faction": "courts",
+     "pool": "fandom",
+     "cost": 4,
+     "rarity": "rare",
+     "file": "art/the-judicial-duel.jpg",
+     "bc": null,
+     "dr": null,
+     "fx": "fxSnipe4",
+     "ability": "Deal 4 damage to the strongest enemy minion.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-judicial-duel.jpg",
+     "type": "edict"
+    },
+    {
+     "id": "the-crown-s-debt@courts",
+     "name": "The Crown's Debt",
+     "fl": "The crown always collects — eventually.",
+     "faction": "courts",
+     "pool": "fandom",
+     "cost": 2,
+     "rarity": "rare",
+     "file": "art/the-crown-s-debt.jpg",
+     "bc": null,
+     "dr": null,
+     "fx": "fxDecreeDraw",
+     "ability": "Decree: at the start of your next turn, draw two cards.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-crown-s-debt.jpg",
+     "type": "edict"
+    },
+    {
+     "id": "the-small-council@courts",
+     "name": "The Small Council",
+     "fl": "They meet in small rooms and move large kingdoms.",
+     "faction": "courts",
+     "pool": "fandom",
+     "cost": 2,
+     "rarity": "rare",
+     "file": "art/the-small-council.jpg",
+     "bc": null,
+     "dr": null,
+     "fx": "fxScry2",
+     "ability": "Scry 2 — draw the best of the top 2 cards of your deck.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-small-council.jpg",
+     "type": "edict"
+    },
+    {
+     "id": "the-gilded-vault@courts",
+     "name": "The Gilded Vault",
+     "fl": "The locks are ceremonial; the gold is not.",
+     "faction": "courts",
+     "pool": "fandom",
+     "cost": 2,
+     "rarity": "epic",
+     "file": "art/the-gilded-vault.jpg",
+     "bc": null,
+     "dr": null,
+     "rl": "rlVault",
+     "ability": "Once per turn: the first card you play costs 1 less.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-gilded-vault.jpg",
+     "type": "relic"
+    },
+    {
+     "id": "the-coinmaster-s-scales@courts",
+     "name": "The Coinmaster's Scales",
+     "fl": "Heavy purse, heavier toll.",
+     "faction": "courts",
+     "pool": "fandom",
+     "cost": 3,
+     "rarity": "epic",
+     "file": "art/the-coinmaster-s-scales.jpg",
+     "bc": null,
+     "dr": null,
+     "rl": "rlScales",
+     "ability": "Enemy cards that cost 4 or more cost 1 more.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-coinmaster-s-scales.jpg",
+     "type": "relic"
+    },
+    {
+     "id": "the-court-chronicler@courts",
+     "name": "The Court Chronicler",
+     "fl": "History is written by whoever pays the ink bill.",
+     "faction": "courts",
+     "pool": "fandom",
+     "cost": 4,
+     "rarity": "epic",
+     "file": "art/the-court-chronicler.jpg",
+     "bc": null,
+     "dr": null,
+     "rl": "rlLibrary",
+     "ability": "At the end of your turn, if you have 2 or more unspent Mana, draw a card.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-court-chronicler.jpg",
+     "type": "relic"
     }
    ]
   },
@@ -17182,6 +17838,150 @@
       "name": "Emberward",
       "desc": "Your hero takes 1 less damage from each source (min 1)."
      }
+    },
+    {
+     "id": "the-winter-levy@kingdoms",
+     "name": "The Winter Levy",
+     "fl": "The fields lie fallow; the spears do not.",
+     "faction": "kingdoms",
+     "pool": "fandom",
+     "cost": 1,
+     "rarity": "common",
+     "file": "art/the-winter-levy.jpg",
+     "bc": null,
+     "dr": null,
+     "fx": "fxRally",
+     "ability": "Summon two 1/1 Conscripts.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-winter-levy.jpg",
+     "type": "edict"
+    },
+    {
+     "id": "the-marches-aflame@kingdoms",
+     "name": "The Marches Aflame",
+     "fl": "Scorched earth is a policy, not an accident.",
+     "faction": "kingdoms",
+     "pool": "fandom",
+     "cost": 5,
+     "rarity": "rare",
+     "file": "art/the-marches-aflame.jpg",
+     "bc": null,
+     "dr": null,
+     "fx": "fxAoe3",
+     "ability": "Deal 3 damage to all enemy minions.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-marches-aflame.jpg",
+     "type": "edict"
+    },
+    {
+     "id": "the-border-truce@kingdoms",
+     "name": "The Border Truce",
+     "fl": "Peace, for a price, for a season.",
+     "faction": "kingdoms",
+     "pool": "fandom",
+     "cost": 1,
+     "rarity": "common",
+     "file": "art/the-border-truce.jpg",
+     "bc": null,
+     "dr": null,
+     "fx": "fxHealHero4",
+     "ability": "Restore 4 HP to your hero.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-border-truce.jpg",
+     "type": "edict"
+    },
+    {
+     "id": "the-rose-accord@kingdoms",
+     "name": "The Rose Accord",
+     "fl": "Two banners, one promise.",
+     "faction": "kingdoms",
+     "pool": "fandom",
+     "cost": 3,
+     "rarity": "rare",
+     "file": "art/the-rose-accord.jpg",
+     "bc": null,
+     "dr": null,
+     "fx": "fxLawMuster",
+     "ability": "Law for a round: your minions enter with +1/+1.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-rose-accord.jpg",
+     "type": "edict"
+    },
+    {
+     "id": "the-quiet-host@kingdoms",
+     "name": "The Quiet Host",
+     "fl": "They march at night and arrive with the fog.",
+     "faction": "kingdoms",
+     "pool": "fandom",
+     "cost": 2,
+     "rarity": "rare",
+     "file": "art/the-quiet-host.jpg",
+     "bc": null,
+     "dr": null,
+     "fx": "fxDecreeMuster",
+     "ability": "Decree: at the start of your next turn, summon two Conscripts.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-quiet-host.jpg",
+     "type": "edict"
+    },
+    {
+     "id": "the-long-winter-watch@kingdoms",
+     "name": "The Long Winter Watch",
+     "fl": "The watch ends when the threat ends.",
+     "faction": "kingdoms",
+     "pool": "fandom",
+     "cost": 6,
+     "rarity": "epic",
+     "file": "art/the-long-winter-watch.jpg",
+     "bc": null,
+     "dr": null,
+     "fx": "fxExecute2",
+     "ability": "Destroy the two enemy minions with the highest Attack.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-long-winter-watch.jpg",
+     "type": "edict"
+    },
+    {
+     "id": "the-chronicler-s-quill@kingdoms",
+     "name": "The Chronicler's Quill",
+     "fl": "Ink outlasts iron.",
+     "faction": "kingdoms",
+     "pool": "fandom",
+     "cost": 4,
+     "rarity": "epic",
+     "file": "art/the-chronicler-s-quill.jpg",
+     "bc": null,
+     "dr": null,
+     "rl": "rlQuill",
+     "ability": "At the start of your turn, your last fallen minion returns as a 1/1 Echo.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-chronicler-s-quill.jpg",
+     "type": "relic"
+    },
+    {
+     "id": "the-unbowed-banner@kingdoms",
+     "name": "The Unbowed Banner",
+     "fl": "It has never touched the ground.",
+     "faction": "kingdoms",
+     "pool": "fandom",
+     "cost": 3,
+     "rarity": "epic",
+     "file": "art/the-unbowed-banner.jpg",
+     "bc": null,
+     "dr": null,
+     "rl": "rlBanner",
+     "ability": "Your Skirmish deals 1 more damage.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-unbowed-banner.jpg",
+     "type": "relic"
+    },
+    {
+     "id": "the-winter-hearth@kingdoms",
+     "name": "The Winter Hearth",
+     "fl": "A full mind, a warm fire.",
+     "faction": "kingdoms",
+     "pool": "fandom",
+     "cost": 1,
+     "rarity": "epic",
+     "file": "art/the-winter-hearth.jpg",
+     "bc": null,
+     "dr": null,
+     "rl": "rlHearth",
+     "ability": "At the start of your turn, if you hold 5 or more cards, restore 2 HP to your hero.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-winter-hearth.jpg",
+     "type": "relic"
     }
    ]
   },
@@ -18725,9 +19525,153 @@
       "name": "Bloodletter",
       "desc": "Your Skirmish deals 2 damage instead of 1."
      }
+    },
+    {
+     "id": "the-novice-trials@towers",
+     "name": "The Novice Trials",
+     "fl": "Many are tested; few are chosen.",
+     "faction": "towers",
+     "pool": "fandom",
+     "cost": 1,
+     "rarity": "common",
+     "file": "art/the-novice-trials.jpg",
+     "bc": null,
+     "dr": null,
+     "fx": "fxScry2",
+     "ability": "Scry 2 — draw the best of the top 2 cards of your deck.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-novice-trials.jpg",
+     "type": "edict"
+    },
+    {
+     "id": "the-nine-seals@towers",
+     "name": "The Nine Seals",
+     "fl": "Each seal breaks in its own hour.",
+     "faction": "towers",
+     "pool": "fandom",
+     "cost": 2,
+     "rarity": "rare",
+     "file": "art/the-nine-seals.jpg",
+     "bc": null,
+     "dr": null,
+     "fx": "fxDecreeMana",
+     "ability": "Decree: at the start of your next turn, gain 2 Mana.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-nine-seals.jpg",
+     "type": "edict"
+    },
+    {
+     "id": "reading-the-weave@towers",
+     "name": "Reading the Weave",
+     "fl": "The pattern was always there.",
+     "faction": "towers",
+     "pool": "fandom",
+     "cost": 3,
+     "rarity": "rare",
+     "file": "art/reading-the-weave.jpg",
+     "bc": null,
+     "dr": null,
+     "fx": "fxScry3",
+     "ability": "Scry 3 — draw the best of the top 3 cards of your deck.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/reading-the-weave.jpg",
+     "type": "edict"
+    },
+    {
+     "id": "the-testing-flame@towers",
+     "name": "The Testing Flame",
+     "fl": "What burns false was never true.",
+     "faction": "towers",
+     "pool": "fandom",
+     "cost": 4,
+     "rarity": "common",
+     "file": "art/the-testing-flame.jpg",
+     "bc": null,
+     "dr": null,
+     "fx": "fxPingAll2",
+     "ability": "Deal 2 damage to all enemy minions.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-testing-flame.jpg",
+     "type": "edict"
+    },
+    {
+     "id": "the-watcher-s-vigil@towers",
+     "name": "The Watcher's Vigil",
+     "fl": "The tower sees everything that crawls.",
+     "faction": "towers",
+     "pool": "fandom",
+     "cost": 1,
+     "rarity": "common",
+     "file": "art/the-watcher-s-vigil.jpg",
+     "bc": null,
+     "dr": null,
+     "fx": "fxPingAll",
+     "ability": "Deal 1 damage to all enemy minions.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-watcher-s-vigil.jpg",
+     "type": "edict"
+    },
+    {
+     "id": "the-circle-of-nine@towers",
+     "name": "The Circle of Nine",
+     "fl": "Nine verdicts, one door.",
+     "faction": "towers",
+     "pool": "fandom",
+     "cost": 2,
+     "rarity": "common",
+     "file": "art/the-circle-of-nine.jpg",
+     "bc": null,
+     "dr": null,
+     "fx": "fxHero3",
+     "ability": "Deal 3 damage to the enemy hero.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-circle-of-nine.jpg",
+     "type": "edict"
+    },
+    {
+     "id": "the-silver-flame@towers",
+     "name": "The Silver Flame",
+     "fl": "It never gutters; it only chooses.",
+     "faction": "towers",
+     "pool": "fandom",
+     "cost": 3,
+     "rarity": "epic",
+     "file": "art/the-silver-flame.jpg",
+     "bc": null,
+     "dr": null,
+     "rl": "rlFlame",
+     "ability": "At the start of your turn, deal 1 damage to the weakest enemy minion.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-silver-flame.jpg",
+     "type": "relic"
+    },
+    {
+     "id": "the-ninefold-amulet@towers",
+     "name": "The Ninefold Amulet",
+     "fl": "One charm, nine incantations.",
+     "faction": "towers",
+     "pool": "fandom",
+     "cost": 2,
+     "rarity": "epic",
+     "file": "art/the-ninefold-amulet.jpg",
+     "bc": null,
+     "dr": null,
+     "rl": "rlAmulet",
+     "ability": "Your edicts cost 1 less.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-ninefold-amulet.jpg",
+     "type": "relic"
+    },
+    {
+     "id": "the-dreamer-s-mirror@towers",
+     "name": "The Dreamer's Mirror",
+     "fl": "It does not show the future. It rearranges it.",
+     "faction": "towers",
+     "pool": "fandom",
+     "cost": 2,
+     "rarity": "epic",
+     "file": "art/the-dreamer-s-mirror.jpg",
+     "bc": null,
+     "dr": null,
+     "rl": "rlMirror",
+     "ability": "When this seats: the best of the top 2 cards of your deck rises to the top.",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-dreamer-s-mirror.jpg",
+     "type": "relic"
     }
    ]
   }
  ],
- "version": "0.15.0"
+ "version": "0.16.0"
 }
