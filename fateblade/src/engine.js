@@ -535,7 +535,9 @@
   // lethal is on the table (their reach vs our HP + our Guard wall).
   function threat(S, side) {
     const p = S[side], foe = S[other(side)];
-    const foeReach = foe.board.reduce((s, m) => s + m.atk * (m.kw === 'Relentless' ? 2 : 1), 0);
+    const foeReach = foe.board.reduce((s, m) => s + m.atk * (m.kw === 'Relentless' ? 2 : 1), 0)
+      + powerDmg(S, other(side)) // v0.18: their Skirmish comes back around — a player counts it
+      + (hasP(foe, 'ART_OF_WAR') && foe.board.filter((m) => m.kw === 'Guard').length > p.board.length ? 1 : 0); // v0.18: their cannon is loaded
     const guardHp = p.board.filter((m) => m.kw === 'Guard').reduce((s, m) => s + m.hp, 0);
     return { foeReach, guardHp, danger: foeReach > 0 && foeReach >= p.hp + guardHp };
   }
@@ -581,6 +583,94 @@
     }
     p.plan = { aggro: (charge + burn) >= 6, control: (guard + removal) >= 8, guard, ranged, tokens };
     return p.plan;
+  }
+
+  // ---------- v0.18 AI: the spy — public information, read like a player ----------
+  // Everything a human spectator at the table knows: both sovereigns'
+  // passives (they're on the table from turn one), the foe's hand SIZE, what
+  // they've PLAYED (the public event log is the play-by-play every player
+  // watches), and the copy rules (2x common/rare, 1x epic — "they already
+  // played their one epic sweep, the board is safe now"). The doctrine decks
+  // are the known meta: a sharp player assumes the netdeck until proven
+  // otherwise, and counts answers as they're spent.
+  function seenPlays(S, side) {
+    const m = {};
+    for (const e of S.events) {
+      if (e.side !== side) continue;
+      if (e.t !== 'edict' && e.t !== 'relic' && e.t !== 'play') continue;
+      if (e.id === 'TOKEN' || e.id === 'ECHO' || (e.id || '').startsWith('ECHO@')) continue;
+      m[e.id] = (m[e.id] || 0) + 1;
+    }
+    return m;
+  }
+  // spyRead(): the answer count. Sweep/removal/burn/heal their list CAN still
+  // hold = deck copies minus what the log shows them play. Deterministic —
+  // same visible game, same read.
+  function spyRead(S, side) {
+    const foeSide = other(side), foe = S[foeSide];
+    const seen = seenPlays(S, foeSide);
+    const pool = (foe.fac && foe.fac.cards) || [];
+    const byId = new Map(pool.map((c) => [c.id, c]));
+    const list = (foe.fac && foe.fac.defaultDeck && foe.fac.defaultDeck.length)
+      ? foe.fac.defaultDeck : pool.map((c) => c.id);
+    const cnt = {}; for (const id of list) cnt[id] = (cnt[id] || 0) + 1;
+    let sweep = 0, removal = 0, burn = 0, heal = 0;
+    for (const id of Object.keys(cnt)) {
+      const c = byId.get(id); if (!c) continue;
+      const cap = (c.rarity === 'epic' || c.rarity === 'legendary') ? 1 : 2;
+      const left = Math.max(0, Math.min(cnt[id], cap) - (seen[id] || 0));
+      if (!left) continue;
+      if (['fxPingAll', 'fxPingAll2', 'fxAoe2', 'fxAoe3'].includes(c.fx)) sweep += left;
+      else if (['fxSnipe3', 'fxSnipe4', 'fxExecute', 'fxExecute2'].includes(c.fx)) removal += left;
+      else if (['fxPillage', 'fxHero3', 'fxVolley', 'fxVolley2'].includes(c.fx)) burn += left;
+      else if (['fxHealHero4', 'fxHealHero6'].includes(c.fx)) heal += left;
+    }
+    return {
+      sweep, removal, burn, heal,
+      foeHand: foe.hand.length,
+      handEmpty: foe.hand.length === 0,
+      handBig: foe.hand.length >= 5,
+      foeDeck: foe.deck.length,
+      foeFatigue: !foe.deck.length,
+      foeScorched: hasP(foe, 'SCORCHED_EARTH'),
+    };
+  }
+  // sovSynergy(): play INTO your own sovereign — the passive is why you picked
+  // this leader; draft your lines toward its conditions.
+  function sovSynergy(S, side, c) {
+    let v = 0; const p = S[side], foe = S[other(side)];
+    const drawish = c.fx && ['fxDraw2', 'fxDraw3', 'fxScry2', 'fxScry3', 'fxDecreeDraw', 'fxEspionage', 'fxLawTariff'].includes(c.fx);
+    const sweepFx = c.fx && ['fxPingAll', 'fxPingAll2', 'fxAoe2', 'fxAoe3'].includes(c.fx);
+    const burnFx = c.fx && ['fxPillage', 'fxHero3', 'fxVolley', 'fxVolley2'].includes(c.fx);
+    if (hasP(p, 'WEAVE') && sweepFx) v += 0.5;                 // rites amplify every sweep
+    if (hasP(p, 'COURT_INTRIGUE') && burnFx) v += 0.3;         // rites amplify the burn
+    if (hasP(p, 'STANDARDS') && c.kw === 'Guard') v += p.board.filter((m) => m.kw === 'Guard').length < 3 ? 0.4 : 0.3; // 3 Guards = the draw engine
+    else if ((hasP(p, 'BULWARK') || hasP(p, 'TESTUDO') || hasP(p, 'ART_OF_WAR') || hasP(p, 'VANGUARD')) && c.kw === 'Guard') v += 0.3;
+    if (hasP(p, 'MOONLIGHT') && c.kw === 'Lifesteal') v += 0.6; // the engine is live
+    if (hasP(p, 'SOULTITHE') && c.kw === 'Lifesteal') v += 0.4;
+    if (hasP(p, 'ORIFLAMME') && c.kw === 'Charge') v += 0.3;
+    if (hasP(p, 'NIZARI') && c.kw === 'Charge') v += 0.3;
+    if (hasP(p, 'STRAFING') && c.kw === 'Ranged') v += 0.3;
+    if (hasP(p, 'PICKET') && c.type === 'minion' && c.cost <= 2) v += 0.25;
+    if (hasP(p, 'BAZAAR') && c.type === 'edict') v += 0.25;
+    if (hasP(p, 'TARGETING_GRID') && drawish && p.hand.length <= 4) v += 0.5; // fuel the grid
+    if ((hasP(p, 'PRIVATEERING') || hasP(p, 'CHAOS_LADDER')) && drawish) v += 0.3;
+    if (hasP(p, 'FOR_THE_EMPEROR') && c.type === 'minion' && p.board.length < 4) v += 0.2;
+    if (hasP(p, 'BLOCKADE') && c.type === 'minion' && p.board.length + 2 <= foe.board.length) v += 0.2;
+    return v;
+  }
+  // spyAdjust(): play AROUND their answers — the counting-cards layer.
+  function spyAdjust(S, side, c, spy) {
+    let v = 0; const p = S[side];
+    // a "wide" line floods the board: cheap minions or the token rituals
+    const wide = (c.type === 'minion' && c.cost <= 2) || (c.fx && ['fxRally', 'fxRally3', 'fxLevy', 'fxDecreeMuster', 'fxLawMuster'].includes(c.fx));
+    if (spy.handBig && spy.sweep > 0 && wide) v -= 0.3;          // they're holding clears — don't overcommit
+    if (spy.sweep === 0 && wide) v += 0.3;                        // their clears are spent — the board is safe
+    if (spy.removal === 0 && c.type === 'minion' && c.atk + c.hp >= 10) v += 0.4; // no Execute left: big bodies are free
+    if (spy.burn === 0 && spy.heal === 0 && c.fx === 'fxPillage') v += 0.2;       // no outs: close the door
+    if (spy.handEmpty && (c.kw === 'Charge' || (c.fx && ['fxPillage', 'fxHero3'].includes(c.fx)))) v += 0.4; // topdeck town: all-in
+    if (spy.foeFatigue && p.deck.length > 0 && (c.kw === 'Guard' || (c.fx && ['fxHealHero4', 'fxHealHero6'].includes(c.fx)))) v += 0.3; // they're decking: walls win the race
+    return v;
   }
 
   // ---------- AI brains ----------
@@ -641,6 +731,7 @@
     const atk = (u, t) => { attack(S, side, u, t); if (snap) snap(S); };
 
     const th = threat(S, side);
+    const spy = spyRead(S, side); // v0.18: count their outs
     const pd0 = canPower(S, side) ? powerDmg(S, side) : 0;
     const readyAtk0 = me.board.filter((m) => m.ready).reduce((s, m) => s + m.atk, 0);
     const lethal = !foe.board.some((m) => m.kw === 'Guard') && foe.hp <= readyAtk0 + pd0 + burnInHand(S, side);
@@ -657,6 +748,7 @@
       me.hand.forEach((c, i) => {
         if (!canPlay(S, side, i)) return;
         let nv = evScore(S, side, c) - effCost(S, side, c) * 0.2;
+        nv += sovSynergy(S, side, c) + spyAdjust(S, side, c, spy); // v0.18: leader lines + counting their outs
         // v0.17.1: under lethal threat, defensive lines are DOUBLED and
         // non-defensive lines are taxed — "don't die" beats "big body".
         const sb = survivalBonus(S, side, c, th);
@@ -680,9 +772,12 @@
 
     // attacks
     const guard = () => foe.board.some((m) => m.kw === 'Guard');
+    // v0.18: against Scorched Earth, going face sweeps our own 1-HP board —
+    // a player checks their leader before swinging
+    const scorchCautious = spy.foeScorched && me.board.filter((m) => m.hp === 1).length >= 3 && foe.hp > 15 && !lethal;
     const sweep = () => me.board.slice().forEach((m) => {
       if (!me.board.find((x) => x.uid === m.uid) || !m.ready) return; // died mid-loop
-      if (!foe.board.length && !guard() && !m.shocked) { atk(m.uid, { hero: true }); return; }
+      if (!foe.board.length && !guard() && !m.shocked && !scorchCautious) { atk(m.uid, { hero: true }); return; }
       if (foe.hp <= m.atk && !guard() && !m.shocked) { atk(m.uid, { hero: true }); return; }
       // favorable trades: kill something without dying (or dying to something smaller than us)
       const opts = foe.board.filter((t) =>
@@ -692,7 +787,7 @@
         atk(m.uid, { uid: t.uid });
         return;
       }
-      if (!guard() && !m.shocked) { atk(m.uid, { hero: true }); return; }
+      if (!guard() && !m.shocked && !scorchCautious) { atk(m.uid, { hero: true }); return; }
       // v0.6.4: never pass forever into a Guard wall — kill one if possible,
       // otherwise chip the weakest Guard (the old pass-only behavior stalled
       // 12-14% of games at the turn cap).
@@ -840,6 +935,7 @@
 
     const plan = deckPlan(S, side); // v0.17: the marshal knows what deck he's piloting
     const th = threat(S, side);      // v0.17: and whether lethal is coming back at him
+    const spy = spyRead(S, side);    // v0.18: and counts their remaining outs like a sharp
 
     // THE PLAY EVALUATOR: score every affordable card in context; play the best
     // EV above a hold threshold, repeat while plays remain worthwhile.
@@ -853,6 +949,7 @@
       me.hand.forEach((c, i) => {
         if (!canPlay(S, side, i)) return;
         let v = evScore(S, side, c) - effCost(S, side, c) * 0.2;
+        v += sovSynergy(S, side, c) + spyAdjust(S, side, c, spy); // v0.18: leader lines + counting their outs
         // v0.17: plan-weighted lines — aggro decks push face damage and Charges,
         // control decks prize removal and walls; under lethal threat, survive first.
         if (plan.aggro && (c.fx === 'fxPillage' || c.fx === 'fxHero3' || c.fx === 'fxVolley' || c.fx === 'fxVolley2' || c.kw === 'Charge')) v += 0.4;
@@ -887,6 +984,8 @@
     }
 
     // attacks: biggest attackers decide first, so small minions clean up after them
+    // v0.18: against Scorched Earth, going face sweeps our own 1-HP board
+    const scorchCautious = spy.foeScorched && me.board.filter((m) => m.hp === 1).length >= 3 && foe.hp > 15 && !lethal;
     const sweep = () => me.board.slice().sort((a, b) => b.atk - a.atk).forEach((m) => {
       if (!me.board.find((x) => x.uid === m.uid) || !m.ready) return; // died mid-loop
       if (lethal && !guards().length && !m.shocked) { atk(m.uid, { hero: true }); return; }
@@ -904,7 +1003,7 @@
       }
 
       const gs = guards();
-      if (!gs.length) { if (!m.shocked) atk(m.uid, { hero: true }); return; }
+      if (!gs.length) { if (!m.shocked && !scorchCautious) atk(m.uid, { hero: true }); return; }
       // must chew through a Guard: kill one if possible, otherwise bleed the weakest
       const killable = gs.filter((g) => g.hp <= m.atk).sort((a, b) => b.atk - a.atk)[0];
       const g = killable || gs.slice().sort((a, b) => a.hp - b.hp)[0];
@@ -934,5 +1033,6 @@
     KWTXT, KWDESC, hasP, powerDmg, powerCost, effCost,
     other, startMatch, draw,
     canPlay, playCard, canAttack, attack, canPower, power, endTurn, checkEnd, aiTurn,
+    threat, spyRead, seenPlays, sovSynergy, spyAdjust, deckPlan,
   };
 });
