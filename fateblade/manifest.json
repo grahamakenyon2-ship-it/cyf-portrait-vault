@@ -1,14 +1,14 @@
 {
-  "version": "0.17.0",
+  "version": "0.18.0",
   "files": [
     {
       "path": "src/engine.js",
-      "sha256": "51d30e152f63704ca0cc7bec0d5801f93e577f56eab1a36f1fc669de674d3cc0",
+      "sha256": "dc712e025a970b4f0b48648514fde39b79775fe111587140cc182bef1e3faa40",
       "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/src/engine.js"
     },
     {
       "path": "src/game.html",
-      "sha256": "899a455068ed2f191a70e743b094141d2234327e97faa142b6a666f6fa4cc463",
+      "sha256": "d253ce1a8bda22b62229f687be9a5a82c3b775594c6262f3b8cacdf334904347",
       "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/src/game.html"
     },
     {
