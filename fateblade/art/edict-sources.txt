@@ -95,19 +95,19 @@ training-grounds.jpg | commons:sword fight medieval painting
 # ====================================================================
 
 # --- The Gilded Courts (expansion: +6 edicts +3 relics) ---
-the-gilded-ledger.jpg | commons:Renaissance banking ledger painting
-whispers-at-court.jpg | commons:courtiers whispering palace painting
+the-gilded-ledger.jpg | commons:Luca Pacioli
+whispers-at-court.jpg | commons:Las Meninas
 the-queen-s-bargain.jpg | commons:Renaissance queen portrait painting
-the-judicial-duel.jpg | commons:judicial duel medieval painting
-the-crown-s-debt.jpg | commons:Renaissance gold coins painting
+the-judicial-duel.jpg | commons:trial by combat
+the-crown-s-debt.jpg | commons:moneylender and his wife
 the-small-council.jpg | commons:Renaissance council chamber painting
 the-gilded-vault.jpg | commons:treasure vault gold painting
 the-coinmaster-s-scales.jpg | commons:balance scales gold coins painting
 the-court-chronicler.jpg | commons:scribe writing manuscript miniature
 
 # --- The Warring Kingdoms (expansion: +6 edicts +3 relics) ---
-the-winter-levy.jpg | commons:medieval peasant army painting
-the-marches-aflame.jpg | commons:medieval castle siege painting
+the-winter-levy.jpg | commons:Peasants' Revolt
+the-marches-aflame.jpg | commons:Siege of Orleans
 the-border-truce.jpg | commons:medieval treaty signing painting
 the-rose-accord.jpg | commons:white rose red rose heraldry
 the-quiet-host.jpg | commons:medieval funeral procession painting
@@ -121,18 +121,18 @@ the-novice-trials.jpg | commons:candlelit library painting
 the-nine-seals.jpg | commons:medieval wax seal document
 reading-the-weave.jpg | commons:zodiac celestial manuscript
 the-testing-flame.jpg | commons:candle flame in darkness
-the-watcher-s-vigil.jpg | commons:monastery night vigil painting
+the-watcher-s-vigil.jpg | commons:monk praying painting
 the-circle-of-nine.jpg | commons:Raphael School of Athens
-the-silver-flame.jpg | commons:temple lamp flame painting
+the-silver-flame.jpg | commons:Magdalen with the Smoking Flame
 the-ninefold-amulet.jpg | commons:ancient amulet talisman museum
 the-dreamer-s-mirror.jpg | commons:antique hand mirror painting
 
 # --- Stormlit / The Elderkin (expansion: +3 edicts +2 relics) ---
-the-elder-moot.jpg | commons:Arthur Rackham forest painting
+the-elder-moot.jpg | commons:Arthur Rackham
 wildsong-rising.jpg | commons:Arthur Rackham fairy painting
 the-forge-blessing.jpg | commons:Rackham gnomes illustration
-the-glade-ward.jpg | commons:mystic forest temple painting
-the-moonwell-vial.jpg | commons:moonlit forest pond painting
+the-glade-ward.jpg | commons:sacred grove
+the-moonwell-vial.jpg | commons:moonlight landscape painting
 
 # --- Starwind / Alien Dominion (expansion: +3 edicts +2 relics) ---
 rite-of-ascension.jpg | commons:nebula NASA Hubble
@@ -143,7 +143,7 @@ the-war-standard-of-the-houses.jpg | commons:aurora borealis photo
 
 # --- Zephek / Human Star Empire (expansion: +3 edicts +2 relics) ---
 the-imperial-tithe.jpg | commons:medieval tax collectors painting
-the-vigil-of-steel.jpg | commons:knight armor hall museum
+the-vigil-of-steel.jpg | commons:medieval knight armor
 the-dawn-edict.jpg | commons:dramatic sunrise over mountains painting
 the-saint-s-reliquary.jpg | commons:gold reliquary museum
 the-iron-basilica.jpg | commons:gothic cathedral interior painting
@@ -156,19 +156,19 @@ the-warlord-s-drum.jpg | commons:war drum museum
 the-idol-of-the-deep-woods.jpg | commons:green man carving church
 
 # --- Crescent (expansion: +2 edicts +1 relic — thin pool top-up) ---
-the-guild-purse.jpg | commons:Ottoman coins treasure
+the-guild-purse.jpg | commons:Ottoman akce coin
 the-astrologer-s-court.jpg | commons:Islamic astronomy manuscript
 the-grand-cistern.jpg | commons:Basilica Cistern Istanbul
 
 # --- Ironsteppes (expansion: +2 edicts +1 relic — weak realm top-up) ---
 the-satrap-s-court.jpg | commons:Persian court miniature painting
-the-steppe-courier.jpg | commons:Mongol horseman painting
+the-steppe-courier.jpg | commons:Mongolian horseman riding
 the-great-tent.jpg | commons:yurt mongolian steppe
 
 # --- Wayfarers' Guild (expansion: +2 edicts +1 relic — helps everyone) ---
 the-charter-roads.jpg | commons:medieval bridge road painting
 the-free-ports-act.jpg | commons:old harbor sailing ships painting
-the-wayfarer-s-compass.jpg | commons:antique compass astrolabe
+the-wayfarer-s-compass.jpg | commons:compass rose
 
 # --- Barning / Lucerre / Fenorian (expansion: +1 relic each — parity) ---
 the-admiralty-charts.jpg | commons:antique nautical chart map
@@ -188,13 +188,13 @@ iron-crown.jpg | commons:medieval crown gold museum
 dragon-prow.jpg | commons:Viking ship dragon carving
 plague-doctor.jpg | commons:plague doctor costume engraving
 executioner-s-blade.jpg | commons:executioner sword museum
-desert-caravan.jpg | commons:desert caravan pyramids painting
+desert-caravan.jpg | commons:desert caravan
 northern-armada.jpg | commons:battleship fleet painting
 cryo-vault.jpg | commons:glacier ice cave blue
 orbital-ring.jpg | commons:International Space Station orbit
 blood-moon.jpg | commons:lunar eclipse red moon
 standing-stones.jpg | commons:Stonehenge sunset
-spice-bazaar.jpg | commons:spice market bazaar painting
+spice-bazaar.jpg | commons:spice market
 battle-standard.jpg | commons:Roman standard reenactment
 
 # ====================================================================
