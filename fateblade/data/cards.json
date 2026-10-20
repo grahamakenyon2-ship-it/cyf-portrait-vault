@@ -1522,6 +1522,69 @@
      "file": "art/the-masthead-lookout.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-masthead-lookout.jpg",
      "ability": "Your Ranged minions get +1 Attack — now and as they arrive."
+    },
+    {
+     "id": "william-rufus@barning",
+     "name": "William Rufus",
+     "fl": "Every harbor pays the Crown its due.",
+     "faction": "barning",
+     "pool": "history",
+     "cost": 6,
+     "atk": 5,
+     "hp": 7,
+     "kw": "Ranged",
+     "rarity": "legendary",
+     "file": "history/england/william_20rufus.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/history/england/william_20rufus.jpg",
+     "bc": null,
+     "dr": null,
+     "passive": {
+      "id": "PRIVATEERING",
+      "name": "Privateering",
+      "desc": "Whenever you draw a card outside your draw phase, deal 1 damage to the enemy hero."
+     }
+    },
+    {
+     "id": "arthur-tudor@barning",
+     "name": "Arthur Tudor",
+     "fl": "The sea remembers its own.",
+     "faction": "barning",
+     "pool": "history",
+     "cost": 7,
+     "atk": 4,
+     "hp": 9,
+     "kw": "Guard",
+     "rarity": "legendary",
+     "file": "history/england/arthur_20tudor.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/history/england/arthur_20tudor.jpg",
+     "bc": null,
+     "dr": null,
+     "passive": {
+      "id": "BLOCKADE",
+      "name": "Blockade",
+      "desc": "At the start of your turn, if the enemy outnumbers you by 2 or more, summon a 1/1 Conscript."
+     }
+    },
+    {
+     "id": "philip-sidney@barning",
+     "name": "Philip Sidney",
+     "fl": "Every harbor pays the Crown its due.",
+     "faction": "barning",
+     "pool": "history",
+     "cost": 6,
+     "atk": 5,
+     "hp": 6,
+     "kw": "Lifesteal",
+     "rarity": "legendary",
+     "file": "history/england/philip_20sidney.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/history/england/philip_20sidney.jpg",
+     "bc": null,
+     "dr": null,
+     "passive": {
+      "id": "BAZAAR",
+      "name": "Bazaar",
+      "desc": "Your first edict each turn costs 1 less."
+     }
     }
    ]
   },
@@ -1687,9 +1750,9 @@
      "file": "history/france/louis_20ix.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/history/france/louis_20ix.jpg",
      "passive": {
-      "id": "BULWARK",
-      "name": "Bulwark",
-      "desc": "Your Guard minions enter play with +1 HP."
+      "id": "ORIFLAMME",
+      "name": "Oriflamme",
+      "desc": "Your first Charge minion each turn costs 1 less."
      }
     },
     {
@@ -3044,6 +3107,69 @@
      "file": "art/the-royal-standard.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-royal-standard.jpg",
      "ability": "Your Guards get +1 Attack — now and as they arrive."
+    },
+    {
+     "id": "philip-iv@lucerre",
+     "name": "Philip IV",
+     "fl": "The banner never lowers.",
+     "faction": "lucerre",
+     "pool": "history",
+     "cost": 6,
+     "atk": 6,
+     "hp": 5,
+     "kw": "Charge",
+     "rarity": "legendary",
+     "file": "history/kingdom-of-france/philip_20iv_20the.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/history/kingdom-of-france/philip_20iv_20the.jpg",
+     "bc": null,
+     "dr": null,
+     "passive": {
+      "id": "VANGUARD",
+      "name": "Vanguard",
+      "desc": "Your Charge minions enter play with +1 ATK."
+     }
+    },
+    {
+     "id": "alexandre-millerand@lucerre",
+     "name": "Alexandre Millerand",
+     "fl": "Chivalry, sharpened.",
+     "faction": "lucerre",
+     "pool": "history",
+     "cost": 7,
+     "atk": 5,
+     "hp": 8,
+     "kw": "Guard",
+     "rarity": "legendary",
+     "file": "history/kingdom-of-france/alexandre_20millerand.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/history/kingdom-of-france/alexandre_20millerand.jpg",
+     "bc": null,
+     "dr": null,
+     "passive": {
+      "id": "MARCHING_ORDERS",
+      "name": "Marching Orders",
+      "desc": "At the start of your turn, give your weakest minion +1/+1."
+     }
+    },
+    {
+     "id": "philip-vi@lucerre",
+     "name": "Philip VI",
+     "fl": "The banner never lowers.",
+     "faction": "lucerre",
+     "pool": "history",
+     "cost": 6,
+     "atk": 4,
+     "hp": 7,
+     "kw": null,
+     "rarity": "legendary",
+     "file": "history/kingdom-of-france/philip_20vi.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/history/kingdom-of-france/philip_20vi.jpg",
+     "bc": null,
+     "dr": null,
+     "passive": {
+      "id": "PICKET",
+      "name": "Picket Line",
+      "desc": "Your minions that cost 2 or less enter play with +1/+1."
+     }
     }
    ]
   },
@@ -4566,6 +4692,69 @@
      "file": "art/the-public-granaries.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-public-granaries.jpg",
      "ability": "At the start of your turn, restore 1 HP to your hero."
+    },
+    {
+     "id": "john-iii-vatatzes@fenorian",
+     "name": "John III Vatatzes",
+     "fl": "The legion does not break.",
+     "faction": "fenorian",
+     "pool": "history",
+     "cost": 7,
+     "atk": 5,
+     "hp": 8,
+     "kw": "Guard",
+     "rarity": "legendary",
+     "file": "history/byzantine-empire/john_20iii_20vatatzes.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/history/byzantine-empire/john_20iii_20vatatzes.jpg",
+     "bc": null,
+     "dr": null,
+     "passive": {
+      "id": "TESTUDO",
+      "name": "Testudo",
+      "desc": "Your Guard minions take 1 less combat damage (min 1)."
+     }
+    },
+    {
+     "id": "aurelian@fenorian",
+     "name": "Aurelian",
+     "fl": "Duty carved in marble.",
+     "faction": "fenorian",
+     "pool": "history",
+     "cost": 6,
+     "atk": 3,
+     "hp": 8,
+     "kw": "Guard",
+     "rarity": "legendary",
+     "file": "history/roman-empire/aurelian.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/history/roman-empire/aurelian.jpg",
+     "bc": null,
+     "dr": null,
+     "passive": {
+      "id": "STANDARDS",
+      "name": "Standards",
+      "desc": "At the start of your turn, if you control 3 or more Guards, draw a card."
+     }
+    },
+    {
+     "id": "galerius@fenorian",
+     "name": "Galerius",
+     "fl": "The legion does not break.",
+     "faction": "fenorian",
+     "pool": "history",
+     "cost": 6,
+     "atk": 7,
+     "hp": 4,
+     "kw": "Charge",
+     "rarity": "legendary",
+     "file": "history/roman-empire/galerius.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/history/roman-empire/galerius.jpg",
+     "bc": null,
+     "dr": null,
+     "passive": {
+      "id": "GLORY_IN_BATTLE",
+      "name": "Glory in Battle",
+      "desc": "When your minion dies during your attack, deal 3 damage to the enemy hero."
+     }
     }
    ]
   },
@@ -5544,6 +5733,69 @@
      "file": "art/the-caravanserais.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-caravanserais.jpg",
      "ability": "At the end of your turn, if you control fewer than 3 minions, summon a Conscript."
+    },
+    {
+     "id": "ubayd-allah@crescent",
+     "name": "Ubayd Allah",
+     "fl": "Victory is a garden; tend it.",
+     "faction": "crescent",
+     "pool": "history",
+     "cost": 6,
+     "atk": 6,
+     "hp": 5,
+     "kw": "Charge",
+     "rarity": "legendary",
+     "file": "history/fatimid-caliphate/ubayd_20allah_20al.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/history/fatimid-caliphate/ubayd_20allah_20al.jpg",
+     "bc": null,
+     "dr": null,
+     "passive": {
+      "id": "NIZARI",
+      "name": "Nizari",
+      "desc": "Your Charge minions enter play with Aegis."
+     }
+    },
+    {
+     "id": "nefertiti@crescent",
+     "name": "Nefertiti",
+     "fl": "The sabre and the star.",
+     "faction": "crescent",
+     "pool": "history",
+     "cost": 7,
+     "atk": 5,
+     "hp": 7,
+     "kw": null,
+     "rarity": "legendary",
+     "file": "history/ancient-egypt/nefertiti.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/history/ancient-egypt/nefertiti.jpg",
+     "bc": null,
+     "dr": null,
+     "passive": {
+      "id": "CHAOS_LADDER",
+      "name": "Chaos is a Ladder",
+      "desc": "Your 2nd or further card drawn in a turn deals 1 damage to a random enemy minion."
+     }
+    },
+    {
+     "id": "al-adid@crescent",
+     "name": "Al-Adid",
+     "fl": "Victory is a garden; tend it.",
+     "faction": "crescent",
+     "pool": "history",
+     "cost": 6,
+     "atk": 4,
+     "hp": 7,
+     "kw": "Guard",
+     "rarity": "legendary",
+     "file": "history/fatimid-caliphate/al_20adid.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/history/fatimid-caliphate/al_20adid.jpg",
+     "bc": null,
+     "dr": null,
+     "passive": {
+      "id": "BAZAAR",
+      "name": "Bazaar",
+      "desc": "Your first edict each turn costs 1 less."
+     }
     }
    ]
   },
@@ -6590,6 +6842,69 @@
      "file": "art/the-iron-yards.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-iron-yards.jpg",
      "ability": "Your Conscripts are summoned as 2/2."
+    },
+    {
+     "id": "abu-said@ironsteppes",
+     "name": "Abu Said",
+     "fl": "Every furnace births an army.",
+     "faction": "ironsteppes",
+     "pool": "history",
+     "cost": 6,
+     "atk": 5,
+     "hp": 6,
+     "kw": null,
+     "rarity": "legendary",
+     "file": "history/ilkhanate/abu_20said.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/history/ilkhanate/abu_20said.jpg",
+     "bc": null,
+     "dr": null,
+     "passive": {
+      "id": "HORDEMASTER",
+      "name": "Hordemaster",
+      "desc": "Your Deathrattle: summon effects summon one extra Conscript."
+     }
+    },
+    {
+     "id": "shah-rukh@ironsteppes",
+     "name": "Shah Rukh",
+     "fl": "Every furnace births an army.",
+     "faction": "ironsteppes",
+     "pool": "history",
+     "cost": 7,
+     "atk": 6,
+     "hp": 6,
+     "kw": "Charge",
+     "rarity": "legendary",
+     "file": "history/timurid-empire/shah_20rukh.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/history/timurid-empire/shah_20rukh.jpg",
+     "bc": null,
+     "dr": null,
+     "passive": {
+      "id": "FOR_THE_EMPEROR",
+      "name": "For the Emperor",
+      "desc": "At the start of your turn, if you control 4 or more minions, give your weakest +1 ATK."
+     }
+    },
+    {
+     "id": "husayn-bayqara@ironsteppes",
+     "name": "Husayn Bayqara",
+     "fl": "The storm does not ask permission.",
+     "faction": "ironsteppes",
+     "pool": "history",
+     "cost": 6,
+     "atk": 3,
+     "hp": 9,
+     "kw": "Guard",
+     "rarity": "legendary",
+     "file": "history/timurid-empire/husayn_20bayqara.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/history/timurid-empire/husayn_20bayqara.jpg",
+     "bc": null,
+     "dr": null,
+     "passive": {
+      "id": "SCORCHED_EARTH",
+      "name": "Scorched Earth",
+      "desc": "Once per turn, when your hero takes damage, deal 1 damage to ALL enemy minions."
+     }
     }
    ]
   },
@@ -6653,9 +6968,9 @@
      "bc": "bcHeal2",
      "ability": "Battlecry: restore 2 HP to your hero.",
      "passive": {
-      "id": "LONGSIGHT",
-      "name": "Longsight",
-      "desc": "Your Ranged minions enter play with +1/+1."
+      "id": "BULWARK",
+      "name": "Bulwark",
+      "desc": "Your Guard minions enter play with +1 HP."
      }
     },
     {
@@ -6674,9 +6989,9 @@
      "bc": "bcHeal2",
      "ability": "Battlecry: restore 2 HP to your hero.",
      "passive": {
-      "id": "EMBERWARD",
-      "name": "Emberward",
-      "desc": "Your hero takes 1 less damage from each source (min 1)."
+      "id": "SOULTITHE",
+      "name": "Soultithe",
+      "desc": "Your Lifesteal minions enter play with +1 ATK."
      }
     },
     {
@@ -8060,6 +8375,69 @@
      "file": "art/grand-archive.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/grand-archive.jpg",
      "ability": "At the end of your turn, if you control fewer than 3 minions, summon a Conscript."
+    },
+    {
+     "id": "gilithdir-of-the-deep-roads@stormlit",
+     "name": "Gilithdir of the Deep Roads",
+     "fl": "The Long Memory keeps its own.",
+     "faction": "stormlit",
+     "pool": "fandom",
+     "cost": 7,
+     "atk": 4,
+     "hp": 9,
+     "kw": "Guard",
+     "rarity": "legendary",
+     "file": "the-lord-of-the-rings/erebor/erebor-default-f.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/the-lord-of-the-rings/erebor/erebor-default-f.jpg",
+     "bc": null,
+     "dr": null,
+     "passive": {
+      "id": "NENYA",
+      "name": "Nenya's Grace",
+      "desc": "Playing an edict also restores 1 HP to your hero."
+     }
+    },
+    {
+     "id": "velorwyn@stormlit",
+     "name": "Velorwyn",
+     "fl": "Wounds close; forests remember.",
+     "faction": "stormlit",
+     "pool": "fandom",
+     "cost": 6,
+     "atk": 5,
+     "hp": 7,
+     "kw": "Lifesteal",
+     "rarity": "legendary",
+     "file": "the-lord-of-the-rings/mirkwood/mirkwood-default-m.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/the-lord-of-the-rings/mirkwood/mirkwood-default-m.jpg",
+     "bc": null,
+     "dr": null,
+     "passive": {
+      "id": "STANDARDS",
+      "name": "Standards",
+      "desc": "At the start of your turn, if you control 3 or more Guards, draw a card."
+     }
+    },
+    {
+     "id": "araddor-the-grave-sworn@stormlit",
+     "name": "Araddor the Grave-Sworn",
+     "fl": "Starlight outlasts sieges.",
+     "faction": "stormlit",
+     "pool": "fandom",
+     "cost": 6,
+     "atk": 5,
+     "hp": 6,
+     "kw": "Guard",
+     "rarity": "legendary",
+     "file": "the-lord-of-the-rings/mirkwood/mirkwood-default-f.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/the-lord-of-the-rings/mirkwood/mirkwood-default-f.jpg",
+     "bc": null,
+     "dr": null,
+     "passive": {
+      "id": "MOONLIGHT",
+      "name": "Moonlight",
+      "desc": "At the start of your turn, if you control a Lifesteal minion, restore 3 HP to your hero."
+     }
     }
    ]
   },
@@ -8123,9 +8501,9 @@
      "bc": "bcAoe1",
      "ability": "Battlecry: deal 1 damage to all enemy minions.",
      "passive": {
-      "id": "BLOODLETTER",
-      "name": "Bloodletter",
-      "desc": "Your Skirmish deals 2 damage instead of 1."
+      "id": "LONGSIGHT",
+      "name": "Longsight",
+      "desc": "Your Ranged minions enter play with +1/+1."
      }
     },
     {
@@ -8144,9 +8522,9 @@
      "bc": "bcDraw",
      "ability": "Battlecry: draw a card.",
      "passive": {
-      "id": "LONGSIGHT",
-      "name": "Longsight",
-      "desc": "Your Ranged minions enter play with +1/+1."
+      "id": "STRAFING",
+      "name": "Strafing Run",
+      "desc": "The first Ranged minion you play each turn enters with +1/+1."
      }
     },
     {
@@ -9530,6 +9908,69 @@
      "file": "art/great-granary.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/great-granary.jpg",
      "ability": "At the start of your turn, restore 1 HP to your hero."
+    },
+    {
+     "id": "talorath-the-unbowed@starwind",
+     "name": "Talorath the Unbowed",
+     "fl": "The Dominion does not kneel.",
+     "faction": "starwind",
+     "pool": "fandom",
+     "cost": 6,
+     "atk": 5,
+     "hp": 6,
+     "kw": "Ranged",
+     "rarity": "legendary",
+     "file": "star-trek/the-romulan-star-empire/romulan-default-m.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/star-trek/the-romulan-star-empire/romulan-default-m.jpg",
+     "bc": null,
+     "dr": null,
+     "passive": {
+      "id": "GLORY_IN_BATTLE",
+      "name": "Glory in Battle",
+      "desc": "When your minion dies during your attack, deal 3 damage to the enemy hero."
+     }
+    },
+    {
+     "id": "xeleuk-of-the-hollow-shore@starwind",
+     "name": "Xeleuk of the Hollow Shore",
+     "fl": "The Dominion does not kneel.",
+     "faction": "starwind",
+     "pool": "fandom",
+     "cost": 7,
+     "atk": 4,
+     "hp": 8,
+     "kw": "Ranged",
+     "rarity": "legendary",
+     "file": "warhammer-40-000/the-necrons/necron-default-f.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/warhammer-40-000/the-necrons/necron-default-f.jpg",
+     "bc": null,
+     "dr": null,
+     "passive": {
+      "id": "TARGETING_GRID",
+      "name": "Targeting Grid",
+      "desc": "At the start of your turn, if you hold 4 or more cards, deal 1 damage to the strongest enemy minion."
+     }
+    },
+    {
+     "id": "tavaeth-the-tireless@starwind",
+     "name": "Tavaeth the Tireless",
+     "fl": "The Dominion does not kneel.",
+     "faction": "starwind",
+     "pool": "fandom",
+     "cost": 6,
+     "atk": 6,
+     "hp": 5,
+     "kw": "Ranged",
+     "rarity": "legendary",
+     "file": "star-wars/hutt-space/hutt-default-m.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/star-wars/hutt-space/hutt-default-m.jpg",
+     "bc": null,
+     "dr": null,
+     "passive": {
+      "id": "STORMCALL",
+      "name": "Stormcall",
+      "desc": "At the start of your turn, if you have fewer minions than your opponent, deal 1 damage to a random enemy minion."
+     }
     }
    ]
   },
@@ -9614,9 +10055,9 @@
      "bc": "bcAoe1",
      "ability": "Battlecry: deal 1 damage to all enemy minions.",
      "passive": {
-      "id": "DEATHGIFT",
-      "name": "Deathgift",
-      "desc": "Whenever one of your minions dies, deal 1 damage to the enemy hero."
+      "id": "VANGUARD",
+      "name": "Vanguard",
+      "desc": "Your Charge minions enter play with +1 ATK."
      }
     },
     {
@@ -10558,6 +10999,69 @@
      "file": "art/war-banner.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/war-banner.jpg",
      "ability": "Your Guards get +1 Attack — now and as they arrive."
+    },
+    {
+     "id": "moratusk-of-the-long-watch@tigerpass",
+     "name": "Moratusk of the Long Watch",
+     "fl": "Waaagh has no reverse.",
+     "faction": "tigerpass",
+     "pool": "fandom",
+     "cost": 6,
+     "atk": 7,
+     "hp": 4,
+     "kw": "Charge",
+     "rarity": "legendary",
+     "file": "warhammer-fantasy/the-skaven/skaven-default-f.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/warhammer-fantasy/the-skaven/skaven-default-f.jpg",
+     "bc": null,
+     "dr": null,
+     "passive": {
+      "id": "ORIFLAMME",
+      "name": "Oriflamme",
+      "desc": "Your first Charge minion each turn costs 1 less."
+     }
+    },
+    {
+     "id": "thugurot-the-unseen@tigerpass",
+     "name": "Thugurot the Unseen",
+     "fl": "The biggest wins; the rest eat scraps.",
+     "faction": "tigerpass",
+     "pool": "fandom",
+     "cost": 7,
+     "atk": 6,
+     "hp": 6,
+     "kw": null,
+     "rarity": "legendary",
+     "file": "warhammer-fantasy/the-dark-sea/darksea-default-f.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/warhammer-fantasy/the-dark-sea/darksea-default-f.jpg",
+     "bc": null,
+     "dr": null,
+     "passive": {
+      "id": "FERAL_HOWL",
+      "name": "Feral Howl",
+      "desc": "At the start of your turn, your weakest minion gains +2 ATK."
+     }
+    },
+    {
+     "id": "uziskab@tigerpass",
+     "name": "Uziskab",
+     "fl": "Waaagh has no reverse.",
+     "faction": "tigerpass",
+     "pool": "fandom",
+     "cost": 6,
+     "atk": 5,
+     "hp": 5,
+     "kw": "Charge",
+     "rarity": "legendary",
+     "file": "warhammer-fantasy/the-skaven/skaven-default-m.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/warhammer-fantasy/the-skaven/skaven-default-m.jpg",
+     "bc": null,
+     "dr": null,
+     "passive": {
+      "id": "SQUIG_FRENZY",
+      "name": "Squig Frenzy",
+      "desc": "Your Battlecry: buff effects grant +2 extra stats."
+     }
     }
    ]
   },
@@ -12028,6 +12532,69 @@
      "file": "honorverse/honorverse/etienne_20lavigne.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/honorverse/honorverse/etienne_20lavigne.jpg",
      "ability": "Battlecry: deal 2 damage to a random enemy minion."
+    },
+    {
+     "id": "octvivus-the-unbowed@zephek",
+     "name": "Octvivus the Unbowed",
+     "fl": "Faith is a loaded weapon.",
+     "faction": "zephek",
+     "pool": "fandom",
+     "cost": 7,
+     "atk": 5,
+     "hp": 8,
+     "kw": "Guard",
+     "rarity": "legendary",
+     "file": "dune/uncategorized/miles_20teg.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/dune/uncategorized/miles_20teg.jpg",
+     "bc": null,
+     "dr": null,
+     "passive": {
+      "id": "FOR_THE_EMPEROR",
+      "name": "For the Emperor",
+      "desc": "At the start of your turn, if you control 4 or more minions, give your weakest +1 ATK."
+     }
+    },
+    {
+     "id": "domanian-the-bold@zephek",
+     "name": "Domanian the Bold",
+     "fl": "Faith is a loaded weapon.",
+     "faction": "zephek",
+     "pool": "fandom",
+     "cost": 6,
+     "atk": 5,
+     "hp": 6,
+     "kw": null,
+     "rarity": "legendary",
+     "file": "the-codominium/the-codominium/grand_20admiral_20leonid.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/the-codominium/the-codominium/grand_20admiral_20leonid.jpg",
+     "bc": null,
+     "dr": null,
+     "passive": {
+      "id": "WEAVE",
+      "name": "The Weave",
+      "desc": "Your AoE effects deal 1 more damage."
+     }
+    },
+    {
+     "id": "constiphel-of-the-ninth-gate@zephek",
+     "name": "Constiphel of the Ninth Gate",
+     "fl": "Crusade without end.",
+     "faction": "zephek",
+     "pool": "fandom",
+     "cost": 6,
+     "atk": 4,
+     "hp": 7,
+     "kw": "Lifesteal",
+     "rarity": "legendary",
+     "file": "star-wars/uncategorized/revan.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/star-wars/uncategorized/revan.jpg",
+     "bc": null,
+     "dr": null,
+     "passive": {
+      "id": "OATHBOUND",
+      "name": "Oathbound",
+      "desc": "Your Lifesteal minions enter play with +1/+1."
+     }
     }
    ]
   },
@@ -15001,14 +15568,77 @@
      "hp": 7,
      "kw": "Guard",
      "rarity": "legendary",
-     "file": "a-song-of-ice-and-fire/the-westerlands/cersei.jpg",
-     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/a-song-of-ice-and-fire/the-westerlands/cersei.jpg",
+     "file": "a-song-of-ice-and-fire/dorne/martell-default-f.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/a-song-of-ice-and-fire/dorne/martell-default-f.jpg",
+     "passive": {
+      "id": "COURT_INTRIGUE",
+      "name": "Court Intrigue",
+      "desc": "Your hero-damage effects deal 1 more."
+     },
+     "ability": null
+    },
+    {
+     "id": "isolelvaine@courts",
+     "name": "Isolelvaine",
+     "fl": "A crown buys knives.",
+     "faction": "courts",
+     "pool": "fandom",
+     "cost": 6,
+     "atk": 5,
+     "hp": 6,
+     "kw": null,
+     "rarity": "legendary",
+     "file": "a-song-of-ice-and-fire/king-s-landing-the-iron-throne/targaryen-default-m.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/a-song-of-ice-and-fire/king-s-landing-the-iron-throne/targaryen-default-m.jpg",
+     "bc": null,
+     "dr": null,
+     "passive": {
+      "id": "CHAOS_LADDER",
+      "name": "Chaos is a Ladder",
+      "desc": "Your 2nd or further card drawn in a turn deals 1 damage to a random enemy minion."
+     }
+    },
+    {
+     "id": "fiouenette@courts",
+     "name": "Fiouenette",
+     "fl": "A crown buys knives.",
+     "faction": "courts",
+     "pool": "fandom",
+     "cost": 7,
+     "atk": 4,
+     "hp": 8,
+     "kw": "Guard",
+     "rarity": "legendary",
+     "file": "a-song-of-ice-and-fire/dothraki/dothraki-default-m.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/a-song-of-ice-and-fire/dothraki/dothraki-default-m.jpg",
+     "bc": null,
+     "dr": null,
+     "passive": {
+      "id": "MARCHING_ORDERS",
+      "name": "Marching Orders",
+      "desc": "At the start of your turn, give your weakest minion +1/+1."
+     }
+    },
+    {
+     "id": "orsuesande-of-the-burning-field@courts",
+     "name": "Orsuesande of the Burning Field",
+     "fl": "A crown buys knives.",
+     "faction": "courts",
+     "pool": "fandom",
+     "cost": 6,
+     "atk": 5,
+     "hp": 6,
+     "kw": "Guard",
+     "rarity": "legendary",
+     "file": "a-song-of-ice-and-fire/the-reach/tyrell-default-m.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/a-song-of-ice-and-fire/the-reach/tyrell-default-m.jpg",
+     "bc": null,
+     "dr": null,
      "passive": {
       "id": "BULWARK",
       "name": "Bulwark",
       "desc": "Your Guard minions enter play with +1 HP."
-     },
-     "ability": null
+     }
     }
    ]
   },
@@ -16464,9 +17094,9 @@
      "file": "romance-of-the-three-kingdoms/shu/guan_20yu.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/romance-of-the-three-kingdoms/shu/guan_20yu.jpg",
      "passive": {
-      "id": "SWIFTRANKS",
-      "name": "Swiftranks",
-      "desc": "The first minion you play each turn costs 1 less."
+      "id": "BULWARK",
+      "name": "Bulwark",
+      "desc": "Your Guard minions enter play with +1 HP."
      },
      "ability": null
     },
@@ -16484,11 +17114,74 @@
      "file": "romance-of-the-three-kingdoms/shu-han/zhuge_20liang.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/romance-of-the-three-kingdoms/shu-han/zhuge_20liang.jpg",
      "passive": {
-      "id": "BLOODLETTER",
-      "name": "Bloodletter",
-      "desc": "Your Skirmish deals 2 damage instead of 1."
+      "id": "IRON_RATIONS",
+      "name": "Iron Rations",
+      "desc": "Your Deathrattle: restore effects restore 2 more HP."
      },
      "ability": null
+    },
+    {
+     "id": "meiming@kingdoms",
+     "name": "Meiming",
+     "fl": "The wall holds because brothers hold it.",
+     "faction": "kingdoms",
+     "pool": "fandom",
+     "cost": 7,
+     "atk": 4,
+     "hp": 9,
+     "kw": "Guard",
+     "rarity": "legendary",
+     "file": "romance-of-the-three-kingdoms/yellow-turans/turbanremnants-default-f.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/romance-of-the-three-kingdoms/yellow-turans/turbanremnants-default-f.jpg",
+     "bc": null,
+     "dr": null,
+     "passive": {
+      "id": "ART_OF_WAR",
+      "name": "Art of War",
+      "desc": "At the start of your turn, if your Guards outnumber the enemy board, deal 1 damage to the enemy hero."
+     }
+    },
+    {
+     "id": "fengrshu-the-cold-blooded@kingdoms",
+     "name": "Fengrshu the Cold-Blooded",
+     "fl": "Strategy is the sharpest blade.",
+     "faction": "kingdoms",
+     "pool": "fandom",
+     "cost": 6,
+     "atk": 5,
+     "hp": 6,
+     "kw": "Relentless",
+     "rarity": "legendary",
+     "file": "romance-of-the-three-kingdoms/you-province/gongsunzan-default-f.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/romance-of-the-three-kingdoms/you-province/gongsunzan-default-f.jpg",
+     "bc": null,
+     "dr": null,
+     "passive": {
+      "id": "BROTHERHOOD",
+      "name": "Brotherhood",
+      "desc": "Your Relentless minions enter play with +1/+1."
+     }
+    },
+    {
+     "id": "ruangwei-the-steadfast@kingdoms",
+     "name": "Ruangwei the Steadfast",
+     "fl": "The wall holds because brothers hold it.",
+     "faction": "kingdoms",
+     "pool": "fandom",
+     "cost": 6,
+     "atk": 5,
+     "hp": 7,
+     "kw": "Guard",
+     "rarity": "legendary",
+     "file": "romance-of-the-three-kingdoms/yellow-turans/yellowturbans-default-f.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/romance-of-the-three-kingdoms/yellow-turans/yellowturbans-default-f.jpg",
+     "bc": null,
+     "dr": null,
+     "passive": {
+      "id": "EMBERWARD",
+      "name": "Emberward",
+      "desc": "Your hero takes 1 less damage from each source (min 1)."
+     }
     }
    ]
   },
@@ -17964,14 +18657,77 @@
      "file": "the-wheel-of-time/cairhien/elayne.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/the-wheel-of-time/cairhien/elayne.jpg",
      "passive": {
-      "id": "LONGSIGHT",
-      "name": "Longsight",
-      "desc": "Your Ranged minions enter play with +1/+1."
+      "id": "WEAVE",
+      "name": "The Weave",
+      "desc": "Your AoE effects deal 1 more damage."
      },
      "ability": null
+    },
+    {
+     "id": "bryoaris-the-steadfast@towers",
+     "name": "Bryoaris the Steadfast",
+     "fl": "Stillness before the storm of light.",
+     "faction": "towers",
+     "pool": "fandom",
+     "cost": 6,
+     "atk": 4,
+     "hp": 7,
+     "kw": null,
+     "rarity": "legendary",
+     "file": "the-wheel-of-time/andor/andor-default-m.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/the-wheel-of-time/andor/andor-default-m.jpg",
+     "bc": null,
+     "dr": null,
+     "passive": {
+      "id": "PICKET",
+      "name": "Picket Line",
+      "desc": "Your minions that cost 2 or less enter play with +1/+1."
+     }
+    },
+    {
+     "id": "quelirion@towers",
+     "name": "Quelirion",
+     "fl": "The Weave obeys the willful.",
+     "faction": "towers",
+     "pool": "fandom",
+     "cost": 7,
+     "atk": 5,
+     "hp": 7,
+     "kw": "Ranged",
+     "rarity": "legendary",
+     "file": "the-wheel-of-time/tear-illian/illian-default-m.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/the-wheel-of-time/tear-illian/illian-default-m.jpg",
+     "bc": null,
+     "dr": null,
+     "passive": {
+      "id": "STILLNESS",
+      "name": "Stillness",
+      "desc": "At the start of your turn, if you took no hero damage since your last turn, restore 3 HP to your hero."
+     }
+    },
+    {
+     "id": "queliomir-the-last-voiced@towers",
+     "name": "Queliomir the Last-Voiced",
+     "fl": "Stillness before the storm of light.",
+     "faction": "towers",
+     "pool": "fandom",
+     "cost": 6,
+     "atk": 6,
+     "hp": 5,
+     "kw": null,
+     "rarity": "legendary",
+     "file": "the-wheel-of-time/tear-illian/tear-default-m.jpg",
+     "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/the-wheel-of-time/tear-illian/tear-default-m.jpg",
+     "bc": null,
+     "dr": null,
+     "passive": {
+      "id": "BLOODLETTER",
+      "name": "Bloodletter",
+      "desc": "Your Skirmish deals 2 damage instead of 1."
+     }
     }
    ]
   }
  ],
- "version": "0.14.2"
+ "version": "0.15.0"
 }
