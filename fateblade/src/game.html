@@ -116,6 +116,17 @@
   #zoom .zpv{font-size:13.5px; color:#f9c; font-style:italic; margin-top:4px; border-top:1px solid #2a2216; padding-top:4px;}
   #zoom .zf{font-size:13px; font-style:italic; color:#c9b78e; margin-top:6px; border-top:1px solid #2a2216; padding-top:6px;}
 
+  /* ===== v0.12 turn banner + victory pop ===== */
+  #turnBanner{position:fixed; top:34%; left:0; right:0; text-align:center; z-index:60; pointer-events:none; opacity:0;}
+  #turnBanner span{display:inline-block; padding:10px 46px; font-family:'Cinzel', 'Palatino Linotype', Georgia, serif;
+    font-size:42px; letter-spacing:8px; background:linear-gradient(180deg,#000000c8,#000000e8);
+    border:1px solid var(--gold-dim); color:var(--gold); text-shadow:0 0 22px #c9a24b99;}
+  #turnBanner.enemy span{color:#f2b19b; border-color:#7a1a0d; text-shadow:0 0 22px #a41f0f99;}
+  #turnBanner.on{animation:tbSweep 1.6s ease-out forwards;}
+  @keyframes tbSweep{0%{opacity:0; transform:scale(1.3)} 14%{opacity:1; transform:scale(1)} 72%{opacity:1; transform:scale(1)} 100%{opacity:0; transform:scale(.98)}}
+  #overlay .big{animation:vPop .9s ease-out both;}
+  @keyframes vPop{0%{transform:scale(.55); opacity:0} 55%{transform:scale(1.07); opacity:1} 100%{transform:scale(1)}}
+
   /* ===== help overlay ===== */
   #help{position:fixed; inset:0; background:#000e; display:none; align-items:center; justify-content:center; z-index:70;}
   #help.on{display:flex;}
@@ -474,6 +485,7 @@
   <div id="feedback"></div>
   <button onclick="rematch()">REMATCH</button><button onclick="backToMenu()">MENU</button><button id="ovCampBtn" style="display:none" onclick="campNext()"></button>
 </div>
+<div id="turnBanner"><span></span></div>
 <div id="coin"></div>
 <div id="patchhud"></div>
 <button id="helpbtn" onclick="document.getElementById('help').classList.add('on')">? RULES</button>
@@ -517,7 +529,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.11.0';
+const GAME_VERSION = '0.12.0';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
@@ -551,7 +563,7 @@ const guildCount = (sel) => [...sel].filter(isGuildCard).length;
 
 /* ---------- settings (localStorage) ---------- */
 const SKEY = 'fateblade-settings-v1';
-let settings = Object.assign({ theme: 'auto', watchSpeed: 1, aiLevel: 'normal', enemyPace: 850, sfxVol: 0.7 }, JSON.parse(localStorage.getItem(SKEY) || '{}'));
+let settings = Object.assign({ theme: 'auto', watchSpeed: 1, aiLevel: 'normal', enemyPace: 850, sfxVol: 0.7, musicVol: 0.35 }, JSON.parse(localStorage.getItem(SKEY) || '{}'));
 function saveSettings(){ localStorage.setItem(SKEY, JSON.stringify(settings)); }
 const WORLDTHEMES = ['ironhall','inkwash','starmaps','dunes','tamriel','teyvat','roshar','antiquity','regency','modern'];
 function applyTheme(factionId){
@@ -589,7 +601,7 @@ function deleteDeck(facId, name){ saveDeckList(facId, decksOf(facId).filter(d =>
 function loadDeck(facId){ return facOf(facId) ? facOf(facId).defaultDeck.slice() : null; } // v0.10: the tuned 30-card doctrine deck
 
 /* ---------- screens ---------- */
-function show(id){ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on')); document.getElementById(id).classList.add('on'); fitScreen(); }
+function show(id){ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on')); document.getElementById(id).classList.add('on'); fitScreen(); musicForScreen(id); }
 // v0.7.1 FIT-TO-WINDOW: scale any screen that is taller/wider than the window, so the
 // whole interface (menu buttons, board, hand, END TURN / RESIGN) always fits — no scrolling.
 function fitScreen(){
@@ -764,6 +776,7 @@ function checkEnd(){
       campBtn.style.display = '';
     } else { campBtn.style.display = 'none'; }
     ov.classList.add('on');
+    vPopReplay(); // v0.12: the verdict lands with weight
     (won ? SFX.win : SFX.lose)(); // v0.9.7: the field deserves a fanfare (or a dirge)
     return true;
   }
@@ -902,9 +915,9 @@ function blogTurn(text){
   div.className = 'bl-turn';
   div.textContent = '— ' + text + ' —';
   el.appendChild(div); el.scrollTop = el.scrollHeight;
-  // v0.9.7: a horn for each new turn
-  if(text.startsWith('YOUR TURN')) SFX.turnYou();
-  else if(text.startsWith('ENEMY TURN')) SFX.turnEn();
+  // v0.9.7: a horn for each new turn; v0.12: a banner too
+  if(text.startsWith('YOUR TURN')) { SFX.turnYou(); turnBanner(false); }
+  else if(text.startsWith('ENEMY TURN')) { SFX.turnEn(); turnBanner(true); }
 }
 function blogReset(){
   const el = document.getElementById('battlelog'); if(el) el.innerHTML = '';
@@ -967,20 +980,72 @@ const SND = {
     }
   }
 };
+/* ---------- v0.12 AUDIO: sampled SFX + themed music from the vault ----------
+   Files live in ../audio/ (the Patcher mirrors them once the vault audio
+   keeper has fetched them). Until then every sound falls back to the synth
+   palette, so the game is fully playable on silent-hostile installs too. */
+const AUD = {
+  base: '../audio/', bank: {},
+  sfx(name, synth){
+    const b = this.bank[name];
+    if (b === null) { synth && synth(); return; }         // known-missing: synth forever
+    if (!b) { this.load(name); synth && synth(); return; } // still loading: synth now
+    try {
+      const c = SND.ctx;
+      if (!c || c.state !== 'running') { synth && synth(); return; }
+      const src = c.createBufferSource(); src.buffer = b;
+      src.connect(SND.master); src.start(0);
+    } catch (e) { synth && synth(); }
+  },
+  load(name){
+    if (name in this.bank) return;
+    fetch(this.base + 'sfx/' + name + '.ogg')
+      .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.arrayBuffer(); })
+      .then(b => SND.ctx ? SND.ctx.decodeAudioData(b) : Promise.reject(new Error('no ctx')))
+      .then(buf => { this.bank[name] = buf; })
+      .catch(() => { this.bank[name] = null; });
+  },
+  warm(){ ['click', 'play-card', 'hit', 'hero-hit', 'death', 'shield', 'confirm'].forEach(n => this.load(n)); }
+};
+const MUSIC = {
+  el: null, cur: null,
+  vol(){ const v = Number(settings.musicVol); return isNaN(v) ? 0.35 : Math.max(0, Math.min(1, v)); },
+  set(track){
+    if (this.cur === track) return;
+    this.cur = track;
+    if (!this.el) { this.el = document.createElement('audio'); this.el.loop = true; this.el.preload = 'auto'; this.el.onerror = () => { this.cur = null; }; }
+    try { this.el.src = '../audio/music/' + track + '.ogg'; this.el.volume = this.vol(); this.el.play().catch(()=>{}); } catch (e) {}
+  },
+  setVol(){ if (this.el) this.el.volume = this.vol(); },
+  retry(){ if (this.el && this.el.paused && this.vol() > 0) this.el.play().catch(()=>{}); }
+};
+function musicForScreen(id){
+  if (id === 'match') MUSIC.set(me.pool === 'history' ? 'match-annals' : 'match-canon');
+  else MUSIC.set('menu-theme');
+}
+function turnBanner(enemy){
+  const tb = document.getElementById('turnBanner'); if (!tb) return;
+  tb.querySelector('span').textContent = enemy ? 'ENEMY TURN' : 'YOUR TURN';
+  tb.classList.toggle('enemy', !!enemy);
+  tb.classList.remove('on'); void tb.offsetWidth; tb.classList.add('on');
+}
+function vPopReplay(){ const b = document.querySelector('#overlay .big'); if (!b) return; b.style.animation = 'none'; void b.offsetWidth; b.style.animation = ''; }
 const SFX = {
-  click:   () => SND.v({ f: 1500, f2: 900, dur: .05, vol: .10 }),
-  play:    () => { SND.v({ f: 130, f2: 70, type: 'triangle', dur: .12, vol: .5 }); SND.v({ noise: true, lp: 700, dur: .07, vol: .3 }); }, // card hits the table
-  edict:   () => { SND.v({ f: 392, f2: 523, type: 'sawtooth', dur: .22, vol: .16 }); SND.v({ f: 784, dur: .3, vol: .1, delay: .05 }); },
-  relic:   () => { [660, 990, 1320].forEach((f, i) => SND.v({ f, dur: .5, vol: .11, delay: i * .07 })); }, // a seated chime
-  hit:     () => { SND.v({ f: 95, f2: 55, type: 'triangle', dur: .13, vol: .55 }); SND.v({ noise: true, lp: 1400, dur: .05, vol: .35 }); }, // steel on steel
-  heroHit: () => { SND.v({ f: 70, f2: 40, dur: .3, vol: .6 }); SND.v({ noise: true, lp: 500, dur: .12, vol: .4 }); }, // the banner reels
-  death:   () => { SND.v({ f: 330, f2: 60, type: 'sawtooth', dur: .35, vol: .18 }); SND.v({ noise: true, lp: 900, lp2: 200, dur: .3, vol: .22 }); },
-  buff:    () => { [523, 659, 784].forEach((f, i) => SND.v({ f, f2: f * 1.02, dur: .12, vol: .13, delay: i * .06 })); },
+  click:   () => AUD.sfx('click',      () => SND.v({ f: 1500, f2: 900, dur: .05, vol: .10 })),
+  play:    () => AUD.sfx('play-card',  () => { SND.v({ f: 130, f2: 70, type: 'triangle', dur: .12, vol: .5 }); SND.v({ noise: true, lp: 700, dur: .07, vol: .3 }); }), // card hits the table
+  draw:    () => AUD.sfx('draw-card',  () => {}), // v0.12: the soft slide of a fresh draw (synth had nothing)
+  edict:   () => AUD.sfx('edict',     () => { SND.v({ f: 392, f2: 523, type: 'sawtooth', dur: .22, vol: .16 }); SND.v({ f: 784, dur: .3, vol: .1, delay: .05 }); }),
+  relic:   () => AUD.sfx('relic',     () => { [660, 990, 1320].forEach((f, i) => SND.v({ f, dur: .5, vol: .11, delay: i * .07 })); }), // a seated chime
+  hit:     () => AUD.sfx('hit',       () => { SND.v({ f: 95, f2: 55, type: 'triangle', dur: .13, vol: .55 }); SND.v({ noise: true, lp: 1400, dur: .05, vol: .35 }); }), // steel on steel
+  heroHit: () => AUD.sfx('hero-hit',  () => { SND.v({ f: 70, f2: 40, dur: .3, vol: .6 }); SND.v({ noise: true, lp: 500, dur: .12, vol: .4 }); }), // the banner reels
+  death:   () => AUD.sfx('death',     () => { SND.v({ f: 330, f2: 60, type: 'sawtooth', dur: .35, vol: .18 }); SND.v({ noise: true, lp: 900, lp2: 200, dur: .3, vol: .22 }); }),
+  buff:    () => AUD.sfx('buff',      () => { [523, 659, 784].forEach((f, i) => SND.v({ f, f2: f * 1.02, dur: .12, vol: .13, delay: i * .06 })); }),
+  shield:  () => AUD.sfx('shield',    () => SND.v({ f: 1200, f2: 820, dur: .18, vol: .15 })), // v0.12: the Aegis ring gets its own metal
   passive: () => SND.v({ f: 1046, dur: .16, vol: .11 }),
-  fatigue: () => SND.v({ f: 110, f2: 55, dur: .5, vol: .3 }),
-  turnYou: () => { SND.v({ f: 262, type: 'sawtooth', dur: .25, vol: .11 }); SND.v({ f: 392, type: 'sawtooth', dur: .4, vol: .11, delay: .12 }); }, // rising fifth
-  turnEn:  () => { SND.v({ f: 196, type: 'sawtooth', dur: .25, vol: .11 }); SND.v({ f: 147, type: 'sawtooth', dur: .4, vol: .11, delay: .12 }); }, // falling third
-  coin:    () => { SND.v({ f: 2000, f2: 3000, dur: .12, vol: .13 }); SND.v({ f: 2500, f2: 1500, dur: .35, vol: .1, delay: .12 }); },
+  fatigue: () => AUD.sfx('fatigue',   () => SND.v({ f: 110, f2: 55, dur: .5, vol: .3 })),
+  turnYou: () => AUD.sfx('turn-you',  () => { SND.v({ f: 262, type: 'sawtooth', dur: .25, vol: .11 }); SND.v({ f: 392, type: 'sawtooth', dur: .4, vol: .11, delay: .12 }); }), // rising fifth
+  turnEn:  () => AUD.sfx('turn-en',   () => { SND.v({ f: 196, type: 'sawtooth', dur: .25, vol: .11 }); SND.v({ f: 147, type: 'sawtooth', dur: .4, vol: .11, delay: .12 }); }), // falling third
+  coin:    () => AUD.sfx('coin',      () => { SND.v({ f: 2000, f2: 3000, dur: .12, vol: .13 }); SND.v({ f: 2500, f2: 1500, dur: .35, vol: .1, delay: .12 }); }),
   win:     () => { [523, 659, 784, 1046].forEach((f, i) => SND.v({ f, type: 'sawtooth', dur: .45, vol: .13, delay: i * .12 })); },
   lose:    () => { [392, 330, 262, 196].forEach((f, i) => SND.v({ f, type: 'sawtooth', dur: .5, vol: .13, delay: i * .14 })); }
 };
@@ -1053,7 +1118,7 @@ function fxEvent(ev){
       break; // the victim hero's hitflash + damage number come from the render diff
     }
     case 'death': deathGhost(ev.uid); break;
-    case 'shield': SFX.buff(); break; // v0.11: Aegis absorption ping
+    case 'shield': SFX.shield(); break; // v0.12: Aegis absorption — its own ring, not the buff chime
     case 'buff': SFX.buff(); break;
     case 'passive': SFX.passive(); break;
     case 'fatigue': SFX.fatigue(); break;
@@ -1064,7 +1129,7 @@ function fxDiff(st){
   while (fxLastEv < st.events.length) fxEvent(st.events[fxLastEv++]);
 }
 // audio needs a user gesture to start: spin the context up on the first touch
-document.addEventListener('pointerdown', () => SND.init());
+document.addEventListener('pointerdown', () => { SND.init(); AUD.warm(); MUSIC.retry(); });
 document.addEventListener('click', (e) => { if (e.target.closest('button')) SFX.click(); });
 
 /* ---------- hover-zoom ---------- */
@@ -1108,7 +1173,7 @@ function floatAt(el, txt, heal){
   document.getElementById('fx').appendChild(d);
   setTimeout(()=>d.remove(), 1200);
 }
-let lastSeen = { hpA:null, hpB:null, minions:{} };
+let lastSeen = { hpA:null, hpB:null, minions:{}, handA:null };
 function showCoin(iAmFirst, enF){
   const el = document.getElementById('coin');
   el.classList.add('on');
@@ -1128,6 +1193,8 @@ function render(){
   blogDiff(S); // v0.9.6: every render flushes new engine events to the battle log
   hideZoom(); // v0.9.8: the rebuild below can remove the hovered card — its mouseleave never fires, so the zoom would freeze on screen
   const my = S.A, ai = S.B;
+  if (lastSeen.handA !== null && my.hand.length > lastSeen.handA) SFX.draw(); // v0.12: the slide of a fresh draw
+  lastSeen.handA = my.hand.length;
   const tb = document.getElementById('topbar');
   tb.innerHTML = `<b>${my.fac.label}</b> ${crystals(my.mana, my.maxmana)}
     <b style="color:#ccc">vs ${ai.fac.label}</b> ${crystals(ai.mana, ai.maxmana)}
@@ -1416,6 +1483,8 @@ function showSettings(){
   if(paceEl) paceEl.value = String(settings.enemyPace === undefined ? 850 : settings.enemyPace);
   const sfxEl = document.getElementById('setSfx');
   if(sfxEl) sfxEl.value = String(settings.sfxVol === undefined ? 0.7 : settings.sfxVol);
+  const musEl = document.getElementById('setMusic');
+  if(musEl) musEl.value = String(settings.musicVol === undefined ? 0.35 : settings.musicVol);
   document.getElementById('settings').classList.add('on');
 }
 function setTheme(v){ settings.theme = v; saveSettings(); applyTheme(me.faction || null); }
@@ -1423,6 +1492,7 @@ function setWatch(v){ settings.watchSpeed = Number(v); saveSettings(); }
 function setAI(v){ settings.aiLevel = v; saveSettings(); }
 function setPace(v){ settings.enemyPace = Number(v); saveSettings(); }
 function setSfxVol(v){ settings.sfxVol = Number(v); saveSettings(); SND.init(); SND.setVol(); }
+function setMusicVol(v){ settings.musicVol = Number(v); saveSettings(); if(Number(v) === 0 && MUSIC.el){ MUSIC.el.pause(); } else { MUSIC.setVol(); MUSIC.retry(); } }
 function clearDecks(){ savedDecks = {}; localStorage.removeItem(DKEY2); localStorage.removeItem(DKEY); alert('Saved decks cleared — realms return to their doctrine decks.'); location.reload(); }
 
 /* ================= MULTIPLAYER (v0.5 teaser) ================= */
@@ -1531,6 +1601,7 @@ function watchEnd(){
   fbEl.innerHTML = `<h3>🤖 AI PLAYTESTER FEEDBACK</h3><ul>${fbNotes.join('')}</ul>`;
   fbEl.classList.add('on');
   document.getElementById('overlay').classList.add('on');
+  vPopReplay(); // v0.12: exhibitions end with the same weight
   render();
   watch.on = false; watch.timer = null;
   commEl.classList.remove('on'); document.getElementById('watchctl').classList.remove('on');
@@ -1570,6 +1641,13 @@ function watchEnd(){
       <option value="0.7">Normal — balanced (recommended)</option>
       <option value="0.3">Soft — subtle cues</option>
       <option value="0">Off — silent duels</option>
+    </select>
+    <label>Music volume</label>
+    <select id="setMusic" onchange="setMusicVol(this.value)">
+      <option value="0.6">Bold — front and centre</option>
+      <option value="0.35">Normal — under the steel (recommended)</option>
+      <option value="0.15">Faint — distant halls</option>
+      <option value="0">Off — silence between the horns</option>
     </select>
     <label>Saved decks</label>
     <div style="margin:8px 0"><button onclick="clearDecks()">Clear all custom decks</button></div>
