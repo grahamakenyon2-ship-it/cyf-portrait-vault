@@ -480,7 +480,7 @@
     } else {
       const t = foe.board.find((x) => x.uid === target.uid);
       S.events.push({ t: 'hit', side, id: m.id, dmg: m.atk, on: t.id });
-      if (m.kw !== 'Ranged' && t.atk > 0) {
+      if (!hasKw(m, 'Ranged') && t.atk > 0) { // v0.20.1: multi-kw Ranged (e.g. 'Ranged, Bane') must not take retaliation
         // retaliation can kill the attacker (their own Deathrattle/DEATHGIFT may fire)
         damageMinion(S, side, m.uid, hasKw(t, 'Bane') ? 999 : t.atk, 'retal'); // v0.11 Bane; v0.15 combat tag for GLORY/TESTUDO
       }
