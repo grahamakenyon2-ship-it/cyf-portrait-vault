@@ -125,7 +125,7 @@ the-watcher-s-vigil.jpg | commons:monk praying painting
 the-circle-of-nine.jpg | commons:Raphael School of Athens
 the-silver-flame.jpg | commons:Magdalen with the Smoking Flame
 the-ninefold-amulet.jpg | commons:ancient amulet talisman museum
-the-dreamer-s-mirror.jpg | commons:antique hand mirror painting
+the-dreamer-s-mirror.jpg | commons:van Eyck Arnolfini
 
 # --- Stormlit / The Elderkin (expansion: +3 edicts +2 relics) ---
 the-elder-moot.jpg | commons:Arthur Rackham
