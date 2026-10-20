@@ -567,7 +567,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.13.0';
+const GAME_VERSION = '0.13.3';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
@@ -1680,6 +1680,25 @@ function updateVolLabels(){
   if(m) m.textContent = mv + '%';
 }
 function clearDecks(){ savedDecks = {}; localStorage.removeItem(DKEY2); localStorage.removeItem(DKEY); alert('Saved decks cleared — realms return to their doctrine decks.'); location.reload(); }
+/* v0.13.3: in-game updater — the desktop shell (window.fateblade, exposed via
+   preload) fetches the vault manifest, sha256-compares, and hot-patches the
+   three local files (game.html, engine.js, cards.js); art/audio load from the
+   vault by absolute URL already. In a plain browser there is nothing to patch. */
+async function checkForUpdates(){
+  const st = document.getElementById('updStatus'), btn = document.getElementById('updBtn');
+  if(!window.fateblade){ st.textContent = '— web build: always current via the vault'; return; }
+  st.textContent = '— checking the vault…'; if(btn) btn.disabled = true;
+  try{
+    const r = await window.fateblade.checkUpdates();
+    if(r.error){ st.textContent = '— ✗ ' + r.error; }
+    else if(!r.updated || !r.updated.length){ st.textContent = '— ✓ up to date (v' + r.version + ')'; }
+    else{
+      st.textContent = '— ✓ updated to v' + r.version + ' — restart to apply';
+      if(btn){ btn.textContent = '↻ RESTART NOW'; btn.onclick = function(){ window.fateblade.restart(); }; }
+    }
+  }catch(e){ st.textContent = '— ✗ ' + e; }
+  if(btn) btn.disabled = false;
+}
 
 /* ================= MULTIPLAYER (v0.5 teaser) ================= */
 function showMultiplayer(){
@@ -1825,6 +1844,8 @@ function watchEnd(){
     <input type="range" id="setSfx" min="0" max="100" step="1" oninput="setSfxVol(this.value)">
     <label>Music volume <span id="musicVolPct" style="color:var(--gold)"></span></label>
     <input type="range" id="setMusic" min="0" max="100" step="1" oninput="setMusicVol(this.value)">
+    <label>Game updates <span id="updStatus" style="color:var(--gold);text-transform:none"></span></label>
+    <div style="margin:8px 0"><button id="updBtn" onclick="checkForUpdates()">⟳ Check for updates</button></div>
     <label>Saved decks</label>
     <div style="margin:8px 0"><button onclick="clearDecks()">Clear all custom decks</button></div>
     <div style="margin-top:14px"><button onclick="document.getElementById('settings').classList.remove('on')">Close</button></div>
