@@ -538,6 +538,7 @@
         case 'fxRally': return (p.board.length <= MAX_BOARD - 2) ? 2 * 2 * 0.9 : 0;
         case 'fxRallyBoard': return p.board.reduce((s2, m) => s2 + 2, 0) * 0.95;
         case 'fxVolley': return p.board.filter((m) => m.kw === 'Ranged').length * 1.35;
+        case 'fxVolley2': return p.board.filter((m) => m.kw === 'Ranged').length * 2.7;
         case 'fxMomentum': return p.board.filter((m) => m.kw === 'Charge').length * 1.6;
         case 'fxFormation': return p.board.filter((m) => m.kw === 'Guard').length * 1.9;
         case 'fxLevy': return p.board.filter((m) => m.id.startsWith('TOKEN@')).length * 2.1 + 1.5;
