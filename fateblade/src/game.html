@@ -608,7 +608,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.22.8';
+const GAME_VERSION = '0.22.9';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
@@ -705,6 +705,7 @@ function fitScreen(){
     el.style.overflow = 'hidden';
     el.style.transformOrigin = 'center top';
     el.style.transform = 'scale(' + ms + ')';
+    el.style.overflow = 'visible'; // v0.22.9: height:100vh box clips the bottom of tall screens BEFORE the transform — let content paint past the box so the scale shrinks the FULL content
     uiDebugReport(ms, null, null);
     return;
   }
@@ -771,7 +772,7 @@ function fitScreen(){
   const s = Math.min(w / cw, (fs ? h : h - 10) / ch, 2.0); // v0.22.8: exact occlusion budget + 10px windowed safety floor — content never rides the exact bottom edge again
   if(s < 0.99){
     el.style.justifyContent = 'flex-start'; // overflow breaks centering anyway — anchor to top
-    el.style.overflow = 'hidden';
+    el.style.overflow = 'visible'; // v0.22.9: was 'hidden' — that CLIPPED the bottom of taller-than-viewport screens (100vh box) before the transform, so scaling could never reveal the hand/END TURN row; visible lets the transform shrink the FULL content, and s<=0.99 guarantees it lands inside the viewport
     el.style.transformOrigin = 'center top';
     el.style.transform = 'scale(' + s + ')';
     uiDebugReport(s, cw, ch);
