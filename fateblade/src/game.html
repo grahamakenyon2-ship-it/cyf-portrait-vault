@@ -39,7 +39,7 @@
   .cardpick img{width:192px; height:230px; object-fit:cover; display:block;}
   .cardpick .lbl{margin-top:6px; color:var(--gold); letter-spacing:1px;}
   .cardpick .sub{font-size:13px; color:#c9b78e;}
-  .cardpick .passive{font-size:13px; color:#8fd; font-style:italic; margin-top:4px; min-height:44px;}
+  .cardpick .passive{font-size:13px; color:#8fd; font-style:italic; margin-top:4px; min-height:44px; font-weight:600; text-shadow:0 1px 1px #000, 0 0 2px #000, 0 -1px 1px #000;}
   .cardpick .idn{font-size:13px; color:#f9c; font-style:italic; margin-top:4px;}
 
   /* ===== main menu ===== */
@@ -115,7 +115,7 @@
   #zoom .zk b{letter-spacing:1px;}
   #zoom .zs{font-size:21px; margin:6px 0;}  /* v0.10.2: ATK/HP gems never ride the bottom border art */
   #zoom .zs .a{color:var(--atk); font-weight:bold;} #zoom .zs .h{color:var(--hp); font-weight:bold;}
-  #zoom .zpv{font-size:13.5px; color:#f9c; font-style:italic; margin-top:4px; border-top:1px solid #2a2216; padding-top:4px;}
+  #zoom .zpv{font-size:13.5px; color:#f9c; font-style:italic; margin-top:4px; border-top:1px solid #2a2216; padding-top:4px; font-weight:600; text-shadow:0 1px 1px #000, 0 0 3px #000, 0 -1px 1px #000;}
   #zoom .zf{font-size:13px; font-style:italic; color:#c9b78e; margin-top:6px; border-top:1px solid #2a2216; padding-top:6px;}
 
   /* ===== v0.12 turn banner + victory pop ===== */
@@ -179,7 +179,7 @@
   #deckb .dbcard img{width:100%; height:120px; object-fit:cover; display:block;}
   #deckb .dbcard .nm{font-size:10.5px; white-space:nowrap; overflow:hidden; color:var(--ink);}
   #deckb .dbcard .st{font-size:12px; text-align:center; color:#e6d8b2;}
-  #deckb .dbcard .ab{font-size:9.5px; color:#f9c; min-height:20px; overflow:hidden;}
+  #deckb .dbcard .ab{font-size:9.5px; color:#f9c; min-height:20px; overflow:hidden; font-weight:700; text-shadow:0 1px 1px #000, 0 0 2px #000, 0 -1px 1px #000;}
   #deckb .dbcard.sel{outline:3px solid var(--gold); box-shadow:0 0 14px #c9a24b66;}
   #deckb .dbcard.sel::after{content:'✓ IN DECK'; position:absolute; top:4px; right:4px; background:#2c5d1e; color:#cfe; font-size:9.5px; padding:1px 4px; letter-spacing:1px;}
   .dbsection{width:100%; margin:14px 0 6px; text-align:center; color:var(--gold); font-size:14px; letter-spacing:2px;}
@@ -579,7 +579,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.20.2';
+const GAME_VERSION = '0.21.0';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
@@ -1235,10 +1235,9 @@ function showZoom(c, ev){
   zoom.className = 'r-' + (c.rarity || 'common');
   zoom.innerHTML = `<div class="zc">${c.cost}</div><img src="${c.img}">
     <div class="zn">${c.name}</div>
-    <div class="zr">${c.rarity}${c.passive ? ' · sovereign' : ''}</div>
+    <div class="zr">${c.rarity}${c.passive ? ' · legend' : ''}</div>
     ${kwList(c)?`<div class="zk">${kwList(c)}</div>`:''}
     ${c.ability?`<div class="zpv">${c.ability}</div>`:''}
-    ${c.passive?`<div class="zpv"><b>${c.passive.name}</b> (Sovereign passive): ${c.passive.desc}</div>`:''}
     <div class="zs">${(c.type==='edict'||c.type==='relic') ? `<span style="color:#f9c;letter-spacing:1px">${c.type==='edict'?'EDICT — ONE-SHOT':'RELIC — PERSISTENT'}</span>` : `<span class="statgem atk">${c.atk}<i>ATK</i></span><span class="statgem hp">${c.hp}<i>HP</i></span>`}</div>`;
   zoom.style.display='block';
   moveZoom(ev);
@@ -1637,7 +1636,7 @@ function openDeckBuilder(facId){
 function dbCardHtml(c){
   const n = dbCnt.get(c.id) || 0;
   const esc = (s)=>String(s||'').replace(/"/g,'&quot;');
-  return `    <div class="dbcard r-${c.rarity||'common'} ${n?'sel':''}" onclick="dbAdd('${c.id.replace(/'/g,"\\'")}')" data-id="${c.id}" title="${esc(c.ability || (c.passive ? 'Legend (passive inactive unless your Sovereign): ' + c.passive.name + ' — ' + c.passive.desc : (c.kw ? c.kw + ': ' + KWDESC[c.kw] : '')))}">
+  return `    <div class="dbcard r-${c.rarity||'common'} ${n?'sel':''}" onclick="dbAdd('${c.id.replace(/'/g,"\\'")}')" data-id="${c.id}" title="${esc(c.ability || (c.kw ? c.kw + ': ' + KWDESC[c.kw] : ''))}">
       <div class="dbcost">${c.cost}</div>
       ${n?`<div class="dbn">×${n}</div>`:''}
       <img src="${c.img}" loading="lazy" alt="${c.name}">

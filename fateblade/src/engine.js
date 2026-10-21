@@ -82,7 +82,7 @@
   };
   // which cards can be aimed, and at what (null = not targetable)
   const TGT_BC = { bcPing: 'foe', bcPing2: 'foe', bcPing3: 'foe', bcBuff: 'friend' };
-  const TGT_FX = { fxSnipe3: 'foe', fxSnipe4: 'foe', fxExecute: 'foe', fxExecute2: 'foe' };
+  const TGT_FX = { fxSnipe3: 'foe', fxSnipe4: 'foe', fxExecute: 'foe', fxExecute2: 'foe', fxSilence: 'foe', fxTransform: 'foe', fxScorchX: 'foe' }; // v0.21 P8: aimed interaction/burn
   const targetSpec = (c) => TGT_BC[c.bc || ''] || TGT_FX[c.fx || ''] || null;
   const validTargets = (S, side, c) => {
     const spec = targetSpec(c);
@@ -287,6 +287,18 @@
     }
     return dmg;
   }
+  // v0.21 P8: rlNullify — the first enemy edict that would burn your Sovereign
+  // each round is voided (reactive counterplay relic, priced like a secret).
+  function edictHeroHit(S, atkSide, id, dmg) {
+    const foe = S[other(atkSide)];
+    if (dmg > 0 && hasRelic(foe, 'rlNullify') && foe.nullGuard !== S.turn) {
+      foe.nullGuard = S.turn;
+      S.events.push({ t: 'passive', side: other(atkSide), id: 'RL_NULLIFY', on: id });
+      return;
+    }
+    foe.hp -= dmg;
+    if (dmg > 0) S.events.push({ t: 'heroHit', side: other(atkSide), id, dmg });
+  }
 
   // ---------- actions ----------
   function effCost(S, side, c) {
@@ -412,17 +424,17 @@
       case 'fxMana2': p.mana += 2; break;
       case 'fxRally': { if (p.board.length < MAX_BOARD) p.board.push(token(p, S)); if (p.board.length < MAX_BOARD) p.board.push(token(p, S)); break; }
       case 'fxRallyBoard': p.board.forEach((m) => { m.atk += 1; m.hp += 1; }); break;
-      case 'fxVolley': { const n = p.board.filter((m) => hasKw(m, 'Ranged')).length; const d = n * (1 + (hasP(p, 'COURT_INTRIGUE') ? 2 * rites(S, side) : 0)); if (d > 0) { foe.hp -= d; S.events.push({ t: 'heroHit', side: other(side), id: 'VOLLEY', dmg: d }); } break; } // v0.15.1: COURT_INTRIGUE
+      case 'fxVolley': { const n = p.board.filter((m) => hasKw(m, 'Ranged')).length; const d = n * (1 + (hasP(p, 'COURT_INTRIGUE') ? 2 * rites(S, side) : 0)); if (d > 0) edictHeroHit(S, side, 'VOLLEY', d); break; } // v0.21: routes through rlNullify; v0.15.1: COURT_INTRIGUE
       case 'fxMomentum': p.board.forEach((m) => { if (hasKw(m, 'Charge')) m.atk += 2; }); break;
       case 'fxFormation': p.board.forEach((m) => { if (hasKw(m, 'Guard')) m.hp += 2; }); break;
       case 'fxLevy': { p.board.forEach((m) => { if (m.id.startsWith('TOKEN@')) { m.atk += 1; m.hp += 1; } }); if (p.board.length < MAX_BOARD) p.board.push(token(p, S)); break; }
-      case 'fxPillage': { const pi = 2 + (hasP(p, 'COURT_INTRIGUE') ? 2 * rites(S, side) : 0); foe.hp -= pi; S.events.push({ t: 'heroHit', side: other(side), id: 'PILLAGE', dmg: pi }); if (p.board.length > foe.board.length) draw(S, side); break; } // v0.15.1: COURT_INTRIGUE
+      case 'fxPillage': { const pi = 2 + (hasP(p, 'COURT_INTRIGUE') ? 2 * rites(S, side) : 0); edictHeroHit(S, side, 'PILLAGE', pi); if (p.board.length > foe.board.length) draw(S, side); break; } // v0.21: routes through rlNullify; v0.15.1: COURT_INTRIGUE
       // v0.12: stronger variants — the edict tier the audit asked for
       case 'fxPingAll2': foe.board.slice().forEach((t) => damageMinion(S, other(side), t.uid, 2 + wv)); break;
       case 'fxAoe3':     foe.board.slice().forEach((t) => damageMinion(S, other(side), t.uid, 3 + wv)); break;
       case 'fxSnipe4': { const t = pickTarget(opts, foe.board) || foe.board.slice().sort((a,b) => (b.atk+b.hp)-(a.atk+a.hp))[0]; if (t) damageMinion(S, other(side), t.uid, 4); break; } // v0.20: aimed, else auto-best
-      case 'fxVolley2': { const n = p.board.filter((m) => hasKw(m, 'Ranged')).length; const d = n * (2 + (hasP(p, 'COURT_INTRIGUE') ? 2 * rites(S, side) : 0)); if (d > 0) { foe.hp -= d; S.events.push({ t: 'heroHit', side: other(side), id: 'VOLLEY', dmg: d }); } break; } // v0.15.1: COURT_INTRIGUE
-      case 'fxHero3': { foe.hp -= 3; S.events.push({ t: 'heroHit', side: other(side), id: 'BURN', dmg: 3 }); break; }
+      case 'fxVolley2': { const n = p.board.filter((m) => hasKw(m, 'Ranged')).length; const d = n * (2 + (hasP(p, 'COURT_INTRIGUE') ? 2 * rites(S, side) : 0)); if (d > 0) edictHeroHit(S, side, 'VOLLEY', d); break; } // v0.21: routes through rlNullify; v0.15.1: COURT_INTRIGUE
+      case 'fxHero3': { edictHeroHit(S, side, 'BURN', 3); break; } // v0.21: routes through rlNullify
       case 'fxDraw3': draw(S, side); draw(S, side); draw(S, side); break;
       case 'fxHealHero6': p.hp = Math.min(MAX_HP, p.hp + 6); break;
       case 'fxRally3': { for (let i = 0; i < 3; i++) if (p.board.length < MAX_BOARD) p.board.push(token(p, S)); break; }
@@ -452,6 +464,19 @@
         if (foe.hand.length >= 4) { const hi = foe.hand.reduce((acc, cc, i2) => (cc.cost > foe.hand[acc].cost ? i2 : acc), 0); const dc = foe.hand.splice(hi, 1)[0]; S.events.push({ t: 'passive', side: other(side), id: 'RL_DISCARD', on: dc.id }); }
         break;
       }
+      // v0.21 P8: interaction + choice templates
+      case 'fxSilence': { const t = pickTarget(opts, foe.board) || foe.board.slice().sort((a,b) => (b.atk+b.hp)-(a.atk+a.hp))[0]; if (t) { t.kw = null; t.shield = 0; S.events.push({ t: 'passive', side, id: 'FX_SILENCE', on: t.id }); } break; } // strip keywords + Aegis shield, aimed else auto-biggest
+      case 'fxTransform': { const t = pickTarget(opts, foe.board) || foe.board.slice().sort((a,b) => (b.atk+b.hp)-(a.atk+a.hp))[0]; if (t) { t.atk = 1; t.hp = 1; t.kw = null; t.shield = 0; t.bc = null; t.dr = null; t.name = 'Conscript'; t.id = 'SHEEP@' + t.uid; S.events.push({ t: 'passive', side, id: 'FX_TRANSFORM', on: t.id }); } break; } // polymorph: any foe body becomes a 1/1 Conscript
+      case 'fxDeliberate': { // discover-class: look at the top 3, take the best, shuffle the rest back in
+        const top = p.deck.splice(-Math.min(3, p.deck.length));
+        const val = (cc) => cc.type === 'minion' ? (cc.atk + cc.hp + (cc.bc ? 2 : 0) + (cc.dr ? 1 : 0)) : 6;
+        top.sort((a, b) => val(b) - val(a));
+        while (top.length > 1) p.deck.splice(Math.floor(S.rng() * (p.deck.length + 1)), 0, top.pop());
+        if (top.length) p.deck.push(top[0]); // best card goes to hand
+        draw(S, side);
+        break;
+      }
+      case 'fxScorchX': { const d = p.mana; const t = pickTarget(opts, foe.board) || foe.board.slice().sort((a,b) => (b.atk+b.hp)-(a.atk+a.hp))[0]; if (t && d > 0) damageMinion(S, other(side), t.uid, d); p.mana = 0; S.events.push({ t: 'passive', side, id: 'FX_SCORCHX', dmg: d }); break; } // X-spell: spend ALL remaining mana as damage to one foe minion
     }
   }
 
@@ -632,7 +657,7 @@
     if (hasKw(c, 'Aegis')) b += 1.5;
     if (c.fx === 'fxHealHero4' || c.fx === 'fxHealHero6') b += 2;
     if (c.rl === 'rlBasilica' || c.rl === 'rlRampart' || c.rl === 'rlWard') b += 1.5;
-    if (['fxPingAll', 'fxPingAll2', 'fxAoe2', 'fxAoe3', 'fxSnipe3', 'fxSnipe4', 'fxExecute', 'fxExecute2'].includes(c.fx)) b += Math.min(2, th.foeReach * 0.4); // takes attackers off the table
+    if (['fxPingAll', 'fxPingAll2', 'fxAoe2', 'fxAoe3', 'fxSnipe3', 'fxSnipe4', 'fxExecute', 'fxExecute2', 'fxSilence', 'fxTransform', 'fxScorchX'].includes(c.fx)) b += Math.min(2, th.foeReach * 0.4); // takes attackers off the table
     return b;
   }
   // deckPlan(): the AI knows its OWN decklist (order-agnostic, like a player)
@@ -648,7 +673,7 @@
       if (hasKw(c, 'Guard')) guard++;
       if (hasKw(c, 'Ranged')) ranged++;
       if (['fxPillage', 'fxHero3', 'fxVolley', 'fxVolley2'].includes(c.fx)) burn++;
-      if (['fxPingAll', 'fxPingAll2', 'fxAoe2', 'fxAoe3', 'fxSnipe3', 'fxSnipe4', 'fxExecute', 'fxExecute2'].includes(c.fx)) removal++;
+      if (['fxPingAll', 'fxPingAll2', 'fxAoe2', 'fxAoe3', 'fxSnipe3', 'fxSnipe4', 'fxExecute', 'fxExecute2', 'fxSilence', 'fxTransform', 'fxScorchX'].includes(c.fx)) removal++;
       if (['fxRally', 'fxRally3', 'fxLevy', 'fxDecreeMuster'].includes(c.fx)) tokens++;
     }
     p.plan = { aggro: (charge + burn) >= 6, control: (guard + removal) >= 8, guard, ranged, tokens };
@@ -691,7 +716,7 @@
       const left = Math.max(0, Math.min(cnt[id], cap) - (seen[id] || 0));
       if (!left) continue;
       if (['fxPingAll', 'fxPingAll2', 'fxAoe2', 'fxAoe3'].includes(c.fx)) sweep += left;
-      else if (['fxSnipe3', 'fxSnipe4', 'fxExecute', 'fxExecute2'].includes(c.fx)) removal += left;
+      else if (['fxSnipe3', 'fxSnipe4', 'fxExecute', 'fxExecute2', 'fxSilence', 'fxTransform', 'fxScorchX'].includes(c.fx)) removal += left;
       else if (['fxPillage', 'fxHero3', 'fxVolley', 'fxVolley2'].includes(c.fx)) burn += left;
       else if (['fxHealHero4', 'fxHealHero6'].includes(c.fx)) heal += left;
     }
@@ -709,7 +734,7 @@
   // this leader; draft your lines toward its conditions.
   function sovSynergy(S, side, c) {
     let v = 0; const p = S[side], foe = S[other(side)];
-    const drawish = c.fx && ['fxDraw2', 'fxDraw3', 'fxScry2', 'fxScry3', 'fxDecreeDraw', 'fxEspionage', 'fxLawTariff'].includes(c.fx);
+    const drawish = c.fx && ['fxDraw2', 'fxDraw3', 'fxScry2', 'fxScry3', 'fxDecreeDraw', 'fxEspionage', 'fxLawTariff', 'fxDeliberate'].includes(c.fx);
     const sweepFx = c.fx && ['fxPingAll', 'fxPingAll2', 'fxAoe2', 'fxAoe3'].includes(c.fx);
     const burnFx = c.fx && ['fxPillage', 'fxHero3', 'fxVolley', 'fxVolley2'].includes(c.fx);
     if (hasP(p, 'WEAVE') && sweepFx) v += 0.5;                 // rites amplify every sweep
@@ -923,6 +948,11 @@
         case 'fxScry2': return 2.2 + (p.hand.length <= 2 ? 0.6 : 0);
         case 'fxScry3': return 2.5 + (p.hand.length <= 3 ? 0.6 : 0);
         case 'fxEspionage': return 2.0 + (foe.hand.length >= 4 ? 1.2 : 0);
+        // v0.21 P8
+        case 'fxSilence': { const t = foe.board.slice().sort((a, b) => ((b.kw ? 1 : 0) - (a.kw ? 1 : 0)) || ((b.atk + b.hp) - (a.atk + a.hp)))[0]; return t ? (t.kw ? (t.atk + t.hp) * 0.95 : 0.3) : 0; }
+        case 'fxTransform': { const t = top((a, b) => (b.atk + b.hp) - (a.atk + a.hp)); return t ? (t.atk + t.hp) * 1.05 - 2 : 0; }
+        case 'fxDeliberate': return 2.5 + (p.hand.length <= 2 ? 0.8 : 0);
+        case 'fxScorchX': { const d = p.mana; return d > 0 ? kills(d) : 0; }
         default: return 1;
       }
     }
@@ -933,6 +963,7 @@
         case 'rlLibrary': return 2.3;
         case 'rlStandards': return 1.2 + g * 1.4;
         case 'rlGranary': return 1.9;
+        case 'rlNullify': return 1.6 + (th.danger ? 0.4 : 0); // v0.21 P8: counters burn edicts
         case 'rlDrillyard': return 1.8;
         case 'rlForage': return 2.0;
         case 'rlLookout': return 1.2 + r * 1.3;
@@ -1023,7 +1054,7 @@
         // v0.17: plan-weighted lines — aggro decks push face damage and Charges,
         // control decks prize removal and walls; under lethal threat, survive first.
         if (plan.aggro && (c.fx === 'fxPillage' || c.fx === 'fxHero3' || c.fx === 'fxVolley' || c.fx === 'fxVolley2' || hasKw(c, 'Charge'))) v += 0.4;
-        if (plan.control && (hasKw(c, 'Guard') || ['fxExecute', 'fxExecute2', 'fxSnipe3', 'fxSnipe4', 'fxPingAll', 'fxPingAll2', 'fxAoe2', 'fxAoe3'].includes(c.fx))) v += 0.4;
+        if (plan.control && (hasKw(c, 'Guard') || ['fxExecute', 'fxExecute2', 'fxSnipe3', 'fxSnipe4', 'fxPingAll', 'fxPingAll2', 'fxAoe2', 'fxAoe3', 'fxSilence', 'fxTransform', 'fxScorchX'].includes(c.fx))) v += 0.4;
         // v0.17.1: under lethal threat, defensive lines are DOUBLED and
         // non-defensive lines are taxed — "don't die" beats "big body".
         const sb = survivalBonus(S, side, c, th);
