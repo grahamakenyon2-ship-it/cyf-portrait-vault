@@ -1,26 +1,37 @@
 #!/usr/bin/env node
 // ================================================================
-// FATEBLADE EDICT/RELIC SCENE FORGE v1.1 - mints AI-generated scene
-// artwork for the canon realms' edicts and relics: the EVENT the
-// card names (a volley released, a seal burned, a ward lit), painted
-// to match the card's effect and the realm's lore. Same pattern as
-// fateblade-portraits.mjs: Mistral agent with the image_generation
-// tool, MISTRAL_KEY from the repo secret, queue shipped in the repo
-// so runs are resumable, fateblade/manifest.json kept in lockstep so
-// the Patcher ships every minted scene (license + src recorded).
+// FATEBLADE EDICT/RELIC SCENE FORGE v1.2 - mints AI-generated scene
+// artwork for the canon realms' edicts and relics: the EVENT the card
+// names, painted to match the card's effect and the realm's lore.
 //
-// v1.1 DURABILITY FIX (Oct 21): every mint is committed + pushed
-// IMMEDIATELY (a job-kill can only ever cost the image in flight),
-// and a 40-min soft budget wraps the run up cleanly before the
-// 50-min workflow timeout can strand the batch.
+// v1.2 FAILSAFE STACK (Oct 21, after the lost 103-run):
+// The real root cause was NOT the timeout: the workflow's ONLY save
+// point was the end-of-run Commit step, and its `git pull --rebase`
+// DIED on a queue-file conflict (a queue push landed mid-run), so
+// every minted image was stranded on the ephemeral runner.
+// Layer 1: every mint is committed + pushed IMMEDIATELY, in-script.
+// Layer 2: push rejection is reconciled CONFLICT-FREE - never rebase;
+//          instead fetch remote, JSON-merge queue+manifest into our
+//          state (union; minted/failed entries win), reset --soft to
+//          the remote tip, recommit, push. No file conflict possible.
+// Layer 3: STOP-THE-LINE - if work cannot be saved twice in a row,
+//          the run STOPS instead of painting more paid images into
+//          a state we cannot save.
+// Layer 4: startup sync - merge the remote queue before minting, so
+//          a run never starts from a stale queue.
+// (Layer 5 lives in the workflow yml: actions/upload-artifact of the
+//  art dir on every run - even a total git failure leaves the
+//  images downloadable from the run page.)
 //
-// fateblade/edict-scene-queue.json:
-//   { style, queue: [{ name, realm, kind, cardId, prompt,
+// fateblade/portrait-queue.json:
+//   { style, queue: [{ name, category, prompt,
 //     status: queued | minted | failed, file?, bytes?, error? }] }
 //
 // exit 0 = minted some - rerun to continue the queue
 // exit 1 = nothing minted this run (key refused or all failed) - check the log
 // exit 2 = queue empty - the workflow self-disables
+// exit 3 = DURABILITY FAILURE - work could not be saved to the repo; do NOT
+//          re-run until git is fixed - check the log
 // ================================================================
 import fs from 'fs';
 import { createHash } from 'node:crypto';
@@ -37,7 +48,13 @@ const PAGES = 'https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateb
 
 const sleep = ms => new Promise(ok => setTimeout(ok, ms));
 const T0 = Date.now();
-const TIME_BUDGET_MS = 40 * 60 * 1000;  // wrap up before the 50-min job timeout can kill us
+const TIME_BUDGET_MS = 40 * 60 * 1000;  // wrap up before the 50-min job timeout
+const IN_CI = !!process.env.GITHUB_ACTIONS;
+const REF = process.env.GITHUB_REF_NAME || 'main';
+let saveBroken = false;  // Layer 3 flag
+
+function sh(cmd) { return execSync(cmd, { stdio: ['pipe', 'pipe', 'pipe'] }).toString(); }
+function trySh(cmd) { try { sh(cmd); return true; } catch (e) { return false; } }
 
 let manifest = null;
 try { manifest = JSON.parse(fs.readFileSync(MANIFEST, 'utf8')); } catch (e) {}
@@ -48,10 +65,6 @@ let queueDoc = null;
 try { queueDoc = JSON.parse(fs.readFileSync(QUEUE_FILE, 'utf8')); } catch (e) {}
 if (!queueDoc || !Array.isArray(queueDoc.queue)) { console.error('cannot read ' + QUEUE_FILE + ' - refusing to run'); process.exit(1); }
 const style = queueDoc.style || '';
-const todo = queueDoc.queue.filter(e => (e.status || 'queued') === 'queued' && e.name && e.prompt);
-console.log('scene queue: ' + queueDoc.queue.length + ' entries, ' + todo.length + ' queued');
-if (!todo.length) { console.log('EDICT/RELIC SCENE QUEUE EMPTY - every commission is minted or accounted for. Append queued entries to fateblade/edict-scene-queue.json and re-run.'); process.exit(2); }
-const batch = todo.slice(0, LIMIT);
 
 function persist() {
   fs.writeFileSync(QUEUE_FILE, JSON.stringify(queueDoc, null, 1) + '\n');
@@ -59,20 +72,89 @@ function persist() {
   fs.writeFileSync(MANIFEST, JSON.stringify(manifest, null, 2) + '\n');
 }
 
-// DURABILITY: save queue+manifest AND commit+push right now, so a job
-// kill can never strand more than the image currently being painted.
+// ---- Layer 4: startup sync - merge the REMOTE queue/manifest into ours
+// so a run never mints from a stale state. Union by name; a remote
+// minted/failed status is authoritative (another run earned it).
+function syncFromRemote() {
+  if (!IN_CI) return;
+  if (!trySh('git fetch origin ' + REF)) { console.log('startup sync: fetch failed (continuing - per-mint saves protect the run)'); return; }
+  const originRef = 'origin/' + REF;
+  try {
+    const rQ = JSON.parse(sh('git show ' + originRef + ':' + QUEUE_FILE));
+    const byName = new Map(queueDoc.queue.map(e => [e.name, e]));
+    let added = 0, updated = 0;
+    for (const re of (rQ.queue || [])) {
+      const ours = byName.get(re.name);
+      if (!ours) { queueDoc.queue.push(re); byName.set(re.name, re); added++; }
+      else if (ours.status === 'queued' && re.status !== 'queued') { Object.assign(ours, re); updated++; }
+    }
+    const rM = JSON.parse(sh('git show ' + originRef + ':' + MANIFEST));
+    const byPath = new Map(rM.files.map(e => [e.path, e]));
+    for (const [p, e] of mpath) byPath.set(p, e);
+    manifest.files = [...byPath.values()];
+    if (rM.version) manifest.version = rM.version;
+    persist();
+    console.log('startup sync: +' + added + ' remote queue entries merged, ' + updated + ' statuses adopted');
+  } catch (e) { console.log('startup sync skipped (' + e.message.slice(0, 120) + ')'); }
+}
+
+// ---- Layer 2: conflict-free reconciliation. NEVER rebase (the 103-run
+// died on a rebase conflict). Instead: rebuild our commit on top of the
+// remote tip with a programmatic JSON merge, so both sides' work lives.
+function reconcileAndPush(label) {
+  trySh('git rebase --abort');          // clear any half-applied rebase
+  trySh('git merge --abort');           // clear any half-applied merge
+  sh('git fetch origin ' + REF);
+  const originRef = 'origin/' + REF;
+  // merge remote queue entries we do not have (e.g. commissions appended mid-run)
+  const rQ = JSON.parse(sh('git show ' + originRef + ':' + QUEUE_FILE));
+  const byName = new Map(queueDoc.queue.map(e => [e.name, e]));
+  for (const re of (rQ.queue || [])) {
+    const ours = byName.get(re.name);
+    if (!ours) { queueDoc.queue.push(re); byName.set(re.name, re); }
+    else if (ours.status === 'queued' && re.status !== 'queued') { Object.assign(ours, re); }
+  }
+  // merge manifest: remote entries + our new mints win
+  const rM = JSON.parse(sh('git show ' + originRef + ':' + MANIFEST));
+  const byPath = new Map(rM.files.map(e => [e.path, e]));
+  for (const [p, e] of mpath) byPath.set(p, e);
+  manifest.files = [...byPath.values()];
+  if (rM.version) manifest.version = rM.version;
+  // move our branch to the remote tip WITHOUT touching the working tree,
+  // then commit our full state (mints + merged queue/manifest) on top
+  sh('git reset --soft ' + originRef);
+  persist();
+  sh('git add -A fateblade ' + AGENT_FILE);
+  sh('git commit -m "fateblade: scene forge mint (' + label + ') [reconciled]"');
+  sh('git push');
+  console.log('reconciled with remote after push rejection (' + label + ')');
+  return true;
+}
+
+// ---- Layer 1 + 3: save EVERY mint the moment it exists; if saving
+// fails twice in a row, STOP the run - never mint paid images we
+// cannot save.
 function commitNow(label) {
   persist();
-  if (!process.env.GITHUB_ACTIONS) return;
-  try {
-    execSync('git add -A fateblade ' + AGENT_FILE, { stdio: 'pipe' });
-    execSync('git commit -m "fateblade: scene forge mint (' + label + ')"', { stdio: 'pipe' });
-    for (let i = 0; i < 3; i++) {
-      try { execSync('git push', { stdio: 'pipe' }); return; } catch (e) {}
-      try { execSync('git pull --rebase --autostash origin ' + (process.env.GITHUB_REF_NAME || 'main'), { stdio: 'pipe' }); } catch (e) { break; }
+  if (!IN_CI) return true;
+  let failures = 0;
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      sh('git add -A fateblade ' + AGENT_FILE);
+      trySh('git commit -m "fateblade: scene forge mint (' + label + ')"');
+      sh('git push');
+      return true;
+    } catch (e) {
+      failures++;
+      if (attempt < 2) {
+        console.log('save attempt ' + (attempt + 1) + ' rejected (' + label + ') - reconciling conflict-free');
+        try { if (reconcileAndPush(label)) return true; } catch (e2) { console.log('reconcile failed: ' + String(e2.message).slice(0, 160)); }
+      }
     }
-    console.log('WARNING: durable push failed after ' + label + ' - changes stay local and ride the next commit');
-  } catch (e) { console.log('WARNING: durable commit failed after ' + label + ': ' + e.message); }
+  }
+  saveBroken = true;
+  console.log('DURABILITY FAILURE - cannot save work to the repo after ' + failures + ' attempts. STOPPING the run so no more paid commissions are stranded. The minted images are still uploaded as a run artifact - recover them from the run page, then fix git and re-run.');
+  return false;
 }
 
 // ---- the agent (cached across runs via the repo) ----
@@ -150,10 +232,19 @@ async function paintOne(ag, entry) {
   return { ok: true };
 }
 
+syncFromRemote();
+let todo = queueDoc.queue.filter(e => (e.status || 'queued') === 'queued' && e.name && e.prompt);
+console.log('scene queue: ' + queueDoc.queue.length + ' entries, ' + todo.length + ' queued');
+if (!todo.length) { console.log('EDICT/RELIC SCENE QUEUE EMPTY - every commission is minted or accounted for. Append queued entries to fateblade/portrait-queue.json and re-run.'); process.exit(2); }
+const batch = todo.slice(0, LIMIT);
+
 const ag = await agentId();
+// Layer 3: save the agent id BEFORE the first mint can fail
+commitNow('agent-bootstrap');
 let minted = 0, failedCount = 0;
 for (const entry of batch) {
-  if (Date.now() - T0 > TIME_BUDGET_MS) { console.log('time budget reached - wrapping up cleanly so nothing is stranded'); break; }
+  if (saveBroken) { console.log('STOP-THE-LINE: saving is broken - halting before minting ' + entry.name); break; }
+  if (Date.now() - T0 > TIME_BUDGET_MS) { console.log('time budget reached - wrapping up cleanly'); break; }
   let done = false;
   for (let attempt = 0; attempt < 3 && !done; attempt++) {
     try {
@@ -161,16 +252,16 @@ for (const entry of batch) {
       if (res.retry) { rateUntil = Math.max(rateUntil, Date.now() + 61000); console.log('rate limit - pausing 60s'); attempt--; continue; }
       minted++; done = true;
       console.log('minted: ' + entry.name + ' [' + entry.realm + '/' + entry.kind + '] -> fateblade/' + entry.file);
-      commitNow(entry.name);
+      if (!commitNow(entry.name)) break;   // stop-the-line inside the retry loop too
     } catch (e) {
       const msg = String(e && e.message);
       if (/refused/.test(msg)) { console.log('KEY REFUSED - rotate the key and update the MISTRAL_KEY secret. Stopping.'); persist(); process.exit(1); }
       if (attempt < 2) { console.log(entry.name + ': ' + msg + ' - retrying'); await sleep(8000); }
-      else { failedCount++; entry.status = 'failed'; entry.error = msg; console.log('FAILED: ' + entry.name + ': ' + msg); }
+      else { failedCount++; entry.status = 'failed'; entry.error = msg; console.log('FAILED: ' + entry.name + ': ' + msg); persist(); }
     }
   }
-  await sleep(400);
 }
+if (saveBroken) process.exit(3);
 persist();
 console.log('minted ' + minted + ', failed ' + failedCount + '; ' + (todo.length - minted) + ' still queued');
 if (minted === 0) process.exit(1);

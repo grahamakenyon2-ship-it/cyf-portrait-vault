@@ -33,6 +33,14 @@ jobs:
         env:
           MISTRAL_KEY: ${{ secrets.MISTRAL_KEY }}
           LIMIT: ${{ github.event.inputs.limit || '5' }}
+      - name: Rescue minted images (artifact failsafe)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: minted-images-${{ github.run_id }}
+          path: fateblade/art/
+          retention-days: 14
+          if-no-files-found: ignore
       - name: Commit the chunk
         run: |
           git config user.name "scene-forge-keeper"
@@ -43,9 +51,9 @@ jobs:
           for i in 1 2 3; do
             if git push; then exit 0; fi
             echo "push rejected - rebasing on remote and retrying (attempt $i)"
-            git pull --rebase origin "$GITHUB_REF_NAME" || exit 1
+            git pull --rebase origin "$GITHUB_REF_NAME" || true
           done
-          echo "push failed after 3 attempts" && exit 1
+          echo "push failed after 3 attempts (per-mint saves already ran; minted images are in the run artifact)"
       - name: Complete - disable this workflow
         if: steps.paint.outputs.rc == '2'
         run: |
