@@ -401,6 +401,16 @@
     border-image:var(--theme-panel, linear-gradient(#2a2216,#191308)) 40; background:#0d0a07;
     animation:dissolve .8s ease-in forwards;}
   .dghost img{width:100%; height:104px; object-fit:cover; display:block;}
+  /* v0.22.10 JUICE: spell flourishes — edicts/relics/passives/fatigue were sound-only, the board never moved */
+  .fxburst{position:absolute; z-index:29; pointer-events:none; border:2px solid #ffd76a; border-radius:50%; box-shadow:0 0 20px #ffd76a99; animation:fxRing .5s ease-out forwards;} /* caster flourish ring */
+  .fxburst.cyan{border-color:#9cf; box-shadow:0 0 20px #9cf9;} /* relics */
+  .fxburst.red{border-color:#f66; box-shadow:0 0 20px #f669;} /* fatigue burn */
+  @keyframes fxRing{0%{transform:scale(.25); opacity:1} 100%{transform:scale(1.9); opacity:0}}
+  .minion.glow{outline:2px solid #ffd76a; box-shadow:0 0 16px #ffd76acc;} /* buff lands */
+  .minion.glow.blue{outline-color:#9cf; box-shadow:0 0 16px #9cfcc;} /* Aegis absorb */
+  .hero.glow{outline:2px solid #a8e6b8; box-shadow:0 0 16px #a8e6b899;} /* passive flicker */
+  .hcard.deal{animation:dealIn .34s ease-out;} /* v0.22.10: fresh draws slide up out of the deck */
+  @keyframes dealIn{0%{transform:translateY(80px) rotate(var(--fr,0deg)); opacity:0} 100%{transform:translateY(var(--fy,0px)) rotate(var(--fr,0deg)); opacity:1}}
   @keyframes dissolve{0%{opacity:1; transform:scale(1)}100%{opacity:0; transform:scale(.68) rotate(7deg)}}
   .minion.spawn{animation:spawn .3s ease-out;}
   @keyframes spawn{0%{transform:scale(.55); opacity:0}100%{transform:scale(1); opacity:1}}
@@ -608,7 +618,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.22.9';
+const GAME_VERSION = '0.22.10';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
@@ -1219,15 +1229,34 @@ const MUSIC = {
     if (!this.el) { this.el = document.createElement('audio'); this.el.loop = true; this.el.preload = 'auto'; }
     this.el.onerror = () => { // v0.22.7: local mirror missing/stalled? -> the vault over HTTPS (exactly how ART loads). Music had NO synth fallback, so a missing mirror meant total silence.
       if (this.el.dataset.fb !== '1' && this.cur === track) { this.el.dataset.fb = '1'; this.el.src = AUDIOBASE + '/music/' + track + '.ogg'; this.el.play().catch(()=>{}); }
+      else if (this.cur === track && this.el.dataset.fb2 !== '1' && track !== 'menu-theme' && track !== 'match-annals' && track !== 'match-canon') { // v0.22.10: realm track not ingested yet (audio keeper hasn't run) — fall back to a core track, never silence
+        this.el.dataset.fb2 = '1';
+        this.set(me && me.pool === 'history' ? 'match-annals' : 'match-canon');
+      }
       else this.cur = null;
     };
-    try { this.el.dataset.fb = ''; this.el.src = '../audio/music/' + track + '.ogg'; this.el.volume = this.vol(); this.el.play().catch(()=>{}); } catch (e) {}
+    try { this.el.dataset.fb = ''; this.el.dataset.fb2 = ''; this.el.src = '../audio/music/' + track + '.ogg'; this.el.volume = this.vol(); this.el.play().catch(()=>{}); } catch (e) {}
   },
   setVol(){ if (this.el) this.el.volume = this.vol(); },
   retry(){ if (this.el && this.el.paused && this.vol() > 0) this.el.play().catch(()=>{}); }
 };
+const REALM_MUSIC = { // v0.22.10: per-realm playlists — the tracks land via the fateblade-audio keeper (audio-sources.txt batch 1); if one is not ingested yet MUSIC.set falls back to the core tracks, never silence
+  barning: 'beethoven-5-1',      // the Tidebound armada — heroic fate-knocks
+  lucerre: 'brandenburg-3-1',    // the Gilded Sun — baroque courtly order
+  fenorian: 'beethoven-5-1',    // the Twin Courts — imperial Rome
+  crescent: 'dvorak-9',          // the Crescent Sultanates — the New World's exotic longing
+  ironsteppes: 'winter-1',       // the Horde of the Steppes — Vivaldi's frozen wind
+  stormlit: 'spring-1',          // the Elderkin — alien pastoral grace
+  starwind: 'dvorak-9',          // the Alien Dominion — wide-open strangeness
+  tigerpass: 'match-annals',     // the Bestial Horde — Mountain King menace
+  zephek: 'match-canon',         // the Human Star Empire — Beethoven iron
+  kingdoms: 'dvorak-9',          // the Warring Kingdoms — the Largo's elegy
+  courts: 'brandenburg-3-1',     // the Gilded Courts — gilded intrigue
+  towers: 'menu-morning',        // the Nine Towers — Peer Gynt's mythic dawn
+  wayfarers: 'spring-1'           // the Guild — wandering renewal
+};
 function musicForScreen(id){
-  if (id === 'match') MUSIC.set(me.pool === 'history' ? 'match-annals' : 'match-canon');
+  if (id === 'match') MUSIC.set(REALM_MUSIC[me.faction] || (me.pool === 'history' ? 'match-annals' : 'match-canon'));
   else MUSIC.set('menu-theme');
 }
 function turnBanner(enemy){
@@ -1278,6 +1307,25 @@ function fxShake(el){
     { transform: 'translate(6px,0)' }, { transform: 'translate(-4px,0)' },
     { transform: 'translate(0,0)' }], { duration: 240 });
 }
+function fxBurst(el, cls){ // v0.22.10: expanding ring flourish at any element — edicts, relics, fatigue burn
+  if (!el) return;
+  const r = el.getBoundingClientRect(), fx = document.getElementById('fx');
+  if (!fx) return;
+  const sz = Math.max(r.width, r.height) * 0.9;
+  const d = document.createElement('div');
+  d.className = 'fxburst ' + (cls || '');
+  d.style.width = sz + 'px'; d.style.height = sz + 'px';
+  d.style.left = (r.left + r.width / 2 - sz / 2) + 'px';
+  d.style.top = (r.top + r.height / 2 - sz / 2) + 'px';
+  fx.appendChild(d);
+  setTimeout(() => d.remove(), 520);
+}
+function fxGlow(el, cls){ // v0.22.10: brief plate glow — buff lands, Aegis absorbs, passives flicker
+  if (!el) return;
+  el.classList.remove('glow', 'blue'); void el.offsetWidth;
+  el.classList.add('glow'); if (cls) el.classList.add(cls);
+  setTimeout(() => el.classList.remove('glow', 'blue'), 650);
+}
 function findMinion(side, cid){
   const b = document.getElementById(side === 'A' ? 'myBoard' : 'aiBoard');
   if (!b) return null;
@@ -1305,9 +1353,9 @@ function fxEvent(ev){
       if (el) { el.classList.add('spawn'); setTimeout(() => el.classList.remove('spawn'), 320); }
       break;
     }
-    case 'edict': SFX.edict(); break;
+    case 'edict': SFX.edict(); fxBurst(heroOf(ev.side)); break; // v0.22.10: the caster's flourish — edicts were sound-only
     case 'relic':
-    case 'relicfx': SFX.relic(); break;
+    case 'relicfx': SFX.relic(); fxBurst(heroOf(ev.side), 'cyan'); break; // v0.22.10: relic seat shines
     case 'hit': {
       SFX.hit();
       const atkEl = findMinion(ev.side, ev.id);
@@ -1325,10 +1373,10 @@ function fxEvent(ev){
       break; // the victim hero's hitflash + damage number come from the render diff
     }
     case 'death': deathGhost(ev.uid); break;
-    case 'shield': SFX.shield(); break; // v0.12: Aegis absorption — its own ring, not the buff chime
-    case 'buff': SFX.buff(); break;
-    case 'passive': SFX.passive(); break;
-    case 'fatigue': SFX.fatigue(); break;
+    case 'shield': SFX.shield(); fxGlow(findMinion(ev.side, ev.id), 'blue'); break; // v0.12: Aegis absorption — its own ring, not the buff chime; v0.22.10: blue plate glow
+    case 'buff': SFX.buff(); fxGlow(findMinion(ev.side, ev.id)); break; // v0.22.10: gold plate glow where the buff lands
+    case 'passive': SFX.passive(); fxGlow(heroOf(ev.side)); break; // v0.22.10: sage flicker on the passive's owner
+    case 'fatigue': SFX.fatigue(); fxBurst(heroOf(ev.side), 'red'); break; // v0.22.10: the deck-out burn rings the Sovereign
   }
 }
 function fxDiff(st){
@@ -1554,6 +1602,7 @@ function render(){
   hideZoom(); // v0.9.8: the rebuild below can remove the hovered card — its mouseleave never fires, so the zoom would freeze on screen
   const my = S.A, ai = S.B;
   if (lastSeen.handA !== null && my.hand.length > lastSeen.handA) SFX.draw(); // v0.12: the slide of a fresh draw
+  const dealFrom = (lastSeen.handA !== null && my.hand.length - lastSeen.handA > 0 && my.hand.length - lastSeen.handA <= 3) ? lastSeen.handA : 1e9; // v0.22.10: fresh draws (1-3) slide up out of the deck; bigger jumps (mulligan/rematch) don't flash
   lastSeen.handA = my.hand.length;
   const tb = document.getElementById('topbar');
   tb.innerHTML = `<b>${my.fac.label}</b> ${crystals(my.mana, my.maxmana)}
@@ -1637,7 +1686,7 @@ function render(){
   const fanR = (i)=>((i-(hn-1)/2)*Math.min(3.5, 28/hn)).toFixed(1);
   const fanY = (i)=>(Math.pow(Math.abs(i-(hn-1)/2),1.35)*6).toFixed(1);
   hd.innerHTML = my.hand.map((c,i)=>`
-    <div class="hcard r-${c.rarity||'common'} ${isSpell(c)?'spell':''} ${E.canPlay(S,'A',i)?'playable':''}" data-i="${i}" style="--fr:${fanR(i)}deg;--fy:${fanY(i)}px">
+    <div class="hcard r-${c.rarity||'common'} ${isSpell(c)?'spell':''} ${E.canPlay(S,'A',i)?'playable':''} ${i>=dealFrom?'deal':''}" data-i="${i}" style="--fr:${fanR(i)}deg;--fy:${fanY(i)}px">
       <img src="${c.img}" loading="lazy"><div class="vig"></div>
       <div class="gem cost">${c.cost}</div>
       ${isSpell(c)?`<div class="typerow">${c.type==='edict'?'EDICT':'RELIC'}</div>`:''}
