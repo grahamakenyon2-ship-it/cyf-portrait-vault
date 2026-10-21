@@ -57,8 +57,8 @@
   .hero{width:190px; height:190px; border:2px solid var(--gold-dim); background:#000; text-align:center; cursor:pointer; position:relative;}
   .hero img{width:100%; height:112px; object-fit:cover; display:block;}
   .hero .hp{position:absolute; bottom:2px; left:50%; transform:translateX(-50%); font-size:27px; color:var(--hp); text-shadow:0 0 4px #000;}
-  .hero .nm{position:absolute; top:2px; width:100%; font-size:13.5px; background:#000a; letter-spacing:1px; white-space:nowrap; overflow:hidden;}
-  .hero .sovname{font-size:12.5px; color:#8fd; background:#000c; padding:1px 3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; letter-spacing:.5px;}
+  .hero .nm{position:absolute; top:0; width:100%; font-size:12.5px; line-height:1.15; background:#000a; letter-spacing:.5px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;} /* v0.22.7: realm names wrap to 2 lines — "THE HUMAN STAR EMPI" truncation gone */
+  .hero .sovname{font-size:11.5px; color:#8fd; background:#000c; padding:1px 3px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; letter-spacing:.5px;} /* v0.22.7: long sovereign names wrap to 2 lines too */
   .hero .sovp{font-size:10.5px; line-height:13px; color:#e6d8b2; background:#000c; padding:1px 3px; height:38px; overflow:hidden;}
   .hero .relics{position:absolute; top:-16px; left:0; width:100%; display:flex; gap:2px; justify-content:center; pointer-events:auto;}
   .hero .relics .rk{font-size:10px; background:#000d; border:1px solid var(--gold-dim); color:var(--abil); padding:0 4px; cursor:help; white-space:nowrap; max-width:72px; overflow:hidden; text-overflow:ellipsis; line-height:14px;}
@@ -106,6 +106,7 @@
   #feedback li{margin:5px 0; color:#e6d8b2;}
   #powerbtn{padding:12px 24px; font-size:16px;}
   #patchhud{position:fixed; top:8px; right:12px; font-size:13px; color:#c9b78e; z-index:60; display:none; background:#000c; padding:4px 10px; border:1px solid var(--gold-dim);}
+  #uidebug{position:fixed; bottom:6px; left:8px; font-size:12px; color:#8fd; z-index:80; display:none; background:#000d; padding:3px 8px; border:1px solid var(--gold-dim); pointer-events:none;} /* v0.22.7 fit readout */
 
   /* ===== hover-zoom big card ===== */
   #zoom{position:fixed; z-index:40; display:none; width:352px; pointer-events:none;
@@ -564,6 +565,7 @@
 <div id="turnBanner"><span></span></div>
 <div id="coin"></div>
 <div id="patchhud"></div>
+<div id="uidebug"></div>
 <button id="helpbtn" onclick="document.getElementById('help').classList.add('on')">? RULES</button>
 <div id="help" onclick="this.classList.remove('on')"><div id="helpbox">
   <h2>HOW TO PLAY</h2>
@@ -606,7 +608,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.22.6';
+const GAME_VERSION = '0.22.7';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
@@ -642,7 +644,7 @@ const guildCount = (sel) => [...sel].filter(isGuildCard).length;
 
 /* ---------- settings (localStorage) ---------- */
 const SKEY = 'fateblade-settings-v1';
-let settings = Object.assign({ theme: 'auto', watchSpeed: 1, aiLevel: 'normal', enemyPace: 850, sfxVol: 0.7, musicVol: 0.35 }, JSON.parse(localStorage.getItem(SKEY) || '{}'));
+let settings = Object.assign({ theme: 'auto', watchSpeed: 1, aiLevel: 'normal', enemyPace: 850, sfxVol: 0.7, musicVol: 0.35, scaleMode: 'auto', uiScale: 100, uiDebug: false }, JSON.parse(localStorage.getItem(SKEY) || '{}')); // v0.22.7: display settings — auto-fit (default) or manual scale + debug readout
 function saveSettings(){ localStorage.setItem(SKEY, JSON.stringify(settings)); }
 const WORLDTHEMES = ['ironhall','inkwash','starmaps','dunes','tamriel','teyvat','roshar','antiquity','regency','modern'];
 function applyTheme(factionId){
@@ -694,6 +696,18 @@ function fitScreen(){
   // v0.10.2: fullscreen->windowed transitions report transient garbage viewports;
   // scaling on them left the screen at a broken micro-scale (looked frozen).
   if(innerWidth < 400 || innerHeight < 240) return;
+  // v0.22.7 DISPLAY SETTINGS: the player is always right about their own screen.
+  // Auto-fit is the default, but if it misjudges their display (taskbar overlays,
+  // DPI scaling, unusual webview), MANUAL locks the exact scale they chose.
+  if(settings.scaleMode === 'manual'){
+    const ms = Math.max(0.6, Math.min(1.6, (Number(settings.uiScale) || 100) / 100));
+    el.style.justifyContent = 'flex-start';
+    el.style.overflow = 'hidden';
+    el.style.transformOrigin = 'center top';
+    el.style.transform = 'scale(' + ms + ')';
+    uiDebugReport(ms, null, null);
+    return;
+  }
   el.style.transform=''; el.style.transformOrigin=''; el.style.overflow=''; el.style.justifyContent='';
   el.scrollTop = 0; el.scrollLeft = 0; // v0.22.3: a scrolled screen shifts every child rect — always measure from the top
 // v0.9.3: the desktop window is a FIXED 1280x900 — on small laptops or scaled
@@ -751,12 +765,22 @@ function fitScreen(){
     el.style.overflow = 'hidden';
     el.style.transformOrigin = 'center top';
     el.style.transform = 'scale(' + s + ')';
+    uiDebugReport(s, cw, ch);
   } else if(s > 1.01){
     el.style.justifyContent = ''; // undo any earlier shrink-anchoring
     el.style.overflow = '';      // v0.22.5: undo any earlier shrink clipping
     el.style.transformOrigin = 'center center'; // fills the viewport, never overflows it
     el.style.transform = 'scale(' + s + ')';
-  }
+    uiDebugReport(s, cw, ch);
+  } else uiDebugReport(s, cw, ch);
+}
+function uiDebugReport(s, cw, ch){ // v0.22.7: the fit readout — turn it on in Settings and include it in bug screenshots
+  const el = document.getElementById('uidebug');
+  if(!el) return;
+  const show = !!settings.uiDebug;
+  el.style.display = show ? 'block' : 'none';
+  if(!show) return;
+  el.textContent = `fit s=${s.toFixed(3)}${cw?' cw='+Math.round(cw):''}${ch?' ch='+Math.round(ch):''} · viewport ${innerWidth}×${innerHeight} · ${document.fullscreenElement?'fullscreen':'windowed'}`;
 }
 // v0.10.2: coalesce resize storms (fullscreen/windowed transitions fire dozens
 // of resize events with in-between sizes), then refit once after the dust settles.
@@ -1140,10 +1164,15 @@ const SND = {
     }
   }
 };
-/* ---------- v0.12 AUDIO: sampled SFX + themed music from the vault ----------
-   Files live in ../audio/ (the Patcher mirrors them once the vault audio
-   keeper has fetched them). Until then every sound falls back to the synth
-   palette, so the game is fully playable on silent-hostile installs too. */
+/* ---------- v0.12 AUDIO: sampled SFX + themed music from the vault ---------- v0.22.7
+   Files live in ../audio/ (the Patcher mirrors them once the vault audio keeper has
+   fetched them). Until then every sound falls back to the synth palette, so the game
+   is fully playable on silent-hostile installs too. PROBLEM FOUND (v0.22.7): when the
+   local mirror is missing, SFX silently degrade to synth (they still "work", so the
+   bug hides) — but MUSIC has NO synth fallback, so it was flat SILENT. Art never had
+   this bug because ART loads from the vault over HTTPS. Audio now does the same:
+   local first, then the vault URL, so music plays even on a cold install. */
+const AUDIOBASE = 'https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio'; // v0.22.7 remote fallback — same trust model as ART
 const AUD = {
   base: '../audio/', bank: {},
   sfx(name, synth){
@@ -1163,7 +1192,11 @@ const AUD = {
       .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.arrayBuffer(); })
       .then(b => SND.ctx ? SND.ctx.decodeAudioData(b) : Promise.reject(new Error('no ctx')))
       .then(buf => { this.bank[name] = buf; })
-      .catch(() => { this.bank[name] = null; });
+      .catch(() => fetch(AUDIOBASE + '/sfx/' + name + '.ogg') // v0.22.7: local mirror missing? the vault always has them
+        .then(r => { if (!r.ok) throw 0; return r.arrayBuffer(); })
+        .then(b => SND.ctx ? SND.ctx.decodeAudioData(b) : Promise.reject(new Error('no ctx')))
+        .then(buf => { this.bank[name] = buf; })
+        .catch(() => { this.bank[name] = null; }));
   },
   warm(){ ['click', 'play-card', 'draw-card', 'hit', 'hero-hit', 'death', 'shield', 'confirm', 'edict', 'relic', 'fatigue', 'buff', 'coin', 'turn-you', 'turn-en'].forEach(n => this.load(n)); } // v0.22.4: warm ALL vault SFX — SFX.draw has an empty synth fallback, so an unloaded draw-card meant silent draws
 };
@@ -1173,8 +1206,12 @@ const MUSIC = {
   set(track){
     if (this.cur === track) { this.retry(); return; } // v0.22.4: same track but paused (autoplay was blocked at boot) — re-attempt instead of silently doing nothing
     this.cur = track;
-    if (!this.el) { this.el = document.createElement('audio'); this.el.loop = true; this.el.preload = 'auto'; this.el.onerror = () => { this.cur = null; }; }
-    try { this.el.src = '../audio/music/' + track + '.ogg'; this.el.volume = this.vol(); this.el.play().catch(()=>{}); } catch (e) {}
+    if (!this.el) { this.el = document.createElement('audio'); this.el.loop = true; this.el.preload = 'auto'; }
+    this.el.onerror = () => { // v0.22.7: local mirror missing/stalled? -> the vault over HTTPS (exactly how ART loads). Music had NO synth fallback, so a missing mirror meant total silence.
+      if (this.el.dataset.fb !== '1' && this.cur === track) { this.el.dataset.fb = '1'; this.el.src = AUDIOBASE + '/music/' + track + '.ogg'; this.el.play().catch(()=>{}); }
+      else this.cur = null;
+    };
+    try { this.el.dataset.fb = ''; this.el.src = '../audio/music/' + track + '.ogg'; this.el.volume = this.vol(); this.el.play().catch(()=>{}); } catch (e) {}
   },
   setVol(){ if (this.el) this.el.volume = this.vol(); },
   retry(){ if (this.el && this.el.paused && this.vol() > 0) this.el.play().catch(()=>{}); }
@@ -1884,22 +1921,34 @@ function showSettings(){
   if(sfxEl) sfxEl.value = String(Math.round((settings.sfxVol === undefined ? 0.7 : settings.sfxVol) * 100));
   const musEl = document.getElementById('setMusic');
   if(musEl) musEl.value = String(Math.round((settings.musicVol === undefined ? 0.35 : settings.musicVol) * 100));
+  const smEl = document.getElementById('setScaleMode'); // v0.22.7: display settings
+  if(smEl) smEl.value = settings.scaleMode || 'auto';
+  const usEl = document.getElementById('setUiScale');
+  if(usEl) usEl.value = String(settings.uiScale === undefined ? 100 : settings.uiScale);
+  const udEl = document.getElementById('setUiDebug');
+  if(udEl) udEl.value = settings.uiDebug ? 'on' : 'off';
   updateVolLabels();
+  uiDebugReport(0, null, null); // sync the readout's visibility with the setting
   document.getElementById('settings').classList.add('on');
 }
 function setTheme(v){ settings.theme = v; saveSettings(); applyTheme(me.faction || null); }
 function setWatch(v){ settings.watchSpeed = Number(v); saveSettings(); }
 function setAI(v){ settings.aiLevel = v; saveSettings(); }
 function setPace(v){ settings.enemyPace = Number(v); saveSettings(); }
+// v0.22.7: display settings — auto-fit or a player-locked scale; the readout makes fit bugs diagnosable from one screenshot
+function setScaleMode(v){ settings.scaleMode = v; saveSettings(); refit(); }
+function setUiScale(v){ settings.uiScale = Number(v); saveSettings(); if(settings.scaleMode === 'manual') refit(); updateVolLabels(); }
+function setUiDebug(v){ settings.uiDebug = v === 'on'; saveSettings(); uiDebugReport(0, null, null); }
 function setSfxVol(v){ settings.sfxVol = Number(v)/100; saveSettings(); SND.init(); SND.setVol(); updateVolLabels(); }
 // v0.12.2: sliders send 0-100 — full continuous control, not 4 fixed steps
 function setMusicVol(v){ settings.musicVol = Number(v)/100; saveSettings(); if(Number(v) === 0 && MUSIC.el){ MUSIC.el.pause(); } else { MUSIC.setVol(); MUSIC.retry(); } updateVolLabels(); }
 function updateVolLabels(){
-  const s = document.getElementById('sfxVolPct'), m = document.getElementById('musicVolPct');
+  const s = document.getElementById('sfxVolPct'), m = document.getElementById('musicVolPct'), u = document.getElementById('uiScalePct');
   const sv = Math.round((settings.sfxVol === undefined ? 0.7 : settings.sfxVol) * 100);
   const mv = Math.round((settings.musicVol === undefined ? 0.35 : settings.musicVol) * 100);
   if(s) s.textContent = sv + '%';
   if(m) m.textContent = mv + '%';
+  if(u) u.textContent = (settings.uiScale === undefined ? 100 : settings.uiScale) + '%' + (settings.scaleMode === 'manual' ? ' (active)' : ' (auto-fit active)');
 }
 function clearDecks(){ savedDecks = {}; localStorage.removeItem(DKEY2); localStorage.removeItem(DKEY); alert('Saved decks cleared — realms return to their doctrine decks.'); location.reload(); }
 /* v0.13.3: in-game updater — the desktop shell (window.fateblade, exposed via
@@ -2066,6 +2115,19 @@ function watchEnd(){
     <input type="range" id="setSfx" min="0" max="100" step="1" oninput="setSfxVol(this.value)">
     <label>Music volume <span id="musicVolPct" style="color:var(--gold)"></span></label>
     <input type="range" id="setMusic" min="0" max="100" step="1" oninput="setMusicVol(this.value)">
+    <label>Display — UI scale</label>
+    <select id="setScaleMode" onchange="setScaleMode(this.value)">
+      <option value="auto">Auto — fit the whole battlefield on screen (recommended)</option>
+      <option value="manual">Manual — lock the scale with the slider below</option>
+    </select>
+    <label>Manual UI scale <span id="uiScalePct" style="color:var(--gold)"></span></label>
+    <input type="range" id="setUiScale" min="60" max="160" step="5" oninput="setUiScale(this.value)">
+    <label>Fit debug readout <span style="text-transform:none;color:#c9b78e">(turn on and include it in bug screenshots — it shows exactly what the fit math sees)</span></label>
+    <select id="setUiDebug" onchange="setUiDebug(this.value)">
+      <option value="off">Off</option>
+      <option value="on">On</option>
+    </select>
+    <div style="margin:8px 0"><button onclick="toggleFS()">⛶ Toggle fullscreen</button></div>
     <label>Game updates <span id="updStatus" style="color:var(--gold);text-transform:none"></span></label>
     <div style="margin:8px 0"><button id="updBtn" onclick="checkForUpdates()">⟳ Check for updates</button></div>
     <label>Saved decks</label>
