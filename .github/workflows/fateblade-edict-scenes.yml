@@ -1,0 +1,57 @@
+name: fateblade-edict-scenes
+on:
+  workflow_dispatch:             # run by hand from the Actions tab; re-run until the queue is empty
+    inputs:
+      limit:
+        description: 'Scenes per run (default 5 - steady; raise if the queue drains too slowly)'
+        required: false
+        default: '5'
+permissions:
+  contents: write
+  actions: write                 # lets the workflow disable itself when the queue is empty
+concurrency:
+  group: vault-painter           # SHARED with fateblade-portraits: one painter in the repo at a time
+  cancel-in-progress: false
+jobs:
+  paint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Mint the next scene chunk
+        id: paint
+        run: |
+          set +e
+          node fateblade-edict-scenes.mjs
+          rc=$?
+          echo "rc=$rc" >> "$GITHUB_OUTPUT"
+          echo "fateblade-edict-scenes exit code: $rc"
+          exit 0
+        env:
+          MISTRAL_KEY: ${{ secrets.MISTRAL_KEY }}
+          LIMIT: ${{ github.event.inputs.limit || '5' }}
+      - name: Commit the chunk
+        run: |
+          git config user.name "scene-forge-keeper"
+          git config user.email "keeper@users.noreply.github.com"
+          git add fateblade/art/scenes fateblade/edict-scene-queue.json fateblade/manifest.json agent-fateblade-scenes.txt
+          git diff --cached --quiet && echo "nothing new" && exit 0
+          git commit -m "fateblade: edict/relic scene chunk"
+          for i in 1 2 3; do
+            if git push; then exit 0; fi
+            echo "push rejected - rebasing on remote and retrying (attempt $i)"
+            git pull --rebase origin "$GITHUB_REF_NAME" || exit 1
+          done
+          echo "push failed after 3 attempts" && exit 1
+      - name: Complete - disable this workflow
+        if: steps.paint.outputs.rc == '2'
+        run: |
+          echo "EDICT/RELIC SCENE VAULT COMPLETE - every canon edict and relic has its scene artwork. Disabling this workflow."
+          echo "(To stockpile more later, append queued entries to fateblade/edict-scene-queue.json, re-enable and re-run from the Actions tab.)"
+          curl -s -X POST -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/workflows/fateblade-edict-scenes.yml/disable"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

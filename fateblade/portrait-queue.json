@@ -658,6 +658,252 @@
    "category": "undead",
    "status": "queued",
    "prompt": "Portrait of a skeletal ferryman holding a lantern whose flame is a tiny screaming soul, river-reed hood, patient hollow eyes of soft light, an oar over one shoulder like a mendicant staff"
+  },
+  {
+   "name": "Gathras, the Gate Warden",
+   "category": "gargoyle",
+   "status": "queued",
+   "prompt": "Portrait of a cathedral gargoyle warden, granite grey skin cracked with gold-mended seams, bat wings folded like a chancellor's cloak, eyes of banked ember light, a heavy iron gate key worn as a collar"
+  },
+  {
+   "name": "The Weeping Colossus",
+   "category": "gargoyle",
+   "status": "queued",
+   "prompt": "Portrait of a massive weathered gargoyle with rain channels worn into its stone face like tears, moss in the mouth corners, one cracked eye glowing faintly as it wakes"
+  },
+  {
+   "name": "Snaggletooth Fenn",
+   "category": "ghoul",
+   "status": "queued",
+   "prompt": "Portrait of a graveyard ghoul, grey rubbery skin pulled tight over prominent cheekbones, oversized crooked teeth, pale night eyes, a stolen priest collar worn over rags"
+  },
+  {
+   "name": "Ghoul-Priest of the Third Hunger",
+   "category": "ghoul",
+   "status": "queued",
+   "prompt": "Portrait of a gaunt ghoul priest, hairless grey skin with ritual scars in ring patterns, long yellowed fingernails like talons folded in prayer, eyes of warm candlelight in a skull face"
+  },
+  {
+   "name": "Neferu the Twice-Wrapped",
+   "category": "mummy",
+   "status": "queued",
+   "prompt": "Portrait of a royal mummy queen, resin-dark skin visible through torn bandages, a pectoral collar of lapis and gold, eyes of patient amber fire, a serene unliving smile"
+  },
+  {
+   "name": "The Cartonnage King",
+   "category": "mummy",
+   "status": "queued",
+   "prompt": "Portrait of a mummy pharaoh in a painted cartonnage mask of teal and gold, crossed crook and flail held over the chest, one hand broken to the bone beneath the wrappings, eyes burning turquoise"
+  },
+  {
+   "name": "The Scarecrow Magistrate",
+   "category": "scarecrow",
+   "status": "queued",
+   "prompt": "Portrait of a scarecrow magistrate, burlap face with stitched-on felt eyes and a painted smirk, straw tufts from the collar, a judicial wig of wheat, a gavel of knotted wood"
+  },
+  {
+   "name": "Hollowpatch",
+   "category": "scarecrow",
+   "status": "queued",
+   "prompt": "Portrait of a patchwork scarecrow soldier, mismatched burlap and canvas face-seams, one button eye and one stitched-shut socket, a rusty medal pinned to a straw chest, crows perched on each shoulder"
+  },
+  {
+   "name": "The Coffer-Fangs",
+   "category": "mimic",
+   "status": "queued",
+   "prompt": "Portrait of a treasure-chest mimic, a wooden chest split open into a fanged maw, a green velvet interior like a throat, one amber eye on the lid hinge, coins of drool"
+  },
+  {
+   "name": "Chestheel the Doormat",
+   "category": "mimic",
+   "status": "queued",
+   "prompt": "Portrait of a flattened door-mimic, a wide tattered rug with a fanged seam running its length, patient eyes like floor knots, dust and old blood in the pile"
+  },
+  {
+   "name": "The Hollow Panoply",
+   "category": "living-armor",
+   "status": "queued",
+   "prompt": "Portrait of an empty full-plate armor, a helmet with no face inside only cold blue witchlights in the visor, sword held at parade rest, torn tabard bearing an unknown heraldry"
+  },
+  {
+   "name": "Sir Aldric's Empty Plate",
+   "category": "living-armor",
+   "status": "queued",
+   "prompt": "Portrait of haunted knight armor, dented and rust-streaked with a rose tucked into the gorget, ghost-light leaking through the visor slits, an oath-scar scratched inside the breastplate"
+  },
+  {
+   "name": "The Will-o-Wisp Choir",
+   "category": "wisp",
+   "status": "queued",
+   "prompt": "Portrait of a chorus of marsh-lights, a cluster of pale blue-green flames arranged like a faces-in-a-choir-loft, cold light dripping like candle wax, dark swamp water below"
+  },
+  {
+   "name": "Lantern-Jawed Boggle",
+   "category": "wisp",
+   "status": "queued",
+   "prompt": "Portrait of a lantern spirit, a hunched figure whose ribcage holds a single warm flame like a lantern, face of stretched smoke with two bright coal eyes, hands cupped around its own light"
+  },
+  {
+   "name": "Umbrix the Duskrider",
+   "category": "shadow-drake",
+   "status": "queued",
+   "prompt": "Portrait of a shadow-drake, a lean wyvern of smoke and bruise-purple scales, membranous wings fading to nothing at the edges, eyes like twin eclipses, frost of starlight on its snout"
+  },
+  {
+   "name": "Smoulder-Shadow Vyrrn",
+   "category": "shadow-drake",
+   "status": "queued",
+   "prompt": "Portrait of a young ember-drake, charcoal scales veined with slow lava-light, half its body dissolving into drifting smoke, tiny horns, curious molten eyes"
+  },
+  {
+   "name": "Grimwrack the Bonewyrm",
+   "category": "bone-wyrm",
+   "status": "queued",
+   "prompt": "Portrait of an immense bone-wyrm, a serpent assembled from countless mismatched skulls and ribs, hollow eye sockets burning pale green, drifting grave-mist between its vertebrae"
+  },
+  {
+   "name": "Leshyi Rootfather",
+   "category": "leshy",
+   "status": "queued",
+   "prompt": "Portrait of a leshy forest-spirit, a small dense figure of roots and birch bark, a face of lichen with oak-gold eyes, a beard of pale moss, a crown of budding antler-twigs"
+  },
+  {
+   "name": "Pustule-Mother Greeba",
+   "category": "plaguebearer",
+   "status": "queued",
+   "prompt": "Portrait of a plague-bearer matron, bloated yellow-green skin with dark buboes, a veil of fly wings, hands gloved in wax, kind eyes all the more terrible for it, a censer of sweet rot"
+  },
+  {
+   "name": "Bile-Jarl Torvek",
+   "category": "troll",
+   "status": "queued",
+   "prompt": "Portrait of a bile troll jarl, translucent green-yellow skin showing dark shapes within, tusks of river glass, a crown of salvage iron, a longboat figurehead slung as a weapon"
+  },
+  {
+   "name": "Y'haa the Deepbound",
+   "category": "deep-one",
+   "status": "queued",
+   "prompt": "Portrait of a deep-one elder, slick black amphibian skin with rows of lightless eyes along the temples, a fin-crown, a mantle of drowned priest robes, abyssal patience"
+  },
+  {
+   "name": "Shriek-Matron Kel",
+   "category": "harpy",
+   "status": "queued",
+   "prompt": "Portrait of a harpy matriarch, vulture-feathered wings as a cape, a gaunt wind-burned human face with a hooked nose, taloned feet gripping a storm-wrack branch, storm light behind"
+  },
+  {
+   "name": "The Riddling Sphinx",
+   "category": "sphinx",
+   "status": "queued",
+   "prompt": "Portrait of a grimdark sphinx, a lioness face with ancient amber eyes, wings of dusty gold feathers folded like a scholar's coat, a collar of alphabet tiles, an unreadable smile"
+  },
+  {
+   "name": "The Chimera of the Ashen Vale",
+   "category": "chimera",
+   "status": "queued",
+   "prompt": "Portrait of a chimera, mismatched heads of lion, goat and black serpent arguing in profile, scaled lion mane, charred ashen fur, breath of three different fires"
+  },
+  {
+   "name": "The Cockatrix of the Moor",
+   "category": "cockatrice",
+   "status": "queued",
+   "prompt": "Portrait of a cockatrice, a scaly black rooster-body with dragon wings and a serpent tail, a crest of grey wattles, petrifying yellow eyes, a frog turned to stone at its feet"
+  },
+  {
+   "name": "Ydra of the Nine Heads",
+   "category": "hydra",
+   "status": "queued",
+   "prompt": "Portrait of a hydra matriarch, nine green-scaled heads at different ages of regrowth, one freshly stumped and steaming, old gold eyes, a swamp-kingdom of reeds behind"
+  },
+  {
+   "name": "Io the Basilisk-Guard",
+   "category": "basilisk",
+   "status": "queued",
+   "prompt": "Portrait of a basilisk warden, a crested reptilian face with a rooster-comb of red spines, armored eyelids half-closed over petrifying eyes, scales of oxidized bronze, a knight's gorget"
+  },
+  {
+   "name": "The Pale Unicorn",
+   "category": "unicorn",
+   "status": "queued",
+   "prompt": "Portrait of a grimdark unicorn, a gaunt white stallion with a dark ivory horn, fetlock feathers stained with old blood, a red rose bound around the horn, sorrowful black eyes"
+  },
+  {
+   "name": "Nightmare-Steed Vhorrus",
+   "category": "nightmare",
+   "status": "queued",
+   "prompt": "Portrait of a nightmare steed, a black horse with a mane and tail of drifting flame and smoke, hooves of cracked ember, eyes like twin furnace doors, smoke curling from its nostrils"
+  },
+  {
+   "name": "Deathknight Maldrec",
+   "category": "deathknight",
+   "status": "queued",
+   "prompt": "Portrait of an undead knight, a gaunt grey face inside a great helm, frost-rimed beard, eyes of cold blue flame, a surcoat of faded allegiance over armor fused to his bones"
+  },
+  {
+   "name": "Dame Ilse the Unburied",
+   "category": "deathknight",
+   "status": "queued",
+   "prompt": "Portrait of a revenant knight-dame, half-rotted noble face beneath a cracked barbute, grave-moss in the gorget, one living blue eye and one hollow, her sword still wrapped in funeral ribbon"
+  },
+  {
+   "name": "Lich-Queen Vashti",
+   "category": "lich",
+   "status": "queued",
+   "prompt": "Portrait of a lich queen, a fleshless regal face with gold-leaf on the cheekbones, a crown of the teeth of kings, purple fire in the eye sockets, robes of moth-eaten imperial purple"
+  },
+  {
+   "name": "The Archlich Vermillon",
+   "category": "lich",
+   "status": "queued",
+   "prompt": "Portrait of an archlich scholar, a bare skull with copper wire holding the jaw, red candle-light in the sockets, an astrolabe halo, a collar of chained miniature coffins"
+  },
+  {
+   "name": "Goblin-King Sprocket XIX",
+   "category": "goblin",
+   "status": "queued",
+   "prompt": "Portrait of a goblin king, green skin with a smallpox-scarred nose, a crown made of a bent horseshoe, a robe of patched trade banners, eyes gleaming with inherited cunning"
+  },
+  {
+   "name": "Drill-Abbot Kessik",
+   "category": "hobgoblin",
+   "status": "queued",
+   "prompt": "Portrait of a hobgoblin drill-abbot, brick-red skin, a tonsure shaved with parade precision, a whistle and prayer beads around the neck, a voice you can see in the jaw"
+  },
+  {
+   "name": "Ogre-Battlemaster Gromp",
+   "category": "ogre",
+   "status": "queued",
+   "prompt": "Portrait of an ogre battlemaster, warty grey-yellow skin with war-tattoos of tally marks, a helmet three sizes too small, a jaw like a drawbridge, one shoulder-mounted dwarf gunner's saddle"
+  },
+  {
+   "name": "Mossheart the Treant-Warden",
+   "category": "treant",
+   "status": "queued",
+   "prompt": "Portrait of an ancient treant warden, a face of living oak with a bolt of iron lashed across a cracked brow, a beard of crows-nest moss, small glowing sap-lanterns hanging from its brows"
+  },
+  {
+   "name": "Elder Vampyre Casimir",
+   "category": "vampire",
+   "status": "queued",
+   "prompt": "Portrait of a feral elder vampire, bat-like flattened nose, ears that come to hairy points, a mouth of too many small teeth, tattered noble velvet, eyes like red stained glass"
+  },
+  {
+   "name": "The Legion's Standard-Bearer",
+   "category": "zombie",
+   "status": "queued",
+   "prompt": "Portrait of a zombie standard-bearer, a soldier corpse with the banner pole wired into its shoulder socket, jaw hanging by a thread of tendon, one eye milky and one somehow alert, the flag unfaded"
+  },
+  {
+   "name": "Jarl Kelgar of the Frozen Mire",
+   "category": "troll",
+   "status": "queued",
+   "prompt": "Portrait of a frost troll jarl, pale blue hide studded with river ice, tusks capped in silver, a beard of frozen reeds, a necklace of lake-glass beads, breath hanging thick"
+  },
+  {
+   "name": "The Hollow Shepherd",
+   "category": "wraith",
+   "status": "queued",
+   "prompt": "Portrait of a wraith shepherd, a robed figure of grey smoke with no face but a suggestion of a hooded profile, a crook of bent candlelight, a small flock of pale spirits drifting at its heels"
   }
  ]
 }

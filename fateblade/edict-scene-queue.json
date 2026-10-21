@@ -1,0 +1,1029 @@
+{
+ "style": "dark painterly fantasy illustration, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
+ "queue": [
+  {
+   "name": "War Council",
+   "realm": "stormlit",
+   "kind": "edict",
+   "cardId": "war-council@stormlit",
+   "status": "queued",
+   "prompt": "Elder war-council in a storm-lit tree-fort hall: elven captains and dwarf clan-elders lean over a war table as a lightning flash redraws the map lines in silver, aged banners overhead"
+  },
+  {
+   "name": "Rain of Arrows",
+   "realm": "stormlit",
+   "kind": "edict",
+   "cardId": "rain-of-arrows@stormlit",
+   "status": "queued",
+   "prompt": "A massed elven volley rising over a forest ridge, the sky darkening with arrows above an enemy line far below, one huntsman on the ridge raising his blade with a surge of vigor"
+  },
+  {
+   "name": "Cataclysm",
+   "realm": "stormlit",
+   "kind": "edict",
+   "cardId": "cataclysm@stormlit",
+   "status": "queued",
+   "prompt": "A godling sorcerer calling down a storm cataclysm: branching lightning scything across an entire enemy war-camp, wagons and tents bursting, in a storm-dark valley"
+  },
+  {
+   "name": "Grand Archive",
+   "realm": "stormlit",
+   "kind": "relic",
+   "cardId": "grand-archive@stormlit",
+   "status": "queued",
+   "prompt": "A vast archive grown inside hollowed tree roots: an elder scribe-archivist catalogs scrolls by lantern-light while a fresh conscript-warden steps out from between the towering shelves as if conjured"
+  },
+  {
+   "name": "The Elder Moot",
+   "realm": "stormlit",
+   "kind": "edict",
+   "cardId": "the-elder-moot@stormlit",
+   "status": "queued",
+   "prompt": "A moot-ring of the elder races beneath a colossal oak: an elf matriarch passes a glowing law-rune hand to hand, and each warrior standing in the circle grows subtly grander as the light touches them"
+  },
+  {
+   "name": "Wildsong Rising",
+   "realm": "stormlit",
+   "kind": "edict",
+   "cardId": "wildsong-rising@stormlit",
+   "status": "queued",
+   "prompt": "Wildsong rising in a moonlit glade: druidic voices tangling with wind, and two mist-and-leaf conscripts assembling themselves out of the song while pale green light heals a wounded archer"
+  },
+  {
+   "name": "The Forge Blessing",
+   "realm": "stormlit",
+   "kind": "edict",
+   "cardId": "the-forge-blessing@stormlit",
+   "status": "queued",
+   "prompt": "A dwarf forge-priest blessing a rack of greataxes: the charging-blades flare with molten runes, sparks whirling as a chosen champion steps forward glowing with borrowed heat"
+  },
+  {
+   "name": "The Glade Ward",
+   "realm": "stormlit",
+   "kind": "relic",
+   "cardId": "the-glade-ward@stormlit",
+   "status": "queued",
+   "prompt": "A warding stone in a deep glade pulsing slow rings of moonlight, an elven warden resting unharmed within the glow while the forest keeps watch, dawn light beginning to return"
+  },
+  {
+   "name": "The Moonwell Vial",
+   "realm": "stormlit",
+   "kind": "relic",
+   "cardId": "the-moonwell-vial@stormlit",
+   "status": "queued",
+   "prompt": "A silver vial of moonwell water glowing on a gnarled root altar, priestess hands lifting it so the pale liquid lights her face, a fallen warrior laid nearby being mourned"
+  },
+  {
+   "name": "Drummers of the Line",
+   "realm": "stormlit",
+   "kind": "relic",
+   "cardId": "drummers-of-the-line@stormlit",
+   "status": "queued",
+   "prompt": "Dwarf drummers on a ridge beating a slow healing rhythm while a battle-line of tired elven soldiers visibly straightens, breath returning, a full scroll-case held high by a runner"
+  },
+  {
+   "name": "Salt fog Harbor",
+   "realm": "stormlit",
+   "kind": "relic",
+   "cardId": "salt-fog-harbor@stormlit",
+   "status": "queued",
+   "prompt": "A fog-bound harbor of salt-crusted piers: elven mariners binding a wreath of rope and gull-bones to a shrine-keel as their champion strides back from a duel unhurt, fog swirling"
+  },
+  {
+   "name": "The borgia Chalice",
+   "realm": "stormlit",
+   "kind": "relic",
+   "cardId": "the-borgia-chalice@stormlit",
+   "status": "queued",
+   "prompt": "An ornate gemmed chalice on an elder altar catching moonlight, a pale priestess raising it as warm light spills over a wounded elder-king, vigor returning to his face"
+  },
+  {
+   "name": "The coronation Oil",
+   "realm": "stormlit",
+   "kind": "edict",
+   "cardId": "the-coronation-oil@stormlit",
+   "status": "queued",
+   "prompt": "Coronation oil poured from a horn vessel over an elder-king's brow, the anointing light knitting his wounds closed as courtiers watch in a glade-cathedral of living branches"
+  },
+  {
+   "name": "The heretic's stake",
+   "realm": "stormlit",
+   "kind": "edict",
+   "cardId": "the-heretic-s-stake@stormlit",
+   "status": "queued",
+   "prompt": "A burning heretic's stake hurling a tongue of white fire across a courtyard into a caged enemy horror, zealots shielding their eyes from the blast"
+  },
+  {
+   "name": "The storm Summoner",
+   "realm": "stormlit",
+   "kind": "edict",
+   "cardId": "the-storm-summoner@stormlit",
+   "status": "queued",
+   "prompt": "A storm-godling emptying every last spark of their power into one colossal storm-bolt, arms wide, hair whipping, the single lightning column aimed at a distant foe on a ridge"
+  },
+  {
+   "name": "Wind swept Dunes Fortress",
+   "realm": "stormlit",
+   "kind": "edict",
+   "cardId": "wind-swept-dunes-fortress@stormlit",
+   "status": "queued",
+   "prompt": "A sandstone fortress on windswept dunes: rune-banners stiffen with strengthening glyphs as a wind-borne scattershot of grit flays an advancing enemy column below"
+  },
+  {
+   "name": "Star Charts",
+   "realm": "starwind",
+   "kind": "edict",
+   "cardId": "star-charts@starwind",
+   "status": "queued",
+   "prompt": "Alien astromancers in an observatory spire aiming star-charts like weapons, glowing map-lines leaping off the vellum into the sky where they burn down onto a distant enemy flagship"
+  },
+  {
+   "name": "Solar Flare",
+   "realm": "starwind",
+   "kind": "edict",
+   "cardId": "solar-flare@starwind",
+   "status": "queued",
+   "prompt": "A conductor-alien tapping a captive star through a great lens, the star's entire flare channeled down into a single devastating lance of light aimed at one foe on a world below"
+  },
+  {
+   "name": "Assassination Order",
+   "realm": "starwind",
+   "kind": "edict",
+   "cardId": "assassination-order@starwind",
+   "status": "queued",
+   "prompt": "An alien assassin dropping through a shattered skylight onto the mightiest war-beast in an enemy command hall, plasma blade drawn, the beast turning too late"
+  },
+  {
+   "name": "Great Granary",
+   "realm": "starwind",
+   "kind": "relic",
+   "cardId": "great-granary@starwind",
+   "status": "queued",
+   "prompt": "A great hive-granary spire under twin moons: chitin porters pouring nutrient crystal into communal vats while the swarm below feeds and swells"
+  },
+  {
+   "name": "Rite of Ascension",
+   "realm": "starwind",
+   "kind": "edict",
+   "cardId": "rite-of-ascension@starwind",
+   "status": "queued",
+   "prompt": "A rite of ascension: aliens climbing a ladder of light within a temple-ring, each one growing taller, brighter, more radiant as they rise toward an orbiting reliquary"
+  },
+  {
+   "name": "The Honor Duel",
+   "realm": "starwind",
+   "kind": "edict",
+   "cardId": "the-honor-duel@starwind",
+   "status": "queued",
+   "prompt": "An honor duel between two armored alien champions beneath a ring of silent watchers, plasma blades locked, the duel ending as the stronger blade burns through the weaker"
+  },
+  {
+   "name": "The Fleet Muster",
+   "realm": "starwind",
+   "kind": "edict",
+   "cardId": "the-fleet-muster@starwind",
+   "status": "queued",
+   "prompt": "A fleet-muster in a vast docking bay: rows of small one-being pods being sealed and armed, hangar doors opening onto a starfield ready for war"
+  },
+  {
+   "name": "The Trophy Wall",
+   "realm": "starwind",
+   "kind": "relic",
+   "cardId": "the-trophy-wall@starwind",
+   "status": "queued",
+   "prompt": "A trophy wall of mounted skulls and tusks in an alien hall, the newest kill's skull being hung by a tall hunter whose wounds visibly knit closed as it hangs"
+  },
+  {
+   "name": "The War Standard of the Houses",
+   "realm": "starwind",
+   "kind": "relic",
+   "cardId": "the-war-standard-of-the-houses@starwind",
+   "status": "queued",
+   "prompt": "The war standards of the alien houses rising together on a battlefield ridge, glyph-banners igniting as the massed ranks beneath them swell with fresh strength"
+  },
+  {
+   "name": "Iron shod Warhorse",
+   "realm": "starwind",
+   "kind": "relic",
+   "cardId": "iron-shod-warhorse@starwind",
+   "status": "queued",
+   "prompt": "A cybernetic iron-shod warhorse recharging at a stable-dock, machine-stable hands fitting it with horseshoes of glowing alloy while fallen rider's gear is catalogued beside it"
+  },
+  {
+   "name": "Rune stone",
+   "realm": "starwind",
+   "kind": "edict",
+   "cardId": "rune-stone@starwind",
+   "status": "queued",
+   "prompt": "A carved runestone on an alien plain discharging everything it holds into one blinding rune-blast at a single distant foe, the ground around it left scorched and empty of power"
+  },
+  {
+   "name": "Sultan's tughra",
+   "realm": "starwind",
+   "kind": "relic",
+   "cardId": "sultan-s-tughra@starwind",
+   "status": "queued",
+   "prompt": "An alien sultan's tughra-seal being stamped onto a scroll of light, the decree's radiance passing over ranks of bow-bearing warriors who straighten and sharpen"
+  },
+  {
+   "name": "The bone Golem",
+   "realm": "starwind",
+   "kind": "edict",
+   "cardId": "the-bone-golem@starwind",
+   "status": "queued",
+   "prompt": "A golem assembled from the bones of hunted trophies striding into an enemy line, its fist obliterating the strongest foe while bone splinters spray across the others"
+  },
+  {
+   "name": "The longbow Yeomen",
+   "realm": "starwind",
+   "kind": "relic",
+   "cardId": "the-longbow-yeomen@starwind",
+   "status": "queued",
+   "prompt": "A line of alien yeomen longbowmen at dawn on a terraced ridge, drawing in perfect unison and loosing at the weakest target on the far field"
+  },
+  {
+   "name": "The quartermaster's wagon",
+   "realm": "starwind",
+   "kind": "edict",
+   "cardId": "the-quartermaster-s-wagon@starwind",
+   "status": "queued",
+   "prompt": "A quartermaster's wagon distributing ration-crystal to a bivouac while a stray particle-shot from its escort turret picks off an enemy skulker in the treeline"
+  },
+  {
+   "name": "The vintner's harvest",
+   "realm": "starwind",
+   "kind": "edict",
+   "cardId": "the-vintner-s-harvest@starwind",
+   "status": "queued",
+   "prompt": "The vintner's harvest: glowing alien grapes pressed into caustic wine poured from a cask-crane over an enemy formation below, the spray searing everything it touches"
+  },
+  {
+   "name": "Willow lantern",
+   "realm": "starwind",
+   "kind": "relic",
+   "cardId": "willow-lantern@starwind",
+   "status": "queued",
+   "prompt": "A pale willow-lantern hanging at a crossroads shrine, its glow laying a safe road of light through dangerous ground while a wounded traveler walks unharmed beneath it"
+  },
+  {
+   "name": "Ambush at the Pass",
+   "realm": "tigerpass",
+   "kind": "edict",
+   "cardId": "ambush-at-the-pass@tigerpass",
+   "status": "queued",
+   "prompt": "An ambush at a mountain pass: orc and ratkin ambushers raining javelins and sling-stones down the cliffs onto a column marching through the narrow way below"
+  },
+  {
+   "name": "Call to Arms",
+   "realm": "tigerpass",
+   "kind": "edict",
+   "cardId": "call-to-arms@tigerpass",
+   "status": "queued",
+   "prompt": "A war-drum call to arms in a horde camp: thousands answering, fresh orc recruits scrambling into rough ranks as a spear-pointed volley sweeps an enemy scout line"
+  },
+  {
+   "name": "Shieldwall",
+   "realm": "tigerpass",
+   "kind": "edict",
+   "cardId": "shieldwall@tigerpass",
+   "status": "queued",
+   "prompt": "An orc shieldwall locking shields in a muddy valley, the shields swelling with bark-hard growth of bone and hide as shaman-drums boom behind them"
+  },
+  {
+   "name": "War Banner",
+   "realm": "tigerpass",
+   "kind": "relic",
+   "cardId": "war-banner@tigerpass",
+   "status": "queued",
+   "prompt": "A horde war-banner planted atop a heap of captured shields, its sigil flaring while the guards beneath it bristle with borrowed strength"
+  },
+  {
+   "name": "The Wild Hunt",
+   "realm": "tigerpass",
+   "kind": "edict",
+   "cardId": "the-wild-hunt@tigerpass",
+   "status": "queued",
+   "prompt": "The Wild Hunt: spectral horned hunters and hounds stampeding through night woods, their weapons and fangs visibly growing as the horn call rises"
+  },
+  {
+   "name": "The Bone Feast",
+   "realm": "tigerpass",
+   "kind": "edict",
+   "cardId": "the-bone-feast@tigerpass",
+   "status": "queued",
+   "prompt": "A bone-feast around a fire-pit of mammoth ribs: conscript-horde warriors gorging on marrow and growing thicker-boned as a new recruit is dragged to the feast"
+  },
+  {
+   "name": "The Rampart of Skulls",
+   "realm": "tigerpass",
+   "kind": "edict",
+   "cardId": "the-rampart-of-skulls@tigerpass",
+   "status": "queued",
+   "prompt": "A rampart of stacked skulls growing higher as ratkin masons add fresh kills, a champion climbing to place the crowning skull and glowing with the rampart's power"
+  },
+  {
+   "name": "The Warlord's Drum",
+   "realm": "tigerpass",
+   "kind": "relic",
+   "cardId": "the-warlord-s-drum@tigerpass",
+   "status": "queued",
+   "prompt": "A huge warlord pounding a mammoth-hide drum, each beat raising fresh ratkin conscripts from the mud already stronger and meaner"
+  },
+  {
+   "name": "The Idol of the Deep Woods",
+   "realm": "tigerpass",
+   "kind": "relic",
+   "cardId": "the-idol-of-the-deep-woods@tigerpass",
+   "status": "queued",
+   "prompt": "A moss-bearded idol looming in a deep wood clearing, horde shamans offering up trophies as the idol's eyes open cheap with borrowed power, gifts growing heavier"
+  },
+  {
+   "name": "The Beasts' Moot",
+   "realm": "tigerpass",
+   "kind": "edict",
+   "cardId": "the-beasts-moot@tigerpass",
+   "status": "queued",
+   "prompt": "A moot of the beasts: bears, wolves and scavenger-things circling an old bull-beast challenged and culled before the whole snarling parliament"
+  },
+  {
+   "name": "Blood moon",
+   "realm": "tigerpass",
+   "kind": "edict",
+   "cardId": "blood-moon@tigerpass",
+   "status": "queued",
+   "prompt": "A blood moon rising over a night muster of the dead, a shaman cutting a moon-mark into the earth as fresh grave-dirt stirs and a new conscript claws free"
+  },
+  {
+   "name": "Kraken's coil",
+   "realm": "tigerpass",
+   "kind": "edict",
+   "cardId": "kraken-s-coil@tigerpass",
+   "status": "queued",
+   "prompt": "A kraken's coil erupting from a storm-sea to crush a war-raft of drowned-horde reavers, tentacles dragging men and salvage into the deep"
+  },
+  {
+   "name": "Perpetual engine",
+   "realm": "tigerpass",
+   "kind": "edict",
+   "cardId": "perpetual-engine@tigerpass",
+   "status": "queued",
+   "prompt": "A ratkin perpetual engine: a great treadmill of bone and scrap spinning endlessly, spark-harnesses raising two fresh mud-caked conscripts from the trench below"
+  },
+  {
+   "name": "Salvage yards",
+   "realm": "tigerpass",
+   "kind": "relic",
+   "cardId": "salvage-yards@tigerpass",
+   "status": "queued",
+   "prompt": "A ratkin salvage yard: heaps of scrap and tar-cauldrons bubbling under lamplight as tinkers brew up pocketfuls of raw mana-glitter"
+  },
+  {
+   "name": "The bronze Telescope",
+   "realm": "tigerpass",
+   "kind": "edict",
+   "cardId": "the-bronze-telescope@tigerpass",
+   "status": "queued",
+   "prompt": "A huge bronze telescope on a cliff swivel aimed at an enemy camp, a ratkin spotter calling a target down to a hidden slinger who looses"
+  },
+  {
+   "name": "The dead Calm",
+   "realm": "tigerpass",
+   "kind": "relic",
+   "cardId": "the-dead-calm@tigerpass",
+   "status": "queued",
+   "prompt": "An unnatural dead calm over a battlefield: mist flat, banners still, the quiet dead rising in perfect silence with new strength in their limbs"
+  },
+  {
+   "name": "The hive Spire",
+   "realm": "tigerpass",
+   "kind": "relic",
+   "cardId": "the-hive-spire@tigerpass",
+   "status": "queued",
+   "prompt": "A hive-spire of wax and bone towering over a battlefield, the swarm's victory-kill being carried in and the spire drinking it, defenders hardening"
+  },
+  {
+   "name": "The royal Treasury",
+   "realm": "tigerpass",
+   "kind": "relic",
+   "cardId": "the-royal-treasury@tigerpass",
+   "status": "queued",
+   "prompt": "The horde's royal treasury: a goblin comptroller weighing plunder at dawn-count while banner-bearers sharpen arrowheads with the morning's tithed steel"
+  },
+  {
+   "name": "The summoning Circle",
+   "realm": "tigerpass",
+   "kind": "edict",
+   "cardId": "the-summoning-circle@tigerpass",
+   "status": "queued",
+   "prompt": "A summoning circle of bone fetishes unmaking an enemy champion: the foe's armor and powers sloughing off as it is rewritten into a plain, blank-faced conscript"
+  },
+  {
+   "name": "The werebeast Moon",
+   "realm": "tigerpass",
+   "kind": "edict",
+   "cardId": "the-werebeast-moon@tigerpass",
+   "status": "queued",
+   "prompt": "A werebeast moon swelling overhead as horde scouts mid-transformation twist into wolfen shapes, one new-minted conscript prowling out of the treeline"
+  },
+  {
+   "name": "Wyvern's shadow",
+   "realm": "tigerpass",
+   "kind": "edict",
+   "cardId": "wyvern-s-shadow@tigerpass",
+   "status": "queued",
+   "prompt": "A wyvern's shadow sweeping across a hillfort, the beast banking as a scrawny rider-beast drops from its talons into the muster line below"
+  },
+  {
+   "name": "Crusade Bull",
+   "realm": "zephek",
+   "kind": "edict",
+   "cardId": "crusade-bull@zephek",
+   "status": "queued",
+   "prompt": "Transhuman crusaders locking tower shields stamped with the bull-crest, the great bull-sigil burning on the banner as the shield-line grows a hand-span thicker"
+  },
+  {
+   "name": "Excommunicado",
+   "realm": "zephek",
+   "kind": "edict",
+   "cardId": "excommunicado@zephek",
+   "status": "queued",
+   "prompt": "A black terror-seal branded in the air by an inquisitor: an enemy champion's runes, medals and shield burning off them like chaff, titles stripped, left bare"
+  },
+  {
+   "name": "Zealot Fervor",
+   "realm": "zephek",
+   "kind": "edict",
+   "cardId": "zealot-fervor@zephek",
+   "status": "queued",
+   "prompt": "Crusade zealots whipped into charge-frenzy by a bareheaded preacher, chains and censers swinging, the front-runners already glowing with furious strength"
+  },
+  {
+   "name": "Training Grounds",
+   "realm": "zephek",
+   "kind": "relic",
+   "cardId": "training-grounds@zephek",
+   "status": "queued",
+   "prompt": "Imperial training grounds: drilled recruits in matching armor sparring in ranks, each one moving with the practiced heft of a veteran twice their size"
+  },
+  {
+   "name": "The Imperial Tithe",
+   "realm": "zephek",
+   "kind": "edict",
+   "cardId": "the-imperial-tithe@zephek",
+   "status": "queued",
+   "prompt": "The imperial tithe: wagons of mana-crystal being poured into a cathedral-coffer's scales as clerks stamp requisitions and the Emperor's light thickens in the air"
+  },
+  {
+   "name": "The Vigil of Steel",
+   "realm": "zephek",
+   "kind": "edict",
+   "cardId": "the-vigil-of-steel@zephek",
+   "status": "queued",
+   "prompt": "A knightly vigil of steel: crusaders kneeling in lamplight before a basilica altar, their shields visibly hardening with blessing before the dawn assault"
+  },
+  {
+   "name": "The Dawn Edict",
+   "realm": "zephek",
+   "kind": "edict",
+   "cardId": "the-dawn-edict@zephek",
+   "status": "queued",
+   "prompt": "A dawn edict read from a fortress balcony by a herald in white: the first light summoning two fresh cohorts of conscripts marching out of the sunrise"
+  },
+  {
+   "name": "The Saint's Reliquary",
+   "realm": "zephek",
+   "kind": "relic",
+   "cardId": "the-saint-s-reliquary@zephek",
+   "status": "queued",
+   "prompt": "A saint's reliquary opened in a chapel-of-arms: the bones within flaring as the Imperial Sovereign's halo swells outward, magnifying over the kneeling host"
+  },
+  {
+   "name": "The Iron Basilica",
+   "realm": "zephek",
+   "kind": "relic",
+   "cardId": "the-iron-basilica@zephek",
+   "status": "queued",
+   "prompt": "The Iron Basilica: a fortress-cathedral of black steel where blessed shield-lights hang over the guards, a blade ringing harmlessly off a warded tower shield"
+  },
+  {
+   "name": "Apprentice's masterpiece",
+   "realm": "zephek",
+   "kind": "relic",
+   "cardId": "apprentice-s-masterpiece@zephek",
+   "status": "queued",
+   "prompt": "An apprentice artificer unveiling a masterpiece in a workshop-basilica: masters leaning in over the glowing creation, incense smoke, tools set down in awe"
+  },
+  {
+   "name": "Quasar beacon",
+   "realm": "zephek",
+   "kind": "edict",
+   "cardId": "quasar-beacon@zephek",
+   "status": "queued",
+   "prompt": "A quasar beacon lit on a battlement: rings of tolling light expanding outward and settling like a yoke over an enemy warcamp far across the valley"
+  },
+  {
+   "name": "Silk bolt Cargo",
+   "realm": "zephek",
+   "kind": "edict",
+   "cardId": "silk-bolt-cargo@zephek",
+   "status": "queued",
+   "prompt": "Silk-bolt cargo being unloaded before a muster: quartermasters draping banners and pennons over the ranks, every soldier standing taller in the gifted regalia"
+  },
+  {
+   "name": "The bastille Key",
+   "realm": "zephek",
+   "kind": "edict",
+   "cardId": "the-bastille-key@zephek",
+   "status": "queued",
+   "prompt": "A bastille key turning in a great lock: toll-bars of light slamming down over an enemy treasury while a cannon-shot picks off a target in the distance"
+  },
+  {
+   "name": "The tidal Gauge",
+   "realm": "zephek",
+   "kind": "edict",
+   "cardId": "the-tidal-gauge@zephek",
+   "status": "queued",
+   "prompt": "A tidal gauge on a seawall reading a rising tide: shield-guards bracing as conscript reinforcements wade in from the surf with the rising water"
+  },
+  {
+   "name": "The Gilded Ledger",
+   "realm": "courts",
+   "kind": "edict",
+   "cardId": "the-gilded-ledger@courts",
+   "status": "queued",
+   "prompt": "Court clerks sealing a law into a gilded ledger by candlelight, the wax seal's glow drifting out over a map where enemy coffers visibly shrink"
+  },
+  {
+   "name": "Whispers at Court",
+   "realm": "courts",
+   "kind": "edict",
+   "cardId": "whispers-at-court@courts",
+   "status": "queued",
+   "prompt": "Masked courtiers whispering behind fans in a gilded hall while a visiting champion's honors, cloak and shield shimmer and dissolve, stripped by rumor"
+  },
+  {
+   "name": "The Queen's Bargain",
+   "realm": "courts",
+   "kind": "edict",
+   "cardId": "the-queen-s-bargain@courts",
+   "status": "queued",
+   "prompt": "A queen striking a bargain at a midnight audience: a servant-signatory pressed to the wax seal while a jeweled pin draws one bead of blood from a rival's hand"
+  },
+  {
+   "name": "The Judicial Duel",
+   "realm": "courts",
+   "kind": "edict",
+   "cardId": "the-judicial-duel@courts",
+   "status": "queued",
+   "prompt": "A judicial duel beneath the statues of a marble court: the defeated duelist dissolving and remade as a blank-faced liveried servant, abilities and arms erased"
+  },
+  {
+   "name": "The Crown's Debt",
+   "realm": "courts",
+   "kind": "edict",
+   "cardId": "the-crown-s-debt@courts",
+   "status": "queued",
+   "prompt": "The Crown's debt: two ledgers spread before a masked scrivener who selects the better page by candlelight and slides it across the desk into a waiting hand"
+  },
+  {
+   "name": "The Small Council",
+   "realm": "courts",
+   "kind": "edict",
+   "cardId": "the-small-council@courts",
+   "status": "queued",
+   "prompt": "A small council of masked ministers passing a law over a council table while a clerk-summoned attendant steps through the door to take the signed scroll"
+  },
+  {
+   "name": "The Gilded Vault",
+   "realm": "courts",
+   "kind": "relic",
+   "cardId": "the-gilded-vault@courts",
+   "status": "queued",
+   "prompt": "A gilded vault chamber of standing coins and deeds where a spymaster's first purchase of the day is weighed and lightened by the vault itself"
+  },
+  {
+   "name": "The Coinmaster's Scales",
+   "realm": "courts",
+   "kind": "relic",
+   "cardId": "the-coinmaster-s-scales@courts",
+   "status": "queued",
+   "prompt": "A coinmaster weighing a rival noble's heavy purse against a feather-tax on brass scales, the purse sinking as the price visibly inflates"
+  },
+  {
+   "name": "The Court Chronicler",
+   "realm": "courts",
+   "kind": "relic",
+   "cardId": "the-court-chronicler@courts",
+   "status": "queued",
+   "prompt": "The court chronicler reading the morning's flattering verses aloud to a Queen at her toilette, color and vigor returning to her face with each praised line"
+  },
+  {
+   "name": "Astrolabe",
+   "realm": "courts",
+   "kind": "relic",
+   "cardId": "astrolabe@courts",
+   "status": "queued",
+   "prompt": "A great brass astrolabe in a tower study ticking a red toll-mark against every heavy cargo on a river map below while a lattice of light scorches the banks"
+  },
+  {
+   "name": "Ion trail Ambush",
+   "realm": "courts",
+   "kind": "edict",
+   "cardId": "ion-trail-ambush@courts",
+   "status": "queued",
+   "prompt": "An ion-trail ambush at night: ships-of-the-line trailing burning particle wake as they rake an enemy convoy from above the clouds"
+  },
+  {
+   "name": "Northern armada",
+   "realm": "courts",
+   "kind": "relic",
+   "cardId": "northern-armada@courts",
+   "status": "queued",
+   "prompt": "A northern armada's flagship breaking ice at dawn, banner-ships massing in the wake, every crewman standing taller as the flags rise"
+  },
+  {
+   "name": "Reactor core Blue",
+   "realm": "courts",
+   "kind": "edict",
+   "cardId": "reactor-core-blue@courts",
+   "status": "queued",
+   "prompt": "A blue reactor core overloading in a stone-machine citadel, one blinding lance of blue fire lancing out across a courtyard to strike an enemy throne"
+  },
+  {
+   "name": "Stag of the Grove",
+   "realm": "courts",
+   "kind": "edict",
+   "cardId": "stag-of-the-grove@courts",
+   "status": "queued",
+   "prompt": "A white stag of the grove charging through an enemy picquet in a moonlit park, antlers goring through shield and tent alike"
+  },
+  {
+   "name": "The belt Miners",
+   "realm": "courts",
+   "kind": "edict",
+   "cardId": "the-belt-miners@courts",
+   "status": "queued",
+   "prompt": "Asteroid-belt miners in vacuum-suits raining drill-charges down on an enemy picket line far below, dust and fire blooming across the ranks"
+  },
+  {
+   "name": "The coaling Station",
+   "realm": "courts",
+   "kind": "relic",
+   "cardId": "the-coaling-station@courts",
+   "status": "queued",
+   "prompt": "A coaling station: bunkers being filled sack by sack with slow-burning black fuel, a quartermaster chalking the third-turn tally on the bunker door"
+  },
+  {
+   "name": "The green Knight",
+   "realm": "courts",
+   "kind": "relic",
+   "cardId": "the-green-knight@courts",
+   "status": "queued",
+   "prompt": "The Green Knight at vigil in a snow-dusted chapel-grove, axe across his knees, evergreen mantle and a face like weathered oak"
+  },
+  {
+   "name": "The kurgan Barrow",
+   "realm": "courts",
+   "kind": "relic",
+   "cardId": "the-kurgan-barrow@courts",
+   "status": "queued",
+   "prompt": "A kurgan barrow-mound at first light where the smallest champion of the war-band is being crowned with a growing wreath of gold and bone"
+  },
+  {
+   "name": "The orb of Foresight",
+   "realm": "courts",
+   "kind": "edict",
+   "cardId": "the-orb-of-foresight@courts",
+   "status": "queued",
+   "prompt": "An orb of foresight on a chancellor's desk showing three shimmering futures of the same court intrigue, one being chosen and drawn into the present"
+  },
+  {
+   "name": "The silverwood Bow",
+   "realm": "courts",
+   "kind": "edict",
+   "cardId": "the-silverwood-bow@courts",
+   "status": "queued",
+   "prompt": "A silverwood bow drawn to its ear in a moonlit garden, the single pale arrow streaking toward a distant enemy sovereign on a balcony"
+  },
+  {
+   "name": "Watchtower relay",
+   "realm": "courts",
+   "kind": "relic",
+   "cardId": "watchtower-relay@courts",
+   "status": "queued",
+   "prompt": "A watchtower relay: signal-lamps passing fire from tower to tower across a dark valley while newly arrived archers take up glowing bow-quivers at the last tower"
+  },
+  {
+   "name": "The Winter Levy",
+   "realm": "kingdoms",
+   "kind": "edict",
+   "cardId": "the-winter-levy@kingdoms",
+   "status": "queued",
+   "prompt": "The winter levy: farmhands and millers taking spears from a cart in falling snow, forming two ragged files as a veteran hands out stovepipe helmets"
+  },
+  {
+   "name": "The Marches Aflame",
+   "realm": "kingdoms",
+   "kind": "edict",
+   "cardId": "the-marches-aflame@kingdoms",
+   "status": "queued",
+   "prompt": "The marches aflame: fire-bombs and burning shot sweeping across an entire enemy siege camp, and from the smoke a single conscript watchman stepping forward"
+  },
+  {
+   "name": "The Border Truce",
+   "realm": "kingdoms",
+   "kind": "edict",
+   "cardId": "the-border-truce@kingdoms",
+   "status": "queued",
+   "prompt": "The border truce: envoys exchanging wreaths at a river ford while healers cross to tend the wounded — and behind them reavers slip poison arrows into the frost-burnt grass"
+  },
+  {
+   "name": "The Rose Accord",
+   "realm": "kingdoms",
+   "kind": "edict",
+   "cardId": "the-rose-accord@kingdoms",
+   "status": "queued",
+   "prompt": "The Rose Accord signed beneath a bower of winter roses, the banners of a hundred houses visibly brightening as the seal is pressed"
+  },
+  {
+   "name": "The Quiet Host",
+   "realm": "kingdoms",
+   "kind": "edict",
+   "cardId": "the-quiet-host@kingdoms",
+   "status": "queued",
+   "prompt": "The Quiet Host: a decree sealed at dusk, and at dawn two phantom cohorts standing in the frost where no army camped, a champion raising a brighter blade"
+  },
+  {
+   "name": "The Long Winter Watch",
+   "realm": "kingdoms",
+   "kind": "edict",
+   "cardId": "the-long-winter-watch@kingdoms",
+   "status": "queued",
+   "prompt": "The long winter watch: veteran rangers in a blizzard picking off the two mightiest enemy champions on a frozen field, one shot each, both giants falling"
+  },
+  {
+   "name": "The Chronicler's Quill",
+   "realm": "kingdoms",
+   "kind": "relic",
+   "cardId": "the-chronicler-s-quill@kingdoms",
+   "status": "queued",
+   "prompt": "A chronicler's quill writing a fallen knight back into the world: ink forming a pale echo of the hero standing at his own grave"
+  },
+  {
+   "name": "The Unbowed Banner",
+   "realm": "kingdoms",
+   "kind": "relic",
+   "cardId": "the-unbowed-banner@kingdoms",
+   "status": "queued",
+   "prompt": "A torn, unbowed banner nailed back to its pole by a wounded standard-bearer, the skirmish-line's arrows striking visibly harder from that moment"
+  },
+  {
+   "name": "The Winter Hearth",
+   "realm": "kingdoms",
+   "kind": "relic",
+   "cardId": "the-winter-hearth@kingdoms",
+   "status": "queued",
+   "prompt": "A winter hearth in a campaign tent: a courier warming his hands with a scroll-belt of five dispatches while the wounded draw strength from the fire"
+  },
+  {
+   "name": "Ballista bolt",
+   "realm": "kingdoms",
+   "kind": "relic",
+   "cardId": "ballista-bolt@kingdoms",
+   "status": "queued",
+   "prompt": "A great ballista being wound and sighted on a snowy rampart, the iron bolt driving through an enemy siege beast's shield"
+  },
+  {
+   "name": "Notre dame Rose Window",
+   "realm": "kingdoms",
+   "kind": "edict",
+   "cardId": "notre-dame-rose-window@kingdoms",
+   "status": "queued",
+   "prompt": "A cathedral rose window at dawn casting a wheel of colored light across a battlefield, the blessed light scorching everything it touches in the enemy ranks"
+  },
+  {
+   "name": "Red sands Canyon",
+   "realm": "kingdoms",
+   "kind": "edict",
+   "cardId": "red-sands-canyon@kingdoms",
+   "status": "queued",
+   "prompt": "Red-sands canyon: every archer of a border host loosing at once from the canyon rim, the volley streaking toward a distant enemy warlord on the valley floor"
+  },
+  {
+   "name": "Standing stones",
+   "realm": "kingdoms",
+   "kind": "edict",
+   "cardId": "standing-stones@kingdoms",
+   "status": "queued",
+   "prompt": "Standing stones in a storm-lit circle unmaking an enemy champion: the foe turning grey and stone-veined, remade as a blank standing figure among the ring"
+  },
+  {
+   "name": "The berserker's rage",
+   "realm": "kingdoms",
+   "kind": "edict",
+   "cardId": "the-berserker-s-rage@kingdoms",
+   "status": "queued",
+   "prompt": "A berserker aflame with battle-rage hauling a war-anchor through a shieldwall, blood and spittle and bare blade in the red light"
+  },
+  {
+   "name": "The codex of Nine",
+   "realm": "kingdoms",
+   "kind": "relic",
+   "cardId": "the-codex-of-nine@kingdoms",
+   "status": "queued",
+   "prompt": "The codex of nine opened on a chapel lectern at dawn, its page-light healing a wounded king while censer smoke drifts low across an enemy line"
+  },
+  {
+   "name": "The lighthouse Keeper",
+   "realm": "kingdoms",
+   "kind": "edict",
+   "cardId": "the-lighthouse-keeper@kingdoms",
+   "status": "queued",
+   "prompt": "A lighthouse keeper striking a flare that calls a single conscript watchman up the stair from the storm-lashed rocks below"
+  },
+  {
+   "name": "The poet's laurel",
+   "realm": "kingdoms",
+   "kind": "edict",
+   "cardId": "the-poet-s-laurel@kingdoms",
+   "status": "queued",
+   "prompt": "A poet crowned with laurel at a mead-hall, his chant raising a single hearth-guard conscript from the shadows of the benches"
+  },
+  {
+   "name": "Whaler's harpoon",
+   "realm": "kingdoms",
+   "kind": "edict",
+   "cardId": "whaler-s-harpoon@kingdoms",
+   "status": "queued",
+   "prompt": "A whaler's harpoon thrown from a pitching longship to pin the two mightiest sea-beasts of an enemy war-fleet, a conscript climbing the line behind it"
+  },
+  {
+   "name": "The Novice Trials",
+   "realm": "towers",
+   "kind": "edict",
+   "cardId": "the-novice-trials@towers",
+   "status": "queued",
+   "prompt": "The novice trials: a young channeler before three doors of light in a tower hall, the best of three futures glowing brightest as she steps through"
+  },
+  {
+   "name": "The Nine Seals",
+   "realm": "towers",
+   "kind": "edict",
+   "cardId": "the-nine-seals@towers",
+   "status": "queued",
+   "prompt": "Nine seals being inscribed in mid-air by a circle of magi, raw mana condensing out of the chamber into a glowing sigil at the ninth stroke"
+  },
+  {
+   "name": "Reading the Weave",
+   "realm": "towers",
+   "kind": "edict",
+   "cardId": "reading-the-weave@towers",
+   "status": "queued",
+   "prompt": "A magus reading the weave: golden threads of fate spread between her fingers, the loose stray threads burning like fuses across a distant enemy camp"
+  },
+  {
+   "name": "The Testing Flame",
+   "realm": "towers",
+   "kind": "edict",
+   "cardId": "the-testing-flame@towers",
+   "status": "queued",
+   "prompt": "The testing flame rolling through a chamber of aspiring magi in two waves, each wave hotter, the false and the frail swept away"
+  },
+  {
+   "name": "The Watcher's Vigil",
+   "realm": "towers",
+   "kind": "edict",
+   "cardId": "the-watcher-s-vigil@towers",
+   "status": "queued",
+   "prompt": "A watcher's vigil: a hooded warden on a tower balcony whose sweeping baleful gaze scorches every figure in the enemy camp below"
+  },
+  {
+   "name": "The Circle of Nine",
+   "realm": "towers",
+   "kind": "edict",
+   "cardId": "the-circle-of-nine@towers",
+   "status": "queued",
+   "prompt": "The circle of nine channelers linking hands to hurl one immense bolt at an enemy sovereign, the backlash sparks spraying across the enemy ranks"
+  },
+  {
+   "name": "The Silver Flame",
+   "realm": "towers",
+   "kind": "relic",
+   "cardId": "the-silver-flame@towers",
+   "status": "queued",
+   "prompt": "A silver flame kept in a tower brazier, a warden-priest directing one slender tongue of it to pick off the weakest foe on the battlefield below"
+  },
+  {
+   "name": "The Ninefold Amulet",
+   "realm": "towers",
+   "kind": "relic",
+   "cardId": "the-ninefold-amulet@towers",
+   "status": "queued",
+   "prompt": "A ninefold amulet raised against an incoming enemy edict of fire, the ninth knot flaring and swallowing the burning decree whole"
+  },
+  {
+   "name": "The Dreamer's Mirror",
+   "realm": "towers",
+   "kind": "relic",
+   "cardId": "the-dreamer-s-mirror@towers",
+   "status": "queued",
+   "prompt": "A dreamer's mirror in a sleeping mage's chamber showing two possible futures, the better card rising to the top of the glass like a bubble"
+  },
+  {
+   "name": "Barnacled hull",
+   "realm": "towers",
+   "kind": "edict",
+   "cardId": "barnacled-hull@towers",
+   "status": "queued",
+   "prompt": "A barnacled war-hull at anchor: a spyglass-scrying officer reading the best of two signal flags while a harpoon bolt slams into an enemy sea-drake"
+  },
+  {
+   "name": "Dragon prow",
+   "realm": "towers",
+   "kind": "relic",
+   "cardId": "dragon-prow@towers",
+   "status": "queued",
+   "prompt": "A dragon-prowed longship carving through a storm-fjord, the figurehead's eyes lighting as it picks off the weakest foe then rams the strongest"
+  },
+  {
+   "name": "Iron fist Artillery",
+   "realm": "towers",
+   "kind": "edict",
+   "cardId": "iron-fist-artillery@towers",
+   "status": "queued",
+   "prompt": "Iron-fist artillery: gunners scrying the target through a spyglass lens before the whole battery fires a single unerring shot"
+  },
+  {
+   "name": "Orbital ring",
+   "realm": "towers",
+   "kind": "edict",
+   "cardId": "orbital-ring@towers",
+   "status": "queued",
+   "prompt": "An orbital ring of mage-towers crossing the night sky, one lance of collected power striking down on a single enemy champion below"
+  },
+  {
+   "name": "Redcoat volley",
+   "realm": "towers",
+   "kind": "edict",
+   "cardId": "redcoat-volley@towers",
+   "status": "queued",
+   "prompt": "A redcoat volley: a line of tower-guards firing in unison, the smoke clearing to reveal a fresh ammunition crate drawn up from the magazine"
+  },
+  {
+   "name": "Steppe horse Archers",
+   "realm": "towers",
+   "kind": "edict",
+   "cardId": "steppe-horse-archers@towers",
+   "status": "queued",
+   "prompt": "Steppe horse archers circling a target in the grass at dusk, choosing the truest arrow of two before loosing on the gallop"
+  },
+  {
+   "name": "The blind Oracle",
+   "realm": "towers",
+   "kind": "edict",
+   "cardId": "the-blind-oracle@towers",
+   "status": "queued",
+   "prompt": "A blind oracle in a tower sanctum turning three fate-stones with her fingertips, the best of three destinies glowing in her palm"
+  },
+  {
+   "name": "The consul's fasces",
+   "realm": "towers",
+   "kind": "edict",
+   "cardId": "the-consul-s-fasces@towers",
+   "status": "queued",
+   "prompt": "A consul's fasces of axes laid on a tribunal table, two of the enemy's mightiest champions dragged before the blades and struck from the rolls"
+  },
+  {
+   "name": "The harbor Customs",
+   "realm": "towers",
+   "kind": "edict",
+   "cardId": "the-harbor-customs@towers",
+   "status": "queued",
+   "prompt": "Harbor customs: a scry-lens inspecting the best of two cargo manifests while a conscript watchman is sworn in under the customs lamp"
+  },
+  {
+   "name": "The lighthouse Storm",
+   "realm": "towers",
+   "kind": "edict",
+   "cardId": "the-lighthouse-storm@towers",
+   "status": "queued",
+   "prompt": "A lighthouse in a sorcerous storm: the keeper crowning his lamp with power, the storm-lightning lashing out at an enemy picket from the tower crown"
+  },
+  {
+   "name": "The star Sanctum",
+   "realm": "towers",
+   "kind": "edict",
+   "cardId": "the-star-sanctum@towers",
+   "status": "queued",
+   "prompt": "A star sanctum: astronomers scrying the best of two constellations while a thread of pure starlight spears down onto an enemy sovereign's throne"
+  },
+  {
+   "name": "Whirling dervishes",
+   "realm": "towers",
+   "kind": "relic",
+   "cardId": "whirling-dervishes@towers",
+   "status": "queued",
+   "prompt": "Whirling dervishes spinning in a tower court, sleeves flaring in discipline, a scroll drawn from the air as the spin perfects itself"
+  }
+ ]
+}
