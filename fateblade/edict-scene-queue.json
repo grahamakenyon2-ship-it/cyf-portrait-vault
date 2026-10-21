@@ -1024,6 +1024,350 @@
    "cardId": "whirling-dervishes@towers",
    "status": "queued",
    "prompt": "Whirling dervishes spinning in a tower court, sleeves flaring in discipline, a scroll drawn from the air as the spin perfects itself"
+  },
+  {
+   "name": "The Second Burial",
+   "realm": "necropolis",
+   "kind": "edict",
+   "cardId": "the-second-burial@necropolis",
+   "status": "queued",
+   "prompt": "A funeral procession lowering a too-weak enemy champion into an open grave as the Necropolis bell tolls, grave-mist swallowing the fallen banner, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "Grave Tithe",
+   "realm": "necropolis",
+   "kind": "edict",
+   "cardId": "grave-tithe@necropolis",
+   "status": "queued",
+   "prompt": "A bone-chested tax-collector of the dead counting freshly raised conscripts out of a mass grave at the tithe-stone, coins on dead eyes, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "The Carrion Call",
+   "realm": "necropolis",
+   "kind": "edict",
+   "cardId": "the-carrion-call@necropolis",
+   "status": "queued",
+   "prompt": "A flock of grave-birds swirling down onto a battlefield of the fallen, assembling around a skeletal herald as a revenant stands up mid-swarm, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "Marrow Harvest",
+   "realm": "necropolis",
+   "kind": "edict",
+   "cardId": "marrow-harvest@necropolis",
+   "status": "queued",
+   "prompt": "A hunched bone-cutter gathering marrow-light from stacked femurs into a lantern that pours pale warmth into a wounded sovereign's chest, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "The Pale Vigil",
+   "realm": "necropolis",
+   "kind": "edict",
+   "cardId": "the-pale-vigil@necropolis",
+   "status": "queued",
+   "prompt": "Rank on rank of standing dead in a candle-lit barrow hall, each soldier straightening as a pale flame passes down the line, armor knitting back together, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "Exhumation",
+   "realm": "necropolis",
+   "kind": "edict",
+   "cardId": "exhumation@necropolis",
+   "status": "queued",
+   "prompt": "Gravediggers hauling a coffin lid aside as a wight in ancient mail climbs out sword-first, grave-light spilling from the pit, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "Necrotic Volley",
+   "realm": "necropolis",
+   "kind": "edict",
+   "cardId": "necrotic-volley@necropolis",
+   "status": "queued",
+   "prompt": "A volley of grave-splinter arrows loosed by skeletal archers from a tomb balcony, each bolt trailing green rot as they strike, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "The Silent Choir",
+   "realm": "necropolis",
+   "kind": "edict",
+   "cardId": "the-silent-choir@necropolis",
+   "status": "queued",
+   "prompt": "A choir of veiled wraiths surrounding an enemy champion mid-song, his armor's glow and battle-runes visibly draining away into their open mouths, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "Plague Wind",
+   "realm": "necropolis",
+   "kind": "edict",
+   "cardId": "plague-wind@necropolis",
+   "status": "queued",
+   "prompt": "A green-tinged gale rolling across an enemy war-camp, soldiers and beasts sagging mid-charge as their banners dissolve into black rags, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "The Bone Crown",
+   "realm": "necropolis",
+   "kind": "relic",
+   "cardId": "the-bone-crown@necropolis",
+   "status": "queued",
+   "prompt": "A crown of fused finger-bones on a sarcophagus throne, new knuckle-bones crawling up its band each time a drop of sovereign blood falls nearby, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "Catacomb Granary",
+   "realm": "necropolis",
+   "kind": "relic",
+   "cardId": "catacomb-granary@necropolis",
+   "status": "queued",
+   "prompt": "A vast catacomb hall stacked with funerary jars and preserved grave-goods, warm broth being ladled from a sarcophagus pot by a skeletal cook, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "Reliquary of the Unquiet",
+   "realm": "necropolis",
+   "kind": "relic",
+   "cardId": "reliquary-of-the-unquiet@necropolis",
+   "status": "queued",
+   "prompt": "A bone-carved reliquary cabinet in a crypt, a ghost-scribe sliding a fresh nameplate into an endless rack as a fallen soldier's shade waits patiently, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "The Endless Levy",
+   "realm": "marches",
+   "kind": "edict",
+   "cardId": "the-endless-levy@marches",
+   "status": "queued",
+   "prompt": "A goblin conscription officer stamping every forehead in a mud-street market line, each stamped orc or goblin instantly kitted with a rusted spear by unseen hands, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "Waaagh Momentum",
+   "realm": "marches",
+   "kind": "edict",
+   "cardId": "waaagh-momentum@marches",
+   "status": "queued",
+   "prompt": "A wave of greenskins stampeding downhill, the front ranks swelling visibly as the crush of bodies behind forces them bigger and meaner, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "Raiding Parties",
+   "realm": "marches",
+   "kind": "edict",
+   "cardId": "raiding-parties@marches",
+   "status": "queued",
+   "prompt": "Three orc raiding crews tearing open a captured wagon train in a mountain pass, each band of greenskins growing rowdier and thicker-armed as loot piles up, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "The Scrapworks",
+   "realm": "marches",
+   "kind": "edict",
+   "cardId": "the-scrapworks@marches",
+   "status": "queued",
+   "prompt": "A goblin scrap-smith riveting looted breastplates onto a grinning orc with a hammer and pure enthusiasm, sparks flying in a junkyard forge, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "Maw of the Horde",
+   "realm": "marches",
+   "kind": "edict",
+   "cardId": "maw-of-the-horde@marches",
+   "status": "queued",
+   "prompt": "The entire war-host crashing into an enemy shieldline like a tide, jaws and tusks visible everywhere as the enemy front rank vanishes into the crush, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "Goblin Gambit",
+   "realm": "marches",
+   "kind": "edict",
+   "cardId": "goblin-gambit@marches",
+   "status": "queued",
+   "prompt": "A goblin gambler fanning three stolen battle-plans behind a rock, picking the shiniest one while an oblivious enemy scout walks past, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "The Pits",
+   "realm": "marches",
+   "kind": "edict",
+   "cardId": "the-pits@marches",
+   "status": "queued",
+   "prompt": "A roaring pit-fight arena of stamping greenskins, the loser of the bout falling on spikes that spray the jeering crowd with spoils, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "Warlord's Ascension",
+   "realm": "marches",
+   "kind": "edict",
+   "cardId": "warlords-ascension@marches",
+   "status": "queued",
+   "prompt": "A towering warchief raising a slain rival's iron jaw-plate as a crown, every orc and goblin in the horde below raising weapons with glowing red eyes, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "The Great Maw Idol",
+   "realm": "marches",
+   "kind": "relic",
+   "cardId": "the-great-maw-idol@marches",
+   "status": "queued",
+   "prompt": "A colossal iron maw-idol being carried on a rolling scaffold through a horde encampment, greenskin warriors shoving offerings in as their own eyes gleam with borrowed hunger, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "Stone Sleep",
+   "realm": "deepholds",
+   "kind": "edict",
+   "cardId": "stone-sleep@deepholds",
+   "status": "queued",
+   "prompt": "A wounded dwarf sovereign resting against a humming basalt wall deep in the holds, cracked stone knitting over his wounds like slow amber, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "The Anvil Chorus",
+   "realm": "deepholds",
+   "kind": "edict",
+   "cardId": "the-anvil-chorus@deepholds",
+   "status": "queued",
+   "prompt": "A gallery of dwarf forge-masters striking anvils in thunderous unison, runes flaring down the cavern as frontline dwarves charge with glowing weapons, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "Rune of Warding",
+   "realm": "deepholds",
+   "kind": "edict",
+   "cardId": "rune-of-warding@deepholds",
+   "status": "queued",
+   "prompt": "A rune-priest carving a glowing ward-sigil onto a gate as dwarf soldiers march out beneath it, each shield catching the rune's blue gleam, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "Barrow Upheaval",
+   "realm": "deepholds",
+   "kind": "edict",
+   "cardId": "barrow-upheaval@deepholds",
+   "status": "queued",
+   "prompt": "An ornate stone barrow door swinging open in a mountain crypt as an ancient armored guardian steps out, saluting with a rune-blade, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "The Deep Roads",
+   "realm": "deepholds",
+   "kind": "edict",
+   "cardId": "the-deep-roads@deepholds",
+   "status": "queued",
+   "prompt": "A lantern-crew of dwarf scouts at a three-way tunnel junction carved with route-runes, the chief navigator pointing confidently down the widest bore, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "Grudge Settled",
+   "realm": "deepholds",
+   "kind": "edict",
+   "cardId": "grudge-settled@deepholds",
+   "status": "queued",
+   "prompt": "A dwarf grudge-keeper solemnly crossing out a name in an iron-bound ledger as the offending enemy champion crumbles to dust before him, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "Vault Tithe",
+   "realm": "deepholds",
+   "kind": "edict",
+   "cardId": "vault-tithe@deepholds",
+   "status": "queued",
+   "prompt": "A great vault door with toll-bells and ledgers, a gnome paymaster charging a fleeing enemy spy double as gem-stamped receipts pile up, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "The Windlass",
+   "realm": "deepholds",
+   "kind": "edict",
+   "cardId": "the-windlass@deepholds",
+   "status": "queued",
+   "prompt": "A massive dwarf windlass raising a platform of shield-dwarves from a lower gallery, each warrior growing more imposing as they rise into the lamplight, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "Ember Rite",
+   "realm": "deepholds",
+   "kind": "edict",
+   "cardId": "ember-rite@deepholds",
+   "status": "queued",
+   "prompt": "A gnome fire-rite swirling forge-embers into a ring of power around a dwarf caster, molten light pouring into his outstretched hammer, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "Gnomeish Contraption",
+   "realm": "deepholds",
+   "kind": "edict",
+   "cardId": "gnomeish-contraption@deepholds",
+   "status": "queued",
+   "prompt": "A brass contraption of arms and lenses sorting gems into three chutes, a gnome plucking the fattest gem with tweezers while the machine smokes, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "The Last Rampart",
+   "realm": "deepholds",
+   "kind": "edict",
+   "cardId": "the-last-rampart@deepholds",
+   "status": "queued",
+   "prompt": "A final rampart of locked tower-shields sealing a breached gate hall, every gap vanishing as dwarf shoulders lock behind an unbroken iron line, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "Stonesong",
+   "realm": "deepholds",
+   "kind": "edict",
+   "cardId": "stonesong@deepholds",
+   "status": "queued",
+   "prompt": "A dwarf stonesinger pressing her palm to a cavern wall as runes ripple outward, a carved rune-scroll sliding loose from the living rock into her hands, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "The Unbroken Anvil",
+   "realm": "deepholds",
+   "kind": "relic",
+   "cardId": "the-unbroken-anvil@deepholds",
+   "status": "queued",
+   "prompt": "An ancient anvil enshrined in the deepest forge-temple, a wounded dwarf sovereign standing behind it as incoming arrows shatter to pebbles mid-flight, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "Cistern of Echoes",
+   "realm": "deepholds",
+   "kind": "relic",
+   "cardId": "cistern-of-echoes@deepholds",
+   "status": "queued",
+   "prompt": "A vaulted cistern hall where water drips up as much as down, a gnome aquarist blessing the echoes as pale water-light heals a resting dwarf line, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "The Tally Vault",
+   "realm": "deepholds",
+   "kind": "relic",
+   "cardId": "the-tally-vault@deepholds",
+   "status": "queued",
+   "prompt": "A walking-vault chamber where a gnome auditor stamps a receipt the instant a dwarf falls in battle above, the stamp-light visibly restocking the armory, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "Lantern of the Lower Gate",
+   "realm": "deepholds",
+   "kind": "relic",
+   "cardId": "lantern-of-the-lower-gate@deepholds",
+   "status": "queued",
+   "prompt": "A great whale-oil lantern swinging above the lower gates, its beam sweeping a distant tunnel and pinning a sneaking enemy scout in full detail, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "The Baited Snare",
+   "realm": "tigerpass",
+   "kind": "edict",
+   "cardId": "the-baited-snare@tigerpass",
+   "status": "queued",
+   "prompt": "A panicked enemy column herded between thorn-walls by wolf shadows, the thorns themselves snapping closed like jaws as the pack watches from the ridge, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "Rutting Season",
+   "realm": "tigerpass",
+   "kind": "edict",
+   "cardId": "rutting-season@tigerpass",
+   "status": "queued",
+   "prompt": "Two colossal stags clashing antlers in a moonlit glen, the impact sending a shockwave of pollen-light that visibly swells every beast massed at the treeline, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "The Long Stalk",
+   "realm": "tigerpass",
+   "kind": "edict",
+   "cardId": "the-long-stalk@tigerpass",
+   "status": "queued",
+   "prompt": "A shadow panther flat on a rock overhang above a waterhole, tracking three separate herds below with slow amber eyes before choosing the slowest, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "Pack Alphas",
+   "realm": "tigerpass",
+   "kind": "edict",
+   "cardId": "pack-alphas@tigerpass",
+   "status": "queued",
+   "prompt": "A ring of alpha predators — dire wolf, cave bear, sabre-tooth — feeding at a kill while the massed pack looks on, each watcher's fur bristling thicker as they wait their turn, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "The Molt",
+   "realm": "tigerpass",
+   "kind": "edict",
+   "cardId": "the-molt@tigerpass",
+   "status": "queued",
+   "prompt": "A colossal serpent mid-molt in a jungle clearing, its fresh scales gleaming as the shed husk behind it crawls away on its own, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
+  },
+  {
+   "name": "The Primal Idol",
+   "realm": "tigerpass",
+   "kind": "relic",
+   "cardId": "the-primal-idol@tigerpass",
+   "status": "queued",
+   "prompt": "A moss-choked tusk-idol deep in a beast-shrine hollow, a fallen wolf's outline flowing into the idol as a nearby bear visibly grows, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders"
   }
  ]
 }
