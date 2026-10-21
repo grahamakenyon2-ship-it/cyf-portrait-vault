@@ -45,11 +45,9 @@ if (!todo.length) { console.log('PORTRAIT QUEUE EMPTY - every commission is mint
 const batch = todo.slice(0, LIMIT);
 
 function persist() {
-  fs.writeFileSync(QUEUE_FILE, JSON.stringify(queueDoc, null, 1) + '
-');
+  fs.writeFileSync(QUEUE_FILE, JSON.stringify(queueDoc, null, 1) + '\n');
   manifest.files = [...mpath.values()];
-  fs.writeFileSync(MANIFEST, JSON.stringify(manifest, null, 2) + '
-');
+  fs.writeFileSync(MANIFEST, JSON.stringify(manifest, null, 2) + '\n');
 }
 
 // ---- the agent (cached across runs via the repo) ----
