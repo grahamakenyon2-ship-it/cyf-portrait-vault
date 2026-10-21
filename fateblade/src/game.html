@@ -116,6 +116,7 @@
     padding:14px 18px 16px;}  /* v0.10.2: text and gems clear the ornate frame art, not flush against it */
   #zoom img{width:280px; height:280px; object-fit:cover; display:block;}
   #zoom .zn{color:var(--gold); font-size:21px; letter-spacing:1px; margin-top:6px;}
+  #zoom .zt{font-size:13px; letter-spacing:2px; color:#c9b78e; margin-top:3px; font-weight:600; font-style:normal;} /* v0.24: tribal identity line, HS minion-type style */
   #zoom .zr{font-size:12px; color:#c9b78e; letter-spacing:2px; text-transform:uppercase; margin-bottom:4px;}
   #zoom .zk{font-size:14px; color:#8fd; margin:2px 0;}
   #zoom .zk b{letter-spacing:1px;}
@@ -523,6 +524,7 @@
     <span class="dblab">COST</span><span id="dbCostChips"></span>
     <span class="dblab">TYPE</span><span id="dbTypeChips"></span>
     <span class="dblab">KEYWORD</span><span id="dbKwChips"></span>
+    <span class="dblab">TRIBE</span><span id="dbTribeChips"></span>
     <span class="dblab">MECHANIC</span><span id="dbMechChips"></span>
     <span class="dblab">SOURCE</span><span id="dbSrcChips"></span>
   <span class="dblab">SORT</span><span id="dbSortChips"></span>
@@ -620,7 +622,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.22.12';
+const GAME_VERSION = '0.24.0';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
@@ -1276,7 +1278,10 @@ const REALM_MUSIC = { // v0.22.12: playlists per realm — auto mode picks a ran
   kingdoms: ['dvorak-9', 'peaceful-desolation'],
   courts: ['miri-magic-dance', 'living-voyage'],
   towers: ['menu-morning', 'forest-trees'],
-  wayfarers: ['spring-1', 'living-voyage']
+  wayfarers: ['spring-1', 'living-voyage'],
+  necropolis: ['netherworld-shanty', 'the-voices'], // v0.24: The Necropolis
+  marches: ['the-voices', 'living-voyage'], // v0.24: The Broken Marches
+  deepholds: ['earth-prelude', 'forest-trees'] // v0.24: The Deepholds
 };
 function trackLabel(slug){ for(const k in MUSIC_LIB){ const t = MUSIC_LIB[k].find(e=>e[0]===slug); if(t) return t[1]; } return slug; }
 function musicForScreen(id){
@@ -1460,12 +1465,14 @@ function showZoom(c, ev, db){ // db=true: deck-builder context — sovereign pas
     zoom.innerHTML = `<img src="${c.img}">
       <div class="zn">${c.name}</div>
       <div class="zr">${c.rarity} · SOVEREIGN</div>
+      ${c.tribe?`<div class="zt">◈ ${c.tribe}</div>`:''}
       <div class="zpas sov" title="${esc(c.passive.desc)}"><b>${c.passive.name}:</b> ${c.passive.desc}</div>`;
     zoom.style.display='block'; moveZoom(ev); return;
   }
   zoom.innerHTML = `<div class="zc">${c.cost}</div><img src="${c.img}">
     <div class="zn">${c.name}</div>
     <div class="zr">${c.rarity}</div>
+    ${c.tribe?`<div class="zt">◈ ${c.tribe}</div>`:''}
     ${kwList(c)?`<div class="zk">${kwList(c)}</div>`:''}
     ${c.ability?`<div class="zpv ${c.ability.length<45?'short':''} ${c.ability.length>110?'long':''} ${c.ability.length>190?'xl':''}" title="${esc(c.ability)}">${c.ability}</div>`:''}
     <div class="zs">${(c.type==='edict'||c.type==='relic') ? `<span style="color:var(--abil);letter-spacing:1px">${c.type==='edict'?'EDICT — ONE-SHOT':'RELIC — PERSISTENT'}</span>` : `<span class="statgem atk">${c.atk}<i>ATK</i></span><span class="statgem hp">${c.hp}<i>HP</i></span>`}</div>`;
@@ -1836,7 +1843,7 @@ function legTotal(){
   }
   return n;
 }
-let dbFilters = { q:'', cost:null, type:null, kw:null, mech:null, src:null }; // v0.9.5: Arena-style filters; v0.22.6: mechanic (Battlecry/Deathrattle) + source (Realm/Guild)
+let dbFilters = { q:'', cost:null, type:null, kw:null, tribe:null, mech:null, src:null }; // v0.9.5: Arena-style filters; v0.22.6: mechanic (Battlecry/Deathrattle) + source (Realm/Guild); v0.24: tribe
 function dbFilterSet(k, v){ dbFilters[k] = v; if(k==='q'){ /* input keeps its own text */ } else { const inp = document.getElementById('dbSearch'); if(inp && inp.value !== dbFilters.q) inp.value = dbFilters.q; } renderDB(); }
 function dbChipRow(elId, opts, cur, key){
   const el = document.getElementById(elId); if(!el) return;
@@ -1853,6 +1860,7 @@ function dbPass(c, src){ // v0.22.6: src = 'realm' | 'guild' — the SOURCE chip
   }
   if(dbFilters.type !== null && (c.type || 'minion') !== dbFilters.type) return false;
   if(dbFilters.kw !== null && !(c.kw||'').split(/[+,]/).map(s=>s.trim()).includes(dbFilters.kw)) return false; // v0.20-ready: matches inside multi-keyword lists
+  if(dbFilters.tribe !== null && c.tribe !== dbFilters.tribe) return false; // v0.24: tribal filter (Mimic changelings count as kin of every tribe on the field, not in the builder)
   if(dbFilters.mech !== null && !(c.ability||'').startsWith(dbFilters.mech)) return false; // v0.22.6: Battlecry / Deathrattle — the mechanic is the text's opening word
   return true;
 }
@@ -1872,7 +1880,7 @@ function openDeckBuilder(facId){
   dbFac = facId; applyTheme(facId);
   const f = facOf(facId);
   dbCnt = new Map(); dbDirty = false; dbSov = null; // clean slate — ↺ Restore Doctrine loads the tuned 30-card default
-  dbFilters = { q:'', cost:null, type:null, kw:null, mech:null, src:null, sort:'cost' }; // v0.9.5 fresh filters; v0.19.1 sort chips; v0.22.6 mech + src
+  dbFilters = { q:'', cost:null, type:null, kw:null, tribe:null, mech:null, src:null, sort:'cost' }; // v0.9.5 fresh filters; v0.19.1 sort chips; v0.22.6 mech + src; v0.24: tribe
   const inp = document.getElementById('dbSearch'); if(inp) inp.value = '';
   const nm = document.getElementById('dbName'); if(nm) nm.value = '';
   document.getElementById('dbTitle').textContent = f.label.toUpperCase() + ' — ' + f.identity.name.toUpperCase();
@@ -1902,6 +1910,8 @@ function renderDB(){
   dbChipRow('dbCostChips', [{t:'ALL',v:null},{t:'1',v:'1'},{t:'2',v:'2'},{t:'3',v:'3'},{t:'4',v:'4'},{t:'5',v:'5'},{t:'6',v:'6'},{t:'7+',v:'7+'}], dbFilters.cost, 'cost');
   dbChipRow('dbTypeChips', [{t:'ALL',v:null},{t:'MINIONS',v:'minion'},{t:'EDICTS',v:'edict'},{t:'RELICS',v:'relic'}], dbFilters.type, 'type');
   dbChipRow('dbKwChips', [{t:'ALL',v:null},{t:'RANGED',v:'Ranged'},{t:'CHARGE',v:'Charge'},{t:'GUARD',v:'Guard'},{t:'LIFESTEAL',v:'Lifesteal'},{t:'SHOCK',v:'Shock'},{t:'BANE',v:'Bane'},{t:'RELENTLESS',v:'Relentless'},{t:'AEGIS',v:'Aegis'}], dbFilters.kw, 'kw'); // v0.19.1: all 8 keywords
+  const tribesAvail = [...new Set(f.cards.concat(gc).map((c)=>c.tribe).filter(Boolean))].sort(); // v0.24: tribes present in this realm's roster + Guild hires
+  dbChipRow('dbTribeChips', [{t:'ALL',v:null}].concat(tribesAvail.map((t)=>({t:t.toUpperCase(),v:t}))), dbFilters.tribe, 'tribe'); // v0.24: tribal deck-building filter
   dbChipRow('dbMechChips', [{t:'ALL',v:null},{t:'⚔ BATTLECRY',v:'Battlecry'},{t:'☠ DEATHRATTLE',v:'Deathrattle'}], dbFilters.mech, 'mech'); // v0.22.6: mechanic filter — HS-style
   dbChipRow('dbSrcChips', [{t:'ALL',v:null},{t:'REALM',v:'realm'},{t:'GUILD',v:'guild'}], dbFilters.src, 'src'); // v0.22.6: source filter — realm roster vs Wayfarers' Guild hires
   dbChipRow('dbSortChips', [{t:'COST',v:'cost'},{t:'NAME',v:'name'},{t:'RARITY',v:'rarity'},{t:'ATK',v:'atk'},{t:'HP',v:'hp'}], dbFilters.sort, 'sort'); // v0.19.1: sort chips; v0.22.6: +ATK +HP

@@ -68,6 +68,11 @@
     return s;
   };
   const hasKw = (o, k) => kwsOf(o).has(k);
+  // v0.23 T2: tribal system — minions carry a `tribe` string (the 15-tribe
+  // taxonomy). All payoff templates read the CARD'S OWN tribe (kin-matters design),
+  // so one field serves both identity and synergy. Inert on pre-tribe data.
+  const tribeOf = (o) => (o && o.tribe) || null;
+  const countTribe = (board, tr) => (tr ? board.reduce((n, m) => n + ((m.tribe === tr || m.tribe === 'Mimic') ? 1 : 0), 0) : 0); // v0.24: Mimic changeling counts as kin of every tribe
   const kwsStr = (o) => [...kwsOf(o)].join(', ');
   // ---------- v0.20 TARGETING (A3) ----------
   // opts.target = { uid } — the chosen target for single-target templates.
@@ -237,6 +242,7 @@
         else if (dr === 'drHeal2') { vp.hp = Math.min(MAX_HP, vp.hp + 2 + (hasP(vp, 'IRON_RATIONS') ? 2 * rites(S, victimSide) : 0)); } // v0.15: IRON_RATIONS
         else if (dr === 'drSummon') { const hn = 1 + (hasP(vp, 'HORDEMASTER') ? rites(S, victimSide) : 0); for (let hi = 0; hi < hn && vp.board.length < MAX_BOARD; hi++) vp.board.push(token(vp, S)); S.events.push({ t: 'play', side: victimSide, id: 'TOKEN', uid: 'TOKEN' + vp.board.length, kw: null, cost: 1 }); } // v0.15: HORDEMASTER
         else if (dr === 'drDraw') { draw(S, victimSide); }
+        else if (dr === 'drTribeRally') { const tr = t.tribe; if (tr) { vp.board.forEach((m) => { if (m.tribe === tr) { m.atk += 1; m.hp += 1; } }); S.events.push({ t: 'passive', side: victimSide, id: 'DR_TRIBE_RALLY', on: tr }); } } // v0.23: the fallen kinsman's oath — surviving kin gain +1/+1
       }
       // v0.16 graveyard-lite + recursion/politics relic hooks
       vp.fallen.push({ id: t.id, name: t.name, img: t.img, file: t.file }); if (vp.fallen.length > 24) vp.fallen.shift();
@@ -313,6 +319,7 @@
     if (hasRelic(p, 'rlIdol') && c.cost >= 5) return Math.max(0, c.cost - 1);
     if (hasRelic(p, 'rlVault') && !p.sovOnce.vault) return Math.max(0, c.cost - 1);
     if (hasRelic(S[other(side)], 'rlScales') && c.cost >= 4) return c.cost + 1;
+    if (c.tribe && c.tribeCost && p.board.some((m) => m.tribe === c.tribe)) return Math.max(0, c.cost - 1); // v0.23: kin discount — cheaper while a kinsman holds the field
     return c.cost;
   }
   function canPlay(S, side, i) {
@@ -350,6 +357,8 @@
       }
       else if (c.bc === 'bcSummon' && p.board.length < MAX_BOARD) { p.board.push(token(p, S)); }
       else if (c.bc === 'bcDraw') { draw(S, side); }
+      else if (c.bc === 'bcTribeBanner') { const tr = c.tribe; p.board.forEach((m) => { if (tr && m.tribe === tr) { m.atk += 1; m.hp += 1; } }); if (tr) S.events.push({ t: 'passive', side, id: 'BC_TRIBE_BANNER', on: tr }); } // v0.23: the banner rises — all kin gain +1/+1
+      else if (c.bc === 'bcTribeDraw') { if (c.tribe && countTribe(p.board, c.tribe) > 1) draw(S, side); } // v0.23: counsel of kin — draw if another kinsman is already fielded
     }
   }
   function playCard(S, side, i, opts) { // v0.20: opts.target = { uid } aims single-target effects
@@ -379,6 +388,7 @@
       S.events.push({ t: 'relic', side, id: c.id, rl: c.rl });
       if (c.rl === 'rlStandards') p.board.forEach((m) => { if (hasKw(m, 'Guard')) m.atk += 1; }); // eagles rise for the standing army
       if (c.rl === 'rlLookout') p.board.forEach((m) => { if (hasKw(m, 'Ranged')) { m.atk += 1; m.hp += 1; } }); // v0.16 buff: +1/+1
+      if (c.rl === 'rlTribeStandard' && c.tribe) p.board.forEach((m) => { if (m.tribe === c.tribe) m.atk += 1; }); // v0.23: the standard rises — kin already on the field rally +1 ATK
       if (c.rl === 'rlMirror') { const top = p.deck.splice(-Math.min(2, p.deck.length)); const val = (cc) => cc.type === 'minion' ? (cc.atk + cc.hp + (cc.bc ? 2 : 0) + (cc.dr ? 1 : 0)) : 6; top.sort((a, b) => val(b) - val(a)); while (top.length) p.deck.push(top.pop()); } // v0.16: Dreamer's Mirror — the best of the top two surfaces
       return true;
     }
@@ -402,6 +412,7 @@
     if (hasKw(m, 'Ranged') && hasP(p, 'STRAFING') && !p.sovOnce.strafing) { m.atk += r; m.hp += r; p.sovOnce.strafing = true; } // v0.15.1 buff: +1 ATK -> +1/+1
     if (c.cost <= 2 && hasP(p, 'PICKET')) { m.atk += r; m.hp += r; } // v0.15.1 buff: +1 HP -> +1/+1
     if (hasKw(m, 'Charge') && hasP(p, 'NIZARI')) m.shield = (m.shield || 0) + r; // v0.15.1 buff: every Charge, not just the first
+    if (m.tribe && p.relics.some((x) => x.rl === 'rlTribeStandard' && x.tribe === m.tribe)) m.atk += 1; // v0.23: Kin Standard — kinsmen march in with +1 ATK
     p.board.push(m);
     S.events.push({ t: 'play', side, id: c.id, uid: c.uid, kw: c.kw || null, cost: c.cost });
     // v0.20 A9: shared battlecry resolver — minions pass their uid; multi-part
@@ -477,6 +488,10 @@
         break;
       }
       case 'fxScorchX': { const d = p.mana; const t = pickTarget(opts, foe.board) || foe.board.slice().sort((a,b) => (b.atk+b.hp)-(a.atk+a.hp))[0]; if (t && d > 0) damageMinion(S, other(side), t.uid, d); p.mana = 0; S.events.push({ t: 'passive', side, id: 'FX_SCORCHX', dmg: d }); break; } // X-spell: spend ALL remaining mana as damage to one foe minion
+      // v0.23 T2: tribal payoff edicts — all read the card's own tribe
+      case 'fxTribeMuster': { const tr = c.tribe; const n = Math.min(3, countTribe(p.board, tr)); for (let i = 0; i < n && p.board.length < MAX_BOARD; i++) p.board.push(token(p, S)); S.events.push({ t: 'passive', side, id: 'FX_TRIBE_MUSTER', on: tr, n }); break; } // one levy per kinsman, up to three
+      case 'fxTribeWarCry': { const tr = c.tribe; p.board.forEach((m) => { if (tr && m.tribe === tr) m.atk += 2; }); if (tr) S.events.push({ t: 'passive', side, id: 'FX_TRIBE_WARCRY', on: tr }); break; } // the war cry — kin gain +2 ATK
+      case 'fxTribeLaw': { S.laws.push({ id: 'lawTribeGuard', side, tribe: c.tribe || null, until: S.turn + 3 }); S.events.push({ t: 'passive', side, id: 'LAW_TRIBE_GUARD', on: c.tribe || null }); break; } // kin stand as guards for three rounds
     }
   }
 
@@ -486,11 +501,11 @@
     if (!m || !m.ready) return false;
     if (hasKw(m, 'Relentless') && (m.attacks || 0) >= 2) return false; // v0.11: two swings max
     if (target.hero && m.shocked) return false; // v0.11: Shock cannot reach the Sovereign this turn
-    const guards = foe.board.filter((x) => hasKw(x, 'Guard'));
+    const guards = foe.board.filter((x) => hasKw(x, 'Guard') || (x.tribe && S.laws.some((l) => l.id === 'lawTribeGuard' && l.side !== side && l.tribe === x.tribe))); // v0.23: Tribal Law — enemy kin stand as guards
     if (target.hero) return guards.length === 0;
     const t = foe.board.find((x) => x.uid === target.uid);
     if (!t) return false;
-    return guards.length === 0 || hasKw(t, 'Guard');
+    return guards.length === 0 || hasKw(t, 'Guard') || (t.tribe && S.laws.some((l) => l.id === 'lawTribeGuard' && l.side !== side && l.tribe === t.tribe)); // v0.23: law-guarded kin are attackable, like any guard
   }
   function attack(S, side, uid, target) {
     if (!canAttack(S, side, uid, target)) return false;
@@ -953,6 +968,10 @@
         case 'fxTransform': { const t = top((a, b) => (b.atk + b.hp) - (a.atk + a.hp)); return t ? (t.atk + t.hp) * 1.05 - 2 : 0; }
         case 'fxDeliberate': return 2.5 + (p.hand.length <= 2 ? 0.8 : 0);
         case 'fxScorchX': { const d = p.mana; return d > 0 ? kills(d) : 0; }
+        // v0.23 T2: tribal edicts — value scales with kin on the field
+        case 'fxTribeMuster': return 1.0 + Math.min(3, countTribe(p.board, c.tribe)) * 1.6 + (p.board.length < MAX_BOARD - 2 ? 0.4 : 0);
+        case 'fxTribeWarCry': { const k = countTribe(p.board, c.tribe); return k ? k * 2.2 : -0.5; }
+        case 'fxTribeLaw': { const k = countTribe(p.board, c.tribe); return k ? 1.2 + k * 0.8 + (th.danger ? 0.6 : 0) : 0.3; }
         default: return 1;
       }
     }
@@ -964,6 +983,7 @@
         case 'rlStandards': return 1.2 + g * 1.4;
         case 'rlGranary': return 1.9;
         case 'rlNullify': return 1.6 + (th.danger ? 0.4 : 0); // v0.21 P8: counters burn edicts
+        case 'rlTribeStandard': return 1.2 + countTribe(p.board, c.tribe) * 0.9; // v0.23: scales with kin fielded
         case 'rlDrillyard': return 1.8;
         case 'rlForage': return 2.0;
         case 'rlLookout': return 1.2 + r * 1.3;
@@ -1014,6 +1034,8 @@
     if (c.bc === 'bcHeal2') v += Math.min(2, MAX_HP - p.hp) * 0.5;
     if (c.bc === 'bcSummon') v += 1.7;
     if (c.bc === 'bcBuff') v += p.board.length * 1.1;
+    if (c.bc === 'bcTribeBanner') v += countTribe(p.board, c.tribe) * 1.9; // v0.23: kin-matters banner
+    if (c.bc === 'bcTribeDraw') v += (countTribe(p.board, c.tribe) > 1 ? 2.0 : 0); // v0.23: needs a kinsman on the field
     // v0.12: deathrattle value scales with magnitude (dr quality mattered in the audit)
     // v0.12: every v0.11 dr template keeps its exact old score (flat 0.9);
     // only the NEW magnitude templates scale — old data must play identically
@@ -1136,6 +1158,7 @@
     canPlay, playCard, canAttack, attack, canPower, power, endTurn, checkEnd, aiTurn,
     threat, spyRead, seenPlays, sovSynergy, spyAdjust, deckPlan,
     hasKw, kwsOf, // v0.20: multi-keyword helpers exported for tests (inert in browser)
+    tribeOf, countTribe, // v0.23: tribal helpers exported for tests (inert in browser)
     pickTarget, targetSpec, validTargets, aiTarget, resolveBc, // v0.20 A3+A6+A9: targeting + multi-part riders exported
   };
 });
