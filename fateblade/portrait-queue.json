@@ -7,7 +7,9 @@
    "status": "minted",
    "prompt": "Portrait of an undead lich choir-mistress, sunken ashen flesh stretched over an elegant skull, wisps of grave-mist curling from her lipless mouth, a raven-feather collar, faint blue-green spectral glow in empty eye sockets",
    "file": "art/stockpile/vessmora-the-hollow-choir.jpg",
-   "bytes": 281425
+   "bytes": 281425,
+   "tribe": "Undead",
+   "realm": "necropolis"
   },
   {
    "name": "Syltharien Moonvein",
@@ -15,7 +17,9 @@
    "status": "minted",
    "prompt": "Portrait of an ancient high-elven seer, alabaster skin, silver hair braided with moonstone beads, elongated regal ears, eyes like frost-covered amber, wearing a starwoven mantle",
    "file": "art/stockpile/syltharien-moonvein.jpg",
-   "bytes": 327997
+   "bytes": 327997,
+   "tribe": "Elderkin",
+   "realm": "stormlit"
   },
   {
    "name": "Borgrim Ironhymn",
@@ -23,7 +27,9 @@
    "status": "minted",
    "prompt": "Portrait of a dwarven forgemaster, braided oxblood beard singed at the tips and bound with gold rings, soot-stained brow, one eye scarred shut, wearing a smith leather apron over etched plate",
    "file": "art/stockpile/borgrim-ironhymn.jpg",
-   "bytes": 330673
+   "bytes": 330673,
+   "tribe": "Underfolk",
+   "realm": "deepholds"
   },
   {
    "name": "Krukk the Unbowed",
@@ -31,7 +37,9 @@
    "status": "minted",
    "prompt": "Portrait of an orc warchief, tusks capped in tarnished bronze, warpaint of white ash across a grey-green face, heavy bone-and-iron pauldrons, a gaze of absolute refusal",
    "file": "art/stockpile/krukk-the-unbowed.jpg",
-   "bytes": 362839
+   "bytes": 362839,
+   "tribe": "Greenskins",
+   "realm": "marches"
   },
   {
    "name": "Snikkfet Glimmerfang",
@@ -39,871 +47,2752 @@
    "status": "minted",
    "prompt": "Portrait of a goblin alchemist, green-skinned with a wide toothy grin, oversized brass goggles pushed up on his forehead, a stained apothecary coat, clutching a smoking vial",
    "file": "art/stockpile/snikkfet-glimmerfang.jpg",
-   "bytes": 394070
+   "bytes": 394070,
+   "tribe": "Greenskins",
+   "realm": "marches"
   },
   {
    "name": "The Penitent Engine",
    "category": "construct",
    "status": "queued",
-   "prompt": "Portrait of a towering war-construct, a face of hammered brass plates riveted into a stern visage, one glowing furnace eye behind a slit, censers of holy smoke trailing from its shoulders"
+   "prompt": "Portrait of a towering war-construct, a face of hammered brass plates riveted into a stern visage, one glowing furnace eye behind a slit, censers of holy smoke trailing from its shoulders",
+   "tribe": "Constructs",
+   "realm": "zephek"
   },
   {
    "name": "Mawgut the Kindly",
    "category": "ogre",
    "status": "queued",
-   "prompt": "Portrait of a middle-aged ogre matron, warty mud-brown skin, a kind toothy smile with one broken tusk, wearing a patchwork chef apron and a garland of dried herbs"
+   "prompt": "Portrait of a middle-aged ogre matron, warty mud-brown skin, a kind toothy smile with one broken tusk, wearing a patchwork chef apron and a garland of dried herbs",
+   "tribe": "Greenskins",
+   "realm": "marches"
   },
   {
    "name": "Elder Rootsong",
    "category": "treant",
    "status": "queued",
-   "prompt": "Portrait of a treant elder, a gnarled bark face like a carved totem, moss and lichen draped like a robe, amber sap glowing in the cracks, tiny pale blossoms in its hairlike twigs"
+   "prompt": "Portrait of a treant elder, a gnarled bark face like a carved totem, moss and lichen draped like a robe, amber sap glowing in the cracks, tiny pale blossoms in its hairlike twigs",
+   "tribe": "Elderkin",
+   "realm": "stormlit"
   },
   {
    "name": "Zavrath Emberclad",
    "category": "dragonkin",
    "status": "queued",
-   "prompt": "Portrait of a dragonkin knight, crimson scales fading to gold along the jaw, slit amber eyes, ridged horns swept back, wearing lacquered scale-plate armor with a smoldering cloak"
+   "prompt": "Portrait of a dragonkin knight, crimson scales fading to gold along the jaw, slit amber eyes, ridged horns swept back, wearing lacquered scale-plate armor with a smoldering cloak",
+   "tribe": "Dragonkin",
+   "realm": "cross"
   },
   {
    "name": "Countess Ilvane of the Dusk Vow",
    "category": "vampire",
    "status": "queued",
-   "prompt": "Portrait of a vampire countess, porcelain pallor, crimson eyes beneath heavy lids, black hair pinned with silver thorns, a high mourning collar of dark velvet, patient hunger"
+   "prompt": "Portrait of a vampire countess, porcelain pallor, crimson eyes beneath heavy lids, black hair pinned with silver thorns, a high mourning collar of dark velvet, patient hunger",
+   "tribe": "Undead",
+   "realm": "necropolis"
   },
   {
    "name": "Grumhild Longtooth",
    "category": "troll",
    "status": "queued",
-   "prompt": "Portrait of a troll river-matriarch, blue-grey rubbery hide, a craggy underslung jaw with jutting tusks, river-reed braids, wearing whalebone charms"
+   "prompt": "Portrait of a troll river-matriarch, blue-grey rubbery hide, a craggy underslung jaw with jutting tusks, river-reed braids, wearing whalebone charms",
+   "tribe": "Greenskins",
+   "realm": "marches"
   },
   {
    "name": "Whisper of the Outer Dark",
    "category": "voidborn",
    "status": "queued",
-   "prompt": "Portrait of a void-touched oracle, skin like cracked obsidian with starlight seeping through the fissures, hairless, eyes replaced by points of distant galaxies, a collar of drifting shadow"
+   "prompt": "Portrait of a void-touched oracle, skin like cracked obsidian with starlight seeping through the fissures, hairless, eyes replaced by points of distant galaxies, a collar of drifting shadow",
+   "tribe": "Starfarers",
+   "realm": "starwind"
   },
   {
    "name": "Ossuar, the Rattling Marshal",
    "category": "skeleton",
    "status": "queued",
-   "prompt": "Portrait of a skeletal marshal, bleached bone with hairline cracks of tarnished gold inlaid like kintsugi, an ornate officers hat, verdigris medals pinned to a ribcage, pinpoints of pale light in the eye sockets"
+   "prompt": "Portrait of a skeletal marshal, bleached bone with hairline cracks of tarnished gold inlaid like kintsugi, an ornate officers hat, verdigris medals pinned to a ribcage, pinpoints of pale light in the eye sockets",
+   "tribe": "Undead",
+   "realm": "necropolis"
   },
   {
    "name": "Sister Marrowbone",
    "category": "skeleton",
    "status": "queued",
-   "prompt": "Portrait of a skeletal nun, chalk-white bone beneath a moth-eaten wimple and habit, rosary of tiny finger-bones, serene patient hollow gaze"
+   "prompt": "Portrait of a skeletal nun, chalk-white bone beneath a moth-eaten wimple and habit, rosary of tiny finger-bones, serene patient hollow gaze",
+   "tribe": "Undead",
+   "realm": "necropolis"
   },
   {
    "name": "Ghast-Rider Hulga",
    "category": "zombie",
    "status": "queued",
-   "prompt": "Portrait of a revenant shieldmaiden, grave-grey skin stitched with black thread at the jaw, milky blind eyes that still somehow stare, rusted mail fused with graveyard moss"
+   "prompt": "Portrait of a revenant shieldmaiden, grave-grey skin stitched with black thread at the jaw, milky blind eyes that still somehow stare, rusted mail fused with graveyard moss",
+   "tribe": "Undead",
+   "realm": "necropolis"
   },
   {
    "name": "Poxworth the Unburied",
    "category": "zombie",
    "status": "queued",
-   "prompt": "Portrait of a bloated plague-doctor revenant, grey-green skin sloughing at the cheek, a cracked beaked mask pushed up on the forehead, funeral wrappings as a scarf"
+   "prompt": "Portrait of a bloated plague-doctor revenant, grey-green skin sloughing at the cheek, a cracked beaked mask pushed up on the forehead, funeral wrappings as a scarf",
+   "tribe": "Undead",
+   "realm": "necropolis"
   },
   {
    "name": "Redjaw, Alpha of the Fell Wood",
    "category": "werewolf",
    "status": "queued",
-   "prompt": "Portrait of a werewolf pack-leader mid-shift, wolf muzzle with a red-stained jaw, amber predator eyes, hackles of black fur running up a corded human neck, a torn hunters coat"
+   "prompt": "Portrait of a werewolf pack-leader mid-shift, wolf muzzle with a red-stained jaw, amber predator eyes, hackles of black fur running up a corded human neck, a torn hunters coat",
+   "tribe": "Beasts",
+   "realm": "tigerpass"
   },
   {
    "name": "Mother Greyhide",
    "category": "werebear",
    "status": "queued",
-   "prompt": "Portrait of an elderly werebear matriarch, greying brown fur around a broad ursine face, kind black eyes, silver claws worn blunt, a medicine pouch on a claw-chain"
+   "prompt": "Portrait of an elderly werebear matriarch, greying brown fur around a broad ursine face, kind black eyes, silver claws worn blunt, a medicine pouch on a claw-chain",
+   "tribe": "Beasts",
+   "realm": "tigerpass"
   },
   {
    "name": "The Barghest of Pyre Lane",
    "category": "beast",
    "status": "queued",
-   "prompt": "Portrait of a huge spectral black dog with chains, smoke-like fur drifting off its shoulders, eyes like burning coals, an old bear-trap snapped shut on one paw"
+   "prompt": "Portrait of a huge spectral black dog with chains, smoke-like fur drifting off its shoulders, eyes like burning coals, an old bear-trap snapped shut on one paw",
+   "tribe": "Beasts",
+   "realm": "tigerpass"
   },
   {
    "name": "King Ashenmane",
    "category": "beast",
    "status": "queued",
-   "prompt": "Portrait of a giant white lion with a charcoal-grey mane, old battle scars across the muzzle, eyes like molten gold, wearing a torn royal banner as a cloak"
+   "prompt": "Portrait of a giant white lion with a charcoal-grey mane, old battle scars across the muzzle, eyes like molten gold, wearing a torn royal banner as a cloak",
+   "tribe": "Beasts",
+   "realm": "tigerpass"
   },
   {
    "name": "Brackhorn the Old Stag",
    "category": "beast",
    "status": "queued",
-   "prompt": "Portrait of an ancient stag with a crown of twisted antlers hung with lantern-lights, silver-tipped fur, black eyes holding old forest wisdom"
+   "prompt": "Portrait of an ancient stag with a crown of twisted antlers hung with lantern-lights, silver-tipped fur, black eyes holding old forest wisdom",
+   "tribe": "Beasts",
+   "realm": "tigerpass"
   },
   {
    "name": "Vaelith Duskmere",
    "category": "elf",
    "status": "queued",
-   "prompt": "Portrait of a dark-elven spymaster, obsidian skin, bone-white hair cropped short, lilac eyes with slit pupils, wearing a cloak that seems woven from cave-dark"
+   "prompt": "Portrait of a dark-elven spymaster, obsidian skin, bone-white hair cropped short, lilac eyes with slit pupils, wearing a cloak that seems woven from cave-dark",
+   "tribe": "Elderkin",
+   "realm": "stormlit"
   },
   {
    "name": "Thalion Greenroot",
    "category": "elf",
    "status": "queued",
-   "prompt": "Portrait of a wood-elf warden, sun-browned skin, hair braided with living vines and small beetles, leaf-shaped pupils, a bow of white wood across the shoulders"
+   "prompt": "Portrait of a wood-elf warden, sun-browned skin, hair braided with living vines and small beetles, leaf-shaped pupils, a bow of white wood across the shoulders",
+   "tribe": "Elderkin",
+   "realm": "stormlit"
   },
   {
    "name": "Durgan Deepdelve",
    "category": "dwarf",
    "status": "queued",
-   "prompt": "Portrait of a duergar runeward, ash-grey skin, bald with brand-runes across the scalp, glowing orange runemarks over the eyes, a collar of uncut gemstones"
+   "prompt": "Portrait of a duergar runeward, ash-grey skin, bald with brand-runes across the scalp, glowing orange runemarks over the eyes, a collar of uncut gemstones",
+   "tribe": "Underfolk",
+   "realm": "deepholds"
   },
   {
    "name": "Mathilda Coalbraid",
    "category": "dwarf",
    "status": "queued",
-   "prompt": "Portrait of a dwarven bombardier, soot-black braids coiled around her ears like a crown, goggles with one cracked red lens, cheeks scarred by powder burns, a grin with one gold tooth"
+   "prompt": "Portrait of a dwarven bombardier, soot-black braids coiled around her ears like a crown, goggles with one cracked red lens, cheeks scarred by powder burns, a grin with one gold tooth",
+   "tribe": "Underfolk",
+   "realm": "deepholds"
   },
   {
    "name": "Ushruk Bone-Drummer",
    "category": "orc",
    "status": "queued",
-   "prompt": "Portrait of an orc shaman, grey-green skin painted with white bone patterns, a headdress of a full skull with incense smoke rising from it, eyes rolled white in trance"
+   "prompt": "Portrait of an orc shaman, grey-green skin painted with white bone patterns, a headdress of a full skull with incense smoke rising from it, eyes rolled white in trance",
+   "tribe": "Greenskins",
+   "realm": "marches"
   },
   {
    "name": "Wazzik Sparkbit",
    "category": "goblin",
    "status": "queued",
-   "prompt": "Portrait of a goblin tinkerer, teal-green skin, ears notched and pinned with copper rivets, soot freckles, a welding monocle over one yellow eye, a sputtering clockwork owl on the shoulder"
+   "prompt": "Portrait of a goblin tinkerer, teal-green skin, ears notched and pinned with copper rivets, soot freckles, a welding monocle over one yellow eye, a sputtering clockwork owl on the shoulder",
+   "tribe": "Greenskins",
+   "realm": "marches"
   },
   {
    "name": "Skragg the Longshanks",
    "category": "gnoll",
    "status": "queued",
-   "prompt": "Portrait of a gnoll scavenger-lord, hyena muzzle with a cracked-tooth grin, mangy spotted hide, a crown of welded cutlery, eyes gleaming with hungry cunning"
+   "prompt": "Portrait of a gnoll scavenger-lord, hyena muzzle with a cracked-tooth grin, mangy spotted hide, a crown of welded cutlery, eyes gleaming with hungry cunning",
+   "tribe": "DEFERRED",
+   "realm": "none",
+   "note": "user Oct 21: no gnolls at all for now"
   },
   {
    "name": "Mother Craggle",
    "category": "hag",
    "status": "queued",
-   "prompt": "Portrait of a swamp hag, warty green skin, a single milky eye and one sharp black one, hair like hanging moss, iron teeth in a grin, a necklace of bird skulls"
+   "prompt": "Portrait of a swamp hag, warty green skin, a single milky eye and one sharp black one, hair like hanging moss, iron teeth in a grin, a necklace of bird skulls",
+   "tribe": "Elderkin",
+   "realm": "stormlit"
   },
   {
    "name": "Ancient Vyrmagrax",
    "category": "dragon",
    "status": "queued",
-   "prompt": "Portrait of an ancient bronze dragon, wise crocodilian face with a beard of coppery whiskers, scales gone green with verdigris, one eye clouded with age, wearing a dwarven-forged crown"
+   "prompt": "Portrait of an ancient bronze dragon, wise crocodilian face with a beard of coppery whiskers, scales gone green with verdigris, one eye clouded with age, wearing a dwarven-forged crown",
+   "tribe": "Dragonkin",
+   "realm": "cross"
   },
   {
    "name": "Drakeling Sootwing",
    "category": "dragonkin",
    "status": "queued",
-   "prompt": "Portrait of a young dragonkin courier, soot-grey scales with ember-orange belly plates, a snub snout, curious cat-slit pupils, wearing a courier satchier strap across the chest"
+   "prompt": "Portrait of a young dragonkin courier, soot-grey scales with ember-orange belly plates, a snub snout, curious cat-slit pupils, wearing a courier satchier strap across the chest",
+   "tribe": "Dragonkin",
+   "realm": "cross"
   },
   {
    "name": "The Gilded Wyrm-Prince",
    "category": "dragonkin",
    "status": "queued",
-   "prompt": "Portrait of a haughty dragonkin noble, gold scales, a swept-back crest of ivory horns, pearl inlay along the jaw, wearing a fur-trimmed brocade doublet"
+   "prompt": "Portrait of a haughty dragonkin noble, gold scales, a swept-back crest of ivory horns, pearl inlay along the jaw, wearing a fur-trimmed brocade doublet",
+   "tribe": "Dragonkin",
+   "realm": "cross"
   },
   {
    "name": "Ashfall Colossus",
    "category": "construct",
    "status": "queued",
-   "prompt": "Portrait of a massive golem of fused shield-plates and chains, a face that is just a dent in the metal, twin green witchlights deep in the hollow, volcanic cracks glowing along the neck"
+   "prompt": "Portrait of a massive golem of fused shield-plates and chains, a face that is just a dent in the metal, twin green witchlights deep in the hollow, volcanic cracks glowing along the neck",
+   "tribe": "Constructs",
+   "realm": "zephek"
   },
   {
    "name": "Tinderwick",
    "category": "elemental",
    "status": "queued",
-   "prompt": "Portrait of a fire-elemental jester, a body of living flame in motley colors, a mask of cooling lava frozen in a laugh, candle-flames dancing where bells should be"
+   "prompt": "Portrait of a fire-elemental jester, a body of living flame in motley colors, a mask of cooling lava frozen in a laugh, candle-flames dancing where bells should be",
+   "tribe": "Primordials",
+   "realm": "cross"
   },
   {
    "name": "Gravewater Tidewarden",
    "category": "elemental",
    "status": "queued",
-   "prompt": "Portrait of a water-elemental knight, a helmet of translucent green water holding a human silhouette of bubbles and kelp inside, shoulders of barnacled coral and drowned bronze"
+   "prompt": "Portrait of a water-elemental knight, a helmet of translucent green water holding a human silhouette of bubbles and kelp inside, shoulders of barnacled coral and drowned bronze",
+   "tribe": "Primordials",
+   "realm": "cross"
   },
   {
    "name": "Lord Thistlequill",
    "category": "fae",
    "status": "queued",
-   "prompt": "Portrait of a fox-headed fae courtier, russet fur, amber slit eyes with unsettling politeness, wearing an embroidered doublet of autumn leaves and a rapier of black thorn"
+   "prompt": "Portrait of a fox-headed fae courtier, russet fur, amber slit eyes with unsettling politeness, wearing an embroidered doublet of autumn leaves and a rapier of black thorn",
+   "tribe": "Elderkin",
+   "realm": "stormlit"
   },
   {
    "name": "The Moth Countess",
    "category": "fae",
    "status": "queued",
-   "prompt": "Portrait of a moth-winged fae noblewoman, huge dusty wings like cathedral glass, feathered antennae, a powdered pale face with mirrored silver eyes, a gown of woven moonlight"
+   "prompt": "Portrait of a moth-winged fae noblewoman, huge dusty wings like cathedral glass, feathered antennae, a powdered pale face with mirrored silver eyes, a gown of woven moonlight",
+   "tribe": "Elderkin",
+   "realm": "stormlit"
   },
   {
    "name": "Grimharrow the Flesh-Tailor",
    "category": "demon",
    "status": "queued",
-   "prompt": "Portrait of a needle-limbed demon tailor, deep red skin, six slender arms each holding bone needles, a smile stitched shut with gold thread, wearing a coat of patched hides"
+   "prompt": "Portrait of a needle-limbed demon tailor, deep red skin, six slender arms each holding bone needles, a smile stitched shut with gold thread, wearing a coat of patched hides",
+   "tribe": "Primordials",
+   "realm": "cross"
   },
   {
    "name": "Inquisitor Xylanth of the Ninth Brood",
    "category": "alien",
    "status": "queued",
-   "prompt": "Portrait of a mantis-like alien inquisitor, chitin plates of blue-black iridescence, four small black eyes, mandibles held politely closed, wearing a high ceremonial collar of woven copper wire"
+   "prompt": "Portrait of a mantis-like alien inquisitor, chitin plates of blue-black iridescence, four small black eyes, mandibles held politely closed, wearing a high ceremonial collar of woven copper wire",
+   "tribe": "Starfarers",
+   "realm": "starwind"
   },
   {
    "name": "Captain Ordrath Vex",
    "category": "alien",
    "status": "queued",
-   "prompt": "Portrait of a reptilian starship captain, teal scales, a crest of spines from brow to nape, gold slit eyes, wearing a dark vacuum-suit collar with mismatched vintage medals"
+   "prompt": "Portrait of a reptilian starship captain, teal scales, a crest of spines from brow to nape, gold slit eyes, wearing a dark vacuum-suit collar with mismatched vintage medals",
+   "tribe": "Starfarers",
+   "realm": "starwind"
   },
   {
    "name": "The Cartographer of Epsilon Nine",
    "category": "alien",
    "status": "queued",
-   "prompt": "Portrait of a soft-bodied alien scholar, a cephalopod mantle-head with skin that shifts through constellations of bioluminescent freckles, three amber eyes in a triangle, wearing a draped scholar robe of grey silk"
+   "prompt": "Portrait of a soft-bodied alien scholar, a cephalopod mantle-head with skin that shifts through constellations of bioluminescent freckles, three amber eyes in a triangle, wearing a draped scholar robe of grey silk",
+   "tribe": "Starfarers",
+   "realm": "starwind"
   },
   {
    "name": "Yggdra Marshmother",
    "category": "naga",
    "status": "queued",
-   "prompt": "Portrait of a naga matriarch, olive scales fading to human skin at the cheeks, a hood of cobra flesh flared behind the head, black vertical pupils, jewelry of freshwater pearls and reed-gold"
+   "prompt": "Portrait of a naga matriarch, olive scales fading to human skin at the cheeks, a hood of cobra flesh flared behind the head, black vertical pupils, jewelry of freshwater pearls and reed-gold",
+   "tribe": "Tidefolk",
+   "realm": "barning"
   },
   {
    "name": "Old Man Permafrost",
    "category": "yeti",
    "status": "queued",
-   "prompt": "Portrait of an elderly yeti, frost-white fur going yellow-grey with age, a crooked tooth, small deep-set eyes with a twinkle, enormous leathery hands wrapped in ragged strips of sails"
+   "prompt": "Portrait of an elderly yeti, frost-white fur going yellow-grey with age, a crooked tooth, small deep-set eyes with a twinkle, enormous leathery hands wrapped in ragged strips of sails",
+   "tribe": "Beasts",
+   "realm": "tigerpass"
   },
   {
    "name": "Merrow-King Dagonet",
    "category": "merfolk",
    "status": "queued",
-   "prompt": "Portrait of a deep-sea merfolk king, anglerfish-pale skin with a luminescent lure dangling before the brow, needle teeth, pearl-slit blind-white eyes, a crown of whalebone and glass sponge"
+   "prompt": "Portrait of a deep-sea merfolk king, anglerfish-pale skin with a luminescent lure dangling before the brow, needle teeth, pearl-slit blind-white eyes, a crown of whalebone and glass sponge",
+   "tribe": "Tidefolk",
+   "realm": "barning"
   },
   {
    "name": "Archlector Mortivane",
    "category": "skeleton",
    "status": "queued",
-   "prompt": "Portrait of a skeletal archbishop, gilt bone wearing a mitre of black iron, a stole of tiny finger bones, one hand raised in benediction, candle flames floating in the eye sockets"
+   "prompt": "Portrait of a skeletal archbishop, gilt bone wearing a mitre of black iron, a stole of tiny finger bones, one hand raised in benediction, candle flames floating in the eye sockets",
+   "tribe": "Undead",
+   "realm": "necropolis"
   },
   {
    "name": "Cindershade, the Ember Wraith",
    "category": "ghost",
    "status": "queued",
-   "prompt": "Portrait of a burning ghost, a translucent figure of smoke and embers, the suggestion of a noble face forming in the flames, chains of molten light drifting through the body"
+   "prompt": "Portrait of a burning ghost, a translucent figure of smoke and embers, the suggestion of a noble face forming in the flames, chains of molten light drifting through the body",
+   "tribe": "Undead",
+   "realm": "necropolis"
   },
   {
    "name": "Bellringer of the drowned parish",
    "category": "zombie",
    "status": "queued",
-   "prompt": "Portrait of a drowned bell-ringer revenant, bloated blue-grey skin, barnacles on the cheekbones, kelp hair, a rusted bell-clapper held like a crozier"
+   "prompt": "Portrait of a drowned bell-ringer revenant, bloated blue-grey skin, barnacles on the cheekbones, kelp hair, a rusted bell-clapper held like a crozier",
+   "tribe": "Undead",
+   "realm": "necropolis"
   },
   {
    "name": "Lady Everlynn the Pale",
    "category": "vampire",
    "status": "queued",
-   "prompt": "Portrait of a young-looking vampire noblewoman, doll-pale skin with faint blue veins at the temples, wavy chestnut hair, wine-dark eyes, an innocent smile with one sharp tooth"
+   "prompt": "Portrait of a young-looking vampire noblewoman, doll-pale skin with faint blue veins at the temples, wavy chestnut hair, wine-dark eyes, an innocent smile with one sharp tooth",
+   "tribe": "Undead",
+   "realm": "necropolis"
   },
   {
    "name": "Grandmother Shroud",
    "category": "banshee",
    "status": "queued",
-   "prompt": "Portrait of a banshee crone, a face of stretched translucent skin over a skull, hair streaming upward like grey water, eyes as luminous white pits, a burial shawl of spider silk"
+   "prompt": "Portrait of a banshee crone, a face of stretched translucent skin over a skull, hair streaming upward like grey water, eyes as luminous white pits, a burial shawl of spider silk",
+   "tribe": "Undead",
+   "realm": "necropolis"
   },
   {
    "name": "The Gravewarden",
    "category": "wight",
    "status": "queued",
-   "prompt": "Portrait of a barrow-wight king, skeletal face beneath a corroded crown of bronze and garnet, grave-glow green in the empty eyes, a mantle of ancient chain gone green"
+   "prompt": "Portrait of a barrow-wight king, skeletal face beneath a corroded crown of bronze and garnet, grave-glow green in the empty eyes, a mantle of ancient chain gone green",
+   "tribe": "Undead",
+   "realm": "necropolis"
   },
   {
    "name": "Pik Whiticker",
    "category": "ratfolk",
    "status": "queued",
-   "prompt": "Portrait of a ratfolk gadgeteer, sleek brown fur, pink scarred ears notched in trade-guild patterns, amber eyes behind tiny spectacles, a tool-belt of improbable clockwork"
+   "prompt": "Portrait of a ratfolk gadgeteer, sleek brown fur, pink scarred ears notched in trade-guild patterns, amber eyes behind tiny spectacles, a tool-belt of improbable clockwork",
+   "tribe": "Beasts",
+   "realm": "tigerpass"
   },
   {
    "name": "Sahra of the Ninth Sand",
    "category": "catfolk",
    "status": "queued",
-   "prompt": "Portrait of a desert catfolk caravan-guard, tawny fur with black tear-lines under the eyes, brass ear-rings, a silk head-scarf, calm predator patience"
+   "prompt": "Portrait of a desert catfolk caravan-guard, tawny fur with black tear-lines under the eyes, brass ear-rings, a silk head-scarf, calm predator patience",
+   "tribe": "Beasts",
+   "realm": "tigerpass"
   },
   {
    "name": "Kessarin Skywarden",
    "category": "birdfolk",
    "status": "queued",
-   "prompt": "Portrait of a hawk-featured birdfolk warden, storm-grey feathers, fierce yellow raptor eyes with black tomial stripe, a beak polished like bone, ceremonial feather cloak"
+   "prompt": "Portrait of a hawk-featured birdfolk warden, storm-grey feathers, fierce yellow raptor eyes with black tomial stripe, a beak polished like bone, ceremonial feather cloak",
+   "tribe": "Beasts",
+   "realm": "tigerpass"
   },
   {
    "name": "Ssarnak Lizardpriest",
    "category": "lizardfolk",
    "status": "queued",
-   "prompt": "Portrait of a lizardfolk priest, scaled hide in river-green and rust, a frill spread behind the skull, amber eyes with sideways pupils, bone piercings, wet stone cloak clasp"
+   "prompt": "Portrait of a lizardfolk priest, scaled hide in river-green and rust, a frill spread behind the skull, amber eyes with sideways pupils, bone piercings, wet stone cloak clasp",
+   "tribe": "Beasts",
+   "realm": "tigerpass"
   },
   {
    "name": "Brannoc the Unyielding",
    "category": "bearfolk",
    "status": "queued",
-   "prompt": "Portrait of a beafolk hill chieftain, thick chestnut fur, a broad scarred muzzle, small deep-set eyes, braided beard-beads of river clay, an enormous iron torque"
+   "prompt": "Portrait of a beafolk hill chieftain, thick chestnut fur, a broad scarred muzzle, small deep-set eyes, braided beard-beads of river clay, an enormous iron torque",
+   "tribe": "Beasts",
+   "realm": "tigerpass"
   },
   {
    "name": "Whisker-Mother Yun",
    "category": "foxfolk",
    "status": "queued",
-   "prompt": "Portrait of an elderly foxfolk herbalist, silver-red fur gone white at the muzzle, golden knowing eyes, nine tail tips just visible behind the shoulders, an apothecary basket"
+   "prompt": "Portrait of an elderly foxfolk herbalist, silver-red fur gone white at the muzzle, golden knowing eyes, nine tail tips just visible behind the shoulders, an apothecary basket",
+   "tribe": "Beasts",
+   "realm": "tigerpass"
   },
   {
    "name": "Jotunn Hergrim Icevein",
    "category": "frost-giant",
    "status": "queued",
-   "prompt": "Portrait of a frost giant jarl, skin of glacial blue, a beard of actual ice crystals, pale blind-seeming eyes, wearing furs and a helm of mammoth ivory"
+   "prompt": "Portrait of a frost giant jarl, skin of glacial blue, a beard of actual ice crystals, pale blind-seeming eyes, wearing furs and a helm of mammoth ivory",
+   "tribe": "Primordials",
+   "realm": "cross"
   },
   {
    "name": "Emberlord Kaal",
    "category": "fire-giant",
    "status": "queued",
-   "prompt": "Portrait of a fire giant forge-king, skin like cooling basalt with cracks of magma, a beard of flame, heavy gold jewelry, a crown of hammer-formed iron"
+   "prompt": "Portrait of a fire giant forge-king, skin like cooling basalt with cracks of magma, a beard of flame, heavy gold jewelry, a crown of hammer-formed iron",
+   "tribe": "Primordials",
+   "realm": "cross"
   },
   {
    "name": "Mug the Moderate",
    "category": "hill-giant",
    "status": "queued",
-   "prompt": "Portrait of a hill giant farmer, dirt-brown skin, a lumpy friendly face with a unibrow, a straw hat far too small, a shoulder pole with two full barrels"
+   "prompt": "Portrait of a hill giant farmer, dirt-brown skin, a lumpy friendly face with a unibrow, a straw hat far too small, a shoulder pole with two full barrels",
+   "tribe": "Primordials",
+   "realm": "cross"
   },
   {
    "name": "Stormseer Vella",
    "category": "storm-giant",
    "status": "queued",
-   "prompt": "Portrait of a storm giant oracle, seafoam-blue skin, hair of drifting white cloud, eyes like lightning caught in glass, a mantle of rain-slick purple silk"
+   "prompt": "Portrait of a storm giant oracle, seafoam-blue skin, hair of drifting white cloud, eyes like lightning caught in glass, a mantle of rain-slick purple silk",
+   "tribe": "Primordials",
+   "realm": "cross"
   },
   {
    "name": "Iron-Captain Zharruk",
    "category": "hobgoblin",
    "status": "queued",
-   "prompt": "Portrait of a hobgoblin legion captain, brick-red skin, disciplined black eyes, a stiff crimson crest of hair, ceremonial scars in rank patterns, lacquered scale armor"
+   "prompt": "Portrait of a hobgoblin legion captain, brick-red skin, disciplined black eyes, a stiff crimson crest of hair, ceremonial scars in rank patterns, lacquered scale armor",
+   "tribe": "Greenskins",
+   "realm": "marches"
   },
   {
    "name": "Grumbark the Lurker",
    "category": "bugbear",
    "status": "queued",
-   "prompt": "Portrait of a bugbear assassin, shaggy midnight fur, long arms, a blunt batlike muzzle in shadow, yellow eyes catching lantern light, silent menace"
+   "prompt": "Portrait of a bugbear assassin, shaggy midnight fur, long arms, a blunt batlike muzzle in shadow, yellow eyes catching lantern light, silent menace",
+   "tribe": "Greenskins",
+   "realm": "marches"
   },
   {
    "name": "Meek Tobacco",
    "category": "kobold",
    "status": "queued",
-   "prompt": "Portrait of a kobold artificer, russet scales, a snout singed by forge work, oversized goggles, a backpack of clanking pans and tools, nervous hopeful eyes"
+   "prompt": "Portrait of a kobold artificer, russet scales, a snout singed by forge work, oversized goggles, a backpack of clanking pans and tools, nervous hopeful eyes",
+   "tribe": "DEFERRED",
+   "realm": "none",
+   "note": "draconic-adjacent; revisit (maybe Dragonkin kin)"
   },
   {
    "name": "Snorrik Greasethumb",
    "category": "goblin",
    "status": "queued",
-   "prompt": "Portrait of a goblin grease-mage, green skin stained black at the fingertips, a grin of filed teeth, ear-wax candles on the ear-tips, a scepter that is clearly a modified wrench"
+   "prompt": "Portrait of a goblin grease-mage, green skin stained black at the fingertips, a grin of filed teeth, ear-wax candles on the ear-tips, a scepter that is clearly a modified wrench",
+   "tribe": "Greenskins",
+   "realm": "marches"
   },
   {
    "name": "Aurelion Dawncrest",
    "category": "elf",
    "status": "queued",
-   "prompt": "Portrait of a sun-elven duelist, golden skin, hair like spun light, tilted topaz eyes, an insolent half-smile, wearing a ceremonial breastplate worked with sun-discs"
+   "prompt": "Portrait of a sun-elven duelist, golden skin, hair like spun light, tilted topaz eyes, an insolent half-smile, wearing a ceremonial breastplate worked with sun-discs",
+   "tribe": "Elderkin",
+   "realm": "stormlit"
   },
   {
    "name": "Malenthir the Unmourned",
    "category": "elf",
    "status": "queued",
-   "prompt": "Portrait of a crippled elven exile, gaunt grey-toned skin, hair shorn in rough patches, a milky blinded eye and a sharp living one, a cloak of crow feathers"
+   "prompt": "Portrait of a crippled elven exile, gaunt grey-toned skin, hair shorn in rough patches, a milky blinded eye and a sharp living one, a cloak of crow feathers",
+   "tribe": "Elderkin",
+   "realm": "stormlit"
   },
   {
    "name": "Myrtle Underbough",
    "category": "gnome",
    "status": "queued",
-   "prompt": "Portrait of an ancient gnome illusionist, a face like a walnut of smile wrinkles, white beard tucked into a belt, spectacles over delighted pink eyes, a pointed hat stitched with constellations"
+   "prompt": "Portrait of an ancient gnome illusionist, a face like a walnut of smile wrinkles, white beard tucked into a belt, spectacles over delighted pink eyes, a pointed hat stitched with constellations",
+   "tribe": "Underfolk",
+   "realm": "deepholds"
   },
   {
    "name": "Perrin Downs",
    "category": "halfling",
    "status": "queued",
-   "prompt": "Portrait of a halfling scout, round cheerful face, curly cinnamon hair, bare calloused feet, a sling-band on the wrist and a good-luck charm of a dried pheasant foot"
+   "prompt": "Portrait of a halfling scout, round cheerful face, curly cinnamon hair, bare calloused feet, a sling-band on the wrist and a good-luck charm of a dried pheasant foot",
+   "tribe": "Underfolk",
+   "realm": "deepholds"
   },
   {
    "name": "Brygida the Hedge-Wife",
    "category": "hedgefey",
    "status": "queued",
-   "prompt": "Portrait of a hedge-witch half-fey, bark and briar growing from one shoulder, hair of thorned ivy, one human brown eye and one green goat-slitted eye, a basket of mushrooms and teeth"
+   "prompt": "Portrait of a hedge-witch half-fey, bark and briar growing from one shoulder, hair of thorned ivy, one human brown eye and one green goat-slitted eye, a basket of mushrooms and teeth",
+   "tribe": "Elderkin",
+   "realm": "stormlit"
   },
   {
    "name": "Grantham Slatefist",
    "category": "dwarf",
    "status": "queued",
-   "prompt": "Portrait of a dwarven shieldwall captain, a beard of grey iron in two warrior braids, a nose flattened thrice, wearing a kite shield on the back like a cloak, stone-set jaw"
+   "prompt": "Portrait of a dwarven shieldwall captain, a beard of grey iron in two warrior braids, a nose flattened thrice, wearing a kite shield on the back like a cloak, stone-set jaw",
+   "tribe": "Underfolk",
+   "realm": "deepholds"
   },
   {
    "name": "Old Threek Cogstoker",
    "category": "dwarf",
    "status": "queued",
-   "prompt": "Portrait of a dwarf engineer emeritus, bald with a tattooed gear on the crown, soot in every wrinkle, one glass eye of smoky quartz, wearing a boiler-suit over a chain vest"
+   "prompt": "Portrait of a dwarf engineer emeritus, bald with a tattooed gear on the crown, soot in every wrinkle, one glass eye of smoky quartz, wearing a boiler-suit over a chain vest",
+   "tribe": "Underfolk",
+   "realm": "deepholds"
   },
   {
    "name": "Zogratha Skull-Sister",
    "category": "orc",
    "status": "queued",
-   "prompt": "Portrait of an orc bone-oracle, moss-green skin with white handprint ritual marks, tusks carved with tiny runes, eyes rolled back showing whites, a mantle of beast-skulls"
+   "prompt": "Portrait of an orc bone-oracle, moss-green skin with white handprint ritual marks, tusks carved with tiny runes, eyes rolled back showing whites, a mantle of beast-skulls",
+   "tribe": "Greenskins",
+   "realm": "marches"
   },
   {
    "name": "Thrag the Twice-Broken",
    "category": "orc",
    "status": "queued",
-   "prompt": "Portrait of a veteran orc pit-fighter, grey-green skin criss-crossed with old scars, one tusk snapped at the gum, a nose ring of giant-forged iron, a dead calm in the eyes"
+   "prompt": "Portrait of a veteran orc pit-fighter, grey-green skin criss-crossed with old scars, one tusk snapped at the gum, a nose ring of giant-forged iron, a dead calm in the eyes",
+   "tribe": "Greenskins",
+   "realm": "marches"
   },
   {
    "name": "The Collector of Nine Tongues",
    "category": "aberration",
    "status": "queued",
-   "prompt": "Portrait of an eyeless aberration scholar, a wet grey face like folded brain-flesh, a ring of small puckered sensory mouths where eyes should be, wearing a curator robe of grey silk"
+   "prompt": "Portrait of an eyeless aberration scholar, a wet grey face like folded brain-flesh, a ring of small puckered sensory mouths where eyes should be, wearing a curator robe of grey silk",
+   "tribe": "Starfarers",
+   "realm": "starwind"
   },
   {
    "name": "Xilvahri of the Deep Choir",
    "category": "mindflayer",
    "status": "queued",
-   "prompt": "Portrait of a mind flayer conductor, a smooth violet head with four facial tentacles arranged like a beard, pupilless white eyes, wearing a high collar of stitched leather hymnals"
+   "prompt": "Portrait of a mind flayer conductor, a smooth violet head with four facial tentacles arranged like a beard, pupilless white eyes, wearing a high collar of stitched leather hymnals",
+   "tribe": "Starfarers",
+   "realm": "starwind"
   },
   {
    "name": "Mother of Glass",
    "category": "aberration",
    "status": "queued",
-   "prompt": "Portrait of a crystalline horror matriarch, a face of fractured prismatic shards, refracted eyes appearing at wrong angles within the facets, a halo of floating glass slivers"
+   "prompt": "Portrait of a crystalline horror matriarch, a face of fractured prismatic shards, refracted eyes appearing at wrong angles within the facets, a halo of floating glass slivers",
+   "tribe": "Starfarers",
+   "realm": "starwind"
   },
   {
    "name": "The Stitched Migration",
    "category": "fleshbeast",
    "status": "queued",
-   "prompt": "Portrait of a towering amalgam of many creatures, a face of sewn-together animal and human features, mismatched eyes weeping, an architecture of bone spurs and grasping spare limbs"
+   "prompt": "Portrait of a towering amalgam of many creatures, a face of sewn-together animal and human features, mismatched eyes weeping, an architecture of bone spurs and grasping spare limbs",
+   "tribe": "Beasts",
+   "realm": "tigerpass"
   },
   {
    "name": "Vessel of the Quiet Engine",
    "category": "construct",
    "status": "queued",
-   "prompt": "Portrait of a brass automaton monk, a serene face of riveted plates, lotus-shaped eyes of warm amber glass, incense smoke venting from the crown seams, monk robes over clockwork"
+   "prompt": "Portrait of a brass automaton monk, a serene face of riveted plates, lotus-shaped eyes of warm amber glass, incense smoke venting from the crown seams, monk robes over clockwork",
+   "tribe": "Constructs",
+   "realm": "zephek"
   },
   {
    "name": "SCOUT-7 \"Featherweight\"",
    "category": "robot",
    "status": "queued",
-   "prompt": "Portrait of a battered scout robot, a dented round head with one cracked blue optic lens, antenna bent into a cheerful crook, warning-tape repairs, a scout sash of faded patches"
+   "prompt": "Portrait of a battered scout robot, a dented round head with one cracked blue optic lens, antenna bent into a cheerful crook, warning-tape repairs, a scout sash of faded patches",
+   "tribe": "Constructs",
+   "realm": "zephek"
   },
   {
    "name": "Bastion-Mother CRUX",
    "category": "mech",
    "status": "queued",
-   "prompt": "Portrait of a colossal war-mech torso and head, a helmeted skull-face of composite armor, a cockpit window glowing like a furnace behind the faceplate, banners of a fallen house"
+   "prompt": "Portrait of a colossal war-mech torso and head, a helmeted skull-face of composite armor, a cockpit window glowing like a furnace behind the faceplate, banners of a fallen house",
+   "tribe": "Constructs",
+   "realm": "zephek"
   },
   {
    "name": "Unit VESPER-9",
    "category": "android",
    "status": "queued",
-   "prompt": "Portrait of a reformed war android, a graceful porcelain faceplate over exposed cranial actuators, one human eye transplant and one glowing sensor, wearing a vintage soldier greatcoat"
+   "prompt": "Portrait of a reformed war android, a graceful porcelain faceplate over exposed cranial actuators, one human eye transplant and one glowing sensor, wearing a vintage soldier greatcoat",
+   "tribe": "Constructs",
+   "realm": "zephek"
   },
   {
    "name": "Auroch of the Standing Stones",
    "category": "earth-elemental",
    "status": "queued",
-   "prompt": "Portrait of a stone elemental guardian, a face of layered standing-stone slabs, moss in the seams, eyes of amber geode, a torc of raw gold still in the quartz"
+   "prompt": "Portrait of a stone elemental guardian, a face of layered standing-stone slabs, moss in the seams, eyes of amber geode, a torc of raw gold still in the quartz",
+   "tribe": "Primordials",
+   "realm": "cross"
   },
   {
    "name": "Sister Lumenna",
    "category": "angel",
    "status": "queued",
-   "prompt": "Portrait of a grimdark angel, a serene face of white fire held in bronze mask-frame, three burning eyes, wings of gold blade-feathers folded like a mantle, a broken halo tilted"
+   "prompt": "Portrait of a grimdark angel, a serene face of white fire held in bronze mask-frame, three burning eyes, wings of gold blade-feathers folded like a mantle, a broken halo tilted",
+   "tribe": "Primordials",
+   "realm": "cross"
   },
   {
    "name": "Zephyr-Ancient Tallo",
    "category": "air-elemental",
    "status": "queued",
-   "prompt": "Portrait of an air elemental elder, a face suggested in swirling cloud and faint lightning, laughing eyes of clear sky, a collar of held breath made visible as faint glass orbs"
+   "prompt": "Portrait of an air elemental elder, a face suggested in swirling cloud and faint lightning, laughing eyes of clear sky, a collar of held breath made visible as faint glass orbs",
+   "tribe": "Primordials",
+   "realm": "cross"
   },
   {
    "name": "Pyrelight Sister Coalsong",
    "category": "fire-elemental",
    "status": "queued",
-   "prompt": "Portrait of a salamander fire-nun, ember-red scales, hair of controlled flame braided with iron rings, a habit of woven obsidian cloth, warm crackling light on the face"
+   "prompt": "Portrait of a salamander fire-nun, ember-red scales, hair of controlled flame braided with iron rings, a habit of woven obsidian cloth, warm crackling light on the face",
+   "tribe": "Primordials",
+   "realm": "cross"
   },
   {
    "name": "Vithrax the Verdigris Coil",
    "category": "dragon",
    "status": "queued",
-   "prompt": "Portrait of an old green dragon, a cunning narrow face like corroded copper, a beard of fine green whiskers, jade eyes heavy-lidded with ancient patience, jungle orchids in the horn-tips"
+   "prompt": "Portrait of an old green dragon, a cunning narrow face like corroded copper, a beard of fine green whiskers, jade eyes heavy-lidded with ancient patience, jungle orchids in the horn-tips",
+   "tribe": "Dragonkin",
+   "realm": "cross"
   },
   {
    "name": "The Cinder-Hearted",
    "category": "dragon",
    "status": "queued",
-   "prompt": "Portrait of a red dragon matriarch, scales of cooled lava blackening to ember-red at the jaw-edges, smoke curling from the nostrils, one eye a milky scar, a hoard-crown of melted coins"
+   "prompt": "Portrait of a red dragon matriarch, scales of cooled lava blackening to ember-red at the jaw-edges, smoke curling from the nostrils, one eye a milky scar, a hoard-crown of melted coins",
+   "tribe": "Dragonkin",
+   "realm": "cross"
   },
   {
    "name": "Aurelith the Deep Eye",
    "category": "dragon",
    "status": "queued",
-   "prompt": "Portrait of a blue dragon oracle, cobalt scales with silver flecks like stars, a crest of swept horns, calm orb-lit eyes, wearing a necklace of storm-fused glass"
+   "prompt": "Portrait of a blue dragon oracle, cobalt scales with silver flecks like stars, a crest of swept horns, calm orb-lit eyes, wearing a necklace of storm-fused glass",
+   "tribe": "Dragonkin",
+   "realm": "cross"
   },
   {
    "name": "Gorgonna the Stilled",
    "category": "gorgon",
    "status": "queued",
-   "prompt": "Portrait of a medusa matriarch, ashen skin, a mane of living serpents coiled in formal court braid styles, blindfolded in blessed silk, a gentle resigned smile"
+   "prompt": "Portrait of a medusa matriarch, ashen skin, a mane of living serpents coiled in formal court braid styles, blindfolded in blessed silk, a gentle resigned smile",
+   "tribe": "Beasts",
+   "realm": "tigerpass"
   },
   {
    "name": "Asterion the Ninth Labyrinth",
    "category": "minotaur",
    "status": "queued",
-   "prompt": "Portrait of a minotaur judge, black ox-hide and a heavy ring-septum, one horn snapped and capped in bronze, wearing magistrate robes and a collar of law-seals"
+   "prompt": "Portrait of a minotaur judge, black ox-hide and a heavy ring-septum, one horn snapped and capped in bronze, wearing magistrate robes and a collar of law-seals",
+   "tribe": "Beasts",
+   "realm": "tigerpass"
   },
   {
    "name": "Chironas Silverflank",
    "category": "centaur",
    "status": "queued",
-   "prompt": "Portrait of a centaur scholar, a greying beard over an old campaign cloak chestplate, kind tired eyes, a hawk perched on the drawn bow held like a walking staff"
+   "prompt": "Portrait of a centaur scholar, a greying beard over an old campaign cloak chestplate, kind tired eyes, a hawk perched on the drawn bow held like a walking staff",
+   "tribe": "Beasts",
+   "realm": "tigerpass"
   },
   {
    "name": "Sylvane the Pipe-Spinner",
    "category": "satyr",
    "status": "queued",
-   "prompt": "Portrait of a satyr musician, curled ram horns, a sly goat-eyed grin, a wreath of grapevines, pan-pipes carved from the bones of a poet"
+   "prompt": "Portrait of a satyr musician, curled ram horns, a sly goat-eyed grin, a wreath of grapevines, pan-pipes carved from the bones of a poet",
+   "tribe": "Elderkin",
+   "realm": "stormlit"
   },
   {
    "name": "Skarneth the Matriarch",
    "category": "manticore",
    "status": "queued",
-   "prompt": "Portrait of a manticore queen, a leonine face with a jaw of black iron teeth, crimson eyes, bat-wing spines folded like a dark crown, a tail of chain-length spikes curled in rest"
+   "prompt": "Portrait of a manticore queen, a leonine face with a jaw of black iron teeth, crimson eyes, bat-wing spines folded like a dark crown, a tail of chain-length spikes curled in rest",
+   "tribe": "Beasts",
+   "realm": "tigerpass"
   },
   {
    "name": "Emberwing the Last Light",
    "category": "phoenix",
    "status": "queued",
-   "prompt": "Portrait of a phoenix elder, a fierce raptor face of living flame in gold and rose, eyes of steady white fire, a crest of burning plumes, molten feathers drifting upward"
+   "prompt": "Portrait of a phoenix elder, a fierce raptor face of living flame in gold and rose, eyes of steady white fire, a crest of burning plumes, molten feathers drifting upward",
+   "tribe": "Beasts",
+   "realm": "tigerpass"
   },
   {
    "name": "Grimhal the Grey Watcher",
    "category": "griffin",
    "status": "queued",
-   "prompt": "Portrait of a griffin sentinel, eagle face of storm-grey feathers, war-beak scarred and chipped, eyes of hard gold, a knightly caparison with a faded heraldic cross"
+   "prompt": "Portrait of a griffin sentinel, eagle face of storm-grey feathers, war-beak scarred and chipped, eyes of hard gold, a knightly caparison with a faded heraldic cross",
+   "tribe": "Beasts",
+   "realm": "tigerpass"
   },
   {
    "name": "Kelp-Professor Marinne",
    "category": "merfolk",
    "status": "queued",
-   "prompt": "Portrait of a merfolk scholar, teal skin with bioluminescent freckle rows, nictitating eyelids half-drawn, hair of drifting yellow-green algae, an brass diving-helm collar"
+   "prompt": "Portrait of a merfolk scholar, teal skin with bioluminescent freckle rows, nictitating eyelids half-drawn, hair of drifting yellow-green algae, an brass diving-helm collar",
+   "tribe": "Tidefolk",
+   "realm": "barning"
   },
   {
    "name": "The Selkie Bride of the Winter Tide",
    "category": "selkie",
    "status": "queued",
-   "prompt": "Portrait of a selkie noblewoman, seal-dark wet hair, huge dark seal eyes with a heartbreakingly human expression, a grey sealskin mantle slipping off one shoulder"
+   "prompt": "Portrait of a selkie noblewoman, seal-dark wet hair, huge dark seal eyes with a heartbreakingly human expression, a grey sealskin mantle slipping off one shoulder",
+   "tribe": "Tidefolk",
+   "realm": "barning"
   },
   {
    "name": "Harbormaster Krass",
    "category": "kraken",
    "status": "queued",
-   "prompt": "Portrait of an ancient kraken priest, a vast octopod face of deep-violet mantle and one great amber eye, suckered face-arms curled like a beard, wearing a necklace of ship anchors"
+   "prompt": "Portrait of an ancient kraken priest, a vast octopod face of deep-violet mantle and one great amber eye, suckered face-arms curled like a beard, wearing a necklace of ship anchors",
+   "tribe": "Tidefolk",
+   "realm": "barning"
   },
   {
    "name": "Grandfather Frost",
    "category": "winterfey",
    "status": "queued",
-   "prompt": "Portrait of a winter fey lord, a face of hoarfrost over ancient bark, ice-beard like frozen rain, eyes of pale blue glacier light, a coat of white raven wings"
+   "prompt": "Portrait of a winter fey lord, a face of hoarfrost over ancient bark, ice-beard like frozen rain, eyes of pale blue glacier light, a coat of white raven wings",
+   "tribe": "Elderkin",
+   "realm": "stormlit"
   },
   {
    "name": "The Hollow Piper",
    "category": "fey",
    "status": "queued",
-   "prompt": "Portrait of a goat-horned piper fey, a face of pale birchwood with dark eye-knots, a smile of green wood splitting, tattered motley, holes in the flute that whistle on their own"
+   "prompt": "Portrait of a goat-horned piper fey, a face of pale birchwood with dark eye-knots, a smile of green wood splitting, tattered motley, holes in the flute that whistle on their own",
+   "tribe": "Elderkin",
+   "realm": "stormlit"
   },
   {
    "name": "Emissary 4-AM of the Communal Song",
    "category": "alien",
    "status": "queued",
-   "prompt": "Portrait of a crystalline alien emissary, a translucent obsidian face of many facets, light refracting into hidden eyes, a geometric collar of resonance stones, faint inner glow like a nebula"
+   "prompt": "Portrait of a crystalline alien emissary, a translucent obsidian face of many facets, light refracting into hidden eyes, a geometric collar of resonance stones, faint inner glow like a nebula",
+   "tribe": "Starfarers",
+   "realm": "starwind"
   },
   {
    "name": "Drux, Last Shepherd of the Iron Hive",
    "category": "insectoid",
    "status": "queued",
-   "prompt": "Portrait of an insectoid hive-shepherd, a chitin face-plate of dark umber with a crest of sensory antennae, triple-jaw mandibles politely closed, compound eyes of liquid amber, a woven-metal scarf"
+   "prompt": "Portrait of an insectoid hive-shepherd, a chitin face-plate of dark umber with a crest of sensory antennae, triple-jaw mandibles politely closed, compound eyes of liquid amber, a woven-metal scarf",
+   "tribe": "Starfarers",
+   "realm": "starwind"
   },
   {
    "name": "The Grey Ambassador",
    "category": "alien",
    "status": "queued",
-   "prompt": "Portrait of a classic grey-alien diplomat, smooth slate skin, an enormous cranium with faint veins of light, two vast onyx eyes with star reflections, wearing a severe grey suit jacket"
+   "prompt": "Portrait of a classic grey-alien diplomat, smooth slate skin, an enormous cranium with faint veins of light, two vast onyx eyes with star reflections, wearing a severe grey suit jacket",
+   "tribe": "Starfarers",
+   "realm": "starwind"
   },
   {
    "name": "Vox-3 of the Orbital Chorus",
    "category": "cyborg",
    "status": "queued",
-   "prompt": "Portrait of a cyborg cantor, half a weathered human face transitioning to brushed chrome with a speaker-grille jaw, one eye a camera iris, wearing ornate choir robes over the machine"
+   "prompt": "Portrait of a cyborg cantor, half a weathered human face transitioning to brushed chrome with a speaker-grille jaw, one eye a camera iris, wearing ornate choir robes over the machine",
+   "tribe": "Constructs",
+   "realm": "zephek"
   },
   {
    "name": "Spore-Tender Ixil",
    "category": "myconid",
    "status": "queued",
-   "prompt": "Portrait of a mushroom-folk tender, a cap of deep indigo fungus spotted with pale rings, gentle luminous eyes beneath the gills, a robe of moss with spore-lanterns"
+   "prompt": "Portrait of a mushroom-folk tender, a cap of deep indigo fungus spotted with pale rings, gentle luminous eyes beneath the gills, a robe of moss with spore-lanterns",
+   "tribe": "Underfolk",
+   "realm": "deepholds"
   },
   {
    "name": "Weaver Ashlume",
    "category": "arachnid",
    "status": "queued",
-   "prompt": "Portrait of an arachnid noble, an elegant dark face like a spider carapace polished to jet, six eyes arranged like a diadem, chelicerae adorned with silver rings, draped spider-silk brocade"
+   "prompt": "Portrait of an arachnid noble, an elegant dark face like a spider carapace polished to jet, six eyes arranged like a diadem, chelicerae adorned with silver rings, draped spider-silk brocade",
+   "tribe": "Beasts",
+   "realm": "tigerpass"
   },
   {
    "name": "Shade-Adjutant Vell",
    "category": "shade",
    "status": "queued",
-   "prompt": "Portrait of a shadow bureaucrat, a face like smoke holding the memory of features, cuffs and collar of the void in place of a suit, eyes as two dying embers, a briefcase of chained dark"
+   "prompt": "Portrait of a shadow bureaucrat, a face like smoke holding the memory of features, cuffs and collar of the void in place of a suit, eyes as two dying embers, a briefcase of chained dark",
+   "tribe": "Undead",
+   "realm": "necropolis"
   },
   {
    "name": "The Lantern of Hollow Rest",
    "category": "undead",
    "status": "queued",
-   "prompt": "Portrait of a skeletal ferryman holding a lantern whose flame is a tiny screaming soul, river-reed hood, patient hollow eyes of soft light, an oar over one shoulder like a mendicant staff"
+   "prompt": "Portrait of a skeletal ferryman holding a lantern whose flame is a tiny screaming soul, river-reed hood, patient hollow eyes of soft light, an oar over one shoulder like a mendicant staff",
+   "tribe": "Undead",
+   "realm": "necropolis"
   },
   {
    "name": "Gathras, the Gate Warden",
    "category": "gargoyle",
    "status": "queued",
-   "prompt": "Portrait of a cathedral gargoyle warden, granite grey skin cracked with gold-mended seams, bat wings folded like a chancellor's cloak, eyes of banked ember light, a heavy iron gate key worn as a collar"
+   "prompt": "Portrait of a cathedral gargoyle warden, granite grey skin cracked with gold-mended seams, bat wings folded like a chancellor's cloak, eyes of banked ember light, a heavy iron gate key worn as a collar",
+   "tribe": "Constructs",
+   "realm": "zephek"
   },
   {
    "name": "The Weeping Colossus",
    "category": "gargoyle",
    "status": "queued",
-   "prompt": "Portrait of a massive weathered gargoyle with rain channels worn into its stone face like tears, moss in the mouth corners, one cracked eye glowing faintly as it wakes"
+   "prompt": "Portrait of a massive weathered gargoyle with rain channels worn into its stone face like tears, moss in the mouth corners, one cracked eye glowing faintly as it wakes",
+   "tribe": "Constructs",
+   "realm": "zephek"
   },
   {
    "name": "Snaggletooth Fenn",
    "category": "ghoul",
    "status": "queued",
-   "prompt": "Portrait of a graveyard ghoul, grey rubbery skin pulled tight over prominent cheekbones, oversized crooked teeth, pale night eyes, a stolen priest collar worn over rags"
+   "prompt": "Portrait of a graveyard ghoul, grey rubbery skin pulled tight over prominent cheekbones, oversized crooked teeth, pale night eyes, a stolen priest collar worn over rags",
+   "tribe": "Undead",
+   "realm": "necropolis"
   },
   {
    "name": "Ghoul-Priest of the Third Hunger",
    "category": "ghoul",
    "status": "queued",
-   "prompt": "Portrait of a gaunt ghoul priest, hairless grey skin with ritual scars in ring patterns, long yellowed fingernails like talons folded in prayer, eyes of warm candlelight in a skull face"
+   "prompt": "Portrait of a gaunt ghoul priest, hairless grey skin with ritual scars in ring patterns, long yellowed fingernails like talons folded in prayer, eyes of warm candlelight in a skull face",
+   "tribe": "Undead",
+   "realm": "necropolis"
   },
   {
    "name": "Neferu the Twice-Wrapped",
    "category": "mummy",
    "status": "queued",
-   "prompt": "Portrait of a royal mummy queen, resin-dark skin visible through torn bandages, a pectoral collar of lapis and gold, eyes of patient amber fire, a serene unliving smile"
+   "prompt": "Portrait of a royal mummy queen, resin-dark skin visible through torn bandages, a pectoral collar of lapis and gold, eyes of patient amber fire, a serene unliving smile",
+   "tribe": "Undead",
+   "realm": "necropolis"
   },
   {
    "name": "The Cartonnage King",
    "category": "mummy",
    "status": "queued",
-   "prompt": "Portrait of a mummy pharaoh in a painted cartonnage mask of teal and gold, crossed crook and flail held over the chest, one hand broken to the bone beneath the wrappings, eyes burning turquoise"
+   "prompt": "Portrait of a mummy pharaoh in a painted cartonnage mask of teal and gold, crossed crook and flail held over the chest, one hand broken to the bone beneath the wrappings, eyes burning turquoise",
+   "tribe": "Undead",
+   "realm": "necropolis"
   },
   {
    "name": "The Scarecrow Magistrate",
    "category": "scarecrow",
    "status": "queued",
-   "prompt": "Portrait of a scarecrow magistrate, burlap face with stitched-on felt eyes and a painted smirk, straw tufts from the collar, a judicial wig of wheat, a gavel of knotted wood"
+   "prompt": "Portrait of a scarecrow magistrate, burlap face with stitched-on felt eyes and a painted smirk, straw tufts from the collar, a judicial wig of wheat, a gavel of knotted wood",
+   "tribe": "Constructs",
+   "realm": "zephek"
   },
   {
    "name": "Hollowpatch",
    "category": "scarecrow",
    "status": "queued",
-   "prompt": "Portrait of a patchwork scarecrow soldier, mismatched burlap and canvas face-seams, one button eye and one stitched-shut socket, a rusty medal pinned to a straw chest, crows perched on each shoulder"
+   "prompt": "Portrait of a patchwork scarecrow soldier, mismatched burlap and canvas face-seams, one button eye and one stitched-shut socket, a rusty medal pinned to a straw chest, crows perched on each shoulder",
+   "tribe": "Constructs",
+   "realm": "zephek"
   },
   {
    "name": "The Coffer-Fangs",
    "category": "mimic",
    "status": "queued",
-   "prompt": "Portrait of a treasure-chest mimic, a wooden chest split open into a fanged maw, a green velvet interior like a throat, one amber eye on the lid hinge, coins of drool"
+   "prompt": "Portrait of a treasure-chest mimic, a wooden chest split open into a fanged maw, a green velvet interior like a throat, one amber eye on the lid hinge, coins of drool",
+   "tribe": "Mimic",
+   "realm": "cross",
+   "changeling": true,
+   "note": "rare unique type; counts as every tribe simultaneously (MTG changeling)"
   },
   {
    "name": "Chestheel the Doormat",
    "category": "mimic",
    "status": "queued",
-   "prompt": "Portrait of a flattened door-mimic, a wide tattered rug with a fanged seam running its length, patient eyes like floor knots, dust and old blood in the pile"
+   "prompt": "Portrait of a flattened door-mimic, a wide tattered rug with a fanged seam running its length, patient eyes like floor knots, dust and old blood in the pile",
+   "tribe": "Mimic",
+   "realm": "cross",
+   "changeling": true,
+   "note": "rare unique type; counts as every tribe simultaneously (MTG changeling)"
   },
   {
    "name": "The Hollow Panoply",
    "category": "living-armor",
    "status": "queued",
-   "prompt": "Portrait of an empty full-plate armor, a helmet with no face inside only cold blue witchlights in the visor, sword held at parade rest, torn tabard bearing an unknown heraldry"
+   "prompt": "Portrait of an empty full-plate armor, a helmet with no face inside only cold blue witchlights in the visor, sword held at parade rest, torn tabard bearing an unknown heraldry",
+   "tribe": "Constructs",
+   "realm": "zephek"
   },
   {
    "name": "Sir Aldric's Empty Plate",
    "category": "living-armor",
    "status": "queued",
-   "prompt": "Portrait of haunted knight armor, dented and rust-streaked with a rose tucked into the gorget, ghost-light leaking through the visor slits, an oath-scar scratched inside the breastplate"
+   "prompt": "Portrait of haunted knight armor, dented and rust-streaked with a rose tucked into the gorget, ghost-light leaking through the visor slits, an oath-scar scratched inside the breastplate",
+   "tribe": "Constructs",
+   "realm": "zephek"
   },
   {
    "name": "The Will-o-Wisp Choir",
    "category": "wisp",
    "status": "queued",
-   "prompt": "Portrait of a chorus of marsh-lights, a cluster of pale blue-green flames arranged like a faces-in-a-choir-loft, cold light dripping like candle wax, dark swamp water below"
+   "prompt": "Portrait of a chorus of marsh-lights, a cluster of pale blue-green flames arranged like a faces-in-a-choir-loft, cold light dripping like candle wax, dark swamp water below",
+   "tribe": "Elderkin",
+   "realm": "stormlit"
   },
   {
    "name": "Lantern-Jawed Boggle",
    "category": "wisp",
    "status": "queued",
-   "prompt": "Portrait of a lantern spirit, a hunched figure whose ribcage holds a single warm flame like a lantern, face of stretched smoke with two bright coal eyes, hands cupped around its own light"
+   "prompt": "Portrait of a lantern spirit, a hunched figure whose ribcage holds a single warm flame like a lantern, face of stretched smoke with two bright coal eyes, hands cupped around its own light",
+   "tribe": "Elderkin",
+   "realm": "stormlit"
   },
   {
    "name": "Umbrix the Duskrider",
    "category": "shadow-drake",
    "status": "queued",
-   "prompt": "Portrait of a shadow-drake, a lean wyvern of smoke and bruise-purple scales, membranous wings fading to nothing at the edges, eyes like twin eclipses, frost of starlight on its snout"
+   "prompt": "Portrait of a shadow-drake, a lean wyvern of smoke and bruise-purple scales, membranous wings fading to nothing at the edges, eyes like twin eclipses, frost of starlight on its snout",
+   "tribe": "Undead",
+   "realm": "necropolis"
   },
   {
    "name": "Smoulder-Shadow Vyrrn",
    "category": "shadow-drake",
    "status": "queued",
-   "prompt": "Portrait of a young ember-drake, charcoal scales veined with slow lava-light, half its body dissolving into drifting smoke, tiny horns, curious molten eyes"
+   "prompt": "Portrait of a young ember-drake, charcoal scales veined with slow lava-light, half its body dissolving into drifting smoke, tiny horns, curious molten eyes",
+   "tribe": "Undead",
+   "realm": "necropolis"
   },
   {
    "name": "Grimwrack the Bonewyrm",
    "category": "bone-wyrm",
    "status": "queued",
-   "prompt": "Portrait of an immense bone-wyrm, a serpent assembled from countless mismatched skulls and ribs, hollow eye sockets burning pale green, drifting grave-mist between its vertebrae"
+   "prompt": "Portrait of an immense bone-wyrm, a serpent assembled from countless mismatched skulls and ribs, hollow eye sockets burning pale green, drifting grave-mist between its vertebrae",
+   "tribe": "Undead",
+   "realm": "necropolis"
   },
   {
    "name": "Leshyi Rootfather",
    "category": "leshy",
    "status": "queued",
-   "prompt": "Portrait of a leshy forest-spirit, a small dense figure of roots and birch bark, a face of lichen with oak-gold eyes, a beard of pale moss, a crown of budding antler-twigs"
+   "prompt": "Portrait of a leshy forest-spirit, a small dense figure of roots and birch bark, a face of lichen with oak-gold eyes, a beard of pale moss, a crown of budding antler-twigs",
+   "tribe": "Elderkin",
+   "realm": "stormlit"
   },
   {
    "name": "Pustule-Mother Greeba",
    "category": "plaguebearer",
    "status": "queued",
-   "prompt": "Portrait of a plague-bearer matron, bloated yellow-green skin with dark buboes, a veil of fly wings, hands gloved in wax, kind eyes all the more terrible for it, a censer of sweet rot"
+   "prompt": "Portrait of a plague-bearer matron, bloated yellow-green skin with dark buboes, a veil of fly wings, hands gloved in wax, kind eyes all the more terrible for it, a censer of sweet rot",
+   "tribe": "Undead",
+   "realm": "necropolis"
   },
   {
    "name": "Bile-Jarl Torvek",
    "category": "troll",
    "status": "queued",
-   "prompt": "Portrait of a bile troll jarl, translucent green-yellow skin showing dark shapes within, tusks of river glass, a crown of salvage iron, a longboat figurehead slung as a weapon"
+   "prompt": "Portrait of a bile troll jarl, translucent green-yellow skin showing dark shapes within, tusks of river glass, a crown of salvage iron, a longboat figurehead slung as a weapon",
+   "tribe": "Greenskins",
+   "realm": "marches"
   },
   {
    "name": "Y'haa the Deepbound",
    "category": "deep-one",
    "status": "queued",
-   "prompt": "Portrait of a deep-one elder, slick black amphibian skin with rows of lightless eyes along the temples, a fin-crown, a mantle of drowned priest robes, abyssal patience"
+   "prompt": "Portrait of a deep-one elder, slick black amphibian skin with rows of lightless eyes along the temples, a fin-crown, a mantle of drowned priest robes, abyssal patience",
+   "tribe": "Tidefolk",
+   "realm": "barning"
   },
   {
    "name": "Shriek-Matron Kel",
    "category": "harpy",
    "status": "queued",
-   "prompt": "Portrait of a harpy matriarch, vulture-feathered wings as a cape, a gaunt wind-burned human face with a hooked nose, taloned feet gripping a storm-wrack branch, storm light behind"
+   "prompt": "Portrait of a harpy matriarch, vulture-feathered wings as a cape, a gaunt wind-burned human face with a hooked nose, taloned feet gripping a storm-wrack branch, storm light behind",
+   "tribe": "Beasts",
+   "realm": "tigerpass"
   },
   {
    "name": "The Riddling Sphinx",
    "category": "sphinx",
    "status": "queued",
-   "prompt": "Portrait of a grimdark sphinx, a lioness face with ancient amber eyes, wings of dusty gold feathers folded like a scholar's coat, a collar of alphabet tiles, an unreadable smile"
+   "prompt": "Portrait of a grimdark sphinx, a lioness face with ancient amber eyes, wings of dusty gold feathers folded like a scholar's coat, a collar of alphabet tiles, an unreadable smile",
+   "tribe": "Beasts",
+   "realm": "tigerpass"
   },
   {
    "name": "The Chimera of the Ashen Vale",
    "category": "chimera",
    "status": "queued",
-   "prompt": "Portrait of a chimera, mismatched heads of lion, goat and black serpent arguing in profile, scaled lion mane, charred ashen fur, breath of three different fires"
+   "prompt": "Portrait of a chimera, mismatched heads of lion, goat and black serpent arguing in profile, scaled lion mane, charred ashen fur, breath of three different fires",
+   "tribe": "Beasts",
+   "realm": "tigerpass"
   },
   {
    "name": "The Cockatrix of the Moor",
    "category": "cockatrice",
    "status": "queued",
-   "prompt": "Portrait of a cockatrice, a scaly black rooster-body with dragon wings and a serpent tail, a crest of grey wattles, petrifying yellow eyes, a frog turned to stone at its feet"
+   "prompt": "Portrait of a cockatrice, a scaly black rooster-body with dragon wings and a serpent tail, a crest of grey wattles, petrifying yellow eyes, a frog turned to stone at its feet",
+   "tribe": "Beasts",
+   "realm": "tigerpass"
   },
   {
    "name": "Ydra of the Nine Heads",
    "category": "hydra",
    "status": "queued",
-   "prompt": "Portrait of a hydra matriarch, nine green-scaled heads at different ages of regrowth, one freshly stumped and steaming, old gold eyes, a swamp-kingdom of reeds behind"
+   "prompt": "Portrait of a hydra matriarch, nine green-scaled heads at different ages of regrowth, one freshly stumped and steaming, old gold eyes, a swamp-kingdom of reeds behind",
+   "tribe": "Beasts",
+   "realm": "tigerpass"
   },
   {
    "name": "Io the Basilisk-Guard",
    "category": "basilisk",
    "status": "queued",
-   "prompt": "Portrait of a basilisk warden, a crested reptilian face with a rooster-comb of red spines, armored eyelids half-closed over petrifying eyes, scales of oxidized bronze, a knight's gorget"
+   "prompt": "Portrait of a basilisk warden, a crested reptilian face with a rooster-comb of red spines, armored eyelids half-closed over petrifying eyes, scales of oxidized bronze, a knight's gorget",
+   "tribe": "Beasts",
+   "realm": "tigerpass"
   },
   {
    "name": "The Pale Unicorn",
    "category": "unicorn",
    "status": "queued",
-   "prompt": "Portrait of a grimdark unicorn, a gaunt white stallion with a dark ivory horn, fetlock feathers stained with old blood, a red rose bound around the horn, sorrowful black eyes"
+   "prompt": "Portrait of a grimdark unicorn, a gaunt white stallion with a dark ivory horn, fetlock feathers stained with old blood, a red rose bound around the horn, sorrowful black eyes",
+   "tribe": "Beasts",
+   "realm": "tigerpass"
   },
   {
    "name": "Nightmare-Steed Vhorrus",
    "category": "nightmare",
    "status": "queued",
-   "prompt": "Portrait of a nightmare steed, a black horse with a mane and tail of drifting flame and smoke, hooves of cracked ember, eyes like twin furnace doors, smoke curling from its nostrils"
+   "prompt": "Portrait of a nightmare steed, a black horse with a mane and tail of drifting flame and smoke, hooves of cracked ember, eyes like twin furnace doors, smoke curling from its nostrils",
+   "tribe": "Undead",
+   "realm": "necropolis"
   },
   {
    "name": "Deathknight Maldrec",
    "category": "deathknight",
    "status": "queued",
-   "prompt": "Portrait of an undead knight, a gaunt grey face inside a great helm, frost-rimed beard, eyes of cold blue flame, a surcoat of faded allegiance over armor fused to his bones"
+   "prompt": "Portrait of an undead knight, a gaunt grey face inside a great helm, frost-rimed beard, eyes of cold blue flame, a surcoat of faded allegiance over armor fused to his bones",
+   "tribe": "Undead",
+   "realm": "necropolis"
   },
   {
    "name": "Dame Ilse the Unburied",
    "category": "deathknight",
    "status": "queued",
-   "prompt": "Portrait of a revenant knight-dame, half-rotted noble face beneath a cracked barbute, grave-moss in the gorget, one living blue eye and one hollow, her sword still wrapped in funeral ribbon"
+   "prompt": "Portrait of a revenant knight-dame, half-rotted noble face beneath a cracked barbute, grave-moss in the gorget, one living blue eye and one hollow, her sword still wrapped in funeral ribbon",
+   "tribe": "Undead",
+   "realm": "necropolis"
   },
   {
    "name": "Lich-Queen Vashti",
    "category": "lich",
    "status": "queued",
-   "prompt": "Portrait of a lich queen, a fleshless regal face with gold-leaf on the cheekbones, a crown of the teeth of kings, purple fire in the eye sockets, robes of moth-eaten imperial purple"
+   "prompt": "Portrait of a lich queen, a fleshless regal face with gold-leaf on the cheekbones, a crown of the teeth of kings, purple fire in the eye sockets, robes of moth-eaten imperial purple",
+   "tribe": "Undead",
+   "realm": "necropolis"
   },
   {
    "name": "The Archlich Vermillon",
    "category": "lich",
    "status": "queued",
-   "prompt": "Portrait of an archlich scholar, a bare skull with copper wire holding the jaw, red candle-light in the sockets, an astrolabe halo, a collar of chained miniature coffins"
+   "prompt": "Portrait of an archlich scholar, a bare skull with copper wire holding the jaw, red candle-light in the sockets, an astrolabe halo, a collar of chained miniature coffins",
+   "tribe": "Undead",
+   "realm": "necropolis"
   },
   {
    "name": "Goblin-King Sprocket XIX",
    "category": "goblin",
    "status": "queued",
-   "prompt": "Portrait of a goblin king, green skin with a smallpox-scarred nose, a crown made of a bent horseshoe, a robe of patched trade banners, eyes gleaming with inherited cunning"
+   "prompt": "Portrait of a goblin king, green skin with a smallpox-scarred nose, a crown made of a bent horseshoe, a robe of patched trade banners, eyes gleaming with inherited cunning",
+   "tribe": "Greenskins",
+   "realm": "marches"
   },
   {
    "name": "Drill-Abbot Kessik",
    "category": "hobgoblin",
    "status": "queued",
-   "prompt": "Portrait of a hobgoblin drill-abbot, brick-red skin, a tonsure shaved with parade precision, a whistle and prayer beads around the neck, a voice you can see in the jaw"
+   "prompt": "Portrait of a hobgoblin drill-abbot, brick-red skin, a tonsure shaved with parade precision, a whistle and prayer beads around the neck, a voice you can see in the jaw",
+   "tribe": "Greenskins",
+   "realm": "marches"
   },
   {
    "name": "Ogre-Battlemaster Gromp",
    "category": "ogre",
    "status": "queued",
-   "prompt": "Portrait of an ogre battlemaster, warty grey-yellow skin with war-tattoos of tally marks, a helmet three sizes too small, a jaw like a drawbridge, one shoulder-mounted dwarf gunner's saddle"
+   "prompt": "Portrait of an ogre battlemaster, warty grey-yellow skin with war-tattoos of tally marks, a helmet three sizes too small, a jaw like a drawbridge, one shoulder-mounted dwarf gunner's saddle",
+   "tribe": "Greenskins",
+   "realm": "marches"
   },
   {
    "name": "Mossheart the Treant-Warden",
    "category": "treant",
    "status": "queued",
-   "prompt": "Portrait of an ancient treant warden, a face of living oak with a bolt of iron lashed across a cracked brow, a beard of crows-nest moss, small glowing sap-lanterns hanging from its brows"
+   "prompt": "Portrait of an ancient treant warden, a face of living oak with a bolt of iron lashed across a cracked brow, a beard of crows-nest moss, small glowing sap-lanterns hanging from its brows",
+   "tribe": "Elderkin",
+   "realm": "stormlit"
   },
   {
    "name": "Elder Vampyre Casimir",
    "category": "vampire",
    "status": "queued",
-   "prompt": "Portrait of a feral elder vampire, bat-like flattened nose, ears that come to hairy points, a mouth of too many small teeth, tattered noble velvet, eyes like red stained glass"
+   "prompt": "Portrait of a feral elder vampire, bat-like flattened nose, ears that come to hairy points, a mouth of too many small teeth, tattered noble velvet, eyes like red stained glass",
+   "tribe": "Undead",
+   "realm": "necropolis"
   },
   {
    "name": "The Legion's Standard-Bearer",
    "category": "zombie",
    "status": "queued",
-   "prompt": "Portrait of a zombie standard-bearer, a soldier corpse with the banner pole wired into its shoulder socket, jaw hanging by a thread of tendon, one eye milky and one somehow alert, the flag unfaded"
+   "prompt": "Portrait of a zombie standard-bearer, a soldier corpse with the banner pole wired into its shoulder socket, jaw hanging by a thread of tendon, one eye milky and one somehow alert, the flag unfaded",
+   "tribe": "Undead",
+   "realm": "necropolis"
   },
   {
    "name": "Jarl Kelgar of the Frozen Mire",
    "category": "troll",
    "status": "queued",
-   "prompt": "Portrait of a frost troll jarl, pale blue hide studded with river ice, tusks capped in silver, a beard of frozen reeds, a necklace of lake-glass beads, breath hanging thick"
+   "prompt": "Portrait of a frost troll jarl, pale blue hide studded with river ice, tusks capped in silver, a beard of frozen reeds, a necklace of lake-glass beads, breath hanging thick",
+   "tribe": "Greenskins",
+   "realm": "marches"
   },
   {
    "name": "The Hollow Shepherd",
    "category": "wraith",
    "status": "queued",
-   "prompt": "Portrait of a wraith shepherd, a robed figure of grey smoke with no face but a suggestion of a hooded profile, a crook of bent candlelight, a small flock of pale spirits drifting at its heels"
+   "prompt": "Portrait of a wraith shepherd, a robed figure of grey smoke with no face but a suggestion of a hooded profile, a crook of bent candlelight, a small flock of pale spirits drifting at its heels",
+   "tribe": "Undead",
+   "realm": "necropolis"
+  },
+  {
+   "name": "Morvenne the Pale Sovereign",
+   "category": "lich",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of an ancient lich queen on a cracked onyx throne backdrop, cobweb-thin silver crown fused to her skull, grave-orchids blooming from her ribcage collar, cold teal fire in empty sockets, mourning veils of grave-silk, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Dreadchaplain Ossivar",
+   "category": "skeleton",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of a skeletal high priest in tattered funeral vestments of black and bone-white, an ivory reliquary mask half-covering his fleshless face, candle smoke curling through his hollow ribs, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Lady Carnasse the Gravewarden",
+   "category": "deathknight",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of a female undead knight, grey ashen skin over a noble face, a funeral helm cracked open to reveal corpse-pale features, grave-moss on her pauldrons, lantern-light of soul-flame in one eye, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Warlord Skarnag the Everburning",
+   "category": "orc",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a colossal orc warchief, tusks capped in looted gold, skin branded with ash-pit scars, wearing a mantle of stitched banners from fallen enemies, ember-red eyes under a heavy brow, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Grashnak the Goblin-King Beneath",
+   "category": "goblin",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a sly goblin king on a ramshackle throne of scrap and bones, oversized crown of bent nails, mismatched eyes glinting with cunning, ears notched from a hundred knife-fights, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Olgar Stonefat the Troll-Elder",
+   "category": "troll",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of an ancient moss-backed troll elder, hide like lichen-covered bedrock, three small stone charms woven into his beard, calm patient eyes that have watched a mountain fall, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Thane Breggan Ironhearth",
+   "category": "dwarf",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a dwarf high-king with a rune-forged iron crown braided into his beard, gemstone eyes of cut garnet in his throne of black anvil-stone, forge-fire glow on scarred cheeks, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Tinkla Coppersprocket the Grand Artificer",
+   "category": "gnome",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of an elderly gnome artificer with brass goggles pushed up on her forehead, wild white hair streaked with machine oil, a clockwork owl perched on her shoulder, warm workshop lanterns behind, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Master Hallowigh the Vaultkeeper",
+   "category": "dwarf",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a stoic dwarf vaultkeeper of the deep treasuries, keys of impossible size on an iron chain across his chest, lamplight reflecting off his polished bald head and granite-grey eyes, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Coriander Thistledown the Wayward Halfling",
+   "category": "halfling",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a cheerful halfling wanderer in a patched traveling coat, curly hair with dried flowers, a compass that points anywhere but north on a chain, mischievous knowing smile, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Bramm Deepdelver the Under-Marshal",
+   "category": "dwarf",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a grim dwarf under-marshal in layered plate etched with tunnel-maps of the deep roads, war-pick resting on one shoulder, cool blue glow of deep-cavern lichen on his face, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Fizzwick the Gnome Oracle",
+   "category": "gnome",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a gnome oracle swathed in star-woven robes, eyes like polished amber full of far-off visions, delicate silver instrument-astronomicon held in small careful hands, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Vyrraxa the Ashen Wyrm",
+   "category": "dragon",
+   "tribe": "Dragonkin",
+   "realm": "cross",
+   "status": "queued",
+   "prompt": "Portrait of an elder dragon in half-regal humanoid majesty, scales like cooling lava crust over embers, molten gold eyes, broken knight's swords wedged between her teeth as trophies, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Ssharessk the Venom Oracle",
+   "category": "dragonkin",
+   "tribe": "Dragonkin",
+   "realm": "cross",
+   "status": "queued",
+   "prompt": "Portrait of a serpentine dragonkin priestess, jade scales dusted with venom, cobra-like hood of woven gold, unsettling amber slit-pupil eyes, incense smoke drifting around a reed flute, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Gryara the Blood-Tithed",
+   "category": "lich",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of a ancient lich in cracked royal vestments, grave-crown fused to skull, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Malvane the Nine-Crowned",
+   "category": "lich",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of a lich archivist with bone-dust shroud and candle-stub crown, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Belivar the Unbowed",
+   "category": "lich",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of a lich matriarch with cobweb mantle, cold teal fire in empty sockets, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Carmoth the Silent",
+   "category": "wraith",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of a wraith in tattered funeral silks, half-transparent face screaming silently, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Malhold the Thorned",
+   "category": "wraith",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of a barrow-wraith with iron torc grown into grey flesh, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Cargath the Dusk-Marked",
+   "category": "wraith",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of a wraith knight, lower body dissolving into grave mist, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Vylgrim the Cold-Blooded",
+   "category": "skeleton",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of a skeletal marshal in rusted campaign plate, war-banner rotted on his back, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Cargrim the Unbowed",
+   "category": "skeleton",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of a skeleton courtier with porcelain death-mask, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Drewyn the Wall of Spears",
+   "category": "skeleton",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of a skeletal siege engineer with pickaxe of black iron, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Vessmoth the Ash-Cloaked",
+   "category": "skeleton",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of a skeleton oracle with amber gems set in eye sockets, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Morasse the Keen-Eyed",
+   "category": "ghoul",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of a ghoul noble with too-long fingers, grave silk stuck in teeth, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Dreasse the Keen-Eyed",
+   "category": "ghoul",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of a ghoul scavenger with sackful of stolen rings, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Morissa the Thunder-Heeled",
+   "category": "ghoul",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of a ghoul priest with rosary of finger bones, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Malhold the Dusk-Marked",
+   "category": "mummy",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of a bandaged pharaoh-queen, gold death-mask half slid away, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Vylasse the Wall of Spears",
+   "category": "mummy",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of a mummy scribe with canopic scrolls, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Sarrath the Steadfast",
+   "category": "mummy",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of a mummy sentinel with gilded scarab plate, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Vylmoth the Unbowed",
+   "category": "zombie",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of a plague zombie conscript in rotted uniform, milky eyes, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Uthvenne the Grave-Sworn",
+   "category": "zombie",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of a zombie bride with wilted funeral bouquet, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Ashasse the Reckoner",
+   "category": "zombie",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of a zombie toll-keeper with rusted lantern, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Gryvane the Thunder-Heeled",
+   "category": "vampire",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of a vampire noble with high lace collar, blood-dark eyes, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Vylissa the Ash-Cloaked",
+   "category": "vampire",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of a vampire abbess with rosary of garnets, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Vessasse the Hollow-Crowned",
+   "category": "vampire",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of a vampire duelist, dueling scar across pale throat, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Korwyn the Bold",
+   "category": "deathknight",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of a deathknight with cracked helm leaking grave mist, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Vylasse the Swift-Loosed",
+   "category": "deathknight",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of a deathknight standard-bearer with rotted banner, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Vessvenne the Steadfast",
+   "category": "deathknight",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of a deathknight-errant with oath-chains rusted to plate, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Nhalara the Silent",
+   "category": "banshee",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of a banshee mourner with hair like drowned weeds, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Sarrek the Thorned",
+   "category": "banshee",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of a banshee with silver burial coins over her eyes, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Gryrek the Unbowed",
+   "category": "ghost",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of a ghost child holding a guttering candle, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Dredun the Wall of Spears",
+   "category": "ghost",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of a ghost captain still saluting a sunk ship, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Osshold the Keen-Eyed",
+   "category": "bone-wyrm",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of a juvenile bone-wyrm, skull-crowned and grave-ash grey, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Dreissa the Cold-Blooded",
+   "category": "bone-wyrm",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of a bone-wyrm hatchling coiled on a sarcophagus, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Sarasse the Unbowed",
+   "category": "plaguebearer",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of a plaguebearer with doctor's beaked mask stuffed with herbs, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Nhalara the Patient",
+   "category": "plaguebearer",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of a plaguebearer monk with bell and cart of wilted flowers, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Ashgrim the Thunder-Heeled",
+   "category": "nightmare",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of a nightmare stallion, smoke-hide and ember hooves, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Vesswyn the Thunder-Heeled",
+   "category": "nightmare",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of a nightmare mare with coffin-saddle and grave-fire mane, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Grygath the Hollow-Crowned",
+   "category": "shade",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of a shade of a king, crown dissolving into smoke, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Vylhold the Cold-Blooded",
+   "category": "shade",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of a shade assassin half lost to darkness, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Drehold the Dusk-Marked",
+   "category": "wight",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of a barrow-wight with ancient treasure grown into flesh, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Nhalgath the Cold-Blooded",
+   "category": "wight",
+   "tribe": "Undead",
+   "realm": "necropolis",
+   "status": "queued",
+   "prompt": "Portrait of a wight watcher with lantern of soul-fire, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Grazog the Reckoner",
+   "category": "orc",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a orc warchief with tusk-caps of looted gold, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Roktuk the Hollow-Crowned",
+   "category": "orc",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a orc bone-reader with skull fetishes, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Skartuk the Swift-Loosed",
+   "category": "orc",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a orc berserker with brands of ash-pit scars, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Skuznak the Blood-Tithed",
+   "category": "orc",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a orc iron-jaw with nailed jaw-plate, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Skuzgnash the Ash-Cloaked",
+   "category": "orc",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a orc standard-bearer with banner of stitched skins, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Thugzog the Keen-Eyed",
+   "category": "orc",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a orc shaman with totem of the broken mountain, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Snikmaw the Hollow-Crowned",
+   "category": "orc",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a orc slaver with chain-and-hook, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Zogusk the Ash-Cloaked",
+   "category": "orc",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a orc pit-fighter with crossed scars, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Snikfist the Patient",
+   "category": "orc",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a orc hunter with trophies of fangs, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Rokog the Patient",
+   "category": "orc",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a orc drummer of the war-host, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Graztuk the Tireless",
+   "category": "orc",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a orc smith with half-forged cleaver, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Ugmaw the Tireless",
+   "category": "orc",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a orc scout with eyes of ember, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Skuzgore the Unbowed",
+   "category": "orc",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a orc chieftain with mantle of a hundred banners, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Snikgore the Cold-Blooded",
+   "category": "orc",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a orc butcher with stained apron, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Snikkab the Patient",
+   "category": "orc",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a orc boar-rider with tusk-helm, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Grazgore the Reckoner",
+   "category": "goblin",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a goblin sapper with bomb-basket, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Grazgrat the Unbowed",
+   "category": "goblin",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a goblin king on scrap throne with nail-crown, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Nardak the Deep-Minded",
+   "category": "goblin",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a goblin tinkersmith with stolen tools, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Grashkab the Reckoner",
+   "category": "goblin",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a goblin snare-catcher with nets, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Kragtuk the Swift-Loosed",
+   "category": "goblin",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a goblin eye-gouger with knife-fight notches, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Rokkab the Nine-Crowned",
+   "category": "goblin",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a goblin standard-bearer with toad-banner, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Kragrot the Ash-Cloaked",
+   "category": "goblin",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a goblin mushroom-farmer with spore basket, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Grakog the Thorned",
+   "category": "goblin",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a goblin scrap-prince with copper jewellery, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Grazdak the Dusk-Marked",
+   "category": "goblin",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a goblin cutthroat with poison rings, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Thuggnash the Dusk-Marked",
+   "category": "goblin",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a goblin horn-blower of the horde, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Grakgrat the Dusk-Marked",
+   "category": "goblin",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a goblin pit-scrapper, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Grazash the Swift-Loosed",
+   "category": "goblin",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a goblin looter with torn velvet, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Grazzog the Nine-Crowned",
+   "category": "goblin",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a goblin shaman with frog-skull staff, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Uggrat the Nine-Crowned",
+   "category": "goblin",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a goblin chef with questionable stew, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Roknak the Wall of Spears",
+   "category": "goblin",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a goblin runner with war-messages, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Thugrot the Grave-Sworn",
+   "category": "hobgoblin",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a hobgoblin drill-sergeant with iron whistle, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Grashnak the Grave-Sworn",
+   "category": "hobgoblin",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a hobgoblin legion officer with looted epaulettes, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Rokdak the Grave-Sworn",
+   "category": "hobgoblin",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a hobgoblin shield-wall captain, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Grazgore the Wall of Spears",
+   "category": "hobgoblin",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a hobgoblin paymaster with strongbox, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Bugrot the Thorned",
+   "category": "hobgoblin",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a hobgoblin torturer with neat tools, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Rokash the Ash-Cloaked",
+   "category": "hobgoblin",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a hobgoblin engineer with siege ladder, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Grakfist the Swift-Loosed",
+   "category": "hobgoblin",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a hobgoblin color-sergeant with ragged flag, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Graznak the Unbowed",
+   "category": "hobgoblin",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a hobgoblin disciplinarian with notched baton, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Zogtuk the Grave-Sworn",
+   "category": "troll",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a moss-backed troll elder with stone charms in beard, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Bugfist the Thorned",
+   "category": "troll",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a troll bridge-warden with toll-chain, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Skarmaw the Swift-Loosed",
+   "category": "troll",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a troll bone-setter with splint of logs, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Buggore the Ash-Cloaked",
+   "category": "troll",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a troll matriarch with lichen shawl, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Grakzog the Dusk-Marked",
+   "category": "troll",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a troll pit-tyrant with knuckle-bone necklace, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Skarfist the Steadfast",
+   "category": "troll",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a troll swamp-sage with reed flute, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Skuztuk the Deep-Minded",
+   "category": "troll",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a troll doorbreaker with tree-club, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Zoggnash the Deep-Minded",
+   "category": "troll",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a troll skald with drum of hide, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Skuznak the Hollow-Crowned",
+   "category": "ogre",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a ogre butcher with meat-cleaver of anchor iron, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Thugrot the Reckoner",
+   "category": "ogre",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a ogre pit-king with barrel-helm, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Grashgnash the Grave-Sworn",
+   "category": "ogre",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a ogre cook with ladle of war, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Snikgnash the Swift-Loosed",
+   "category": "ogre",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a ogre battering-ram with log pauldrons, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Snikzog the Cold-Blooded",
+   "category": "ogre",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a ogre tyrant with skull-goblet, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Skarfist the Deep-Minded",
+   "category": "ogre",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a ogre night-watch with bell-hammer, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Graknak the Dusk-Marked",
+   "category": "ogre",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a ogre wrestler with champion belt of chains, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Narkab the Nine-Crowned",
+   "category": "ogre",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a ogre drover with herd-prod, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Kragdak the Blood-Tithed",
+   "category": "bugbear",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a bugbear stalker with pelt of a hundred hunts, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Ugusk the Patient",
+   "category": "bugbear",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a bugbear strangler with garrote of gut, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Rokzog the Blood-Tithed",
+   "category": "bugbear",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a bugbear chief with trophy-skull mantle, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Grakgnash the Hollow-Crowned",
+   "category": "bugbear",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a bugbear ambusher with net and hook, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Ugusk the Unbowed",
+   "category": "bugbear",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a bugbear shaman with cave-paint markings, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Grashgnash the Hollow-Crowned",
+   "category": "bugbear",
+   "tribe": "Greenskins",
+   "realm": "marches",
+   "status": "queued",
+   "prompt": "Portrait of a bugbear tracker with claws on a cord, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Tordell the Nine-Crowned",
+   "category": "dwarf",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a dwarf high-king with rune-forged crown braided into beard, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Fizzrik the Thunder-Heeled",
+   "category": "dwarf",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a dwarf forge-master with burn-scarred forearms, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Durmar the Ash-Cloaked",
+   "category": "dwarf",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a dwarf shield-maiden with axe of black anvil-iron, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Brambrew the Deep-Minded",
+   "category": "dwarf",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a dwarf under-marshal in tunnel-map plate, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Balbard the Silent",
+   "category": "dwarf",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a dwarf vaultkeeper with great iron keys, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Thragold the Grave-Sworn",
+   "category": "dwarf",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a dwarf brewmaster with cask-badge, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Hewdin the Dusk-Marked",
+   "category": "dwarf",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a dwarf stone-singer with hammer and chisel, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Cordell the Unbowed",
+   "category": "dwarf",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a dwarf gate-warden with portcullis-chain, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Haldelver the Blood-Tithed",
+   "category": "dwarf",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a dwarf deep-delver with lamp of lichen-light, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Halwick the Reckoner",
+   "category": "dwarf",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a dwarf oath-keeper with sworn-scroll cases, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Corwick the Hollow-Crowned",
+   "category": "dwarf",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a dwarf grudge-holder with tally-plates, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Cordell the Deep-Minded",
+   "category": "dwarf",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a dwarf iron-priest with cog and anvil icons, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Balbard the Grave-Sworn",
+   "category": "dwarf",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a dwarf sapper with bore-head pick, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Haldell the Bold",
+   "category": "dwarf",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a dwarf caravan-master with mule-bells, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Nalmar the Patient",
+   "category": "dwarf",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a dwarf lore-archivist with slate books, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Hewdell the Thorned",
+   "category": "dwarf",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a dwarf throne-heir with unpolished crown, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Torbrew the Thorned",
+   "category": "dwarf",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a dwarf beast-trainer with cave-bear cub, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Bramgold the Bold",
+   "category": "dwarf",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a dwarfprospector with motherlode locket, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Grimdin the Tireless",
+   "category": "dwarf",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a dwarf ale-councillor with tankard of state, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Bramgan the Wall of Spears",
+   "category": "dwarf",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a dwarf rampart-captain with shield of doors, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Thramar the Wall of Spears",
+   "category": "dwarf",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a dwarf tomb-sculptor with chisel of meteor iron, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Tordin the Silent",
+   "category": "dwarf",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a dwarf watch-commander of the lower gates, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Halrik the Ash-Cloaked",
+   "category": "dwarf",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a dwarf ember-smith with molten gold eyes, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Halmund the Cold-Blooded",
+   "category": "dwarf",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a dwarf windlass-crew chief, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Thrabard the Wall of Spears",
+   "category": "dwarf",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a dwarf gnome-friend with mismatched craft badges, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Bregbrew the Reckoner",
+   "category": "gnome",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a gnome artificer with brass goggles on forehead, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Durdan the Reckoner",
+   "category": "gnome",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a gnome clockwork-sage with key-organ, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Bramdan the Dusk-Marked",
+   "category": "gnome",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a gnome gem-cutter with loupe of crystal, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Brambard the Silent",
+   "category": "gnome",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a gnome tinker with tool-swarm on shoulder, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Tinkbard the Grave-Sworn",
+   "category": "gnome",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a gnome illusionist with moth familiar, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Bregwick the Reckoner",
+   "category": "gnome",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a gnome astronomer with brass telescope, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Cordin the Tireless",
+   "category": "gnome",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a gnome alchemist with unstable vials, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Tinkbard the Dusk-Marked",
+   "category": "gnome",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a gnome storyteller with lantern of tales, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Nalbard the Unbowed",
+   "category": "gnome",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a gnome clock-warden with heart of gears, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Halgold the Tireless",
+   "category": "gnome",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a gnome spore-keeper with mushroom lamps, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Halbard the Cold-Blooded",
+   "category": "gnome",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a gnome prankster with smoke rings, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Tinkmund the Unbowed",
+   "category": "gnome",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a gnome bridge-mason with tiny trowel, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Grimdan the Thorned",
+   "category": "gnome",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a gnome rune-welder with spark patterns, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Grimdan the Dusk-Marked",
+   "category": "gnome",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a gnome map-maker with ink-compass, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Thramund the Thunder-Heeled",
+   "category": "gnome",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a gnome song-smith with harmonium keys, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Torwick the Hollow-Crowned",
+   "category": "gnome",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a gnome vault-auditor with abacus of beads, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Torgold the Wall of Spears",
+   "category": "gnome",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a gnome lantern-crew chief, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Grimdin the Thorned",
+   "category": "gnome",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a gnome whisker-knight with thimble helm, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Halbard the Blood-Tithed",
+   "category": "gnome",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a gnome contraption-rider with steam saddle, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Hewrik the Reckoner",
+   "category": "gnome",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a gnome deep-school teacher with slate, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Morwick the Steadfast",
+   "category": "halfling",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a halfling wanderer with patched travel-coat, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Bramdan the Silent",
+   "category": "halfling",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a halfling cook with spice-chains, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Corgan the Blood-Tithed",
+   "category": "halfling",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a halfling gambler with marked dice, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Nalwick the Silent",
+   "category": "halfling",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a halfling burrow-mayor with chain of office of string, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Naldelver the Swift-Loosed",
+   "category": "halfling",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a halfling scout with boot-daggers, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Fizzmar the Grave-Sworn",
+   "category": "halfling",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a halfling farmer with seed-song, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Hewwick the Swift-Loosed",
+   "category": "halfling",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a halfling caravan-guard with sling, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Halgold the Blood-Tithed",
+   "category": "halfling",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a halfling hearth-keeper with story quilt, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Grimbrew the Swift-Loosed",
+   "category": "halfling",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a halfling lucky-charm peddler, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Fizzgrim the Thorned",
+   "category": "halfling",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a halfling orchard-warden with cider flagon, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Durstone the Hollow-Crowned",
+   "category": "myconid",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a myconid spore-sage with mushroom crown, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Tinkstone the Steadfast",
+   "category": "myconid",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a myconid circle-tender with moss staff, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Durwick the Patient",
+   "category": "myconid",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a myconid glow-cap with lantern gills, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Mordin the Grave-Sworn",
+   "category": "myconid",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a myconid deep-root elder with shelf-fungus mantle, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Nalgan the Bold",
+   "category": "myconid",
+   "tribe": "Underfolk",
+   "realm": "deepholds",
+   "status": "queued",
+   "prompt": "Portrait of a myconid quiet-monk with cap bowed, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Nymane the Wall of Spears",
+   "category": "dire-beast",
+   "tribe": "Beasts",
+   "realm": "tigerpass",
+   "status": "queued",
+   "prompt": "Portrait of a dire wolf alpha with winter-frost muzzle, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Fenclaw the Tireless",
+   "category": "dire-beast",
+   "tribe": "Beasts",
+   "realm": "tigerpass",
+   "status": "queued",
+   "prompt": "Portrait of a cave bear with scars of old wars, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Keshsha the Wall of Spears",
+   "category": "dire-beast",
+   "tribe": "Beasts",
+   "realm": "tigerpass",
+   "status": "queued",
+   "prompt": "Portrait of a sabre-tooth matriarch with tusk-splinters, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Talfang the Ash-Cloaked",
+   "category": "dire-beast",
+   "tribe": "Beasts",
+   "realm": "tigerpass",
+   "status": "queued",
+   "prompt": "Portrait of a dire boar with iron-like hide, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Rhoaroke the Tireless",
+   "category": "dire-beast",
+   "tribe": "Beasts",
+   "realm": "tigerpass",
+   "status": "queued",
+   "prompt": "Portrait of a shadow panther with moonlit eyes, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Vruroke the Patient",
+   "category": "dire-beast",
+   "tribe": "Beasts",
+   "realm": "tigerpass",
+   "status": "queued",
+   "prompt": "Portrait of a great stag with barbed antlers, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Mhavash the Grave-Sworn",
+   "category": "dire-beast",
+   "tribe": "Beasts",
+   "realm": "tigerpass",
+   "status": "queued",
+   "prompt": "Portrait of a ridge lion with storm-grey mane, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Nysha the Grave-Sworn",
+   "category": "dire-beast",
+   "tribe": "Beasts",
+   "realm": "tigerpass",
+   "status": "queued",
+   "prompt": "Portrait of a dire elk with bone-white rack, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Rhoanak the Cold-Blooded",
+   "category": "beastfolk",
+   "tribe": "Beasts",
+   "realm": "tigerpass",
+   "status": "queued",
+   "prompt": "Portrait of a bearfolk berserker with honey-braid crown, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Mhahide the Wall of Spears",
+   "category": "beastfolk",
+   "tribe": "Beasts",
+   "realm": "tigerpass",
+   "status": "queued",
+   "prompt": "Portrait of a catfolk duelist with ribbon-tied claws, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Talclaw the Unbowed",
+   "category": "beastfolk",
+   "tribe": "Beasts",
+   "realm": "tigerpass",
+   "status": "queued",
+   "prompt": "Portrait of a foxfolk trickster with coin-tail ring, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Mhanak the Blood-Tithed",
+   "category": "beastfolk",
+   "tribe": "Beasts",
+   "realm": "tigerpass",
+   "status": "queued",
+   "prompt": "Portrait of a birdfolk sky-warden with feather mantle, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Taltooth the Blood-Tithed",
+   "category": "beastfolk",
+   "tribe": "Beasts",
+   "realm": "tigerpass",
+   "status": "queued",
+   "prompt": "Portrait of a lizardfolk marsh-chief with scale of jade, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Vrufang the Reckoner",
+   "category": "beastfolk",
+   "tribe": "Beasts",
+   "realm": "tigerpass",
+   "status": "queued",
+   "prompt": "Portrait of a ratfolk tunnel-broker with whisker beads, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Nynak the Dusk-Marked",
+   "category": "beastfolk",
+   "tribe": "Beasts",
+   "realm": "tigerpass",
+   "status": "queued",
+   "prompt": "Portrait of a wolfpack hunter with fang necklace, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Talclaw the Wall of Spears",
+   "category": "beastfolk",
+   "tribe": "Beasts",
+   "realm": "tigerpass",
+   "status": "queued",
+   "prompt": "Portrait of a badgerfolk digger with iron claws, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Rhoamane the Thunder-Heeled",
+   "category": "beastfolk",
+   "tribe": "Beasts",
+   "realm": "tigerpass",
+   "status": "queued",
+   "prompt": "Portrait of a deerfolk pathfinder with antler totems, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Talhide the Tireless",
+   "category": "beastfolk",
+   "tribe": "Beasts",
+   "realm": "tigerpass",
+   "status": "queued",
+   "prompt": "Portrait of a tigerfolk pit-queen with striped scars, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Nyclaw the Tireless",
+   "category": "chimeric",
+   "tribe": "Beasts",
+   "realm": "tigerpass",
+   "status": "queued",
+   "prompt": "Portrait of a manticore with iron-quill mane, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Nyroke the Grave-Sworn",
+   "category": "chimeric",
+   "tribe": "Beasts",
+   "realm": "tigerpass",
+   "status": "queued",
+   "prompt": "Portrait of a griffon-warden with eagle crown, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Sartooth the Silent",
+   "category": "chimeric",
+   "tribe": "Beasts",
+   "realm": "tigerpass",
+   "status": "queued",
+   "prompt": "Portrait of a swamp hydra-scion with twin heads, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Rhoasha the Hollow-Crowned",
+   "category": "chimeric",
+   "tribe": "Beasts",
+   "realm": "tigerpass",
+   "status": "queued",
+   "prompt": "Portrait of a basilisk brood-guardian with stone-gaze veil, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Urssha the Reckoner",
+   "category": "beastmaster",
+   "tribe": "Beasts",
+   "realm": "tigerpass",
+   "status": "queued",
+   "prompt": "Portrait of a beastmaster with horned mask and chains, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Sarnak the Bold",
+   "category": "beastmaster",
+   "tribe": "Beasts",
+   "realm": "tigerpass",
+   "status": "queued",
+   "prompt": "Portrait of a beastcaller with bone flute and raven, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+  },
+  {
+   "name": "Vrumane the Silent",
+   "category": "beastmaster",
+   "tribe": "Beasts",
+   "realm": "tigerpass",
+   "status": "queued",
+   "prompt": "Portrait of a pit-tamer with whip of braided hide, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
   }
- ]
+ ],
+ "taxonomy": "tribes-v2"
 }

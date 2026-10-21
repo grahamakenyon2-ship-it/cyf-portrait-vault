@@ -7,7 +7,7 @@
    "kind": "edict",
    "cardId": "war-council@stormlit",
    "status": "queued",
-   "prompt": "Elder war-council in a storm-lit tree-fort hall: elven captains and dwarf clan-elders lean over a war table as a lightning flash redraws the map lines in silver, aged banners overhead"
+   "prompt": "Elder war-council in a storm-lit tree-fort hall: elven captains and fey seers lean over a war table as a lightning flash redraws the map lines in silver, aged banners overhead"
   },
   {
    "name": "Rain of Arrows",
@@ -55,7 +55,7 @@
    "kind": "edict",
    "cardId": "the-forge-blessing@stormlit",
    "status": "queued",
-   "prompt": "A dwarf forge-priest blessing a rack of greataxes: the charging-blades flare with molten runes, sparks whirling as a chosen champion steps forward glowing with borrowed heat"
+   "prompt": "An elven forge-singer blessing a rack of greataxes: the charging-blades flare with molten runes, sparks whirling as a chosen champion steps forward glowing with borrowed heat"
   },
   {
    "name": "The Glade Ward",
@@ -79,7 +79,7 @@
    "kind": "relic",
    "cardId": "drummers-of-the-line@stormlit",
    "status": "queued",
-   "prompt": "Dwarf drummers on a ridge beating a slow healing rhythm while a battle-line of tired elven soldiers visibly straightens, breath returning, a full scroll-case held high by a runner"
+   "prompt": "Elven drummers on a ridge beating a slow healing rhythm while a battle-line of tired elven soldiers visibly straightens, breath returning, a full scroll-case held high by a runner"
   },
   {
    "name": "Salt fog Harbor",
@@ -267,35 +267,35 @@
   },
   {
    "name": "Ambush at the Pass",
-   "realm": "tigerpass",
+   "realm": "marches",
    "kind": "edict",
-   "cardId": "ambush-at-the-pass@tigerpass",
+   "cardId": "ambush-at-the-pass@marches",
    "status": "queued",
-   "prompt": "An ambush at a mountain pass: orc and ratkin ambushers raining javelins and sling-stones down the cliffs onto a column marching through the narrow way below"
+   "prompt": "An ambush at a mountain pass: orc and goblin skirmishers raining javelins and sling-stones down the cliffs onto a column marching through the narrow way below"
   },
   {
    "name": "Call to Arms",
-   "realm": "tigerpass",
+   "realm": "marches",
    "kind": "edict",
-   "cardId": "call-to-arms@tigerpass",
+   "cardId": "call-to-arms@marches",
    "status": "queued",
    "prompt": "A war-drum call to arms in a horde camp: thousands answering, fresh orc recruits scrambling into rough ranks as a spear-pointed volley sweeps an enemy scout line"
   },
   {
    "name": "Shieldwall",
-   "realm": "tigerpass",
+   "realm": "marches",
    "kind": "edict",
-   "cardId": "shieldwall@tigerpass",
+   "cardId": "shieldwall@marches",
    "status": "queued",
    "prompt": "An orc shieldwall locking shields in a muddy valley, the shields swelling with bark-hard growth of bone and hide as shaman-drums boom behind them"
   },
   {
    "name": "War Banner",
-   "realm": "tigerpass",
+   "realm": "marches",
    "kind": "relic",
-   "cardId": "war-banner@tigerpass",
+   "cardId": "war-banner@marches",
    "status": "queued",
-   "prompt": "A horde war-banner planted atop a heap of captured shields, its sigil flaring while the guards beneath it bristle with borrowed strength"
+   "prompt": "A war-banner of the war-host planted atop a heap of captured shields, its boar-tusk sigil flaring while the greenskins beneath it bristle with borrowed strength"
   },
   {
    "name": "The Wild Hunt",
@@ -307,11 +307,11 @@
   },
   {
    "name": "The Bone Feast",
-   "realm": "tigerpass",
+   "realm": "marches",
    "kind": "edict",
-   "cardId": "the-bone-feast@tigerpass",
+   "cardId": "the-bone-feast@marches",
    "status": "queued",
-   "prompt": "A bone-feast around a fire-pit of mammoth ribs: conscript-horde warriors gorging on marrow and growing thicker-boned as a new recruit is dragged to the feast"
+   "prompt": "A bone-feast around a fire-pit of mammoth ribs: orc and goblin warriors gorging on marrow and growing thicker-boned as a new goblinkin is dragged to the feast"
   },
   {
    "name": "The Rampart of Skulls",
@@ -323,11 +323,11 @@
   },
   {
    "name": "The Warlord's Drum",
-   "realm": "tigerpass",
+   "realm": "marches",
    "kind": "relic",
-   "cardId": "the-warlord-s-drum@tigerpass",
+   "cardId": "the-warlord-s-drum@marches",
    "status": "queued",
-   "prompt": "A huge warlord pounding a mammoth-hide drum, each beat raising fresh ratkin conscripts from the mud already stronger and meaner"
+   "prompt": "A huge orc warchief pounding a mammoth-hide drum, each beat shaking fresh goblin conscripts out of the mud-pits already meaner and hungrier"
   },
   {
    "name": "The Idol of the Deep Woods",
@@ -335,7 +335,7 @@
    "kind": "relic",
    "cardId": "the-idol-of-the-deep-woods@tigerpass",
    "status": "queued",
-   "prompt": "A moss-bearded idol looming in a deep wood clearing, horde shamans offering up trophies as the idol's eyes open cheap with borrowed power, gifts growing heavier"
+   "prompt": "A moss-bearded idol looming in a deep wood clearing, beast-shamans offering up trophies as the idol's eyes open bright with borrowed power, gifts growing heavier"
   },
   {
    "name": "The Beasts' Moot",
@@ -347,19 +347,19 @@
   },
   {
    "name": "Blood moon",
-   "realm": "tigerpass",
+   "realm": "necropolis",
    "kind": "edict",
-   "cardId": "blood-moon@tigerpass",
+   "cardId": "blood-moon@necropolis",
    "status": "queued",
-   "prompt": "A blood moon rising over a night muster of the dead, a shaman cutting a moon-mark into the earth as fresh grave-dirt stirs and a new conscript claws free"
+   "prompt": "A blood moon rising over a night muster of the graveyards, a death-priest cutting a moon-mark into the earth as fresh grave-dirt stirs and a new revenant claws free"
   },
   {
    "name": "Kraken's coil",
-   "realm": "tigerpass",
+   "realm": "necropolis",
    "kind": "edict",
-   "cardId": "kraken-s-coil@tigerpass",
+   "cardId": "kraken-s-coil@necropolis",
    "status": "queued",
-   "prompt": "A kraken's coil erupting from a storm-sea to crush a war-raft of drowned-horde reavers, tentacles dragging men and salvage into the deep"
+   "prompt": "A kraken's coil erupting from a storm-sea to crush a raft of drowned revenants, tentacles dragging the waterlogged dead into the deep"
   },
   {
    "name": "Perpetual engine",
@@ -387,9 +387,9 @@
   },
   {
    "name": "The dead Calm",
-   "realm": "tigerpass",
+   "realm": "necropolis",
    "kind": "relic",
-   "cardId": "the-dead-calm@tigerpass",
+   "cardId": "the-dead-calm@necropolis",
    "status": "queued",
    "prompt": "An unnatural dead calm over a battlefield: mist flat, banners still, the quiet dead rising in perfect silence with new strength in their limbs"
   },
@@ -403,17 +403,17 @@
   },
   {
    "name": "The royal Treasury",
-   "realm": "tigerpass",
+   "realm": "marches",
    "kind": "relic",
-   "cardId": "the-royal-treasury@tigerpass",
+   "cardId": "the-royal-treasury@marches",
    "status": "queued",
    "prompt": "The horde's royal treasury: a goblin comptroller weighing plunder at dawn-count while banner-bearers sharpen arrowheads with the morning's tithed steel"
   },
   {
    "name": "The summoning Circle",
-   "realm": "tigerpass",
+   "realm": "necropolis",
    "kind": "edict",
-   "cardId": "the-summoning-circle@tigerpass",
+   "cardId": "the-summoning-circle@necropolis",
    "status": "queued",
    "prompt": "A summoning circle of bone fetishes unmaking an enemy champion: the foe's armor and powers sloughing off as it is rewritten into a plain, blank-faced conscript"
   },
@@ -423,7 +423,7 @@
    "kind": "edict",
    "cardId": "the-werebeast-moon@tigerpass",
    "status": "queued",
-   "prompt": "A werebeast moon swelling overhead as horde scouts mid-transformation twist into wolfen shapes, one new-minted conscript prowling out of the treeline"
+   "prompt": "A werebeast moon swelling overhead as beast scouts mid-transformation twist into wolfen shapes, one new-minted pack-runner prowling out of the treeline"
   },
   {
    "name": "Wyvern's shadow",
