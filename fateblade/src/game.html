@@ -620,7 +620,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.22.11';
+const GAME_VERSION = '0.22.12';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
@@ -656,7 +656,7 @@ const guildCount = (sel) => [...sel].filter(isGuildCard).length;
 
 /* ---------- settings (localStorage) ---------- */
 const SKEY = 'fateblade-settings-v1';
-let settings = Object.assign({ theme: 'auto', watchSpeed: 1, aiLevel: 'normal', enemyPace: 850, sfxVol: 0.7, musicVol: 0.35, scaleMode: 'auto', uiScale: 100, uiDebug: false }, JSON.parse(localStorage.getItem(SKEY) || '{}')); // v0.22.7: display settings — auto-fit (default) or manual scale + debug readout
+let settings = Object.assign({ theme: 'auto', watchSpeed: 1, aiLevel: 'normal', enemyPace: 850, sfxVol: 0.7, musicVol: 0.35, scaleMode: 'auto', uiScale: 100, uiDebug: false, musicSel: 'auto' }, JSON.parse(localStorage.getItem(SKEY) || '{}')); // v0.22.7: display settings — auto-fit (default) or manual scale + debug readout; v0.22.12: musicSel — the player's music picker choice (auto = follow the realm)
 function saveSettings(){ localStorage.setItem(SKEY, JSON.stringify(settings)); }
 const WORLDTHEMES = ['ironhall','inkwash','starmaps','dunes','tamriel','teyvat','roshar','antiquity','regency','modern'];
 function applyTheme(factionId){
@@ -1258,24 +1258,39 @@ const MUSIC = {
   setVol(){ if (this.el) this.el.volume = this.vol(); },
   retry(){ if (this.el && this.el.paused && this.vol() > 0) this.el.play().catch(()=>{}); }
 };
-const REALM_MUSIC = { // v0.22.10: per-realm playlists — the tracks land via the fateblade-audio keeper (audio-sources.txt batch 1); if one is not ingested yet MUSIC.set falls back to the core tracks, never silence
-  barning: 'beethoven-5-1',      // the Tidebound armada — heroic fate-knocks
-  lucerre: 'brandenburg-3-1',    // the Gilded Sun — baroque courtly order
-  fenorian: 'beethoven-5-1',    // the Twin Courts — imperial Rome
-  crescent: 'dvorak-9',          // the Crescent Sultanates — the New World's exotic longing
-  ironsteppes: 'winter-1',       // the Horde of the Steppes — Vivaldi's frozen wind
-  stormlit: 'spring-1',          // the Elderkin — alien pastoral grace
-  starwind: 'dvorak-9',          // the Alien Dominion — wide-open strangeness
-  tigerpass: 'match-annals',     // the Bestial Horde — Mountain King menace
-  zephek: 'match-canon',         // the Human Star Empire — Beethoven iron
-  kingdoms: 'dvorak-9',          // the Warring Kingdoms — the Largo's elegy
-  courts: 'brandenburg-3-1',     // the Gilded Courts — gilded intrigue
-  towers: 'menu-morning',        // the Nine Towers — Peer Gynt's mythic dawn
-  wayfarers: 'spring-1'           // the Guild — wandering renewal
+const MUSIC_LIB = { // v0.22.12: the music registry — powers the Settings picker (sorted by realm) + per-realm rotation. Annals pools keep the historic classical; Canon realms get ambient/fantasy (K. MacLeod, CC BY) — the famous classical broke their immersion
+  menu:  [ ['menu-theme', 'The Great Gate of Kiev — Mussorgsky'], ['menu-morning', 'Morning (Peer Gynt) — Grieg'] ],
+  annals:[ ['match-annals', 'In the Hall of the Mountain King — Grieg'], ['beethoven-5-1', 'Symphony No. 5, 1st mvt — Beethoven'], ['brandenburg-3-1', 'Brandenburg Concerto No. 3 — Bach'], ['dvorak-9', 'Symphony No. 9 (New World) — Dvořák'], ['winter-1', 'The Winter (Four Seasons) — Vivaldi'], ['spring-1', 'The Spring (Four Seasons) — Vivaldi'] ],
+  canon: [ ['match-canon', 'Symphony No. 5 — Beethoven'], ['forest-trees', 'The Forest and the Trees — K. MacLeod'], ['the-voices', 'The Voices — K. MacLeod'], ['netherworld-shanty', 'Netherworld Shanty — K. MacLeod'], ['earth-prelude', 'Earth Prelude — K. MacLeod'], ['peaceful-desolation', 'Peaceful Desolation — K. MacLeod'], ['miri-magic-dance', "Miri's Magic Dance — K. MacLeod"], ['himalayan-atmosphere', 'Himalayan Atmosphere — K. MacLeod'], ['living-voyage', 'Living Voyage — K. MacLeod'] ]
 };
+const REALM_MUSIC = { // v0.22.12: playlists per realm — auto mode picks a random entry each match; tracks missing from the vault fall back to the core pool tracks (never silence)
+  barning: ['beethoven-5-1', 'living-voyage'],
+  lucerre: ['brandenburg-3-1', 'miri-magic-dance'],
+  fenorian: ['beethoven-5-1', 'spring-1'],
+  crescent: ['dvorak-9', 'himalayan-atmosphere'],
+  ironsteppes: ['winter-1', 'the-voices'],
+  stormlit: ['forest-trees', 'himalayan-atmosphere'],
+  starwind: ['the-voices', 'peaceful-desolation'],
+  tigerpass: ['match-annals', 'netherworld-shanty'],
+  zephek: ['match-canon', 'earth-prelude'],
+  kingdoms: ['dvorak-9', 'peaceful-desolation'],
+  courts: ['miri-magic-dance', 'living-voyage'],
+  towers: ['menu-morning', 'forest-trees'],
+  wayfarers: ['spring-1', 'living-voyage']
+};
+function trackLabel(slug){ for(const k in MUSIC_LIB){ const t = MUSIC_LIB[k].find(e=>e[0]===slug); if(t) return t[1]; } return slug; }
 function musicForScreen(id){
-  if (id === 'match') MUSIC.set(REALM_MUSIC[me.faction] || (me.pool === 'history' ? 'match-annals' : 'match-canon'));
+  if(settings.musicSel && settings.musicSel !== 'auto'){ MUSIC.set(settings.musicSel); return; } // v0.22.12: the player picked a track — it wins over the auto playlists
+  if (id === 'match') {
+    const arr = REALM_MUSIC[me.faction] || (me.pool === 'history' ? ['match-annals'] : ['match-canon']);
+    MUSIC.set(arr[Math.floor(Math.random() * arr.length)]); // v0.22.12: rotation — realms have playlists now
+  }
   else MUSIC.set('menu-theme');
+}
+function setMusicSel(v){ // v0.22.12: the music picker — auto (follow the realm) or any track in the library, free switching
+  settings.musicSel = v; saveSettings();
+  if(v !== 'auto') MUSIC.set(v);
+  else { const on = document.querySelector('.screen.on'); musicForScreen(on ? on.id : 'menu'); }
 }
 function turnBanner(enemy){
   const tb = document.getElementById('turnBanner'); if (!tb) return;
@@ -2030,6 +2045,8 @@ function showSettings(){
   if(usEl) usEl.value = String(settings.uiScale === undefined ? 100 : settings.uiScale);
   const udEl = document.getElementById('setUiDebug');
   if(udEl) udEl.value = settings.uiDebug ? 'on' : 'off';
+  const mselEl = document.getElementById('setMusicSel'); // v0.22.12: music picker — restore the choice
+  if(mselEl) mselEl.value = settings.musicSel || 'auto';
   updateVolLabels();
   uiDebugReport(0, null, null); // sync the readout's visibility with the setting
   document.getElementById('settings').classList.add('on');
@@ -2218,6 +2235,18 @@ function watchEnd(){
     <input type="range" id="setSfx" min="0" max="100" step="1" oninput="setSfxVol(this.value)">
     <label>Music volume <span id="musicVolPct" style="color:var(--gold)"></span></label>
     <input type="range" id="setMusic" min="0" max="100" step="1" oninput="setMusicVol(this.value)">
+    <label>Now playing</label>
+    <select id="setMusicSel" onchange="setMusicSel(this.value)">
+      <option value="auto">Auto — follow the realm on the field (rotation)</option>
+      ${(() => { // v0.22.12: the music picker, sorted by realm — menu tracks, then every realm's playlist
+        const grp = (label, arr) => '<optgroup label="' + label + '">' + arr.map(([slug, name]) => '<option value="' + slug + '">' + name + '</option>').join('') + '</optgroup>';
+        let h = grp('Menu', MUSIC_LIB.menu);
+        for(const f of DATA.factions) h += grp(f.label, (REALM_MUSIC[f.id] || []).map(s => [s, trackLabel(s)]));
+        h += grp('The Annals — historic pool', MUSIC_LIB.annals);
+        h += grp('The Canon — ambient & fantasy', MUSIC_LIB.canon);
+        return h;
+      })()}
+    </select>
     <label>Display — UI scale</label>
     <select id="setScaleMode" onchange="setScaleMode(this.value)">
       <option value="auto">Auto — fit the whole battlefield on screen (recommended)</option>
