@@ -602,7 +602,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.22.4';
+const GAME_VERSION = '0.22.5';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
@@ -711,16 +711,32 @@ function fitScreen(){
   // clientHeight whenever content merely fits — a silent grow-killer). The union
   // IS the truth: smaller than viewport -> grow (cards fill the screen), taller ->
   // shrink (everything stays visible).
-  let minX = 1e9, minY = 1e9, maxX = -1e9, maxY = -1e9, sawW = false;
+  // v0.22.5 THE MISSING 152px: the union of child RECTS is not the content box —
+  // .screen is a flex COLUMN with gap:14px and padding:20px, and neither the gaps
+  // between children nor the screen's own padding lives inside ANY child rect. On
+  // the match screen (9 flow children) that is 8x14px of gap + 40px of padding =
+  // ~152px of REAL content the fit math never saw — s came out too big by exactly
+  // that strip, so the scaled match was ~150px taller than the viewport and the
+  // hand + END TURN row sat below the fold (menus have fewer children and slack,
+  // which is why v0.22.3 looked "better for menus, worse in game"). Fix: add the
+  // gaps and padding to the measured box — still no clamps, still no scrollHeight.
+  // v0.22.5: absolute children are skipped too (#battlelog is position:absolute —
+  // it never participates in the flow, must not eat a gap slot or pin the unions).
+  let minX = 1e9, minY = 1e9, maxX = -1e9, maxY = -1e9, sawW = false, nFlow = 0;
   for (const child of el.children) {
     const cs = getComputedStyle(child);
-    if (cs.position === 'fixed' || cs.display === 'none') continue;
+    if (cs.position === 'fixed' || cs.position === 'absolute' || cs.display === 'none') continue;
+    nFlow++;
     const r = child.getBoundingClientRect(); // transform already cleared above — rects are unscaled
-    minY = Math.min(minY, r.top); maxY = Math.max(maxY, r.bottom); // v0.22.3: height — every child
+    minY = Math.min(minY, r.top); maxY = Math.max(maxY, r.bottom); // v0.22.3: height — every flow child
     if (child.offsetWidth < el.clientWidth - 2) { sawW = true; minX = Math.min(minX, r.left); maxX = Math.max(maxX, r.right); } // v0.22.3: width — non-full-bleed children only
   }
-  const cw = sawW && maxX > minX ? (maxX - minX) : el.clientWidth;
-  const ch = maxY > minY ? (maxY - minY) : el.clientHeight;
+  const ecs = getComputedStyle(el);
+  const gapY = parseFloat(ecs.rowGap) || 0;                       // v0.22.5: flex-column gap between flow children
+  const padY = (parseFloat(ecs.paddingTop) || 0) + (parseFloat(ecs.paddingBottom) || 0);
+  const padX = (parseFloat(ecs.paddingLeft) || 0) + (parseFloat(ecs.paddingRight) || 0);
+  const cw = sawW && maxX > minX ? (maxX - minX) + padX : el.clientWidth; // fallback clientWidth already includes padding
+  const ch = maxY > minY ? (maxY - minY) + Math.max(0, nFlow - 1) * gapY + padY : el.clientHeight;
   // v0.14 READABILITY: grow with the monitor, not just shrink. Scaling the whole
   // .screen up (Hearthstone-style) enlarges cards, stats, text and menus
   // proportionally; s is still capped by min(w/cw, h/ch) so it can never overflow.
@@ -733,6 +749,7 @@ function fitScreen(){
     el.style.transform = 'scale(' + s + ')';
   } else if(s > 1.01){
     el.style.justifyContent = ''; // undo any earlier shrink-anchoring
+    el.style.overflow = '';      // v0.22.5: undo any earlier shrink clipping
     el.style.transformOrigin = 'center center'; // fills the viewport, never overflows it
     el.style.transform = 'scale(' + s + ')';
   }
