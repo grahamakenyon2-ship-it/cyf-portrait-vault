@@ -171,9 +171,9 @@
     return S;
   }
 
-  // First Rites: for the coin-flip winner's first three turns (S.turn 1, 3, 5), their
+  // First Rites: for the coin-flip winner's first four turns (S.turn 1, 3, 5, 7), their
   // Sovereign passive magnitudes are doubled (+1s become +2s, pings deal 2, …).
-  const rites = (S, side) => (S.first === side && S.turn <= 5 ? 2 : 1) + (S[side].relics.some((x) => x.rl === 'rlReliquary') ? 1 : 0); // v0.16: Saint's Reliquary
+  const rites = (S, side) => (S.first === side && S.turn <= 7 ? 2 : 1) + (S[side].relics.some((x) => x.rl === 'rlReliquary') ? 1 : 0); // v0.16: Saint's Reliquary
 
   function draw(S, side, phase) { // v0.15: phase=true marks draw-phase draws (startMatch deal + start-of-turn draw)
     const p = S[side];
@@ -519,9 +519,9 @@
     const p = S[side];
     return S.active === side && !p.power && p.mana >= powerCost(S, side);
   }
-  // First Rites: during the coin-flip winner's first three turns, Skirmish costs 1 mana
+  // First Rites: during the coin-flip winner's first four turns, Skirmish costs 1 mana
   function powerCost(S, side) {
-    return (S.first === side && S.turn <= 5) ? 1 : 2;
+    return (S.first === side && S.turn <= 7) ? 1 : 2; // v0.21.1: widen 5 -> 7
   }
   // Bloodletter's Skirmish deals 2; First Rites doubles it in the opening.
   function powerDmg(S, side) {
@@ -551,7 +551,7 @@
     S.active = next; S.turn++;
     const np = S[next], foe = S[other(next)];
     np.maxmana = Math.min(MAX_MANA, np.maxmana + 1);
-    np.mana = np.maxmana + (S.first === next && S.turn <= 5 ? 1 : 0) + (S.first === next && S.turn <= 1 ? 1 : 0); // First Rites v0.6.4: +1 mana on the winner's first three turns, +2 on turn one (tuned: 55.7% → 34% → 43.6% → target 50)
+    np.mana = np.maxmana + (S.first === next && S.turn <= 7 ? 1 : 0) + (S.first === next && S.turn <= 1 ? 1 : 0); // v0.21.1: widen 5 -> 7 (+1 mana on the winner's first four turns, +2 on turn one) (tuned: 55.7% → 34% → 43.6% → target 50)
     np.power = false;
     np.board.forEach((m) => { m.ready = true; m.shocked = false; m.attacks = 0; }); // v0.11: Aegis (m.shield) intentionally persists across turns
     // relic hooks (v0.6)
@@ -594,7 +594,7 @@
     }
     // v0.9.4 buff: threshold 3 -> 4 (deep playtest 9.6M games: Second Sight
     // 28.7% when leading = weakest passive; the <=3 gate rarely fired).
-    if (hasP(np, 'SECOND_SIGHT') && np.hand.length <= 5 && np.deck.length) { // v0.16 buff: 4 -> 5
+    if (hasP(np, 'SECOND_SIGHT') && np.hand.length <= 3 && np.deck.length) { // v0.21.1: 5 -> 3 (CI: constant draw fatigues courts decks under lysobelle)
       S.events.push({ t: 'passive', side: next, id: 'SECOND_SIGHT' });
       for (let i = 0; i < r; i++) draw(S, next);
     }
