@@ -264,6 +264,390 @@
    "category": "merfolk",
    "status": "queued",
    "prompt": "Portrait of a deep-sea merfolk king, anglerfish-pale skin with a luminescent lure dangling before the brow, needle teeth, pearl-slit blind-white eyes, a crown of whalebone and glass sponge"
+  },
+  {
+   "name": "Archlector Mortivane",
+   "category": "skeleton",
+   "status": "queued",
+   "prompt": "Portrait of a skeletal archbishop, gilt bone wearing a mitre of black iron, a stole of tiny finger bones, one hand raised in benediction, candle flames floating in the eye sockets"
+  },
+  {
+   "name": "Cindershade, the Ember Wraith",
+   "category": "ghost",
+   "status": "queued",
+   "prompt": "Portrait of a burning ghost, a translucent figure of smoke and embers, the suggestion of a noble face forming in the flames, chains of molten light drifting through the body"
+  },
+  {
+   "name": "Bellringer of the drowned parish",
+   "category": "zombie",
+   "status": "queued",
+   "prompt": "Portrait of a drowned bell-ringer revenant, bloated blue-grey skin, barnacles on the cheekbones, kelp hair, a rusted bell-clapper held like a crozier"
+  },
+  {
+   "name": "Lady Everlynn the Pale",
+   "category": "vampire",
+   "status": "queued",
+   "prompt": "Portrait of a young-looking vampire noblewoman, doll-pale skin with faint blue veins at the temples, wavy chestnut hair, wine-dark eyes, an innocent smile with one sharp tooth"
+  },
+  {
+   "name": "Grandmother Shroud",
+   "category": "banshee",
+   "status": "queued",
+   "prompt": "Portrait of a banshee crone, a face of stretched translucent skin over a skull, hair streaming upward like grey water, eyes as luminous white pits, a burial shawl of spider silk"
+  },
+  {
+   "name": "The Gravewarden",
+   "category": "wight",
+   "status": "queued",
+   "prompt": "Portrait of a barrow-wight king, skeletal face beneath a corroded crown of bronze and garnet, grave-glow green in the empty eyes, a mantle of ancient chain gone green"
+  },
+  {
+   "name": "Pik Whiticker",
+   "category": "ratfolk",
+   "status": "queued",
+   "prompt": "Portrait of a ratfolk gadgeteer, sleek brown fur, pink scarred ears notched in trade-guild patterns, amber eyes behind tiny spectacles, a tool-belt of improbable clockwork"
+  },
+  {
+   "name": "Sahra of the Ninth Sand",
+   "category": "catfolk",
+   "status": "queued",
+   "prompt": "Portrait of a desert catfolk caravan-guard, tawny fur with black tear-lines under the eyes, brass ear-rings, a silk head-scarf, calm predator patience"
+  },
+  {
+   "name": "Kessarin Skywarden",
+   "category": "birdfolk",
+   "status": "queued",
+   "prompt": "Portrait of a hawk-featured birdfolk warden, storm-grey feathers, fierce yellow raptor eyes with black tomial stripe, a beak polished like bone, ceremonial feather cloak"
+  },
+  {
+   "name": "Ssarnak Lizardpriest",
+   "category": "lizardfolk",
+   "status": "queued",
+   "prompt": "Portrait of a lizardfolk priest, scaled hide in river-green and rust, a frill spread behind the skull, amber eyes with sideways pupils, bone piercings, wet stone cloak clasp"
+  },
+  {
+   "name": "Brannoc the Unyielding",
+   "category": "bearfolk",
+   "status": "queued",
+   "prompt": "Portrait of a beafolk hill chieftain, thick chestnut fur, a broad scarred muzzle, small deep-set eyes, braided beard-beads of river clay, an enormous iron torque"
+  },
+  {
+   "name": "Whisker-Mother Yun",
+   "category": "foxfolk",
+   "status": "queued",
+   "prompt": "Portrait of an elderly foxfolk herbalist, silver-red fur gone white at the muzzle, golden knowing eyes, nine tail tips just visible behind the shoulders, an apothecary basket"
+  },
+  {
+   "name": "Jotunn Hergrim Icevein",
+   "category": "frost-giant",
+   "status": "queued",
+   "prompt": "Portrait of a frost giant jarl, skin of glacial blue, a beard of actual ice crystals, pale blind-seeming eyes, wearing furs and a helm of mammoth ivory"
+  },
+  {
+   "name": "Emberlord Kaal",
+   "category": "fire-giant",
+   "status": "queued",
+   "prompt": "Portrait of a fire giant forge-king, skin like cooling basalt with cracks of magma, a beard of flame, heavy gold jewelry, a crown of hammer-formed iron"
+  },
+  {
+   "name": "Mug the Moderate",
+   "category": "hill-giant",
+   "status": "queued",
+   "prompt": "Portrait of a hill giant farmer, dirt-brown skin, a lumpy friendly face with a unibrow, a straw hat far too small, a shoulder pole with two full barrels"
+  },
+  {
+   "name": "Stormseer Vella",
+   "category": "storm-giant",
+   "status": "queued",
+   "prompt": "Portrait of a storm giant oracle, seafoam-blue skin, hair of drifting white cloud, eyes like lightning caught in glass, a mantle of rain-slick purple silk"
+  },
+  {
+   "name": "Iron-Captain Zharruk",
+   "category": "hobgoblin",
+   "status": "queued",
+   "prompt": "Portrait of a hobgoblin legion captain, brick-red skin, disciplined black eyes, a stiff crimson crest of hair, ceremonial scars in rank patterns, lacquered scale armor"
+  },
+  {
+   "name": "Grumbark the Lurker",
+   "category": "bugbear",
+   "status": "queued",
+   "prompt": "Portrait of a bugbear assassin, shaggy midnight fur, long arms, a blunt batlike muzzle in shadow, yellow eyes catching lantern light, silent menace"
+  },
+  {
+   "name": "Meek Tobacco",
+   "category": "kobold",
+   "status": "queued",
+   "prompt": "Portrait of a kobold artificer, russet scales, a snout singed by forge work, oversized goggles, a backpack of clanking pans and tools, nervous hopeful eyes"
+  },
+  {
+   "name": "Snorrik Greasethumb",
+   "category": "goblin",
+   "status": "queued",
+   "prompt": "Portrait of a goblin grease-mage, green skin stained black at the fingertips, a grin of filed teeth, ear-wax candles on the ear-tips, a scepter that is clearly a modified wrench"
+  },
+  {
+   "name": "Aurelion Dawncrest",
+   "category": "elf",
+   "status": "queued",
+   "prompt": "Portrait of a sun-elven duelist, golden skin, hair like spun light, tilted topaz eyes, an insolent half-smile, wearing a ceremonial breastplate worked with sun-discs"
+  },
+  {
+   "name": "Malenthir the Unmourned",
+   "category": "elf",
+   "status": "queued",
+   "prompt": "Portrait of a crippled elven exile, gaunt grey-toned skin, hair shorn in rough patches, a milky blinded eye and a sharp living one, a cloak of crow feathers"
+  },
+  {
+   "name": "Myrtle Underbough",
+   "category": "gnome",
+   "status": "queued",
+   "prompt": "Portrait of an ancient gnome illusionist, a face like a walnut of smile wrinkles, white beard tucked into a belt, spectacles over delighted pink eyes, a pointed hat stitched with constellations"
+  },
+  {
+   "name": "Perrin Downs",
+   "category": "halfling",
+   "status": "queued",
+   "prompt": "Portrait of a halfling scout, round cheerful face, curly cinnamon hair, bare calloused feet, a sling-band on the wrist and a good-luck charm of a dried pheasant foot"
+  },
+  {
+   "name": "Brygida the Hedge-Wife",
+   "category": "hedgefey",
+   "status": "queued",
+   "prompt": "Portrait of a hedge-witch half-fey, bark and briar growing from one shoulder, hair of thorned ivy, one human brown eye and one green goat-slitted eye, a basket of mushrooms and teeth"
+  },
+  {
+   "name": "Grantham Slatefist",
+   "category": "dwarf",
+   "status": "queued",
+   "prompt": "Portrait of a dwarven shieldwall captain, a beard of grey iron in two warrior braids, a nose flattened thrice, wearing a kite shield on the back like a cloak, stone-set jaw"
+  },
+  {
+   "name": "Old Threek Cogstoker",
+   "category": "dwarf",
+   "status": "queued",
+   "prompt": "Portrait of a dwarf engineer emeritus, bald with a tattooed gear on the crown, soot in every wrinkle, one glass eye of smoky quartz, wearing a boiler-suit over a chain vest"
+  },
+  {
+   "name": "Zogratha Skull-Sister",
+   "category": "orc",
+   "status": "queued",
+   "prompt": "Portrait of an orc bone-oracle, moss-green skin with white handprint ritual marks, tusks carved with tiny runes, eyes rolled back showing whites, a mantle of beast-skulls"
+  },
+  {
+   "name": "Thrag the Twice-Broken",
+   "category": "orc",
+   "status": "queued",
+   "prompt": "Portrait of a veteran orc pit-fighter, grey-green skin criss-crossed with old scars, one tusk snapped at the gum, a nose ring of giant-forged iron, a dead calm in the eyes"
+  },
+  {
+   "name": "The Collector of Nine Tongues",
+   "category": "aberration",
+   "status": "queued",
+   "prompt": "Portrait of an eyeless aberration scholar, a wet grey face like folded brain-flesh, a ring of small puckered sensory mouths where eyes should be, wearing a curator robe of grey silk"
+  },
+  {
+   "name": "Xilvahri of the Deep Choir",
+   "category": "mindflayer",
+   "status": "queued",
+   "prompt": "Portrait of a mind flayer conductor, a smooth violet head with four facial tentacles arranged like a beard, pupilless white eyes, wearing a high collar of stitched leather hymnals"
+  },
+  {
+   "name": "Mother of Glass",
+   "category": "aberration",
+   "status": "queued",
+   "prompt": "Portrait of a crystalline horror matriarch, a face of fractured prismatic shards, refracted eyes appearing at wrong angles within the facets, a halo of floating glass slivers"
+  },
+  {
+   "name": "The Stitched Migration",
+   "category": "fleshbeast",
+   "status": "queued",
+   "prompt": "Portrait of a towering amalgam of many creatures, a face of sewn-together animal and human features, mismatched eyes weeping, an architecture of bone spurs and grasping spare limbs"
+  },
+  {
+   "name": "Vessel of the Quiet Engine",
+   "category": "construct",
+   "status": "queued",
+   "prompt": "Portrait of a brass automaton monk, a serene face of riveted plates, lotus-shaped eyes of warm amber glass, incense smoke venting from the crown seams, monk robes over clockwork"
+  },
+  {
+   "name": "SCOUT-7 \"Featherweight\"",
+   "category": "robot",
+   "status": "queued",
+   "prompt": "Portrait of a battered scout robot, a dented round head with one cracked blue optic lens, antenna bent into a cheerful crook, warning-tape repairs, a scout sash of faded patches"
+  },
+  {
+   "name": "Bastion-Mother CRUX",
+   "category": "mech",
+   "status": "queued",
+   "prompt": "Portrait of a colossal war-mech torso and head, a helmeted skull-face of composite armor, a cockpit window glowing like a furnace behind the faceplate, banners of a fallen house"
+  },
+  {
+   "name": "Unit VESPER-9",
+   "category": "android",
+   "status": "queued",
+   "prompt": "Portrait of a reformed war android, a graceful porcelain faceplate over exposed cranial actuators, one human eye transplant and one glowing sensor, wearing a vintage soldier greatcoat"
+  },
+  {
+   "name": "Auroch of the Standing Stones",
+   "category": "earth-elemental",
+   "status": "queued",
+   "prompt": "Portrait of a stone elemental guardian, a face of layered standing-stone slabs, moss in the seams, eyes of amber geode, a torc of raw gold still in the quartz"
+  },
+  {
+   "name": "Sister Lumenna",
+   "category": "angel",
+   "status": "queued",
+   "prompt": "Portrait of a grimdark angel, a serene face of white fire held in bronze mask-frame, three burning eyes, wings of gold blade-feathers folded like a mantle, a broken halo tilted"
+  },
+  {
+   "name": "Zephyr-Ancient Tallo",
+   "category": "air-elemental",
+   "status": "queued",
+   "prompt": "Portrait of an air elemental elder, a face suggested in swirling cloud and faint lightning, laughing eyes of clear sky, a collar of held breath made visible as faint glass orbs"
+  },
+  {
+   "name": "Pyrelight Sister Coalsong",
+   "category": "fire-elemental",
+   "status": "queued",
+   "prompt": "Portrait of a salamander fire-nun, ember-red scales, hair of controlled flame braided with iron rings, a habit of woven obsidian cloth, warm crackling light on the face"
+  },
+  {
+   "name": "Vithrax the Verdigris Coil",
+   "category": "dragon",
+   "status": "queued",
+   "prompt": "Portrait of an old green dragon, a cunning narrow face like corroded copper, a beard of fine green whiskers, jade eyes heavy-lidded with ancient patience, jungle orchids in the horn-tips"
+  },
+  {
+   "name": "The Cinder-Hearted",
+   "category": "dragon",
+   "status": "queued",
+   "prompt": "Portrait of a red dragon matriarch, scales of cooled lava blackening to ember-red at the jaw-edges, smoke curling from the nostrils, one eye a milky scar, a hoard-crown of melted coins"
+  },
+  {
+   "name": "Aurelith the Deep Eye",
+   "category": "dragon",
+   "status": "queued",
+   "prompt": "Portrait of a blue dragon oracle, cobalt scales with silver flecks like stars, a crest of swept horns, calm orb-lit eyes, wearing a necklace of storm-fused glass"
+  },
+  {
+   "name": "Gorgonna the Stilled",
+   "category": "gorgon",
+   "status": "queued",
+   "prompt": "Portrait of a medusa matriarch, ashen skin, a mane of living serpents coiled in formal court braid styles, blindfolded in blessed silk, a gentle resigned smile"
+  },
+  {
+   "name": "Asterion the Ninth Labyrinth",
+   "category": "minotaur",
+   "status": "queued",
+   "prompt": "Portrait of a minotaur judge, black ox-hide and a heavy ring-septum, one horn snapped and capped in bronze, wearing magistrate robes and a collar of law-seals"
+  },
+  {
+   "name": "Chironas Silverflank",
+   "category": "centaur",
+   "status": "queued",
+   "prompt": "Portrait of a centaur scholar, a greying beard over an old campaign cloak chestplate, kind tired eyes, a hawk perched on the drawn bow held like a walking staff"
+  },
+  {
+   "name": "Sylvane the Pipe-Spinner",
+   "category": "satyr",
+   "status": "queued",
+   "prompt": "Portrait of a satyr musician, curled ram horns, a sly goat-eyed grin, a wreath of grapevines, pan-pipes carved from the bones of a poet"
+  },
+  {
+   "name": "Skarneth the Matriarch",
+   "category": "manticore",
+   "status": "queued",
+   "prompt": "Portrait of a manticore queen, a leonine face with a jaw of black iron teeth, crimson eyes, bat-wing spines folded like a dark crown, a tail of chain-length spikes curled in rest"
+  },
+  {
+   "name": "Emberwing the Last Light",
+   "category": "phoenix",
+   "status": "queued",
+   "prompt": "Portrait of a phoenix elder, a fierce raptor face of living flame in gold and rose, eyes of steady white fire, a crest of burning plumes, molten feathers drifting upward"
+  },
+  {
+   "name": "Grimhal the Grey Watcher",
+   "category": "griffin",
+   "status": "queued",
+   "prompt": "Portrait of a griffin sentinel, eagle face of storm-grey feathers, war-beak scarred and chipped, eyes of hard gold, a knightly caparison with a faded heraldic cross"
+  },
+  {
+   "name": "Kelp-Professor Marinne",
+   "category": "merfolk",
+   "status": "queued",
+   "prompt": "Portrait of a merfolk scholar, teal skin with bioluminescent freckle rows, nictitating eyelids half-drawn, hair of drifting yellow-green algae, an brass diving-helm collar"
+  },
+  {
+   "name": "The Selkie Bride of the Winter Tide",
+   "category": "selkie",
+   "status": "queued",
+   "prompt": "Portrait of a selkie noblewoman, seal-dark wet hair, huge dark seal eyes with a heartbreakingly human expression, a grey sealskin mantle slipping off one shoulder"
+  },
+  {
+   "name": "Harbormaster Krass",
+   "category": "kraken",
+   "status": "queued",
+   "prompt": "Portrait of an ancient kraken priest, a vast octopod face of deep-violet mantle and one great amber eye, suckered face-arms curled like a beard, wearing a necklace of ship anchors"
+  },
+  {
+   "name": "Grandfather Frost",
+   "category": "winterfey",
+   "status": "queued",
+   "prompt": "Portrait of a winter fey lord, a face of hoarfrost over ancient bark, ice-beard like frozen rain, eyes of pale blue glacier light, a coat of white raven wings"
+  },
+  {
+   "name": "The Hollow Piper",
+   "category": "fey",
+   "status": "queued",
+   "prompt": "Portrait of a goat-horned piper fey, a face of pale birchwood with dark eye-knots, a smile of green wood splitting, tattered motley, holes in the flute that whistle on their own"
+  },
+  {
+   "name": "Emissary 4-AM of the Communal Song",
+   "category": "alien",
+   "status": "queued",
+   "prompt": "Portrait of a crystalline alien emissary, a translucent obsidian face of many facets, light refracting into hidden eyes, a geometric collar of resonance stones, faint inner glow like a nebula"
+  },
+  {
+   "name": "Drux, Last Shepherd of the Iron Hive",
+   "category": "insectoid",
+   "status": "queued",
+   "prompt": "Portrait of an insectoid hive-shepherd, a chitin face-plate of dark umber with a crest of sensory antennae, triple-jaw mandibles politely closed, compound eyes of liquid amber, a woven-metal scarf"
+  },
+  {
+   "name": "The Grey Ambassador",
+   "category": "alien",
+   "status": "queued",
+   "prompt": "Portrait of a classic grey-alien diplomat, smooth slate skin, an enormous cranium with faint veins of light, two vast onyx eyes with star reflections, wearing a severe grey suit jacket"
+  },
+  {
+   "name": "Vox-3 of the Orbital Chorus",
+   "category": "cyborg",
+   "status": "queued",
+   "prompt": "Portrait of a cyborg cantor, half a weathered human face transitioning to brushed chrome with a speaker-grille jaw, one eye a camera iris, wearing ornate choir robes over the machine"
+  },
+  {
+   "name": "Spore-Tender Ixil",
+   "category": "myconid",
+   "status": "queued",
+   "prompt": "Portrait of a mushroom-folk tender, a cap of deep indigo fungus spotted with pale rings, gentle luminous eyes beneath the gills, a robe of moss with spore-lanterns"
+  },
+  {
+   "name": "Weaver Ashlume",
+   "category": "arachnid",
+   "status": "queued",
+   "prompt": "Portrait of an arachnid noble, an elegant dark face like a spider carapace polished to jet, six eyes arranged like a diadem, chelicerae adorned with silver rings, draped spider-silk brocade"
+  },
+  {
+   "name": "Shade-Adjutant Vell",
+   "category": "shade",
+   "status": "queued",
+   "prompt": "Portrait of a shadow bureaucrat, a face like smoke holding the memory of features, cuffs and collar of the void in place of a suit, eyes as two dying embers, a briefcase of chained dark"
+  },
+  {
+   "name": "The Lantern of Hollow Rest",
+   "category": "undead",
+   "status": "queued",
+   "prompt": "Portrait of a skeletal ferryman holding a lantern whose flame is a tiny screaming soul, river-reed hood, patient hollow eyes of soft light, an oar over one shoulder like a mendicant staff"
   }
  ]
 }
