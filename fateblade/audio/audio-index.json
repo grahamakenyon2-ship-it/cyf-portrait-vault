@@ -90,6 +90,296 @@
    "src": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Ludwig_van_Beethoven_-_Symphonie_5_c-moll_-_1._Allegro_con_brio.ogg",
    "license": "Public domain",
    "bytes": 7242148
+  },
+  "sfx/hit-heavy.ogg": {
+   "src": "kenney:impact-sounds:Audio/impactMetal_heavy_001.ogg",
+   "license": "CC0",
+   "bytes": 7279
+  },
+  "sfx/hit-light.ogg": {
+   "src": "kenney:impact-sounds:Audio/impactMetal_light_001.ogg",
+   "license": "CC0",
+   "bytes": 6967
+  },
+  "sfx/punch.ogg": {
+   "src": "kenney:impact-sounds:Audio/impactPunch_heavy_000.ogg",
+   "license": "CC0",
+   "bytes": 11617
+  },
+  "sfx/hero-fall.ogg": {
+   "src": "kenney:impact-sounds:Audio/impactWood_heavy_000.ogg",
+   "license": "CC0",
+   "bytes": 6233
+  },
+  "sfx/glass-break.ogg": {
+   "src": "kenney:impact-sounds:Audio/impactGlass_medium_001.ogg",
+   "license": "CC0",
+   "bytes": 8605
+  },
+  "sfx/bell-toll.ogg": {
+   "src": "kenney:impact-sounds:Audio/impactBell_heavy_000.ogg",
+   "license": "CC0",
+   "bytes": 13915
+  },
+  "sfx/plank.ogg": {
+   "src": "kenney:impact-sounds:Audio/impactPlank_medium_000.ogg",
+   "license": "CC0",
+   "bytes": 12016
+  },
+  "sfx/tin-clank.ogg": {
+   "src": "kenney:impact-sounds:Audio/impactTin_medium_000.ogg",
+   "license": "CC0",
+   "bytes": 6509
+  },
+  "sfx/mine.ogg": {
+   "src": "kenney:impact-sounds:Audio/impactMining_000.ogg",
+   "license": "CC0",
+   "bytes": 12035
+  },
+  "sfx/step-grass.ogg": {
+   "src": "kenney:impact-sounds:Audio/footstep_grass_000.ogg",
+   "license": "CC0",
+   "bytes": 8290
+  },
+  "sfx/step-wood.ogg": {
+   "src": "kenney:impact-sounds:Audio/footstep_wood_000.ogg",
+   "license": "CC0",
+   "bytes": 5949
+  },
+  "sfx/step-snow.ogg": {
+   "src": "kenney:impact-sounds:Audio/footstep_snow_000.ogg",
+   "license": "CC0",
+   "bytes": 7880
+  },
+  "sfx/card-fan.ogg": {
+   "src": "kenney:casino-audio:Audio/card-fan-1.ogg",
+   "license": "CC0",
+   "bytes": 12489
+  },
+  "sfx/card-shove.ogg": {
+   "src": "kenney:casino-audio:Audio/card-shove-1.ogg",
+   "license": "CC0",
+   "bytes": 10690
+  },
+  "sfx/card-shuffle.ogg": {
+   "src": "kenney:casino-audio:Audio/card-shuffle.ogg",
+   "license": "CC0",
+   "bytes": 30002
+  },
+  "sfx/card-slide3.ogg": {
+   "src": "kenney:casino-audio:Audio/card-slide-3.ogg",
+   "license": "CC0",
+   "bytes": 9164
+  },
+  "sfx/pack-open.ogg": {
+   "src": "kenney:casino-audio:Audio/cards-pack-open-1.ogg",
+   "license": "CC0",
+   "bytes": 12715
+  },
+  "sfx/pack-take.ogg": {
+   "src": "kenney:casino-audio:Audio/cards-pack-take-out-1.ogg",
+   "license": "CC0",
+   "bytes": 8269
+  },
+  "sfx/chip-lay.ogg": {
+   "src": "kenney:casino-audio:Audio/chip-lay-1.ogg",
+   "license": "CC0",
+   "bytes": 5720
+  },
+  "sfx/chips-stack.ogg": {
+   "src": "kenney:casino-audio:Audio/chips-stack-1.ogg",
+   "license": "CC0",
+   "bytes": 6469
+  },
+  "sfx/coins-handle.ogg": {
+   "src": "kenney:casino-audio:Audio/chips-handle-1.ogg",
+   "license": "CC0",
+   "bytes": 9374
+  },
+  "sfx/dice-shake.ogg": {
+   "src": "kenney:casino-audio:Audio/dice-shake-1.ogg",
+   "license": "CC0",
+   "bytes": 19388
+  },
+  "sfx/dice-throw.ogg": {
+   "src": "kenney:casino-audio:Audio/dice-throw-1.ogg",
+   "license": "CC0",
+   "bytes": 9523
+  },
+  "sfx/select.ogg": {
+   "src": "kenney:interface-sounds:Audio/select_002.ogg",
+   "license": "CC0",
+   "bytes": 5463
+  },
+  "sfx/toggle.ogg": {
+   "src": "kenney:interface-sounds:Audio/toggle_002.ogg",
+   "license": "CC0",
+   "bytes": 8056
+  },
+  "sfx/switch.ogg": {
+   "src": "kenney:interface-sounds:Audio/switch_002.ogg",
+   "license": "CC0",
+   "bytes": 7097
+  },
+  "sfx/tick.ogg": {
+   "src": "kenney:interface-sounds:Audio/tick_001.ogg",
+   "license": "CC0",
+   "bytes": 4497
+  },
+  "sfx/scroll.ogg": {
+   "src": "kenney:interface-sounds:Audio/scroll_002.ogg",
+   "license": "CC0",
+   "bytes": 24628
+  },
+  "sfx/open.ogg": {
+   "src": "kenney:interface-sounds:Audio/open_002.ogg",
+   "license": "CC0",
+   "bytes": 14975
+  },
+  "sfx/close.ogg": {
+   "src": "kenney:interface-sounds:Audio/close_002.ogg",
+   "license": "CC0",
+   "bytes": 14752
+  },
+  "sfx/question.ogg": {
+   "src": "kenney:interface-sounds:Audio/question_001.ogg",
+   "license": "CC0",
+   "bytes": 11700
+  },
+  "sfx/glitch.ogg": {
+   "src": "kenney:interface-sounds:Audio/glitch_001.ogg",
+   "license": "CC0",
+   "bytes": 5121
+  },
+  "sfx/maximize.ogg": {
+   "src": "kenney:interface-sounds:Audio/maximize_002.ogg",
+   "license": "CC0",
+   "bytes": 9915
+  },
+  "sfx/minimize.ogg": {
+   "src": "kenney:interface-sounds:Audio/minimize_002.ogg",
+   "license": "CC0",
+   "bytes": 9441
+  },
+  "sfx/bong.ogg": {
+   "src": "kenney:interface-sounds:Audio/bong_001.ogg",
+   "license": "CC0",
+   "bytes": 4848
+  },
+  "sfx/pluck.ogg": {
+   "src": "kenney:interface-sounds:Audio/pluck_001.ogg",
+   "license": "CC0",
+   "bytes": 6317
+  },
+  "sfx/drop.ogg": {
+   "src": "kenney:interface-sounds:Audio/drop_002.ogg",
+   "license": "CC0",
+   "bytes": 6411
+  },
+  "sfx/book-close.ogg": {
+   "src": "kenney:rpg-audio:Audio/bookClose.ogg",
+   "license": "CC0",
+   "bytes": 9292
+  },
+  "sfx/book-flip.ogg": {
+   "src": "kenney:rpg-audio:Audio/bookFlip1.ogg",
+   "license": "CC0",
+   "bytes": 18248
+  },
+  "sfx/book-place.ogg": {
+   "src": "kenney:rpg-audio:Audio/bookPlace1.ogg",
+   "license": "CC0",
+   "bytes": 9901
+  },
+  "sfx/chop.ogg": {
+   "src": "kenney:rpg-audio:Audio/chop.ogg",
+   "license": "CC0",
+   "bytes": 9370
+  },
+  "sfx/cloth.ogg": {
+   "src": "kenney:rpg-audio:Audio/cloth1.ogg",
+   "license": "CC0",
+   "bytes": 16508
+  },
+  "sfx/creak.ogg": {
+   "src": "kenney:rpg-audio:Audio/creak1.ogg",
+   "license": "CC0",
+   "bytes": 15761
+  },
+  "sfx/door-close.ogg": {
+   "src": "kenney:rpg-audio:Audio/doorClose_1.ogg",
+   "license": "CC0",
+   "bytes": 18564
+  },
+  "sfx/door-open.ogg": {
+   "src": "kenney:rpg-audio:Audio/doorOpen_1.ogg",
+   "license": "CC0",
+   "bytes": 22848
+  },
+  "sfx/knife-draw.ogg": {
+   "src": "kenney:rpg-audio:Audio/drawKnife1.ogg",
+   "license": "CC0",
+   "bytes": 11134
+  },
+  "sfx/knife-slice.ogg": {
+   "src": "kenney:rpg-audio:Audio/knifeSlice.ogg",
+   "license": "CC0",
+   "bytes": 15532
+  },
+  "sfx/metal-click.ogg": {
+   "src": "kenney:rpg-audio:Audio/metalClick.ogg",
+   "license": "CC0",
+   "bytes": 13615
+  },
+  "sfx/metal-latch.ogg": {
+   "src": "kenney:rpg-audio:Audio/metalLatch.ogg",
+   "license": "CC0",
+   "bytes": 10208
+  },
+  "sfx/coin-pouch.ogg": {
+   "src": "kenney:rpg-audio:Audio/handleCoins.ogg",
+   "license": "CC0",
+   "bytes": 25394
+  },
+  "sfx/pouch.ogg": {
+   "src": "kenney:rpg-audio:Audio/handleSmallLeather.ogg",
+   "license": "CC0",
+   "bytes": 10492
+  },
+  "sfx/step-armored.ogg": {
+   "src": "kenney:rpg-audio:Audio/footstep00.ogg",
+   "license": "CC0",
+   "bytes": 9475
+  },
+  "sfx/belt.ogg": {
+   "src": "kenney:rpg-audio:Audio/beltHandle1.ogg",
+   "license": "CC0",
+   "bytes": 10820
+  },
+  "music/spring-1.ogg": {
+   "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Vivaldi_-_Four_Seasons_1_Spring_mvt_1_Allegro_-_John_Harrison_violin.oga",
+   "license": "Public domain",
+   "bytes": 4299414
+  },
+  "music/winter-1.ogg": {
+   "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Vivaldi_-_Four_Seasons_4_Winter_mvt_1_Allegro_non_molto_-_John_Harrison_violin.oga",
+   "license": "Public domain",
+   "bytes": 4008237
+  },
+  "music/brandenburg-3-1.ogg": {
+   "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Bach_-_Brandenburg_Concerto_No._3_-_1._Allegro.ogg",
+   "license": "Public domain",
+   "bytes": 9900685
+  },
+  "music/beethoven-5-1.ogg": {
+   "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Ludwig_van_Beethoven_-_symphony_no._5_in_c_minor,_op._67_-_i._allegro_con_brio.ogg",
+   "license": "Public domain",
+   "bytes": 8824613
+  },
+  "music/forest-trees.ogg": {
+   "src": "https://commons.wikimedia.org/wiki/Special:FilePath/The_Forest_and_the_Trees_(Kevin_MacLeod)_(ISRC_USUAN1100766).oga",
+   "license": "CC BY 4.0",
+   "bytes": 1823174
   }
  }
 }

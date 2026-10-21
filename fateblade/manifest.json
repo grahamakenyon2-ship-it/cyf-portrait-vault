@@ -461,6 +461,412 @@
       "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/music/match-canon.ogg",
       "license": "Public domain",
       "src": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Ludwig_van_Beethoven_-_Symphonie_5_c-moll_-_1._Allegro_con_brio.ogg"
+    },
+    {
+      "path": "audio/sfx/hit-heavy.ogg",
+      "sha256": "83554049f81f4db9209379e103c30bfa63f65c42189a03f300b045c2c82e23ae",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/hit-heavy.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/hit-light.ogg",
+      "sha256": "fba69c467ddd85da7b1d82e259f936b876d9ba6a3d6f1b24bdd10468e46bfe08",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/hit-light.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/punch.ogg",
+      "sha256": "b33a8f14068aec24ec69ba85e5e87fdc41228975f6a1a3e44a6e7d6fc3d9f8d8",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/punch.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/hero-fall.ogg",
+      "sha256": "15ff82332f342c30e469215539e1cc57e11b221aa2cf7e11e811d313a9927f3d",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/hero-fall.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/glass-break.ogg",
+      "sha256": "d3d806cb3012c9ddd87010b30295ccb74d6d8b690077d19e67afd09a9d8feb03",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/glass-break.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/bell-toll.ogg",
+      "sha256": "94b8bb5f2d43ab65e4bcc32b28562416e9bc2c51d9fd4be1e333660ee52f977f",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/bell-toll.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/plank.ogg",
+      "sha256": "8403cd7a043f0391574c88c55dd205743725b5363d2407f6de145f201690b68f",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/plank.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/tin-clank.ogg",
+      "sha256": "f4bbee66ca191ec744b84fc07ac9ed2a6fda955d51cfed8360f12b62815d3cbd",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/tin-clank.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/mine.ogg",
+      "sha256": "36b4ea107222d073c67ca64dde26944975609202d5090b2f2021213c1a7e35cd",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/mine.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/step-grass.ogg",
+      "sha256": "9d49497777405d78d7cf7f2888e28277f3a23192300cfd1d79d54876b20f479f",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/step-grass.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/step-wood.ogg",
+      "sha256": "5f1c252942a220d658121bd9417448cd19649ded9fff2ff15f6e50899373ce8e",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/step-wood.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/step-snow.ogg",
+      "sha256": "c05fa4a9dc9a7aabc04996466fb589537e49af76de9998d8f9e6270ec92dcef7",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/step-snow.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/card-fan.ogg",
+      "sha256": "7a9758ccad8899baef1b9f60b4064e4baa724a548293832fdaea07e6e07e638d",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/card-fan.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/card-shove.ogg",
+      "sha256": "1ea667aa6795d5f14239192116ebcbd8f3f47eb1c7faaf2ec56844b9067b8b06",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/card-shove.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/card-shuffle.ogg",
+      "sha256": "96c84883a30845ede723a4cf2e8369e9837e7dd4e0d4eb0212b0a7ed21b0f544",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/card-shuffle.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/card-slide3.ogg",
+      "sha256": "af2ab62656cb3df73316ce5771b8ee1111a840962b21607e3202151e7413c52c",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/card-slide3.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/pack-open.ogg",
+      "sha256": "1214059fdfbf1c396c0702244fc833739cc346d326a71e450b731f456e54d6fb",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/pack-open.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/pack-take.ogg",
+      "sha256": "6d38b979f64d20e4153173187ed67b04c6c004767c0a43eddb65c75fa925a1c4",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/pack-take.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/chip-lay.ogg",
+      "sha256": "4b2111252ccb64eed67f171e061053849cfbb29873536c03948646f244a3905c",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/chip-lay.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/chips-stack.ogg",
+      "sha256": "12bf175b9afcea112175b241ad3336c6244ac5fdcdff8b5942ecc03f2225e0c4",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/chips-stack.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/coins-handle.ogg",
+      "sha256": "a2c495237fb0dc0dc96ccc2c9840572edd226e6459398ecb631c6c9f9e5408f0",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/coins-handle.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/dice-shake.ogg",
+      "sha256": "ba603441c857204dbe3ff3345902c7e1c3f523bf1bd314acf088609bc6c1e4e5",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/dice-shake.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/dice-throw.ogg",
+      "sha256": "4e6581c73465cdd7ec32e86a709b4ea5c682e819c9bdb7989d1df1880ba67886",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/dice-throw.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/select.ogg",
+      "sha256": "4cc6ac5341b9b2c86fef80c347de028e9ab9f2e037586ac7d9fa59a403a1c012",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/select.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/toggle.ogg",
+      "sha256": "1f564f5520cfa0764028ce245ad97599d3ece8f0ab504554c403af92ac72b900",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/toggle.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/switch.ogg",
+      "sha256": "6fc395be2ad1f99ce318a5d28f98fb76dbeb676d83a0b28239d8c1fb90736180",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/switch.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/tick.ogg",
+      "sha256": "9d057b918024c787bbe6c00beed13a7ef72a3fa0c259add3cef36582792f4230",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/tick.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/scroll.ogg",
+      "sha256": "6fbcda22bc45349c66f1ba4b56d6c211b12264e83667de4b9af1e4ffcef74be5",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/scroll.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/open.ogg",
+      "sha256": "24ff224fe2c09c6aed1b41249825382dc74cf324b887ff279d8494912ce2beee",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/open.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/close.ogg",
+      "sha256": "bc4279d2bb2bf86592473eab6a8eab55e51b54a8619315000dbd780a83b102d8",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/close.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/question.ogg",
+      "sha256": "abb8f9e4eb2071491b0b15f84ee302386b1847609310c1b000ae174639a6cc5a",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/question.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/glitch.ogg",
+      "sha256": "da78c642bbd95da2c364ed0e991ebbfc5a4c0d281165d932b5819e0dd31a39d2",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/glitch.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/maximize.ogg",
+      "sha256": "cc51162cb4506158b953b121bf479aad070056533ade5c5cd2f980183127ceb4",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/maximize.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/minimize.ogg",
+      "sha256": "670e47846dc003fe29d39c8dfebb8635bfcacae3c0916392c0e8bff659493ad6",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/minimize.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/bong.ogg",
+      "sha256": "d21d0f0b782445db579d11e2506b24cd1ac9d664ee33aeaf807761aa7b6fd710",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/bong.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/pluck.ogg",
+      "sha256": "be97ec4893a02d6eccfb678daa76c83e34cb2583b834ec2593d2641def739fa4",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/pluck.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/drop.ogg",
+      "sha256": "4ac4d1cef7e936965cbf795852ca2020300b9e2ba7daa59f2bf4f1f7bf416218",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/drop.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/book-close.ogg",
+      "sha256": "81e976532565f4372abd14e83d2684195fa548d0a28d345de221e56052454f32",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/book-close.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/book-flip.ogg",
+      "sha256": "fa81ac2fedc8c641661b87e349630a36c9800e795e0c800e029214efdbe26a7d",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/book-flip.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/book-place.ogg",
+      "sha256": "26f3ce60fbde85b678b0ad7f6624d80535fe540d88232ad1e38e47a96662d977",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/book-place.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/chop.ogg",
+      "sha256": "d00c2b3c9fff07e376145c8c8c45c90e5084ec192f6ce0387db233f7b86f1486",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/chop.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/cloth.ogg",
+      "sha256": "ddb93a3671233f95da0e0b10367f082f7eb42fa6caaddcf776410aa8833c747d",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/cloth.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/creak.ogg",
+      "sha256": "8a346186fd297254248cab8e8117060a52a5cf2a84f603153a762108550ea95e",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/creak.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/door-close.ogg",
+      "sha256": "834d29c60a8a8bfb50b158cdb6b7dfa8f02812a408a1ee9703d038dfab0b1aeb",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/door-close.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/door-open.ogg",
+      "sha256": "4ab93bab96522d8eb109ff96dc57cb6765deb02448fe14c10472084be5bb2a0b",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/door-open.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/knife-draw.ogg",
+      "sha256": "276403e72c3b71c47bc24db3083970c23f8e5551ffa78f436f83483c56f3f0bb",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/knife-draw.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/knife-slice.ogg",
+      "sha256": "4cd96dc630bed9840c15f1dd2306da2cc56a4da26a5d3f1a03c5a7265ac5e54f",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/knife-slice.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/metal-click.ogg",
+      "sha256": "9851a69d0c613e13bceef08060ecc4148f098ef487927cbebe270d642398a3b3",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/metal-click.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/metal-latch.ogg",
+      "sha256": "ba9ba60b172b3ebc131a940f25793cd2e207aca7af73dc80d637277f060f1708",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/metal-latch.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/coin-pouch.ogg",
+      "sha256": "8a91f969e932df709df80ee124d86a51389eed9b67f22e5e716bc2bbf60d8dab",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/coin-pouch.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/pouch.ogg",
+      "sha256": "ae3cbf695aa0a8b98b5a80a835be5a3ccbd5446a24db2235cd4c3cd6fc92ed96",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/pouch.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/step-armored.ogg",
+      "sha256": "6fe61ef1fc3bcf0e253bf2eb64759db6cb69e2fe452f4d88cc597ecf78a3d601",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/step-armored.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/sfx/belt.ogg",
+      "sha256": "2ef665bd8b65dbe669f4560be38a6d8f04a162e618b15a49e3e71b58e558aab0",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/sfx/belt.ogg",
+      "license": "CC0",
+      "src": "kenney.nl (CC0)"
+    },
+    {
+      "path": "audio/music/spring-1.ogg",
+      "sha256": "67ada06f97697196d67ce26c06e5c61700e7b79b0321b7f04571a4eb7435d4d3",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/music/spring-1.ogg",
+      "license": "Public domain",
+      "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Vivaldi_-_Four_Seasons_1_Spring_mvt_1_Allegro_-_John_Harrison_violin.oga"
+    },
+    {
+      "path": "audio/music/winter-1.ogg",
+      "sha256": "e7d4c67c6466860d591b13978199674ce008983f56b0bf05906525dc0da0b7d4",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/music/winter-1.ogg",
+      "license": "Public domain",
+      "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Vivaldi_-_Four_Seasons_4_Winter_mvt_1_Allegro_non_molto_-_John_Harrison_violin.oga"
+    },
+    {
+      "path": "audio/music/brandenburg-3-1.ogg",
+      "sha256": "f10ffea302443edc6d0926e783f77fec354d5e5d2286f3493351db1237c67726",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/music/brandenburg-3-1.ogg",
+      "license": "Public domain",
+      "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Bach_-_Brandenburg_Concerto_No._3_-_1._Allegro.ogg"
+    },
+    {
+      "path": "audio/music/beethoven-5-1.ogg",
+      "sha256": "663cfa62707be850a51ec8cd7b51b95595a9ee010f3eefea16e1dd46d54a9d95",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/music/beethoven-5-1.ogg",
+      "license": "Public domain",
+      "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Ludwig_van_Beethoven_-_symphony_no._5_in_c_minor,_op._67_-_i._allegro_con_brio.ogg"
+    },
+    {
+      "path": "audio/music/forest-trees.ogg",
+      "sha256": "2c9de6174e4fc8650df6b65ecb6f657bd890b56585a1fc000c9da1ac5debf38c",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/music/forest-trees.ogg",
+      "license": "CC BY 4.0",
+      "src": "https://commons.wikimedia.org/wiki/Special:FilePath/The_Forest_and_the_Trees_(Kevin_MacLeod)_(ISRC_USUAN1100766).oga"
     }
   ]
 }
