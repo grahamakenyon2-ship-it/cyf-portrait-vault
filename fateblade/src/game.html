@@ -141,6 +141,11 @@
   #help{position:fixed; inset:0; background:#000e; display:none; align-items:center; justify-content:center; z-index:70;}
   #help.on{display:flex;}
   #helpbox{max-width:540px; max-height:90vh; overflow:auto; background:var(--panel); border:1px solid var(--gold); padding:24px 30px;}
+  /* v0.22.4: generic confirm dialog (unsaved-deck guard etc.) */
+  #confirm{position:fixed; inset:0; background:#000e; display:none; align-items:center; justify-content:center; z-index:75;}
+  #confirm.on{display:flex;}
+  #confirmbox{max-width:440px; background:var(--panel); border:1px solid var(--gold); padding:24px 30px; text-align:center;}
+  #confirmbox .crow{display:flex; gap:10px; justify-content:center; margin-top:16px; flex-wrap:wrap;}
   #helpbox h2{color:var(--gold); letter-spacing:3px; font-size:18px; margin:0 0 12px;}
   #helpbox .kwrow{margin:8px 0;}
   #helpbox .kwrow b{color:#8fd; letter-spacing:1px;}
@@ -495,7 +500,7 @@
     <input id="dbName" type="text" placeholder="deck name…" style="background:#191308;color:var(--ink);border:1px solid var(--gold-dim);padding:6px 10px;font:inherit;width:160px">
     <button onclick="dbReset()">↺ Restore Doctrine</button>
     <button onclick="dbSave()" id="dbSaveBtn">💾 Save Deck</button>
-    <button onclick="dbDone()">Done</button>
+    <button onclick="dbLeaveGuard()">Done</button>
   </div>
   <div class="dbhead2">
     <input id="dbSearch" type="text" placeholder="🔎 Search by name…" oninput="dbFilterSet('q', this.value)">
@@ -574,6 +579,7 @@
   <p style="margin-top:12px">Skirmish (hero power, 2 mana, once/turn): deal 1 damage to any target. Board holds 6 minions; hand holds 8 cards.</p>
   <p>Click anywhere to close. Hover any card to zoom in.</p>
 </div></div>
+<div id="confirm"><div id="confirmbox"><div id="cmsg"></div><div class="crow" id="cbtns"></div></div></div>
 <div id="zoom"></div>
 <div id="fx"></div>
 <div id="commentary"></div>
@@ -596,7 +602,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.22.3';
+const GAME_VERSION = '0.22.4';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
@@ -1138,13 +1144,13 @@ const AUD = {
       .then(buf => { this.bank[name] = buf; })
       .catch(() => { this.bank[name] = null; });
   },
-  warm(){ ['click', 'play-card', 'hit', 'hero-hit', 'death', 'shield', 'confirm'].forEach(n => this.load(n)); }
+  warm(){ ['click', 'play-card', 'draw-card', 'hit', 'hero-hit', 'death', 'shield', 'confirm', 'edict', 'relic', 'fatigue', 'buff', 'coin', 'turn-you', 'turn-en'].forEach(n => this.load(n)); } // v0.22.4: warm ALL vault SFX — SFX.draw has an empty synth fallback, so an unloaded draw-card meant silent draws
 };
 const MUSIC = {
   el: null, cur: null,
   vol(){ const v = Number(settings.musicVol); return isNaN(v) ? 0.35 : Math.max(0, Math.min(1, v)); },
   set(track){
-    if (this.cur === track) return;
+    if (this.cur === track) { this.retry(); return; } // v0.22.4: same track but paused (autoplay was blocked at boot) — re-attempt instead of silently doing nothing
     this.cur = track;
     if (!this.el) { this.el = document.createElement('audio'); this.el.loop = true; this.el.preload = 'auto'; this.el.onerror = () => { this.cur = null; }; }
     try { this.el.src = '../audio/music/' + track + '.ogg'; this.el.volume = this.vol(); this.el.play().catch(()=>{}); } catch (e) {}
@@ -1289,6 +1295,17 @@ function moveZoom(ev){
   zoom.style.left = x+'px'; zoom.style.top = y+'px';
 }
 function hideZoom(){ zoom.style.display='none'; }
+
+/* ---------- v0.22.4: generic confirm dialog (Esc / unsaved-deck guards) ---------- */
+let confirmBtns = null;
+function uiConfirm(msg, buttons){ // buttons: [{t:'LABEL', fn:()=>{}}] — null fn = just close
+  confirmBtns = buttons;
+  document.getElementById('cmsg').innerHTML = msg;
+  document.getElementById('cbtns').innerHTML = buttons.map((b, i) => `<button onclick="uiConfirmPick(${i})">${b.t}</button>`).join('');
+  document.getElementById('confirm').classList.add('on');
+}
+function uiConfirmPick(i){ const b = confirmBtns && confirmBtns[i]; uiConfirmClose(); if (b && b.fn) b.fn(); }
+function uiConfirmClose(){ document.getElementById('confirm').classList.remove('on'); confirmBtns = null; }
 
 /* ---------- v0.5.2 visual helpers ---------- */
 function crystals(n, max){
@@ -1802,6 +1819,17 @@ function dbSave(){
   dbFlash('SAVED ✔ "' + name + '" — choose it when you pick this realm');
 }
 function dbDone(){ if(dbDirty && deckSize() === 30) dbSave(); pickPoolDB(me.pool || 'history'); }
+// v0.22.4: the leave guard — Esc and Done both route through here. A complete unsaved
+// deck still auto-saves on the way out (v0.10 convenience); an INCOMPLETE unsaved deck
+// can't be saved, so it asks before silently discarding your work.
+function dbLeaveGuard(){
+  if(dbDirty && deckSize() !== 30){
+    uiConfirm(`⚠ <b>UNSAVED DECK</b> — ${deckSize()} / 30 cards, so it can't be saved.<br>Leave the deck builder and lose your changes?`,
+      [{t:'LEAVE WITHOUT SAVING', fn:()=>{ dbDirty = false; pickPoolDB(me.pool || 'history'); }}, {t:'STAY', fn:null}]);
+    return;
+  }
+  dbDone();
+}
 
 /* ================= SETTINGS ================= */
 function showSettings(){
@@ -2059,6 +2087,9 @@ function toggleFS(){
 document.addEventListener('keydown', (e)=>{
   if(e.key === 'F11'){ e.preventDefault(); toggleFS(); return; }
   if(e.key !== 'Escape') return;
+  // v0.22.4: confirm dialog owns Esc first
+  const conf = document.getElementById('confirm');
+  if(conf && conf.classList.contains('on')){ uiConfirmClose(); return; }
   const set = document.getElementById('settings');
   const gm = document.getElementById('gmenu');
   const help = document.getElementById('help');
@@ -2066,7 +2097,18 @@ document.addEventListener('keydown', (e)=>{
   if(help && help.classList.contains('on')){ help.classList.remove('on'); return; }
   if(gm && gm.classList.contains('on')){ closeGameMenu(); return; }
   const match = document.getElementById('match');
-  if(match && match.classList.contains('on') && S) openGameMenu();
+  if(match && match.classList.contains('on') && S){
+    if(powTargeting || castTargeting || sel){ sel=null; powTargeting=false; castTargeting=null; render(); return; } // v0.22.4: Esc cancels targeting/selection FIRST, menu second
+    openGameMenu();
+    return;
+  }
+  // v0.22.4: Esc always takes you back a level
+  const dbEl = document.getElementById('deckb');
+  if(dbEl && dbEl.classList.contains('on')){ dbLeaveGuard(); return; }
+  for (const id of ['poolpick','factions','campaigns','sovereigns','deckpick']){
+    const el = document.getElementById(id);
+    if(el && el.classList.contains('on')){ backToMenu(); return; }
+  }
 });
 
 
@@ -2310,6 +2352,7 @@ function campNext(){
 }
 
 applyTheme(null);
+show('menu'); // v0.22.4: boot through show() so musicForScreen fires at startup — the menu used to start with class="on" hardcoded, MUSIC.cur stayed null, and there was nothing for the first-gesture retry to resume (music only started once you LEFT a screen and came back)
 </script>
 </body>
 </html>
