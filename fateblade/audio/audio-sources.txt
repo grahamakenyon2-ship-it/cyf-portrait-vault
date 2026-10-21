@@ -24,3 +24,73 @@ sfx/fatigue.ogg | CC0 | kenney:interface-sounds:Audio/error_004.ogg
 music/menu-theme.ogg | Public domain | https://upload.wikimedia.org/wikipedia/commons/b/be/Modest_Mussorgsky_-_pictures_at_an_exhibition_-_x._la_grande_porte_de_kiev_-_allegro_alla_breve._maestoso._con_grandezza.ogg
 music/match-annals.ogg | Public domain | https://upload.wikimedia.org/wikipedia/commons/b/bb/Musopen_-_In_the_Hall_Of_The_Mountain_King.ogg
 music/match-canon.ogg | Public domain | https://upload.wikimedia.org/wikipedia/commons/5/5b/Ludwig_van_Beethoven_-_Symphonie_5_c-moll_-_1._Allegro_con_brio.ogg
+
+# ===== EXPANSION BATCH 1 (Oct 21 2026) - first tranche =====
+# All Kenney members below are REAL filenames verified against the pinned pack
+# zips on 2026-10-21. Music names verified against Wikimedia Commons File pages;
+# music uses Special:FilePath (resolves by NAME, so the URL never rots). Dead
+# entries fail soft: logged in fateblade/audio/audio-failures.txt and skipped.
+# --- more SFX: combat variety ---
+sfx/hit-heavy.ogg | CC0 | kenney:impact-sounds:Audio/impactMetal_heavy_001.ogg
+sfx/hit-light.ogg | CC0 | kenney:impact-sounds:Audio/impactMetal_light_001.ogg
+sfx/punch.ogg | CC0 | kenney:impact-sounds:Audio/impactPunch_heavy_000.ogg
+sfx/hero-fall.ogg | CC0 | kenney:impact-sounds:Audio/impactWood_heavy_000.ogg
+sfx/glass-break.ogg | CC0 | kenney:impact-sounds:Audio/impactGlass_medium_001.ogg
+sfx/bell-toll.ogg | CC0 | kenney:impact-sounds:Audio/impactBell_heavy_000.ogg
+sfx/plank.ogg | CC0 | kenney:impact-sounds:Audio/impactPlank_medium_000.ogg
+sfx/tin-clank.ogg | CC0 | kenney:impact-sounds:Audio/impactTin_medium_000.ogg
+sfx/mine.ogg | CC0 | kenney:impact-sounds:Audio/impactMining_000.ogg
+sfx/step-grass.ogg | CC0 | kenney:impact-sounds:Audio/footstep_grass_000.ogg
+sfx/step-wood.ogg | CC0 | kenney:impact-sounds:Audio/footstep_wood_000.ogg
+sfx/step-snow.ogg | CC0 | kenney:impact-sounds:Audio/footstep_snow_000.ogg
+# --- more SFX: cards, chips, dice ---
+sfx/card-fan.ogg | CC0 | kenney:casino-audio:Audio/card-fan-1.ogg
+sfx/card-shove.ogg | CC0 | kenney:casino-audio:Audio/card-shove-1.ogg
+sfx/card-shuffle.ogg | CC0 | kenney:casino-audio:Audio/card-shuffle.ogg
+sfx/card-slide3.ogg | CC0 | kenney:casino-audio:Audio/card-slide-3.ogg
+sfx/pack-open.ogg | CC0 | kenney:casino-audio:Audio/cards-pack-open-1.ogg
+sfx/pack-take.ogg | CC0 | kenney:casino-audio:Audio/cards-pack-take-out-1.ogg
+sfx/chip-lay.ogg | CC0 | kenney:casino-audio:Audio/chip-lay-1.ogg
+sfx/chips-stack.ogg | CC0 | kenney:casino-audio:Audio/chips-stack-1.ogg
+sfx/coins-handle.ogg | CC0 | kenney:casino-audio:Audio/chips-handle-1.ogg
+sfx/dice-shake.ogg | CC0 | kenney:casino-audio:Audio/dice-shake-1.ogg
+sfx/dice-throw.ogg | CC0 | kenney:casino-audio:Audio/dice-throw-1.ogg
+# --- more SFX: UI, menus, books, doors ---
+sfx/select.ogg | CC0 | kenney:interface-sounds:Audio/select_002.ogg
+sfx/toggle.ogg | CC0 | kenney:interface-sounds:Audio/toggle_002.ogg
+sfx/switch.ogg | CC0 | kenney:interface-sounds:Audio/switch_002.ogg
+sfx/tick.ogg | CC0 | kenney:interface-sounds:Audio/tick_001.ogg
+sfx/scroll.ogg | CC0 | kenney:interface-sounds:Audio/scroll_002.ogg
+sfx/open.ogg | CC0 | kenney:interface-sounds:Audio/open_002.ogg
+sfx/close.ogg | CC0 | kenney:interface-sounds:Audio/close_002.ogg
+sfx/question.ogg | CC0 | kenney:interface-sounds:Audio/question_001.ogg
+sfx/glitch.ogg | CC0 | kenney:interface-sounds:Audio/glitch_001.ogg
+sfx/maximize.ogg | CC0 | kenney:interface-sounds:Audio/maximize_002.ogg
+sfx/minimize.ogg | CC0 | kenney:interface-sounds:Audio/minimize_002.ogg
+sfx/bong.ogg | CC0 | kenney:interface-sounds:Audio/bong_001.ogg
+sfx/pluck.ogg | CC0 | kenney:interface-sounds:Audio/pluck_001.ogg
+sfx/drop.ogg | CC0 | kenney:interface-sounds:Audio/drop_002.ogg
+# --- more SFX: RPG world ---
+sfx/book-close.ogg | CC0 | kenney:rpg-audio:Audio/bookClose.ogg
+sfx/book-flip.ogg | CC0 | kenney:rpg-audio:Audio/bookFlip1.ogg
+sfx/book-place.ogg | CC0 | kenney:rpg-audio:Audio/bookPlace1.ogg
+sfx/chop.ogg | CC0 | kenney:rpg-audio:Audio/chop.ogg
+sfx/cloth.ogg | CC0 | kenney:rpg-audio:Audio/cloth1.ogg
+sfx/creak.ogg | CC0 | kenney:rpg-audio:Audio/creak1.ogg
+sfx/door-close.ogg | CC0 | kenney:rpg-audio:Audio/doorClose_1.ogg
+sfx/door-open.ogg | CC0 | kenney:rpg-audio:Audio/doorOpen_1.ogg
+sfx/knife-draw.ogg | CC0 | kenney:rpg-audio:Audio/drawKnife1.ogg
+sfx/knife-slice.ogg | CC0 | kenney:rpg-audio:Audio/knifeSlice.ogg
+sfx/metal-click.ogg | CC0 | kenney:rpg-audio:Audio/metalClick.ogg
+sfx/metal-latch.ogg | CC0 | kenney:rpg-audio:Audio/metalLatch.ogg
+sfx/coin-pouch.ogg | CC0 | kenney:rpg-audio:Audio/handleCoins.ogg
+sfx/pouch.ogg | CC0 | kenney:rpg-audio:Audio/handleSmallLeather.ogg
+sfx/step-armored.ogg | CC0 | kenney:rpg-audio:Audio/footstep00.ogg
+sfx/belt.ogg | CC0 | kenney:rpg-audio:Audio/beltHandle1.ogg
+# --- MUSIC EXPANSION: public-domain orchestral, resolved by NAME on Commons ---
+music/menu-morning.ogg | Public domain | https://commons.wikimedia.org/wiki/Special:FilePath/Peer_Gynt_Suite_-_Part_1-_Morning.oga
+music/spring-1.ogg | Public domain | https://commons.wikimedia.org/wiki/Special:FilePath/Vivaldi_-_Four_Seasons_1_Spring_mvt_1_Allegro_-_John_Harrison_violin.oga
+music/winter-1.ogg | Public domain | https://commons.wikimedia.org/wiki/Special:FilePath/Vivaldi_-_Four_Seasons_4_Winter_mvt_1_Allegro_non_molto_-_John_Harrison_violin.oga
+music/brandenburg-3-1.ogg | Public domain | https://commons.wikimedia.org/wiki/Special:FilePath/Bach_-_Brandenburg_Concerto_No._3_-_1._Allegro.ogg
+music/beethoven-5-1.ogg | Public domain | https://commons.wikimedia.org/wiki/Special:FilePath/Ludwig_van_Beethoven_-_symphony_no._5_in_c_minor,_op._67_-_i._allegro_con_brio.ogg
+music/dvorak-9.ogg | Public domain | https://commons.wikimedia.org/wiki/Special:FilePath/Symphony_No.9%2C_Op.95_%E2%80%93_Anton%C3%ADn_Dvo%C5%99%C3%A1k.oga

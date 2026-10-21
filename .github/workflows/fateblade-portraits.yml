@@ -1,0 +1,57 @@
+name: fateblade-portraits
+on:
+  workflow_dispatch:            # run by hand from the Actions tab; re-run until the queue is empty
+    inputs:
+      limit:
+        description: 'Portraits per run (default 5 - each is a paid image commission)'
+        required: false
+        default: '5'
+permissions:
+  contents: write
+  actions: write                # lets the workflow disable itself when the queue is empty
+concurrency:
+  group: vault-painter           # SHARED with paint-vault/paint-themes/fetchers: one painter in the repo at a time
+  cancel-in-progress: false
+jobs:
+  paint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Mint the queued portraits
+        id: paint
+        run: |
+          set +e
+          node fateblade-portraits.mjs
+          rc=$?
+          echo "rc=$rc" >> "$GITHUB_OUTPUT"
+          echo "fateblade-portraits exit code: $rc"
+          exit 0
+        env:
+          MISTRAL_KEY: ${{ secrets.MISTRAL_KEY }}
+          LIMIT: ${{ github.event.inputs.limit || '5' }}
+      - name: Commit the minted portraits
+        run: |
+          git config user.name "portrait-forge"
+          git config user.email "forge@users.noreply.github.com"
+          git add -A fateblade
+          git diff --cached --quiet && echo "nothing new" && exit 0
+          git commit -m "fateblade: portrait forge mint (AI-generated non-human portraits)"
+          for i in 1 2 3; do
+            if git push; then exit 0; fi
+            echo "push rejected - rebasing on remote and retrying (attempt $i)"
+            git pull --rebase origin "$GITHUB_REF_NAME" || exit 1
+          done
+          echo "push failed after 3 attempts" && exit 1
+      - name: Complete - disable this workflow
+        if: steps.paint.outputs.rc == '2'
+        run: |
+          echo "PORTRAIT QUEUE EMPTY - every commission is minted or marked failed. Disabling this workflow."
+          echo "(To mint more: append queued entries to fateblade/portrait-queue.json, re-enable and re-run from the Actions tab.)"
+          curl -s -X POST -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/workflows/fateblade-portraits.yml/disable"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,77 @@
+{
+ "style": "dark painterly oil portrait, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+ "queue": [
+  {
+   "name": "Vessmora the Hollow Choir",
+   "category": "undead",
+   "status": "queued",
+   "prompt": "Portrait of an undead lich choir-mistress, sunken ashen flesh stretched over an elegant skull, wisps of grave-mist curling from her lipless mouth, a raven-feather collar, faint blue-green spectral glow in empty eye sockets"
+  },
+  {
+   "name": "Syltharien Moonvein",
+   "category": "elf",
+   "status": "queued",
+   "prompt": "Portrait of an ancient high-elven seer, alabaster skin, silver hair braided with moonstone beads, elongated regal ears, eyes like frost-covered amber, wearing a starwoven mantle"
+  },
+  {
+   "name": "Borgrim Ironhymn",
+   "category": "dwarf",
+   "status": "queued",
+   "prompt": "Portrait of a dwarven forgemaster, braided oxblood beard singed at the tips and bound with gold rings, soot-stained brow, one eye scarred shut, wearing a smith leather apron over etched plate"
+  },
+  {
+   "name": "Krukk the Unbowed",
+   "category": "orc",
+   "status": "queued",
+   "prompt": "Portrait of an orc warchief, tusks capped in tarnished bronze, warpaint of white ash across a grey-green face, heavy bone-and-iron pauldrons, a gaze of absolute refusal"
+  },
+  {
+   "name": "Snikkfet Glimmerfang",
+   "category": "goblin",
+   "status": "queued",
+   "prompt": "Portrait of a goblin alchemist, green-skinned with a wide toothy grin, oversized brass goggles pushed up on his forehead, a stained apothecary coat, clutching a smoking vial"
+  },
+  {
+   "name": "The Penitent Engine",
+   "category": "construct",
+   "status": "queued",
+   "prompt": "Portrait of a towering war-construct, a face of hammered brass plates riveted into a stern visage, one glowing furnace eye behind a slit, censers of holy smoke trailing from its shoulders"
+  },
+  {
+   "name": "Mawgut the Kindly",
+   "category": "ogre",
+   "status": "queued",
+   "prompt": "Portrait of a middle-aged ogre matron, warty mud-brown skin, a kind toothy smile with one broken tusk, wearing a patchwork chef apron and a garland of dried herbs"
+  },
+  {
+   "name": "Elder Rootsong",
+   "category": "treant",
+   "status": "queued",
+   "prompt": "Portrait of a treant elder, a gnarled bark face like a carved totem, moss and lichen draped like a robe, amber sap glowing in the cracks, tiny pale blossoms in its hairlike twigs"
+  },
+  {
+   "name": "Zavrath Emberclad",
+   "category": "dragonkin",
+   "status": "queued",
+   "prompt": "Portrait of a dragonkin knight, crimson scales fading to gold along the jaw, slit amber eyes, ridged horns swept back, wearing lacquered scale-plate armor with a smoldering cloak"
+  },
+  {
+   "name": "Countess Ilvane of the Dusk Vow",
+   "category": "vampire",
+   "status": "queued",
+   "prompt": "Portrait of a vampire countess, porcelain pallor, crimson eyes beneath heavy lids, black hair pinned with silver thorns, a high mourning collar of dark velvet, patient hunger"
+  },
+  {
+   "name": "Grumhild Longtooth",
+   "category": "troll",
+   "status": "queued",
+   "prompt": "Portrait of a troll river-matriarch, blue-grey rubbery hide, a craggy underslung jaw with jutting tusks, river-reed braids, wearing whalebone charms"
+  },
+  {
+   "name": "Whisper of the Outer Dark",
+   "category": "voidborn",
+   "status": "queued",
+   "prompt": "Portrait of a void-touched oracle, skin like cracked obsidian with starlight seeping through the fissures, hairless, eyes replaced by points of distant galaxies, a collar of drifting shadow"
+  }
+ ]
+}
