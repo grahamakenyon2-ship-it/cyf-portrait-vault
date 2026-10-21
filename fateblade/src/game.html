@@ -50,37 +50,37 @@
   /* ===== match ===== */
   #match{justify-content:flex-start; padding:8px; gap:8px;}
   #match.on{background-image:var(--board-bg); background-size:cover; background-position:center;}
-  .lane{display:flex; justify-content:center; align-items:center; gap:12px; min-height:175px;}
-  .board{display:flex; gap:14px; justify-content:center; min-height:185px; align-items:center;}
-  .hero{width:170px; height:170px; border:2px solid var(--gold-dim); background:#000; text-align:center; cursor:pointer; position:relative;}
-  .hero img{width:100%; height:100px; object-fit:cover; display:block;}
-  .hero .hp{position:absolute; bottom:2px; left:50%; transform:translateX(-50%); font-size:24px; color:var(--hp); text-shadow:0 0 4px #000;}
-  .hero .nm{position:absolute; top:2px; width:100%; font-size:12px; background:#000a; letter-spacing:1px; white-space:nowrap; overflow:hidden;}
-  .hero .sovname{font-size:11px; color:#8fd; background:#000c; padding:1px 3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; letter-spacing:.5px;}
-  .hero .sovp{font-size:9.5px; line-height:12px; color:#e6d8b2; background:#000c; padding:1px 3px; height:38px; overflow:hidden;}
+  .lane{display:flex; justify-content:center; align-items:center; gap:12px; min-height:190px;}
+  .board{display:flex; gap:16px; justify-content:center; min-height:205px; align-items:center;}
+  .hero{width:190px; height:190px; border:2px solid var(--gold-dim); background:#000; text-align:center; cursor:pointer; position:relative;}
+  .hero img{width:100%; height:112px; object-fit:cover; display:block;}
+  .hero .hp{position:absolute; bottom:2px; left:50%; transform:translateX(-50%); font-size:27px; color:var(--hp); text-shadow:0 0 4px #000;}
+  .hero .nm{position:absolute; top:2px; width:100%; font-size:13.5px; background:#000a; letter-spacing:1px; white-space:nowrap; overflow:hidden;}
+  .hero .sovname{font-size:12.5px; color:#8fd; background:#000c; padding:1px 3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; letter-spacing:.5px;}
+  .hero .sovp{font-size:10.5px; line-height:13px; color:#e6d8b2; background:#000c; padding:1px 3px; height:38px; overflow:hidden;}
   .hero .relics{position:absolute; top:-16px; left:0; width:100%; display:flex; gap:2px; justify-content:center; pointer-events:auto;}
   .hero .relics .rk{font-size:10px; background:#000d; border:1px solid var(--gold-dim); color:#f9c; padding:0 4px; cursor:help; white-space:nowrap; max-width:72px; overflow:hidden; text-overflow:ellipsis; line-height:14px;}
   .hcard .typerow{position:absolute; top:24px; left:3px; font-size:9px; letter-spacing:1px; color:#f9c; background:#000c; padding:1px 4px;}
   .hcard.spell{box-shadow:inset 0 0 0 3px #7a5a1a, inset 0 0 0 4px #000;}
   .hero.targetable{border-color:var(--hp); box-shadow:0 0 10px var(--hp);}
-  .minion{width:132px; height:172px; border:6px solid transparent; border-image:var(--theme-panel, linear-gradient(#2a2216,#191308)) 40 fill; background:#0d0a07; position:relative; cursor:pointer;}
-  .minion img{width:100%; height:134px; object-fit:cover; object-position:50% 20%; display:block;}
-  .minion .nm{font-size:13px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding:1px 3px; background:#000c;}
-  .minion .atk{position:absolute; bottom:2px; left:4px; font-size:19px; color:var(--atk); text-shadow:0 0 4px #000;}
-  .minion .hp{position:absolute; bottom:2px; right:4px; font-size:19px; color:var(--hp); text-shadow:0 0 4px #000;}
-  .minion .kw{position:absolute; top:2px; left:2px; font-size:12px; background:#000d; padding:1px 3px; color:#8fd; cursor:help;}
+  .minion{width:150px; height:192px; border:6px solid transparent; border-image:var(--theme-panel, linear-gradient(#2a2216,#191308)) 40 fill; background:#0d0a07; position:relative; cursor:pointer;}
+  .minion img{width:100%; height:150px; object-fit:cover; object-position:50% 20%; display:block;}
+  .minion .nm{font-size:14.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding:1px 3px; background:#000c;}
+  .minion .atk{position:absolute; bottom:2px; left:4px; font-size:22px; color:var(--atk); text-shadow:0 0 4px #000;}
+  .minion .hp{position:absolute; bottom:2px; right:4px; font-size:22px; color:var(--hp); text-shadow:0 0 4px #000;}
+  .minion .kw{position:absolute; top:2px; left:2px; font-size:13.5px; background:#000d; padding:1px 3px; color:#8fd; cursor:help;}
   .minion.ready{border-image:var(--theme-panel) 40 fill; outline:1px solid var(--gold); box-shadow:0 0 8px #000;}
   .minion.selected{outline:2px solid #fff;}
   .minion.targetable{border-color:var(--hp); box-shadow:0 0 8px var(--hp);}
   .minion.guard .kw{color:#f96; font-weight:bold;}
   .minion.shielded{outline:2px solid #9cf; box-shadow:0 0 10px #9cf9, inset 0 0 12px #9cf4;}
-  .hand{display:flex; gap:10px; justify-content:center; min-height:205px; align-items:flex-end;}
+  .hand{display:flex; gap:12px; justify-content:center; min-height:220px; align-items:flex-end;}
   /* v0.13 JUICE: the hand fans in an arc — per-card rotation/lift come from
      the --fr/--fy custom properties render() writes on each .hcard */
-  .hcard{width:140px; height:196px; border:6px solid transparent; border-image:var(--theme-panel, linear-gradient(#2a2216,#191308)) 40 fill; background:#0d0a07; cursor:pointer; position:relative; transition:transform .14s; transform:translateY(var(--fy,0px)) rotate(var(--fr,0deg)); transform-origin:50% 130%;}
+  .hcard{width:154px; height:210px; border:6px solid transparent; border-image:var(--theme-panel, linear-gradient(#2a2216,#191308)) 40 fill; background:#0d0a07; cursor:pointer; position:relative; transition:transform .14s; transform:translateY(var(--fy,0px)) rotate(var(--fr,0deg)); transform-origin:50% 130%;}
   .hcard:hover{transform:translateY(calc(var(--fy,0px) - 16px)) rotate(var(--fr,0deg)) scale(1.07); z-index:5;}
   .hcard.playable{outline:1px solid var(--gold); box-shadow:0 0 10px #000;}
-  .hcard img{width:100%; height:126px; object-fit:cover; display:block;}
+  .hcard img{width:100%; height:136px; object-fit:cover; display:block;}
   .hcard .nm{font-size:13px; white-space:nowrap; overflow:hidden; padding:0 2px;}
   .hcard .cost{position:absolute; top:-8px; left:-8px; width:26px; height:26px; border-radius:50%;
     background:#1c4d8a; color:#fff; font-size:15px; font-weight:bold; display:flex; align-items:center; justify-content:center; border:1px solid #6ea8ff;}
@@ -90,7 +90,7 @@
   .hcard .abil{font-size:9.5px; color:#f9c; text-align:center; height:18px; overflow:hidden;}
   @keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
   .hcard.shake{animation:shake .35s; border-color:var(--hp);}
-  #topbar{width:100%; display:flex; align-items:center; justify-content:center; gap:18px; font-size:16px; letter-spacing:1px; color:#e6d8b2; background:#000a;}
+  #topbar{width:100%; display:flex; align-items:center; justify-content:center; gap:18px; font-size:19px; letter-spacing:1px; color:#e6d8b2; background:#000a;}
   #topbar b{color:var(--gold);}
   #topbar .fat{color:var(--hp);}
   #log{width:100%; text-align:center; height:24px; color:#e6d8b2; font-size:16px; text-shadow:0 1px 2px #000;}
@@ -101,22 +101,27 @@
   #feedback.on{display:block;}
   #feedback h3{margin:0 0 8px; color:var(--gold); letter-spacing:2px; font-size:14px;}
   #feedback li{margin:5px 0; color:#e6d8b2;}
-  #powerbtn{padding:10px 20px; font-size:14px;}
+  #powerbtn{padding:12px 24px; font-size:16px;}
   #patchhud{position:fixed; top:8px; right:12px; font-size:13px; color:#c9b78e; z-index:60; display:none; background:#000c; padding:4px 10px; border:1px solid var(--gold-dim);}
 
   /* ===== hover-zoom big card ===== */
-  #zoom{position:fixed; z-index:40; display:none; width:320px; pointer-events:none;
+  #zoom{position:fixed; z-index:40; display:none; width:352px; pointer-events:none;
     border:12px solid transparent; border-image:var(--theme-panel) 40 fill; background:#0d0a07; box-shadow:0 8px 30px #000c;
     padding:14px 18px 16px;}  /* v0.10.2: text and gems clear the ornate frame art, not flush against it */
-  #zoom img{width:254px; height:254px; object-fit:cover; display:block;}
-  #zoom .zn{color:var(--gold); font-size:19px; letter-spacing:1px; margin-top:6px;}
+  #zoom img{width:280px; height:280px; object-fit:cover; display:block;}
+  #zoom .zn{color:var(--gold); font-size:21px; letter-spacing:1px; margin-top:6px;}
   #zoom .zr{font-size:12px; color:#c9b78e; letter-spacing:2px; text-transform:uppercase; margin-bottom:4px;}
   #zoom .zk{font-size:14px; color:#8fd; margin:2px 0;}
   #zoom .zk b{letter-spacing:1px;}
   #zoom .zs{font-size:21px; margin:6px 0;}  /* v0.10.2: ATK/HP gems never ride the bottom border art */
   #zoom .zs .a{color:var(--atk); font-weight:bold;} #zoom .zs .h{color:var(--hp); font-weight:bold;}
-  #zoom .zpv{font-size:13.5px; color:#f9c; font-style:italic; margin-top:4px; border-top:1px solid #2a2216; padding-top:4px; font-weight:600; text-shadow:0 1px 1px #000, 0 0 3px #000, 0 -1px 1px #000;}
-  #zoom .zpas{font-size:13px; color:#f9c; font-style:italic; margin-top:4px; border-top:1px solid #2a2216; padding-top:4px; font-weight:600; text-shadow:0 1px 1px #000, 0 0 3px #000, 0 -1px 1px #000;} /* v0.21.2: sovereign passive plate in deck-builder zoom */
+  #zoom .zpv{font-size:14px; line-height:1.35; color:#f9c; font-style:italic; margin-top:8px; font-weight:600;
+    background:linear-gradient(180deg,#2b241580,#171208a0); border:1px solid #4a3c22; border-radius:6px;
+    padding:7px 9px; text-shadow:0 1px 1px #000, 0 0 3px #000, 0 -1px 1px #000;} /* v0.22 TEXT PLATE: bounded region, frame never rides the text */
+  #zoom .zpv.long{font-size:12.5px;} #zoom .zpv.xl{font-size:11.5px; line-height:1.28;}
+  #zoom .zpas{font-size:13px; line-height:1.3; color:#f9c; font-style:italic; margin-top:6px; font-weight:600;
+    background:linear-gradient(180deg,#2b241580,#171208a0); border:1px solid #4a3c22; border-radius:6px;
+    padding:6px 9px; text-shadow:0 1px 1px #000, 0 0 3px #000, 0 -1px 1px #000;} /* v0.21.2 sovereign passive plate — v0.22 text-plate styling */
   #zoom .zf{font-size:13px; font-style:italic; color:#c9b78e; margin-top:6px; border-top:1px solid #2a2216; padding-top:6px;}
 
   /* ===== v0.12 turn banner + victory pop ===== */
@@ -226,13 +231,13 @@
 
   /* ===== v0.10: attack/HP gem badges (same treatment as the mana cost gem),
      portrait framing, and card-text containment ===== */
-  .statgem{display:inline-flex; align-items:center; justify-content:center; gap:3px; min-width:26px; height:24px; border-radius:12px;
+  .statgem{display:inline-flex; align-items:center; justify-content:center; gap:3px; min-width:30px; height:27px; border-radius:12px;
     font-weight:bold; font-size:14px; color:#fff; text-shadow:0 1px 2px #000; border:1px solid #0009;
     box-shadow:0 1px 3px #0008; margin:0 3px; vertical-align:middle; font-family:'Cinzel', Georgia, serif; padding:0 7px;}
   .statgem.atk{background:radial-gradient(circle at 35% 30%, #ff9a8a, #b41f0f 75%); border-color:#7a1a0d;}
   .statgem.hp{background:radial-gradient(circle at 35% 30%, #a9efa0, #1d7a2a 75%); border-color:#144d1c;}
   .statgem i{font-style:normal; font-size:8px; letter-spacing:1px; padding-bottom:1px; opacity:.92;}
-  #zoom .zs .statgem{min-width:34px; height:30px; border-radius:15px; font-size:18px; padding:0 9px;}
+  #zoom .zs .statgem{min-width:38px; height:34px; border-radius:17px; font-size:21px; padding:0 10px;}
   #zoom .zs .statgem i{font-size:10px;}
   .slab{display:none;}
   /* portraits: face-biased crop, and a visible mat rim so they sit INSIDE the
@@ -241,7 +246,7 @@
     border:2px solid #000a; box-shadow:0 2px 8px #000a;}
   #deckb .dbcard img{object-position:50% 20%; box-shadow:0 0 0 1px #000a;}
   #deckb .dbcard .ab{max-height:30px;}      /* v0.10: ability text never runs past the frame */
-  #zoom .zpv{max-height:110px; overflow:hidden;}  /* full text rides in the title tooltip */
+  #zoom .zpv{max-height:132px; overflow:hidden;}  /* full text rides in the title tooltip */
   .cardpick .passive{max-height:64px; overflow:hidden;}
   /* deck-builder count badge on collection cards */
   #deckb .dbcard .dbn{position:absolute; top:2px; right:4px; background:#000d; border:1px solid var(--gold-dim); color:var(--gold);
@@ -580,7 +585,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.21.2';
+const GAME_VERSION = '0.22.0';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
@@ -675,14 +680,28 @@ function fitScreen(){
 // ends up behind the taskbar. Clamp the fit budget to the VISIBLE work area.
   const availW = (screen.availWidth || innerWidth), availH = (screen.availHeight || innerHeight);
   const w = Math.min(innerWidth, availW) - 12, h = Math.min(innerHeight, availH - Math.max(0, window.screenY || 0)) - 12;
-  const cw = Math.max(el.scrollWidth, el.offsetWidth), ch = Math.max(el.scrollHeight, el.offsetHeight);
-  // v0.14 READABILITY: grow with the monitor, not just shrink. The old hard cap
-  // at 1.0 meant everything rendered at ~1280x900 natural size forever — on a
-  // 1920x1080+ screen the board row spanned 36% of the width and all card text
-  // stayed whisper-sized while half the screen sat empty. Scaling the whole
+  // v0.22 THE BANNER: measure the CONTENT, not the .screen itself. The .screen is a
+  // full-viewport block, so its scrollWidth always equals innerWidth — the v0.14
+  // "grow with the monitor" path could never fire (s was always ~1.0, cards stayed
+  // tiny on big monitors with the sides empty). Union of the CHILDREN's rects gives
+  // the real content box; fixed-position children (battlelog overlay) are skipped.
+  let minX = 1e9, minY = 1e9, maxX = -1e9, maxY = -1e9;
+  for (const child of el.children) {
+    const cs = getComputedStyle(child);
+    if (cs.position === 'fixed' || cs.display === 'none') continue;
+    if (child.offsetWidth >= el.clientWidth - 2) continue; // full-bleed strips (topbar) don't constrain the content box
+    const r = child.getBoundingClientRect(); // transform already cleared above — rects are unscaled
+    minX = Math.min(minX, r.left); maxX = Math.max(maxX, r.right);
+    minY = Math.min(minY, r.top); maxY = Math.max(maxY, r.bottom);
+  }
+  if (maxX < minX) { minX = 0; maxX = el.offsetWidth; }
+  if (maxY < minY) { minY = 0; maxY = el.offsetHeight; }
+  const cw = Math.max(maxX - minX, el.scrollWidth), ch = Math.max(maxY - minY, el.scrollHeight);
+  // v0.14 READABILITY: grow with the monitor, not just shrink. Scaling the whole
   // .screen up (Hearthstone-style) enlarges cards, stats, text and menus
   // proportionally; s is still capped by min(w/cw, h/ch) so it can never overflow.
-  const s = Math.min(w / cw, h / ch, 1.5);
+  // v0.22: cap raised 1.5 -> 2.0 (user: 40% bigger cards, use the screen).
+  const s = Math.min(w / cw, h / ch, 2.0);
   if(s < 0.99){
     el.style.justifyContent = 'flex-start'; // overflow breaks centering anyway — anchor to top
     el.style.overflow = 'hidden';
@@ -1238,14 +1257,14 @@ function showZoom(c, ev, db){ // db=true: deck-builder context — sovereign pas
     <div class="zn">${c.name}</div>
     <div class="zr">${c.rarity}${c.passive && !db ? ' · legend' : ''}</div>
     ${kwList(c)?`<div class="zk">${kwList(c)}</div>`:''}
-    ${c.ability?`<div class="zpv">${c.ability}</div>`:''}
+    ${c.ability?`<div class="zpv ${c.ability.length>110?'long':''} ${c.ability.length>190?'xl':''}" title="${esc(c.ability)}">${c.ability}</div>`:''}
     ${c.passive && db ? `<div class="zpas"><b style="color:#f9c">${c.passive.name}:</b> ${c.passive.desc}</div>` : ''}
     <div class="zs">${(c.type==='edict'||c.type==='relic') ? `<span style="color:#f9c;letter-spacing:1px">${c.type==='edict'?'EDICT — ONE-SHOT':'RELIC — PERSISTENT'}</span>` : `<span class="statgem atk">${c.atk}<i>ATK</i></span><span class="statgem hp">${c.hp}<i>HP</i></span>`}</div>`;
   zoom.style.display='block';
   moveZoom(ev);
 }
 function moveZoom(ev){
-  const pad = 14, w = 350, h = zoom.offsetHeight || 460;
+  const pad = 14, w = 380, h = zoom.offsetHeight || 500;
   let x = ev.clientX + pad, y = ev.clientY - h/2;
   if(x + w > innerWidth) x = ev.clientX - w - pad;
   y = Math.max(8, Math.min(innerHeight - h - 8, y));
@@ -1643,7 +1662,7 @@ function dbCardHtml(c){
       ${n?`<div class="dbn">×${n}</div>`:''}
       <img src="${c.img}" loading="lazy" alt="${c.name}">
       <div class="nm">${c.name}</div>
-      <div class="ab" title="${esc(c.ability)}">${c.ability ? c.ability.replace('Battlecry: ','▸ ').replace('Deathrattle: ','☠ ') : (c.kw ? kwList(c).replace(/<\/?b>/g,'').replace(/<br>/g,' · ') : '')}</div>
+      <div class="ab">${c.kw ? kwList(c).replace(/<\/?b>/g,'').replace(/<br>/g,' · ') : (c.type ? c.type.toUpperCase() : '')}</div>
       <div class="st">${(c.type==='edict'||c.type==='relic')?`<span style="color:#f9c;letter-spacing:1px">${c.type.toUpperCase()}</span>`:`<span class="statgem atk">${c.atk}<i>ATK</i></span><span class="statgem hp">${c.hp}<i>HP</i></span>`}</div>
     </div>`;
 }
