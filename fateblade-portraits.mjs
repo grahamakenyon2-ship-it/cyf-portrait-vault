@@ -1,12 +1,19 @@
 #!/usr/bin/env node
 // ================================================================
-// FATEBLADE PORTRAIT FORGE v1.0 - mints AI-generated non-human
+// FATEBLADE PORTRAIT FORGE v1.1 - mints AI-generated non-human
 // character portraits (undead, elf, dwarf, orc, ...) for the
 // Fateblade canon pool + stockpile. Same pattern as paint.mjs: a
 // Mistral agent with the image_generation tool, MISTRAL_KEY from the
 // repo secret, queue shipped in the repo so runs are resumable, and
 // fateblade/manifest.json kept in lockstep so the Patcher ships
 // every minted portrait (license + src recorded for the audit trail).
+//
+// v1.1 DURABILITY FIX (Oct 21): the 103-portrait run hit the 50-min
+// job timeout BEFORE the end-of-script persist() ran, so every
+// painting it made died with the ephemeral runner. Now: (a) every
+// mint is committed + pushed IMMEDIATELY, (b) a 40-min soft budget
+// wraps the run up cleanly so the workflow's commit step always
+// runs. A timeout can now only ever cost the single image in flight.
 //
 // fateblade/portrait-queue.json:
 //   { style, queue: [{ name, category, prompt,
@@ -18,6 +25,7 @@
 // ================================================================
 import fs from 'fs';
 import { createHash } from 'node:crypto';
+import { execSync } from 'node:child_process';
 
 const KEY = process.env.MISTRAL_KEY || '';
 if (!KEY) { console.error('MISTRAL_KEY secret is not set. Add it under Settings -> Secrets and variables -> Actions, then run the workflow again.'); process.exit(1); }
@@ -29,6 +37,8 @@ const AGENT_FILE = 'agent-fateblade-portraits.txt';
 const PAGES = 'https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/';
 
 const sleep = ms => new Promise(ok => setTimeout(ok, ms));
+const T0 = Date.now();
+const TIME_BUDGET_MS = 40 * 60 * 1000;  // wrap up before the 50-min job timeout can kill us
 
 let manifest = null;
 try { manifest = JSON.parse(fs.readFileSync(MANIFEST, 'utf8')); } catch (e) {}
@@ -48,6 +58,22 @@ function persist() {
   fs.writeFileSync(QUEUE_FILE, JSON.stringify(queueDoc, null, 1) + '\n');
   manifest.files = [...mpath.values()];
   fs.writeFileSync(MANIFEST, JSON.stringify(manifest, null, 2) + '\n');
+}
+
+// DURABILITY: save queue+manifest AND commit+push right now, so a job
+// kill can never strand more than the image currently being painted.
+function commitNow(label) {
+  persist();
+  if (!process.env.GITHUB_ACTIONS) return;
+  try {
+    execSync('git add -A fateblade ' + AGENT_FILE, { stdio: 'pipe' });
+    execSync('git commit -m "fateblade: portrait forge mint (' + label + ')"', { stdio: 'pipe' });
+    for (let i = 0; i < 3; i++) {
+      try { execSync('git push', { stdio: 'pipe' }); return; } catch (e) {}
+      try { execSync('git pull --rebase --autostash origin ' + (process.env.GITHUB_REF_NAME || 'main'), { stdio: 'pipe' }); } catch (e) { break; }
+    }
+    console.log('WARNING: durable push failed after ' + label + ' - changes stay local and ride the next commit');
+  } catch (e) { console.log('WARNING: durable commit failed after ' + label + ': ' + e.message); }
 }
 
 // ---- the agent (cached across runs via the repo) ----
@@ -128,6 +154,7 @@ async function paintOne(ag, entry) {
 const ag = await agentId();
 let minted = 0, failedCount = 0;
 for (const entry of batch) {
+  if (Date.now() - T0 > TIME_BUDGET_MS) { console.log('time budget reached - wrapping up cleanly so nothing is stranded'); break; }
   let done = false;
   for (let attempt = 0; attempt < 3 && !done; attempt++) {
     try {
@@ -135,6 +162,7 @@ for (const entry of batch) {
       if (res.retry) { rateUntil = Math.max(rateUntil, Date.now() + 61000); console.log('rate limit - pausing 60s'); attempt--; continue; }
       minted++; done = true;
       console.log('minted: ' + entry.name + ' -> fateblade/' + entry.file);
+      commitNow(entry.name);
     } catch (e) {
       const msg = String(e && e.message);
       if (/refused/.test(msg)) { console.log('KEY REFUSED - rotate the key and update the MISTRAL_KEY secret. Stopping.'); persist(); process.exit(1); }
