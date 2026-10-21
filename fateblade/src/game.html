@@ -608,7 +608,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.22.7';
+const GAME_VERSION = '0.22.8';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
@@ -710,13 +710,22 @@ function fitScreen(){
   }
   el.style.transform=''; el.style.transformOrigin=''; el.style.overflow=''; el.style.justifyContent='';
   el.scrollTop = 0; el.scrollLeft = 0; // v0.22.3: a scrolled screen shifts every child rect — always measure from the top
-// v0.9.3: the desktop window is a FIXED 1280x900 — on small laptops or scaled
-// displays it can be taller than the visible work area, so innerHeight reports
-// more room than is really on screen and the bottom bar (END TURN / Resign)
-// ends up behind the taskbar. Clamp the fit budget to the VISIBLE work area.
-  const availW = (screen.availWidth || innerWidth), availH = (screen.availHeight || innerHeight);
+// v0.9.3: the desktop window can be TALLER than the visible work area (title bar +
+// off-screen overhang), so innerHeight reports more room than is really on screen
+// and the bottom bar (END TURN / Resign) ends up behind the taskbar.
+// v0.22.8 THE EXACT FIX (user debug readout: s=0.831 cw=1908 ch=1237 viewport
+// 1920x1080 windowed — the math FIT 1028px into a 1040px budget, yet the bottom
+// bar was invisible): the old clamp budgeted against availHeight but never asked
+// HOW FAR THE WINDOW ITSELF hangs past the work area. That is computable exactly:
+// the window's bottom edge is at screenY + outerHeight (outer = window incl. title
+// bar, same coordinate space as availHeight); anything past availHeight is hidden
+// behind the taskbar / off-screen. occlB = that overhang; visible = innerHeight - occlB.
+// No DPI guessing, no magic constants — pure window geometry.
+  const occlB = Math.max(0, (window.screenY || 0) + (window.outerHeight || innerHeight) - (screen.availHeight || innerHeight)); // v0.22.8: window overhang past the work area (title bar pushes the bottom off-screen)
+  const occlR = Math.max(0, (window.screenX || 0) + (window.outerWidth || innerWidth) - (screen.availWidth || innerWidth));
   const fs = !!document.fullscreenElement; // v0.22.2: in TRUE fullscreen every pixel is ours — the taskbar clamp must not eat ~40px
-  const w = Math.min(innerWidth, availW) - 12, h = (fs ? innerHeight : Math.min(innerHeight, availH - Math.max(0, window.screenY || 0))) - 12;
+  const w = (fs ? innerWidth : Math.min(innerWidth, innerWidth - occlR)) - 12,
+        h = (fs ? innerHeight : Math.min(innerHeight, innerHeight - occlB)) - 12;
   // v0.22.3 THE REAL FIX (two failed attempts before it — see lessons): measure the
   // content box HONESTLY. HEIGHT: every child counts (full-bleed strips are real
   // content — v0.22 SKIPPED them, the match screen's height union collapsed to ~0,
@@ -759,7 +768,7 @@ function fitScreen(){
   // .screen up (Hearthstone-style) enlarges cards, stats, text and menus
   // proportionally; s is still capped by min(w/cw, h/ch) so it can never overflow.
   // v0.22: cap raised 1.5 -> 2.0 (user: 40% bigger cards, use the screen).
-  const s = Math.min(w / cw, h / ch, 2.0);
+  const s = Math.min(w / cw, (fs ? h : h - 10) / ch, 2.0); // v0.22.8: exact occlusion budget + 10px windowed safety floor — content never rides the exact bottom edge again
   if(s < 0.99){
     el.style.justifyContent = 'flex-start'; // overflow breaks centering anyway — anchor to top
     el.style.overflow = 'hidden';
@@ -780,7 +789,7 @@ function uiDebugReport(s, cw, ch){ // v0.22.7: the fit readout — turn it on in
   const show = !!settings.uiDebug;
   el.style.display = show ? 'block' : 'none';
   if(!show) return;
-  el.textContent = `fit s=${s.toFixed(3)}${cw?' cw='+Math.round(cw):''}${ch?' ch='+Math.round(ch):''} · viewport ${innerWidth}×${innerHeight} · ${document.fullscreenElement?'fullscreen':'windowed'}`;
+  el.textContent = `fit s=${s.toFixed(3)}${cw?' cw='+Math.round(cw):''}${ch?' ch='+Math.round(ch):''} · viewport ${innerWidth}×${innerHeight} · ${document.fullscreenElement?'fullscreen':'windowed'} · outer ${window.outerWidth||'?'}×${window.outerHeight||'?'} @${window.screenX||0},${window.screenY||0} · avail ${screen.availWidth||'?'}×${screen.availHeight||'?'} · occlB=${Math.max(0,(window.screenY||0)+(window.outerHeight||0)-(screen.availHeight||0))} dpr=${window.devicePixelRatio||1}`;
 }
 // v0.10.2: coalesce resize storms (fullscreen/windowed transitions fire dozens
 // of resize events with in-between sizes), then refit once after the dust settles.
