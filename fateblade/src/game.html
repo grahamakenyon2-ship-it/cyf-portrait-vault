@@ -116,6 +116,7 @@
   #zoom .zs{font-size:21px; margin:6px 0;}  /* v0.10.2: ATK/HP gems never ride the bottom border art */
   #zoom .zs .a{color:var(--atk); font-weight:bold;} #zoom .zs .h{color:var(--hp); font-weight:bold;}
   #zoom .zpv{font-size:13.5px; color:#f9c; font-style:italic; margin-top:4px; border-top:1px solid #2a2216; padding-top:4px; font-weight:600; text-shadow:0 1px 1px #000, 0 0 3px #000, 0 -1px 1px #000;}
+  #zoom .zpas{font-size:13px; color:#f9c; font-style:italic; margin-top:4px; border-top:1px solid #2a2216; padding-top:4px; font-weight:600; text-shadow:0 1px 1px #000, 0 0 3px #000, 0 -1px 1px #000;} /* v0.21.2: sovereign passive plate in deck-builder zoom */
   #zoom .zf{font-size:13px; font-style:italic; color:#c9b78e; margin-top:6px; border-top:1px solid #2a2216; padding-top:6px;}
 
   /* ===== v0.12 turn banner + victory pop ===== */
@@ -579,7 +580,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.21.1';
+const GAME_VERSION = '0.21.2';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
@@ -1230,14 +1231,15 @@ document.addEventListener('click', (e) => { if (e.target.closest('button')) SFX.
 /* ---------- hover-zoom ---------- */
 const zoom = document.getElementById('zoom');
 function kwList(c){ return (c.kw||'').split(/[+,]/).map(s=>s.trim()).filter(Boolean).map(k=>`<b>${KWTXT[k]||k}</b> — ${KWDESC[k]||''}`).join('<br>'); } // v0.20-ready: renders multi-keyword lists
-function showZoom(c, ev){
+function showZoom(c, ev, db){ // db=true: deck-builder context — sovereign passives shown (v0.21.2); in-game zoom keeps them hidden (decked legends are bodies only)
   const esc = (s)=>String(s||'').replace(/"/g,'&quot;');
   zoom.className = 'r-' + (c.rarity || 'common');
   zoom.innerHTML = `<div class="zc">${c.cost}</div><img src="${c.img}">
     <div class="zn">${c.name}</div>
-    <div class="zr">${c.rarity}${c.passive ? ' · legend' : ''}</div>
+    <div class="zr">${c.rarity}${c.passive && !db ? ' · legend' : ''}</div>
     ${kwList(c)?`<div class="zk">${kwList(c)}</div>`:''}
     ${c.ability?`<div class="zpv">${c.ability}</div>`:''}
+    ${c.passive && db ? `<div class="zpas"><b style="color:#f9c">${c.passive.name}:</b> ${c.passive.desc}</div>` : ''}
     <div class="zs">${(c.type==='edict'||c.type==='relic') ? `<span style="color:#f9c;letter-spacing:1px">${c.type==='edict'?'EDICT — ONE-SHOT':'RELIC — PERSISTENT'}</span>` : `<span class="statgem atk">${c.atk}<i>ATK</i></span><span class="statgem hp">${c.hp}<i>HP</i></span>`}</div>`;
   zoom.style.display='block';
   moveZoom(ev);
@@ -1680,11 +1682,11 @@ function renderDB(){
     + '</div>';
   const all = f.cards.concat(gc);
   coll.querySelectorAll('.dbcard').forEach(d=>{
-    d.onmouseenter = (ev)=>{ const c = all.find(x=>x.id===d.dataset.id); if(c) showZoom(c, ev); };
+    d.onmouseenter = (ev)=>{ const c = all.find(x=>x.id===d.dataset.id); if(c) showZoom(c, ev, true); };
     d.onmousemove = moveZoom; d.onmouseleave = hideZoom;
   });
   coll.querySelectorAll('.dbsovcard').forEach(d=>{ // v0.19.1: sovereign hover gets the zoom view too
-    d.onmouseenter = (ev)=>{ const c = sovs.find(x=>x.id===d.dataset.id); if(c) showZoom(c, ev); };
+    d.onmouseenter = (ev)=>{ const c = sovs.find(x=>x.id===d.dataset.id); if(c) showZoom(c, ev, true); };
     d.onmousemove = moveZoom; d.onmouseleave = hideZoom;
   });
   // deck list: one row per distinct card with its copy count; click removes ONE copy
@@ -1696,7 +1698,7 @@ function renderDB(){
       <span class="st">${(c.type==='edict'||c.type==='relic')?'✦ '+c.type.toUpperCase():`<span class="statgem atk">${c.atk}<i>ATK</i></span><span class="statgem hp">${c.hp}<i>HP</i></span>`}</span><span class="x">✕</span></div>`).join('')
     : '<div style="text-align:center;color:#c9b78e;font-size:13px;padding:10px">empty — click cards on the right</div>';
   listEl.querySelectorAll('.dbrow').forEach(r=>{
-    r.onmouseenter = (ev)=>{ const c = all.find(x=>x.id===r.dataset.id); if(c) showZoom(c, ev); };
+    r.onmouseenter = (ev)=>{ const c = all.find(x=>x.id===r.dataset.id); if(c) showZoom(c, ev, true); };
     r.onmousemove = moveZoom; r.onmouseleave = hideZoom;
   });
   const size = deckSize();
