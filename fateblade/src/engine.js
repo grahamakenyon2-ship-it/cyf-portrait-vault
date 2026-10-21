@@ -178,7 +178,7 @@
 
   // First Rites: for the coin-flip winner's first four turns (S.turn 1, 3, 5, 7), their
   // Sovereign passive magnitudes are doubled (+1s become +2s, pings deal 2, …).
-  const rites = (S, side) => (S.first === side && S.turn <= 7 ? 2 : 1) + (S[side].relics.some((x) => x.rl === 'rlReliquary') ? 1 : 0); // v0.16: Saint's Reliquary
+  const rites = (S, side) => (S.first === side && S.turn <= 9 ? 2 : 1) + (S[side].relics.some((x) => x.rl === 'rlReliquary') ? 1 : 0); // v0.25.0: widen 7 -> 9 (first player 44.6% in 880k deep playtest)
 
   function draw(S, side, phase) { // v0.15: phase=true marks draw-phase draws (startMatch deal + start-of-turn draw)
     const p = S[side];
@@ -402,7 +402,7 @@
     if (hasKw(m, 'Guard') && hasRelic(p, 'rlStandards')) m.atk += 1; // Legion Standards: every Guard musters +1 atk
     if (S.laws.some((l) => l.id === 'lawMuster' && l.side === side)) { m.atk += 1; m.hp += 1; } // v0.16: Temporary Law: the muster
     if (hasKw(m, 'Ranged') && hasRelic(p, 'rlLookout')) { m.atk += 1; m.hp += 1; } // v0.16 buff: +1/+1
-    if (hasKw(m, 'Guard') && hasP(p, 'BULWARK')) m.hp += 2 * r; // v0.6.4 buff: +2 HP (was +1)
+    if (hasKw(m, 'Guard') && hasP(p, 'BULWARK')) m.hp += 1 * r; // v0.25.0: revert v0.6.4 buff to +1 to match card text (deep audit: Breggan 92.2% hot)
     if (hasKw(m, 'Charge') && hasP(p, 'VANGUARD')) m.atk += r;
     if (hasKw(m, 'Lifesteal') && hasP(p, 'SOULTITHE')) m.atk += r;
     if (hasKw(m, 'Ranged') && hasP(p, 'LONGSIGHT')) { m.atk += r; m.hp += r; } // v0.14.2 buff: +1 HP -> +1/+1 (37.2% when leading, weakest passive)
@@ -536,7 +536,7 @@
   }
   // First Rites: during the coin-flip winner's first four turns, Skirmish costs 1 mana
   function powerCost(S, side) {
-    return (S.first === side && S.turn <= 7) ? 1 : 2; // v0.21.1: widen 5 -> 7
+    return (S.first === side && S.turn <= 9) ? 1 : 2; // v0.25.0: widen 7 -> 9
   }
   // Bloodletter's Skirmish deals 2; First Rites doubles it in the opening.
   function powerDmg(S, side) {
@@ -566,7 +566,7 @@
     S.active = next; S.turn++;
     const np = S[next], foe = S[other(next)];
     np.maxmana = Math.min(MAX_MANA, np.maxmana + 1);
-    np.mana = np.maxmana + (S.first === next && S.turn <= 7 ? 1 : 0) + (S.first === next && S.turn <= 1 ? 1 : 0); // v0.21.1: widen 5 -> 7 (+1 mana on the winner's first four turns, +2 on turn one) (tuned: 55.7% → 34% → 43.6% → target 50)
+    np.mana = np.maxmana + (S.first === next && S.turn <= 9 ? 1 : 0) + (S.first === next && S.turn <= 1 ? 1 : 0); // v0.25.0: widen 7 -> 9 (first player 44.6% in 880k deep playtest)
     np.power = false;
     np.board.forEach((m) => { m.ready = true; m.shocked = false; m.attacks = 0; }); // v0.11: Aegis (m.shield) intentionally persists across turns
     // relic hooks (v0.6)
@@ -615,7 +615,7 @@
     }
     // v0.15 sovereign start-of-turn passives
     const weak = (arr) => arr.length ? arr.reduce((a, b) => (a.atk <= b.atk ? a : b)) : null;
-    if (hasP(np, 'FERAL_HOWL') && np.board.length) { const w = weak(np.board); w.atk += 2 * r; S.events.push({ t: 'passive', side: next, id: 'FERAL_HOWL', on: w.id }); }
+    if (hasP(np, 'FERAL_HOWL') && np.board.length) { const w = weak(np.board); w.atk += 1 * r; S.events.push({ t: 'passive', side: next, id: 'FERAL_HOWL', on: w.id }); } // v0.25.0: +2 -> +1 ATK (Ossrath 89.2% hot in deep audit)
     if (hasP(np, 'FOR_THE_EMPEROR') && np.board.length >= 4) { const w = weak(np.board); w.atk += 1 * r; S.events.push({ t: 'passive', side: next, id: 'FOR_THE_EMPEROR', on: w.id }); }
     if (hasP(np, 'MARCHING_ORDERS') && np.board.length) { const w = weak(np.board); w.atk += r; w.hp += r; S.events.push({ t: 'passive', side: next, id: 'MARCHING_ORDERS', on: w.id }); }
     if (hasP(np, 'BLOCKADE') && foe.board.length - np.board.length >= 2 && np.board.length < MAX_BOARD) { np.board.push(token(np, S)); S.events.push({ t: 'passive', side: next, id: 'BLOCKADE' }); } // v0.15.1 buff: 3 -> 2
