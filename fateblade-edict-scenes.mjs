@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // ================================================================
-// FATEBLADE EDICT/RELIC SCENE FORGE v1.2 - mints AI-generated scene
+// FATEBLADE EDICT/RELIC SCENE FORGE v1.3 - mints AI-generated scene
 // artwork for the canon realms' edicts and relics: the EVENT the card
 // names, painted to match the card's effect and the realm's lore.
 //
@@ -215,10 +215,18 @@ async function paintOne(ag, entry) {
   const read = readCanvas(first.j);
   const imgSrc = read.imgSrc;
   if (!imgSrc) throw new Error(read.moderated ? 'blocked by moderation - rewrite the prompt to avoid protected characters' : 'no canvas');
+  // v1.3: the commission is PAID by now - the download is free. A failed
+  // fetch retries the SAME url; we never re-commission a paid image.
   const wantsAuth = /api\.mistral\.ai\//.test(imgSrc);
-  const fr = await fetch(imgSrc, { headers: wantsAuth ? { 'Authorization': 'Bearer ' + KEY } : {} });
-  if (!fr.ok) throw new Error('could not fetch the painting (' + fr.status + ')');
-  const raw = new Uint8Array(await fr.arrayBuffer());
+  let raw = null, lastErr = null;
+  for (let dl = 0; dl < 4 && !raw; dl++) {
+    try {
+      const fr = await fetch(imgSrc, { headers: wantsAuth ? { 'Authorization': 'Bearer ' + KEY } : {} });
+      if (!fr.ok) throw new Error('could not fetch the painting (' + fr.status + ')');
+      raw = new Uint8Array(await fr.arrayBuffer());
+    } catch (e) { lastErr = e; if (dl < 3) await sleep(5000); }
+  }
+  if (!raw) throw new Error('download failed after retries (image was PAID - url: ' + imgSrc.slice(0, 120) + '... ) - save this url, it can still be fetched free: ' + lastErr);
   const mime = magicMime(raw);
   if (!mime || raw.byteLength < 1024) throw new Error('not a true canvas (' + raw.byteLength + ' bytes)');
   const ext = mime === 'image/jpeg' ? 'jpg' : (mime === 'image/png' ? 'png' : 'webp');
