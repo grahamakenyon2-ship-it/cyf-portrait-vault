@@ -867,6 +867,11 @@
       "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/music/forest-trees.ogg",
       "license": "CC BY 4.0",
       "src": "https://commons.wikimedia.org/wiki/Special:FilePath/The_Forest_and_the_Trees_(Kevin_MacLeod)_(ISRC_USUAN1100766).oga"
+    },
+    {
+      "path": "art/the-crown-s-debt.jpg",
+      "sha256": "7e16e776b23ad5d1ac207aa28abcc0f53acf3c7a39530ef1f4fd54b7485de885",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-crown-s-debt.jpg"
     }
   ]
 }
