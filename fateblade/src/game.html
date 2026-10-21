@@ -221,6 +221,15 @@
   .dbchip{font-size:12px; letter-spacing:1px; padding:3px 9px; background:#141008; border:1px solid #2a2216; color:#c9b78e; cursor:pointer; user-select:none;}
   .dbchip:hover{border-color:var(--gold-dim);}
   .dbchip.on{border-color:var(--gold); color:var(--gold); background:#1d160c;}
+  /* ===== v0.22.2 POLISH: themed scrollbars + sliders — default OS-grey chrome cheapens the look ===== */
+  ::-webkit-scrollbar{width:12px; height:12px;}
+  ::-webkit-scrollbar-track{background:#0d0a07;}
+  ::-webkit-scrollbar-thumb{background:linear-gradient(#5a4a2e,#3a2f1c); border:2px solid #0d0a07; border-radius:6px;}
+  ::-webkit-scrollbar-thumb:hover{background:linear-gradient(#7a6440,#4a3c24); border-color:#2a2216;}
+  ::-webkit-scrollbar-corner{background:#0d0a07;}
+  input[type=range]{-webkit-appearance:none; appearance:none; height:6px; background:#2a2216; border-radius:3px; outline:none; cursor:pointer;}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none; appearance:none; width:16px; height:16px; border-radius:50%;
+    background:linear-gradient(#7a6440,#4a3c24); border:1px solid var(--gold-dim); cursor:pointer;}
   /* cost/stat chips: opaque gem-style so values stay readable over ANY realm frame */
   #deckb .dbcard .dbcost{position:absolute; top:2px; left:2px; width:22px; height:22px; border-radius:50%;
     background:radial-gradient(circle at 35% 30%, #9cc4ff, #1c4d8a 75%); color:#fff; font-weight:bold; font-size:13px;
@@ -585,7 +594,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.22.1';
+const GAME_VERSION = '0.22.2';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
@@ -679,7 +688,8 @@ function fitScreen(){
 // more room than is really on screen and the bottom bar (END TURN / Resign)
 // ends up behind the taskbar. Clamp the fit budget to the VISIBLE work area.
   const availW = (screen.availWidth || innerWidth), availH = (screen.availHeight || innerHeight);
-  const w = Math.min(innerWidth, availW) - 12, h = Math.min(innerHeight, availH - Math.max(0, window.screenY || 0)) - 12;
+  const fs = !!document.fullscreenElement; // v0.22.2: in TRUE fullscreen every pixel is ours — the taskbar clamp must not eat ~40px
+  const w = Math.min(innerWidth, availW) - 12, h = (fs ? innerHeight : Math.min(innerHeight, availH - Math.max(0, window.screenY || 0))) - 12;
   // v0.22 THE BANNER: measure the CONTENT, not the .screen itself. The .screen is a
   // full-viewport block, so its scrollWidth always equals innerWidth — the v0.14
   // "grow with the monitor" path could never fire (s was always ~1.0, cards stayed
@@ -689,14 +699,22 @@ function fitScreen(){
   for (const child of el.children) {
     const cs = getComputedStyle(child);
     if (cs.position === 'fixed' || cs.display === 'none') continue;
-    if (child.offsetWidth >= el.clientWidth - 2) continue; // full-bleed strips (topbar) don't constrain the content box
     const r = child.getBoundingClientRect(); // transform already cleared above — rects are unscaled
     minX = Math.min(minX, r.left); maxX = Math.max(maxX, r.right);
     minY = Math.min(minY, r.top); maxY = Math.max(maxY, r.bottom);
   }
   if (maxX < minX) { minX = 0; maxX = el.offsetWidth; }
   if (maxY < minY) { minY = 0; maxY = el.offsetHeight; }
-  const cw = Math.max(maxX - minX, el.scrollWidth), ch = Math.max(maxY - minY, el.scrollHeight);
+  // v0.22.2 FIX (fullscreen bottom cut-off, v0.22 regression): the old loop SKIPPED
+  // full-bleed children (offsetWidth >= clientWidth) so they couldn't force a
+  // phantom shrink — but on the match screen nearly every child is a width:100%
+  // block (topbar, lanes, boards, hand, log, END TURN row), so the union collapsed
+  // to almost nothing, ch came out tiny, the grow path fired at up to 2.0x in
+  // fullscreen, and the bottom bar ended up off-screen. Measure EVERY child, then
+  // CLAMP to the screen's client box: a full-bleed child contributes exactly the
+  // client extent and cancels out, while partial children constrain correctly.
+  const cw = Math.min(Math.max(maxX - minX, el.scrollWidth), el.clientWidth);
+  const ch = Math.min(Math.max(maxY - minY, el.scrollHeight), el.clientHeight);
   // v0.14 READABILITY: grow with the monitor, not just shrink. Scaling the whole
   // .screen up (Hearthstone-style) enlarges cards, stats, text and menus
   // proportionally; s is still capped by min(w/cw, h/ch) so it can never overflow.
