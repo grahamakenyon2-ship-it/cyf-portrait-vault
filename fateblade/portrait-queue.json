@@ -72,6 +72,198 @@
    "category": "voidborn",
    "status": "queued",
    "prompt": "Portrait of a void-touched oracle, skin like cracked obsidian with starlight seeping through the fissures, hairless, eyes replaced by points of distant galaxies, a collar of drifting shadow"
+  },
+  {
+   "name": "Ossuar, the Rattling Marshal",
+   "category": "skeleton",
+   "status": "queued",
+   "prompt": "Portrait of a skeletal marshal, bleached bone with hairline cracks of tarnished gold inlaid like kintsugi, an ornate officers hat, verdigris medals pinned to a ribcage, pinpoints of pale light in the eye sockets"
+  },
+  {
+   "name": "Sister Marrowbone",
+   "category": "skeleton",
+   "status": "queued",
+   "prompt": "Portrait of a skeletal nun, chalk-white bone beneath a moth-eaten wimple and habit, rosary of tiny finger-bones, serene patient hollow gaze"
+  },
+  {
+   "name": "Ghast-Rider Hulga",
+   "category": "zombie",
+   "status": "queued",
+   "prompt": "Portrait of a revenant shieldmaiden, grave-grey skin stitched with black thread at the jaw, milky blind eyes that still somehow stare, rusted mail fused with graveyard moss"
+  },
+  {
+   "name": "Poxworth the Unburied",
+   "category": "zombie",
+   "status": "queued",
+   "prompt": "Portrait of a bloated plague-doctor revenant, grey-green skin sloughing at the cheek, a cracked beaked mask pushed up on the forehead, funeral wrappings as a scarf"
+  },
+  {
+   "name": "Redjaw, Alpha of the Fell Wood",
+   "category": "werewolf",
+   "status": "queued",
+   "prompt": "Portrait of a werewolf pack-leader mid-shift, wolf muzzle with a red-stained jaw, amber predator eyes, hackles of black fur running up a corded human neck, a torn hunters coat"
+  },
+  {
+   "name": "Mother Greyhide",
+   "category": "werebear",
+   "status": "queued",
+   "prompt": "Portrait of an elderly werebear matriarch, greying brown fur around a broad ursine face, kind black eyes, silver claws worn blunt, a medicine pouch on a claw-chain"
+  },
+  {
+   "name": "The Barghest of Pyre Lane",
+   "category": "beast",
+   "status": "queued",
+   "prompt": "Portrait of a huge spectral black dog with chains, smoke-like fur drifting off its shoulders, eyes like burning coals, an old bear-trap snapped shut on one paw"
+  },
+  {
+   "name": "King Ashenmane",
+   "category": "beast",
+   "status": "queued",
+   "prompt": "Portrait of a giant white lion with a charcoal-grey mane, old battle scars across the muzzle, eyes like molten gold, wearing a torn royal banner as a cloak"
+  },
+  {
+   "name": "Brackhorn the Old Stag",
+   "category": "beast",
+   "status": "queued",
+   "prompt": "Portrait of an ancient stag with a crown of twisted antlers hung with lantern-lights, silver-tipped fur, black eyes holding old forest wisdom"
+  },
+  {
+   "name": "Vaelith Duskmere",
+   "category": "elf",
+   "status": "queued",
+   "prompt": "Portrait of a dark-elven spymaster, obsidian skin, bone-white hair cropped short, lilac eyes with slit pupils, wearing a cloak that seems woven from cave-dark"
+  },
+  {
+   "name": "Thalion Greenroot",
+   "category": "elf",
+   "status": "queued",
+   "prompt": "Portrait of a wood-elf warden, sun-browned skin, hair braided with living vines and small beetles, leaf-shaped pupils, a bow of white wood across the shoulders"
+  },
+  {
+   "name": "Durgan Deepdelve",
+   "category": "dwarf",
+   "status": "queued",
+   "prompt": "Portrait of a duergar runeward, ash-grey skin, bald with brand-runes across the scalp, glowing orange runemarks over the eyes, a collar of uncut gemstones"
+  },
+  {
+   "name": "Mathilda Coalbraid",
+   "category": "dwarf",
+   "status": "queued",
+   "prompt": "Portrait of a dwarven bombardier, soot-black braids coiled around her ears like a crown, goggles with one cracked red lens, cheeks scarred by powder burns, a grin with one gold tooth"
+  },
+  {
+   "name": "Ushruk Bone-Drummer",
+   "category": "orc",
+   "status": "queued",
+   "prompt": "Portrait of an orc shaman, grey-green skin painted with white bone patterns, a headdress of a full skull with incense smoke rising from it, eyes rolled white in trance"
+  },
+  {
+   "name": "Wazzik Sparkbit",
+   "category": "goblin",
+   "status": "queued",
+   "prompt": "Portrait of a goblin tinkerer, teal-green skin, ears notched and pinned with copper rivets, soot freckles, a welding monocle over one yellow eye, a sputtering clockwork owl on the shoulder"
+  },
+  {
+   "name": "Skragg the Longshanks",
+   "category": "gnoll",
+   "status": "queued",
+   "prompt": "Portrait of a gnoll scavenger-lord, hyena muzzle with a cracked-tooth grin, mangy spotted hide, a crown of welded cutlery, eyes gleaming with hungry cunning"
+  },
+  {
+   "name": "Mother Craggle",
+   "category": "hag",
+   "status": "queued",
+   "prompt": "Portrait of a swamp hag, warty green skin, a single milky eye and one sharp black one, hair like hanging moss, iron teeth in a grin, a necklace of bird skulls"
+  },
+  {
+   "name": "Ancient Vyrmagrax",
+   "category": "dragon",
+   "status": "queued",
+   "prompt": "Portrait of an ancient bronze dragon, wise crocodilian face with a beard of coppery whiskers, scales gone green with verdigris, one eye clouded with age, wearing a dwarven-forged crown"
+  },
+  {
+   "name": "Drakeling Sootwing",
+   "category": "dragonkin",
+   "status": "queued",
+   "prompt": "Portrait of a young dragonkin courier, soot-grey scales with ember-orange belly plates, a snub snout, curious cat-slit pupils, wearing a courier satchier strap across the chest"
+  },
+  {
+   "name": "The Gilded Wyrm-Prince",
+   "category": "dragonkin",
+   "status": "queued",
+   "prompt": "Portrait of a haughty dragonkin noble, gold scales, a swept-back crest of ivory horns, pearl inlay along the jaw, wearing a fur-trimmed brocade doublet"
+  },
+  {
+   "name": "Ashfall Colossus",
+   "category": "construct",
+   "status": "queued",
+   "prompt": "Portrait of a massive golem of fused shield-plates and chains, a face that is just a dent in the metal, twin green witchlights deep in the hollow, volcanic cracks glowing along the neck"
+  },
+  {
+   "name": "Tinderwick",
+   "category": "elemental",
+   "status": "queued",
+   "prompt": "Portrait of a fire-elemental jester, a body of living flame in motley colors, a mask of cooling lava frozen in a laugh, candle-flames dancing where bells should be"
+  },
+  {
+   "name": "Gravewater Tidewarden",
+   "category": "elemental",
+   "status": "queued",
+   "prompt": "Portrait of a water-elemental knight, a helmet of translucent green water holding a human silhouette of bubbles and kelp inside, shoulders of barnacled coral and drowned bronze"
+  },
+  {
+   "name": "Lord Thistlequill",
+   "category": "fae",
+   "status": "queued",
+   "prompt": "Portrait of a fox-headed fae courtier, russet fur, amber slit eyes with unsettling politeness, wearing an embroidered doublet of autumn leaves and a rapier of black thorn"
+  },
+  {
+   "name": "The Moth Countess",
+   "category": "fae",
+   "status": "queued",
+   "prompt": "Portrait of a moth-winged fae noblewoman, huge dusty wings like cathedral glass, feathered antennae, a powdered pale face with mirrored silver eyes, a gown of woven moonlight"
+  },
+  {
+   "name": "Grimharrow the Flesh-Tailor",
+   "category": "demon",
+   "status": "queued",
+   "prompt": "Portrait of a needle-limbed demon tailor, deep red skin, six slender arms each holding bone needles, a smile stitched shut with gold thread, wearing a coat of patched hides"
+  },
+  {
+   "name": "Inquisitor Xylanth of the Ninth Brood",
+   "category": "alien",
+   "status": "queued",
+   "prompt": "Portrait of a mantis-like alien inquisitor, chitin plates of blue-black iridescence, four small black eyes, mandibles held politely closed, wearing a high ceremonial collar of woven copper wire"
+  },
+  {
+   "name": "Captain Ordrath Vex",
+   "category": "alien",
+   "status": "queued",
+   "prompt": "Portrait of a reptilian starship captain, teal scales, a crest of spines from brow to nape, gold slit eyes, wearing a dark vacuum-suit collar with mismatched vintage medals"
+  },
+  {
+   "name": "The Cartographer of Epsilon Nine",
+   "category": "alien",
+   "status": "queued",
+   "prompt": "Portrait of a soft-bodied alien scholar, a cephalopod mantle-head with skin that shifts through constellations of bioluminescent freckles, three amber eyes in a triangle, wearing a draped scholar robe of grey silk"
+  },
+  {
+   "name": "Yggdra Marshmother",
+   "category": "naga",
+   "status": "queued",
+   "prompt": "Portrait of a naga matriarch, olive scales fading to human skin at the cheeks, a hood of cobra flesh flared behind the head, black vertical pupils, jewelry of freshwater pearls and reed-gold"
+  },
+  {
+   "name": "Old Man Permafrost",
+   "category": "yeti",
+   "status": "queued",
+   "prompt": "Portrait of an elderly yeti, frost-white fur going yellow-grey with age, a crooked tooth, small deep-set eyes with a twinkle, enormous leathery hands wrapped in ragged strips of sails"
+  },
+  {
+   "name": "Merrow-King Dagonet",
+   "category": "merfolk",
+   "status": "queued",
+   "prompt": "Portrait of a deep-sea merfolk king, anglerfish-pale skin with a luminescent lure dangling before the brow, needle teeth, pearl-slit blind-white eyes, a crown of whalebone and glass sponge"
   }
  ]
 }
