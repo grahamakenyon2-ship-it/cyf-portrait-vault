@@ -40,7 +40,7 @@
   else root.FBEngine = factory();
 })(typeof globalThis !== 'undefined' ? globalThis : this, function () {
   const MAX_BOARD = 6, MAX_HAND = 8, MAX_HP = 30, MAX_MANA = 10, MAX_RELICS = 2;
-  const AI_LEVELS = ['easy', 'normal', 'hard'];
+  const AI_LEVELS = ['easy', 'normal', 'hard', 'impossible']; // v0.25.2: Impossible = hard heuristics + learned residual (RL rig v2, 70.06% vs hard)
 
   const KWTXT = { Guard: 'GUARD', Charge: 'CHARGE', Lifesteal: 'LIFESTEAL', Ranged: 'RANGED',
     Shock: 'SHOCK', Aegis: 'AEGIS', Bane: 'BANE', Relentless: 'RELENTLESS' };
@@ -1138,6 +1138,198 @@
     if (me.board.some((m) => hasKw(m, 'Relentless') && m.ready)) sweep();
   }
 
+
+  // v0.25.2 "IMPOSSIBLE" — the RL rig's evolved brain (v2, full action surface).
+  // ARCHITECTURE: residual learning on aiHard — every decision is
+  // hardScore + W·features across FOUR heads: (1) play evaluation, (2) hold
+  // threshold, (3) hero-power target, (4) attack targeting. The hard AI's own
+  // choice is always first among candidates, so W=0 is decision-identical to
+  // aiHard (seed-replay verified). RL_W below is the lineage-2 champion
+  // (70.06% vs hard over 1,760 games, 0 stalls). Schema is tied to the
+  // ENGINE, not cards — retrain via tools/rl/ after engine AI changes.
+  // Feature order is CONTRACT (matches tools/rl/rl-brain.mjs FEATURES).
+  const RL_W = [0.038050,-0.021650,-0.541914,0.633193,0.215587,-0.250032,0.618344,-0.533008,0.075421,-0.020180,-0.434405,-0.163405,0.263856,-0.154298,0.055658,0.388398,0.168472,0.344688,0.136545,-0.528336,-0.211848,0.010324,0.420618,0.769535,-0.225544,0.187853,0.368028,-0.249250,-0.817855,-0.128561,0.637978,0.122365,0.408497,0.222635,-0.186835,0.139695,0.149541,-0.401328,-0.077700,0.772726,0.114104,-0.318592,0.090911,0.269784,0.319702,-0.019415,-0.042221,-0.701111,0.204040,-0.121177,-0.084353,0.083054,0.064119,0.018681,0.262113,-0.358932];
+  const RL_P_OFF = 0, RL_A_OFF = 31, RL_PW_OFF = 45, RL_H_OFF = 52;
+  const rlDot = (off, f) => { let s = 0; for (let i = 0; i < f.length; i++) s += RL_W[off + i] * f[i]; return s; };
+
+  function rlPlayFeatures(S, side, c, th, plan, spy, hardV) {
+    const me = S[side], foe = S[other(side)];
+    const ci = effCost(S, side, c);
+    const ev = evScore(S, side, c);
+    const aggroCard = c.fx === 'fxPillage' || c.fx === 'fxHero3' || c.fx === 'fxVolley' || c.fx === 'fxVolley2' || hasKw(c, 'Charge');
+    const controlCard = hasKw(c, 'Guard') || ['fxExecute', 'fxExecute2', 'fxSnipe3', 'fxSnipe4', 'fxPingAll', 'fxPingAll2', 'fxAoe2', 'fxAoe3', 'fxSilence', 'fxTransform', 'fxScorchX'].includes(c.fx);
+    return [
+      ev, hardV, ci,
+      sovSynergy(S, side, c), spyAdjust(S, side, c, spy),
+      survivalBonus(S, side, c, th),
+      (plan.aggro && aggroCard) ? 1 : 0,
+      (plan.control && controlCard) ? 1 : 0,
+      c.cost,
+      S.turn > 40 ? 1 : 0,
+      (me.hp - foe.hp) / 10,
+      me.board.length - foe.board.length,
+      me.hand.length, foe.hand.length,
+      me.deck.length / 10, foe.deck.length / 10,
+      me.relics.length,
+      me.board.filter((m) => hasKw(m, 'Guard')).length,
+      foe.board.filter((m) => hasKw(m, 'Guard')).length,
+      c.type === 'minion' ? (c.atk + c.hp) : 0,
+      hasKw(c, 'Charge') ? 1 : 0, hasKw(c, 'Guard') ? 1 : 0,
+      hasKw(c, 'Ranged') ? 1 : 0, hasKw(c, 'Bane') ? 1 : 0,
+      c.bc ? 1 : 0, c.dr ? 1 : 0,
+      spy.sweep, spy.removal, spy.burn,
+      th.danger ? 1 : 0,
+      1,
+    ];
+  }
+
+  function rlAtkFeatures(S, side, m, t) {
+    const me = S[side], foe = S[other(side)];
+    if (t === 'PASS') return [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    const isFace = t === 'FACE';
+    const tm = isFace ? { atk: 0, hp: foe.hp, kw: null } : t;
+    return [
+      1,
+      isFace ? 1 : 0,
+      m.atk / 5, m.hp / 5,
+      (tm.atk || 0) / 5, (tm.hp || 0) / 5,
+      (!isFace && tm.hp <= m.atk) ? 1 : 0,
+      (!isFace && m.hp <= tm.atk) ? 1 : 0,
+      (!isFace && hasKw(tm, 'Guard')) ? 1 : 0,
+      hasKw(m, 'Ranged') ? 1 : 0,
+      hasKw(m, 'Bane') ? 1 : 0,
+      hasKw(m, 'Relentless') ? 1 : 0,
+      foe.board.length / 5,
+      me.hp <= 10 ? 1 : 0,
+    ];
+  }
+
+  function rlPowFeatures(S, side, t, pd) {
+    const foe = S[other(side)];
+    const isFace = t === 'FACE';
+    const isSkip = t === 'SKIP';
+    const tm = (!isFace && !isSkip) ? t : { atk: 0, hp: 0 };
+    return [
+      1,
+      isFace ? 1 : 0,
+      isSkip ? 1 : 0,
+      (tm.atk + tm.hp) / 5,
+      pd,
+      foe.hp <= pd + 2 ? 1 : 0,
+      0, // lethal — filled by caller
+    ];
+  }
+
+  // rlHardAttackChoice(): EXACTLY what aiHard's sweep does with minion m —
+  // computed WITHOUT attacking, so the learned layer can override.
+  function rlHardAttackChoice(S, side, m, foe, lethal, guards, scorchCautious) {
+    if (lethal && !guards().length && !m.shocked) return { hero: true };
+    const kills = hasKw(m, 'Bane') ? foe.board.slice() : foe.board.filter((t) => t.hp <= m.atk);
+    const safe = kills.filter((t) => hasKw(m, 'Ranged') || hasKw(m, 'Bane') || m.hp > t.atk);
+    const pool = safe.length ? safe : kills;
+    if (pool.length) {
+      const t = pool.slice().sort((a, b) => (b.atk + b.hp) - (a.atk + a.hp))[0];
+      const worthIt = safe.length || (t.atk + t.hp) * 2 >= m.atk + m.hp;
+      if (worthIt) return { uid: t.uid };
+    }
+    const gs = guards();
+    if (!gs.length) { if (!m.shocked && !scorchCautious) return { hero: true }; return null; }
+    const killable = gs.filter((g) => g.hp <= m.atk).sort((a, b) => b.atk - a.atk)[0];
+    const g = killable || gs.slice().sort((a, b) => a.hp - b.hp)[0];
+    return { uid: g.uid };
+  }
+
+  function aiImpossible(S, side, snap) {
+    const foeSide = other(side);
+    const me = S[side], foe = S[foeSide];
+    const pc = (i) => { playCard(S, side, i, { target: aiTarget(S, side, S[side].hand[i]) }); if (snap) snap(S); };
+    const pw = (t) => { power(S, side, t); if (snap) snap(S); };
+    const atk = (u, t) => { attack(S, side, u, t); if (snap) snap(S); };
+
+    const plan = deckPlan(S, side);
+    const th = threat(S, side);
+    const spy = spyRead(S, side);
+
+    // HEAD 1 — play evaluator: hard heuristics + learned residual,
+    // with the learned hold threshold (HEAD 4).
+    let played = true;
+    while (played) {
+      played = false;
+      let bi = -1, bv = 0;
+      const hasDef = th.danger && me.hand.some((c, i) => { try { return canPlay(S, side, i) && survivalBonus(S, side, c, th) > 0; } catch (e) { return false; } });
+      me.hand.forEach((c, i) => {
+        if (!canPlay(S, side, i)) return;
+        let v = evScore(S, side, c) - effCost(S, side, c) * 0.2;
+        v += sovSynergy(S, side, c) + spyAdjust(S, side, c, spy);
+        if (plan.aggro && (c.fx === 'fxPillage' || c.fx === 'fxHero3' || c.fx === 'fxVolley' || c.fx === 'fxVolley2' || hasKw(c, 'Charge'))) v += 0.4;
+        if (plan.control && (hasKw(c, 'Guard') || ['fxExecute', 'fxExecute2', 'fxSnipe3', 'fxSnipe4', 'fxPingAll', 'fxPingAll2', 'fxAoe2', 'fxAoe3', 'fxSilence', 'fxTransform', 'fxScorchX'].includes(c.fx))) v += 0.4;
+        const sb = survivalBonus(S, side, c, th);
+        if (th.danger) v += sb * 2 - (sb ? 0 : (hasDef ? 2 : 0));
+        const f = rlPlayFeatures(S, side, c, th, plan, spy, v);
+        const total = v + rlDot(RL_P_OFF, f);
+        if (total > bv) { bv = total; bi = i; }
+      });
+      const holdF = [1, S.turn / 10, me.hand.length, me.mana];
+      const holdH = (S.turn > 40 ? 0.1 : 1.2) + rlDot(RL_H_OFF, holdF);
+      if (bi >= 0 && bv >= holdH) { pc(bi); played = true; }
+    }
+
+    // lethal check BEFORE acting (verbatim)
+    const guards = () => foe.board.filter((m) => hasKw(m, 'Guard'));
+    const readyAtk = me.board.filter((m) => m.ready).reduce((s, m) => s + m.atk, 0);
+    const pd = canPower(S, side) ? powerDmg(S, side) : 0;
+    const spellDmg = burnInHand(S, side);
+    const lethal = !guards().length && foe.hp <= readyAtk + pd + spellDmg;
+
+    // HEAD 3 — hero power: hard's choice first, learned override after.
+    if (canPower(S, side)) {
+      let hardChoice = null;
+      if (lethal) hardChoice = { hero: true };
+      else {
+        const t = foe.board.filter((m) => m.hp <= pd).sort((a, b) => (b.atk + b.hp) - (a.atk + a.hp))[0];
+        if (t) hardChoice = { uid: t.uid };
+        else if (foe.hp <= pd) hardChoice = { hero: true };
+      }
+      const killable = foe.board.filter((m) => m.hp <= pd);
+      const cands = [];
+      if (hardChoice) cands.push(hardChoice.hero ? 'FACE' : killable.find((t) => t.uid === hardChoice.uid));
+      cands.push('SKIP', 'FACE', ...killable);
+      const uniq = cands.filter((c, i) => c !== undefined && cands.indexOf(c) === i);
+      let best = null, bs = 0;
+      for (const c of uniq) {
+        const f = rlPowFeatures(S, side, c, pd);
+        f[6] = lethal ? 1 : 0;
+        const s = rlDot(RL_PW_OFF, f);
+        if (!best || s > bs) { best = c; bs = s; }
+      }
+      if (best === 'FACE') pw({ hero: true });
+      else if (best !== 'SKIP' && best) pw({ uid: best.uid });
+    }
+
+    // HEAD 2 — attacks: per minion, hard's target first among candidates,
+    // learned scores override.
+    const scorchCautious = spy.foeScorched && me.board.filter((m) => m.hp === 1).length >= 3 && foe.hp > 15 && !lethal;
+    const sweep = () => me.board.slice().sort((a, b) => b.atk - a.atk).forEach((m) => {
+      if (!me.board.find((x) => x.uid === m.uid) || !m.ready) return;
+      const hc = rlHardAttackChoice(S, side, m, foe, lethal, guards, scorchCautious);
+      const gs = guards();
+      const hcCand = hc === null ? 'PASS' : (hc.hero ? 'FACE' : foe.board.find((x) => x.uid === hc.uid));
+      const legal = gs.length ? gs.slice() : foe.board.slice();
+      const cands = [hcCand, 'PASS', ...legal, ...(gs.length ? [] : (!m.shocked ? ['FACE'] : []))];
+      const uniq = cands.filter((c, i) => c !== undefined && c !== null && cands.indexOf(c) === i);
+      let best = null, bs = 0;
+      for (const c of uniq) {
+        const s = rlDot(RL_A_OFF, rlAtkFeatures(S, side, m, c));
+        if (!best || s > bs) { best = c; bs = s; }
+      }
+      if (best === 'PASS' || best == null) return;
+      if (best === 'FACE') atk(m.uid, { hero: true });
+      else atk(m.uid, { uid: best.uid });
+    });
+    sweep();
+    if (me.board.some((m) => hasKw(m, 'Relentless') && m.ready)) sweep();
+  }
+
   // dispatch: aiTurn(S, side, level, onAction) — level falls back to the side's declared
   // difficulty (S.aiA/S.aiB from startMatch opts), then to 'normal'.
   // v0.9.6: optional onAction(state) fires after every visible AI action
@@ -1148,6 +1340,7 @@
       : (side === 'A' ? S.aiA : S.aiB) || 'normal';
     if (brain === 'easy') return aiEasy(S, side, onAction);
     if (brain === 'hard') return aiHard(S, side, onAction);
+    if (brain === 'impossible') return aiImpossible(S, side, onAction);
     return aiNormal(S, side, onAction);
   }
 
