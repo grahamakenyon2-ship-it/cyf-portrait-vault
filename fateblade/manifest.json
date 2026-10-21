@@ -4458,6 +4458,55 @@
       "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/vrumane-the-silent.jpg",
       "license": "AI-generated",
       "src": "Mistral image generation"
+    },
+    {
+      "path": "audio/music/the-voices.ogg",
+      "sha256": "a71e454e0bef4fb2a36f909760d63e6df3d42faf01367a6c5bdd5286f4550d4b",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/music/the-voices.ogg",
+      "license": "CC BY 4.0",
+      "src": "https://commons.wikimedia.org/wiki/Special:FilePath/The_Voices_(MacLeod,_Kevin)_(ISRC_USUAN1100046).oga"
+    },
+    {
+      "path": "audio/music/netherworld-shanty.ogg",
+      "sha256": "546b6167bef3f42a0df208cc56072fc2273adca93583755c1ec14b381ce6aa55",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/music/netherworld-shanty.ogg",
+      "license": "CC BY 4.0",
+      "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Netherworld_Shanty_(MacLeod,_Kevin_)_(ISRC_USUAN1100138).oga"
+    },
+    {
+      "path": "audio/music/earth-prelude.ogg",
+      "sha256": "288134c98c8705efb7b61a45992701294f5b7f1c521a1755ec58c8828c40b6f3",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/music/earth-prelude.ogg",
+      "license": "CC BY 4.0",
+      "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Earth_Prelude_(MacLeod,_Kevin)_(ISRC_USUAN1100247).oga"
+    },
+    {
+      "path": "audio/music/peaceful-desolation.ogg",
+      "sha256": "af968f87ec940658454d0240d3431f313367472ecac8c668aba05fbd38e17a84",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/music/peaceful-desolation.ogg",
+      "license": "CC BY 4.0",
+      "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Peaceful_Desolation_(Kevin_MacLeod)_(ISRC_USUAN1200017).oga"
+    },
+    {
+      "path": "audio/music/miri-magic-dance.ogg",
+      "sha256": "811bc02f6c8dc56bd09bb57c232550046c9715d5dd0dfd85473577e07a540993",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/music/miri-magic-dance.ogg",
+      "license": "CC BY 4.0",
+      "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Miri%27s_Magic_Dance_(MacLeod,_Kevin)_(ISRC_USUAN1100157).oga"
+    },
+    {
+      "path": "audio/music/himalayan-atmosphere.ogg",
+      "sha256": "c32b7c41780f4c9a1345ad03a91fbf9c1b12a57c88eb83e0abf4ee13f4520420",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/music/himalayan-atmosphere.ogg",
+      "license": "CC BY 4.0",
+      "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Himalayan_Atmosphere_(MacLeod,_Kevin)_(ISRC_USUAN1100204).oga"
+    },
+    {
+      "path": "audio/music/living-voyage.ogg",
+      "sha256": "fa6058b857ba1f40e0227bb56f61fc76c9a9eb41ed884b2718d35fdfa3899f98",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/music/living-voyage.ogg",
+      "license": "CC BY 4.0",
+      "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Living_Voyage_(MacLeod,_Kevin)_(ISRC_USUAN1100594).oga"
     }
   ]
 }

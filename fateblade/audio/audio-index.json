@@ -380,6 +380,41 @@
    "src": "https://commons.wikimedia.org/wiki/Special:FilePath/The_Forest_and_the_Trees_(Kevin_MacLeod)_(ISRC_USUAN1100766).oga",
    "license": "CC BY 4.0",
    "bytes": 1823174
+  },
+  "music/the-voices.ogg": {
+   "src": "https://commons.wikimedia.org/wiki/Special:FilePath/The_Voices_(MacLeod,_Kevin)_(ISRC_USUAN1100046).oga",
+   "license": "CC BY 4.0",
+   "bytes": 12408271
+  },
+  "music/netherworld-shanty.ogg": {
+   "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Netherworld_Shanty_(MacLeod,_Kevin_)_(ISRC_USUAN1100138).oga",
+   "license": "CC BY 4.0",
+   "bytes": 5092188
+  },
+  "music/earth-prelude.ogg": {
+   "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Earth_Prelude_(MacLeod,_Kevin)_(ISRC_USUAN1100247).oga",
+   "license": "CC BY 4.0",
+   "bytes": 11388874
+  },
+  "music/peaceful-desolation.ogg": {
+   "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Peaceful_Desolation_(Kevin_MacLeod)_(ISRC_USUAN1200017).oga",
+   "license": "CC BY 4.0",
+   "bytes": 1694146
+  },
+  "music/miri-magic-dance.ogg": {
+   "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Miri%27s_Magic_Dance_(MacLeod,_Kevin)_(ISRC_USUAN1100157).oga",
+   "license": "CC BY 4.0",
+   "bytes": 5207164
+  },
+  "music/himalayan-atmosphere.ogg": {
+   "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Himalayan_Atmosphere_(MacLeod,_Kevin)_(ISRC_USUAN1100204).oga",
+   "license": "CC BY 4.0",
+   "bytes": 12128654
+  },
+  "music/living-voyage.ogg": {
+   "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Living_Voyage_(MacLeod,_Kevin)_(ISRC_USUAN1100594).oga",
+   "license": "CC BY 4.0",
+   "bytes": 11725598
   }
  }
 }
