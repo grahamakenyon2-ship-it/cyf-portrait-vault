@@ -461,6 +461,41 @@
       "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/music/match-canon.ogg",
       "license": "Public domain",
       "src": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Ludwig_van_Beethoven_-_Symphonie_5_c-moll_-_1._Allegro_con_brio.ogg"
+    },
+    {
+      "path": "art/stockpile/vessmora-the-hollow-choir.jpg",
+      "sha256": "bc62f9f833ffea9d364609f19edb645da0301aa811e6a75e7be00c5ecb31b36e",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/vessmora-the-hollow-choir.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/syltharien-moonvein.jpg",
+      "sha256": "a4a20dbf41a2241ad32dfa28c895ffa9f7cc74bcec0f2cc8fb65caee569d9af2",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/syltharien-moonvein.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/borgrim-ironhymn.jpg",
+      "sha256": "2418f10186ec68af45b7506a6fc95d7c84014fcb13e13a7891abac3f80c13342",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/borgrim-ironhymn.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/krukk-the-unbowed.jpg",
+      "sha256": "1936855b603215f92ad2b5e8d871f5c894efec22034924f312540ccc85e6399f",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/krukk-the-unbowed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/snikkfet-glimmerfang.jpg",
+      "sha256": "4e8f008a5ea8c31c14f6d54018b6040fefbf8ea93113ace606b4320349ee3a3e",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/snikkfet-glimmerfang.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
     }
   ]
 }

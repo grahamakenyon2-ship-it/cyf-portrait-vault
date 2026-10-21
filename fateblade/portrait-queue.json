@@ -4,32 +4,42 @@
   {
    "name": "Vessmora the Hollow Choir",
    "category": "undead",
-   "status": "queued",
-   "prompt": "Portrait of an undead lich choir-mistress, sunken ashen flesh stretched over an elegant skull, wisps of grave-mist curling from her lipless mouth, a raven-feather collar, faint blue-green spectral glow in empty eye sockets"
+   "status": "minted",
+   "prompt": "Portrait of an undead lich choir-mistress, sunken ashen flesh stretched over an elegant skull, wisps of grave-mist curling from her lipless mouth, a raven-feather collar, faint blue-green spectral glow in empty eye sockets",
+   "file": "art/stockpile/vessmora-the-hollow-choir.jpg",
+   "bytes": 281425
   },
   {
    "name": "Syltharien Moonvein",
    "category": "elf",
-   "status": "queued",
-   "prompt": "Portrait of an ancient high-elven seer, alabaster skin, silver hair braided with moonstone beads, elongated regal ears, eyes like frost-covered amber, wearing a starwoven mantle"
+   "status": "minted",
+   "prompt": "Portrait of an ancient high-elven seer, alabaster skin, silver hair braided with moonstone beads, elongated regal ears, eyes like frost-covered amber, wearing a starwoven mantle",
+   "file": "art/stockpile/syltharien-moonvein.jpg",
+   "bytes": 327997
   },
   {
    "name": "Borgrim Ironhymn",
    "category": "dwarf",
-   "status": "queued",
-   "prompt": "Portrait of a dwarven forgemaster, braided oxblood beard singed at the tips and bound with gold rings, soot-stained brow, one eye scarred shut, wearing a smith leather apron over etched plate"
+   "status": "minted",
+   "prompt": "Portrait of a dwarven forgemaster, braided oxblood beard singed at the tips and bound with gold rings, soot-stained brow, one eye scarred shut, wearing a smith leather apron over etched plate",
+   "file": "art/stockpile/borgrim-ironhymn.jpg",
+   "bytes": 330673
   },
   {
    "name": "Krukk the Unbowed",
    "category": "orc",
-   "status": "queued",
-   "prompt": "Portrait of an orc warchief, tusks capped in tarnished bronze, warpaint of white ash across a grey-green face, heavy bone-and-iron pauldrons, a gaze of absolute refusal"
+   "status": "minted",
+   "prompt": "Portrait of an orc warchief, tusks capped in tarnished bronze, warpaint of white ash across a grey-green face, heavy bone-and-iron pauldrons, a gaze of absolute refusal",
+   "file": "art/stockpile/krukk-the-unbowed.jpg",
+   "bytes": 362839
   },
   {
    "name": "Snikkfet Glimmerfang",
    "category": "goblin",
-   "status": "queued",
-   "prompt": "Portrait of a goblin alchemist, green-skinned with a wide toothy grin, oversized brass goggles pushed up on his forehead, a stained apothecary coat, clutching a smoking vial"
+   "status": "minted",
+   "prompt": "Portrait of a goblin alchemist, green-skinned with a wide toothy grin, oversized brass goggles pushed up on his forehead, a stained apothecary coat, clutching a smoking vial",
+   "file": "art/stockpile/snikkfet-glimmerfang.jpg",
+   "bytes": 394070
   },
   {
    "name": "The Penitent Engine",
