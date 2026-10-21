@@ -1821,13 +1821,13 @@
      "pool": "history",
      "cost": 4,
      "type": "edict",
-     "fx": "fxDraw2",
+     "fx": "fxScry3",
      "rl": null,
      "bc": "bcPing3",
      "rarity": "rare",
      "file": "art/armillary-sphere.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/armillary-sphere.jpg",
-     "ability": "Deal 3 damage to an enemy minion.",
+     "ability": "Scry 3 — draw the best of the top 3 cards of your deck. Then Battlecry: deal 3 damage.",
      "id": "armillary-sphere@barning"
     },
     {
@@ -2142,12 +2142,12 @@
      "cost": 3,
      "type": "relic",
      "fx": null,
-     "rl": "rlLibrary",
+     "rl": "rlGranary",
      "bc": "bcAoe1",
      "rarity": "rare",
      "file": "art/the-banned-book.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-banned-book.jpg",
-     "ability": "At the end of your turn, if you have 2 or more unspent Mana, draw a card. Then Deal 1 damage to all enemy minions.",
+     "ability": "At the start of your turn, restore 2 HP to your hero. Then Battlecry: deal 1 damage to all enemy minions.",
      "id": "the-banned-book@barning"
     },
     {
@@ -2173,13 +2173,13 @@
      "pool": "history",
      "cost": 1,
      "type": "edict",
-     "fx": "fxDecreeDraw",
+     "fx": "fxScry2",
      "rl": null,
      "bc": null,
      "rarity": "common",
      "file": "art/the-chart-room.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-chart-room.jpg",
-     "ability": "Decree: at the start of your next turn, draw two cards.",
+     "ability": "Scry 2 — draw the best of the top 2 cards of your deck.",
      "id": "the-chart-room@barning"
     },
     {
@@ -2317,13 +2317,13 @@
      "pool": "history",
      "cost": 2,
      "type": "edict",
-     "fx": "fxDecreeDraw",
+     "fx": "fxVolley2",
      "rl": null,
      "bc": "bcPing2",
      "rarity": "common",
      "file": "art/the-map-of-elsewhere.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-map-of-elsewhere.jpg",
-     "ability": "Decree: at the start of your next turn, draw two cards. Then Deal 2 damage to a random enemy minion.",
+     "ability": "Deal 2 damage to the enemy hero for each of your Ranged minions. Then Battlecry: deal 2 damage.",
      "id": "the-map-of-elsewhere@barning"
     },
     {
@@ -2413,13 +2413,13 @@
      "pool": "history",
      "cost": 3,
      "type": "edict",
-     "fx": "fxDraw2",
+     "fx": "fxVolley",
      "rl": null,
      "bc": "bcHero1",
      "rarity": "rare",
      "file": "art/the-signaling-heliograph.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-signaling-heliograph.jpg",
-     "ability": "Deal 1 damage to the enemy hero.",
+     "ability": "Deal 1 damage to the enemy hero for each Ranged minion you control. Then Battlecry: deal 1 damage to the enemy hero.",
      "id": "the-signaling-heliograph@barning"
     },
     {
@@ -2646,12 +2646,12 @@
      "atk": 1,
      "hp": 10,
      "kw": null,
-     "bc": "bcDraw",
+     "bc": "bcAoe1",
      "dr": null,
      "rarity": "common",
      "file": "history/england/anne_20boleyn.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/history/england/anne_20boleyn.jpg",
-     "ability": "Battlecry: draw a card.",
+     "ability": "Battlecry: deal 1 damage to all enemy minions.",
      "id": "anne-boleyn@barning"
     },
     {
@@ -4576,13 +4576,13 @@
      "pool": "history",
      "cost": 3,
      "type": "edict",
-     "fx": "fxDraw2",
+     "fx": "fxSnipe3",
      "rl": null,
      "bc": "bcAoe1",
      "rarity": "rare",
      "file": "art/executioner-s-blade.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/executioner-s-blade.jpg",
-     "ability": "Deal 1 damage to all enemy minions.",
+     "ability": "Deal 3 damage to the strongest enemy minion. Then Battlecry: deal 1 damage to all enemy minions.",
      "id": "executioner-s-blade@lucerre"
     },
     {
@@ -4656,13 +4656,13 @@
      "pool": "history",
      "cost": 5,
      "type": "edict",
-     "fx": "fxDraw3",
+     "fx": "fxDecreeMuster",
      "rl": null,
      "bc": "bcAoe1",
      "rarity": "rare",
      "file": "art/legion-siege-ramp.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/legion-siege-ramp.jpg",
-     "ability": "Deal 1 damage to all enemy minions.",
+     "ability": "Deal 3 damage to an enemy minion. Then Battlecry: deal 1 damage to all enemy minions.",
      "id": "legion-siege-ramp@lucerre"
     },
     {
@@ -4703,13 +4703,13 @@
      "pool": "history",
      "cost": 1,
      "type": "edict",
-     "fx": "fxDecreeDraw",
+     "fx": "fxScry2",
      "rl": null,
      "bc": null,
      "rarity": "common",
      "file": "art/ottoman-war-galleys.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/ottoman-war-galleys.jpg",
-     "ability": "Decree: at the start of your next turn, draw two cards.",
+     "ability": "Scry 2 — draw the best of the top 2 cards of your deck.",
      "id": "ottoman-war-galleys@lucerre"
     },
     {
@@ -4735,13 +4735,13 @@
      "pool": "history",
      "cost": 4,
      "type": "edict",
-     "fx": "fxDraw2",
+     "fx": "fxVolley2",
      "rl": null,
      "bc": "bcPing3",
      "rarity": "rare",
      "file": "art/siege-ladders.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/siege-ladders.jpg",
-     "ability": "Deal 3 damage to an enemy minion.",
+     "ability": "Deal 2 damage to the enemy hero for each of your Ranged minions. Then Battlecry: deal 3 damage.",
      "id": "siege-ladders@lucerre"
     },
     {
@@ -4847,13 +4847,13 @@
      "pool": "history",
      "cost": 3,
      "type": "edict",
-     "fx": "fxDraw2",
+     "fx": "fxVolley",
      "rl": null,
      "bc": "bcPing",
      "rarity": "rare",
      "file": "art/the-flame-siphon.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-flame-siphon.jpg",
-     "ability": "Deal 1 damage to a random enemy minion.",
+     "ability": "Deal 1 damage to the enemy hero for each Ranged minion you control. Then Battlecry: deal 1 damage.",
      "id": "the-flame-siphon@lucerre"
     },
     {
@@ -5007,14 +5007,15 @@
      "pool": "history",
      "cost": 5,
      "type": "edict",
-     "fx": "fxDraw3",
+     "fx": "fxDecreeMuster",
      "rl": null,
      "bc": "drDraw",
      "rarity": "rare",
      "file": "art/the-triumphal-arch.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-triumphal-arch.jpg",
-     "ability": "Draw a card.",
-     "id": "the-triumphal-arch@lucerre"
+     "ability": "Deal 3 damage to an enemy minion. Then Deathrattle: draw a card.",
+     "id": "the-triumphal-arch@lucerre",
+     "dr": null
     },
     {
      "name": "The vestal Flame",
@@ -5023,13 +5024,13 @@
      "pool": "history",
      "cost": 2,
      "type": "edict",
-     "fx": "fxDecreeDraw",
+     "fx": "fxScry2",
      "rl": null,
      "bc": "bcAoe1",
      "rarity": "common",
      "file": "art/the-vestal-flame.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-vestal-flame.jpg",
-     "ability": "Decree: at the start of your next turn, draw two cards. Then Deal 1 damage to all enemy minions.",
+     "ability": "Scry 2 — draw the best of the top 2 cards of your deck. Then Battlecry: deal 1 damage to all enemy minions.",
      "id": "the-vestal-flame@lucerre"
     },
     {
@@ -5427,8 +5428,8 @@
      "rarity": "common",
      "file": "history/roman-empire/valerian.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/history/roman-empire/valerian.jpg",
-     "dr": "drDraw",
-     "ability": "Deathrattle: draw a card.",
+     "dr": "drPing2",
+     "ability": "Deathrattle: deal 2 damage.",
      "bc": null,
      "fx": null,
      "rl": null
@@ -7080,8 +7081,8 @@
      "file": "art/the-curia-julia.jpg",
      "bc": null,
      "dr": null,
-     "rl": "rlCuria",
-     "ability": "At the start of your turn, if you control fewer minions than the enemy, draw a card.",
+     "rl": "rlGranary",
+     "ability": "At the start of your turn, restore 2 HP to your hero.",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-curia-julia.jpg",
      "type": "relic",
      "fx": null
@@ -7109,13 +7110,13 @@
      "pool": "history",
      "cost": 1,
      "type": "edict",
-     "fx": "fxDecreeDraw",
+     "fx": "fxScry2",
      "rl": null,
      "bc": null,
      "rarity": "common",
      "file": "art/carrion-crows-field.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/carrion-crows-field.jpg",
-     "ability": "Decree: at the start of your next turn, draw two cards.",
+     "ability": "Scry 2 — draw the best of the top 2 cards of your deck.",
      "id": "carrion-crows-field@fenorian"
     },
     {
@@ -7172,14 +7173,15 @@
      "pool": "history",
      "cost": 5,
      "type": "edict",
-     "fx": "fxDraw3",
+     "fx": "fxRally3",
      "rl": null,
      "bc": "drDraw",
      "rarity": "rare",
      "file": "art/the-cardinal-s-ring.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-cardinal-s-ring.jpg",
-     "ability": "Draw a card.",
-     "id": "the-cardinal-s-ring@fenorian"
+     "ability": "Summon a 1/1 Conscript. Then Deathrattle: draw a card.",
+     "id": "the-cardinal-s-ring@fenorian",
+     "dr": null
     },
     {
      "name": "The eagle And the Wolf",
@@ -8633,7 +8635,7 @@
      "fl": "The stars incline; they do not bind. They suggest.",
      "faction": "crescent",
      "pool": "history",
-     "cost": 3,
+     "cost": 2,
      "rarity": "rare",
      "file": "art/the-astrologer-s-court.jpg",
      "bc": null,
@@ -10311,7 +10313,7 @@
      "fl": "The Horde rides the yam trail to the ends of the earth.",
      "faction": "ironsteppes",
      "pool": "history",
-     "cost": 3,
+     "cost": 2,
      "type": "edict",
      "fx": "fxDeliberate",
      "bc": null,
@@ -10409,11 +10411,11 @@
      "type": "edict",
      "fx": "fxLawMuster",
      "rl": null,
-     "bc": "bcDraw",
+     "bc": "bcBuff",
      "rarity": "rare",
      "file": "art/the-moneylender-s-table.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-moneylender-s-table.jpg",
-     "ability": "Law for a round: your minions enter with +1/+1. Then Draw a card.",
+     "ability": "Law for a round: your minions enter with +1/+1. Then Battlecry: give a friendly minion +1/+1.",
      "id": "the-moneylender-s-table@ironsteppes"
     },
     {
@@ -10652,35 +10654,35 @@
    "commanderFile": "the-lord-of-the-rings/lothlorien-rivendell/galadriel.jpg",
    "defaultDeck": [
     "5b572857-4de3-933e-9e2ced9432e1@stormlit",
-    "arenmar-the-unbreached@stormlit",
-    "wildsong-rising@stormlit",
     "drummers-of-the-line@stormlit",
-    "the-coronation-oil@stormlit",
-    "halithmar-the-life-drunk@stormlit",
-    "faearien-the-patient@stormlit",
-    "velarien-the-hollow-crowned@stormlit",
-    "giloriel-the-red-handed@stormlit",
-    "soreniel-the-steadfast@stormlit",
-    "thalendor-the-steadfast@stormlit",
-    "silaldir-the-blood-tithed@stormlit",
-    "elarwen-the-oath-forged@stormlit",
-    "elithiel-the-shield-sworn@stormlit",
-    "ithorris-the-shield-sworn@stormlit",
-    "rueneth-the-unbreached@stormlit",
-    "arildir-the-gate-warden@stormlit",
-    "nerarwen-of-the-still-water@stormlit",
-    "gilalwen-the-gate-warden@stormlit",
-    "silithmar-of-the-ninth-weave@stormlit",
-    "morundefinedundefined-undefined@stormlit",
-    "gililmar-the-bold@stormlit",
-    "fenaxith-the-hundred-victor@stormlit",
+    "dralas@stormlit",
+    "thalwyn@stormlit",
+    "drummers-of-the-line@stormlit",
+    "grand-archive@stormlit",
+    "rain-of-arrows@stormlit",
+    "salt-fog-harbor@stormlit",
+    "aealiel-the-steadfast@stormlit",
+    "eleneth-the-bold@stormlit",
+    "ithadeth-of-the-quiet-house@stormlit",
+    "miraddor-of-the-long-watch@stormlit",
+    "aealwen-the-unseen@stormlit",
+    "aeorion-the-bold@stormlit",
+    "aearlas-the-oath-forged@stormlit",
+    "gilendor-of-the-crimson-tithe@stormlit",
+    "silarwyn-the-host-mustered@stormlit",
+    "thaladien-the-nine-crowned@stormlit",
+    "gilalien-the-steadfast@stormlit",
+    "faeardir-the-oath-forged@stormlit",
+    "giladris-of-the-quiet-house@stormlit",
+    "sorithris-the-steadfast@stormlit",
+    "gilendor-the-grave-sworn@stormlit",
+    "morris@stormlit",
+    "ruithien-the-shield-sworn@stormlit",
+    "faeevien-the-storm-marked@stormlit",
+    "neradeth-of-the-long-watch@stormlit",
+    "gililiel-the-unbowed@stormlit",
     "caelalwyn-the-storm-marked@stormlit",
-    "nymisur-the-blood-tithed@stormlit",
-    "caelalwen-the-red-handed@stormlit",
-    "caelilion-of-the-quiet-house@stormlit",
-    "nerarris-the-steadfast@stormlit",
-    "5b572857-4de3-933e-9e2ced9432e1@stormlit",
-    "arenmar-the-unbreached@stormlit"
+    "aeenwyn-the-breaker-line@stormlit"
    ],
    "cards": [
     {
@@ -10689,8 +10691,8 @@
      "fl": "Nothing passes Sorariel the Steadfast that has not been named.",
      "faction": "stormlit",
      "pool": "fandom",
-     "cost": 7,
-     "atk": 2,
+     "cost": 8,
+     "atk": 4,
      "hp": 12,
      "kw": "Guard",
      "rarity": "legendary",
@@ -10756,15 +10758,15 @@
      "fl": "Nothing passes Nerarris the Steadfast that has not been named.",
      "faction": "stormlit",
      "pool": "fandom",
-     "cost": 7,
-     "atk": 1,
+     "cost": 9,
+     "atk": 4,
      "hp": 12,
      "kw": "Guard",
      "rarity": "epic",
      "file": "dune/uncategorized/sheeana.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/dune/uncategorized/sheeana.jpg",
-     "dr": "drDraw",
-     "ability": "Deathrattle: draw a card.",
+     "dr": "drPing2",
+     "ability": "Deathrattle: deal 2 damage.",
      "bc": null,
      "fx": null,
      "rl": null
@@ -10775,8 +10777,8 @@
      "fl": "Silevris the Hollow-Crowned has never left the gate. Nothing has ever made it past Silevris the Hollow-Crowned.",
      "faction": "stormlit",
      "pool": "fandom",
-     "cost": 6,
-     "atk": 1,
+     "cost": 8,
+     "atk": 4,
      "hp": 11,
      "kw": "Guard",
      "rarity": "epic",
@@ -10794,8 +10796,8 @@
      "fl": "Nothing passes Caelalwyn the Storm-Marked that has not been named.",
      "faction": "stormlit",
      "pool": "fandom",
-     "cost": 6,
-     "atk": 3,
+     "cost": 7,
+     "atk": 4,
      "hp": 8,
      "kw": "Guard",
      "rarity": "epic",
@@ -10813,8 +10815,8 @@
      "fl": "Gililiel the Unbowed was standing guard before the wall was built.",
      "faction": "stormlit",
      "pool": "fandom",
-     "cost": 6,
-     "atk": 3,
+     "cost": 7,
+     "atk": 4,
      "hp": 7,
      "kw": "Guard",
      "rarity": "epic",
@@ -10832,8 +10834,8 @@
      "fl": "Caelalwen the Red-Handed tithes the field of its crimson.",
      "faction": "stormlit",
      "pool": "fandom",
-     "cost": 6,
-     "atk": 2,
+     "cost": 7,
+     "atk": 4,
      "hp": 7,
      "kw": "Lifesteal",
      "rarity": "epic",
@@ -10851,8 +10853,8 @@
      "fl": "Miralien the Last-Voiced tithes the field of its crimson.",
      "faction": "stormlit",
      "pool": "fandom",
-     "cost": 6,
-     "atk": 3,
+     "cost": 7,
+     "atk": 4,
      "hp": 6,
      "kw": "Lifesteal",
      "rarity": "epic",
@@ -10908,8 +10910,8 @@
      "fl": "First over the wall, always — Aeenwyn the Breaker-Line.",
      "faction": "stormlit",
      "pool": "fandom",
-     "cost": 6,
-     "atk": 3,
+     "cost": 7,
+     "atk": 4,
      "hp": 7,
      "kw": "Relentless",
      "rarity": "epic",
@@ -10946,8 +10948,8 @@
      "fl": "Gilalwen the Gate-Warden has never left the gate. Nothing has ever made it past Gilalwen the Gate-Warden.",
      "faction": "stormlit",
      "pool": "fandom",
-     "cost": 5,
-     "atk": 2,
+     "cost": 6,
+     "atk": 3,
      "hp": 7,
      "kw": "Guard",
      "rarity": "epic",
@@ -10984,8 +10986,8 @@
      "fl": "Neradeth of the Long Watch was standing guard before the wall was built.",
      "faction": "stormlit",
      "pool": "fandom",
-     "cost": 5,
-     "atk": 2,
+     "cost": 6,
+     "atk": 3,
      "hp": 6,
      "kw": "Guard",
      "rarity": "rare",
@@ -11023,7 +11025,7 @@
      "faction": "stormlit",
      "pool": "fandom",
      "cost": 5,
-     "atk": 2,
+     "atk": 3,
      "hp": 6,
      "kw": "Guard",
      "rarity": "rare",
@@ -11041,8 +11043,8 @@
      "fl": "Nothing passes Ruithien the Shield-Sworn that has not been named.",
      "faction": "stormlit",
      "pool": "fandom",
-     "cost": 5,
-     "atk": 1,
+     "cost": 6,
+     "atk": 3,
      "hp": 7,
      "kw": "Guard",
      "rarity": "rare",
@@ -11060,8 +11062,8 @@
      "fl": "Faeevien the Storm-Marked has never left the gate. Nothing has ever made it past Faeevien the Storm-Marked.",
      "faction": "stormlit",
      "pool": "fandom",
-     "cost": 5,
-     "atk": 2,
+     "cost": 6,
+     "atk": 3,
      "hp": 7,
      "kw": "Guard",
      "rarity": "rare",
@@ -11098,15 +11100,15 @@
      "fl": "Nothing passes Lorithwen the Far-Walked that has not been named.",
      "faction": "stormlit",
      "pool": "fandom",
-     "cost": 5,
-     "atk": 2,
-     "hp": 6,
+     "cost": 6,
+     "atk": 3,
+     "hp": 5,
      "kw": "Guard",
      "rarity": "rare",
      "file": "genshin-impact/uncategorized/venti.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/genshin-impact/uncategorized/venti.jpg",
-     "dr": "drDraw",
-     "ability": "Deathrattle: draw a card.",
+     "dr": "drPing2",
+     "ability": "Deathrattle: deal 2 damage.",
      "bc": null,
      "fx": null,
      "rl": null
@@ -11136,15 +11138,15 @@
      "fl": "Ruorris the Gate-Warden was standing guard before the wall was built.",
      "faction": "stormlit",
      "pool": "fandom",
-     "cost": 5,
-     "atk": 1,
-     "hp": 7,
+     "cost": 6,
+     "atk": 3,
+     "hp": 8,
      "kw": "Guard",
      "rarity": "rare",
      "file": "the-elder-scrolls/summerset-isle/ayrenn.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/the-elder-scrolls/summerset-isle/ayrenn.jpg",
-     "dr": "drDraw",
-     "ability": "Deathrattle: draw a card.",
+     "dr": "drPing2",
+     "ability": "Deathrattle: deal 2 damage.",
      "bc": null,
      "fx": null,
      "rl": null
@@ -11212,8 +11214,8 @@
      "fl": "Elithiel the Shield-Sworn has never left the gate. Nothing has ever made it past Elithiel the Shield-Sworn.",
      "faction": "stormlit",
      "pool": "fandom",
-     "cost": 4,
-     "atk": 1,
+     "cost": 5,
+     "atk": 3,
      "hp": 5,
      "kw": "Guard",
      "rarity": "rare",
@@ -11231,8 +11233,8 @@
      "fl": "Ithorris the Shield-Sworn has never left the gate. Nothing has ever made it past Ithorris the Shield-Sworn.",
      "faction": "stormlit",
      "pool": "fandom",
-     "cost": 4,
-     "atk": 1,
+     "cost": 5,
+     "atk": 3,
      "hp": 5,
      "kw": "Guard",
      "rarity": "rare",
@@ -11270,7 +11272,7 @@
      "faction": "stormlit",
      "pool": "fandom",
      "cost": 4,
-     "atk": 2,
+     "atk": 3,
      "hp": 4,
      "kw": "Guard",
      "rarity": "rare",
@@ -11288,15 +11290,15 @@
      "fl": "Thalildor the Gate-Warden was standing guard before the wall was built.",
      "faction": "stormlit",
      "pool": "fandom",
-     "cost": 4,
-     "atk": 2,
+     "cost": 5,
+     "atk": 3,
      "hp": 4,
      "kw": "Guard",
      "rarity": "rare",
      "file": "the-lord-of-the-rings/erebor/balin.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/the-lord-of-the-rings/erebor/balin.jpg",
-     "bc": "bcDraw",
-     "ability": "Battlecry: draw a card.",
+     "bc": "bcPing",
+     "ability": "Battlecry: deal 1 damage.",
      "dr": null,
      "fx": null,
      "rl": null
@@ -11307,15 +11309,15 @@
      "fl": "Sorithris the Steadfast was standing guard before the wall was built.",
      "faction": "stormlit",
      "pool": "fandom",
-     "cost": 4,
-     "atk": 1,
+     "cost": 5,
+     "atk": 3,
      "hp": 5,
      "kw": "Guard",
      "rarity": "rare",
      "file": "the-lord-of-the-rings/erebor/dain_20ironfoot.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/the-lord-of-the-rings/erebor/dain_20ironfoot.jpg",
-     "dr": "drDraw",
-     "ability": "Deathrattle: draw a card.",
+     "dr": "drPing2",
+     "ability": "Deathrattle: deal 2 damage.",
      "bc": null,
      "fx": null,
      "rl": null
@@ -11326,15 +11328,15 @@
      "fl": "Nothing passes Thalarien the Last-Voiced that has not been named.",
      "faction": "stormlit",
      "pool": "fandom",
-     "cost": 4,
-     "atk": 1,
+     "cost": 5,
+     "atk": 3,
      "hp": 5,
      "kw": "Guard",
      "rarity": "rare",
      "file": "the-lord-of-the-rings/erebor/thorin.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/the-lord-of-the-rings/erebor/thorin.jpg",
-     "bc": "bcDraw",
-     "ability": "Battlecry: draw a card.",
+     "bc": "bcPing",
+     "ability": "Battlecry: deal 1 damage.",
      "dr": null,
      "fx": null,
      "rl": null
@@ -11365,7 +11367,7 @@
      "faction": "stormlit",
      "pool": "fandom",
      "cost": 4,
-     "atk": 2,
+     "atk": 3,
      "hp": 3,
      "kw": "Lifesteal",
      "rarity": "rare",
@@ -11383,15 +11385,15 @@
      "fl": "Every wound Ruareth the Blood-Tithed takes, it returns with interest.",
      "faction": "stormlit",
      "pool": "fandom",
-     "cost": 4,
-     "atk": 2,
+     "cost": 5,
+     "atk": 3,
      "hp": 3,
      "kw": "Lifesteal",
      "rarity": "rare",
      "file": "the-lord-of-the-rings/uncategorized/eldarion.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/the-lord-of-the-rings/uncategorized/eldarion.jpg",
-     "dr": "drDraw",
-     "ability": "Deathrattle: draw a card.",
+     "dr": "drPing2",
+     "ability": "Deathrattle: deal 2 damage.",
      "bc": null,
      "fx": null,
      "rl": null
@@ -11402,15 +11404,15 @@
      "fl": "Every wound Ruardor the Late-Reborn takes, it returns with interest.",
      "faction": "stormlit",
      "pool": "fandom",
-     "cost": 4,
-     "atk": 1,
+     "cost": 5,
+     "atk": 3,
      "hp": 4,
      "kw": "Lifesteal",
      "rarity": "rare",
      "file": "the-lord-of-the-rings/uncategorized/fingolfin.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/the-lord-of-the-rings/uncategorized/fingolfin.jpg",
-     "dr": "drDraw",
-     "ability": "Deathrattle: draw a card.",
+     "dr": "drPing2",
+     "ability": "Deathrattle: deal 2 damage.",
      "bc": null,
      "fx": null,
      "rl": null
@@ -11460,15 +11462,15 @@
      "faction": "stormlit",
      "pool": "fandom",
      "cost": 5,
-     "atk": 2,
+     "atk": 3,
      "hp": 6,
      "kw": null,
      "rarity": "common",
      "file": "the-lord-of-the-rings/uncategorized/maedhros.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/the-lord-of-the-rings/uncategorized/maedhros.jpg",
      "bc": null,
-     "ability": "Deathrattle: draw a card.",
-     "dr": "drDraw",
+     "ability": "Deathrattle: deal 2 damage.",
+     "dr": "drPing2",
      "fx": null,
      "rl": null
     },
@@ -11497,8 +11499,8 @@
      "fl": "Lorilwyn the Patient was standing guard before the wall was built.",
      "faction": "stormlit",
      "pool": "fandom",
-     "cost": 4,
-     "atk": 2,
+     "cost": 5,
+     "atk": 3,
      "hp": 5,
      "kw": "Guard",
      "rarity": "common",
@@ -11554,8 +11556,8 @@
      "fl": "Wars end; Nerarwen of the Still Water collects the survivors.",
      "faction": "stormlit",
      "pool": "fandom",
-     "cost": 4,
-     "atk": 2,
+     "cost": 5,
+     "atk": 3,
      "hp": 5,
      "kw": null,
      "rarity": "common",
@@ -11580,8 +11582,8 @@
      "rarity": "common",
      "file": "the-lord-of-the-rings/uncategorized/thranduil.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/the-lord-of-the-rings/uncategorized/thranduil.jpg",
-     "bc": "bcDraw",
-     "ability": "Battlecry: draw a card.",
+     "bc": "bcPing",
+     "ability": "Battlecry: deal 1 damage.",
      "dr": null,
      "fx": null,
      "rl": null
@@ -11618,8 +11620,8 @@
      "rarity": "common",
      "file": "the-witcher/uncategorized/auberon_20muircetach.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/the-witcher/uncategorized/auberon_20muircetach.jpg",
-     "dr": "drDraw",
-     "ability": "Deathrattle: draw a card.",
+     "dr": "drPing2",
+     "ability": "Deathrattle: deal 2 damage.",
      "bc": null,
      "fx": null,
      "rl": null
@@ -11650,7 +11652,7 @@
      "faction": "stormlit",
      "pool": "fandom",
      "cost": 3,
-     "atk": 1,
+     "atk": 2,
      "hp": 3,
      "kw": "Guard",
      "rarity": "common",
@@ -11669,7 +11671,7 @@
      "faction": "stormlit",
      "pool": "fandom",
      "cost": 3,
-     "atk": 1,
+     "atk": 2,
      "hp": 3,
      "kw": "Guard",
      "rarity": "common",
@@ -11726,7 +11728,7 @@
      "faction": "stormlit",
      "pool": "fandom",
      "cost": 2,
-     "atk": 1,
+     "atk": 2,
      "hp": 1,
      "kw": "Guard",
      "rarity": "common",
@@ -11751,8 +11753,8 @@
      "rarity": "common",
      "file": "warhammer-fantasy/naggaroth/morathi.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/warhammer-fantasy/naggaroth/morathi.jpg",
-     "bc": "bcDraw",
-     "ability": "Battlecry: draw a card.",
+     "bc": "bcPing",
+     "ability": "Battlecry: deal 1 damage.",
      "dr": null,
      "fx": null,
      "rl": null
@@ -11763,16 +11765,16 @@
      "fl": "Giloriel the Red-Handed has never left the gate. Nothing has ever made it past Giloriel the Red-Handed.",
      "faction": "stormlit",
      "pool": "fandom",
-     "cost": 3,
-     "atk": 1,
+     "cost": 4,
+     "atk": 2,
      "hp": 2,
      "kw": "Guard",
      "rarity": "common",
      "file": "warhammer-fantasy/the-dwarfs/thorgrim.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/warhammer-fantasy/the-dwarfs/thorgrim.jpg",
      "dr": "drHeal2",
-     "ability": "Battlecry: draw a card. Deathrattle: restore 2 Health to your hero.",
-     "bc": "bcDraw",
+     "ability": "Battlecry: deal 1 damage. Deathrattle: restore 2 HP to your hero.",
+     "bc": "bcPing",
      "fx": null,
      "rl": null
     },
@@ -11782,8 +11784,8 @@
      "fl": "Caelevlas the Gate-Warden has never left the gate. Nothing has ever made it past Caelevlas the Gate-Warden.",
      "faction": "stormlit",
      "pool": "fandom",
-     "cost": 3,
-     "atk": 1,
+     "cost": 4,
+     "atk": 2,
      "hp": 4,
      "kw": null,
      "rarity": "common",
@@ -11820,8 +11822,8 @@
      "fl": "Ithalion the Life-Drunk tithes the field of its crimson.",
      "faction": "stormlit",
      "pool": "fandom",
-     "cost": 3,
-     "atk": 1,
+     "cost": 4,
+     "atk": 2,
      "hp": 3,
      "kw": "Lifesteal",
      "rarity": "common",
@@ -11846,8 +11848,8 @@
      "rarity": "common",
      "file": "warhammer-fantasy/the-wood-elves/orion.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/warhammer-fantasy/the-wood-elves/orion.jpg",
-     "dr": "drDraw",
-     "ability": "Deathrattle: draw a card.",
+     "dr": "drPing2",
+     "ability": "Deathrattle: deal 2 damage.",
      "bc": null,
      "fx": null,
      "rl": null
@@ -11865,8 +11867,8 @@
      "rarity": "common",
      "file": "warhammer-fantasy/uncategorized/alith_20anar.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/warhammer-fantasy/uncategorized/alith_20anar.jpg",
-     "dr": "drDraw",
-     "ability": "Deathrattle: draw a card.",
+     "dr": "drPing2",
+     "ability": "Deathrattle: deal 2 damage.",
      "bc": null,
      "fx": null,
      "rl": null
@@ -11878,14 +11880,14 @@
      "faction": "stormlit",
      "pool": "fandom",
      "cost": 3,
-     "atk": 1,
+     "atk": 2,
      "hp": 2,
      "kw": "Lifesteal",
      "rarity": "common",
      "file": "warhammer-fantasy/uncategorized/li_20dao.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/warhammer-fantasy/uncategorized/li_20dao.jpg",
-     "dr": "drDraw",
-     "ability": "Deathrattle: draw a card.",
+     "dr": "drPing2",
+     "ability": "Deathrattle: deal 2 damage.",
      "bc": null,
      "fx": null,
      "rl": null
@@ -11896,8 +11898,8 @@
      "fl": "Every wound Elevmar of the Long Watch takes, it returns with interest.",
      "faction": "stormlit",
      "pool": "fandom",
-     "cost": 3,
-     "atk": 1,
+     "cost": 4,
+     "atk": 2,
      "hp": 3,
      "kw": "Lifesteal",
      "rarity": "common",
@@ -11923,8 +11925,8 @@
      "file": "genshin-impact/fontaine/fontaine-default-f.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/genshin-impact/fontaine/fontaine-default-f.jpg",
      "dr": "drHeal2",
-     "ability": "Battlecry: draw a card. Deathrattle: restore 2 Health to your hero.",
-     "bc": "bcDraw",
+     "ability": "Battlecry: deal 1 damage. Deathrattle: restore 2 HP to your hero.",
+     "bc": "bcPing",
      "fx": null,
      "rl": null
     },
@@ -11935,7 +11937,7 @@
      "faction": "stormlit",
      "pool": "fandom",
      "cost": 3,
-     "atk": 1,
+     "atk": 2,
      "hp": 3,
      "kw": "Guard",
      "rarity": "common",
@@ -11953,8 +11955,8 @@
      "fl": "Every wound Halithmar the Life-Drunk takes, it returns with interest.",
      "faction": "stormlit",
      "pool": "fandom",
-     "cost": 2,
-     "atk": 1,
+     "cost": 3,
+     "atk": 2,
      "hp": 1,
      "kw": "Lifesteal",
      "rarity": "common",
@@ -11973,7 +11975,7 @@
      "faction": "stormlit",
      "pool": "fandom",
      "cost": 3,
-     "atk": 1,
+     "atk": 2,
      "hp": 2,
      "kw": "Guard",
      "rarity": "common",
@@ -11992,7 +11994,7 @@
      "faction": "stormlit",
      "pool": "fandom",
      "cost": 2,
-     "atk": 1,
+     "atk": 2,
      "hp": 1,
      "kw": "Guard",
      "rarity": "common",
@@ -12010,8 +12012,8 @@
      "fl": "Eleneth the Unforgotten has pulled the dying back across the river — more than once.",
      "faction": "stormlit",
      "pool": "fandom",
-     "cost": 3,
-     "atk": 1,
+     "cost": 4,
+     "atk": 2,
      "hp": 3,
      "kw": null,
      "rarity": "common",
@@ -12029,16 +12031,16 @@
      "fl": "Nothing passes Aealwen the Unseen that has not been named.",
      "faction": "stormlit",
      "pool": "fandom",
-     "cost": 2,
-     "atk": 1,
+     "cost": 3,
+     "atk": 2,
      "hp": 1,
      "kw": "Guard",
      "rarity": "common",
      "file": "genshin-impact/mondstadt/mondstadt-default-f.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/genshin-impact/mondstadt/mondstadt-default-f.jpg",
      "bc": null,
-     "ability": "Deathrattle: draw a card.",
-     "dr": "drDraw",
+     "ability": "Deathrattle: deal 2 damage.",
+     "dr": "drPing2",
      "fx": null,
      "rl": null
     },
@@ -12068,14 +12070,14 @@
      "faction": "stormlit",
      "pool": "fandom",
      "cost": 3,
-     "atk": 1,
+     "atk": 2,
      "hp": 1,
      "kw": "Lifesteal",
      "rarity": "common",
      "file": "genshin-impact/natlan/natlan-default-f.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/genshin-impact/natlan/natlan-default-f.jpg",
-     "bc": "bcDraw",
-     "ability": "Battlecry: draw a card. Deathrattle: restore 2 Health to your hero.",
+     "bc": "bcPing",
+     "ability": "Battlecry: deal 1 damage. Deathrattle: restore 2 HP to your hero.",
      "dr": "drHeal2",
      "fx": null,
      "rl": null
@@ -12087,7 +12089,7 @@
      "faction": "stormlit",
      "pool": "fandom",
      "cost": 3,
-     "atk": 1,
+     "atk": 2,
      "hp": 2,
      "kw": "Guard",
      "rarity": "common",
@@ -12105,8 +12107,8 @@
      "fl": "Thalevion the Reckoner tithes the field of its crimson.",
      "faction": "stormlit",
      "pool": "fandom",
-     "cost": 2,
-     "atk": 1,
+     "cost": 3,
+     "atk": 2,
      "hp": 1,
      "kw": "Lifesteal",
      "rarity": "common",
@@ -12143,8 +12145,8 @@
      "fl": "Nothing passes Aeilion of the Long Watch that has not been named.",
      "faction": "stormlit",
      "pool": "fandom",
-     "cost": 3,
-     "atk": 1,
+     "cost": 4,
+     "atk": 2,
      "hp": 3,
      "kw": "Guard",
      "rarity": "common",
@@ -12162,8 +12164,8 @@
      "fl": "Every wound Mirithiel the Life-Drunk takes, it returns with interest.",
      "faction": "stormlit",
      "pool": "fandom",
-     "cost": 3,
-     "atk": 1,
+     "cost": 4,
+     "atk": 2,
      "hp": 2,
      "kw": "Lifesteal",
      "rarity": "common",
@@ -12182,15 +12184,15 @@
      "faction": "stormlit",
      "pool": "fandom",
      "cost": 3,
-     "atk": 1,
+     "atk": 2,
      "hp": 1,
      "kw": "Guard",
      "rarity": "common",
      "file": "the-elder-scrolls/summerset-isle/summerset-default-f.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/the-elder-scrolls/summerset-isle/summerset-default-f.jpg",
-     "bc": "bcDraw",
-     "ability": "Battlecry: draw a card. Deathrattle: draw a card.",
-     "dr": "drDraw",
+     "bc": "bcPing",
+     "ability": "Battlecry: deal 1 damage. Deathrattle: deal 2 damage.",
+     "dr": "drPing2",
      "fx": null,
      "rl": null
     },
@@ -12287,8 +12289,8 @@
      "fl": "The Long Memory keeps its own.",
      "faction": "stormlit",
      "pool": "fandom",
-     "cost": 7,
-     "atk": 1,
+     "cost": 9,
+     "atk": 4,
      "hp": 14,
      "kw": "Guard",
      "rarity": "legendary",
@@ -12334,8 +12336,8 @@
      "fl": "Starlight outlasts sieges.",
      "faction": "stormlit",
      "pool": "fandom",
-     "cost": 6,
-     "atk": 1,
+     "cost": 7,
+     "atk": 4,
      "hp": 11,
      "kw": "Guard",
      "rarity": "legendary",
@@ -12444,13 +12446,13 @@
      "pool": "fandom",
      "cost": 1,
      "type": "edict",
-     "fx": "fxDecreeDraw",
+     "fx": "fxScry2",
      "rl": null,
      "bc": null,
      "rarity": "common",
      "file": "art/5b572857-1561-4de3-933e-9e2ced9432e1.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/5b572857-1561-4de3-933e-9e2ced9432e1.jpg",
-     "ability": "Decree: at the start of your next turn, draw two cards.",
+     "ability": "Scry 2 — draw the best of the top 2 cards of your deck.",
      "id": "5b572857-4de3-933e-9e2ced9432e1@stormlit"
     },
     {
@@ -12570,7 +12572,7 @@
      "faction": "stormlit",
      "pool": "fandom",
      "cost": 2,
-     "atk": 1,
+     "atk": 2,
      "hp": 2,
      "kw": "Guard",
      "bc": null,
@@ -12582,12 +12584,12 @@
      "id": "aelok-the-cold-throned@stormlit"
     },
     {
-     "name": "Draundefined undefined",
+     "name": "Brynien",
      "fl": "The Elderkin keep the long watch.",
      "faction": "stormlit",
      "pool": "fandom",
      "cost": 3,
-     "atk": 1,
+     "atk": 2,
      "hp": 3,
      "kw": "Guard",
      "bc": "bcBuff",
@@ -12596,15 +12598,15 @@
      "file": "the-lord-of-the-rings/lothlorien-rivendell/elven-default-m.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/the-lord-of-the-rings/lothlorien-rivendell/elven-default-m.jpg",
      "ability": "Guard. Battlecry: give another friendly minion +1/+1.",
-     "id": "draundefined-undefined@stormlit"
+     "id": "brynien@stormlit"
     },
     {
      "name": "Nymisur the Blood-Tithed",
      "fl": "The Elderkin keep the long watch.",
      "faction": "stormlit",
      "pool": "fandom",
-     "cost": 6,
-     "atk": 1,
+     "cost": 7,
+     "atk": 4,
      "hp": 10,
      "kw": "Guard",
      "bc": null,
@@ -12616,12 +12618,12 @@
      "id": "nymisur-the-blood-tithed@stormlit"
     },
     {
-     "name": "Rhuundefined undefined",
+     "name": "Thalwyn",
      "fl": "The Elderkin keep the long watch.",
      "faction": "stormlit",
      "pool": "fandom",
      "cost": 2,
-     "atk": 1,
+     "atk": 2,
      "hp": 1,
      "kw": "Lifesteal",
      "bc": null,
@@ -12630,7 +12632,7 @@
      "file": "the-lord-of-the-rings/lothlorien-rivendell/galadriel.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/the-lord-of-the-rings/lothlorien-rivendell/galadriel.jpg",
      "ability": "Lifesteal.",
-     "id": "rhuundefined-undefined@stormlit"
+     "id": "thalwyn@stormlit"
     },
     {
      "name": "Mekaketh the Hundred-Victor",
@@ -12650,12 +12652,12 @@
      "id": "mekaketh-the-hundred-victor@stormlit"
     },
     {
-     "name": "Morundefinedundefined undefined",
+     "name": "Morris",
      "fl": "The Elderkin keep the long watch.",
      "faction": "stormlit",
      "pool": "fandom",
-     "cost": 5,
-     "atk": 1,
+     "cost": 6,
+     "atk": 3,
      "hp": 9,
      "kw": "Guard",
      "bc": null,
@@ -12664,15 +12666,15 @@
      "file": "the-lord-of-the-rings/isengard/isengard-default-f.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/the-lord-of-the-rings/isengard/isengard-default-f.jpg",
      "ability": "Guard.",
-     "id": "morundefinedundefined-undefined@stormlit"
+     "id": "morris@stormlit"
     },
     {
      "name": "Goriel the Swift-Loosed",
      "fl": "The Elderkin keep the long watch.",
      "faction": "stormlit",
      "pool": "fandom",
-     "cost": 6,
-     "atk": 1,
+     "cost": 8,
+     "atk": 4,
      "hp": 10,
      "kw": "Lifesteal",
      "bc": null,
@@ -12684,7 +12686,7 @@
      "id": "goriel-the-swift-loosed@stormlit"
     },
     {
-     "name": "Kelundefined undefined",
+     "name": "Dralas",
      "fl": "The Elderkin keep the long watch.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12698,10 +12700,10 @@
      "file": "the-witcher/nilfgaard/nilfgaard-default-f.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/the-witcher/nilfgaard/nilfgaard-default-f.jpg",
      "ability": "Guard.",
-     "id": "kelundefined-undefined@stormlit"
+     "id": "dralas@stormlit"
     },
     {
-     "name": "Rhuundefinedundefined undefined",
+     "name": "Lorveth",
      "fl": "The Elderkin keep the long watch.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12715,15 +12717,15 @@
      "file": "the-witcher/nilfgaard/nilfgaard-default-m.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/the-witcher/nilfgaard/nilfgaard-default-m.jpg",
      "ability": "Guard. Battlecry: give another friendly minion +1/+1.",
-     "id": "rhuundefinedundefined-undefined@stormlit"
+     "id": "lorveth@stormlit"
     },
     {
      "name": "Fenaxith the Hundred-Victor",
      "fl": "The Elderkin keep the long watch.",
      "faction": "stormlit",
      "pool": "fandom",
-     "cost": 6,
-     "atk": 1,
+     "cost": 8,
+     "atk": 4,
      "hp": 9,
      "kw": "Lifesteal",
      "bc": null,
@@ -12735,13 +12737,13 @@
      "id": "fenaxith-the-hundred-victor@stormlit"
     },
     {
-     "name": "Aelundefined undefined",
+     "name": "Nerriel the Bold",
      "fl": "The Elderkin keep the long watch.",
      "faction": "stormlit",
      "pool": "fandom",
      "cost": 3,
-     "atk": 1,
-     "hp": 2,
+     "atk": 2,
+     "hp": 3,
      "kw": "Lifesteal",
      "bc": null,
      "dr": "drHeal2",
@@ -12754,7 +12756,7 @@
      "file": "the-witcher/temeria/temeria-default-f.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/the-witcher/temeria/temeria-default-f.jpg",
      "ability": "Lifesteal. Deathrattle: restore 2 HP to your hero.",
-     "id": "aelundefined-undefined@stormlit"
+     "id": "nerriel-the-bold@stormlit"
     }
    ]
   },
@@ -12856,7 +12858,7 @@
      "fl": "Koriis of the Grey Fletching's arrows arrive before the argument.",
      "faction": "starwind",
      "pool": "fandom",
-     "cost": 7,
+     "cost": 8,
      "atk": 6,
      "hp": 5,
      "kw": "Ranged",
@@ -12901,8 +12903,8 @@
      "rarity": "epic",
      "file": "halo/the-covenant/tartarus.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/halo/the-covenant/tartarus.jpg",
-     "bc": "bcDraw",
-     "ability": "Battlecry: draw a card.",
+     "bc": "bcAoe1",
+     "ability": "Battlecry: deal 1 damage to all enemy minions.",
      "dr": null,
      "fx": null,
      "rl": null
@@ -12970,7 +12972,7 @@
      "fl": "One breath, one arrow, one silence — Thakiuk the Thousand-Yard's creed.",
      "faction": "starwind",
      "pool": "fandom",
-     "cost": 6,
+     "cost": 7,
      "atk": 6,
      "hp": 3,
      "kw": "Ranged",
@@ -13084,7 +13086,7 @@
      "fl": "In Uroeth the Ash-Cloaked's realm, even silence is scheduled.",
      "faction": "starwind",
      "pool": "fandom",
-     "cost": 5,
+     "cost": 6,
      "atk": 2,
      "hp": 6,
      "kw": "Guard",
@@ -13559,7 +13561,7 @@
      "fl": "Droeax the Wall of Spears was standing guard before the wall was built.",
      "faction": "starwind",
      "pool": "fandom",
-     "cost": 5,
+     "cost": 6,
      "atk": 1,
      "hp": 6,
      "kw": "Guard",
@@ -14712,7 +14714,7 @@
      "id": "pyrashith-the-keen-eyed@starwind"
     },
     {
-     "name": "Lyrundefined undefined",
+     "name": "Sylieth",
      "fl": "The Dominion aims from beyond the horizon.",
      "faction": "starwind",
      "pool": "fandom",
@@ -14725,10 +14727,10 @@
      "rarity": "common",
      "file": "star-wars/bespin/bespin-default-f.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/star-wars/bespin/bespin-default-f.jpg",
-     "id": "lyrundefined-undefined@starwind"
+     "id": "sylieth@starwind"
     },
     {
-     "name": "Sylakundefined undefined",
+     "name": "Lyroon",
      "fl": "The Dominion aims from beyond the horizon.",
      "faction": "starwind",
      "pool": "fandom",
@@ -14742,7 +14744,7 @@
      "file": "star-wars/bespin/bespin-default-m.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/star-wars/bespin/bespin-default-m.jpg",
      "ability": "Ranged.",
-     "id": "sylakundefined-undefined@starwind"
+     "id": "lyroon@starwind"
     },
     {
      "name": "Lyrorak the Breaker-Line",
@@ -14796,7 +14798,7 @@
      "id": "jorielash-the-keen-eyed@starwind"
     },
     {
-     "name": "Lyrundefinedundefined the Swift-Loosed",
+     "name": "Nyax",
      "fl": "The Dominion aims from beyond the horizon.",
      "faction": "starwind",
      "pool": "fandom",
@@ -14810,7 +14812,7 @@
      "file": "star-wars/corellia/corellia-default-m.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/star-wars/corellia/corellia-default-m.jpg",
      "ability": "Aegis.",
-     "id": "lyrundefinedundefined-the-swift-loosed@starwind"
+     "id": "nyax@starwind"
     },
     {
      "name": "Fenur of the Grey Fletching",
@@ -14830,7 +14832,7 @@
      "id": "fenur-of-the-grey-fletching@starwind"
     },
     {
-     "name": "Ithundefined undefined",
+     "name": "Vreis",
      "fl": "The Dominion aims from beyond the horizon.",
      "faction": "starwind",
      "pool": "fandom",
@@ -14844,10 +14846,10 @@
      "file": "star-wars/dathomir/dathomir-default-m.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/star-wars/dathomir/dathomir-default-m.jpg",
      "ability": "Ranged. Deathrattle: deal 1 damage to a random enemy minion.",
-     "id": "ithundefined-undefined@starwind"
+     "id": "vreis@starwind"
     },
     {
-     "name": "Morundefinedundefined undefined II",
+     "name": "Moreth",
      "fl": "The Dominion aims from beyond the horizon.",
      "faction": "starwind",
      "pool": "fandom",
@@ -14861,7 +14863,7 @@
      "file": "star-trek/the-united-federation-of-planets/federation-default-f.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/star-trek/the-united-federation-of-planets/federation-default-f.jpg",
      "ability": "Ranged.",
-     "id": "morundefinedundefined-undefined-ii@starwind"
+     "id": "moreth@starwind"
     },
     {
      "name": "Sylur the Hundred-Victor",
@@ -14923,7 +14925,7 @@
     "garoggrat-of-the-grey-fletching@tigerpass",
     "aelokax-the-nine-crowned@tigerpass",
     "kragufist-the-oath-forged@tigerpass",
-    "rhuundefined-undefined-ii@tigerpass",
+    "jorax@tigerpass",
     "grakazog-the-hollow-crowned@tigerpass",
     "garurot-the-reckoner@tigerpass",
     "rokiskab-the-bright-bladed@tigerpass",
@@ -16191,20 +16193,20 @@
      "fx": null
     },
     {
-     "name": "130d 4733 B8ae 547067638433",
+     "name": "The Beasts' Moot",
      "fl": "The Horde runs before the thunder.",
      "faction": "tigerpass",
      "pool": "fandom",
      "cost": 5,
      "type": "edict",
-     "fx": "fxDraw3",
+     "fx": "fxRally3",
      "rl": null,
      "bc": "bcAoe1",
      "rarity": "rare",
      "file": "art/76054395-130d-4733-b8ae-547067638433.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/76054395-130d-4733-b8ae-547067638433.jpg",
      "ability": "Deal 1 damage to all enemy minions.",
-     "id": "130d-4733-b8ae-547067638433@tigerpass"
+     "id": "the-beasts-moot@tigerpass"
     },
     {
      "name": "Blood moon",
@@ -16213,13 +16215,13 @@
      "pool": "fandom",
      "cost": 5,
      "type": "edict",
-     "fx": "fxDraw3",
+     "fx": "fxRally3",
      "rl": null,
      "bc": "bcPing",
      "rarity": "rare",
      "file": "art/blood-moon.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/blood-moon.jpg",
-     "ability": "Deal 1 damage to a random enemy minion.",
+     "ability": "Summon a 1/1 Conscript. Then Battlecry: deal 1 damage.",
      "id": "blood-moon@tigerpass"
     },
     {
@@ -16397,7 +16399,7 @@
      "id": "brynielor-the-swift-loosed@tigerpass"
     },
     {
-     "name": "Nymundefined undefined",
+     "name": "Aelor",
      "fl": "The Horde runs before the thunder.",
      "faction": "tigerpass",
      "pool": "fandom",
@@ -16411,7 +16413,7 @@
      "file": "warhammer-fantasy/uncategorized/belegar_20ironhammer.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/warhammer-fantasy/uncategorized/belegar_20ironhammer.jpg",
      "ability": "Ranged.",
-     "id": "nymundefined-undefined@tigerpass"
+     "id": "aelor@tigerpass"
     },
     {
      "name": "Aelokax the Nine-Crowned",
@@ -16465,7 +16467,7 @@
      "id": "szaashis-the-steadfast@tigerpass"
     },
     {
-     "name": "Rhuundefined undefined II",
+     "name": "Jorax",
      "fl": "The Horde runs before the thunder.",
      "faction": "tigerpass",
      "pool": "fandom",
@@ -16479,10 +16481,10 @@
      "file": "warhammer-fantasy/the-dark-sea/darksea-default-m.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/warhammer-fantasy/the-dark-sea/darksea-default-m.jpg",
      "ability": "Charge.",
-     "id": "rhuundefined-undefined-ii@tigerpass"
+     "id": "jorax@tigerpass"
     },
     {
-     "name": "Jorakundefined undefined",
+     "name": "Moran",
      "fl": "The Horde runs before the thunder.",
      "faction": "tigerpass",
      "pool": "fandom",
@@ -16496,10 +16498,10 @@
      "file": "warhammer-fantasy/the-empire/empire-default-f.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/warhammer-fantasy/the-empire/empire-default-f.jpg",
      "ability": "Charge.",
-     "id": "jorakundefined-undefined@tigerpass"
+     "id": "moran@tigerpass"
     },
     {
-     "name": "Draundefinedundefined undefined",
+     "name": "Keluk",
      "fl": "The Horde runs before the thunder.",
      "faction": "tigerpass",
      "pool": "fandom",
@@ -16512,10 +16514,10 @@
      "rarity": "common",
      "file": "warhammer-fantasy/the-empire/empire-default-m.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/warhammer-fantasy/the-empire/empire-default-m.jpg",
-     "id": "draundefinedundefined-undefined@tigerpass"
+     "id": "keluk@tigerpass"
     },
     {
-     "name": "Fenundefined undefined",
+     "name": "Draak",
      "fl": "The Horde runs before the thunder.",
      "faction": "tigerpass",
      "pool": "fandom",
@@ -16529,10 +16531,10 @@
      "file": "warhammer-fantasy/the-empire/karl.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/warhammer-fantasy/the-empire/karl.jpg",
      "ability": "Battlecry: give another friendly minion +1/+1.",
-     "id": "fenundefined-undefined@tigerpass"
+     "id": "draak@tigerpass"
     },
     {
-     "name": "Lyrundefined undefined II",
+     "name": "Nymar",
      "fl": "The Horde runs before the thunder.",
      "faction": "tigerpass",
      "pool": "fandom",
@@ -16545,10 +16547,10 @@
      "rarity": "common",
      "file": "warhammer-fantasy/kislev/katarin.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/warhammer-fantasy/kislev/katarin.jpg",
-     "id": "lyrundefined-undefined-ii@tigerpass"
+     "id": "nymar@tigerpass"
     },
     {
-     "name": "Aelundefinedundefined undefined III",
+     "name": "Thaeth the Shield-Sworn",
      "fl": "The Horde runs before the thunder.",
      "faction": "tigerpass",
      "pool": "fandom",
@@ -16567,7 +16569,7 @@
      "file": "warhammer-fantasy/kislev/kislev-default-m.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/warhammer-fantasy/kislev/kislev-default-m.jpg",
      "ability": "Charge. Deathrattle: summon a 1/1 Conscript.",
-     "id": "aelundefinedundefined-undefined-iii@tigerpass"
+     "id": "thaeth-the-shield-sworn@tigerpass"
     }
    ]
   },
@@ -16588,7 +16590,7 @@
     "the-iron-basilica@zephek",
     "the-tidal-gauge@zephek",
     "ferevus-the-twilight-born@zephek",
-    "jorundefinedundefined-undefined@zephek",
+    "joren@zephek",
     "silk-bolt-cargo@zephek",
     "lucivus-the-shield-sworn@zephek",
     "dravaian@zephek",
@@ -17262,8 +17264,8 @@
      "rarity": "epic",
      "file": "art/excommunicado.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/excommunicado.jpg",
-     "ability": "Cast out: the target loses every keyword and its shield.",
-     "bc": null,
+     "ability": "The Terror unmakes titles: target foe loses all keywords and shield. Then Battlecry: deal 1 damage.",
+     "bc": "bcPing",
      "dr": null
     },
     {
@@ -18464,7 +18466,7 @@
      "id": "koren-the-swift-loosed@zephek"
     },
     {
-     "name": "Lyrundefinedundefined undefined",
+     "name": "Moris",
      "fl": "The Star Empire endures by formation.",
      "faction": "zephek",
      "pool": "fandom",
@@ -18477,10 +18479,10 @@
      "rarity": "common",
      "file": "star-trek/the-ferengi-alliance/ferengi-default-f.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/star-trek/the-ferengi-alliance/ferengi-default-f.jpg",
-     "id": "lyrundefinedundefined-undefined@zephek"
+     "id": "moris@zephek"
     },
     {
-     "name": "Jorundefinedundefined undefined",
+     "name": "Joren",
      "fl": "The Star Empire endures by formation.",
      "faction": "zephek",
      "pool": "fandom",
@@ -18494,7 +18496,7 @@
      "file": "star-trek/the-ferengi-alliance/ferengi-default-m.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/star-trek/the-ferengi-alliance/ferengi-default-m.jpg",
      "ability": "Guard. Battlecry: give another friendly minion +1/+1.",
-     "id": "jorundefinedundefined-undefined@zephek"
+     "id": "joren@zephek"
     },
     {
      "name": "Pyrithur the Hundred-Victor",
@@ -18514,7 +18516,7 @@
      "id": "pyrithur-the-hundred-victor@zephek"
     },
     {
-     "name": "Jorakundefined undefined II",
+     "name": "Vreor",
      "fl": "The Star Empire endures by formation.",
      "faction": "zephek",
      "pool": "fandom",
@@ -18528,7 +18530,7 @@
      "file": "star-trek/the-gorn-kingdom/gorn-default-m.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/star-trek/the-gorn-kingdom/gorn-default-m.jpg",
      "ability": "Lifesteal.",
-     "id": "jorakundefined-undefined-ii@zephek"
+     "id": "vreor@zephek"
     },
     {
      "name": "Mekithor the Blood-Tithed",
@@ -18581,7 +18583,7 @@
      "id": "fenuror-the-bold@zephek"
     },
     {
-     "name": "Rhuundefinedundefined undefined II",
+     "name": "Sylwyn",
      "fl": "The Star Empire endures by formation.",
      "faction": "zephek",
      "pool": "fandom",
@@ -18595,10 +18597,10 @@
      "file": "star-trek/uncategorized/khan_20noonien_20singh.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/star-trek/uncategorized/khan_20noonien_20singh.jpg",
      "ability": "Lifesteal.",
-     "id": "rhuundefinedundefined-undefined-ii@zephek"
+     "id": "sylwyn@zephek"
     },
     {
-     "name": "Morundefinedundefined undefined III",
+     "name": "Jorun",
      "fl": "The Star Empire endures by formation.",
      "faction": "zephek",
      "pool": "fandom",
@@ -18612,10 +18614,10 @@
      "file": "warhammer-fantasy/kislev/kislev-default-f.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/warhammer-fantasy/kislev/kislev-default-f.jpg",
      "ability": "Guard.",
-     "id": "morundefinedundefined-undefined-iii@zephek"
+     "id": "jorun@zephek"
     },
     {
-     "name": "Sylundefinedundefined undefined",
+     "name": "Ithael the Solemn",
      "fl": "The Star Empire endures by formation.",
      "faction": "zephek",
      "pool": "fandom",
@@ -18634,7 +18636,7 @@
      "file": "star-trek/the-klingon-empire/klingon-default-f.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/star-trek/the-klingon-empire/klingon-default-f.jpg",
      "ability": "Lifesteal. Battlecry: give another friendly minion +1/+1.",
-     "id": "sylundefinedundefined-undefined@zephek"
+     "id": "ithael-the-solemn@zephek"
     }
    ]
   },
@@ -22241,7 +22243,7 @@
      "passive": {
       "id": "SECOND_SIGHT",
       "name": "Second Sight",
-      "desc": "At the start of your turn, if you hold 5 or fewer cards, draw a card."
+      "desc": "At the start of your turn, if you hold 3 or fewer cards, draw a card."
      },
      "ability": null,
      "bc": null,
@@ -22388,8 +22390,8 @@
      "file": "art/the-queen-s-bargain.jpg",
      "bc": "bcPing",
      "dr": null,
-     "fx": "fxDraw3",
-     "ability": "Draw three cards. Then a lackey strikes a random enemy minion for 1.",
+     "fx": "fxRally3",
+     "ability": "Summon a 1/1 Conscript. Then Battlecry: deal 1 damage.",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-queen-s-bargain.jpg",
      "type": "edict",
      "rl": null
@@ -22421,8 +22423,8 @@
      "file": "art/the-crown-s-debt.jpg",
      "bc": null,
      "dr": null,
-     "fx": "fxDecreeDraw",
-     "ability": "Decree: at the start of your next turn, draw two cards.",
+     "fx": "fxScry2",
+     "ability": "Scry 2 — draw the best of the top 2 cards of your deck.",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-crown-s-debt.jpg",
      "type": "edict",
      "rl": null
@@ -22438,8 +22440,8 @@
      "file": "art/the-small-council.jpg",
      "bc": "bcSummon",
      "dr": null,
-     "fx": "fxDraw2",
-     "ability": "Draw two cards. Then summon a 1/1 clerk of the small council.",
+     "fx": "fxLawMuster",
+     "ability": "Law for a round: your minions enter with +1/+1. Then Battlecry: summon a Conscript.",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-small-council.jpg",
      "type": "edict",
      "rl": null
@@ -22489,8 +22491,8 @@
      "file": "art/the-court-chronicler.jpg",
      "bc": null,
      "dr": null,
-     "rl": "rlLibrary",
-     "ability": "At the end of your turn, if you have 2 or more unspent Mana, draw a card.",
+     "rl": "rlGranary",
+     "ability": "At the start of your turn, restore 2 HP to your hero.",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-court-chronicler.jpg",
      "type": "relic",
      "fx": null
@@ -22718,7 +22720,7 @@
      "id": "draokor-the-nine-crowned@courts"
     },
     {
-     "name": "Thalundefinedundefined undefined",
+     "name": "Roewyn",
      "fl": "Every rival is a signature from ruin.",
      "faction": "courts",
      "pool": "fandom",
@@ -22731,10 +22733,10 @@
      "rarity": "common",
      "file": "a-song-of-ice-and-fire/asshai-the-shadow/asshai-default-f.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/a-song-of-ice-and-fire/asshai-the-shadow/asshai-default-f.jpg",
-     "id": "thalundefinedundefined-undefined@courts"
+     "id": "roewyn@courts"
     },
     {
-     "name": "Korundefinedundefined undefined",
+     "name": "Jorette",
      "fl": "Every rival is a signature from ruin.",
      "faction": "courts",
      "pool": "fandom",
@@ -22748,7 +22750,7 @@
      "file": "a-song-of-ice-and-fire/asshai-the-shadow/asshai-default-m.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/a-song-of-ice-and-fire/asshai-the-shadow/asshai-default-m.jpg",
      "ability": "Relentless.",
-     "id": "korundefinedundefined-undefined@courts"
+     "id": "jorette@courts"
     },
     {
      "name": "Lyriseth the Hundred-Victor",
@@ -22768,7 +22770,7 @@
      "id": "lyriseth-the-hundred-victor@courts"
     },
     {
-     "name": "Draundefinedundefined the Swift-Loosed",
+     "name": "Thalonde",
      "fl": "Every rival is a signature from ruin.",
      "faction": "courts",
      "pool": "fandom",
@@ -22782,7 +22784,7 @@
      "file": "a-song-of-ice-and-fire/the-stormlands/baratheon-default-m.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/a-song-of-ice-and-fire/the-stormlands/baratheon-default-m.jpg",
      "ability": "Ranged.",
-     "id": "draundefinedundefined-the-swift-loosed@courts"
+     "id": "thalonde@courts"
     },
     {
      "name": "Morenis the Nine-Crowned",
@@ -22819,7 +22821,7 @@
      "id": "vaelith-the-thorned@courts"
     },
     {
-     "name": "Jorundefined undefined",
+     "name": "Haleando",
      "fl": "Every rival is a signature from ruin.",
      "faction": "courts",
      "pool": "fandom",
@@ -22833,7 +22835,7 @@
      "file": "a-song-of-ice-and-fire/dothraki/dothraki-default-f.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/a-song-of-ice-and-fire/dothraki/dothraki-default-f.jpg",
      "ability": "Relentless.",
-     "id": "jorundefined-undefined@courts"
+     "id": "haleando@courts"
     },
     {
      "name": "Nymiseth the Keen-Eyed",
@@ -22853,7 +22855,7 @@
      "id": "nymiseth-the-keen-eyed@courts"
     },
     {
-     "name": "Brynundefined undefined",
+     "name": "Brynelric the Steadfast",
      "fl": "Every rival is a signature from ruin.",
      "faction": "courts",
      "pool": "fandom",
@@ -22872,7 +22874,7 @@
      "file": "a-song-of-ice-and-fire/the-iron-islands/greyjoy-default-m.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/a-song-of-ice-and-fire/the-iron-islands/greyjoy-default-m.jpg",
      "ability": "Bane. Battlecry: deal 1 damage to the enemy hero.",
-     "id": "brynundefined-undefined@courts"
+     "id": "brynelric-the-steadfast@courts"
     }
    ]
   },
@@ -22892,7 +22894,7 @@
     "kelielash-the-cold-throned@kingdoms",
     "jiantai-the-iron-voiced@kingdoms",
     "guangqiu-the-keen-eyed@kingdoms",
-    "fenundefined-undefined-ii@kingdoms",
+    "nymdor@kingdoms",
     "the-winter-levy@kingdoms",
     "the-unbowed-banner@kingdoms",
     "duangrong@kingdoms",
@@ -23196,12 +23198,12 @@
      "atk": 2,
      "hp": 1,
      "kw": "Ranged",
-     "bc": "bcDraw",
+     "bc": "bcAoe1",
      "dr": null,
      "rarity": "common",
      "file": "romance-of-the-three-kingdoms/shu/jiang_20wei.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/romance-of-the-three-kingdoms/shu/jiang_20wei.jpg",
-     "ability": "Battlecry: draw a card.",
+     "ability": "Battlecry: deal 1 damage to all enemy minions.",
      "fx": null,
      "rl": null
     },
@@ -23878,7 +23880,7 @@
      "pool": "fandom",
      "cost": 3,
      "atk": 2,
-     "hp": 1,
+     "hp": 2,
      "kw": "Ranged",
      "bc": "bcAoe1",
      "dr": null,
@@ -24834,12 +24836,12 @@
      "pool": "fandom",
      "cost": 3,
      "type": "relic",
-     "rl": "rlLibrary",
+     "rl": "rlGranary",
      "bc": "bcAoe1",
      "rarity": "rare",
      "file": "art/the-codex-of-nine.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-codex-of-nine.jpg",
-     "ability": "The Codex opens: at the start of your turn, if you have 2 or more mana, draw a card.",
+     "ability": "At the start of your turn, restore 2 HP to your hero. Then Battlecry: deal 1 damage to all enemy minions.",
      "id": "the-codex-of-nine@kingdoms"
     },
     {
@@ -24941,7 +24943,7 @@
      "id": "kelielash-the-cold-throned@kingdoms"
     },
     {
-     "name": "Ithundefinedundefined undefined",
+     "name": "Orsak",
      "fl": "The banners rise, the fields burn.",
      "faction": "kingdoms",
      "pool": "fandom",
@@ -24955,10 +24957,10 @@
      "file": "the-lord-of-the-rings/rohan/rohan-default-f.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/the-lord-of-the-rings/rohan/rohan-default-f.jpg",
      "ability": "Guard.",
-     "id": "ithundefinedundefined-undefined@kingdoms"
+     "id": "orsak@kingdoms"
     },
     {
-     "name": "Orsundefinedundefined undefined",
+     "name": "Bryarn",
      "fl": "The banners rise, the fields burn.",
      "faction": "kingdoms",
      "pool": "fandom",
@@ -24972,7 +24974,7 @@
      "file": "the-lord-of-the-rings/rohan/rohan-default-m.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/the-lord-of-the-rings/rohan/rohan-default-m.jpg",
      "ability": "Deathrattle: summon a 1/1 Conscript.",
-     "id": "orsundefinedundefined-undefined@kingdoms"
+     "id": "bryarn@kingdoms"
     },
     {
      "name": "Goraxiel of the Long Watch",
@@ -24992,7 +24994,7 @@
      "id": "goraxiel-of-the-long-watch@kingdoms"
     },
     {
-     "name": "Jorakundefined undefined III",
+     "name": "Mekien",
      "fl": "The banners rise, the fields burn.",
      "faction": "kingdoms",
      "pool": "fandom",
@@ -25006,10 +25008,10 @@
      "file": "the-lord-of-the-rings/the-shire/shire-default-m.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/the-lord-of-the-rings/the-shire/shire-default-m.jpg",
      "ability": "Bane.",
-     "id": "jorakundefined-undefined-iii@kingdoms"
+     "id": "mekien@kingdoms"
     },
     {
-     "name": "Aelundefinedundefined undefined",
+     "name": "Jorlas",
      "fl": "The banners rise, the fields burn.",
      "faction": "kingdoms",
      "pool": "fandom",
@@ -25023,10 +25025,10 @@
      "file": "romance-of-the-three-kingdoms/yellow-turans/turbanremnants-default-m.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/romance-of-the-three-kingdoms/yellow-turans/turbanremnants-default-m.jpg",
      "ability": "Guard. Deathrattle: summon a 1/1 Conscript.",
-     "id": "aelundefinedundefined-undefined@kingdoms"
+     "id": "jorlas@kingdoms"
     },
     {
-     "name": "Fenundefined undefined II",
+     "name": "Nymdor",
      "fl": "The banners rise, the fields burn.",
      "faction": "kingdoms",
      "pool": "fandom",
@@ -25039,10 +25041,10 @@
      "rarity": "common",
      "file": "the-lord-of-the-rings/mirkwood/woodmenmirkwood-default-f.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/the-lord-of-the-rings/mirkwood/woodmenmirkwood-default-f.jpg",
-     "id": "fenundefined-undefined-ii@kingdoms"
+     "id": "nymdor@kingdoms"
     },
     {
-     "name": "Mekundefinedundefined undefined",
+     "name": "Thaleth",
      "fl": "The banners rise, the fields burn.",
      "faction": "kingdoms",
      "pool": "fandom",
@@ -25056,10 +25058,10 @@
      "file": "the-lord-of-the-rings/mirkwood/woodmenmirkwood-default-m.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/the-lord-of-the-rings/mirkwood/woodmenmirkwood-default-m.jpg",
      "ability": "Charge.",
-     "id": "mekundefinedundefined-undefined@kingdoms"
+     "id": "thaleth@kingdoms"
     },
     {
-     "name": "Thalundefinedundefined undefined II",
+     "name": "Aelmar the Deep-Minded",
      "fl": "The banners rise, the fields burn.",
      "faction": "kingdoms",
      "pool": "fandom",
@@ -25078,7 +25080,7 @@
      "file": "romance-of-the-three-kingdoms/yellow-turans/yellowturbans-default-m.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/romance-of-the-three-kingdoms/yellow-turans/yellowturbans-default-m.jpg",
      "ability": "Charge. Battlecry: deal 1 damage to all enemy minions.",
-     "id": "thalundefinedundefined-undefined-ii@kingdoms"
+     "id": "aelmar-the-deep-minded@kingdoms"
     }
    ]
   },
@@ -25112,7 +25114,7 @@
     "bryaedrel-the-ash-cloaked@towers",
     "caelovale-the-swift-hooved@towers",
     "doromere-the-first-over@towers",
-    "brynundefinedak-undefined@towers",
+    "aeleth@towers",
     "the-lighthouse-storm@towers",
     "nymawenna-the-red-handed@towers",
     "othathas-the-breaker-line@towers",
@@ -25120,7 +25122,7 @@
     "doraquen-the-first-over@towers",
     "draakur-the-steadfast@towers",
     "doradrel@towers",
-    "thalundefined-undefined@towers",
+    "eloor@towers",
     "quelivale-the-thunder-heeled@towers",
     "elomir-of-the-long-watch@towers",
     "isenoseth-of-the-quiet-house@towers"
@@ -25193,12 +25195,12 @@
      "atk": 3,
      "hp": 1,
      "kw": "Relentless",
-     "bc": "bcDraw",
+     "bc": "bcBuff",
      "dr": null,
      "rarity": "common",
      "file": "the-elder-scrolls/cyrodiil-the-empire/uriel_20septim.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/the-elder-scrolls/cyrodiil-the-empire/uriel_20septim.jpg",
-     "ability": "Battlecry: draw a card.",
+     "ability": "Battlecry: give a friendly minion +1/+1.",
      "fx": null,
      "rl": null
     },
@@ -25284,7 +25286,7 @@
      "fl": "First over the wall, always — Bryidrel.",
      "faction": "towers",
      "pool": "fandom",
-     "cost": 5,
+     "cost": 6,
      "atk": 4,
      "hp": 3,
      "kw": "Charge",
@@ -25360,7 +25362,7 @@
      "fl": "First over the wall, always — Alaequen.",
      "faction": "towers",
      "pool": "fandom",
-     "cost": 7,
+     "cost": 8,
      "atk": 5,
      "hp": 6,
      "kw": "Charge",
@@ -25380,7 +25382,7 @@
      "faction": "towers",
      "pool": "fandom",
      "cost": 6,
-     "atk": 5,
+     "atk": 4,
      "hp": 4,
      "kw": "Guard",
      "bc": "bcAoe1",
@@ -26044,7 +26046,7 @@
      "fl": "Queliamere the Dusk-Marked arrives before the war does.",
      "faction": "towers",
      "pool": "fandom",
-     "cost": 7,
+     "cost": 8,
      "atk": 7,
      "hp": 4,
      "kw": "Charge",
@@ -26121,7 +26123,7 @@
      "faction": "towers",
      "pool": "fandom",
      "cost": 5,
-     "atk": 5,
+     "atk": 4,
      "hp": 2,
      "kw": "Charge",
      "bc": null,
@@ -26220,11 +26222,11 @@
      "hp": 7,
      "kw": "Guard",
      "bc": null,
-     "dr": "drAoe1",
+     "dr": "drPing2",
      "rarity": "rare",
      "file": "the-wheel-of-time/uncategorized/demandred.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/the-wheel-of-time/uncategorized/demandred.jpg",
-     "ability": "Deathrattle: deal 1 damage to all enemy minions.",
+     "ability": "Deathrattle: deal 2 damage.",
      "fx": null,
      "rl": null
     },
@@ -26653,7 +26655,7 @@
      "faction": "towers",
      "pool": "fandom",
      "cost": 8,
-     "atk": 5,
+     "atk": 4,
      "hp": 10,
      "kw": "Guard",
      "bc": null,
@@ -26807,7 +26809,7 @@
      "fl": "Many are tested; few are chosen.",
      "faction": "towers",
      "pool": "fandom",
-     "cost": 3,
+     "cost": 2,
      "rarity": "common",
      "file": "art/the-novice-trials.jpg",
      "bc": null,
@@ -26993,11 +26995,11 @@
      "type": "edict",
      "fx": "fxScry2",
      "rl": null,
-     "bc": "bcHero1",
+     "bc": "bcPing",
      "rarity": "common",
      "file": "art/iron-fist-artillery.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/iron-fist-artillery.jpg",
-     "ability": "Scry 2 — draw the best of the top 2 cards of your deck. Then Deal 1 damage to the enemy hero.",
+     "ability": "Scry 2 — draw the best of the top 2 cards of your deck. Then Battlecry: deal 1 damage.",
      "id": "iron-fist-artillery@towers"
     },
     {
@@ -27041,11 +27043,11 @@
      "type": "edict",
      "fx": "fxScry2",
      "rl": null,
-     "bc": "bcPing",
+     "bc": "bcBuff",
      "rarity": "common",
      "file": "art/steppe-horse-archers.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/steppe-horse-archers.jpg",
-     "ability": "Scry 2 — draw the best of the top 2 cards of your deck. Then Deal 1 damage to a random enemy minion.",
+     "ability": "Scry 2 — draw the best of the top 2 cards of your deck. Then Battlecry: give a friendly minion +1/+1.",
      "id": "steppe-horse-archers@towers"
     },
     {
@@ -27103,13 +27105,13 @@
      "pool": "fandom",
      "cost": 5,
      "type": "edict",
-     "fx": "fxDraw3",
+     "fx": "fxLevy",
      "rl": null,
      "bc": "bcPing2",
      "rarity": "rare",
      "file": "art/the-lighthouse-storm.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-lighthouse-storm.jpg",
-     "ability": "Deal 2 damage to a random enemy minion.",
+     "ability": "Give your Conscripts +1/+1, then summon a Conscript. Then Battlecry: deal 2 damage.",
      "id": "the-lighthouse-storm@towers"
     },
     {
@@ -27121,11 +27123,11 @@
      "type": "edict",
      "fx": "fxScry2",
      "rl": null,
-     "bc": "bcHeal2",
+     "bc": "bcHero1",
      "rarity": "common",
      "file": "art/the-star-sanctum.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-star-sanctum.jpg",
-     "ability": "Scry 2 — draw the best of the top 2 cards of your deck. Then Restore 2 HP to your hero.",
+     "ability": "Scry 2 — draw the best of the top 2 cards of your deck. Then Battlecry: deal 1 damage to the enemy hero.",
      "id": "the-star-sanctum@towers"
     },
     {
@@ -27141,8 +27143,9 @@
      "rarity": "rare",
      "file": "art/whirling-dervishes.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/whirling-dervishes.jpg",
-     "ability": "At the end of your turn, if you have 2 or more unspent Mana, draw a card. Then Draw a card.",
-     "id": "whirling-dervishes@towers"
+     "ability": "At the end of your turn, if you have 2 or more unspent Mana, draw a card. Then Deathrattle: draw a card Then Deathrattle: deal 2 damage.",
+     "id": "whirling-dervishes@towers",
+     "dr": "drPing2"
     },
     {
      "name": "Ithethak the Bold",
@@ -27162,7 +27165,7 @@
      "id": "ithethak-the-bold@towers"
     },
     {
-     "name": "Szaundefinedundefined undefined",
+     "name": "Szaaris",
      "fl": "The Nine Towers price fate itself.",
      "faction": "towers",
      "pool": "fandom",
@@ -27176,10 +27179,10 @@
      "file": "the-wheel-of-time/the-aiel/aielwaste-default-m.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/the-wheel-of-time/the-aiel/aielwaste-default-m.jpg",
      "ability": "Relentless.",
-     "id": "szaundefinedundefined-undefined@towers"
+     "id": "szaaris@towers"
     },
     {
-     "name": "Fenundefined undefined III",
+     "name": "Halume",
      "fl": "The Nine Towers price fate itself.",
      "faction": "towers",
      "pool": "fandom",
@@ -27193,10 +27196,10 @@
      "file": "the-wheel-of-time/altara/altara-default-f.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/the-wheel-of-time/altara/altara-default-f.jpg",
      "ability": "Guard.",
-     "id": "fenundefined-undefined-iii@towers"
+     "id": "halume@towers"
     },
     {
-     "name": "Brynundefinedak undefined",
+     "name": "Aeleth",
      "fl": "The Nine Towers price fate itself.",
      "faction": "towers",
      "pool": "fandom",
@@ -27210,10 +27213,10 @@
      "file": "the-wheel-of-time/altara/altara-default-m.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/the-wheel-of-time/altara/altara-default-m.jpg",
      "ability": "Relentless. Deathrattle: draw a card.",
-     "id": "brynundefinedak-undefined@towers"
+     "id": "aeleth@towers"
     },
     {
-     "name": "Szaundefinedundefined undefined II",
+     "name": "Fenath",
      "fl": "The Nine Towers price fate itself.",
      "faction": "towers",
      "pool": "fandom",
@@ -27227,10 +27230,10 @@
      "file": "the-wheel-of-time/amadicia/amadicia-default-f.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/the-wheel-of-time/amadicia/amadicia-default-f.jpg",
      "ability": "Deathrattle: draw a card.",
-     "id": "szaundefinedundefined-undefined-ii@towers"
+     "id": "fenath@towers"
     },
     {
-     "name": "Thalundefined undefined",
+     "name": "Eloor",
      "fl": "The Nine Towers price fate itself.",
      "faction": "towers",
      "pool": "fandom",
@@ -27244,10 +27247,10 @@
      "file": "the-wheel-of-time/amadicia/amadicia-default-m.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/the-wheel-of-time/amadicia/amadicia-default-m.jpg",
      "ability": "Ranged.",
-     "id": "thalundefined-undefined@towers"
+     "id": "eloor@towers"
     },
     {
-     "name": "Aelundefinedundefined undefined II",
+     "name": "Kelwyn",
      "fl": "The Nine Towers price fate itself.",
      "faction": "towers",
      "pool": "fandom",
@@ -27261,7 +27264,7 @@
      "file": "the-wheel-of-time/andor/andor-default-f.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/vault/the-wheel-of-time/andor/andor-default-f.jpg",
      "ability": "Ranged.",
-     "id": "aelundefinedundefined-undefined-ii@towers"
+     "id": "kelwyn@towers"
     },
     {
      "name": "Gorakak of the Quiet House",
@@ -27286,7 +27289,7 @@
      "faction": "towers",
      "pool": "fandom",
      "cost": 6,
-     "atk": 4,
+     "atk": 2,
      "hp": 7,
      "kw": "Ranged",
      "bc": null,
@@ -27338,5 +27341,5 @@
    ]
   }
  ],
- "version": "0.21.0"
+ "version": "0.21.1"
 }
