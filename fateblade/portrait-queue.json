@@ -2062,1136 +2062,1420 @@
    "category": "orc",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a orc iron-jaw with nailed jaw-plate, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a orc iron-jaw with nailed jaw-plate, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/skuznak-the-blood-tithed.jpg",
+   "bytes": 338118
   },
   {
    "name": "Skuzgnash the Ash-Cloaked",
    "category": "orc",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a orc standard-bearer with banner of stitched skins, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a orc standard-bearer with banner of stitched skins, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/skuzgnash-the-ash-cloaked.jpg",
+   "bytes": 374128
   },
   {
    "name": "Thugzog the Keen-Eyed",
    "category": "orc",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a orc shaman with totem of the broken mountain, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a orc shaman with totem of the broken mountain, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/thugzog-the-keen-eyed.jpg",
+   "bytes": 372723
   },
   {
    "name": "Snikmaw the Hollow-Crowned",
    "category": "orc",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a orc slaver with chain-and-hook, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a orc slaver with chain-and-hook, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/snikmaw-the-hollow-crowned.jpg",
+   "bytes": 337999
   },
   {
    "name": "Zogusk the Ash-Cloaked",
    "category": "orc",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a orc pit-fighter with crossed scars, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a orc pit-fighter with crossed scars, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/zogusk-the-ash-cloaked.jpg",
+   "bytes": 293997
   },
   {
    "name": "Snikfist the Patient",
    "category": "orc",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a orc hunter with trophies of fangs, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a orc hunter with trophies of fangs, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/snikfist-the-patient.jpg",
+   "bytes": 372492
   },
   {
    "name": "Rokog the Patient",
    "category": "orc",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a orc drummer of the war-host, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a orc drummer of the war-host, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/rokog-the-patient.jpg",
+   "bytes": 354307
   },
   {
    "name": "Graztuk the Tireless",
    "category": "orc",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a orc smith with half-forged cleaver, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a orc smith with half-forged cleaver, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/graztuk-the-tireless.jpg",
+   "bytes": 357056
   },
   {
    "name": "Ugmaw the Tireless",
    "category": "orc",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a orc scout with eyes of ember, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a orc scout with eyes of ember, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/ugmaw-the-tireless.jpg",
+   "bytes": 378673
   },
   {
    "name": "Skuzgore the Unbowed",
    "category": "orc",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a orc chieftain with mantle of a hundred banners, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a orc chieftain with mantle of a hundred banners, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/skuzgore-the-unbowed.jpg",
+   "bytes": 409528
   },
   {
    "name": "Snikgore the Cold-Blooded",
    "category": "orc",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a orc butcher with stained apron, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a orc butcher with stained apron, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/snikgore-the-cold-blooded.jpg",
+   "bytes": 321829
   },
   {
    "name": "Snikkab the Patient",
    "category": "orc",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a orc boar-rider with tusk-helm, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a orc boar-rider with tusk-helm, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/snikkab-the-patient.jpg",
+   "bytes": 458664
   },
   {
    "name": "Grazgore the Reckoner",
    "category": "goblin",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a goblin sapper with bomb-basket, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a goblin sapper with bomb-basket, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/grazgore-the-reckoner.jpg",
+   "bytes": 299306
   },
   {
    "name": "Grazgrat the Unbowed",
    "category": "goblin",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a goblin king on scrap throne with nail-crown, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a goblin king on scrap throne with nail-crown, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/grazgrat-the-unbowed.jpg",
+   "bytes": 336164
   },
   {
    "name": "Nardak the Deep-Minded",
    "category": "goblin",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a goblin tinkersmith with stolen tools, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a goblin tinkersmith with stolen tools, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/nardak-the-deep-minded.jpg",
+   "bytes": 331870
   },
   {
    "name": "Grashkab the Reckoner",
    "category": "goblin",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a goblin snare-catcher with nets, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a goblin snare-catcher with nets, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/grashkab-the-reckoner.jpg",
+   "bytes": 301197
   },
   {
    "name": "Kragtuk the Swift-Loosed",
    "category": "goblin",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a goblin eye-gouger with knife-fight notches, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a goblin eye-gouger with knife-fight notches, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/kragtuk-the-swift-loosed.jpg",
+   "bytes": 294297
   },
   {
    "name": "Rokkab the Nine-Crowned",
    "category": "goblin",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a goblin standard-bearer with toad-banner, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a goblin standard-bearer with toad-banner, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/rokkab-the-nine-crowned.jpg",
+   "bytes": 360685
   },
   {
    "name": "Kragrot the Ash-Cloaked",
    "category": "goblin",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a goblin mushroom-farmer with spore basket, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a goblin mushroom-farmer with spore basket, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/kragrot-the-ash-cloaked.jpg",
+   "bytes": 344981
   },
   {
    "name": "Grakog the Thorned",
    "category": "goblin",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a goblin scrap-prince with copper jewellery, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a goblin scrap-prince with copper jewellery, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/grakog-the-thorned.jpg",
+   "bytes": 297583
   },
   {
    "name": "Grazdak the Dusk-Marked",
    "category": "goblin",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a goblin cutthroat with poison rings, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a goblin cutthroat with poison rings, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/grazdak-the-dusk-marked.jpg",
+   "bytes": 368545
   },
   {
    "name": "Thuggnash the Dusk-Marked",
    "category": "goblin",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a goblin horn-blower of the horde, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a goblin horn-blower of the horde, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/thuggnash-the-dusk-marked.jpg",
+   "bytes": 373417
   },
   {
    "name": "Grakgrat the Dusk-Marked",
    "category": "goblin",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a goblin pit-scrapper, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a goblin pit-scrapper, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/grakgrat-the-dusk-marked.jpg",
+   "bytes": 359117
   },
   {
    "name": "Grazash the Swift-Loosed",
    "category": "goblin",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a goblin looter with torn velvet, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a goblin looter with torn velvet, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/grazash-the-swift-loosed.jpg",
+   "bytes": 330776
   },
   {
    "name": "Grazzog the Nine-Crowned",
    "category": "goblin",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a goblin shaman with frog-skull staff, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a goblin shaman with frog-skull staff, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/grazzog-the-nine-crowned.jpg",
+   "bytes": 297383
   },
   {
    "name": "Uggrat the Nine-Crowned",
    "category": "goblin",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a goblin chef with questionable stew, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a goblin chef with questionable stew, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/uggrat-the-nine-crowned.jpg",
+   "bytes": 381511
   },
   {
    "name": "Roknak the Wall of Spears",
    "category": "goblin",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a goblin runner with war-messages, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a goblin runner with war-messages, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/roknak-the-wall-of-spears.jpg",
+   "bytes": 289038
   },
   {
    "name": "Thugrot the Grave-Sworn",
    "category": "hobgoblin",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a hobgoblin drill-sergeant with iron whistle, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a hobgoblin drill-sergeant with iron whistle, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/thugrot-the-grave-sworn.jpg",
+   "bytes": 322694
   },
   {
    "name": "Grashnak the Grave-Sworn",
    "category": "hobgoblin",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a hobgoblin legion officer with looted epaulettes, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a hobgoblin legion officer with looted epaulettes, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/grashnak-the-grave-sworn.jpg",
+   "bytes": 357726
   },
   {
    "name": "Rokdak the Grave-Sworn",
    "category": "hobgoblin",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a hobgoblin shield-wall captain, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a hobgoblin shield-wall captain, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/rokdak-the-grave-sworn.jpg",
+   "bytes": 280298
   },
   {
    "name": "Grazgore the Wall of Spears",
    "category": "hobgoblin",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a hobgoblin paymaster with strongbox, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a hobgoblin paymaster with strongbox, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/grazgore-the-wall-of-spears.jpg",
+   "bytes": 279692
   },
   {
    "name": "Bugrot the Thorned",
    "category": "hobgoblin",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a hobgoblin torturer with neat tools, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a hobgoblin torturer with neat tools, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/bugrot-the-thorned.jpg",
+   "bytes": 299863
   },
   {
    "name": "Rokash the Ash-Cloaked",
    "category": "hobgoblin",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a hobgoblin engineer with siege ladder, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a hobgoblin engineer with siege ladder, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/rokash-the-ash-cloaked.jpg",
+   "bytes": 319080
   },
   {
    "name": "Grakfist the Swift-Loosed",
    "category": "hobgoblin",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a hobgoblin color-sergeant with ragged flag, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a hobgoblin color-sergeant with ragged flag, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/grakfist-the-swift-loosed.jpg",
+   "bytes": 377338
   },
   {
    "name": "Graznak the Unbowed",
    "category": "hobgoblin",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a hobgoblin disciplinarian with notched baton, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a hobgoblin disciplinarian with notched baton, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/graznak-the-unbowed.jpg",
+   "bytes": 334973
   },
   {
    "name": "Zogtuk the Grave-Sworn",
    "category": "troll",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a moss-backed troll elder with stone charms in beard, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a moss-backed troll elder with stone charms in beard, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/zogtuk-the-grave-sworn.jpg",
+   "bytes": 346011
   },
   {
    "name": "Bugfist the Thorned",
    "category": "troll",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a troll bridge-warden with toll-chain, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a troll bridge-warden with toll-chain, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/bugfist-the-thorned.jpg",
+   "bytes": 324787
   },
   {
    "name": "Skarmaw the Swift-Loosed",
    "category": "troll",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a troll bone-setter with splint of logs, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a troll bone-setter with splint of logs, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/skarmaw-the-swift-loosed.jpg",
+   "bytes": 354334
   },
   {
    "name": "Buggore the Ash-Cloaked",
    "category": "troll",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a troll matriarch with lichen shawl, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a troll matriarch with lichen shawl, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/buggore-the-ash-cloaked.jpg",
+   "bytes": 301036
   },
   {
    "name": "Grakzog the Dusk-Marked",
    "category": "troll",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a troll pit-tyrant with knuckle-bone necklace, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a troll pit-tyrant with knuckle-bone necklace, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/grakzog-the-dusk-marked.jpg",
+   "bytes": 299277
   },
   {
    "name": "Skarfist the Steadfast",
    "category": "troll",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a troll swamp-sage with reed flute, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a troll swamp-sage with reed flute, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/skarfist-the-steadfast.jpg",
+   "bytes": 348079
   },
   {
    "name": "Skuztuk the Deep-Minded",
    "category": "troll",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a troll doorbreaker with tree-club, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a troll doorbreaker with tree-club, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/skuztuk-the-deep-minded.jpg",
+   "bytes": 391304
   },
   {
    "name": "Zoggnash the Deep-Minded",
    "category": "troll",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a troll skald with drum of hide, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a troll skald with drum of hide, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/zoggnash-the-deep-minded.jpg",
+   "bytes": 367912
   },
   {
    "name": "Skuznak the Hollow-Crowned",
    "category": "ogre",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a ogre butcher with meat-cleaver of anchor iron, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a ogre butcher with meat-cleaver of anchor iron, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/skuznak-the-hollow-crowned.jpg",
+   "bytes": 381219
   },
   {
    "name": "Thugrot the Reckoner",
    "category": "ogre",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a ogre pit-king with barrel-helm, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a ogre pit-king with barrel-helm, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/thugrot-the-reckoner.jpg",
+   "bytes": 391931
   },
   {
    "name": "Grashgnash the Grave-Sworn",
    "category": "ogre",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a ogre cook with ladle of war, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a ogre cook with ladle of war, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/grashgnash-the-grave-sworn.jpg",
+   "bytes": 337673
   },
   {
    "name": "Snikgnash the Swift-Loosed",
    "category": "ogre",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a ogre battering-ram with log pauldrons, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a ogre battering-ram with log pauldrons, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/snikgnash-the-swift-loosed.jpg",
+   "bytes": 446782
   },
   {
    "name": "Snikzog the Cold-Blooded",
    "category": "ogre",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a ogre tyrant with skull-goblet, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a ogre tyrant with skull-goblet, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/snikzog-the-cold-blooded.jpg",
+   "bytes": 356672
   },
   {
    "name": "Skarfist the Deep-Minded",
    "category": "ogre",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a ogre night-watch with bell-hammer, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a ogre night-watch with bell-hammer, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/skarfist-the-deep-minded.jpg",
+   "bytes": 357361
   },
   {
    "name": "Graknak the Dusk-Marked",
    "category": "ogre",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a ogre wrestler with champion belt of chains, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a ogre wrestler with champion belt of chains, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/graknak-the-dusk-marked.jpg",
+   "bytes": 305360
   },
   {
    "name": "Narkab the Nine-Crowned",
    "category": "ogre",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a ogre drover with herd-prod, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a ogre drover with herd-prod, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/narkab-the-nine-crowned.jpg",
+   "bytes": 347297
   },
   {
    "name": "Kragdak the Blood-Tithed",
    "category": "bugbear",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a bugbear stalker with pelt of a hundred hunts, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a bugbear stalker with pelt of a hundred hunts, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/kragdak-the-blood-tithed.jpg",
+   "bytes": 375597
   },
   {
    "name": "Ugusk the Patient",
    "category": "bugbear",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a bugbear strangler with garrote of gut, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a bugbear strangler with garrote of gut, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/ugusk-the-patient.jpg",
+   "bytes": 330099
   },
   {
    "name": "Rokzog the Blood-Tithed",
    "category": "bugbear",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a bugbear chief with trophy-skull mantle, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a bugbear chief with trophy-skull mantle, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/rokzog-the-blood-tithed.jpg",
+   "bytes": 348439
   },
   {
    "name": "Grakgnash the Hollow-Crowned",
    "category": "bugbear",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a bugbear ambusher with net and hook, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a bugbear ambusher with net and hook, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/grakgnash-the-hollow-crowned.jpg",
+   "bytes": 360043
   },
   {
    "name": "Ugusk the Unbowed",
    "category": "bugbear",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a bugbear shaman with cave-paint markings, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a bugbear shaman with cave-paint markings, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/ugusk-the-unbowed.jpg",
+   "bytes": 327038
   },
   {
    "name": "Grashgnash the Hollow-Crowned",
    "category": "bugbear",
    "tribe": "Greenskins",
    "realm": "marches",
-   "status": "queued",
-   "prompt": "Portrait of a bugbear tracker with claws on a cord, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a bugbear tracker with claws on a cord, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/grashgnash-the-hollow-crowned.jpg",
+   "bytes": 298373
   },
   {
    "name": "Tordell the Nine-Crowned",
    "category": "dwarf",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a dwarf high-king with rune-forged crown braided into beard, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a dwarf high-king with rune-forged crown braided into beard, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/tordell-the-nine-crowned.jpg",
+   "bytes": 384213
   },
   {
    "name": "Fizzrik the Thunder-Heeled",
    "category": "dwarf",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a dwarf forge-master with burn-scarred forearms, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a dwarf forge-master with burn-scarred forearms, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/fizzrik-the-thunder-heeled.jpg",
+   "bytes": 398847
   },
   {
    "name": "Durmar the Ash-Cloaked",
    "category": "dwarf",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a dwarf shield-maiden with axe of black anvil-iron, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a dwarf shield-maiden with axe of black anvil-iron, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/durmar-the-ash-cloaked.jpg",
+   "bytes": 319522
   },
   {
    "name": "Brambrew the Deep-Minded",
    "category": "dwarf",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a dwarf under-marshal in tunnel-map plate, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a dwarf under-marshal in tunnel-map plate, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/brambrew-the-deep-minded.jpg",
+   "bytes": 326883
   },
   {
    "name": "Balbard the Silent",
    "category": "dwarf",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a dwarf vaultkeeper with great iron keys, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a dwarf vaultkeeper with great iron keys, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/balbard-the-silent.jpg",
+   "bytes": 400994
   },
   {
    "name": "Thragold the Grave-Sworn",
    "category": "dwarf",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a dwarf brewmaster with cask-badge, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a dwarf brewmaster with cask-badge, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/thragold-the-grave-sworn.jpg",
+   "bytes": 321946
   },
   {
    "name": "Hewdin the Dusk-Marked",
    "category": "dwarf",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a dwarf stone-singer with hammer and chisel, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a dwarf stone-singer with hammer and chisel, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/hewdin-the-dusk-marked.jpg",
+   "bytes": 329273
   },
   {
    "name": "Cordell the Unbowed",
    "category": "dwarf",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a dwarf gate-warden with portcullis-chain, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a dwarf gate-warden with portcullis-chain, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/cordell-the-unbowed.jpg",
+   "bytes": 261567
   },
   {
    "name": "Haldelver the Blood-Tithed",
    "category": "dwarf",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a dwarf deep-delver with lamp of lichen-light, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a dwarf deep-delver with lamp of lichen-light, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/haldelver-the-blood-tithed.jpg",
+   "bytes": 267334
   },
   {
    "name": "Halwick the Reckoner",
    "category": "dwarf",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a dwarf oath-keeper with sworn-scroll cases, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a dwarf oath-keeper with sworn-scroll cases, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/halwick-the-reckoner.jpg",
+   "bytes": 303886
   },
   {
    "name": "Corwick the Hollow-Crowned",
    "category": "dwarf",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a dwarf grudge-holder with tally-plates, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a dwarf grudge-holder with tally-plates, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/corwick-the-hollow-crowned.jpg",
+   "bytes": 375680
   },
   {
    "name": "Cordell the Deep-Minded",
    "category": "dwarf",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a dwarf iron-priest with cog and anvil icons, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a dwarf iron-priest with cog and anvil icons, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/cordell-the-deep-minded.jpg",
+   "bytes": 389757
   },
   {
    "name": "Balbard the Grave-Sworn",
    "category": "dwarf",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a dwarf sapper with bore-head pick, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a dwarf sapper with bore-head pick, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/balbard-the-grave-sworn.jpg",
+   "bytes": 303925
   },
   {
    "name": "Haldell the Bold",
    "category": "dwarf",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a dwarf caravan-master with mule-bells, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a dwarf caravan-master with mule-bells, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/haldell-the-bold.jpg",
+   "bytes": 281253
   },
   {
    "name": "Nalmar the Patient",
    "category": "dwarf",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a dwarf lore-archivist with slate books, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a dwarf lore-archivist with slate books, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/nalmar-the-patient.jpg",
+   "bytes": 321244
   },
   {
    "name": "Hewdell the Thorned",
    "category": "dwarf",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a dwarf throne-heir with unpolished crown, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a dwarf throne-heir with unpolished crown, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/hewdell-the-thorned.jpg",
+   "bytes": 333313
   },
   {
    "name": "Torbrew the Thorned",
    "category": "dwarf",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a dwarf beast-trainer with cave-bear cub, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a dwarf beast-trainer with cave-bear cub, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/torbrew-the-thorned.jpg",
+   "bytes": 368189
   },
   {
    "name": "Bramgold the Bold",
    "category": "dwarf",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a dwarfprospector with motherlode locket, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a dwarfprospector with motherlode locket, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/bramgold-the-bold.jpg",
+   "bytes": 318434
   },
   {
    "name": "Grimdin the Tireless",
    "category": "dwarf",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a dwarf ale-councillor with tankard of state, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a dwarf ale-councillor with tankard of state, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/grimdin-the-tireless.jpg",
+   "bytes": 369854
   },
   {
    "name": "Bramgan the Wall of Spears",
    "category": "dwarf",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a dwarf rampart-captain with shield of doors, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a dwarf rampart-captain with shield of doors, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/bramgan-the-wall-of-spears.jpg",
+   "bytes": 361910
   },
   {
    "name": "Thramar the Wall of Spears",
    "category": "dwarf",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a dwarf tomb-sculptor with chisel of meteor iron, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a dwarf tomb-sculptor with chisel of meteor iron, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/thramar-the-wall-of-spears.jpg",
+   "bytes": 425005
   },
   {
    "name": "Tordin the Silent",
    "category": "dwarf",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a dwarf watch-commander of the lower gates, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a dwarf watch-commander of the lower gates, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/tordin-the-silent.jpg",
+   "bytes": 292452
   },
   {
    "name": "Halrik the Ash-Cloaked",
    "category": "dwarf",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a dwarf ember-smith with molten gold eyes, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a dwarf ember-smith with molten gold eyes, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/halrik-the-ash-cloaked.jpg",
+   "bytes": 357364
   },
   {
    "name": "Halmund the Cold-Blooded",
    "category": "dwarf",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a dwarf windlass-crew chief, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a dwarf windlass-crew chief, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/halmund-the-cold-blooded.jpg",
+   "bytes": 374867
   },
   {
    "name": "Thrabard the Wall of Spears",
    "category": "dwarf",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a dwarf gnome-friend with mismatched craft badges, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a dwarf gnome-friend with mismatched craft badges, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/thrabard-the-wall-of-spears.jpg",
+   "bytes": 306666
   },
   {
    "name": "Bregbrew the Reckoner",
    "category": "gnome",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a gnome artificer with brass goggles on forehead, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a gnome artificer with brass goggles on forehead, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/bregbrew-the-reckoner.jpg",
+   "bytes": 369276
   },
   {
    "name": "Durdan the Reckoner",
    "category": "gnome",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a gnome clockwork-sage with key-organ, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a gnome clockwork-sage with key-organ, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/durdan-the-reckoner.jpg",
+   "bytes": 356898
   },
   {
    "name": "Bramdan the Dusk-Marked",
    "category": "gnome",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a gnome gem-cutter with loupe of crystal, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a gnome gem-cutter with loupe of crystal, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/bramdan-the-dusk-marked.jpg",
+   "bytes": 270211
   },
   {
    "name": "Brambard the Silent",
    "category": "gnome",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a gnome tinker with tool-swarm on shoulder, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a gnome tinker with tool-swarm on shoulder, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/brambard-the-silent.jpg",
+   "bytes": 389156
   },
   {
    "name": "Tinkbard the Grave-Sworn",
    "category": "gnome",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a gnome illusionist with moth familiar, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a gnome illusionist with moth familiar, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/tinkbard-the-grave-sworn.jpg",
+   "bytes": 303539
   },
   {
    "name": "Bregwick the Reckoner",
    "category": "gnome",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a gnome astronomer with brass telescope, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a gnome astronomer with brass telescope, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/bregwick-the-reckoner.jpg",
+   "bytes": 346279
   },
   {
    "name": "Cordin the Tireless",
    "category": "gnome",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a gnome alchemist with unstable vials, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a gnome alchemist with unstable vials, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/cordin-the-tireless.jpg",
+   "bytes": 358489
   },
   {
    "name": "Tinkbard the Dusk-Marked",
    "category": "gnome",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a gnome storyteller with lantern of tales, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a gnome storyteller with lantern of tales, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/tinkbard-the-dusk-marked.jpg",
+   "bytes": 344715
   },
   {
    "name": "Nalbard the Unbowed",
    "category": "gnome",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a gnome clock-warden with heart of gears, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a gnome clock-warden with heart of gears, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/nalbard-the-unbowed.jpg",
+   "bytes": 295427
   },
   {
    "name": "Halgold the Tireless",
    "category": "gnome",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a gnome spore-keeper with mushroom lamps, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a gnome spore-keeper with mushroom lamps, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/halgold-the-tireless.jpg",
+   "bytes": 317015
   },
   {
    "name": "Halbard the Cold-Blooded",
    "category": "gnome",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a gnome prankster with smoke rings, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a gnome prankster with smoke rings, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/halbard-the-cold-blooded.jpg",
+   "bytes": 297111
   },
   {
    "name": "Tinkmund the Unbowed",
    "category": "gnome",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a gnome bridge-mason with tiny trowel, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a gnome bridge-mason with tiny trowel, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/tinkmund-the-unbowed.jpg",
+   "bytes": 329209
   },
   {
    "name": "Grimdan the Thorned",
    "category": "gnome",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a gnome rune-welder with spark patterns, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a gnome rune-welder with spark patterns, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/grimdan-the-thorned.jpg",
+   "bytes": 371824
   },
   {
    "name": "Grimdan the Dusk-Marked",
    "category": "gnome",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a gnome map-maker with ink-compass, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a gnome map-maker with ink-compass, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/grimdan-the-dusk-marked.jpg",
+   "bytes": 242688
   },
   {
    "name": "Thramund the Thunder-Heeled",
    "category": "gnome",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a gnome song-smith with harmonium keys, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a gnome song-smith with harmonium keys, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/thramund-the-thunder-heeled.jpg",
+   "bytes": 320859
   },
   {
    "name": "Torwick the Hollow-Crowned",
    "category": "gnome",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a gnome vault-auditor with abacus of beads, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a gnome vault-auditor with abacus of beads, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/torwick-the-hollow-crowned.jpg",
+   "bytes": 264514
   },
   {
    "name": "Torgold the Wall of Spears",
    "category": "gnome",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a gnome lantern-crew chief, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a gnome lantern-crew chief, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/torgold-the-wall-of-spears.jpg",
+   "bytes": 248351
   },
   {
    "name": "Grimdin the Thorned",
    "category": "gnome",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a gnome whisker-knight with thimble helm, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a gnome whisker-knight with thimble helm, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/grimdin-the-thorned.jpg",
+   "bytes": 337331
   },
   {
    "name": "Halbard the Blood-Tithed",
    "category": "gnome",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a gnome contraption-rider with steam saddle, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a gnome contraption-rider with steam saddle, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/halbard-the-blood-tithed.jpg",
+   "bytes": 326668
   },
   {
    "name": "Hewrik the Reckoner",
    "category": "gnome",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a gnome deep-school teacher with slate, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a gnome deep-school teacher with slate, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/hewrik-the-reckoner.jpg",
+   "bytes": 347065
   },
   {
    "name": "Morwick the Steadfast",
    "category": "halfling",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a halfling wanderer with patched travel-coat, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a halfling wanderer with patched travel-coat, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/morwick-the-steadfast.jpg",
+   "bytes": 276393
   },
   {
    "name": "Bramdan the Silent",
    "category": "halfling",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a halfling cook with spice-chains, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a halfling cook with spice-chains, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/bramdan-the-silent.jpg",
+   "bytes": 302642
   },
   {
    "name": "Corgan the Blood-Tithed",
    "category": "halfling",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a halfling gambler with marked dice, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a halfling gambler with marked dice, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/corgan-the-blood-tithed.jpg",
+   "bytes": 330053
   },
   {
    "name": "Nalwick the Silent",
    "category": "halfling",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a halfling burrow-mayor with chain of office of string, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a halfling burrow-mayor with chain of office of string, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/nalwick-the-silent.jpg",
+   "bytes": 246850
   },
   {
    "name": "Naldelver the Swift-Loosed",
    "category": "halfling",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a halfling scout with boot-daggers, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a halfling scout with boot-daggers, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/naldelver-the-swift-loosed.jpg",
+   "bytes": 230533
   },
   {
    "name": "Fizzmar the Grave-Sworn",
    "category": "halfling",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a halfling farmer with seed-song, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a halfling farmer with seed-song, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/fizzmar-the-grave-sworn.jpg",
+   "bytes": 337601
   },
   {
    "name": "Hewwick the Swift-Loosed",
    "category": "halfling",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a halfling caravan-guard with sling, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a halfling caravan-guard with sling, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/hewwick-the-swift-loosed.jpg",
+   "bytes": 281855
   },
   {
    "name": "Halgold the Blood-Tithed",
    "category": "halfling",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a halfling hearth-keeper with story quilt, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a halfling hearth-keeper with story quilt, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/halgold-the-blood-tithed.jpg",
+   "bytes": 285132
   },
   {
    "name": "Grimbrew the Swift-Loosed",
    "category": "halfling",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a halfling lucky-charm peddler, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a halfling lucky-charm peddler, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/grimbrew-the-swift-loosed.jpg",
+   "bytes": 352871
   },
   {
    "name": "Fizzgrim the Thorned",
    "category": "halfling",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a halfling orchard-warden with cider flagon, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a halfling orchard-warden with cider flagon, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/fizzgrim-the-thorned.jpg",
+   "bytes": 274771
   },
   {
    "name": "Durstone the Hollow-Crowned",
    "category": "myconid",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a myconid spore-sage with mushroom crown, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a myconid spore-sage with mushroom crown, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/durstone-the-hollow-crowned.jpg",
+   "bytes": 336195
   },
   {
    "name": "Tinkstone the Steadfast",
    "category": "myconid",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a myconid circle-tender with moss staff, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a myconid circle-tender with moss staff, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/tinkstone-the-steadfast.jpg",
+   "bytes": 340484
   },
   {
    "name": "Durwick the Patient",
    "category": "myconid",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a myconid glow-cap with lantern gills, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a myconid glow-cap with lantern gills, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/durwick-the-patient.jpg",
+   "bytes": 313841
   },
   {
    "name": "Mordin the Grave-Sworn",
    "category": "myconid",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a myconid deep-root elder with shelf-fungus mantle, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a myconid deep-root elder with shelf-fungus mantle, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/mordin-the-grave-sworn.jpg",
+   "bytes": 323681
   },
   {
    "name": "Nalgan the Bold",
    "category": "myconid",
    "tribe": "Underfolk",
    "realm": "deepholds",
-   "status": "queued",
-   "prompt": "Portrait of a myconid quiet-monk with cap bowed, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a myconid quiet-monk with cap bowed, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/nalgan-the-bold.jpg",
+   "bytes": 278207
   },
   {
    "name": "Nymane the Wall of Spears",
    "category": "dire-beast",
    "tribe": "Beasts",
    "realm": "tigerpass",
-   "status": "queued",
-   "prompt": "Portrait of a dire wolf alpha with winter-frost muzzle, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a dire wolf alpha with winter-frost muzzle, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/nymane-the-wall-of-spears.jpg",
+   "bytes": 338795
   },
   {
    "name": "Fenclaw the Tireless",
    "category": "dire-beast",
    "tribe": "Beasts",
    "realm": "tigerpass",
-   "status": "queued",
-   "prompt": "Portrait of a cave bear with scars of old wars, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a cave bear with scars of old wars, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/fenclaw-the-tireless.jpg",
+   "bytes": 393532
   },
   {
    "name": "Keshsha the Wall of Spears",
    "category": "dire-beast",
    "tribe": "Beasts",
    "realm": "tigerpass",
-   "status": "queued",
-   "prompt": "Portrait of a sabre-tooth matriarch with tusk-splinters, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a sabre-tooth matriarch with tusk-splinters, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/keshsha-the-wall-of-spears.jpg",
+   "bytes": 324121
   },
   {
    "name": "Talfang the Ash-Cloaked",
    "category": "dire-beast",
    "tribe": "Beasts",
    "realm": "tigerpass",
-   "status": "queued",
-   "prompt": "Portrait of a dire boar with iron-like hide, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a dire boar with iron-like hide, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/talfang-the-ash-cloaked.jpg",
+   "bytes": 314700
   },
   {
    "name": "Rhoaroke the Tireless",
    "category": "dire-beast",
    "tribe": "Beasts",
    "realm": "tigerpass",
-   "status": "queued",
-   "prompt": "Portrait of a shadow panther with moonlit eyes, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a shadow panther with moonlit eyes, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/rhoaroke-the-tireless.jpg",
+   "bytes": 225723
   },
   {
    "name": "Vruroke the Patient",
    "category": "dire-beast",
    "tribe": "Beasts",
    "realm": "tigerpass",
-   "status": "queued",
-   "prompt": "Portrait of a great stag with barbed antlers, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a great stag with barbed antlers, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/vruroke-the-patient.jpg",
+   "bytes": 256268
   },
   {
    "name": "Mhavash the Grave-Sworn",
    "category": "dire-beast",
    "tribe": "Beasts",
    "realm": "tigerpass",
-   "status": "queued",
-   "prompt": "Portrait of a ridge lion with storm-grey mane, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a ridge lion with storm-grey mane, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/mhavash-the-grave-sworn.jpg",
+   "bytes": 339883
   },
   {
    "name": "Nysha the Grave-Sworn",
    "category": "dire-beast",
    "tribe": "Beasts",
    "realm": "tigerpass",
-   "status": "queued",
-   "prompt": "Portrait of a dire elk with bone-white rack, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a dire elk with bone-white rack, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/nysha-the-grave-sworn.jpg",
+   "bytes": 294424
   },
   {
    "name": "Rhoanak the Cold-Blooded",
    "category": "beastfolk",
    "tribe": "Beasts",
    "realm": "tigerpass",
-   "status": "queued",
-   "prompt": "Portrait of a bearfolk berserker with honey-braid crown, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a bearfolk berserker with honey-braid crown, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/rhoanak-the-cold-blooded.jpg",
+   "bytes": 371161
   },
   {
    "name": "Mhahide the Wall of Spears",
    "category": "beastfolk",
    "tribe": "Beasts",
    "realm": "tigerpass",
-   "status": "queued",
-   "prompt": "Portrait of a catfolk duelist with ribbon-tied claws, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a catfolk duelist with ribbon-tied claws, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/mhahide-the-wall-of-spears.jpg",
+   "bytes": 284643
   },
   {
    "name": "Talclaw the Unbowed",
    "category": "beastfolk",
    "tribe": "Beasts",
    "realm": "tigerpass",
-   "status": "queued",
-   "prompt": "Portrait of a foxfolk trickster with coin-tail ring, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a foxfolk trickster with coin-tail ring, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/talclaw-the-unbowed.jpg",
+   "bytes": 289974
   },
   {
    "name": "Mhanak the Blood-Tithed",
    "category": "beastfolk",
    "tribe": "Beasts",
    "realm": "tigerpass",
-   "status": "queued",
-   "prompt": "Portrait of a birdfolk sky-warden with feather mantle, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a birdfolk sky-warden with feather mantle, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/mhanak-the-blood-tithed.jpg",
+   "bytes": 318265
   },
   {
    "name": "Taltooth the Blood-Tithed",
    "category": "beastfolk",
    "tribe": "Beasts",
    "realm": "tigerpass",
-   "status": "queued",
-   "prompt": "Portrait of a lizardfolk marsh-chief with scale of jade, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a lizardfolk marsh-chief with scale of jade, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/taltooth-the-blood-tithed.jpg",
+   "bytes": 317988
   },
   {
    "name": "Vrufang the Reckoner",
    "category": "beastfolk",
    "tribe": "Beasts",
    "realm": "tigerpass",
-   "status": "queued",
-   "prompt": "Portrait of a ratfolk tunnel-broker with whisker beads, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a ratfolk tunnel-broker with whisker beads, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/vrufang-the-reckoner.jpg",
+   "bytes": 289247
   },
   {
    "name": "Nynak the Dusk-Marked",
    "category": "beastfolk",
    "tribe": "Beasts",
    "realm": "tigerpass",
-   "status": "queued",
-   "prompt": "Portrait of a wolfpack hunter with fang necklace, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a wolfpack hunter with fang necklace, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/nynak-the-dusk-marked.jpg",
+   "bytes": 300629
   },
   {
    "name": "Talclaw the Wall of Spears",
    "category": "beastfolk",
    "tribe": "Beasts",
    "realm": "tigerpass",
-   "status": "queued",
-   "prompt": "Portrait of a badgerfolk digger with iron claws, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a badgerfolk digger with iron claws, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/talclaw-the-wall-of-spears.jpg",
+   "bytes": 291800
   },
   {
    "name": "Rhoamane the Thunder-Heeled",
    "category": "beastfolk",
    "tribe": "Beasts",
    "realm": "tigerpass",
-   "status": "queued",
-   "prompt": "Portrait of a deerfolk pathfinder with antler totems, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a deerfolk pathfinder with antler totems, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/rhoamane-the-thunder-heeled.jpg",
+   "bytes": 293423
   },
   {
    "name": "Talhide the Tireless",
    "category": "beastfolk",
    "tribe": "Beasts",
    "realm": "tigerpass",
-   "status": "queued",
-   "prompt": "Portrait of a tigerfolk pit-queen with striped scars, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a tigerfolk pit-queen with striped scars, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/talhide-the-tireless.jpg",
+   "bytes": 308445
   },
   {
    "name": "Nyclaw the Tireless",
    "category": "chimeric",
    "tribe": "Beasts",
    "realm": "tigerpass",
-   "status": "queued",
-   "prompt": "Portrait of a manticore with iron-quill mane, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a manticore with iron-quill mane, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/nyclaw-the-tireless.jpg",
+   "bytes": 294994
   },
   {
    "name": "Nyroke the Grave-Sworn",
    "category": "chimeric",
    "tribe": "Beasts",
    "realm": "tigerpass",
-   "status": "queued",
-   "prompt": "Portrait of a griffon-warden with eagle crown, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a griffon-warden with eagle crown, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/nyroke-the-grave-sworn.jpg",
+   "bytes": 348995
   },
   {
    "name": "Sartooth the Silent",
    "category": "chimeric",
    "tribe": "Beasts",
    "realm": "tigerpass",
-   "status": "queued",
-   "prompt": "Portrait of a swamp hydra-scion with twin heads, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a swamp hydra-scion with twin heads, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/sartooth-the-silent.jpg",
+   "bytes": 360978
   },
   {
    "name": "Rhoasha the Hollow-Crowned",
    "category": "chimeric",
    "tribe": "Beasts",
    "realm": "tigerpass",
-   "status": "queued",
-   "prompt": "Portrait of a basilisk brood-guardian with stone-gaze veil, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a basilisk brood-guardian with stone-gaze veil, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/rhoasha-the-hollow-crowned.jpg",
+   "bytes": 311871
   },
   {
    "name": "Urssha the Reckoner",
    "category": "beastmaster",
    "tribe": "Beasts",
    "realm": "tigerpass",
-   "status": "queued",
-   "prompt": "Portrait of a beastmaster with horned mask and chains, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a beastmaster with horned mask and chains, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/urssha-the-reckoner.jpg",
+   "bytes": 364016
   },
   {
    "name": "Sarnak the Bold",
    "category": "beastmaster",
    "tribe": "Beasts",
    "realm": "tigerpass",
-   "status": "queued",
-   "prompt": "Portrait of a beastcaller with bone flute and raven, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a beastcaller with bone flute and raven, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/sarnak-the-bold.jpg",
+   "bytes": 323065
   },
   {
    "name": "Vrumane the Silent",
    "category": "beastmaster",
    "tribe": "Beasts",
    "realm": "tigerpass",
-   "status": "queued",
-   "prompt": "Portrait of a pit-tamer with whip of braided hide, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering"
+   "status": "minted",
+   "prompt": "Portrait of a pit-tamer with whip of braided hide, dramatic chiaroscuro lighting, aged varnish texture, museum-quality, grimdark fantasy, head and shoulders, ornate period attire, plain dark background, no text, no lettering",
+   "file": "art/stockpile/vrumane-the-silent.jpg",
+   "bytes": 362590
   }
  ],
  "taxonomy": "tribes-v2"
