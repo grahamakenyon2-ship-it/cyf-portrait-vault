@@ -1,5 +1,5 @@
 {
-  "version": "0.22.5",
+  "version": "0.22.6",
   "files": [
     {
       "path": "src/engine.js",
@@ -8,7 +8,7 @@
     },
     {
       "path": "src/game.html",
-      "sha256": "5ae93a8b0aafc4a4c9b83f145d9b808ba63c8adfa8e1a86b4dc3de3c9a0ea95c",
+      "sha256": "13748292ac7e25049c034b6031849cb8112ec973e11653f978e8d3c4247031b1",
       "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/src/game.html"
     },
     {

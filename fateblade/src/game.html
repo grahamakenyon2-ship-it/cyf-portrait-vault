@@ -11,6 +11,7 @@
     --gold:#c9a24b; --gold-dim:#8a6d2f; --panel:#14100a; --bg:#0a0806;
     --hp:#c33; --atk:#e2b93b; --ink:#e8dcc0;
     --abil:#f7e3b8; /* v0.22.3: ability/edict text — warm parchment-gold (was pink #ff99cc), max readability on dark plates */
+    --pass:#a8e6b8; /* v0.22.6: SOVEREIGN passive text — soft sage, distinct from ability parchment + keyword cyan */
     /* theme art (set per realm at runtime) */
     --theme-bg: none; --theme-panel: none; --theme-btn: none;
     --board-bg: none; --menu-bg: none; --fb-btn: none;
@@ -40,7 +41,7 @@
   .cardpick img{width:192px; height:230px; object-fit:cover; display:block;}
   .cardpick .lbl{margin-top:6px; color:var(--gold); letter-spacing:1px;}
   .cardpick .sub{font-size:13px; color:#c9b78e;}
-  .cardpick .passive{font-size:13px; color:#8fd; font-style:italic; margin-top:4px; min-height:44px; font-weight:600; text-shadow:0 1px 1px #000, 0 0 2px #000, 0 -1px 1px #000;}
+  .cardpick .passive{font-size:13px; color:var(--pass); font-style:italic; margin-top:4px; min-height:44px; font-weight:600; text-shadow:0 1px 1px #000, 0 0 2px #000, 0 -1px 1px #000;}
   .cardpick .idn{font-size:13px; color:var(--abil); font-style:italic; margin-top:4px;}
 
   /* ===== main menu ===== */
@@ -64,7 +65,7 @@
   .hcard .typerow{position:absolute; top:24px; left:3px; font-size:9px; letter-spacing:1px; color:var(--abil); background:#000c; padding:1px 4px;}
   .hcard.spell{box-shadow:inset 0 0 0 3px #7a5a1a, inset 0 0 0 4px #000;}
   .hero.targetable{border-color:var(--hp); box-shadow:0 0 10px var(--hp);}
-  .minion{width:150px; height:192px; border:6px solid transparent; border-image:var(--theme-panel, linear-gradient(#2a2216,#191308)) 40; background:#0d0a07; position:relative; cursor:pointer;}
+  .minion{width:150px; height:192px; border:6px solid transparent; border-image:var(--theme-panel, linear-gradient(#2a2216,#191308)) 40; background:#0d0a07; position:relative; cursor:pointer; box-shadow:0 4px 16px #000d;} /* v0.22.6: pop off the full-bleed board art */
   .minion img{width:100%; height:150px; object-fit:cover; object-position:50% 20%; display:block;}
   .minion .nm{font-size:14.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding:1px 3px; background:#000c;}
   .minion .atk{position:absolute; bottom:2px; left:4px; font-size:22px; color:var(--atk); text-shadow:0 0 4px #000;}
@@ -121,9 +122,10 @@
     background:linear-gradient(180deg,#2b241580,#171208a0); border:1px solid #4a3c22; border-radius:6px;
     padding:7px 9px; text-shadow:0 1px 1px #000, 0 0 3px #000, 0 -1px 1px #000;} /* v0.22 TEXT PLATE: bounded region, frame never rides the text */
   #zoom .zpv.long{font-size:12.5px;} #zoom .zpv.xl{font-size:11.5px; line-height:1.28;}
-  #zoom .zpas{font-size:13px; line-height:1.3; color:var(--abil); font-style:italic; margin-top:6px; font-weight:600;
-    background:linear-gradient(180deg,#2b241580,#171208a0); border:1px solid #4a3c22; border-radius:6px;
-    padding:6px 9px; text-shadow:0 1px 1px #000, 0 0 3px #000, 0 -1px 1px #000;} /* v0.21.2 sovereign passive plate — v0.22 text-plate styling */
+  #zoom .zpas{font-size:13px; line-height:1.3; color:var(--pass); font-style:italic; margin-top:6px; font-weight:600;
+    background:linear-gradient(180deg,#15241b80,#0d150fa0); border:1px solid #3c5a44; border-radius:6px;
+    padding:6px 9px; text-shadow:0 1px 1px #000, 0 0 3px #000, 0 -1px 1px #000;} /* v0.21.2 sovereign passive plate — v0.22 text-plate styling; v0.22.6 sage-green to read as PASSIVE, not ability */
+  #zoom .zpas.sov{font-size:17px; line-height:1.45; padding:12px 14px;} /* v0.22.6: the sovereign zoom is JUST this plate — give it presence */
   #zoom .zf{font-size:13px; font-style:italic; color:#c9b78e; margin-top:6px; border-top:1px solid #2a2216; padding-top:6px;}
 
   /* ===== v0.12 turn banner + victory pop ===== */
@@ -172,7 +174,7 @@
   .dbsovcard{width:118px; cursor:pointer; border:2px solid #4a3c22; border-radius:6px; background:#141008; padding:4px; transition:border-color .15s}
   .dbsovcard img{width:100%; height:84px; object-fit:cover; border-radius:4px; display:block}
   .dbsovcard .nm{font-size:11px; color:var(--gold); letter-spacing:.5px; margin:3px 0 2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-  .dbsovcard .passive{font-size:10px; line-height:1.25; color:#cbb98a; height:63px; overflow:hidden}
+  .dbsovcard .passive{font-size:10px; line-height:1.25; color:var(--pass); height:63px; overflow:hidden}
   .dbsovcard:hover{border-color:var(--gold-dim)}
   .dbsovcard.on{border-color:var(--gold); box-shadow:0 0 10px rgba(233,196,90,.35)}
   .sovchosen{outline:3px solid var(--gold); outline-offset:3px}
@@ -188,11 +190,11 @@
   .dbrow.guild .nm{color:var(--abil);}
   .dbdecktitle{font-size:13px; letter-spacing:2px; color:var(--gold); text-align:center; margin:6px 0 8px;}
   #deckb .dbGrid{display:flex; gap:10px; flex-wrap:wrap; justify-content:center;}
-  #deckb .dbcard{width:132px; border:8px solid transparent; border-image:var(--theme-panel) 40; background:#0d0a07; padding:9px; cursor:pointer; position:relative;}
-  #deckb .dbcard img{width:100%; height:120px; object-fit:cover; display:block;}
-  #deckb .dbcard .nm{font-size:10.5px; white-space:nowrap; overflow:hidden; color:var(--ink);}
-  #deckb .dbcard .st{font-size:12px; text-align:center; color:#e6d8b2;}
-  #deckb .dbcard .ab{font-size:9.5px; color:var(--abil); min-height:20px; overflow:hidden; font-weight:700; text-shadow:0 1px 1px #000, 0 0 2px #000, 0 -1px 1px #000;}
+  #deckb .dbcard{width:154px; border:8px solid transparent; border-image:var(--theme-panel) 40; background:#0d0a07; padding:8px; cursor:pointer; position:relative; box-shadow:0 3px 10px #000a;} /* v0.22.6: 132 -> 154 — deck builder matches in-game hand card width */
+  #deckb .dbcard img{width:100%; height:128px; object-fit:cover; display:block;}
+  #deckb .dbcard .nm{font-size:12px; white-space:nowrap; overflow:hidden; color:var(--ink);}
+  #deckb .dbcard .st{font-size:13px; text-align:center; color:#e6d8b2;}
+  #deckb .dbcard .ab{font-size:10.5px; color:var(--abil); min-height:22px; overflow:hidden; font-weight:700; text-shadow:0 1px 1px #000, 0 0 2px #000, 0 -1px 1px #000;}
   #deckb .dbcard.sel{outline:3px solid var(--gold); box-shadow:0 0 14px #c9a24b66;}
   #deckb .dbcard.sel::after{content:'✓ IN DECK'; position:absolute; top:4px; right:4px; background:#2c5d1e; color:#cfe; font-size:9.5px; padding:1px 4px; letter-spacing:1px;}
   .dbsection{width:100%; margin:14px 0 6px; text-align:center; color:var(--gold); font-size:14px; letter-spacing:2px;}
@@ -263,6 +265,7 @@
   #deckb .dbcard img{object-position:50% 20%; box-shadow:0 0 0 1px #000a;}
   #deckb .dbcard .ab{max-height:30px;}      /* v0.10: ability text never runs past the frame */
   #zoom .zpv{max-height:176px; overflow:hidden;}  /* full text rides in the title tooltip — v0.22.3: 132 -> 176, the zoom exists to READ the text */
+  #zoom .zpv.short{font-size:16.5px; line-height:1.4;}  /* v0.22.6: text-fit — short abilities fill the plate instead of swimming in dead space */
   .cardpick .passive{max-height:64px; overflow:hidden;}
   /* deck-builder count badge on collection cards */
   #deckb .dbcard .dbn{position:absolute; top:2px; right:4px; background:#000d; border:1px solid var(--gold-dim); color:var(--gold);
@@ -503,10 +506,12 @@
     <button onclick="dbLeaveGuard()">Done</button>
   </div>
   <div class="dbhead2">
-    <input id="dbSearch" type="text" placeholder="🔎 Search by name…" oninput="dbFilterSet('q', this.value)">
+    <input id="dbSearch" type="text" placeholder="🔎 Search name or card text…" oninput="dbFilterSet('q', this.value)">
     <span class="dblab">COST</span><span id="dbCostChips"></span>
     <span class="dblab">TYPE</span><span id="dbTypeChips"></span>
     <span class="dblab">KEYWORD</span><span id="dbKwChips"></span>
+    <span class="dblab">MECHANIC</span><span id="dbMechChips"></span>
+    <span class="dblab">SOURCE</span><span id="dbSrcChips"></span>
   <span class="dblab">SORT</span><span id="dbSortChips"></span>
   </div>
   <div class="dbwrap">
@@ -538,7 +543,6 @@
   <div id="topbar"></div>
   <div class="lane"><div id="foeHand" title="cards in the enemy hand"></div><div class="hero" id="aiHero"></div></div>
   <div class="board" id="aiBoard"></div>
-  <div style="height:10px"></div>
   <div class="board" id="myBoard"></div>
   <div class="lane"><div class="hero" id="myHero"></div></div>
   <div id="log"></div>
@@ -602,7 +606,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.22.5';
+const GAME_VERSION = '0.22.6';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
@@ -855,7 +859,7 @@ function toSovSelect(f, deckSov){
       ${isDeck?'<div class="sovbadge">★ BUILT AROUND THIS SOVEREIGN</div>':''}
       <img src="${c.img}" loading="lazy" alt="${c.name}">
       <div class="lbl">${c.name}</div>
-      <div class="passive" title="${(c.passive.desc||'').replace(/"/g,'&quot;')}"><b style="color:var(--abil)">${c.passive.name}:</b> ${c.passive.desc}</div></div>`;
+      <div class="passive" title="${(c.passive.desc||'').replace(/"/g,'&quot;')}"><b style="color:var(--pass)">${c.passive.name}:</b> ${c.passive.desc}</div></div>`;
   }).join('');
   show('sovereigns');
 }
@@ -1294,12 +1298,22 @@ function kwList(c){ return (c.kw||'').split(/[+,]/).map(s=>s.trim()).filter(Bool
 function showZoom(c, ev, db){ // db=true: deck-builder context — sovereign passives shown (v0.21.2); in-game zoom keeps them hidden (decked legends are bodies only)
   const esc = (s)=>String(s||'').replace(/"/g,'&quot;');
   zoom.className = 'r-' + (c.rarity || 'common');
+  // v0.22.6: SOVEREIGN ZOOM = PASSIVE ONLY. Sovereigns lead from the hero box —
+  // they are never played as cards, so keywords/battlecries/stats are noise here.
+  // Only the passive matters, so that's all the zoom shows (decked legends, which
+  // ARE bodies, keep the full card view below).
+  if (c.passive) {
+    zoom.innerHTML = `<img src="${c.img}">
+      <div class="zn">${c.name}</div>
+      <div class="zr">${c.rarity} · SOVEREIGN</div>
+      <div class="zpas sov" title="${esc(c.passive.desc)}"><b>${c.passive.name}:</b> ${c.passive.desc}</div>`;
+    zoom.style.display='block'; moveZoom(ev); return;
+  }
   zoom.innerHTML = `<div class="zc">${c.cost}</div><img src="${c.img}">
     <div class="zn">${c.name}</div>
-    <div class="zr">${c.rarity}${c.passive && !db ? ' · legend' : ''}</div>
+    <div class="zr">${c.rarity}</div>
     ${kwList(c)?`<div class="zk">${kwList(c)}</div>`:''}
-    ${c.ability?`<div class="zpv ${c.ability.length>110?'long':''} ${c.ability.length>190?'xl':''}" title="${esc(c.ability)}">${c.ability}</div>`:''}
-    ${c.passive && db ? `<div class="zpas"><b style="color:var(--abil)">${c.passive.name}:</b> ${c.passive.desc}</div>` : ''}
+    ${c.ability?`<div class="zpv ${c.ability.length<45?'short':''} ${c.ability.length>110?'long':''} ${c.ability.length>190?'xl':''}" title="${esc(c.ability)}">${c.ability}</div>`:''}
     <div class="zs">${(c.type==='edict'||c.type==='relic') ? `<span style="color:var(--abil);letter-spacing:1px">${c.type==='edict'?'EDICT — ONE-SHOT':'RELIC — PERSISTENT'}</span>` : `<span class="statgem atk">${c.atk}<i>ATK</i></span><span class="statgem hp">${c.hp}<i>HP</i></span>`}</div>`;
   zoom.style.display='block';
   moveZoom(ev);
@@ -1510,7 +1524,7 @@ function render(){
 
   const mk = (p, id, side)=>{
     const el = document.getElementById(id);
-    const sov = p.sov ? `<div class="sovname">♦ ${p.sov.name}</div><div class="sovp" title="${(p.sov.passive.desc||'').replace(/"/g,'&quot;')}"><b style="color:var(--abil)">${p.sov.passive.name}:</b> ${p.sov.passive.desc||''}</div>` : '';
+    const sov = p.sov ? `<div class="sovname">♦ ${p.sov.name}</div><div class="sovp" title="${(p.sov.passive.desc||'').replace(/"/g,'&quot;')}"><b style="color:var(--pass)">${p.sov.passive.name}:</b> ${p.sov.passive.desc||''}</div>` : '';
     el.innerHTML = `<img src="${p.sov ? p.sov.img : p.fac.commander}"><div class="nm">${p.fac.label.toUpperCase()}</div>${sov}<div class="hp">${p.hp}</div>` +
       (p.relics && p.relics.length ? `<div class="relics">${p.relics.map(r=>`<span class="rk" title="${r.name}: ${(r.ability||'').replace(/"/g,'&quot;')}">${r.name}</span>`).join('')}</div>` : '');
     el.title = p.sov ? `${p.sov.name} — ${p.sov.passive.name}: ${p.sov.passive.desc}` : '';
@@ -1667,20 +1681,24 @@ function legTotal(){
   }
   return n;
 }
-let dbFilters = { q:'', cost:null, type:null, kw:null }; // v0.9.5: Arena-style filters
+let dbFilters = { q:'', cost:null, type:null, kw:null, mech:null, src:null }; // v0.9.5: Arena-style filters; v0.22.6: mechanic (Battlecry/Deathrattle) + source (Realm/Guild)
 function dbFilterSet(k, v){ dbFilters[k] = v; if(k==='q'){ /* input keeps its own text */ } else { const inp = document.getElementById('dbSearch'); if(inp && inp.value !== dbFilters.q) inp.value = dbFilters.q; } renderDB(); }
 function dbChipRow(elId, opts, cur, key){
   const el = document.getElementById(elId); if(!el) return;
   el.innerHTML = opts.map(o=>`<span class="dbchip ${cur===o.v?'on':''}" onclick="dbFilterSet('${key}',${o.v===null?'null':`'${o.v}'`})">${o.t}</span>`).join(' ');
 }
-function dbPass(c){
-  if(dbFilters.q && !c.name.toLowerCase().includes(dbFilters.q.toLowerCase())) return false;
+function dbPass(c, src){ // v0.22.6: src = 'realm' | 'guild' — the SOURCE chip filters which roster the card came from
+  const q = dbFilters.q.toLowerCase(); // v0.22.6: search matches NAME or ability TEXT, not just the name
+  if(q && !c.name.toLowerCase().includes(q) && !(c.ability||'').toLowerCase().includes(q)) return false;
+  if(dbFilters.src === 'realm' && src !== 'realm') return false;
+  if(dbFilters.src === 'guild' && src !== 'guild') return false;
   if(dbFilters.cost !== null){
     if(dbFilters.cost === '7+'){ if(c.cost < 7) return false; }
     else if(c.cost !== Number(dbFilters.cost)) return false;
   }
   if(dbFilters.type !== null && (c.type || 'minion') !== dbFilters.type) return false;
   if(dbFilters.kw !== null && !(c.kw||'').split(/[+,]/).map(s=>s.trim()).includes(dbFilters.kw)) return false; // v0.20-ready: matches inside multi-keyword lists
+  if(dbFilters.mech !== null && !(c.ability||'').startsWith(dbFilters.mech)) return false; // v0.22.6: Battlecry / Deathrattle — the mechanic is the text's opening word
   return true;
 }
 function pickPoolDB(p){
@@ -1699,7 +1717,7 @@ function openDeckBuilder(facId){
   dbFac = facId; applyTheme(facId);
   const f = facOf(facId);
   dbCnt = new Map(); dbDirty = false; dbSov = null; // clean slate — ↺ Restore Doctrine loads the tuned 30-card default
-  dbFilters = { q:'', cost:null, type:null, kw:null, sort:'cost' }; // v0.9.5 fresh filters; v0.19.1 sort chips
+  dbFilters = { q:'', cost:null, type:null, kw:null, mech:null, src:null, sort:'cost' }; // v0.9.5 fresh filters; v0.19.1 sort chips; v0.22.6 mech + src
   const inp = document.getElementById('dbSearch'); if(inp) inp.value = '';
   const nm = document.getElementById('dbName'); if(nm) nm.value = '';
   document.getElementById('dbTitle').textContent = f.label.toUpperCase() + ' — ' + f.identity.name.toUpperCase();
@@ -1729,11 +1747,16 @@ function renderDB(){
   dbChipRow('dbCostChips', [{t:'ALL',v:null},{t:'1',v:'1'},{t:'2',v:'2'},{t:'3',v:'3'},{t:'4',v:'4'},{t:'5',v:'5'},{t:'6',v:'6'},{t:'7+',v:'7+'}], dbFilters.cost, 'cost');
   dbChipRow('dbTypeChips', [{t:'ALL',v:null},{t:'MINIONS',v:'minion'},{t:'EDICTS',v:'edict'},{t:'RELICS',v:'relic'}], dbFilters.type, 'type');
   dbChipRow('dbKwChips', [{t:'ALL',v:null},{t:'RANGED',v:'Ranged'},{t:'CHARGE',v:'Charge'},{t:'GUARD',v:'Guard'},{t:'LIFESTEAL',v:'Lifesteal'},{t:'SHOCK',v:'Shock'},{t:'BANE',v:'Bane'},{t:'RELENTLESS',v:'Relentless'},{t:'AEGIS',v:'Aegis'}], dbFilters.kw, 'kw'); // v0.19.1: all 8 keywords
-  dbChipRow('dbSortChips', [{t:'COST',v:'cost'},{t:'NAME',v:'name'},{t:'RARITY',v:'rarity'}], dbFilters.sort, 'sort'); // v0.19.1: sort chips
+  dbChipRow('dbMechChips', [{t:'ALL',v:null},{t:'⚔ BATTLECRY',v:'Battlecry'},{t:'☠ DEATHRATTLE',v:'Deathrattle'}], dbFilters.mech, 'mech'); // v0.22.6: mechanic filter — HS-style
+  dbChipRow('dbSrcChips', [{t:'ALL',v:null},{t:'REALM',v:'realm'},{t:'GUILD',v:'guild'}], dbFilters.src, 'src'); // v0.22.6: source filter — realm roster vs Wayfarers' Guild hires
+  dbChipRow('dbSortChips', [{t:'COST',v:'cost'},{t:'NAME',v:'name'},{t:'RARITY',v:'rarity'},{t:'ATK',v:'atk'},{t:'HP',v:'hp'}], dbFilters.sort, 'sort'); // v0.19.1: sort chips; v0.22.6: +ATK +HP
   const RORD = { common:0, rare:1, epic:2, legendary:3 };
   const cmpName = (a,b)=>a.name.localeCompare(b.name);
-  const byCost = dbFilters.sort==='name' ? cmpName // v0.19.1: sort = cost | name A-Z | rarity (HS/MTGA style)
+  const statOf = (c,k)=>(c[k] === undefined || c[k] === null) ? -1 : c[k]; // edicts/relics have no stats — they sink to the bottom of stat sorts
+  const byCost = dbFilters.sort==='name' ? cmpName // v0.19.1: sort = cost | name A-Z | rarity | atk | hp (HS/MTGA style)
     : dbFilters.sort==='rarity' ? ((a,b)=>((RORD[a.rarity||'common']-RORD[b.rarity||'common'])||cmpName(a,b)))
+    : dbFilters.sort==='atk' ? ((a,b)=>(statOf(b,'atk')-statOf(a,'atk'))||cmpName(a,b))
+    : dbFilters.sort==='hp' ? ((a,b)=>(statOf(b,'hp')-statOf(a,'hp'))||cmpName(a,b))
     : ((a,b)=>a.cost-b.cost || cmpName(a,b));
   // v0.10→v0.20.2: Sovereigns lead from the hero box; OTHER legends may join the deck (max 2, distinct)
   const legal = (c)=> c.rarity !== 'legendary' || c.id !== dbSov;
@@ -1745,11 +1768,11 @@ function renderDB(){
       <div class="dbsovcard ${dbSov===c.id?'on':''}" data-id="${c.id}" onclick="pickDbSov('${c.id}')">
         <img src="${c.img}" loading="lazy" alt="${c.name}">
         <div class="nm">${c.name}</div>
-        <div class="passive" title="${(c.passive.desc||'').replace(/"/g,'&quot;')}"><b style="color:var(--abil)">${c.passive.name}:</b> ${c.passive.desc}</div>
+        <div class="passive" title="${(c.passive.desc||'').replace(/"/g,'&quot;')}"><b style="color:var(--pass)">${c.passive.name}:</b> ${c.passive.desc}</div>
       </div>`).join('') + '</div>';
   // collection: realm cards, then Guild section (Arena-style grid, scrollable pane)
-  coll.innerHTML = sovHtml + '<div class="dbGrid">' + f.cards.filter(legal).filter(dbPass).sort(byCost).map(dbCardHtml).join('')
-    + (gc.length ? '</div><div class="dbsection">THE WAYFARERS&rsquo; GUILD — HIRES FOR ANY BANNER (MAX 4)</div><div class="dbGrid">' + gc.filter(c=>c.rarity !== 'legendary').filter(dbPass).sort(byCost).map(dbCardHtml).join('') : '')
+  coll.innerHTML = sovHtml + '<div class="dbGrid">' + f.cards.filter(legal).filter(c=>dbPass(c,'realm')).sort(byCost).map(dbCardHtml).join('')
+    + (gc.length ? '</div><div class="dbsection">THE WAYFARERS&rsquo; GUILD — HIRES FOR ANY BANNER (MAX 4)</div><div class="dbGrid">' + gc.filter(c=>c.rarity !== 'legendary').filter(c=>dbPass(c,'guild')).sort(byCost).map(dbCardHtml).join('') : '')
     + '</div>';
   const all = f.cards.concat(gc);
   coll.querySelectorAll('.dbcard').forEach(d=>{
@@ -2284,7 +2307,7 @@ function campToSov(f){
     <div class="cardpick" onclick="campSovPick(${i})">
       <img src="${card.img}" loading="lazy" alt="${card.name}">
       <div class="lbl">${card.name}</div>
-      <div class="passive"><b style="color:var(--abil)">${card.passive.name}:</b> ${card.passive.desc}</div></div>`).join('');
+      <div class="passive"><b style="color:var(--pass)">${card.passive.name}:</b> ${card.passive.desc}</div></div>`).join('');
   show('sovereigns');
 }
 function campSovPick(i){
