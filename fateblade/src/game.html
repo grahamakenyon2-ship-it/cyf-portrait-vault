@@ -622,7 +622,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.25.0';
+const GAME_VERSION = '0.25.2';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
@@ -2228,6 +2228,7 @@ function watchEnd(){
       <option value="easy">Easy — a careless levy: sloppy trades, forgets Skirmish</option>
       <option value="normal">Normal — the classic greedy AI</option>
       <option value="hard">Hard — a veteran marshal: reads lethal, trades for value</option>
+      <option value="impossible">Impossible — the evolved brain: 70% vs hard, it holds, it aims, it never misses lethal</option>
     </select>
     <label>Watch-mode default speed</label>
     <select id="setWatch" onchange="setWatch(this.value)">
