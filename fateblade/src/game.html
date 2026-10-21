@@ -82,6 +82,8 @@
   .hcard{width:154px; height:210px; border:6px solid transparent; border-image:var(--theme-panel, linear-gradient(#2a2216,#191308)) 40; background:#0d0a07; cursor:pointer; position:relative; transition:transform .14s; transform:translateY(var(--fy,0px)) rotate(var(--fr,0deg)); transform-origin:50% 130%;}
   .hcard:hover{transform:translateY(calc(var(--fy,0px) - 16px)) rotate(var(--fr,0deg)) scale(1.07); z-index:5;}
   .hcard.playable{outline:1px solid var(--gold); box-shadow:0 0 10px #000;}
+  .hcard:not(.playable){filter:saturate(.55) brightness(.78);} /* v0.22.11: unaffordable cards visibly dim — mana readability at a glance (Hearthstone-style) */
+  #battlelog .blcard{color:var(--gold); text-decoration:underline dotted; text-underline-offset:2px; cursor:help;} /* v0.22.11: card names in the log are hoverable — full zoom card view */
   .hcard img{width:100%; height:128px; object-fit:cover; display:block;} /* v0.22.3: 136 -> 128 — hands the 10px to .abil's second line; card frame stays 210 */
   .hcard .nm{font-size:13px; white-space:nowrap; overflow:hidden; padding:0 2px;}
   .hcard .cost{position:absolute; top:-8px; left:-8px; width:26px; height:26px; border-radius:50%;
@@ -618,7 +620,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.22.10';
+const GAME_VERSION = '0.22.11';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
@@ -1016,12 +1018,16 @@ function aiTurn(){
   }
   log('The enemy is acting…');
   let i = 0;
+  let prevEv = finalS.events ? finalS.events.length : 0;
   const step = ()=>{
     if(seq !== aiAnimSeq) return;          // duel ended/restarted mid-animation
     if(i >= steps.length){ finish(); return; }
     S = steps[i++];                         // display clone — input is locked (active 'B')
     render();
-    setTimeout(step, pace);
+    const evs = (S.events || []);
+    const hold = (evs.length > prevEv && evs.slice(prevEv).some(e=>e.t==='hit'||e.t==='heroHit'||e.t==='death')) ? pace + 450 : pace; // v0.22.11: combat steps linger — blows land legibly instead of blurring past
+    prevEv = evs.length;
+    setTimeout(step, hold);
   };
   const finish = ()=>{
     if(seq !== aiAnimSeq) return;
@@ -1060,9 +1066,21 @@ const BL_LABELS = { POWER:'Skirmish', BC:'battlecry', DR:'deathrattle', DEATHGIF
   RL_WARD:'Glade Ward', RL_HEARTH:'Winter Hearth', RL_MUSKETEERS:"King's Musketeers", RL_CISTERN:'Grand Cistern',
   RL_WARSTANDARD:'War Standard', ECHO:'an Echo' };
 function blName(id){
-  if(!blNames){ blNames = new Map(); for(const f of DATA.factions) for(const c of f.cards) blNames.set(c.id, c.name); }
+  if(!blNames){ blNames = new Map(); blCards = new Map(); for(const f of DATA.factions) for(const c of f.cards){ blNames.set(c.id, c.name); blCards.set(c.id, c); } }
   if(blNames.has(id)) return blNames.get(id);
   return String(id || '?').split('@')[0];
+}
+let blCards = null; // v0.22.11: id -> full card object, so log hovers can show the real zoom view
+function blSpan(id){ // v0.22.11: a hoverable card name in log lines — hover shows the full card
+  if(blCards && blCards.has(id)) return `<span class="blcard" data-cid="${id}">${blName(id)}</span>`;
+  return blName(id); // tokens/unknown ids stay plain text
+}
+function blLogHoverBind(){ // v0.22.11: one delegated hover binding — any .blcard ever appended gets the zoom
+  const el = document.getElementById('battlelog'); if(!el) return;
+  el.addEventListener('mouseover', (e)=>{ const sp = e.target.closest('.blcard'); if(!sp || !blCards) return;
+    const c = blCards.get(sp.dataset.cid); if(c) showZoom(c, e); });
+  el.addEventListener('mousemove', (e)=>{ if(e.target.closest('.blcard')) moveZoom(e); });
+  el.addEventListener('mouseleave', hideZoom);
 }
 function evLine(ev){
   const who = ev.side==='B' ? 'Enemy' : ev.side==='A' ? 'You' : '';
@@ -1070,11 +1088,11 @@ function evLine(ev){
     case 'play':
       return String(ev.id||'').startsWith('TOKEN')
         ? { s:ev.side, x:`${who} summon a Conscript` }
-        : { s:ev.side, x:`${who} play ${blName(ev.id)}` };
-    case 'edict':  return { s:ev.side, x:`${who} decree: ${blName(ev.id)}` };
-    case 'relic':  return { s:ev.side, x:`${who} seat the relic ${blName(ev.id)}` };
-    case 'relicfx': return { s:ev.side, x:`${blName(ev.id)} relic triggers for ${who.toLowerCase()}` };
-    case 'hit':    return { s:ev.side, x:`${blName(ev.id)} strikes ${blName(ev.on)} for ${ev.dmg}` };
+        : { s:ev.side, x:`${who} play ${blSpan(ev.id)}` };
+    case 'edict':  return { s:ev.side, x:`${who} decree: ${blSpan(ev.id)}` };
+    case 'relic':  return { s:ev.side, x:`${who} seat the relic ${blSpan(ev.id)}` };
+    case 'relicfx': return { s:ev.side, x:`${blSpan(ev.id)} relic triggers for ${who.toLowerCase()}` };
+    case 'hit':    return { s:ev.side, x:`${blSpan(ev.id)} strikes ${blSpan(ev.on)} for ${ev.dmg}` };
     case 'heroHit': {
       const nm = blName(ev.id); // builds the name map on first use
       // v0.9.7 fix: the event side is the ATTACKER for minion strikes and
@@ -1084,14 +1102,14 @@ function evLine(ev){
       const atkSide = (blNames.has(ev.id) || ev.id === 'POWER') ? ev.side : (ev.side === 'A' ? 'B' : 'A');
       const vic = atkSide === 'A' ? 'B' : 'A';
       if (blNames.has(ev.id)) { // a named attacker struck the hero
-        return { s: ev.side, x:`${nm} hits ${vic === 'A' ? 'your' : 'the enemy'} hero for ${ev.dmg}` };
+        return { s: ev.side, x:`${blSpan(ev.id)} hits ${vic === 'A' ? 'your' : 'the enemy'} hero for ${ev.dmg}` };
       }
       const lb = BL_LABELS[ev.id] || ev.id;
       return { s: vic, x:`${vic === 'A' ? 'You' : 'Enemy'} take ${ev.dmg} hero damage (${lb})` };
     }
-    case 'death':  return { s:ev.side, x:`☠ ${blName(ev.id)} falls` };
-    case 'shield': return { s:ev.side, x:`⛨ ${blName(ev.id)} absorbs the blow` };
-    case 'buff':   return { s:ev.side, x:`✚ ${blName(ev.id)} is blessed (+1/+1)` };
+    case 'death':  return { s:ev.side, x:`☠ ${blSpan(ev.id)} falls` };
+    case 'shield': return { s:ev.side, x:`⛨ ${blSpan(ev.id)} absorbs the blow` };
+    case 'buff':   return { s:ev.side, x:`✚ ${blSpan(ev.id)} is blessed (+1/+1)` };
     case 'passive': return { s:ev.side, x:`✦ ${BL_LABELS[ev.id] || blName(ev.id)} triggers for ${who.toLowerCase()}` };
     case 'fatigue': return { s:ev.side, x:`${who} exhaust the deck — fatigue ${ev.dmg}` };
     default: return null; // bc/dr/play internals are already covered by their follow-up events
@@ -1106,7 +1124,7 @@ function blogDiff(st){
     if(!line) continue;
     const div = document.createElement('div');
     div.className = 'bl-' + String(line.s || '').toLowerCase();
-    div.textContent = line.x;
+    div.innerHTML = line.x; // v0.22.11: lines carry hoverable .blcard spans (built from card names only — no user input)
     el.appendChild(div); added = true;
   }
   while(el.children.length > 240) el.removeChild(el.firstChild);
@@ -1326,6 +1344,30 @@ function fxGlow(el, cls){ // v0.22.10: brief plate glow — buff lands, Aegis ab
   el.classList.add('glow'); if (cls) el.classList.add(cls);
   setTimeout(() => el.classList.remove('glow', 'blue'), 650);
 }
+function fxDart(fromEl, toEl){ // v0.22.11: MTGA/Hearthstone-style targeting arrow — WHO attacked WHAT, visible at a glance
+  if (!fromEl || !toEl) return;
+  const fx = document.getElementById('fx'); if (!fx) return;
+  const a = fromEl.getBoundingClientRect(), b = toEl.getBoundingClientRect();
+  const x1 = a.left + a.width / 2, y1 = a.top + a.height / 2;
+  const x2 = b.left + b.width / 2, y2 = b.top + b.height / 2;
+  const d = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  d.setAttribute('style', 'position:fixed; z-index:31; pointer-events:none; opacity:.95');
+  d.setAttribute('width', innerWidth); d.setAttribute('height', innerHeight);
+  const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+  line.setAttribute('x1', x1); line.setAttribute('y1', y1); line.setAttribute('x2', x2); line.setAttribute('y2', y2);
+  line.setAttribute('stroke', '#ffd76a'); line.setAttribute('stroke-width', '4'); line.setAttribute('stroke-dasharray', '12 7');
+  line.setAttribute('stroke-linecap', 'round');
+  const head = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+  const ang = Math.atan2(y2 - y1, x2 - x1), hl = 17;
+  const hx = x2 - Math.cos(ang) * (b.width / 4 + 6), hy = y2 - Math.sin(ang) * (b.height / 4 + 6);
+  head.setAttribute('points', `${hx + Math.cos(ang) * hl},${hy + Math.sin(ang) * hl} ${hx + Math.cos(ang + 2.5) * hl},${hy + Math.sin(ang + 2.5) * hl} ${hx + Math.cos(ang - 2.5) * hl},${hy + Math.sin(ang - 2.5) * hl}`);
+  head.setAttribute('fill', '#ffd76a');
+  d.appendChild(line); d.appendChild(head);
+  fx.appendChild(d);
+  line.animate([{ strokeDashoffset: 24 }, { strokeDashoffset: 0 }], { duration: 220 });
+  setTimeout(() => { d.style.transition = 'opacity .25s'; d.style.opacity = '0'; }, 620);
+  setTimeout(() => d.remove(), 900);
+}
 function findMinion(side, cid){
   const b = document.getElementById(side === 'A' ? 'myBoard' : 'aiBoard');
   if (!b) return null;
@@ -1360,7 +1402,8 @@ function fxEvent(ev){
       SFX.hit();
       const atkEl = findMinion(ev.side, ev.id);
       const vicSide = ev.side === 'A' ? 'B' : 'A';
-      const tgtEl = findMinion(vicSide, ev.on);
+      const tgtEl = findMinion(vicSide, ev.on) || heroOf(vicSide);
+      fxDart(atkEl, tgtEl); // v0.22.11: the targeting arrow — who struck what, unmistakable
       fxLunge(atkEl, tgtEl || heroOf(vicSide)); // POWER strikes have no attacker card — just sound
       fxShake(tgtEl);
       break;
@@ -1369,13 +1412,14 @@ function fxEvent(ev){
       SFX.heroHit();
       blName(ev.id); // builds the name map on first use
       const atkSide = (blNames.has(ev.id) || ev.id === 'POWER') ? ev.side : (ev.side === 'A' ? 'B' : 'A');
+      if (blNames.has(ev.id)) fxDart(findMinion(atkSide, ev.id), heroOf(atkSide === 'A' ? 'B' : 'A')); // v0.22.11: arrow to the struck hero
       if (blNames.has(ev.id)) fxLunge(findMinion(atkSide, ev.id), heroOf(atkSide === 'A' ? 'B' : 'A'));
       break; // the victim hero's hitflash + damage number come from the render diff
     }
     case 'death': deathGhost(ev.uid); break;
     case 'shield': SFX.shield(); fxGlow(findMinion(ev.side, ev.id), 'blue'); break; // v0.12: Aegis absorption — its own ring, not the buff chime; v0.22.10: blue plate glow
     case 'buff': SFX.buff(); fxGlow(findMinion(ev.side, ev.id)); break; // v0.22.10: gold plate glow where the buff lands
-    case 'passive': SFX.passive(); fxGlow(heroOf(ev.side)); break; // v0.22.10: sage flicker on the passive's owner
+    case 'passive': SFX.passive(); fxGlow(heroOf(ev.side)); floatAt(heroOf(ev.side), '✦ ' + (BL_LABELS[ev.id] || blName(ev.id)), true); break; // v0.22.11: triggered effects ANNOUNCE themselves — the passive name floats over its owner
     case 'fatigue': SFX.fatigue(); fxBurst(heroOf(ev.side), 'red'); break; // v0.22.10: the deck-out burn rings the Sovereign
   }
 }
@@ -2513,6 +2557,7 @@ function campNext(){
 }
 
 applyTheme(null);
+blLogHoverBind(); // v0.22.11: battle-log card names are hoverable — one delegated binding for all lines past and future
 show('menu'); // v0.22.4: boot through show() so musicForScreen fires at startup — the menu used to start with class="on" hardcoded, MUSIC.cur stayed null, and there was nothing for the first-gesture retry to resume (music only started once you LEFT a screen and came back)
 </script>
 </body>
