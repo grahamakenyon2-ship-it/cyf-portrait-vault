@@ -94,3 +94,16 @@ music/winter-1.ogg | Public domain | https://commons.wikimedia.org/wiki/Special:
 music/brandenburg-3-1.ogg | Public domain | https://commons.wikimedia.org/wiki/Special:FilePath/Bach_-_Brandenburg_Concerto_No._3_-_1._Allegro.ogg
 music/beethoven-5-1.ogg | Public domain | https://commons.wikimedia.org/wiki/Special:FilePath/Ludwig_van_Beethoven_-_symphony_no._5_in_c_minor,_op._67_-_i._allegro_con_brio.ogg
 music/dvorak-9.ogg | Public domain | https://commons.wikimedia.org/wiki/Special:FilePath/Symphony_No.9%2C_Op.95_%E2%80%93_Anton%C3%ADn_Dvo%C5%99%C3%A1k.oga
+# ===== MUSIC EXPANSION 2 (Oct 21 2026) - THE CANON GOES NON-CLASSICAL =====
+# User: famous classical breaks immersion in Canon/fantasy realms - keep it for
+# the historic Annals pools, but Canon realms get Kevin MacLeod ambient/fantasy
+# tracks (CC BY, incompetech.com). Resolved by NAME on Commons via
+# Special:FilePath. Attribution recorded here and in the manifest license/src.
+music/forest-trees.ogg | CC BY 4.0 | https://commons.wikimedia.org/wiki/Special:FilePath/The_Forest_and_the_Trees_(Kevin_MacLeod)_(ISRC_USUAN1100766).oga
+music/the-voices.ogg | CC BY 4.0 | https://commons.wikimedia.org/wiki/Special:FilePath/The_Voices_(MacLeod,_Kevin)_(ISRC_USUAN1100046).oga
+music/netherworld-shanty.ogg | CC BY 4.0 | https://commons.wikimedia.org/wiki/Special:FilePath/Netherworld_Shanty_(MacLeod,_Kevin_)_(ISRC_USUAN1100138).oga
+music/earth-prelude.ogg | CC BY 4.0 | https://commons.wikimedia.org/wiki/Special:FilePath/Earth_Prelude_(MacLeod,_Kevin)_(ISRC_USUAN1100247).oga
+music/peaceful-desolation.ogg | CC BY 4.0 | https://commons.wikimedia.org/wiki/Special:FilePath/Peaceful_Desolation_(Kevin_MacLeod)_(ISRC_USUAN1200017).oga
+music/miri-magic-dance.ogg | CC BY 4.0 | https://commons.wikimedia.org/wiki/Special:FilePath/Miri%27s_Magic_Dance_(MacLeod,_Kevin)_(ISRC_USUAN1100157).oga
+music/himalayan-atmosphere.ogg | CC BY 4.0 | https://commons.wikimedia.org/wiki/Special:FilePath/Himalayan_Atmosphere_(MacLeod,_Kevin)_(ISRC_USUAN1100204).oga
+music/living-voyage.ogg | CC BY 4.0 | https://commons.wikimedia.org/wiki/Special:FilePath/Living_Voyage_(MacLeod,_Kevin)_(ISRC_USUAN1100594).oga
