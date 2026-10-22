@@ -3480,552 +3480,602 @@
   {
    "name": "Sorariel the Steadfast",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Sorariel the Steadfast, a duelist of the old schools, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, an unwavering planted stance and level, unimpressed gaze, seated on campaign furniture, elbows on knees, standing stones and the long memory of the elder races",
-   "file": "art/canon/sorariel-the-steadfast-stormlit.jpg",
+   "file": "art/stockpile/sorariel-the-steadfast.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "sorariel-the-steadfast@stormlit",
-   "cardFile": "dune/uncategorized/alma_20mavis_20taraza.jpg"
+   "cardFile": "dune/uncategorized/alma_20mavis_20taraza.jpg",
+   "bytes": 319788
   },
   {
    "name": "Lorarion the Shield-Sworn",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Lorarion the Shield-Sworn, a banner-champion, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, a battered heirloom shield bearing the realm sigil, an oath-brand or votive seal burned into a vambrace, head tilted, studying the viewer like a debt, standing stones and the long memory of the elder races",
-   "file": "art/canon/lorarion-the-shield-sworn-stormlit.jpg",
+   "file": "art/stockpile/lorarion-the-shield-sworn.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "lorarion-the-shield-sworn@stormlit",
-   "cardFile": "dune/uncategorized/jessica.jpg"
+   "cardFile": "dune/uncategorized/jessica.jpg",
+   "bytes": 316515
   },
   {
    "name": "Caelilion of the Quiet House",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Caelilion of the Quiet House, a duelist of the old schools, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, stillness, a hood half-drawn, watching, weapon shouldered, chin lowered, eyes up, standing stones and the long memory of the elder races",
-   "file": "art/canon/caelilion-of-the-quiet-house-stormlit.jpg",
+   "file": "art/stockpile/caelilion-of-the-quiet-house.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "caelilion-of-the-quiet-house@stormlit",
-   "cardFile": "dune/uncategorized/murbella.jpg"
+   "cardFile": "dune/uncategorized/murbella.jpg",
+   "bytes": 334366
   },
   {
    "name": "Nerarris the Steadfast",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Nerarris the Steadfast, a front-line shield-bearer, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, an unwavering planted stance and level, unimpressed gaze, weapon shouldered, chin lowered, eyes up, standing stones and the long memory of the elder races",
-   "file": "art/canon/nerarris-the-steadfast-stormlit.jpg",
+   "file": "art/stockpile/nerarris-the-steadfast.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "nerarris-the-steadfast@stormlit",
-   "cardFile": "dune/uncategorized/sheeana.jpg"
+   "cardFile": "dune/uncategorized/sheeana.jpg",
+   "bytes": 333589
   },
   {
    "name": "Silevris the Hollow-Crowned",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Silevris the Hollow-Crowned, a keeper of the realm’s relics, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, a hollow, echoing quality to the gaze, absence behind the eyes, a crown — broken, tarnished, or molten — still worn, hood drawn, face emerging from shadow, standing stones and the long memory of the elder races",
-   "file": "art/canon/silevris-the-hollow-crowned-stormlit.jpg",
+   "file": "art/stockpile/silevris-the-hollow-crowned.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "silevris-the-hollow-crowned@stormlit",
-   "cardFile": "genshin-impact/fontaine/furina.jpg"
+   "cardFile": "genshin-impact/fontaine/furina.jpg",
+   "bytes": 319465
   },
   {
    "name": "Caelalwyn the Storm-Marked",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Caelalwyn the Storm-Marked, a ranged marksman, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, marked by the realm’s own trade, banners of the realm hanging dark behind, standing stones and the long memory of the elder races",
-   "file": "art/canon/caelalwyn-the-storm-marked-stormlit.jpg",
+   "file": "art/stockpile/caelalwyn-the-storm-marked.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "caelalwyn-the-storm-marked@stormlit",
-   "cardFile": "genshin-impact/fontaine/neuvillette.jpg"
+   "cardFile": "genshin-impact/fontaine/neuvillette.jpg",
+   "bytes": 323078
   },
   {
    "name": "Gililiel the Unbowed",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Gililiel the Unbowed, a commander of the reserves, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, battered but unbent bearing, chin high despite ruin, weapon shouldered, chin lowered, eyes up, standing stones and the long memory of the elder races",
-   "file": "art/canon/gililiel-the-unbowed-stormlit.jpg",
+   "file": "art/stockpile/gililiel-the-unbowed.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "gililiel-the-unbowed@stormlit",
-   "cardFile": "genshin-impact/inazuma/hiiragi_20shinsuke.jpg"
+   "cardFile": "genshin-impact/inazuma/hiiragi_20shinsuke.jpg",
+   "bytes": 300290
   },
   {
    "name": "Caelalwen the Red-Handed",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Caelalwen the Red-Handed, a duelist of the old schools, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, red-stained cloth, dried to rust, stained hands, deliberately unhidden, seated on campaign furniture, elbows on knees, standing stones and the long memory of the elder races",
-   "file": "art/canon/caelalwen-the-red-handed-stormlit.jpg",
+   "file": "art/stockpile/caelalwen-the-red-handed.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "caelalwen-the-red-handed@stormlit",
-   "cardFile": "genshin-impact/inazuma/kokomi.jpg"
+   "cardFile": "genshin-impact/inazuma/kokomi.jpg",
+   "bytes": 330103
   },
   {
    "name": "Miralien the Last-Voiced",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Miralien the Last-Voiced, a veteran of the siege-lines, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, a mouth open mid-word, or sewn shut, seated on campaign furniture, elbows on knees, standing stones and the long memory of the elder races",
-   "file": "art/canon/miralien-the-last-voiced-stormlit.jpg",
+   "file": "art/stockpile/miralien-the-last-voiced.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "miralien-the-last-voiced@stormlit",
-   "cardFile": "genshin-impact/khaenri-ah/dainsleif.jpg"
+   "cardFile": "genshin-impact/khaenri-ah/dainsleif.jpg",
+   "bytes": 321366
   },
   {
    "name": "Aeevwen the Far-Walked",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Aeevwen the Far-Walked, a ranged marksman, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, marked by the realm’s own trade, head tilted, studying the viewer like a debt, standing stones and the long memory of the elder races",
-   "file": "art/canon/aeevwen-the-far-walked-stormlit.jpg",
+   "file": "art/stockpile/aeevwen-the-far-walked.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "aeevwen-the-far-walked@stormlit",
-   "cardFile": "genshin-impact/liyue/ningguang_20the_20qixing.jpg"
+   "cardFile": "genshin-impact/liyue/ningguang_20the_20qixing.jpg",
+   "bytes": 319596
   },
   {
    "name": "Silorlas the Ward-Blessed",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Silorlas the Ward-Blessed, a commander of the reserves, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, campaign ribbons and a hundred-battle stare, banners of the realm hanging dark behind, standing stones and the long memory of the elder races",
-   "file": "art/canon/silorlas-the-ward-blessed-stormlit.jpg",
+   "file": "art/stockpile/silorlas-the-ward-blessed.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "silorlas-the-ward-blessed@stormlit",
-   "cardFile": "genshin-impact/liyue/rex_20lapis_20morax.jpg"
+   "cardFile": "genshin-impact/liyue/rex_20lapis_20morax.jpg",
+   "bytes": 321080
   },
   {
    "name": "Aeenwyn the Breaker-Line",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Aeenwyn the Breaker-Line, a banner-champion, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, marked by the realm’s own trade, half-turned toward a window of the realm’s light, standing stones and the long memory of the elder races",
-   "file": "art/canon/aeenwyn-the-breaker-line-stormlit.jpg",
+   "file": "art/stockpile/aeenwyn-the-breaker-line.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "aeenwyn-the-breaker-line@stormlit",
-   "cardFile": "genshin-impact/mondstadt/ulrich_20lawrence.jpg"
+   "cardFile": "genshin-impact/mondstadt/ulrich_20lawrence.jpg",
+   "bytes": 302386
   },
   {
    "name": "Sorilris the Quiet Sentence",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Sorilris the Quiet Sentence, a ranged marksman, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, stillness, a hood half-drawn, watching, weapon shouldered, chin lowered, eyes up, standing stones and the long memory of the elder races",
-   "file": "art/canon/sorilris-the-quiet-sentence-stormlit.jpg",
+   "file": "art/stockpile/sorilris-the-quiet-sentence.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "sorilris-the-quiet-sentence@stormlit",
-   "cardFile": "genshin-impact/natlan/xbalanque.jpg"
+   "cardFile": "genshin-impact/natlan/xbalanque.jpg",
+   "bytes": 306134
   },
   {
    "name": "Gilalwen the Gate-Warden",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Gilalwen the Gate-Warden, a veteran of the siege-lines, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, gate iron — a massive key, a warded lock, hinges on the pauldron, a gate-warden keys on a chain, door-iron on the belt, mid-stride, cloak caught as if in wind, standing stones and the long memory of the elder races",
-   "file": "art/canon/gilalwen-the-gate-warden-stormlit.jpg",
+   "file": "art/stockpile/gilalwen-the-gate-warden.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "gilalwen-the-gate-warden@stormlit",
-   "cardFile": "genshin-impact/snezhnaya/the_20tsaritsa.jpg"
+   "cardFile": "genshin-impact/snezhnaya/the_20tsaritsa.jpg",
+   "bytes": 320904
   },
   {
    "name": "Nerendor the Wall of Spears",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Nerendor the Wall of Spears, a keeper of the realm’s relics, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, marked by the realm’s own trade, seated on campaign furniture, elbows on knees, standing stones and the long memory of the elder races",
-   "file": "art/canon/nerendor-the-wall-of-spears-stormlit.jpg",
+   "file": "art/stockpile/nerendor-the-wall-of-spears.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "nerendor-the-wall-of-spears@stormlit",
-   "cardFile": "genshin-impact/sumeru/lesser_20lord_20kusanali.jpg"
+   "cardFile": "genshin-impact/sumeru/lesser_20lord_20kusanali.jpg",
+   "bytes": 330535
   },
   {
    "name": "Neradeth of the Long Watch",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Neradeth of the Long Watch, a duelist of the old schools, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, a sentinel patience, standing guard over something unseen, facing the viewer directly, weapon grounded, standing stones and the long memory of the elder races",
-   "file": "art/canon/neradeth-of-the-long-watch-stormlit.jpg",
+   "file": "art/stockpile/neradeth-of-the-long-watch.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "neradeth-of-the-long-watch@stormlit",
-   "cardFile": "genshin-impact/uncategorized/il_20capitano.jpg"
+   "cardFile": "genshin-impact/uncategorized/il_20capitano.jpg",
+   "bytes": 298625
   },
   {
    "name": "Gilorwyn the Blood-Tithed",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Gilorwyn the Blood-Tithed, a duelist of the old schools, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, marked by the realm’s own trade, banners of the realm hanging dark behind, standing stones and the long memory of the elder races",
-   "file": "art/canon/gilorwyn-the-blood-tithed-stormlit.jpg",
+   "file": "art/stockpile/gilorwyn-the-blood-tithed.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "gilorwyn-the-blood-tithed@stormlit",
-   "cardFile": "genshin-impact/uncategorized/mavuika.jpg"
+   "cardFile": "genshin-impact/uncategorized/mavuika.jpg",
+   "bytes": 304275
   },
   {
    "name": "Faeardir the Oath-Forged",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Faeardir the Oath-Forged, a keeper of the realm’s relics, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, a broken oath-ring, kept anyway, half-turned toward a window of the realm’s light, standing stones and the long memory of the elder races",
-   "file": "art/canon/faeardir-the-oath-forged-stormlit.jpg",
+   "file": "art/stockpile/faeardir-the-oath-forged.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "faeardir-the-oath-forged@stormlit",
-   "cardFile": "genshin-impact/uncategorized/nahida.jpg"
+   "cardFile": "genshin-impact/uncategorized/nahida.jpg",
+   "bytes": 318051
   },
   {
    "name": "Ruithien the Shield-Sworn",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Ruithien the Shield-Sworn, a commander of the reserves, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, a battered heirloom shield bearing the realm sigil, an oath-brand or votive seal burned into a vambrace, hood drawn, face emerging from shadow, standing stones and the long memory of the elder races",
-   "file": "art/canon/ruithien-the-shield-sworn-stormlit.jpg",
+   "file": "art/stockpile/ruithien-the-shield-sworn.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "ruithien-the-shield-sworn@stormlit",
-   "cardFile": "genshin-impact/uncategorized/raiden_20shogun.jpg"
+   "cardFile": "genshin-impact/uncategorized/raiden_20shogun.jpg",
+   "bytes": 320454
   },
   {
    "name": "Faeevien the Storm-Marked",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Faeevien the Storm-Marked, a duelist of the old schools, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, marked by the realm’s own trade, weapon shouldered, chin lowered, eyes up, standing stones and the long memory of the elder races",
-   "file": "art/canon/faeevien-the-storm-marked-stormlit.jpg",
+   "file": "art/stockpile/faeevien-the-storm-marked.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "faeevien-the-storm-marked@stormlit",
-   "cardFile": "genshin-impact/uncategorized/raiden_20shogun.jpg"
+   "cardFile": "genshin-impact/uncategorized/raiden_20shogun.jpg",
+   "bytes": 325934
   },
   {
    "name": "Gilendor the Grave-Sworn",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Gilendor the Grave-Sworn, a commander of the reserves, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, grave-soil in the seams of the armor, a burial coin on a cord, an oath-brand or votive seal burned into a vambrace, weapon shouldered, chin lowered, eyes up, standing stones and the long memory of the elder races",
-   "file": "art/canon/gilendor-the-grave-sworn-stormlit.jpg",
+   "file": "art/stockpile/gilendor-the-grave-sworn.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "gilendor-the-grave-sworn@stormlit",
-   "cardFile": "genshin-impact/uncategorized/raiden.jpg"
+   "cardFile": "genshin-impact/uncategorized/raiden.jpg",
+   "bytes": 328638
   },
   {
    "name": "Lorithwen the Far-Walked",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Lorithwen the Far-Walked, a front-line shield-bearer, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, marked by the realm’s own trade, banners of the realm hanging dark behind, standing stones and the long memory of the elder races",
-   "file": "art/canon/lorithwen-the-far-walked-stormlit.jpg",
+   "file": "art/stockpile/lorithwen-the-far-walked.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "lorithwen-the-far-walked@stormlit",
-   "cardFile": "genshin-impact/uncategorized/venti.jpg"
+   "cardFile": "genshin-impact/uncategorized/venti.jpg",
+   "bytes": 273029
   },
   {
    "name": "Silithmar of the Ninth Weave",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Silithmar of the Ninth Weave, a ranged marksman, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, marked by the realm’s own trade, head tilted, studying the viewer like a debt, standing stones and the long memory of the elder races",
-   "file": "art/canon/silithmar-of-the-ninth-weave-stormlit.jpg",
+   "file": "art/stockpile/silithmar-of-the-ninth-weave.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "silithmar-of-the-ninth-weave@stormlit",
-   "cardFile": "genshin-impact/uncategorized/zhongli.jpg"
+   "cardFile": "genshin-impact/uncategorized/zhongli.jpg",
+   "bytes": 304652
   },
   {
    "name": "Ruorris the Gate-Warden",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Ruorris the Gate-Warden, a keeper of the realm’s relics, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, gate iron — a massive key, a warded lock, hinges on the pauldron, a gate-warden keys on a chain, door-iron on the belt, head tilted, studying the viewer like a debt, standing stones and the long memory of the elder races",
-   "file": "art/canon/ruorris-the-gate-warden-stormlit.jpg",
+   "file": "art/stockpile/ruorris-the-gate-warden.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "ruorris-the-gate-warden@stormlit",
-   "cardFile": "the-elder-scrolls/summerset-isle/ayrenn.jpg"
+   "cardFile": "the-elder-scrolls/summerset-isle/ayrenn.jpg",
+   "bytes": 295597
   },
   {
    "name": "Loraldor the Gate-Warden",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Loraldor the Gate-Warden, a keeper of the realm’s relics, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, gate iron — a massive key, a warded lock, hinges on the pauldron, a gate-warden keys on a chain, door-iron on the belt, mid-stride, cloak caught as if in wind, standing stones and the long memory of the elder races",
-   "file": "art/canon/loraldor-the-gate-warden-stormlit.jpg",
+   "file": "art/stockpile/loraldor-the-gate-warden.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "loraldor-the-gate-warden@stormlit",
-   "cardFile": "the-elder-scrolls/summerset-the-aldmeri-dominion/ayrenn_20arana_20aldmeri.jpg"
+   "cardFile": "the-elder-scrolls/summerset-the-aldmeri-dominion/ayrenn_20arana_20aldmeri.jpg",
+   "bytes": 290967
   },
   {
    "name": "Gililmar the Bold",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Gililmar the Bold, a banner-champion, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, a wide fearless grin, half-turned toward a window of the realm’s light, standing stones and the long memory of the elder races",
-   "file": "art/canon/gililmar-the-bold-stormlit.jpg",
+   "file": "art/stockpile/gililmar-the-bold.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "gililmar-the-bold@stormlit",
-   "cardFile": "the-elder-scrolls/summerset-the-aldmeri-dominion/elenwen.jpg"
+   "cardFile": "the-elder-scrolls/summerset-the-aldmeri-dominion/elenwen.jpg",
+   "bytes": 334101
   },
   {
    "name": "Aearlas the Oath-Forged",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Aearlas the Oath-Forged, a ranged marksman, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, a broken oath-ring, kept anyway, hood drawn, face emerging from shadow, standing stones and the long memory of the elder races",
-   "file": "art/canon/aearlas-the-oath-forged-stormlit.jpg",
+   "file": "art/stockpile/aearlas-the-oath-forged.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "aearlas-the-oath-forged@stormlit",
-   "cardFile": "the-elder-scrolls/uncategorized/harkon.jpg"
+   "cardFile": "the-elder-scrolls/uncategorized/harkon.jpg",
+   "bytes": 295455
   },
   {
    "name": "Elithiel the Shield-Sworn",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Elithiel the Shield-Sworn, a veteran of the siege-lines, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, a battered heirloom shield bearing the realm sigil, an oath-brand or votive seal burned into a vambrace, weapon shouldered, chin lowered, eyes up, standing stones and the long memory of the elder races",
-   "file": "art/canon/elithiel-the-shield-sworn-stormlit.jpg",
+   "file": "art/stockpile/elithiel-the-shield-sworn.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "elithiel-the-shield-sworn@stormlit",
-   "cardFile": "the-elder-scrolls/uncategorized/jagar_20tharn.jpg"
+   "cardFile": "the-elder-scrolls/uncategorized/jagar_20tharn.jpg",
+   "bytes": 273383
   },
   {
    "name": "Ithorris the Shield-Sworn",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Ithorris the Shield-Sworn, a commander of the reserves, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, a battered heirloom shield bearing the realm sigil, an oath-brand or votive seal burned into a vambrace, head tilted, studying the viewer like a debt, standing stones and the long memory of the elder races",
-   "file": "art/canon/ithorris-the-shield-sworn-stormlit.jpg",
+   "file": "art/stockpile/ithorris-the-shield-sworn.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "ithorris-the-shield-sworn@stormlit",
-   "cardFile": "the-elder-scrolls/uncategorized/mankar_20camoran.jpg"
+   "cardFile": "the-elder-scrolls/uncategorized/mankar_20camoran.jpg",
+   "bytes": 299284
   },
   {
    "name": "Rueneth the Unbreached",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Rueneth the Unbreached, a banner-champion, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, marked by the realm’s own trade, banners of the realm hanging dark behind, standing stones and the long memory of the elder races",
-   "file": "art/canon/rueneth-the-unbreached-stormlit.jpg",
+   "file": "art/stockpile/rueneth-the-unbreached.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "rueneth-the-unbreached@stormlit",
-   "cardFile": "the-elder-scrolls/uncategorized/talos.jpg"
+   "cardFile": "the-elder-scrolls/uncategorized/talos.jpg",
+   "bytes": 298696
   },
   {
    "name": "Arildir the Gate-Warden",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Arildir the Gate-Warden, a duelist of the old schools, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, gate iron — a massive key, a warded lock, hinges on the pauldron, a gate-warden keys on a chain, door-iron on the belt, banners of the realm hanging dark behind, standing stones and the long memory of the elder races",
-   "file": "art/canon/arildir-the-gate-warden-stormlit.jpg",
+   "file": "art/stockpile/arildir-the-gate-warden.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "arildir-the-gate-warden@stormlit",
-   "cardFile": "the-elder-scrolls/uncategorized/tiber.jpg"
+   "cardFile": "the-elder-scrolls/uncategorized/tiber.jpg",
+   "bytes": 351540
   },
   {
    "name": "Gilalien the Steadfast",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Gilalien the Steadfast, a ranged marksman, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, an unwavering planted stance and level, unimpressed gaze, half-turned toward a window of the realm’s light, standing stones and the long memory of the elder races",
-   "file": "art/canon/gilalien-the-steadfast-stormlit.jpg",
+   "file": "art/stockpile/gilalien-the-steadfast.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "gilalien-the-steadfast@stormlit",
-   "cardFile": "the-lord-of-the-rings/lothlorien-rivendell/elrond.jpg"
+   "cardFile": "the-lord-of-the-rings/lothlorien-rivendell/elrond.jpg",
+   "bytes": 323994
   },
   {
    "name": "Gilendor of the Crimson Tithe",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Gilendor of the Crimson Tithe, a keeper of the realm’s relics, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, marked by the realm’s own trade, banners of the realm hanging dark behind, standing stones and the long memory of the elder races",
-   "file": "art/canon/gilendor-of-the-crimson-tithe-stormlit.jpg",
+   "file": "art/stockpile/gilendor-of-the-crimson-tithe.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "gilendor-of-the-crimson-tithe@stormlit",
-   "cardFile": "the-lord-of-the-rings/uncategorized/celebrimbor.jpg"
+   "cardFile": "the-lord-of-the-rings/uncategorized/celebrimbor.jpg",
+   "bytes": 282718
   },
   {
    "name": "Ruareth the Blood-Tithed",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Ruareth the Blood-Tithed, a scout of the outer marches, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, marked by the realm’s own trade, banners of the realm hanging dark behind, standing stones and the long memory of the elder races",
-   "file": "art/canon/ruareth-the-blood-tithed-stormlit.jpg",
+   "file": "art/stockpile/ruareth-the-blood-tithed.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "ruareth-the-blood-tithed@stormlit",
-   "cardFile": "the-lord-of-the-rings/uncategorized/eldarion.jpg"
+   "cardFile": "the-lord-of-the-rings/uncategorized/eldarion.jpg",
+   "bytes": 293962
   },
   {
    "name": "Ruardor the Late-Reborn",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Ruardor the Late-Reborn, a front-line shield-bearer, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, marked by the realm’s own trade, half-turned toward a window of the realm’s light, standing stones and the long memory of the elder races",
-   "file": "art/canon/ruardor-the-late-reborn-stormlit.jpg",
+   "file": "art/stockpile/ruardor-the-late-reborn.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "ruardor-the-late-reborn@stormlit",
-   "cardFile": "the-lord-of-the-rings/uncategorized/fingolfin.jpg"
+   "cardFile": "the-lord-of-the-rings/uncategorized/fingolfin.jpg",
+   "bytes": 306200
   },
   {
    "name": "Mirevris the Gate-Warden",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Mirevris the Gate-Warden, a front-line shield-bearer, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, gate iron — a massive key, a warded lock, hinges on the pauldron, a gate-warden keys on a chain, door-iron on the belt, seated on campaign furniture, elbows on knees, standing stones and the long memory of the elder races",
-   "file": "art/canon/mirevris-the-gate-warden-stormlit.jpg",
+   "file": "art/stockpile/mirevris-the-gate-warden.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "mirevris-the-gate-warden@stormlit",
-   "cardFile": "the-lord-of-the-rings/uncategorized/fingon.jpg"
+   "cardFile": "the-lord-of-the-rings/uncategorized/fingon.jpg",
+   "bytes": 308946
   },
   {
    "name": "Halalris the Red-Handed",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Halalris the Red-Handed, a commander of the reserves, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, red-stained cloth, dried to rust, stained hands, deliberately unhidden, half-turned toward a window of the realm’s light, standing stones and the long memory of the elder races",
-   "file": "art/canon/halalris-the-red-handed-stormlit.jpg",
+   "file": "art/stockpile/halalris-the-red-handed.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "halalris-the-red-handed@stormlit",
-   "cardFile": "the-lord-of-the-rings/uncategorized/finrod_20felagund.jpg"
+   "cardFile": "the-lord-of-the-rings/uncategorized/finrod_20felagund.jpg",
+   "bytes": 308434
   },
   {
    "name": "Giladris of the Quiet House",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Giladris of the Quiet House, a front-line shield-bearer, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, stillness, a hood half-drawn, watching, seated on campaign furniture, elbows on knees, standing stones and the long memory of the elder races",
-   "file": "art/canon/giladris-of-the-quiet-house-stormlit.jpg",
+   "file": "art/stockpile/giladris-of-the-quiet-house.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "giladris-of-the-quiet-house@stormlit",
-   "cardFile": "the-lord-of-the-rings/uncategorized/maedhros.jpg"
+   "cardFile": "the-lord-of-the-rings/uncategorized/maedhros.jpg",
+   "bytes": 332919
   },
   {
    "name": "Silarwyn the Host-Mustered",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Silarwyn the Host-Mustered, a ranged marksman, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, red-stained cloth, dried to rust, facing the viewer directly, weapon grounded, standing stones and the long memory of the elder races",
-   "file": "art/canon/silarwyn-the-host-mustered-stormlit.jpg",
+   "file": "art/stockpile/silarwyn-the-host-mustered.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "silarwyn-the-host-mustered@stormlit",
-   "cardFile": "the-lord-of-the-rings/uncategorized/maeglin.jpg"
+   "cardFile": "the-lord-of-the-rings/uncategorized/maeglin.jpg",
+   "bytes": 286132
   },
   {
    "name": "Lorilwyn the Patient",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Lorilwyn the Patient, a veteran of the siege-lines, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, marked by the realm’s own trade, facing the viewer directly, weapon grounded, standing stones and the long memory of the elder races",
-   "file": "art/canon/lorilwyn-the-patient-stormlit.jpg",
+   "file": "art/stockpile/lorilwyn-the-patient.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "lorilwyn-the-patient@stormlit",
-   "cardFile": "the-lord-of-the-rings/uncategorized/maglor.jpg"
+   "cardFile": "the-lord-of-the-rings/uncategorized/maglor.jpg",
+   "bytes": 310871
   },
   {
    "name": "Velalwyn the Quiet Oracle",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Velalwyn the Quiet Oracle, a scout of the outer marches, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, stillness, a hood half-drawn, watching, head tilted, studying the viewer like a debt, standing stones and the long memory of the elder races",
-   "file": "art/canon/velalwyn-the-quiet-oracle-stormlit.jpg",
+   "file": "art/stockpile/velalwyn-the-quiet-oracle.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "velalwyn-the-quiet-oracle@stormlit",
-   "cardFile": "the-lord-of-the-rings/uncategorized/melian.jpg"
+   "cardFile": "the-lord-of-the-rings/uncategorized/melian.jpg",
+   "bytes": 274754
   },
   {
    "name": "Thaladien the Nine-Crowned",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Thaladien the Nine-Crowned, a veteran of the siege-lines, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, a crown — broken, tarnished, or molten — still worn, hood drawn, face emerging from shadow, standing stones and the long memory of the elder races",
-   "file": "art/canon/thaladien-the-nine-crowned-stormlit.jpg",
+   "file": "art/stockpile/thaladien-the-nine-crowned.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "thaladien-the-nine-crowned@stormlit",
-   "cardFile": "the-lord-of-the-rings/uncategorized/orodreth.jpg"
+   "cardFile": "the-lord-of-the-rings/uncategorized/orodreth.jpg",
+   "bytes": 338942
   },
   {
    "name": "Nerarwen of the Still Water",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Nerarwen of the Still Water, a duelist of the old schools, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, marked by the realm’s own trade, seated on campaign furniture, elbows on knees, standing stones and the long memory of the elder races",
-   "file": "art/canon/nerarwen-of-the-still-water-stormlit.jpg",
+   "file": "art/stockpile/nerarwen-of-the-still-water.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "nerarwen-of-the-still-water@stormlit",
-   "cardFile": "the-lord-of-the-rings/uncategorized/thingol.jpg"
+   "cardFile": "the-lord-of-the-rings/uncategorized/thingol.jpg",
+   "bytes": 316123
   },
   {
    "name": "Haloriel of the Long Watch",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Haloriel of the Long Watch, a scout of the outer marches, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, a sentinel patience, standing guard over something unseen, banners of the realm hanging dark behind, standing stones and the long memory of the elder races",
-   "file": "art/canon/haloriel-of-the-long-watch-stormlit.jpg",
+   "file": "art/stockpile/haloriel-of-the-long-watch.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "haloriel-of-the-long-watch@stormlit",
-   "cardFile": "the-lord-of-the-rings/uncategorized/thranduil.jpg"
+   "cardFile": "the-lord-of-the-rings/uncategorized/thranduil.jpg",
+   "bytes": 305514
   },
   {
    "name": "Caelenion the Patient",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Caelenion the Patient, a scout of the outer marches, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, marked by the realm’s own trade, facing the viewer directly, weapon grounded, standing stones and the long memory of the elder races",
-   "file": "art/canon/caelenion-the-patient-stormlit.jpg",
+   "file": "art/stockpile/caelenion-the-patient.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "caelenion-the-patient@stormlit",
-   "cardFile": "the-lord-of-the-rings/uncategorized/turgon.jpg"
+   "cardFile": "the-lord-of-the-rings/uncategorized/turgon.jpg",
+   "bytes": 323555
   },
   {
    "name": "Eleneth the Bold",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Eleneth the Bold, a ranged marksman, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, a wide fearless grin, half-turned toward a window of the realm’s light, standing stones and the long memory of the elder races",
-   "file": "art/canon/eleneth-the-bold-stormlit.jpg",
+   "file": "art/stockpile/eleneth-the-bold.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "eleneth-the-bold@stormlit",
-   "cardFile": "the-witcher/uncategorized/auberon_20muircetach.jpg"
+   "cardFile": "the-witcher/uncategorized/auberon_20muircetach.jpg",
+   "bytes": 294380
   },
   {
    "name": "Arorwyn the Twilight-Born",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Arorwyn the Twilight-Born, a commander of the reserves, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, marked by the realm’s own trade, half-turned toward a window of the realm’s light, standing stones and the long memory of the elder races",
-   "file": "art/canon/arorwyn-the-twilight-born-stormlit.jpg",
+   "file": "art/stockpile/arorwyn-the-twilight-born.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "arorwyn-the-twilight-born@stormlit",
-   "cardFile": "the-witcher/uncategorized/eredin.jpg"
+   "cardFile": "the-witcher/uncategorized/eredin.jpg",
+   "bytes": 306385
   },
   {
    "name": "Arildir the Red-Handed",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Arildir the Red-Handed, a scout of the outer marches, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, red-stained cloth, dried to rust, stained hands, deliberately unhidden, weapon shouldered, chin lowered, eyes up, standing stones and the long memory of the elder races",
-   "file": "art/canon/arildir-the-red-handed-stormlit.jpg",
+   "file": "art/stockpile/arildir-the-red-handed.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "arildir-the-red-handed@stormlit",
-   "cardFile": "the-witcher/uncategorized/francesca_20findabair.jpg"
+   "cardFile": "the-witcher/uncategorized/francesca_20findabair.jpg",
+   "bytes": 312142
   },
   {
    "name": "Miraddor of the Long Watch",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Miraddor of the Long Watch, a commander of the reserves, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, a sentinel patience, standing guard over something unseen, seated on campaign furniture, elbows on knees, standing stones and the long memory of the elder races",
-   "file": "art/canon/miraddor-of-the-long-watch-stormlit.jpg",
+   "file": "art/stockpile/miraddor-of-the-long-watch.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "miraddor-of-the-long-watch@stormlit",
-   "cardFile": "the-witcher/uncategorized/iorveth.jpg"
+   "cardFile": "the-witcher/uncategorized/iorveth.jpg",
+   "bytes": 239937
   },
   {
    "name": "Ruarwen the Thorned",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Ruarwen the Thorned, a banner-champion, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, storm-grey and sea-green palette, driftwood-silver heirloom filigree, rain-jeweled mantle, marked by the realm’s own trade, seated on campaign furniture, elbows on knees, standing stones and the long memory of the elder races",
-   "file": "art/canon/ruarwen-the-thorned-stormlit.jpg",
+   "file": "art/stockpile/ruarwen-the-thorned.jpg",
    "tribe": "Elderkin",
    "realm": "stormlit",
    "cardId": "ruarwen-the-thorned@stormlit",
-   "cardFile": "warhammer-40-000/the-aeldari/asdrubael_20vect.jpg"
+   "cardFile": "warhammer-40-000/the-aeldari/asdrubael_20vect.jpg",
+   "bytes": 339620
   },
   {
    "name": "Ithaliel of the Long Watch",

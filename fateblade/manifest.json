@@ -4507,6 +4507,356 @@
       "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/music/living-voyage.ogg",
       "license": "CC BY 4.0",
       "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Living_Voyage_(MacLeod,_Kevin)_(ISRC_USUAN1100594).oga"
+    },
+    {
+      "path": "art/stockpile/sorariel-the-steadfast.jpg",
+      "sha256": "63529eef434f60016d8b446f89bca9631232021a49c0c9c855061e2bf229efb8",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/sorariel-the-steadfast.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/lorarion-the-shield-sworn.jpg",
+      "sha256": "9048f0d0896ba4cc131c3b85641afec5fee95bfa7179851b6e6ffca5171b9770",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/lorarion-the-shield-sworn.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/caelilion-of-the-quiet-house.jpg",
+      "sha256": "5992ed3a2abcdb42082a5254d04deb802503d543e9b9261cfcaeaea4a20b13db",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/caelilion-of-the-quiet-house.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/nerarris-the-steadfast.jpg",
+      "sha256": "7529d5392713e047ff859967074f12655b0e4d211da1233f253e5bc46bb79d49",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/nerarris-the-steadfast.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/silevris-the-hollow-crowned.jpg",
+      "sha256": "f84df398ddf7504d81c86437fa518087eca0a7b941158c8363ab6ffa89f1acb5",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/silevris-the-hollow-crowned.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/caelalwyn-the-storm-marked.jpg",
+      "sha256": "2ab15eebcc2ee5ba7d5423ad84f5b86decfd82f2f7e73d0e9cc1ef0ec4264b30",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/caelalwyn-the-storm-marked.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/gililiel-the-unbowed.jpg",
+      "sha256": "6ae45d1ede1eac7da8a9e9d115c81f8e5a089f2b8969e9417f89937c51f583bb",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/gililiel-the-unbowed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/caelalwen-the-red-handed.jpg",
+      "sha256": "989704ab0d26366245b9ac684b5595d783e09bf54b0a2d13ec914862e07db052",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/caelalwen-the-red-handed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/miralien-the-last-voiced.jpg",
+      "sha256": "d0466774b627b924b9a7d89c3b252987f67ff1020e3eb0664c9aa3fb5061b8a0",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/miralien-the-last-voiced.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/aeevwen-the-far-walked.jpg",
+      "sha256": "204ca65c51bf9cf56ce14f80f2a5a6274b4c69484ea8ec9614a7a10d231c05b6",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/aeevwen-the-far-walked.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/silorlas-the-ward-blessed.jpg",
+      "sha256": "4b3ff5473168b9a2384f7516240b237a3f8a1f4c93fb1f43bc620ddcd300a202",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/silorlas-the-ward-blessed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/aeenwyn-the-breaker-line.jpg",
+      "sha256": "78e04130082ae1445d4a0e74d66c1981a0b0a63e8b55340dc942b65c36492ebd",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/aeenwyn-the-breaker-line.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/sorilris-the-quiet-sentence.jpg",
+      "sha256": "9a9e3027c398d9a50de1a526d38c98dd626b37cd6488df40ed1f4c99e9201cb1",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/sorilris-the-quiet-sentence.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/gilalwen-the-gate-warden.jpg",
+      "sha256": "dd549c9deb1440df9417966943fb757c10771e3c219ca34b92fba875a849c88d",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/gilalwen-the-gate-warden.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/nerendor-the-wall-of-spears.jpg",
+      "sha256": "22ada6f732a9a443c5249a8b8a374ad3d145be3ee74cb9c304daa477ea96fb51",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/nerendor-the-wall-of-spears.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/neradeth-of-the-long-watch.jpg",
+      "sha256": "a7c15a855a1406fe27b10d02d99ccd69ed0111e07767fcc1af66ede8f539f231",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/neradeth-of-the-long-watch.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/gilorwyn-the-blood-tithed.jpg",
+      "sha256": "37c6c6d47e913b2937e446b94c3b83aa5c97ad5ebe69c090f78bdb2144c84f57",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/gilorwyn-the-blood-tithed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/faeardir-the-oath-forged.jpg",
+      "sha256": "50291f760622ea2b88c3f6872085c1eb4da0c97108fa31a285a5376c41f390c2",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/faeardir-the-oath-forged.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/ruithien-the-shield-sworn.jpg",
+      "sha256": "6f54698a700457d2a24e2adacf1ae27af56a27dace86d6e528047c3547fc6405",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/ruithien-the-shield-sworn.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/faeevien-the-storm-marked.jpg",
+      "sha256": "e60f1266fbe4209c8921a4f7c22bfa2a346bc0327317094b1a8334a24df1bfdd",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/faeevien-the-storm-marked.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/gilendor-the-grave-sworn.jpg",
+      "sha256": "92c074d822c91a6f5ee20dc1a1b548706f09a1d02eb42e9a5a2b8da0064da10d",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/gilendor-the-grave-sworn.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/lorithwen-the-far-walked.jpg",
+      "sha256": "f551c8e45212adf1a8b0440103b6a989c5a647fc8afa88663e45a0bba6e55493",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/lorithwen-the-far-walked.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/silithmar-of-the-ninth-weave.jpg",
+      "sha256": "9e27d41bc0b7dea84ed27cec00a585e5444860ffec0e453f05b242e83dc37cb8",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/silithmar-of-the-ninth-weave.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/ruorris-the-gate-warden.jpg",
+      "sha256": "62e148b1bfabeb596c23bbb5aed43a103895df3711e122ba53ecbbe41c46d11c",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/ruorris-the-gate-warden.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/loraldor-the-gate-warden.jpg",
+      "sha256": "29d23c98728bcf6c155376a59988891166c125fcf12532e7f476a2e157f02931",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/loraldor-the-gate-warden.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/gililmar-the-bold.jpg",
+      "sha256": "916bb2d818036f4b3378e257f5e829e9b424aad12e6de58ab57b0e0771e25577",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/gililmar-the-bold.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/aearlas-the-oath-forged.jpg",
+      "sha256": "7501aca8e32f4d98146aa4d085e7c4caac3b1746399a9e168f8028f46a81b111",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/aearlas-the-oath-forged.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/elithiel-the-shield-sworn.jpg",
+      "sha256": "da32cc12fe52f90abed532952c8c0226ec37cc951c47558dbb79d4a0395b98cc",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/elithiel-the-shield-sworn.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/ithorris-the-shield-sworn.jpg",
+      "sha256": "ebb820a10794d440b63ecbd19c5823ea80bf4931eb9f8f80d6c8b26a28483047",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/ithorris-the-shield-sworn.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/rueneth-the-unbreached.jpg",
+      "sha256": "47fb30bfc454d1d629d9d3db35ace4820560b7761774a788128b17446a7b3528",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/rueneth-the-unbreached.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/arildir-the-gate-warden.jpg",
+      "sha256": "00e7d2b32f6d32a8d209cfa3c4599e0fdec9d0b359798d3edfb6b7d989285445",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/arildir-the-gate-warden.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/gilalien-the-steadfast.jpg",
+      "sha256": "bc010d042142d7e92075912f73208e43b715f58e5a1ea3bf772ebddd5d79c7fe",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/gilalien-the-steadfast.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/gilendor-of-the-crimson-tithe.jpg",
+      "sha256": "c09a705bbf0f445bd5fb9793a157cef61ebbce56a5bb58eca32c98bef9f3ecef",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/gilendor-of-the-crimson-tithe.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/ruareth-the-blood-tithed.jpg",
+      "sha256": "e48ae01382f2131859b442da66b19eb6a58c57cabcdb2393bd5efb94eec4f507",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/ruareth-the-blood-tithed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/ruardor-the-late-reborn.jpg",
+      "sha256": "cc1d968913166d44ba1732f62165eab61aae67d30d13264f9fc7ad0c4348eeac",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/ruardor-the-late-reborn.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/mirevris-the-gate-warden.jpg",
+      "sha256": "e51ddc5789923ec084dd2f67c75599d99e08c823ddf61ada978550a31179ef79",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/mirevris-the-gate-warden.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/halalris-the-red-handed.jpg",
+      "sha256": "fcbb567f2f601d6d890b0fc050cc493bf8080ca54d10a8a00c1b1c37bc6289ed",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/halalris-the-red-handed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/giladris-of-the-quiet-house.jpg",
+      "sha256": "99f741bee978bd6cf3b8a8705b507904978c795e62c38ba890194feb2140ad8b",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/giladris-of-the-quiet-house.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/silarwyn-the-host-mustered.jpg",
+      "sha256": "57b3a42c633a81e1e808aabe9803a3cd462d1eb219d1d3f754ac8be8c3d6c944",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/silarwyn-the-host-mustered.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/lorilwyn-the-patient.jpg",
+      "sha256": "0844814301d9682ecd328f2f7021066603168e58d456895bb9cc292b8ef0c327",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/lorilwyn-the-patient.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/velalwyn-the-quiet-oracle.jpg",
+      "sha256": "b5073e02e1256d118bae2f4a43d8f706d1129e8124e5c74541bd0b1a57af8b01",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/velalwyn-the-quiet-oracle.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/thaladien-the-nine-crowned.jpg",
+      "sha256": "5d06c16dd68f91fe190b465518463f7b6d19f1b1d053637fb0240dcd1c5d690b",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/thaladien-the-nine-crowned.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/nerarwen-of-the-still-water.jpg",
+      "sha256": "e3717cb6a13dd6dddacf9f3a7ce3b2b95b9355e5bb0d242d0e452840f2a0c1aa",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/nerarwen-of-the-still-water.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/haloriel-of-the-long-watch.jpg",
+      "sha256": "d6d6fc37301acf51a479a27c0ce35b94979f45aa30f00655d6306538ef5cd1ad",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/haloriel-of-the-long-watch.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/caelenion-the-patient.jpg",
+      "sha256": "0094112637e860903c43762495daf4344ea921233ba9b720fc12f84731992388",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/caelenion-the-patient.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/eleneth-the-bold.jpg",
+      "sha256": "43b360899c40d6c20ba1cf6c70813bbd2ae03d086093e9cbe0cdd09036ac4627",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/eleneth-the-bold.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/arorwyn-the-twilight-born.jpg",
+      "sha256": "d044ebf18c12324435db47b53012934f8edd5be18dd6d4fac79581c2852bc838",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/arorwyn-the-twilight-born.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/arildir-the-red-handed.jpg",
+      "sha256": "069c554ede0d584df37a972072e722cbdfff6850f0c4373b589f1bff5745a0f7",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/arildir-the-red-handed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/miraddor-of-the-long-watch.jpg",
+      "sha256": "bb5b7ff6df07386cc11d344a59c897299fd271ffdd65a86e5522a63f59277487",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/miraddor-of-the-long-watch.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/ruarwen-the-thorned.jpg",
+      "sha256": "0cb660de20ca348d71b89957862469ec2694ed8339f1e65ea4777423968015b8",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/ruarwen-the-thorned.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
     }
   ]
 }
