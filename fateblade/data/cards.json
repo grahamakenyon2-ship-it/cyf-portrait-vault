@@ -1910,7 +1910,7 @@
      "rarity": "rare",
      "file": "art/armillary-sphere.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/armillary-sphere.jpg",
-     "ability": "Scry 3 — draw the best of the top 3 cards of your deck. Then Battlecry: deal 3 damage.",
+     "ability": "Scry 3 — draw the best of the top 3 cards of your deck. Then deal 3 damage.",
      "id": "armillary-sphere@barning"
     },
     {
@@ -1954,12 +1954,13 @@
      "type": "relic",
      "fx": null,
      "rl": "rlAmulet",
-     "bc": "bcPing3",
+     "bc": null,
      "rarity": "rare",
      "file": "art/countermine-tunnel.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/countermine-tunnel.jpg",
-     "ability": "Your edicts cost 1 less. Then Deal 3 damage to an enemy minion.",
-     "id": "countermine-tunnel@barning"
+     "ability": "Your edicts cost 1 less.",
+     "id": "countermine-tunnel@barning",
+     "dr": null
     },
     {
      "name": "Cryo vault",
@@ -2162,12 +2163,13 @@
      "type": "relic",
      "fx": null,
      "rl": "rlAmulet",
-     "bc": "drDraw",
+     "bc": null,
      "rarity": "rare",
      "file": "art/the-admiral-s-cabin.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-admiral-s-cabin.jpg",
-     "ability": "Your edicts cost 1 less. Then Draw a card.",
-     "id": "the-admiral-s-cabin@barning"
+     "ability": "Your edicts cost 1 less.",
+     "id": "the-admiral-s-cabin@barning",
+     "dr": null
     },
     {
      "name": "The admiral's glass",
@@ -2210,7 +2212,7 @@
      "type": "edict",
      "fx": "fxMana3",
      "rl": null,
-     "bc": "drDraw",
+     "bc": "bcDraw",
      "rarity": "rare",
      "file": "art/the-ash-archive.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-ash-archive.jpg",
@@ -2226,12 +2228,13 @@
      "type": "relic",
      "fx": null,
      "rl": "rlGranary",
-     "bc": "bcAoe1",
+     "bc": null,
      "rarity": "rare",
      "file": "art/the-banned-book.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-banned-book.jpg",
-     "ability": "At the start of your turn, restore 2 HP to your hero. Then Battlecry: deal 1 damage to all enemy minions.",
-     "id": "the-banned-book@barning"
+     "ability": "At the start of your turn, restore 2 HP to your hero.",
+     "id": "the-banned-book@barning",
+     "dr": null
     },
     {
      "name": "The bazaar of Spices",
@@ -2290,11 +2293,11 @@
      "type": "edict",
      "fx": "fxVolley",
      "rl": null,
-     "bc": "drDraw",
+     "bc": "bcDraw",
      "rarity": "common",
      "file": "art/the-copper-bazaar.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-copper-bazaar.jpg",
-     "ability": "Draw a card.",
+     "ability": "Deal 1 damage to the enemy hero for each Ranged minion you control. Then Draw a card.",
      "id": "the-copper-bazaar@barning"
     },
     {
@@ -2370,12 +2373,13 @@
      "type": "relic",
      "fx": null,
      "rl": "rlIdol",
-     "bc": "bcPing3",
+     "bc": null,
      "rarity": "rare",
      "file": "art/the-lost-library.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-lost-library.jpg",
-     "ability": "Your cards that cost 5 or more cost 1 less. Then Deal 3 damage to an enemy minion.",
-     "id": "the-lost-library@barning"
+     "ability": "Your cards that cost 5 or more cost 1 less.",
+     "id": "the-lost-library@barning",
+     "dr": null
     },
     {
      "name": "The louvre Courtyard",
@@ -2406,7 +2410,7 @@
      "rarity": "common",
      "file": "art/the-map-of-elsewhere.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-map-of-elsewhere.jpg",
-     "ability": "Deal 2 damage to the enemy hero for each of your Ranged minions. Then Battlecry: deal 2 damage.",
+     "ability": "Deal 2 damage to the enemy hero for each of your Ranged minions. Then deal 2 damage.",
      "id": "the-map-of-elsewhere@barning"
     },
     {
@@ -2466,12 +2470,13 @@
      "type": "relic",
      "fx": null,
      "rl": "rlReliquary",
-     "bc": "bcPing",
+     "bc": null,
      "rarity": "rare",
      "file": "art/the-roads-toll.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-roads-toll.jpg",
-     "ability": "Blessed: your Sovereign's passive magnitudes are all increased by 1. Then Deal 1 damage to a random enemy minion.",
-     "id": "the-roads-toll@barning"
+     "ability": "Blessed: your Sovereign's passive magnitudes are all increased by 1.",
+     "id": "the-roads-toll@barning",
+     "dr": null
     },
     {
      "name": "The signal Semaphore",
@@ -2482,7 +2487,7 @@
      "type": "edict",
      "fx": "fxLawTariff",
      "rl": null,
-     "bc": "drDraw",
+     "bc": "bcDraw",
      "rarity": "rare",
      "file": "art/the-signal-semaphore.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-signal-semaphore.jpg",
@@ -2502,7 +2507,7 @@
      "rarity": "rare",
      "file": "art/the-signaling-heliograph.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-signaling-heliograph.jpg",
-     "ability": "Deal 1 damage to the enemy hero for each Ranged minion you control. Then Battlecry: deal 1 damage to the enemy hero.",
+     "ability": "Deal 1 damage to the enemy hero for each Ranged minion you control. Then deal 1 damage to the enemy hero.",
      "id": "the-signaling-heliograph@barning"
     },
     {
@@ -4759,7 +4764,7 @@
      "rarity": "rare",
      "file": "art/executioner-s-blade.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/executioner-s-blade.jpg",
-     "ability": "Deal 3 damage to the strongest enemy minion. Then Battlecry: deal 1 damage to all enemy minions.",
+     "ability": "Deal 3 damage to the strongest enemy minion. Then deal 1 damage to all enemy minions.",
      "id": "executioner-s-blade@lucerre"
     },
     {
@@ -4839,7 +4844,7 @@
      "rarity": "rare",
      "file": "art/legion-siege-ramp.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/legion-siege-ramp.jpg",
-     "ability": "Deal 3 damage to an enemy minion. Then Battlecry: deal 1 damage to all enemy minions.",
+     "ability": "Deal 3 damage to an enemy minion. Then deal 1 damage to all enemy minions.",
      "id": "legion-siege-ramp@lucerre"
     },
     {
@@ -4855,7 +4860,8 @@
      "rarity": "common",
      "file": "art/moonlit-stone-bridge.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/moonlit-stone-bridge.jpg",
-     "id": "moonlit-stone-bridge@lucerre"
+     "id": "moonlit-stone-bridge@lucerre",
+     "ability": "At the start of your turn, if the enemy holds 7 or more cards, they discard their costliest."
     },
     {
      "name": "Musketeer duel At Dawn",
@@ -4918,7 +4924,7 @@
      "rarity": "rare",
      "file": "art/siege-ladders.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/siege-ladders.jpg",
-     "ability": "Deal 2 damage to the enemy hero for each of your Ranged minions. Then Battlecry: deal 3 damage.",
+     "ability": "Deal 2 damage to the enemy hero for each of your Ranged minions. Then deal 3 damage.",
      "id": "siege-ladders@lucerre"
     },
     {
@@ -4930,7 +4936,7 @@
      "type": "edict",
      "fx": "fxPillage",
      "rl": null,
-     "bc": "drDraw",
+     "bc": "bcDraw",
      "rarity": "common",
      "file": "art/siege-tower.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/siege-tower.jpg",
@@ -4978,12 +4984,13 @@
      "type": "relic",
      "fx": null,
      "rl": "rlQuill",
-     "bc": "bcHero1",
+     "bc": null,
      "rarity": "rare",
      "file": "art/the-catacomb-shelves.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-catacomb-shelves.jpg",
-     "ability": "At the start of your turn, your last fallen minion returns as a 1/1 Echo. Then Deal 1 damage to the enemy hero.",
-     "id": "the-catacomb-shelves@lucerre"
+     "ability": "At the start of your turn, your last fallen minion returns as a 1/1 Echo.",
+     "id": "the-catacomb-shelves@lucerre",
+     "dr": null
     },
     {
      "name": "The derelict Hulk",
@@ -4994,7 +5001,7 @@
      "type": "edict",
      "fx": "fxVolley2",
      "rl": null,
-     "bc": "drDraw",
+     "bc": "bcDraw",
      "rarity": "rare",
      "file": "art/the-derelict-hulk.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-derelict-hulk.jpg",
@@ -5030,7 +5037,7 @@
      "rarity": "rare",
      "file": "art/the-flame-siphon.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-flame-siphon.jpg",
-     "ability": "Deal 1 damage to the enemy hero for each Ranged minion you control. Then Battlecry: deal 1 damage.",
+     "ability": "Deal 1 damage to the enemy hero for each Ranged minion you control. Then deal 1 damage.",
      "id": "the-flame-siphon@lucerre"
     },
     {
@@ -5074,11 +5081,11 @@
      "type": "edict",
      "fx": "fxHero3",
      "rl": null,
-     "bc": "drDraw",
+     "bc": "bcDraw",
      "rarity": "rare",
      "file": "art/the-induction-furnace.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-induction-furnace.jpg",
-     "ability": "Draw a card.",
+     "ability": "Deal 3 damage to an enemy minion. Then Draw a card.",
      "id": "the-induction-furnace@lucerre"
     },
     {
@@ -5122,7 +5129,7 @@
      "type": "edict",
      "fx": "fxDecreeMana",
      "rl": null,
-     "bc": "drDraw",
+     "bc": "bcDraw",
      "rarity": "common",
      "file": "art/the-siege-cannon.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-siege-cannon.jpg",
@@ -5186,11 +5193,11 @@
      "type": "edict",
      "fx": "fxDecreeMuster",
      "rl": null,
-     "bc": "drDraw",
+     "bc": "bcDraw",
      "rarity": "rare",
      "file": "art/the-triumphal-arch.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-triumphal-arch.jpg",
-     "ability": "Deal 3 damage to an enemy minion. Then Deathrattle: draw a card.",
+     "ability": "Deal 3 damage to an enemy minion. Then Draw a card.",
      "id": "the-triumphal-arch@lucerre",
      "dr": null
     },
@@ -5207,7 +5214,7 @@
      "rarity": "common",
      "file": "art/the-vestal-flame.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-vestal-flame.jpg",
-     "ability": "Scry 2 — draw the best of the top 2 cards of your deck. Then Battlecry: deal 1 damage to all enemy minions.",
+     "ability": "Scry 2 — draw the best of the top 2 cards of your deck. Then deal 1 damage to all enemy minions.",
      "id": "the-vestal-flame@lucerre"
     },
     {
@@ -5271,7 +5278,8 @@
      "rarity": "epic",
      "file": "art/war-elephant.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/war-elephant.jpg",
-     "id": "war-elephant@lucerre"
+     "id": "war-elephant@lucerre",
+     "ability": "Deal 3 damage to all enemy minions."
     },
     {
      "name": "Albert lebrun",
@@ -7403,7 +7411,8 @@
      "rarity": "common",
      "file": "art/mammoth-of-the-tundra.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/mammoth-of-the-tundra.jpg",
-     "id": "mammoth-of-the-tundra@fenorian"
+     "id": "mammoth-of-the-tundra@fenorian",
+     "ability": "Whenever the enemy draws a card outside their draw phase, their Sovereign takes 1 damage."
     },
     {
      "name": "Poison ring",
@@ -7414,12 +7423,13 @@
      "type": "relic",
      "fx": null,
      "rl": "rlReliquary",
-     "bc": "bcAoe1",
+     "bc": null,
      "rarity": "rare",
      "file": "art/poison-ring.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/poison-ring.jpg",
-     "ability": "Blessed: your Sovereign's passive magnitudes are all increased by 1. Then Deal 1 damage to all enemy minions.",
-     "id": "poison-ring@fenorian"
+     "ability": "Blessed: your Sovereign's passive magnitudes are all increased by 1.",
+     "id": "poison-ring@fenorian",
+     "dr": null
     },
     {
      "name": "The aqueduct Span",
@@ -7446,11 +7456,11 @@
      "type": "edict",
      "fx": "fxRally3",
      "rl": null,
-     "bc": "drDraw",
+     "bc": "bcDraw",
      "rarity": "rare",
      "file": "art/the-cardinal-s-ring.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-cardinal-s-ring.jpg",
-     "ability": "Summon a 1/1 Conscript. Then Deathrattle: draw a card.",
+     "ability": "Summon a 1/1 Conscript. Then Draw a card.",
      "id": "the-cardinal-s-ring@fenorian",
      "dr": null
     },
@@ -9056,7 +9066,8 @@
      "rarity": "epic",
      "file": "art/plague-doctor.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/plague-doctor.jpg",
-     "id": "plague-doctor@crescent"
+     "id": "plague-doctor@crescent",
+     "ability": "Deal 3 damage to all enemy minions."
     },
     {
      "name": "Samarkand blue Dome",
@@ -9103,7 +9114,8 @@
      "rarity": "common",
      "file": "art/the-immortal-guard.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-immortal-guard.jpg",
-     "id": "the-immortal-guard@crescent"
+     "id": "the-immortal-guard@crescent",
+     "ability": "Whenever the enemy draws a card outside their draw phase, their Sovereign takes 1 damage."
     },
     {
      "name": "The sapper's charge",
@@ -9146,12 +9158,13 @@
      "type": "relic",
      "fx": null,
      "rl": "rlSatrap",
-     "bc": "bcPing2",
+     "bc": null,
      "rarity": "rare",
      "file": "art/xenoform-crystal.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/xenoform-crystal.jpg",
-     "ability": "Deal 2 damage to a random enemy minion.",
-     "id": "xenoform-crystal@crescent"
+     "ability": "Whenever the enemy draws a card outside their draw phase, their Sovereign takes 1 damage.",
+     "id": "xenoform-crystal@crescent",
+     "dr": null
     },
     {
      "name": "Akbar",
@@ -10763,7 +10776,8 @@
      "rarity": "common",
      "file": "art/the-eye-of-the-tower.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-eye-of-the-tower.jpg",
-     "id": "the-eye-of-the-tower@ironsteppes"
+     "id": "the-eye-of-the-tower@ironsteppes",
+     "ability": "Give your Conscripts +1/+1, then summon a Conscript."
     },
     {
      "name": "The ink of Secrets",
@@ -10774,11 +10788,11 @@
      "type": "edict",
      "fx": "fxDecreeMuster",
      "rl": null,
-     "bc": "drSummon",
+     "bc": "bcSummon",
      "rarity": "common",
      "file": "art/the-ink-of-secrets.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-ink-of-secrets.jpg",
-     "ability": "Summon a 1/1 Conscript.",
+     "ability": "Deal 3 damage to an enemy minion. Then Summon a 1/1 Conscript.",
      "id": "the-ink-of-secrets@ironsteppes"
     },
     {
@@ -10794,7 +10808,7 @@
      "rarity": "rare",
      "file": "art/the-moneylender-s-table.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-moneylender-s-table.jpg",
-     "ability": "Law for a round: your minions enter with +1/+1. Then Battlecry: give a friendly minion +1/+1.",
+     "ability": "Law for a round: your minions enter with +1/+1. Then give a friendly minion +1/+1.",
      "id": "the-moneylender-s-table@ironsteppes"
     },
     {
@@ -10806,11 +10820,11 @@
      "type": "edict",
      "fx": "fxLevy",
      "rl": null,
-     "bc": "drSummon",
+     "bc": "bcSummon",
      "rarity": "common",
      "file": "art/the-throne-speech.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-throne-speech.jpg",
-     "ability": "Summon a 1/1 Conscript.",
+     "ability": "Give your Conscripts +1/+1, then summon a Conscript. Then Summon a 1/1 Conscript.",
      "id": "the-throne-speech@ironsteppes"
     },
     {
@@ -10822,11 +10836,11 @@
      "type": "edict",
      "fx": "fxDecreeMuster",
      "rl": null,
-     "bc": "bcSummon",
+     "bc": "bcDraw",
      "rarity": "common",
      "file": "art/trajan-s-column-relief.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/trajan-s-column-relief.jpg",
-     "ability": "Summon a 1/1 Conscript.",
+     "ability": "Deal 3 damage to an enemy minion. Then Draw a card.",
      "id": "trajan-s-column-relief@ironsteppes"
     },
     {
@@ -12844,12 +12858,13 @@
      "type": "relic",
      "fx": null,
      "rl": "rlHearth",
-     "bc": "drHeal2",
+     "bc": null,
      "rarity": "rare",
      "file": "art/the-borgia-chalice.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-borgia-chalice.jpg",
-     "ability": "At the start of your turn, if you hold 5 or more cards, restore 2 HP to your hero. Then Restore 2 HP to your hero.",
-     "id": "the-borgia-chalice@stormlit"
+     "ability": "At the start of your turn, if you hold 5 or more cards, restore 2 HP to your hero.",
+     "id": "the-borgia-chalice@stormlit",
+     "dr": null
     },
     {
      "name": "The coronation Oil",
@@ -12860,11 +12875,11 @@
      "type": "edict",
      "fx": "fxHealHero6",
      "rl": null,
-     "bc": "drHeal2",
+     "bc": "bcHeal2",
      "rarity": "common",
      "file": "art/the-coronation-oil.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-coronation-oil.jpg",
-     "ability": "Restore 2 HP to your hero.",
+     "ability": "Deal 3 damage to an enemy minion. Then Restore 2 HP to your hero.",
      "id": "the-coronation-oil@stormlit"
     },
     {
@@ -14992,7 +15007,8 @@
      "rarity": "common",
      "file": "art/000b67ab-6d19-4fcb-a4e1-50ee2dc833ce.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/000b67ab-6d19-4fcb-a4e1-50ee2dc833ce.jpg",
-     "id": "the-satrap-s-seal@starwind"
+     "id": "the-satrap-s-seal@starwind",
+     "ability": "Whenever the enemy draws a card outside their draw phase, their Sovereign takes 1 damage."
     },
     {
      "name": "Iron shod Warhorse",
@@ -15003,12 +15019,13 @@
      "type": "relic",
      "fx": null,
      "rl": "rlMoonwell",
-     "bc": "bcPing3",
+     "bc": null,
      "rarity": "rare",
      "file": "art/iron-shod-warhorse.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/iron-shod-warhorse.jpg",
-     "ability": "Once per turn, when a friendly minion dies while you hold 2 or fewer cards, draw a card. Then Deal 3 damage to an enemy minion.",
-     "id": "iron-shod-warhorse@starwind"
+     "ability": "Once per turn, when a friendly minion dies while you hold 2 or fewer cards, draw a card.",
+     "id": "iron-shod-warhorse@starwind",
+     "dr": null
     },
     {
      "name": "Rune stone",
@@ -15018,11 +15035,11 @@
      "cost": 2,
      "type": "edict",
      "fx": "fxScorchX",
-     "bc": "drPing",
+     "bc": "bcPing",
      "rarity": "common",
      "file": "art/rune-stone.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/rune-stone.jpg",
-     "ability": "X-Edict: channel all remaining mana into a single rune-blast at one foe.",
+     "ability": "X-Edict: pour all remaining mana into one storm-bolt at a foe. Then Deal 1 damage to a random enemy minion.",
      "id": "rune-stone@starwind"
     },
     {
@@ -15034,12 +15051,13 @@
      "type": "relic",
      "fx": null,
      "rl": "rlLookout",
-     "bc": "drPing",
+     "bc": null,
      "rarity": "common",
      "file": "art/sultan-s-tughra.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/sultan-s-tughra.jpg",
-     "ability": "Your Ranged minions get +1/+1 — now and as they arrive. Then Deal 1 damage to a random enemy minion.",
-     "id": "sultan-s-tughra@starwind"
+     "ability": "Your Ranged minions get +1/+1 — now and as they arrive.",
+     "id": "sultan-s-tughra@starwind",
+     "dr": null
     },
     {
      "name": "The bone Golem",
@@ -15050,7 +15068,7 @@
      "type": "edict",
      "fx": "fxSnipe3",
      "rl": null,
-     "bc": "drPing",
+     "bc": "bcPing",
      "rarity": "rare",
      "file": "art/the-bone-golem.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-bone-golem.jpg",
@@ -15082,11 +15100,11 @@
      "type": "edict",
      "fx": "fxVolley",
      "rl": null,
-     "bc": "drPing",
+     "bc": "bcPing",
      "rarity": "common",
      "file": "art/the-quartermaster-s-wagon.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-quartermaster-s-wagon.jpg",
-     "ability": "Deal 1 damage to a random enemy minion.",
+     "ability": "Deal 1 damage to the enemy hero for each Ranged minion you control. Then Deal 1 damage to a random enemy minion.",
      "id": "the-quartermaster-s-wagon@starwind"
     },
     {
@@ -15113,12 +15131,13 @@
      "cost": 2,
      "type": "relic",
      "rl": "rlWard",
-     "bc": "bcPing2",
+     "bc": null,
      "rarity": "common",
      "file": "art/willow-lantern.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/willow-lantern.jpg",
      "ability": "A pale light guards the road: if your hero took no damage since your last turn, restore 2 HP.",
-     "id": "willow-lantern@starwind"
+     "id": "willow-lantern@starwind",
+     "dr": null
     },
     {
      "name": "Pyrashith the Keen-Eyed",
@@ -16248,12 +16267,13 @@
      "cost": 2,
      "type": "relic",
      "rl": "rlCistern",
-     "bc": "bcAoe1",
+     "bc": null,
      "rarity": "rare",
      "file": "art/salvage-yards.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/salvage-yards.jpg",
      "ability": "Scrap and tar: at the start of every third turn, gain 1 mana.",
-     "id": "salvage-yards@tigerpass"
+     "id": "salvage-yards@tigerpass",
+     "dr": null
     },
     {
      "name": "The bronze Telescope",
@@ -16312,11 +16332,11 @@
      "type": "edict",
      "fx": "fxVolley",
      "rl": null,
-     "bc": "drSummon",
+     "bc": "bcSummon",
      "rarity": "common",
      "file": "art/wyvern-s-shadow.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/wyvern-s-shadow.jpg",
-     "ability": "Summon a 1/1 Conscript.",
+     "ability": "Deal 1 damage to the enemy hero for each Ranged minion you control. Then Summon a 1/1 Conscript.",
      "id": "wyvern-s-shadow@tigerpass"
     },
     {
@@ -16542,7 +16562,7 @@
      "fx": null,
      "rl": null,
      "passive": null,
-     "ability": "Battlecry: give a minion +2 Health."
+     "ability": "Battlecry: give a friendly minion +1/+1."
     },
     {
      "id": "the-long-stalk@tigerpass",
@@ -16605,7 +16625,7 @@
      "fx": null,
      "rl": null,
      "passive": null,
-     "ability": "Restore 4 HP to your hero."
+     "ability": "Battlecry: restore 2 HP to your hero."
     },
     {
      "id": "the-primal-idol@tigerpass",
@@ -17403,7 +17423,7 @@
      "rarity": "epic",
      "file": "art/excommunicado.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/excommunicado.jpg",
-     "ability": "The Terror unmakes titles: target foe loses all keywords and shield. Then Battlecry: deal 1 damage.",
+     "ability": "The Terror unmakes titles: target foe loses all keywords and shield. Then deal 1 damage.",
      "bc": "bcPing",
      "dr": null
     },
@@ -18572,7 +18592,8 @@
      "rarity": "common",
      "file": "art/apprentice-s-masterpiece.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/apprentice-s-masterpiece.jpg",
-     "id": "apprentice-s-masterpiece@zephek"
+     "id": "apprentice-s-masterpiece@zephek",
+     "ability": "At the start of your turn, if the enemy holds 7 or more cards, they discard their costliest."
     },
     {
      "name": "Quasar beacon",
@@ -18631,7 +18652,7 @@
      "type": "edict",
      "fx": "fxFormation",
      "rl": null,
-     "bc": "drSummon",
+     "bc": "bcSummon",
      "rarity": "common",
      "file": "art/the-tidal-gauge.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-tidal-gauge.jpg",
@@ -20612,12 +20633,13 @@
      "type": "relic",
      "fx": null,
      "rl": "rlLookout",
-     "bc": "bcPing3",
+     "bc": null,
      "rarity": "rare",
      "file": "art/highland-charge.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/highland-charge.jpg",
-     "ability": "Your Ranged minions get +1/+1 — now and as they arrive. Then Deal 3 damage to an enemy minion.",
-     "id": "highland-charge@wayfarers"
+     "ability": "Your Ranged minions get +1/+1 — now and as they arrive.",
+     "id": "highland-charge@wayfarers",
+     "dr": null
     },
     {
      "name": "Raven messenger",
@@ -20644,12 +20666,13 @@
      "type": "relic",
      "fx": null,
      "rl": "rlMoonwell",
-     "bc": "bcPing3",
+     "bc": null,
      "rarity": "rare",
      "file": "art/the-citadel-perimeter.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-citadel-perimeter.jpg",
-     "ability": "Once per turn, when a friendly minion dies while you hold 2 or fewer cards, draw a card. Then Deal 3 damage to an enemy minion.",
-     "id": "the-citadel-perimeter@wayfarers"
+     "ability": "Once per turn, when a friendly minion dies while you hold 2 or fewer cards, draw a card.",
+     "id": "the-citadel-perimeter@wayfarers",
+     "dr": null
     },
     {
      "name": "The grand Mosque Lamps",
@@ -22812,7 +22835,7 @@
      "bc": "bcPing",
      "dr": null,
      "fx": "fxRally3",
-     "ability": "Summon a 1/1 Conscript. Then Battlecry: deal 1 damage.",
+     "ability": "Summon a 1/1 Conscript. Then deal 1 damage.",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-queen-s-bargain.jpg",
      "type": "edict",
      "rl": null
@@ -22862,7 +22885,7 @@
      "bc": "bcSummon",
      "dr": null,
      "fx": "fxLawMuster",
-     "ability": "Law for a round: your minions enter with +1/+1. Then Battlecry: summon a Conscript.",
+     "ability": "Law for a round: your minions enter with +1/+1. Then summon a Conscript.",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-small-council.jpg",
      "type": "edict",
      "rl": null
@@ -22927,12 +22950,13 @@
      "type": "relic",
      "fx": null,
      "rl": "rlScales",
-     "bc": "bcAoe1",
+     "bc": null,
      "rarity": "rare",
      "file": "art/astrolabe.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/astrolabe.jpg",
-     "ability": "Enemy cards that cost 4 or more cost 1 more. Then Deal 1 damage to all enemy minions.",
-     "id": "astrolabe@courts"
+     "ability": "Enemy cards that cost 4 or more cost 1 more.",
+     "id": "astrolabe@courts",
+     "dr": null
     },
     {
      "name": "Ion trail Ambush",
@@ -22975,11 +22999,11 @@
      "type": "edict",
      "fx": "fxVolley",
      "rl": null,
-     "bc": "drHero1",
+     "bc": "bcHero1",
      "rarity": "common",
      "file": "art/reactor-core-blue.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/reactor-core-blue.jpg",
-     "ability": "Deal 1 damage to the enemy hero.",
+     "ability": "Deal 1 damage to the enemy hero for each Ranged minion you control. Then Deal 1 damage to the enemy hero.",
      "id": "reactor-core-blue@courts"
     },
     {
@@ -23022,12 +23046,13 @@
      "cost": 2,
      "type": "relic",
      "rl": "rlCistern",
-     "bc": "bcPing2",
+     "bc": null,
      "rarity": "rare",
      "file": "art/the-coaling-station.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-coaling-station.jpg",
      "ability": "The bunkers fill: at the start of every third turn, gain 1 mana.",
-     "id": "the-coaling-station@courts"
+     "id": "the-coaling-station@courts",
+     "dr": null
     },
     {
      "name": "The green Knight",
@@ -23042,7 +23067,8 @@
      "rarity": "common",
      "file": "art/the-green-knight.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-green-knight.jpg",
-     "id": "the-green-knight@courts"
+     "id": "the-green-knight@courts",
+     "ability": "At the start of your turn, if the enemy holds 7 or more cards, they discard their costliest."
     },
     {
      "name": "The kurgan Barrow",
@@ -23084,11 +23110,11 @@
      "type": "edict",
      "fx": "fxHero3",
      "rl": null,
-     "bc": "drHero1",
+     "bc": "bcHero1",
      "rarity": "rare",
      "file": "art/the-silverwood-bow.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-silverwood-bow.jpg",
-     "ability": "Deal 1 damage to the enemy hero.",
+     "ability": "Deal 3 damage to an enemy minion. Then Deal 1 damage to the enemy hero.",
      "id": "the-silverwood-bow@courts"
     },
     {
@@ -23099,12 +23125,13 @@
      "cost": 2,
      "type": "relic",
      "rl": "rlLookout",
-     "bc": "bcDraw",
+     "bc": null,
      "rarity": "rare",
      "file": "art/watchtower-relay.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/watchtower-relay.jpg",
      "ability": "The relay watches: every Ranged minion you summon gains +1/+1.",
-     "id": "watchtower-relay@courts"
+     "id": "watchtower-relay@courts",
+     "dr": null
     },
     {
      "name": "Gorok the Blood-Tithed",
@@ -25279,12 +25306,13 @@
      "type": "relic",
      "fx": null,
      "rl": "rlBanner",
-     "bc": "bcPing3",
+     "bc": null,
      "rarity": "rare",
      "file": "art/ballista-bolt.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/ballista-bolt.jpg",
-     "ability": "Your Skirmish deals 1 more damage. Then Deal 3 damage to an enemy minion.",
-     "id": "ballista-bolt@kingdoms"
+     "ability": "Your Skirmish deals 1 more damage.",
+     "id": "ballista-bolt@kingdoms",
+     "dr": null
     },
     {
      "name": "Notre dame Rose Window",
@@ -25346,7 +25374,8 @@
      "rarity": "epic",
      "file": "art/the-berserker-s-rage.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-berserker-s-rage.jpg",
-     "id": "the-berserker-s-rage@kingdoms"
+     "id": "the-berserker-s-rage@kingdoms",
+     "ability": "Deal 3 damage to all enemy minions."
     },
     {
      "name": "The codex of Nine",
@@ -25356,12 +25385,13 @@
      "cost": 3,
      "type": "relic",
      "rl": "rlGranary",
-     "bc": "bcAoe1",
+     "bc": null,
      "rarity": "rare",
      "file": "art/the-codex-of-nine.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-codex-of-nine.jpg",
-     "ability": "At the start of your turn, restore 2 HP to your hero. Then Battlecry: deal 1 damage to all enemy minions.",
-     "id": "the-codex-of-nine@kingdoms"
+     "ability": "At the start of your turn, restore 2 HP to your hero.",
+     "id": "the-codex-of-nine@kingdoms",
+     "dr": null
     },
     {
      "name": "The lighthouse Keeper",
@@ -25372,11 +25402,11 @@
      "type": "edict",
      "fx": "fxRally3",
      "rl": null,
-     "bc": "drSummon",
+     "bc": "bcSummon",
      "rarity": "rare",
      "file": "art/the-lighthouse-keeper.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-lighthouse-keeper.jpg",
-     "ability": "Summon a 1/1 Conscript.",
+     "ability": "Summon a 1/1 Conscript. Then Summon a 1/1 Conscript.",
      "id": "the-lighthouse-keeper@kingdoms"
     },
     {
@@ -25388,11 +25418,11 @@
      "type": "edict",
      "fx": "fxAoe3",
      "rl": null,
-     "bc": "drSummon",
+     "bc": "bcDraw",
      "rarity": "epic",
      "file": "art/the-poet-s-laurel.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-poet-s-laurel.jpg",
-     "ability": "Summon a 1/1 Conscript.",
+     "ability": "Deal 3 damage to all enemy minions. Then Draw a card.",
      "id": "the-poet-s-laurel@kingdoms"
     },
     {
@@ -25404,7 +25434,7 @@
      "type": "edict",
      "fx": "fxExecute2",
      "rl": null,
-     "bc": "drSummon",
+     "bc": "bcSummon",
      "rarity": "epic",
      "file": "art/whaler-s-harpoon.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/whaler-s-harpoon.jpg",
@@ -27596,12 +27626,13 @@
      "type": "relic",
      "fx": null,
      "rl": "rlFlame",
-     "bc": "bcPing3",
+     "bc": null,
      "rarity": "rare",
      "file": "art/dragon-prow.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/dragon-prow.jpg",
-     "ability": "At the start of your turn, deal 1 damage to the weakest enemy minion. Then Deal 3 damage to an enemy minion.",
-     "id": "dragon-prow@towers"
+     "ability": "At the start of your turn, deal 1 damage to the weakest enemy minion.",
+     "id": "dragon-prow@towers",
+     "dr": null
     },
     {
      "name": "Iron fist Artillery",
@@ -27616,7 +27647,7 @@
      "rarity": "common",
      "file": "art/iron-fist-artillery.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/iron-fist-artillery.jpg",
-     "ability": "Scry 2 — draw the best of the top 2 cards of your deck. Then Battlecry: deal 1 damage.",
+     "ability": "Scry 2 — draw the best of the top 2 cards of your deck. Then deal 1 damage.",
      "id": "iron-fist-artillery@towers"
     },
     {
@@ -27644,11 +27675,11 @@
      "type": "edict",
      "fx": "fxHealHero6",
      "rl": null,
-     "bc": "drDraw",
+     "bc": "bcDraw",
      "rarity": "common",
      "file": "art/redcoat-volley.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/redcoat-volley.jpg",
-     "ability": "Draw a card.",
+     "ability": "Deal 3 damage to an enemy minion. Then Draw a card.",
      "id": "redcoat-volley@towers"
     },
     {
@@ -27664,7 +27695,7 @@
      "rarity": "common",
      "file": "art/steppe-horse-archers.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/steppe-horse-archers.jpg",
-     "ability": "Scry 2 — draw the best of the top 2 cards of your deck. Then Battlecry: give a friendly minion +1/+1.",
+     "ability": "Scry 2 — draw the best of the top 2 cards of your deck. Then give a friendly minion +1/+1.",
      "id": "steppe-horse-archers@towers"
     },
     {
@@ -27728,7 +27759,7 @@
      "rarity": "rare",
      "file": "art/the-lighthouse-storm.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-lighthouse-storm.jpg",
-     "ability": "Give your Conscripts +1/+1, then summon a Conscript. Then Battlecry: deal 2 damage.",
+     "ability": "Give your Conscripts +1/+1, then summon a Conscript. Then deal 2 damage.",
      "id": "the-lighthouse-storm@towers"
     },
     {
@@ -27744,7 +27775,7 @@
      "rarity": "common",
      "file": "art/the-star-sanctum.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-star-sanctum.jpg",
-     "ability": "Scry 2 — draw the best of the top 2 cards of your deck. Then Battlecry: deal 1 damage to the enemy hero.",
+     "ability": "Scry 2 — draw the best of the top 2 cards of your deck. Then deal 1 damage to the enemy hero.",
      "id": "the-star-sanctum@towers"
     },
     {
@@ -27756,13 +27787,13 @@
      "type": "relic",
      "fx": null,
      "rl": "rlLibrary",
-     "bc": "drDraw",
+     "bc": null,
      "rarity": "rare",
      "file": "art/whirling-dervishes.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/whirling-dervishes.jpg",
-     "ability": "At the end of your turn, if you have 2 or more unspent Mana, draw a card. Then Deathrattle: draw a card Then Deathrattle: deal 2 damage.",
+     "ability": "At the end of your turn, if you have 2 or more unspent Mana, draw a card.",
      "id": "whirling-dervishes@towers",
-     "dr": "drPing2"
+     "dr": null
     },
     {
      "name": "Ithethak the Bold",
@@ -28317,7 +28348,7 @@
      "rarity": "rare",
      "file": "art/blood-moon.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/blood-moon.jpg",
-     "ability": "Summon a 1/1 Conscript. Then Battlecry: deal 1 damage.",
+     "ability": "Summon a 1/1 Conscript. Then deal 1 damage.",
      "id": "blood-moon@necropolis"
     },
     {
@@ -28333,7 +28364,8 @@
      "rarity": "common",
      "file": "art/kraken-s-coil.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/kraken-s-coil.jpg",
-     "id": "kraken-s-coil@necropolis"
+     "id": "kraken-s-coil@necropolis",
+     "ability": "Give your Conscripts +1/+1, then summon a Conscript."
     },
     {
      "name": "The dead Calm",
@@ -28344,12 +28376,13 @@
      "type": "relic",
      "fx": null,
      "rl": "rlDrum",
-     "bc": "bcPing2",
+     "bc": null,
      "rarity": "rare",
      "file": "art/the-dead-calm.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/the-dead-calm.jpg",
-     "ability": "Your Conscripts are summoned with +1 Attack. Then Deal 2 damage to a random enemy minion.",
-     "id": "the-dead-calm@necropolis"
+     "ability": "Your Conscripts are summoned with +1 Attack.",
+     "id": "the-dead-calm@necropolis",
+     "dr": null
     },
     {
      "name": "The summoning Circle",
@@ -29942,7 +29975,7 @@
      "fx": null,
      "rl": null,
      "passive": null,
-     "ability": "Battlecry: summon a 2/2 token."
+     "ability": "Battlecry: summon a 1/1 Conscript."
     },
     {
      "id": "marrow-harvest@necropolis",
@@ -29963,7 +29996,7 @@
      "fx": null,
      "rl": null,
      "passive": null,
-     "ability": "Restore 4 HP to your hero."
+     "ability": "Battlecry: restore 2 HP to your hero."
     },
     {
      "id": "the-pale-vigil@necropolis",
@@ -30000,12 +30033,12 @@
      "type": "edict",
      "file": "art/scenes/exhumation.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/scenes/exhumation.jpg",
-     "bc": null,
+     "bc": "bcSummon",
      "dr": null,
-     "fx": "drSummon",
+     "fx": null,
      "rl": null,
      "passive": null,
-     "ability": "Deathrattle: summon a 3/2 Wight."
+     "ability": "Battlecry: summon a 1/1 Conscript."
     },
     {
      "id": "necrotic-volley@necropolis",
@@ -32166,7 +32199,7 @@
      "fx": null,
      "rl": null,
      "passive": null,
-     "ability": "Battlecry: give a minion +2 Health."
+     "ability": "Battlecry: give a friendly minion +1/+1."
     },
     {
      "id": "maw-of-the-horde@marches",
@@ -32224,12 +32257,12 @@
      "type": "edict",
      "file": "art/scenes/the-pits.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/scenes/the-pits.jpg",
-     "bc": null,
+     "bc": "bcPing",
      "dr": null,
-     "fx": "drPing",
+     "fx": null,
      "rl": null,
      "passive": null,
-     "ability": "Deathrattle: deal 1 damage to a random enemy."
+     "ability": "Battlecry: deal 1 damage to a random enemy minion."
     },
     {
      "id": "warlords-ascension@marches",
@@ -34138,7 +34171,7 @@
      "fx": null,
      "rl": null,
      "passive": null,
-     "ability": "Restore 4 HP to your hero."
+     "ability": "Battlecry: restore 2 HP to your hero."
     },
     {
      "id": "the-anvil-chorus@deepholds",
@@ -34172,13 +34205,13 @@
      "hp": null,
      "kw": null,
      "rarity": "epic",
-     "type": "edict",
+     "type": "relic",
      "file": "art/scenes/rune-of-warding.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/scenes/rune-of-warding.jpg",
      "bc": null,
      "dr": null,
-     "fx": "rlWard",
-     "rl": null,
+     "fx": null,
+     "rl": "rlWard",
      "passive": null,
      "ability": "Relic: your minions enter play with a Ward rune."
     },
@@ -34201,7 +34234,7 @@
      "fx": null,
      "rl": null,
      "passive": null,
-     "ability": "Battlecry: summon a 2/2 token."
+     "ability": "Battlecry: summon a 1/1 Conscript."
     },
     {
      "id": "the-deep-roads@deepholds",
@@ -34533,5 +34566,5 @@
    ]
   }
  ],
- "version": "0.26.0"
+ "version": "0.26.1"
 }
