@@ -30461,7 +30461,7 @@
    "cards": [
     {
      "id": "skuzognash-the-hundred-victor@marches",
-     "name": "Skuzognash the Hundred-Victor",
+     "name": "Skuzognash Iron-Scraper",
      "fl": "Skuzognash the Hundred-Victor has never asked twice.",
      "faction": "marches",
      "pool": "fandom",
@@ -30481,7 +30481,7 @@
     },
     {
      "id": "kragazog-the-swift-loosed@marches",
-     "name": "Kragazog of the Broken Banner",
+     "name": "Kragazog the Blood-Ochred",
      "fl": "Kragazog the Swift-Loosed's arrows arrive before the argument.",
      "faction": "marches",
      "pool": "fandom",
@@ -30501,7 +30501,7 @@
     },
     {
      "id": "garinak-the-keen-eyed@marches",
-     "name": "Garinak the Keen-Eyed",
+     "name": "Garinak the Twice-Broken",
      "fl": "One breath, one arrow, one silence — Garinak the Keen-Eyed's creed.",
      "faction": "marches",
      "pool": "fandom",
@@ -30521,7 +30521,7 @@
     },
     {
      "id": "zogazog-of-the-long-watch@marches",
-     "name": "Zogazog of the Long Watch",
+     "name": "Zogazog Bone-Snapper",
      "fl": "Where Zogazog of the Long Watch stands, a host assembles.",
      "faction": "marches",
      "pool": "fandom",
@@ -30541,7 +30541,7 @@
     },
     {
      "id": "snikugnash-the-night-sent@marches",
-     "name": "Snikugnash the Night-Sent",
+     "name": "Snikugnash the Blood-Ochred",
      "fl": "Snikugnash the Night-Sent's work is signed in silence.",
      "faction": "marches",
      "pool": "fandom",
@@ -30679,7 +30679,7 @@
     },
     {
      "id": "warlord-skarnag-the-everburning@marches",
-     "name": "Warlord Skarnag the Everburning",
+     "name": "Skarnag, the Everburning",
      "fl": "His mantle of stitched banners grows heavier with every kingdom that falls.",
      "faction": "marches",
      "pool": "fandom",
@@ -30703,7 +30703,7 @@
     },
     {
      "id": "krukk-the-unbowed@marches",
-     "name": "Krukk the Tusk-Chipped",
+     "name": "Krukk of the Waaagh-Drums",
      "fl": "Bigger hat, bigger axe.",
      "faction": "marches",
      "pool": "fandom",
@@ -30724,7 +30724,7 @@
     },
     {
      "id": "snikkfet-glimmerfang@marches",
-     "name": "Snikkfet Glimmerfang",
+     "name": "Snikkfet Glimmerfang Tusk-Splitter",
      "fl": "Six knives, no plan, total confidence.",
      "faction": "marches",
      "pool": "fandom",
@@ -30745,7 +30745,7 @@
     },
     {
      "id": "mawgut-the-kindly@marches",
-     "name": "Mawgut the Kindly",
+     "name": "Mawgut the Grudge-Chewing",
      "fl": "The club is the argument.",
      "faction": "marches",
      "pool": "fandom",
@@ -30787,7 +30787,7 @@
     },
     {
      "id": "ushruk-bone-drummer@marches",
-     "name": "Ushruk Bone-Drummer",
+     "name": "Ushruk Skull-Splinterer",
      "fl": "Bigger hat, bigger axe.",
      "faction": "marches",
      "pool": "fandom",
@@ -30808,7 +30808,7 @@
     },
     {
      "id": "wazzik-sparkbit@marches",
-     "name": "Wazzik Sparkbit",
+     "name": "Wazzik Sparkbit of the Horde-Fire",
      "fl": "Six knives, no plan, total confidence.",
      "faction": "marches",
      "pool": "fandom",
@@ -30850,7 +30850,7 @@
     },
     {
      "id": "grumbark-the-lurker@marches",
-     "name": "Grumbark the Lurker",
+     "name": "Grumbark of the Endless Levy",
      "fl": "You heard nothing. That was the last thing you heard.",
      "faction": "marches",
      "pool": "fandom",
@@ -30871,7 +30871,7 @@
     },
     {
      "id": "snorrik-greasethumb@marches",
-     "name": "Snorrik Greasethumb",
+     "name": "Bone-Drummer Snorrik Greasethumb",
      "fl": "Six knives, no plan, total confidence.",
      "faction": "marches",
      "pool": "fandom",
@@ -30892,7 +30892,7 @@
     },
     {
      "id": "zogratha-skull-sister@marches",
-     "name": "Zogratha Skull-Sister",
+     "name": "Zogratha Wall-Biter",
      "fl": "Bigger hat, bigger axe.",
      "faction": "marches",
      "pool": "fandom",
@@ -30913,7 +30913,7 @@
     },
     {
      "id": "thrag-the-twice-broken@marches",
-     "name": "Thrag the Twice-Broken",
+     "name": "Thrag Shieldchewer",
      "fl": "Bigger hat, bigger axe.",
      "faction": "marches",
      "pool": "fandom",
@@ -30955,7 +30955,7 @@
     },
     {
      "id": "goblin-king-sprocket-xix@marches",
-     "name": "Goblin-King Sprocket XIX",
+     "name": "Sprocket the Maw-Marked",
      "fl": "Six knives, no plan, total confidence.",
      "faction": "marches",
      "pool": "fandom",
@@ -30976,7 +30976,7 @@
     },
     {
      "id": "drill-abbot-kessik@marches",
-     "name": "Drill-Abbot Kessik",
+     "name": "Kessik Bone-Snapper",
      "fl": "Discipline is a weapon too.",
      "faction": "marches",
      "pool": "fandom",
@@ -31018,7 +31018,7 @@
     },
     {
      "id": "jarl-kelgar-of-the-frozen-mire@marches",
-     "name": "Jarl Kelgar of the Frozen Mire",
+     "name": "Drum-Caller Kelgar",
      "fl": "Regret nothing; heal everything.",
      "faction": "marches",
      "pool": "fandom",
@@ -31039,7 +31039,7 @@
     },
     {
      "id": "grashnak-the-goblin-king-beneath@marches",
-     "name": "Grashnak the Goblin-King Beneath",
+     "name": "Grashnak Gate-Biter",
      "fl": "Six knives, no plan, total confidence.",
      "faction": "marches",
      "pool": "fandom",
@@ -31060,7 +31060,7 @@
     },
     {
      "id": "olgar-stonefat-the-troll-elder@marches",
-     "name": "Olgar Stonefat the Troll-Elder",
+     "name": "Pit-Boss Olgar Stonefat",
      "fl": "Regret nothing; heal everything.",
      "faction": "marches",
      "pool": "fandom",
@@ -31081,7 +31081,7 @@
     },
     {
      "id": "grazog-the-reckoner@marches",
-     "name": "Grazog of the Endless March",
+     "name": "Grazog the Banner-Fed",
      "fl": "Bigger hat, bigger axe.",
      "faction": "marches",
      "pool": "fandom",
@@ -31123,7 +31123,7 @@
     },
     {
      "id": "skartuk-the-swift-loosed@marches",
-     "name": "Skartuk of the Broken Banner",
+     "name": "Skartuk Warhorn-Cracker",
      "fl": "Bigger hat, bigger axe.",
      "faction": "marches",
      "pool": "fandom",
@@ -31144,7 +31144,7 @@
     },
     {
      "id": "skuznak-the-blood-tithed@marches",
-     "name": "Skuznak Shieldchewer",
+     "name": "Drill-Abbot Skuznak",
      "fl": "Bigger hat, bigger axe.",
      "faction": "marches",
      "pool": "fandom",
@@ -31186,7 +31186,7 @@
     },
     {
      "id": "thugzog-the-keen-eyed@marches",
-     "name": "Thugzog the Keen-Eyed",
+     "name": "Thugzog Wall-Biter",
      "fl": "Bigger hat, bigger axe.",
      "faction": "marches",
      "pool": "fandom",
@@ -31207,7 +31207,7 @@
     },
     {
      "id": "snikmaw-the-hollow-crowned@marches",
-     "name": "Snikmaw the Iron-Scrappy",
+     "name": "Snikmaw Banner-Breaker",
      "fl": "Bigger hat, bigger axe.",
      "faction": "marches",
      "pool": "fandom",
@@ -31228,7 +31228,7 @@
     },
     {
      "id": "zogusk-the-ash-cloaked@marches",
-     "name": "Zogusk the Twice-Broken",
+     "name": "Zogusk the Levy-Bound",
      "fl": "Bigger hat, bigger axe.",
      "faction": "marches",
      "pool": "fandom",
@@ -31249,7 +31249,7 @@
     },
     {
      "id": "snikfist-the-patient@marches",
-     "name": "Snikfist the Last-Waaagh-Heard",
+     "name": "Snikfist Maw-Feeder",
      "fl": "Bigger hat, bigger axe.",
      "faction": "marches",
      "pool": "fandom",
@@ -31270,7 +31270,7 @@
     },
     {
      "id": "rokog-the-patient@marches",
-     "name": "Rokog the Patient",
+     "name": "Rokog the Drum-Caller",
      "fl": "Bigger hat, bigger axe.",
      "faction": "marches",
      "pool": "fandom",
@@ -31291,7 +31291,7 @@
     },
     {
      "id": "graztuk-the-tireless@marches",
-     "name": "Graztuk the Tireless",
+     "name": "Graztuk Banner-Breaker",
      "fl": "Bigger hat, bigger axe.",
      "faction": "marches",
      "pool": "fandom",
@@ -31312,7 +31312,7 @@
     },
     {
      "id": "ugmaw-the-tireless@marches",
-     "name": "Ugmaw the Tireless",
+     "name": "Ugmaw of the Waaagh-Drums",
      "fl": "Bigger hat, bigger axe.",
      "faction": "marches",
      "pool": "fandom",
@@ -31354,7 +31354,7 @@
     },
     {
      "id": "snikgore-the-cold-blooded@marches",
-     "name": "Snikgore the Cold-Blooded",
+     "name": "Snikgore Shieldchewer",
      "fl": "Bigger hat, bigger axe.",
      "faction": "marches",
      "pool": "fandom",
@@ -31375,7 +31375,7 @@
     },
     {
      "id": "snikkab-the-patient@marches",
-     "name": "Snikkab the Kindly",
+     "name": "Snikkab the Drum-Deaf",
      "fl": "Bigger hat, bigger axe.",
      "faction": "marches",
      "pool": "fandom",
@@ -31396,7 +31396,7 @@
     },
     {
      "id": "grazgore-the-reckoner@marches",
-     "name": "Grazgore the Loud-Bragging",
+     "name": "Standard-Captain Grazgore",
      "fl": "Six knives, no plan, total confidence.",
      "faction": "marches",
      "pool": "fandom",
@@ -31417,7 +31417,7 @@
     },
     {
      "id": "grazgrat-the-unbowed@marches",
-     "name": "Grazgrat the Never-Sated",
+     "name": "Grazgrat of the Warlord's Drum",
      "fl": "Six knives, no plan, total confidence.",
      "faction": "marches",
      "pool": "fandom",
@@ -31438,7 +31438,7 @@
     },
     {
      "id": "nardak-the-deep-minded@marches",
-     "name": "Nardak the Deep-Minded",
+     "name": "Nardak the Scrap-Smith",
      "fl": "Six knives, no plan, total confidence.",
      "faction": "marches",
      "pool": "fandom",
@@ -31459,7 +31459,7 @@
     },
     {
      "id": "grashkab-the-reckoner@marches",
-     "name": "Grashkab the Reckoner",
+     "name": "Bile-Jarl Grashkab",
      "fl": "Six knives, no plan, total confidence.",
      "faction": "marches",
      "pool": "fandom",
@@ -31480,7 +31480,7 @@
     },
     {
      "id": "kragtuk-the-swift-loosed@marches",
-     "name": "Kragtuk the Blood-Ochred",
+     "name": "Kragtuk Gate-Biter",
      "fl": "Six knives, no plan, total confidence.",
      "faction": "marches",
      "pool": "fandom",
@@ -31522,7 +31522,7 @@
     },
     {
      "id": "kragrot-the-ash-cloaked@marches",
-     "name": "Kragrot Helmsmasher",
+     "name": "Bone-Drummer Kragrot",
      "fl": "Six knives, no plan, total confidence.",
      "faction": "marches",
      "pool": "fandom",
@@ -31543,7 +31543,7 @@
     },
     {
      "id": "grakog-the-thorned@marches",
-     "name": "Grakog the Blood-Ochred",
+     "name": "Grakog of the Ash-Fords",
      "fl": "Six knives, no plan, total confidence.",
      "faction": "marches",
      "pool": "fandom",
@@ -31564,7 +31564,7 @@
     },
     {
      "id": "grazdak-the-dusk-marked@marches",
-     "name": "Grazdak Gate-Biter",
+     "name": "Grazdak Maw-Feeder",
      "fl": "Six knives, no plan, total confidence.",
      "faction": "marches",
      "pool": "fandom",
@@ -31585,7 +31585,7 @@
     },
     {
      "id": "thuggnash-the-dusk-marked@marches",
-     "name": "Thuggnash the Scar-Hide",
+     "name": "Thuggnash Tusk-Splitter",
      "fl": "Six knives, no plan, total confidence.",
      "faction": "marches",
      "pool": "fandom",
@@ -31606,7 +31606,7 @@
     },
     {
      "id": "grakgrat-the-dusk-marked@marches",
-     "name": "Grakgrat the Dusk-Marked",
+     "name": "Grakgrat the Loud-Bragging",
      "fl": "Six knives, no plan, total confidence.",
      "faction": "marches",
      "pool": "fandom",
@@ -31627,7 +31627,7 @@
     },
     {
      "id": "grazash-the-swift-loosed@marches",
-     "name": "Grazash the Loud-Bragging",
+     "name": "Grazash of the Broken Banner",
      "fl": "Six knives, no plan, total confidence.",
      "faction": "marches",
      "pool": "fandom",
@@ -31648,7 +31648,7 @@
     },
     {
      "id": "grazzog-the-nine-crowned@marches",
-     "name": "Grazzog the Nine-Crowned",
+     "name": "Grazzog the Pit-Sworn",
      "fl": "Six knives, no plan, total confidence.",
      "faction": "marches",
      "pool": "fandom",
@@ -31690,7 +31690,7 @@
     },
     {
      "id": "roknak-the-wall-of-spears@marches",
-     "name": "Roknak the Wall of Spears",
+     "name": "Roknak Iron-Scraper",
      "fl": "Six knives, no plan, total confidence.",
      "faction": "marches",
      "pool": "fandom",
@@ -31711,7 +31711,7 @@
     },
     {
      "id": "thugrot-the-grave-sworn@marches",
-     "name": "Thugrot Banner-Breaker",
+     "name": "Thugrot of the Broken Banner",
      "fl": "Discipline is a weapon too.",
      "faction": "marches",
      "pool": "fandom",
@@ -31732,7 +31732,7 @@
     },
     {
      "id": "grashnak-the-grave-sworn@marches",
-     "name": "Grashnak the Grave-Sworn",
+     "name": "Grashnak Warhorn-Cracker",
      "fl": "Discipline is a weapon too.",
      "faction": "marches",
      "pool": "fandom",
@@ -31753,7 +31753,7 @@
     },
     {
      "id": "rokdak-the-grave-sworn@marches",
-     "name": "Rokdak Banner-Breaker",
+     "name": "Rokdak the Twice-Broken",
      "fl": "Discipline is a weapon too.",
      "faction": "marches",
      "pool": "fandom",
@@ -31774,7 +31774,7 @@
     },
     {
      "id": "grazgore-the-wall-of-spears@marches",
-     "name": "Grazgore the Wall of Spears",
+     "name": "Grazgore the Doom-Marked",
      "fl": "Discipline is a weapon too.",
      "faction": "marches",
      "pool": "fandom",
@@ -31795,7 +31795,7 @@
     },
     {
      "id": "bugrot-the-thorned@marches",
-     "name": "Bugrot the Thorned",
+     "name": "Bugrot of the Endless March",
      "fl": "Discipline is a weapon too.",
      "faction": "marches",
      "pool": "fandom",
@@ -31816,7 +31816,7 @@
     },
     {
      "id": "rokash-the-ash-cloaked@marches",
-     "name": "Rokash the Ash-Cloaked",
+     "name": "Rokash of the Bone Feast",
      "fl": "Discipline is a weapon too.",
      "faction": "marches",
      "pool": "fandom",
@@ -31837,7 +31837,7 @@
     },
     {
      "id": "grakfist-the-swift-loosed@marches",
-     "name": "Grakfist the Swift-Loosed",
+     "name": "Grakfist Skull-Splinterer",
      "fl": "Discipline is a weapon too.",
      "faction": "marches",
      "pool": "fandom",
@@ -31858,7 +31858,7 @@
     },
     {
      "id": "graznak-the-unbowed@marches",
-     "name": "Graznak the Unbowed",
+     "name": "Drum-Caller Graznak",
      "fl": "Discipline is a weapon too.",
      "faction": "marches",
      "pool": "fandom",
@@ -31879,7 +31879,7 @@
     },
     {
      "id": "zogtuk-the-grave-sworn@marches",
-     "name": "Zogtuk the Grave-Sworn",
+     "name": "Zogtuk of the Scrapworks",
      "fl": "Regret nothing; heal everything.",
      "faction": "marches",
      "pool": "fandom",
@@ -31900,7 +31900,7 @@
     },
     {
      "id": "bugfist-the-thorned@marches",
-     "name": "Bugfist the Thorned",
+     "name": "Bugfist the Drum-Deaf",
      "fl": "Regret nothing; heal everything.",
      "faction": "marches",
      "pool": "fandom",
@@ -31921,7 +31921,7 @@
     },
     {
      "id": "skarmaw-the-swift-loosed@marches",
-     "name": "Skarmaw the Swift-Loosed",
+     "name": "Skarmaw the Scar-Hide",
      "fl": "Regret nothing; heal everything.",
      "faction": "marches",
      "pool": "fandom",
@@ -31942,7 +31942,7 @@
     },
     {
      "id": "buggore-the-ash-cloaked@marches",
-     "name": "Buggore the Ash-Cloaked",
+     "name": "Buggore the Doom-Marked",
      "fl": "Regret nothing; heal everything.",
      "faction": "marches",
      "pool": "fandom",
@@ -31963,7 +31963,7 @@
     },
     {
      "id": "grakzog-the-dusk-marked@marches",
-     "name": "Grakzog Gate-Biter",
+     "name": "Grakzog Helmsmasher",
      "fl": "Regret nothing; heal everything.",
      "faction": "marches",
      "pool": "fandom",
@@ -31984,7 +31984,7 @@
     },
     {
      "id": "skarfist-the-steadfast@marches",
-     "name": "Skarfist the Steadfast",
+     "name": "Skarfist the Loud-Bragging",
      "fl": "Regret nothing; heal everything.",
      "faction": "marches",
      "pool": "fandom",
@@ -32005,7 +32005,7 @@
     },
     {
      "id": "skuztuk-the-deep-minded@marches",
-     "name": "Skuztuk the Deep-Minded",
+     "name": "Skuztuk of the Horde-Fire",
      "fl": "Regret nothing; heal everything.",
      "faction": "marches",
      "pool": "fandom",
@@ -32026,7 +32026,7 @@
     },
     {
      "id": "zoggnash-the-deep-minded@marches",
-     "name": "Zoggnash the Scar-Hide",
+     "name": "Zoggnash of the Bone Feast",
      "fl": "Regret nothing; heal everything.",
      "faction": "marches",
      "pool": "fandom",
@@ -32047,7 +32047,7 @@
     },
     {
      "id": "skuznak-the-hollow-crowned@marches",
-     "name": "Skuznak the Hollow-Crowned",
+     "name": "Skuznak of the Scrapworks",
      "fl": "The club is the argument.",
      "faction": "marches",
      "pool": "fandom",
@@ -32068,7 +32068,7 @@
     },
     {
      "id": "thugrot-the-reckoner@marches",
-     "name": "Thugrot the Reckoner",
+     "name": "Iron-Captain Thugrot",
      "fl": "The club is the argument.",
      "faction": "marches",
      "pool": "fandom",
@@ -32089,7 +32089,7 @@
     },
     {
      "id": "grashgnash-the-grave-sworn@marches",
-     "name": "Grashgnash the Iron-Scrappy",
+     "name": "Grashgnash of the Pits",
      "fl": "The club is the argument.",
      "faction": "marches",
      "pool": "fandom",
@@ -32131,7 +32131,7 @@
     },
     {
      "id": "snikzog-the-cold-blooded@marches",
-     "name": "Snikzog the Cold-Blooded",
+     "name": "Snikzog the Banner-Fed",
      "fl": "The club is the argument.",
      "faction": "marches",
      "pool": "fandom",
@@ -32152,7 +32152,7 @@
     },
     {
      "id": "skarfist-the-deep-minded@marches",
-     "name": "Skarfist Shieldchewer",
+     "name": "Skarfist of the Warlord's Drum",
      "fl": "The club is the argument.",
      "faction": "marches",
      "pool": "fandom",
@@ -32173,7 +32173,7 @@
     },
     {
      "id": "graknak-the-dusk-marked@marches",
-     "name": "Graknak the Dusk-Marked",
+     "name": "Graknak the Mad-Confident",
      "fl": "The club is the argument.",
      "faction": "marches",
      "pool": "fandom",
@@ -32194,7 +32194,7 @@
     },
     {
      "id": "narkab-the-nine-crowned@marches",
-     "name": "Narkab the Nine-Crowned",
+     "name": "Narkab the Scrap-Born",
      "fl": "The club is the argument.",
      "faction": "marches",
      "pool": "fandom",
@@ -32215,7 +32215,7 @@
     },
     {
      "id": "kragdak-the-blood-tithed@marches",
-     "name": "Kragdak the Blood-Tithed",
+     "name": "Kragdak the Maw-Marked",
      "fl": "You heard nothing. That was the last thing you heard.",
      "faction": "marches",
      "pool": "fandom",
@@ -32236,7 +32236,7 @@
     },
     {
      "id": "ugusk-the-patient@marches",
-     "name": "Ugusk the Patient",
+     "name": "Skull-Sister Ugusk",
      "fl": "You heard nothing. That was the last thing you heard.",
      "faction": "marches",
      "pool": "fandom",
@@ -32257,7 +32257,7 @@
     },
     {
      "id": "rokzog-the-blood-tithed@marches",
-     "name": "Rokzog the Blood-Tithed",
+     "name": "Rokzog of the Iron Yards",
      "fl": "You heard nothing. That was the last thing you heard.",
      "faction": "marches",
      "pool": "fandom",
@@ -32299,7 +32299,7 @@
     },
     {
      "id": "ugusk-the-unbowed@marches",
-     "name": "Ugusk the Unbowed",
+     "name": "Ugusk of the Great Maw",
      "fl": "You heard nothing. That was the last thing you heard.",
      "faction": "marches",
      "pool": "fandom",
@@ -32320,7 +32320,7 @@
     },
     {
      "id": "grashgnash-the-hollow-crowned@marches",
-     "name": "Grashgnash the Hollow-Crowned",
+     "name": "Grashgnash of the Iron Yards",
      "fl": "You heard nothing. That was the last thing you heard.",
      "faction": "marches",
      "pool": "fandom",
@@ -32530,7 +32530,7 @@
     },
     {
      "id": "karrukh-the-flame-handed@marches",
-     "name": "Karrukh the Flame-Handed",
+     "name": "Karrukh, the Flame-Handed",
      "fl": "He signs treaties in cinders and breaks them the same way.",
      "faction": "marches",
      "pool": "fandom",
@@ -32580,7 +32580,7 @@
     },
     {
      "id": "vorgath-the-skull-banner@marches",
-     "name": "Vorgath the Skull-Banner",
+     "name": "Vorgath, the Skull-Banner",
      "fl": "Every skull on the banner was a soldier who stopped asking for pay.",
      "faction": "marches",
      "pool": "fandom",
