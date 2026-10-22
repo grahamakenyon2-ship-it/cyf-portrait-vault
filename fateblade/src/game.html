@@ -15,7 +15,7 @@
     /* theme art (set per realm at runtime) */
     --theme-bg: none; --theme-panel: none; --theme-btn: none;
     --board-bg: none; --menu-bg: none; --fb-btn: none;
-    --artzoom: 1.16; /* v0.26.3: portrait art zoom — scales minted art up inside its clipped frame so empty field falls outside the plate; tune globally here */
+    --artzoom: 1.0; /* v0.27.0: zoom reverted — the portrait-crop pass trimmed in-image dead space, so plates no longer need overscale masking */
   }
   *{box-sizing:border-box; user-select:none;}
   body{margin:0; background:var(--bg); color:var(--ink); font:15px/1.4 Georgia,serif; overflow:hidden;}
@@ -73,14 +73,11 @@
   .hero.targetable{border-color:var(--hp); box-shadow:0 0 10px var(--hp);}
   .minion{width:150px; height:192px; border:6px solid transparent; border-image:var(--theme-panel, linear-gradient(#2a2216,#191308)) 40; background:#0d0a07; position:relative; cursor:pointer; box-shadow:0 4px 16px #000d;} /* v0.22.6: pop off the full-bleed board art */
   .minion img{width:100%; height:150px; object-fit:cover; object-position:50% 20%; display:block;}
-  /* v0.26.3: art zoom — many minted portraits carry dead field around the subject INSIDE
-     the image, which cover-crop cannot remove (a square art in a near-square slot keeps
-     its margins). Each portrait is scaled up inside an overflow-hidden .artclip wrapper:
-     the plate fills edge-to-edge with art and the empty margins fall outside the frame.
-     Existing art, unchanged — this is framing only. --artzoom (in :root) tunes every
-     slot at once; the origin anchors near the top so faces survive the crop. */
+  /* v0.26.3 art zoom kept as a TUNING KNOB at 1.0 as of v0.27.0: the vault's
+     portrait-crop pass trimmed the in-image dead margins this overscale was
+     masking (--artzoom back over 1.0 is available if future art needs it). */
   .artclip{position:relative; overflow:hidden;}
-  .artclip img{transform:scale(var(--artzoom,1.16)); transform-origin:50% 22%;}
+  .artclip img{transform:scale(var(--artzoom,1.0)); transform-origin:50% 22%;}
   .minion .nm{font-size:14.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding:1px 3px; background:#000c;}
   .minion .atk{position:absolute; bottom:2px; left:4px; font-size:22px; color:var(--atk); text-shadow:0 0 4px #000;}
   .minion .hp{position:absolute; bottom:2px; right:4px; font-size:22px; color:var(--hp); text-shadow:0 0 4px #000;}
@@ -90,6 +87,9 @@
   .minion.targetable{border-color:var(--hp); box-shadow:0 0 8px var(--hp);}
   .minion.guard .kw{color:#f96; font-weight:bold;}
   .minion.shielded{outline:2px solid #9cf; box-shadow:0 0 10px #9cf9, inset 0 0 12px #9cf4;}
+  .minion.auraholder{outline:2px solid #ffd76e; box-shadow:0 0 10px #ffd76e66, inset 0 0 12px #ffd76e22;} /* v0.27.0: the banner-bearer's gift glows gold */
+  .minion.enraged{outline:2px solid #ff5a4a; box-shadow:0 0 10px #ff5a4a88, inset 0 0 12px #ff5a4a22;} /* v0.27.0: wounded and furious — red ember rim */
+  .minion .ragebadge{position:absolute; top:2px; right:2px; font-size:13.5px; background:#000d; padding:1px 3px; color:#ff7a6a; text-shadow:0 0 4px #ff5a4a;} /* v0.27.0: 🔥 badge while enraged */
   .hand{display:flex; gap:12px; justify-content:center; min-height:220px; align-items:flex-end;}
   /* v0.13 JUICE: the hand fans in an arc — per-card rotation/lift come from
      the --fr/--fy custom properties render() writes on each .hcard */
@@ -732,7 +732,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.26.8';
+const GAME_VERSION = '0.27.0';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
@@ -1279,7 +1279,7 @@ function aiTurn(){
 
 /* ---------- v0.9.6 battle log: human-readable record of every engine event ---------- */
 let blLastEv = 0, blNames = null, blLastDivider = '';
-const BL_LABELS = { POWER:'Skirmish', BC:'battlecry', DR:'deathrattle', DEATHGIFT:'Deathgift', VOLLEY:'volley',
+const BL_LABELS = { TEMPEST:'Tempest', TITHE:'Tithe', WARD_SMITH:'Ward Smith', VENGEANCE_MOON:'Vengeance Moon', PYROMANCER:'Pyromancer', GHOST_STEP:'Ghost Step', SCARAB_SWARM:'Scarab Swarm', DIWAN:'Diwan', AMBUSH:'Ambush', PRESS_GANG:'Press Gang', IRON_FIST:'Iron Fist', SCORCHED_VICTORY:'Scorched Victory', THORN_GUARD:'Thorn Guard', ELDER_COUNCIL:'Elder Council', FIELD_MEDIC:'Field Medic', SIEGECRAFT:'Siegecraft', SOLAR_FLARE:'Solar Flare', NOVA_CASCADE:'Nova Cascade', PACK_HUNTER:'Pack Hunter', PRIDE_OF_THE_PACK:'Pride Of The Pack', DEN_GUARD:'Den Guard', COOLANT_VEIL:'Coolant Veil', OVERCLOCK:'Overclock', WATCHTOWER_PROTOCOL:'Watchtower Protocol', TITAN_PLATING:'Titan Plating', COURT_WHISPERS:'Court Whispers', POISON_PEN:'Poison Pen', MASQUERADE:'Masquerade', VEILED_COURT:'Veiled Court', WAR_PROFITEER:'War Profiteer', WAR_DRUMS:'War Drums', STRATAGEM:'Stratagem', JADE_BULWARK:'Jade Bulwark', ENDLESS_MARCH:'Endless March', THUNDER_SPIRE:'Thunder Spire', RESONANCE:'Resonance', BARRICADE:'Barricade', ARCANE_LANCE:'Arcane Lance', FARSIGHT:'Farsight', GRAVE_CHARGE:'Grave Charge', GRAVE_HUNGER:'Grave Hunger', LAST_RITES:'Last Rites', REVENANT_HOST:'Revenant Host', ENDLESS_LEVY:'Endless Levy', BURNING_BANNER:'Burning Banner', IRON_LEVEY:'Iron Levey', BANNER_OF_SKULLS:'Banner Of Skulls', DRILL_MARSHAL:'Drill Marshal', STONE_REMEMBERS:'Stone Remembers', DEEP_RITES:'Deep Rites', NINTH_GATE:'Ninth Gate', TIDE_OF_KIN:'Tide Of Kin', POWER:'Skirmish', BC:'battlecry', DR:'deathrattle', DEATHGIFT:'Deathgift', VOLLEY:'volley',
   PILLAGE:'pillage', STORMCALL:'Stormcall', FIRST_RITES:'First Rites', SECOND_SIGHT:'Second Sight',
   EMBERWARD:'Emberward', BLOODLETTER:'Bloodletter', BULWARK:'Bulwark', SWIFTRANKS:'Swiftranks',
   LONGSIGHT:'Longsight', SOULTITHE:'Soultithe', VANGUARD:'Vanguard', ORIFLAMME:'Oriflamme', BAZAAR:'Bazaar',
@@ -1352,6 +1352,10 @@ function evLine(ev){
       return { s:ev.side, x:`✦ <span class="blx">${lb}</span> triggers for ${who.toLowerCase()}${tgt}` };
     }
     case 'fatigue': return { s:ev.side, x:`${who} exhaust the deck — fatigue <span class="bld">${ev.dmg}</span>` };
+    case 'trigger': { // v0.27.0: start/end-of-turn minion triggers
+      const what = ({ ttPing: 'looses a strike', ttHeal: 'mends the Sovereign', ttDraw: 'counsels a draw', ttSummon: 'musters a levy' })[ev.fx] || 'triggers';
+      return { s:ev.side, x:`⏳ ${blSpan(ev.on)} ${what} at ${ev.id==='SOT'?'dawn':'dusk'}` };
+    }
     default: return null; // bc/dr/play internals are already covered by their follow-up events
   }
 }
@@ -2037,10 +2041,11 @@ function render(){
     el.innerHTML = p.board.map(m=>{
       const castable = !!castTargeting && (E.targetSpec(castTargeting.card)==='foe' ? side==='B' : side==='A'); // v0.20: aiming highlights the valid side
       const targetable = !watch.on && S.active==='A' && ((side==='B'&&(sel||powTargeting)) || castable);
-      return `<div class="minion ${hasKw(m,'Guard')?'guard':''} ${m.ready&&side===S.active?'ready':''} ${targetable?'targetable':''} ${sel===m.uid&&side==='A'?'selected':''} ${m.shield>0?'shielded':''}"
+      return `<div class="minion ${hasKw(m,'Guard')?'guard':''} ${m.ready&&side===S.active?'ready':''} ${targetable?'targetable':''} ${sel===m.uid&&side==='A'?'selected':''} ${m.shield>0?'shielded':''} ${m.aura?'auraholder':''} ${m.rage&&m.maxhp&&m.hp<m.maxhp?'enraged':''}"
         data-uid="${m.uid}" data-cid="${m.id}">
         <div class="artclip"><img src="${m.img}" loading="lazy"></div><div class="nm">${m.name}</div>
         ${kwBadges(m)}
+        ${m.rage&&m.maxhp&&m.hp<m.maxhp?'<div class="ragebadge">🔥</div>':''}
         <div class="gem atk">${m.atk}<i>ATK</i></div><div class="gem hp">${m.hp}<i>HP</i></div></div>`;
     }).join('');
     el.querySelectorAll('.minion').forEach(div=>{

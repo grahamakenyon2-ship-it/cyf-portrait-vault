@@ -86,7 +86,7 @@
     return pool.find((m) => m.uid === t.uid) || null;
   };
   // which cards can be aimed, and at what (null = not targetable)
-  const TGT_BC = { bcPing: 'foe', bcPing2: 'foe', bcPing3: 'foe', bcBuff: 'friend' };
+  const TGT_BC = { bcPing: 'foe', bcPing2: 'foe', bcPing3: 'foe', bcBuff: 'friend', bcPerm: 'friend' }; // v0.27.0: bcPerm aims like bcBuff
   const TGT_FX = { fxSnipe3: 'foe', fxSnipe4: 'foe', fxExecute: 'foe', fxExecute2: 'foe', fxSilence: 'foe', fxTransform: 'foe', fxScorchX: 'foe' }; // v0.21 P8: aimed interaction/burn
   const targetSpec = (c) => TGT_BC[c.bc || ''] || TGT_FX[c.fx || ''] || null;
   const validTargets = (S, side, c) => {
@@ -217,67 +217,71 @@
     if (combat && hasP(vp, 'TITAN_PLATING') && t.tribe === 'Constructs') dmg = Math.max(1, dmg - 1 * rites(S, victimSide)); // v0.26: Ithael — machine plating shrugs off steel
     if (combat && hasKw(t, 'Guard') && hasRelic(vp, 'rlBasilica')) dmg = Math.max(1, dmg - 1); // v0.16: Iron Basilica
     t.hp -= dmg;
-    if (t.hp <= 0) {
-      vp.board = vp.board.filter((x) => x.uid !== uid);
-      S.events.push({ t: 'death', side: victimSide, id: t.id, uid });
-      // Deathrattle templates (fixed/fair automatic targeting)
-      const dr = t.dr;
-      if (dr) {
-        S.events.push({ t: 'dr', side: victimSide, id: dr, src: t.id });
-        // v0.12: parameterized magnitudes — drHero1/drPing/drHeal2/drSummon/drDraw
-        // keep their exact v0.11 behavior (byte-identical on the same seeds);
-        // drPing2/drPing3 hit a random enemy minion for N; drAoe1/drAoe2 sweep
-        // the enemy board; drAoeAll1 is the nuclear option — every minion on
-        // BOTH boards takes 1, including the rest of yours; drHero2 burns face.
-        const drDmg = { drPing: 1, drPing2: 2, drPing3: 3 }[dr];
-        const drAoe = { drAoe1: 1, drAoe2: 2 }[dr];
-        if (dr === 'drHero1') { const ci = 1 + (hasP(vp, 'COURT_INTRIGUE') ? 2 * rites(S, victimSide) : 0); S[foeSide].hp -= ci; S.events.push({ t: 'heroHit', side: foeSide, id: 'DR', dmg: ci }); } // v0.15: COURT_INTRIGUE
-        else if (dr === 'drHero2') { const ci = 2 + (hasP(vp, 'COURT_INTRIGUE') ? 2 * rites(S, victimSide) : 0); S[foeSide].hp -= ci; S.events.push({ t: 'heroHit', side: foeSide, id: 'DR', dmg: ci }); } // v0.15.1: COURT_INTRIGUE
-        else if (drDmg && S[foeSide].board.length) {
-          const m = S[foeSide].board[Math.floor(S.rng() * S[foeSide].board.length)];
-          damageMinion(S, foeSide, m.uid, drDmg);
-        }
-        else if (drAoe) { const wv = drAoe + (hasP(vp, 'WEAVE') ? rites(S, victimSide) : 0); S[foeSide].board.slice().forEach((m) => damageMinion(S, foeSide, m.uid, wv)); } // v0.15: WEAVE
-        else if (dr === 'drAoeAll1') {
-          // both boards, in a stable order; each hit can chain further dr's
-          S[victimSide === 'A' ? 'B' : 'A'].board.slice().forEach((m) => damageMinion(S, victimSide === 'A' ? 'B' : 'A', m.uid, 1));
-          vp.board.slice().forEach((m) => damageMinion(S, victimSide, m.uid, 1));
-        }
-        else if (dr === 'drHeal2') { vp.hp = Math.min(MAX_HP, vp.hp + 2 + (hasP(vp, 'IRON_RATIONS') ? 2 * rites(S, victimSide) : 0)); } // v0.15: IRON_RATIONS
-        else if (dr === 'drSummon') { const hn = 1 + (hasP(vp, 'HORDEMASTER') ? rites(S, victimSide) : 0); for (let hi = 0; hi < hn && vp.board.length < MAX_BOARD; hi++) vp.board.push(token(vp, S)); S.events.push({ t: 'play', side: victimSide, id: 'TOKEN', uid: 'TOKEN' + vp.board.length, kw: null, cost: 1 }); } // v0.15: HORDEMASTER
-        else if (dr === 'drDraw') { draw(S, victimSide); }
-        else if (dr === 'drTribeRally') { const tr = t.tribe; if (tr) { vp.board.forEach((m) => { if (m.tribe === tr) { m.atk += 1; m.hp += 1; } }); S.events.push({ t: 'passive', side: victimSide, id: 'DR_TRIBE_RALLY', on: tr }); } } // v0.23: the fallen kinsman's oath — surviving kin gain +1/+1
+    if (t.hp <= 0) die(S, victimSide, t, uid, combat);
+    else refreshPrim(S); // v0.27.0: enrage wakes after damage (no-op on pristine data)
+  }
+  function die(S, victimSide, t, uid, combat) { // v0.27.0: death processing extracted from damageMinion so aura-loss deaths reuse it verbatim
+    const vp = S[victimSide], foeSide = other(victimSide);
+    vp.board = vp.board.filter((x) => x.uid !== uid);
+    S.events.push({ t: 'death', side: victimSide, id: t.id, uid });
+    // Deathrattle templates (fixed/fair automatic targeting)
+    const dr = t.dr;
+    if (dr) {
+      S.events.push({ t: 'dr', side: victimSide, id: dr, src: t.id });
+      // v0.12: parameterized magnitudes — drHero1/drPing/drHeal2/drSummon/drDraw
+      // keep their exact v0.11 behavior (byte-identical on the same seeds);
+      // drPing2/drPing3 hit a random enemy minion for N; drAoe1/drAoe2 sweep
+      // the enemy board; drAoeAll1 is the nuclear option — every minion on
+      // BOTH boards takes 1, including the rest of yours; drHero2 burns face.
+      const drDmg = { drPing: 1, drPing2: 2, drPing3: 3 }[dr];
+      const drAoe = { drAoe1: 1, drAoe2: 2 }[dr];
+      if (dr === 'drHero1') { const ci = 1 + (hasP(vp, 'COURT_INTRIGUE') ? 2 * rites(S, victimSide) : 0); S[foeSide].hp -= ci; S.events.push({ t: 'heroHit', side: foeSide, id: 'DR', dmg: ci }); } // v0.15: COURT_INTRIGUE
+      else if (dr === 'drHero2') { const ci = 2 + (hasP(vp, 'COURT_INTRIGUE') ? 2 * rites(S, victimSide) : 0); S[foeSide].hp -= ci; S.events.push({ t: 'heroHit', side: foeSide, id: 'DR', dmg: ci }); } // v0.15.1: COURT_INTRIGUE
+      else if (drDmg && S[foeSide].board.length) {
+        const m = S[foeSide].board[Math.floor(S.rng() * S[foeSide].board.length)];
+        damageMinion(S, foeSide, m.uid, drDmg);
       }
-      // v0.16 graveyard-lite + recursion/politics relic hooks
-      vp.fallen.push({ id: t.id, name: t.name, img: t.img, file: t.file }); if (vp.fallen.length > 24) vp.fallen.shift();
-      // v0.26: sovereign overhaul — death hooks
-      vp.deathsThisRound = (vp.deathsThisRound || 0) + 1;
-      if (hasP(vp, 'BANNER_OF_SKULLS') && t.id.startsWith('TOKEN@')) { const d = 1 * rites(S, victimSide); S[foeSide].hp -= d; S.events.push({ t: 'heroHit', side: foeSide, id: 'BANNER_OF_SKULLS', dmg: d }); } // Vorgath: every fallen levy burns the foe
-      if (hasP(vp, 'LAST_RITES') && !vp.lastRitesUsed) { vp.lastRitesUsed = true; if (vp.board.length < MAX_BOARD) { vp.board.push({ id: 'ECHO@' + t.id, name: 'Echo of ' + t.name, cost: 1, atk: 1, hp: 1, maxhp: 1, kw: null, uid: 'ECHO-' + Math.floor(S.rng() * 1e9), img: t.img, file: t.file, tribe: t.tribe, fl: 'Called back beyond the veil.' }); S.events.push({ t: 'passive', side: victimSide, id: 'LAST_RITES', on: t.id }); } } // Morvenne: once per game the Pale Court gives back its dead
-      if (hasRelic(vp, 'rlMoonwell') && !vp.moonwellOnce && vp.hand.length <= 2 && vp.deck.length) { vp.moonwellOnce = true; draw(S, victimSide); S.events.push({ t: 'passive', side: victimSide, id: 'RL_MOONWELL' }); }
-      if (combat && hasRelic(S[foeSide], 'rlTrophy')) { const ap2 = S[foeSide]; ap2.hp = Math.min(MAX_HP, ap2.hp + 1); S.events.push({ t: 'passive', side: foeSide, id: 'RL_TROPHY' }); }
-      if (hasP(vp, 'DEATHGIFT')) {
-        const d = 1 * rites(S, victimSide);
-        S[foeSide].hp -= d;
-        S.events.push({ t: 'heroHit', side: foeSide, id: 'DEATHGIFT', dmg: d });
+      else if (drAoe) { const wv = drAoe + (hasP(vp, 'WEAVE') ? rites(S, victimSide) : 0); S[foeSide].board.slice().forEach((m) => damageMinion(S, foeSide, m.uid, wv)); } // v0.15: WEAVE
+      else if (dr === 'drAoeAll1') {
+        // both boards, in a stable order; each hit can chain further dr's
+        S[victimSide === 'A' ? 'B' : 'A'].board.slice().forEach((m) => damageMinion(S, victimSide === 'A' ? 'B' : 'A', m.uid, 1));
+        vp.board.slice().forEach((m) => damageMinion(S, victimSide, m.uid, 1));
       }
-      // v0.15 combat-death sovereign passives
-      if (combat === 'retal' && hasP(vp, 'GLORY_IN_BATTLE')) {
-        const d = 3 * rites(S, victimSide); // v0.15.1 buff: 2 -> 3
-        S[foeSide].hp -= d;
-        S.events.push({ t: 'heroHit', side: foeSide, id: 'GLORY_IN_BATTLE', dmg: d });
-      }
-      if (combat === 'retal' && hasP(vp, 'VENGEANCE_MOON')) { // v0.26: Baibars — kin that fall mid-charge are avenged
-        const d = 2 * rites(S, victimSide);
-        S[foeSide].hp -= d;
-        S.events.push({ t: 'heroHit', side: foeSide, id: 'VENGEANCE_MOON', dmg: d });
-      }
-      if (combat === 'hit' && hasP(S[foeSide], 'BLOOD_MONEY')) {
-        const ap = S[foeSide];
-        ap.hp = Math.min(MAX_HP, ap.hp + 1 * rites(S, foeSide));
-        S.events.push({ t: 'passive', side: foeSide, id: 'BLOOD_MONEY' });
-      }
+      else if (dr === 'drHeal2') { vp.hp = Math.min(MAX_HP, vp.hp + 2 + (hasP(vp, 'IRON_RATIONS') ? 2 * rites(S, victimSide) : 0)); } // v0.15: IRON_RATIONS
+      else if (dr === 'drSummon') { const hn = 1 + (hasP(vp, 'HORDEMASTER') ? rites(S, victimSide) : 0); for (let hi = 0; hi < hn && vp.board.length < MAX_BOARD; hi++) vp.board.push(token(vp, S)); S.events.push({ t: 'play', side: victimSide, id: 'TOKEN', uid: 'TOKEN' + vp.board.length, kw: null, cost: 1 }); refreshPrim(S); } // v0.15: HORDEMASTER
+      else if (dr === 'drDraw') { draw(S, victimSide); }
+      else if (dr === 'drTribeRally') { const tr = t.tribe; if (tr) { vp.board.forEach((m) => { if (m.tribe === tr) { m.atk += 1; m.hp += 1; } }); S.events.push({ t: 'passive', side: victimSide, id: 'DR_TRIBE_RALLY', on: tr }); refreshPrim(S); } } // v0.23: the fallen kinsman's oath — surviving kin gain +1/+1
     }
+    // v0.16 graveyard-lite + recursion/politics relic hooks
+    vp.fallen.push({ id: t.id, name: t.name, img: t.img, file: t.file }); if (vp.fallen.length > 24) vp.fallen.shift();
+    // v0.26: sovereign overhaul — death hooks
+    vp.deathsThisRound = (vp.deathsThisRound || 0) + 1;
+    if (hasP(vp, 'BANNER_OF_SKULLS') && t.id.startsWith('TOKEN@')) { const d = 1 * rites(S, victimSide); S[foeSide].hp -= d; S.events.push({ t: 'heroHit', side: foeSide, id: 'BANNER_OF_SKULLS', dmg: d }); } // Vorgath: every fallen levy burns the foe
+    if (hasP(vp, 'LAST_RITES') && !vp.lastRitesUsed) { vp.lastRitesUsed = true; if (vp.board.length < MAX_BOARD) { vp.board.push({ id: 'ECHO@' + t.id, name: 'Echo of ' + t.name, cost: 1, atk: 1, hp: 1, maxhp: 1, kw: null, uid: 'ECHO-' + Math.floor(S.rng() * 1e9), img: t.img, file: t.file, tribe: t.tribe, fl: 'Called back beyond the veil.' }); S.events.push({ t: 'passive', side: victimSide, id: 'LAST_RITES', on: t.id }); refreshPrim(S); } } // Morvenne: once per game the Pale Court gives back its dead
+    if (hasRelic(vp, 'rlMoonwell') && !vp.moonwellOnce && vp.hand.length <= 2 && vp.deck.length) { vp.moonwellOnce = true; draw(S, victimSide); S.events.push({ t: 'passive', side: victimSide, id: 'RL_MOONWELL' }); }
+    if (combat && hasRelic(S[foeSide], 'rlTrophy')) { const ap2 = S[foeSide]; ap2.hp = Math.min(MAX_HP, ap2.hp + 1); S.events.push({ t: 'passive', side: foeSide, id: 'RL_TROPHY' }); }
+    if (hasP(vp, 'DEATHGIFT')) {
+      const d = 1 * rites(S, victimSide);
+      S[foeSide].hp -= d;
+      S.events.push({ t: 'heroHit', side: foeSide, id: 'DEATHGIFT', dmg: d });
+    }
+    // v0.15 combat-death sovereign passives
+    if (combat === 'retal' && hasP(vp, 'GLORY_IN_BATTLE')) {
+      const d = 3 * rites(S, victimSide); // v0.15.1 buff: 2 -> 3
+      S[foeSide].hp -= d;
+      S.events.push({ t: 'heroHit', side: foeSide, id: 'GLORY_IN_BATTLE', dmg: d });
+    }
+    if (combat === 'retal' && hasP(vp, 'VENGEANCE_MOON')) { // v0.26: Baibars — kin that fall mid-charge are avenged
+      const d = 2 * rites(S, victimSide);
+      S[foeSide].hp -= d;
+      S.events.push({ t: 'heroHit', side: foeSide, id: 'VENGEANCE_MOON', dmg: d });
+    }
+    if (combat === 'hit' && hasP(S[foeSide], 'BLOOD_MONEY')) {
+      const ap = S[foeSide];
+      ap.hp = Math.min(MAX_HP, ap.hp + 1 * rites(S, foeSide));
+      S.events.push({ t: 'passive', side: foeSide, id: 'BLOOD_MONEY' });
+    }
+    refreshPrim(S); // v0.27.0: a departing holder's aura/enrage settles after the death hooks
   }
   // 1/1 Conscript token (uses the realm commander portrait)
   function token(p, S) {
@@ -293,6 +297,57 @@
     return t;
   }
   const hasRelic = (p, rl) => p.relics.some((x) => x.rl === rl);
+  // ---------- v0.27.0 ENGINE PRIMITIVES I: auras, turn triggers, enrage, persistent enchants ----------
+  // Inertness contract: no existing card carries aura/t0/rage/bcPerm, so on
+  // pristine data refreshPrim computes zero deltas, fires no events and draws
+  // no rng — behavior stays byte-identical (regression-gated before any ship).
+  const AURA_SPECS = {
+    auraTribe: { atk: 1, hp: 1, match: (h, m) => m.tribe && m.tribe === h.tribe }, // kin banner: other own-tribe minions +1/+1
+    auraGuard: { atk: 1, hp: 0, match: (h, m) => hasKw(m, 'Guard') },              // drill marshal: other own Guard minions +1 ATK
+    auraAll:   { atk: 1, hp: 0, match: () => true },                               // warlord's presence: other own minions +1 ATK (epic+ only)
+  };
+  const RAGE_SPECS = { rageAtk2: 2 }; // +2 ATK while damaged
+  // LIVE recompute: effective stats are read from board state at call time, so
+  // buffs follow minions in and out and a dying holder's gift dies with it.
+  // Called at every board-membership / minion-hp mutation point.
+  function refreshPrim(S) {
+    for (let pass = 0; pass < 24; pass++) {
+      let changed = false;
+      for (const side of ['A', 'B']) {
+        const board = S[side].board;
+        for (const m of board) {
+          let bA = 0, bH = 0;
+          for (const h of board) {
+            if (h === m || !h.aura) continue;
+            const sp = AURA_SPECS[h.aura];
+            if (sp && sp.match(h, m)) { bA += sp.atk; bH += sp.hp; }
+          }
+          const rg = (m.rage && m.maxhp && m.hp < m.maxhp) ? (RAGE_SPECS[m.rage] || 0) : 0;
+          const oA = m._pA || 0, oH = m._pH || 0, oR = m._pR || 0;
+          if (bA !== oA || bH !== oH || rg !== oR) {
+            m.atk += (bA - oA) + (rg - oR); m.hp += bH - oH;
+            m._pA = bA; m._pH = bH; m._pR = rg; changed = true;
+          }
+        }
+      }
+      if (!changed) return;
+      // a stat delta can drop a minion to 0 hp (aura holder died) — settle deaths, recompute
+      const dying = [];
+      for (const side of ['A', 'B']) for (const m of S[side].board) if (m.hp <= 0) dying.push([side, m]);
+      if (!dying.length) return;
+      for (const dy of dying) if (S[dy[0]].board.some((x) => x.uid === dy[1].uid)) die(S, dy[0], dy[1], dy[1].uid, null);
+    }
+  }
+  // Start/end-of-turn minion triggers (owner's side only). Templates reuse the
+  // bc/dr machinery shapes: ping, heal, summon, draw. Event log id is unique.
+  function resolveTt(S, side, m) {
+    const p = S[side], foe = S[other(side)];
+    S.events.push({ t: 'trigger', side, id: m.t0 === 'sot' ? 'SOT' : 'EOT', on: m.id, fx: m.tt });
+    if (m.tt === 'ttPing' && foe.board.length) { const t = foe.board[Math.floor(S.rng() * foe.board.length)]; damageMinion(S, other(side), t.uid, 1); }
+    else if (m.tt === 'ttHeal') p.hp = Math.min(MAX_HP, p.hp + 1);
+    else if (m.tt === 'ttDraw') draw(S, side);
+    else if (m.tt === 'ttSummon' && p.board.length < MAX_BOARD) { p.board.push(token(p, S)); refreshPrim(S); }
+  }
   // damage to a hero; EMBERWARD shaves ALL incoming hero damage (v0.14.2 buff: was attacks only —
   // the passive sat at 38.5% when leading in the 1.86M-game deep playtest).
   function heroDamage(S, victimSide, dmg, fromAttack) {
@@ -379,11 +434,17 @@
       else if (c.bc === 'bcHeal2') { p.hp = Math.min(MAX_HP, p.hp + 2); }
       else if (c.bc === 'bcBuff') {
         const others = p.board.filter((x) => x.uid !== selfUid);
-        if (others.length) { const sq = 1 + (hasP(p, 'SQUIG_FRENZY') ? 2 : 0); const b = pickTarget(opts, others) || others[Math.floor(S.rng() * others.length)]; b.atk += sq; b.hp += sq; S.events.push({ t: 'buff', side, id: b.id }); } // v0.20: aimed, else legacy random; v0.15: SQUIG_FRENZY
+        if (others.length) { const sq = 1 + (hasP(p, 'SQUIG_FRENZY') ? 2 : 0); const b = pickTarget(opts, others) || others[Math.floor(S.rng() * others.length)]; b.atk += sq; b.hp += sq; S.events.push({ t: 'buff', side, id: b.id }); refreshPrim(S); } // v0.20: aimed, else legacy random; v0.15: SQUIG_FRENZY; v0.27.0: enrage can sleep after a heal-carrying buff
       }
-      else if (c.bc === 'bcSummon' && p.board.length < MAX_BOARD) { p.board.push(token(p, S)); }
+      // v0.27.0: persistent enchant — +1/+1 that is ON the minion: survives its
+      // caster's death, and Silence strips it (tracked via m.perm).
+      else if (c.bc === 'bcPerm') {
+        const others = p.board.filter((x) => x.uid !== selfUid);
+        if (others.length) { const b = pickTarget(opts, others) || others[Math.floor(S.rng() * others.length)]; b.atk += 1; b.hp += 1; b.perm = { atk: (b.perm ? b.perm.atk : 0) + 1, hp: (b.perm ? b.perm.hp : 0) + 1 }; S.events.push({ t: 'buff', side, id: b.id }); refreshPrim(S); }
+      }
+      else if (c.bc === 'bcSummon' && p.board.length < MAX_BOARD) { p.board.push(token(p, S)); refreshPrim(S); }
       else if (c.bc === 'bcDraw') { draw(S, side); }
-      else if (c.bc === 'bcTribeBanner') { const tr = c.tribe; p.board.forEach((m) => { if (tr && m.tribe === tr) { m.atk += 1; m.hp += 1; } }); if (tr) S.events.push({ t: 'passive', side, id: 'BC_TRIBE_BANNER', on: tr }); } // v0.23: the banner rises — all kin gain +1/+1
+      else if (c.bc === 'bcTribeBanner') { const tr = c.tribe; p.board.forEach((m) => { if (tr && m.tribe === tr) { m.atk += 1; m.hp += 1; } }); if (tr) S.events.push({ t: 'passive', side, id: 'BC_TRIBE_BANNER', on: tr }); refreshPrim(S); } // v0.23: the banner rises — all kin gain +1/+1
       else if (c.bc === 'bcTribeDraw') { if (c.tribe && countTribe(p.board, c.tribe) > 1) draw(S, side); } // v0.23: counsel of kin — draw if another kinsman is already fielded
     }
   }
@@ -422,7 +483,7 @@
       p.relics.push({ ...c });
       S.events.push({ t: 'relic', side, id: c.id, rl: c.rl });
       if (c.rl === 'rlStandards') p.board.forEach((m) => { if (hasKw(m, 'Guard')) m.atk += 1; }); // eagles rise for the standing army
-      if (c.rl === 'rlLookout') p.board.forEach((m) => { if (hasKw(m, 'Ranged')) { m.atk += 1; m.hp += 1; } }); // v0.16 buff: +1/+1
+      if (c.rl === 'rlLookout') { p.board.forEach((m) => { if (hasKw(m, 'Ranged')) { m.atk += 1; m.hp += 1; } }); refreshPrim(S); } // v0.16 buff: +1/+1
       if (c.rl === 'rlTribeStandard' && c.tribe) p.board.forEach((m) => { if (m.tribe === c.tribe) m.atk += 1; }); // v0.23: the standard rises — kin already on the field rally +1 ATK
       if (c.rl === 'rlMirror') { const top = p.deck.splice(-Math.min(2, p.deck.length)); const val = (cc) => cc.type === 'minion' ? (cc.atk + cc.hp + (cc.bc ? 2 : 0) + (cc.dr ? 1 : 0)) : 6; top.sort((a, b) => val(b) - val(a)); while (top.length) p.deck.push(top.pop()); } // v0.16: Dreamer's Mirror — the best of the top two surfaces
       if (hasP(p, 'WARDSMITH')) { p.hp = Math.min(MAX_HP, p.hp + 2 * rites(S, side)); S.events.push({ t: 'passive', side, id: 'WARDSMITH' }); } // v0.26: Emile Oliivier — every ward forged mends its smith
@@ -468,6 +529,7 @@
     m.maxhp = m.hp; // v0.26: heal bookkeeping for FIELD_MEDIC (set after entry buffs)
     if (m.tribe && p.relics.some((x) => x.rl === 'rlTribeStandard' && x.tribe === m.tribe)) m.atk += 1; // v0.23: Kin Standard — kinsmen march in with +1 ATK
     p.board.push(m);
+    refreshPrim(S); // v0.27.0: the newcomer both receives and grants live auras
     S.events.push({ t: 'play', side, id: c.id, uid: c.uid, kw: c.kw || null, cost: c.cost });
     // v0.20 A9: shared battlecry resolver — minions pass their uid; multi-part
     // edicts pass null (their fx already resolved, the rider lands second).
@@ -487,12 +549,12 @@
       case 'fxExecute': { const t = pickTarget(opts, foe.board) || foe.board.slice().sort((a,b) => b.atk-a.atk)[0]; if (t) damageMinion(S, other(side), t.uid, t.hp + 99); break; } // v0.20: aimed, else auto-biggest
       case 'fxHealHero4': p.hp = Math.min(MAX_HP, p.hp + 4); break;
       case 'fxMana2': p.mana += 2; break;
-      case 'fxRally': { if (p.board.length < MAX_BOARD) p.board.push(token(p, S)); if (p.board.length < MAX_BOARD) p.board.push(token(p, S)); break; }
-      case 'fxRallyBoard': p.board.forEach((m) => { m.atk += 1; m.hp += 1; }); break;
+      case 'fxRally': { if (p.board.length < MAX_BOARD) p.board.push(token(p, S)); if (p.board.length < MAX_BOARD) p.board.push(token(p, S)); refreshPrim(S); break; }
+      case 'fxRallyBoard': p.board.forEach((m) => { m.atk += 1; m.hp += 1; }); refreshPrim(S); break;
       case 'fxVolley': { const n = p.board.filter((m) => hasKw(m, 'Ranged')).length; const d = n * (1 + (hasP(p, 'COURT_INTRIGUE') ? 2 * rites(S, side) : 0)); if (d > 0) edictHeroHit(S, side, 'VOLLEY', d); break; } // v0.21: routes through rlNullify; v0.15.1: COURT_INTRIGUE
       case 'fxMomentum': p.board.forEach((m) => { if (hasKw(m, 'Charge')) m.atk += 2; }); break;
-      case 'fxFormation': p.board.forEach((m) => { if (hasKw(m, 'Guard')) m.hp += 2; }); break;
-      case 'fxLevy': { p.board.forEach((m) => { if (m.id.startsWith('TOKEN@')) { m.atk += 1; m.hp += 1; } }); if (p.board.length < MAX_BOARD) p.board.push(token(p, S)); break; }
+      case 'fxFormation': p.board.forEach((m) => { if (hasKw(m, 'Guard')) m.hp += 2; }); refreshPrim(S); break;
+      case 'fxLevy': { p.board.forEach((m) => { if (m.id.startsWith('TOKEN@')) { m.atk += 1; m.hp += 1; } }); if (p.board.length < MAX_BOARD) p.board.push(token(p, S)); refreshPrim(S); break; }
       case 'fxPillage': { const pi = 2 + (hasP(p, 'COURT_INTRIGUE') ? 2 * rites(S, side) : 0); edictHeroHit(S, side, 'PILLAGE', pi); if (p.board.length > foe.board.length) draw(S, side); break; } // v0.21: routes through rlNullify; v0.15.1: COURT_INTRIGUE
       // v0.12: stronger variants — the edict tier the audit asked for
       case 'fxPingAll2': foe.board.slice().forEach((t) => damageMinion(S, other(side), t.uid, 2 + wv)); break;
@@ -502,7 +564,7 @@
       case 'fxHero3': { edictHeroHit(S, side, 'BURN', 3); break; } // v0.21: routes through rlNullify
       case 'fxDraw3': draw(S, side); draw(S, side); draw(S, side); break;
       case 'fxHealHero6': p.hp = Math.min(MAX_HP, p.hp + 6); break;
-      case 'fxRally3': { for (let i = 0; i < 3; i++) if (p.board.length < MAX_BOARD) p.board.push(token(p, S)); break; }
+      case 'fxRally3': { for (let i = 0; i < 3; i++) if (p.board.length < MAX_BOARD) p.board.push(token(p, S)); refreshPrim(S); break; }
       case 'fxMana3': p.mana += 3; break;
       case 'fxExecute2': { // v0.20: aimed target dies first, auto picks the second
         const pick = pickTarget(opts, foe.board);
@@ -530,8 +592,8 @@
         break;
       }
       // v0.21 P8: interaction + choice templates
-      case 'fxSilence': { const t = pickTarget(opts, foe.board) || foe.board.slice().sort((a,b) => (b.atk+b.hp)-(a.atk+a.hp))[0]; if (t) { t.kw = null; t.shield = 0; S.events.push({ t: 'passive', side, id: 'FX_SILENCE', on: t.id }); } break; } // strip keywords + Aegis shield, aimed else auto-biggest
-      case 'fxTransform': { const t = pickTarget(opts, foe.board) || foe.board.slice().sort((a,b) => (b.atk+b.hp)-(a.atk+a.hp))[0]; if (t) { t.atk = 1; t.hp = 1; t.kw = null; t.shield = 0; t.bc = null; t.dr = null; t.name = 'Conscript'; t.id = 'SHEEP@' + t.uid; S.events.push({ t: 'passive', side, id: 'FX_TRANSFORM', on: t.id }); } break; } // polymorph: any foe body becomes a 1/1 Conscript
+      case 'fxSilence': { const t = pickTarget(opts, foe.board) || foe.board.slice().sort((a,b) => (b.atk+b.hp)-(a.atk+a.hp))[0]; if (t) { t.kw = null; t.shield = 0; if (t.perm) { t.atk -= t.perm.atk || 0; t.hp -= t.perm.hp || 0; t.perm = null; } t.aura = null; t.rage = null; t.t0 = null; t.tt = null; S.events.push({ t: 'passive', side, id: 'FX_SILENCE', on: t.id }); refreshPrim(S); } break; } // v0.27.0: silence also strips auras/enrage/triggers/persistent enchants // strip keywords + Aegis shield, aimed else auto-biggest
+      case 'fxTransform': { const t = pickTarget(opts, foe.board) || foe.board.slice().sort((a,b) => (b.atk+b.hp)-(a.atk+a.hp))[0]; if (t) { t.atk = 1; t.hp = 1; t.kw = null; t.shield = 0; t.bc = null; t.dr = null; t.aura = null; t.rage = null; t.t0 = null; t.tt = null; t.perm = null; t._pA = 0; t._pH = 0; t._pR = 0; t.name = 'Conscript'; t.id = 'SHEEP@' + t.uid; refreshPrim(S); S.events.push({ t: 'passive', side, id: 'FX_TRANSFORM', on: t.id }); } break; } // polymorph: any foe body becomes a 1/1 Conscript
       case 'fxDeliberate': { // discover-class: look at the top 3, take the best, shuffle the rest back in
         const top = p.deck.splice(-Math.min(3, p.deck.length));
         const val = (cc) => cc.type === 'minion' ? (cc.atk + cc.hp + (cc.bc ? 2 : 0) + (cc.dr ? 1 : 0)) : 6;
@@ -543,7 +605,7 @@
       }
       case 'fxScorchX': { const d = p.mana + (hasP(p, 'PYROMANCER') ? 1 * rites(S, side) : 0); const t = pickTarget(opts, foe.board) || foe.board.slice().sort((a,b) => (b.atk+b.hp)-(a.atk+a.hp))[0]; if (t && d > 0) damageMinion(S, other(side), t.uid, d); p.mana = 0; S.events.push({ t: 'passive', side, id: 'FX_SCORCHX', dmg: d }); if (hasP(p, 'SCORCHED_VICTORY') && t && d > 0 && !foe.board.find((x) => x.uid === t.uid)) { const vd = 1 * rites(S, side); S[other(side)].hp -= vd; S.events.push({ t: 'heroHit', side: other(side), id: 'SCORCHED_VICTORY', dmg: vd }); } break; } // X-spell: spend ALL remaining mana as damage to one foe minion; v0.26: PYROMANCER +1 / SCORCHED_VICTORY rider
       // v0.23 T2: tribal payoff edicts — all read the card's own tribe
-      case 'fxTribeMuster': { const tr = c.tribe; const n = Math.min(3, countTribe(p.board, tr)); for (let i = 0; i < n && p.board.length < MAX_BOARD; i++) p.board.push(token(p, S)); S.events.push({ t: 'passive', side, id: 'FX_TRIBE_MUSTER', on: tr, n }); break; } // one levy per kinsman, up to three
+      case 'fxTribeMuster': { const tr = c.tribe; const n = Math.min(3, countTribe(p.board, tr)); for (let i = 0; i < n && p.board.length < MAX_BOARD; i++) p.board.push(token(p, S)); S.events.push({ t: 'passive', side, id: 'FX_TRIBE_MUSTER', on: tr, n }); refreshPrim(S); break; } // one levy per kinsman, up to three
       case 'fxTribeWarCry': { const tr = c.tribe; p.board.forEach((m) => { if (tr && m.tribe === tr) m.atk += 2; }); if (tr) S.events.push({ t: 'passive', side, id: 'FX_TRIBE_WARCRY', on: tr }); break; } // the war cry — kin gain +2 ATK
       case 'fxTribeLaw': { S.laws.push({ id: 'lawTribeGuard', side, tribe: c.tribe || null, until: S.turn + 3 }); S.events.push({ t: 'passive', side, id: 'LAW_TRIBE_GUARD', on: c.tribe || null }); break; } // kin stand as guards for three rounds
     }
@@ -620,7 +682,8 @@
     {
       const ep = S[S.active];
       if (hasP(ep, 'COURT_WHISPERS') && (ep.edictsThisTurn || 0) >= 2 && ep.deck.length) { S.events.push({ t: 'passive', side: S.active, id: 'COURT_WHISPERS' }); draw(S, S.active); } // Lysobelle: two decrees a day earn the court's ear
-      if (hasP(ep, 'FIELD_MEDIC') && ep.board.some((m) => m.hp > 0 && m.maxhp && m.hp < m.maxhp)) { ep.board.forEach((m) => { if (m.hp > 0 && m.maxhp && m.hp < m.maxhp) m.hp += 1 * rites(S, S.active); }); S.events.push({ t: 'passive', side: S.active, id: 'FIELD_MEDIC' }); } // Nerriel: the medic makes her rounds
+      if (hasP(ep, 'FIELD_MEDIC') && ep.board.some((m) => m.hp > 0 && m.maxhp && m.hp < m.maxhp)) { ep.board.forEach((m) => { if (m.hp > 0 && m.maxhp && m.hp < m.maxhp) m.hp += 1 * rites(S, S.active); }); S.events.push({ t: 'passive', side: S.active, id: 'FIELD_MEDIC' }); refreshPrim(S); } // Nerriel: the medic makes her rounds
+      for (const tm of ep.board.slice()) if (tm.t0 === 'eot') resolveTt(S, S.active, tm); // v0.27.0: end-of-turn triggers (owner's side only)
       ep.edictsThisTurn = 0; // reset for the next round
     }
     // v0.11: the ending side's Shock window closes and Relentless counters settle
@@ -635,7 +698,7 @@
     // relic hooks (v0.6)
     if (hasRelic(np, 'rlGranary')) np.hp = Math.min(MAX_HP, np.hp + 2); // v0.16 buff: 1 -> 2
     if (hasRelic(foe, 'rlLibrary') && foe.mana >= 2) { draw(S, other(next)); S.events.push({ t: 'relicfx', side: other(next), id: 'rlLibrary' }); }
-    if (hasRelic(foe, 'rlForage') && foe.board.length < 3 && foe.board.length < MAX_BOARD) { foe.board.push(token(foe, S)); S.events.push({ t: 'relicfx', side: other(next), id: 'rlForage' }); }
+    if (hasRelic(foe, 'rlForage') && foe.board.length < 3 && foe.board.length < MAX_BOARD) { foe.board.push(token(foe, S)); S.events.push({ t: 'relicfx', side: other(next), id: 'rlForage' }); refreshPrim(S); }
     const r = rites(S, next);
     np.sovOnce = {}; np.turnDraws = 0; np.heroDmgOnce = false; np.drawsThisTurn = 0; // v0.15: per-turn sovereign state (tookHeroDmg resets below, after STILLNESS checks it); v0.26: drawsThisTurn
     np.moonwellOnce = false; // v0.16: Moonwell Vial per-turn gate
@@ -644,21 +707,22 @@
     // v0.16: Delayed decrees fire at the start of their owner's turn
     const pend = np.pending; np.pending = [];
     for (const pr of pend) {
-      if (pr.fx === 'decreeMuster') { for (let pi = 0; pi < 2; pi++) if (np.board.length < MAX_BOARD) np.board.push(token(np, S)); S.events.push({ t: 'passive', side: next, id: 'DECREE_MUSTER' }); }
+      if (pr.fx === 'decreeMuster') { for (let pi = 0; pi < 2; pi++) if (np.board.length < MAX_BOARD) np.board.push(token(np, S)); S.events.push({ t: 'passive', side: next, id: 'DECREE_MUSTER' }); refreshPrim(S); }
       else if (pr.fx === 'decreeDraw') { draw(S, next); draw(S, next); S.events.push({ t: 'passive', side: next, id: 'DECREE_DRAW' }); }
       else if (pr.fx === 'decreeMana') { np.mana += 2; S.events.push({ t: 'passive', side: next, id: 'DECREE_MANA' }); }
     }
+    for (const tm of np.board.slice()) if (tm.t0 === 'sot') resolveTt(S, next, tm); // v0.27.0: start-of-turn triggers (owner's side only)
     // v0.16 relic turn-start hooks (terrain, recursion, politics, sustain, engines)
     if (hasRelic(np, 'rlFlame') && foe.board.length) { const wf = foe.board.slice().sort((a, b) => (a.atk + a.hp) - (b.atk + b.hp))[0]; S.events.push({ t: 'passive', side: next, id: 'RL_FLAME', on: wf.id }); damageMinion(S, other(next), wf.uid, 1); } // Silver Flame
-    if (hasRelic(np, 'rlTent') && np.board.length) { const wt = np.board.slice().sort((a, b) => (a.atk + a.hp) - (b.atk + b.hp))[0]; wt.atk += 1; wt.hp += 1; S.events.push({ t: 'passive', side: next, id: 'RL_TENT', on: wt.id }); } // The Great Tent
-    if (hasRelic(np, 'rlRampart')) np.board.forEach((m) => { if (hasKw(m, 'Guard')) m.hp += 1; }); // Rampart of Skulls: the wall grows
+    if (hasRelic(np, 'rlTent') && np.board.length) { const wt = np.board.slice().sort((a, b) => (a.atk + a.hp) - (b.atk + b.hp))[0]; wt.atk += 1; wt.hp += 1; S.events.push({ t: 'passive', side: next, id: 'RL_TENT', on: wt.id }); refreshPrim(S); } // The Great Tent
+    if (hasRelic(np, 'rlRampart')) { np.board.forEach((m) => { if (hasKw(m, 'Guard')) m.hp += 1; }); refreshPrim(S); } // Rampart of Skulls: the wall grows
     if (hasRelic(np, 'rlWard') && !np.tookHeroDmg) np.hp = Math.min(MAX_HP, np.hp + 2); // Glade Ward
     if (hasRelic(np, 'rlHearth') && np.hand.length >= 5) np.hp = Math.min(MAX_HP, np.hp + 2); // Winter Hearth: rewards a full hand
     if (hasRelic(np, 'rlMusketeers')) np.board.forEach((m) => { if (hasKw(m, 'Ranged')) m.atk += 1; }); // King's Musketeers
     if (hasRelic(np, 'rlCistern') && S.turn % 3 === 0) np.mana += 1; // Grand Cistern: every third turn
     if (hasRelic(np, 'rlCuria') && foe.board.length > np.board.length && np.deck.length) { draw(S, next); S.events.push({ t: 'passive', side: next, id: 'RL_CURIA' }); } // Curia Julia: the senate reacts
     if (hasRelic(np, 'rlWarStandard') && np.board.length >= 4) np.board.forEach((m) => { m.atk += 1; }); // War Standard of the Houses
-    if (hasRelic(np, 'rlQuill') && np.fallen.length && np.board.length < MAX_BOARD) { const gc = np.fallen.pop(); np.board.push({ id: 'ECHO@' + gc.id, name: 'Echo of ' + gc.name, cost: 1, atk: 1, hp: 1, kw: null, uid: 'ECHO-' + Math.floor(S.rng() * 1e9), img: gc.img, file: gc.file, fl: 'Called back beyond the veil.' }); S.events.push({ t: 'play', side: next, id: 'ECHO', uid: 'ECHO' + np.board.length, kw: null, cost: 1 }); } // Chronicler's Quill: the last of the fallen returns as a 1/1 Echo
+    if (hasRelic(np, 'rlQuill') && np.fallen.length && np.board.length < MAX_BOARD) { const gc = np.fallen.pop(); np.board.push({ id: 'ECHO@' + gc.id, name: 'Echo of ' + gc.name, cost: 1, atk: 1, hp: 1, kw: null, uid: 'ECHO-' + Math.floor(S.rng() * 1e9), img: gc.img, file: gc.file, fl: 'Called back beyond the veil.' }); S.events.push({ t: 'play', side: next, id: 'ECHO', uid: 'ECHO' + np.board.length, kw: null, cost: 1 }); refreshPrim(S); } // Chronicler's Quill: the last of the fallen returns as a 1/1 Echo
     if (hasRelic(np, 'rlDebt') && foe.hand.length >= 7) { const hi = foe.hand.reduce((acc, cc, i2) => (cc.cost > foe.hand[acc].cost ? i2 : acc), 0); const dc = foe.hand.splice(hi, 1)[0]; S.events.push({ t: 'passive', side: other(next), id: 'RL_DISCARD', on: dc.id }); } // The Crown's Debt: hoarders pay
     // v0.26: TEMPEST (Wellington) — the storm gathers every other turn while you are outnumbered
     if (hasP(np, 'TEMPEST') && foe.board.length && np.board.length < foe.board.length && np.ownTurns % 2 === 0) { const wv = 1 * r; foe.board.slice().forEach((t) => damageMinion(S, other(next), t.uid, wv)); S.events.push({ t: 'passive', side: next, id: 'TEMPEST' }); }
@@ -674,20 +738,20 @@
     np.ownTurns = (np.ownTurns || 0) + 1;
     np.diedLastTurn = np.deathsThisRound || 0; np.deathsThisRound = 0;
     if (hasP(np, 'TITHE') && foe.hand.length > np.hand.length) { np.mana += 1 * r; S.events.push({ t: 'passive', side: next, id: 'TITHE' }); } // Asquith: a thin purse taxes the rich
-    if (hasP(np, 'MASQUERADE') && np.board.length) { const w0 = weak(np.board); w0.hp += 2 * r; if (w0.maxhp) w0.maxhp += 2 * r; S.events.push({ t: 'passive', side: next, id: 'MASQUERADE', on: w0.id }); } // Fiouenette: the mask hides the frail
+    if (hasP(np, 'MASQUERADE') && np.board.length) { const w0 = weak(np.board); w0.hp += 2 * r; if (w0.maxhp) w0.maxhp += 2 * r; S.events.push({ t: 'passive', side: next, id: 'MASQUERADE', on: w0.id }); refreshPrim(S); } // Fiouenette: the mask hides the frail
     if (hasP(np, 'ELDER_COUNCIL') && np.deck.length) { const tr = [...new Set(np.board.map((m) => m.tribe).filter(Boolean))].find((tr2) => countTribe(np.board, tr2) >= 3); if (tr) { S.events.push({ t: 'passive', side: next, id: 'ELDER_COUNCIL', on: tr }); draw(S, next); } } // Velorwyn: three elders make a quorum
     if (hasP(np, 'TIDE_OF_KIN') && countTribe(np.board, 'Underfolk') >= 3) { np.hp = Math.min(MAX_HP, np.hp + 2 * r); S.events.push({ t: 'passive', side: next, id: 'TIDE_OF_KIN' }); } // Myrra: the tide renews the sworn
-    if (hasP(np, 'OVERCLOCK') && np.board.length) { const cs = np.board.filter((m) => m.tribe === 'Constructs'); if (cs.length) { const t2 = cs[Math.floor(S.rng() * cs.length)]; t2.atk += r; t2.hp += r; if (t2.maxhp) t2.maxhp += r; S.events.push({ t: 'passive', side: next, id: 'OVERCLOCK', on: t2.id }); } } // Halior: the engines surge
+    if (hasP(np, 'OVERCLOCK') && np.board.length) { const cs = np.board.filter((m) => m.tribe === 'Constructs'); if (cs.length) { const t2 = cs[Math.floor(S.rng() * cs.length)]; t2.atk += r; t2.hp += r; if (t2.maxhp) t2.maxhp += r; S.events.push({ t: 'passive', side: next, id: 'OVERCLOCK', on: t2.id }); refreshPrim(S); } } // Halior: the engines surge
     if (hasP(np, 'WATCHTOWER_PROTOCOL') && np.board.some((m) => hasKw(m, 'Guard')) && foe.board.length) { const w2 = foe.board.slice().sort((a, b) => (a.atk + a.hp) - (b.atk + b.hp))[0]; S.events.push({ t: 'passive', side: next, id: 'WATCHTOWER_PROTOCOL', on: w2.id }); damageMinion(S, other(next), w2.uid, 1 * r); } // Octtivus: the gate marks the weakest
-    if (hasP(np, 'IRON_LEVEY') && np.board.length >= 3 && np.board.length < MAX_BOARD) { np.board.push(token(np, S)); S.events.push({ t: 'passive', side: next, id: 'IRON_LEVEY' }); } // Ashen-Prime: a warband this size drafts itself
+    if (hasP(np, 'IRON_LEVEY') && np.board.length >= 3 && np.board.length < MAX_BOARD) { np.board.push(token(np, S)); S.events.push({ t: 'passive', side: next, id: 'IRON_LEVEY' }); refreshPrim(S); } // Ashen-Prime: a warband this size drafts itself
     if (hasP(np, 'GRAVE_HUNGER') && np.diedLastTurn > 0 && np.board.length) { const w3 = weak(np.board); w3.atk += 1 * r; S.events.push({ t: 'passive', side: next, id: 'GRAVE_HUNGER', on: w3.id }); } // Ossrath: what died yesterday feeds today
-    if (hasP(np, 'REVENANT_HOST') && np.diedLastTurn >= 3 && np.board.length < MAX_BOARD) { np.board.push(token(np, S)); S.events.push({ t: 'passive', side: next, id: 'REVENANT_HOST' }); } // the Hollow Choir: a fallen chorus rises one voice stronger
+    if (hasP(np, 'REVENANT_HOST') && np.diedLastTurn >= 3 && np.board.length < MAX_BOARD) { np.board.push(token(np, S)); S.events.push({ t: 'passive', side: next, id: 'REVENANT_HOST' }); refreshPrim(S); } // the Hollow Choir: a fallen chorus rises one voice stronger
     if (hasP(np, 'NOVA_CASCADE') && np.hand.length >= 5 && foe.board.length) { const t3 = foe.board[Math.floor(S.rng() * foe.board.length)]; S.events.push({ t: 'passive', side: next, id: 'NOVA_CASCADE', on: t3.id }); damageMinion(S, other(next), t3.uid, 1 * r); } // Sylur: the hundredth victory leaves an ember
     if (hasP(np, 'THUNDER_SPIRE') && foe.board.length > np.board.length) { const w4 = foe.board.slice().sort((a, b) => (a.atk + a.hp) - (b.atk + b.hp)).slice(0, 2); for (const t4 of w4) { S.events.push({ t: 'passive', side: next, id: 'THUNDER_SPIRE', on: t4.id }); damageMinion(S, other(next), t4.uid, 1 * r); } } // Maeiowynd: the spire answers numbers with thunder
-    if (hasP(np, 'WAR_DRUMS') && np.board.length > foe.board.length && np.board.length) { const w5 = weak(np.board); w5.atk += r; w5.hp += r; if (w5.maxhp) w5.maxhp += r; S.events.push({ t: 'passive', side: next, id: 'WAR_DRUMS', on: w5.id }); } // Baorgang: the drums roll for the bigger line
+    if (hasP(np, 'WAR_DRUMS') && np.board.length > foe.board.length && np.board.length) { const w5 = weak(np.board); w5.atk += r; w5.hp += r; if (w5.maxhp) w5.maxhp += r; S.events.push({ t: 'passive', side: next, id: 'WAR_DRUMS', on: w5.id }); refreshPrim(S); } // Baorgang: the drums roll for the bigger line
     if (hasP(np, 'FERAL_HOWL') && np.board.length) { const w = weak(np.board); w.atk += 1 * r; S.events.push({ t: 'passive', side: next, id: 'FERAL_HOWL', on: w.id }); } // v0.25.0: +2 -> +1 ATK (Ossrath 89.2% hot in deep audit)
-    if (hasP(np, 'MARCHING_ORDERS') && np.board.length) { const w = weak(np.board); w.atk += r; w.hp += r; S.events.push({ t: 'passive', side: next, id: 'MARCHING_ORDERS', on: w.id }); }
-    if (hasP(np, 'BLOCKADE') && foe.board.length - np.board.length >= 2 && np.board.length < MAX_BOARD) { np.board.push(token(np, S)); S.events.push({ t: 'passive', side: next, id: 'BLOCKADE' }); } // v0.15.1 buff: 3 -> 2
+    if (hasP(np, 'MARCHING_ORDERS') && np.board.length) { const w = weak(np.board); w.atk += r; w.hp += r; S.events.push({ t: 'passive', side: next, id: 'MARCHING_ORDERS', on: w.id }); refreshPrim(S); }
+    if (hasP(np, 'BLOCKADE') && foe.board.length - np.board.length >= 2 && np.board.length < MAX_BOARD) { np.board.push(token(np, S)); S.events.push({ t: 'passive', side: next, id: 'BLOCKADE' }); refreshPrim(S); } // v0.15.1 buff: 3 -> 2
     if (hasP(np, 'STANDARDS') && np.board.filter((m) => hasKw(m, 'Guard')).length >= 3 && np.deck.length) { S.events.push({ t: 'passive', side: next, id: 'STANDARDS' }); draw(S, next); }
     if (hasP(np, 'TARGETING_GRID') && np.hand.length >= 4 && foe.board.length) { const t = foe.board.slice().sort((a, b) => (b.atk + b.hp) - (a.atk + a.hp))[0]; S.events.push({ t: 'passive', side: next, id: 'TARGETING_GRID', on: t.id }); damageMinion(S, other(next), t.uid, 1 * r); }
     if (hasP(np, 'MOONLIGHT') && np.board.some((m) => hasKw(m, 'Lifesteal'))) { np.hp = Math.min(MAX_HP, np.hp + 3 * r); S.events.push({ t: 'passive', side: next, id: 'MOONLIGHT' }); } // v0.15.1 buff: 2 -> 3
@@ -1122,6 +1186,13 @@
     if (c.bc === 'bcBuff') v += p.board.length * 1.1;
     if (c.bc === 'bcTribeBanner') v += countTribe(p.board, c.tribe) * 1.9; // v0.23: kin-matters banner
     if (c.bc === 'bcTribeDraw') v += (countTribe(p.board, c.tribe) > 1 ? 2.0 : 0); // v0.23: needs a kinsman on the field
+    // v0.27.0 primitives: price auras/triggers/enrage/perm by what they accomplish on THIS board
+    if (c.aura === 'auraTribe') v += countTribe(p.board, c.tribe) * 1.5 + 0.8;
+    if (c.aura === 'auraGuard') v += p.board.filter((m) => hasKw(m, 'Guard')).length * 1.2 + 0.6;
+    if (c.aura === 'auraAll') v += p.board.length * 1.0 + 0.6;
+    if (c.rage) v += (RAGE_SPECS[c.rage] || 0) * 0.6;
+    if (c.t0) v += ({ ttPing: 0.8, ttHeal: 0.5, ttDraw: 1.4, ttSummon: 1.2 }[c.tt] || 1.0);
+    if (c.bc === 'bcPerm') v += p.board.length * 1.1;
     // v0.12: deathrattle value scales with magnitude (dr quality mattered in the audit)
     // v0.12: every v0.11 dr template keeps its exact old score (flat 0.9);
     // only the NEW magnitude templates scale — old data must play identically
