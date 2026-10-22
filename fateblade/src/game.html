@@ -15,6 +15,7 @@
     /* theme art (set per realm at runtime) */
     --theme-bg: none; --theme-panel: none; --theme-btn: none;
     --board-bg: none; --menu-bg: none; --fb-btn: none;
+    --artzoom: 1.16; /* v0.26.3: portrait art zoom — scales minted art up inside its clipped frame so empty field falls outside the plate; tune globally here */
   }
   *{box-sizing:border-box; user-select:none;}
   body{margin:0; background:var(--bg); color:var(--ink); font:15px/1.4 Georgia,serif; overflow:hidden;}
@@ -72,6 +73,14 @@
   .hero.targetable{border-color:var(--hp); box-shadow:0 0 10px var(--hp);}
   .minion{width:150px; height:192px; border:6px solid transparent; border-image:var(--theme-panel, linear-gradient(#2a2216,#191308)) 40; background:#0d0a07; position:relative; cursor:pointer; box-shadow:0 4px 16px #000d;} /* v0.22.6: pop off the full-bleed board art */
   .minion img{width:100%; height:150px; object-fit:cover; object-position:50% 20%; display:block;}
+  /* v0.26.3: art zoom — many minted portraits carry dead field around the subject INSIDE
+     the image, which cover-crop cannot remove (a square art in a near-square slot keeps
+     its margins). Each portrait is scaled up inside an overflow-hidden .artclip wrapper:
+     the plate fills edge-to-edge with art and the empty margins fall outside the frame.
+     Existing art, unchanged — this is framing only. --artzoom (in :root) tunes every
+     slot at once; the origin anchors near the top so faces survive the crop. */
+  .artclip{position:relative; overflow:hidden;}
+  .artclip img{transform:scale(var(--artzoom,1.16)); transform-origin:50% 22%;}
   .minion .nm{font-size:14.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding:1px 3px; background:#000c;}
   .minion .atk{position:absolute; bottom:2px; left:4px; font-size:22px; color:var(--atk); text-shadow:0 0 4px #000;}
   .minion .hp{position:absolute; bottom:2px; right:4px; font-size:22px; color:var(--hp); text-shadow:0 0 4px #000;}
@@ -643,7 +652,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.26.2';
+const GAME_VERSION = '0.26.3';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
@@ -1583,7 +1592,7 @@ function openMull(reveal){
   document.getElementById('mullRow').innerHTML = S.A.hand.map((c,i)=>{
     const isSpell = c.type==='edict'||c.type==='relic';
     return `<div class="mcard" onclick="mullToggle(${i},this)">
-      <img src="${c.img}" loading="lazy"><div class="nm">${c.name}</div>
+      <div class="artclip"><img src="${c.img}" loading="lazy"></div><div class="nm">${c.name}</div>
       <div class="cost">${c.cost}</div>
       <div class="st">${isSpell?`<span style="color:var(--abil);letter-spacing:1px">${c.type.toUpperCase()}</span>`:`<span style="color:var(--atk)">${c.atk} ATK</span> · <span style="color:var(--hp)">${c.hp} HP</span>`}</div>
       ${kwBadges(c)}</div>`;
@@ -1784,7 +1793,7 @@ function render(){
   const mk = (p, id, side)=>{
     const el = document.getElementById(id);
     const sov = p.sov ? `<div class="sovname">♦ ${p.sov.name}</div><div class="sovp" title="${(p.sov.passive.desc||'').replace(/"/g,'&quot;')}"><b style="color:var(--pass)">${p.sov.passive.name}:</b> ${p.sov.passive.desc||''}</div>` : '';
-    el.innerHTML = `<img src="${p.sov ? p.sov.img : p.fac.commander}"><div class="nm">${p.fac.label.toUpperCase()}</div>${sov}<div class="hp">${p.hp}</div>` +
+    el.innerHTML = `<div class="artclip"><img src="${p.sov ? p.sov.img : p.fac.commander}"></div><div class="nm">${p.fac.label.toUpperCase()}</div>${sov}<div class="hp">${p.hp}</div>` +
       (p.relics && p.relics.length ? `<div class="relics">${p.relics.map(r=>`<span class="rk" title="${r.name}: ${(r.ability||'').replace(/"/g,'&quot;')}">${r.name}</span>`).join('')}</div>` : '');
     el.title = p.sov ? `${p.sov.name} — ${p.sov.passive.name}: ${p.sov.passive.desc}` : '';
     el.className = 'hero' + (side==='B' && !watch.on && ((sel&&!castTargeting)||powTargeting) && !ai.board.some((m)=>hasKw(m,'Guard')) ? ' targetable' : '');
@@ -1809,7 +1818,7 @@ function render(){
       const targetable = !watch.on && S.active==='A' && ((side==='B'&&(sel||powTargeting)) || castable);
       return `<div class="minion ${hasKw(m,'Guard')?'guard':''} ${m.ready&&side===S.active?'ready':''} ${targetable?'targetable':''} ${sel===m.uid&&side==='A'?'selected':''} ${m.shield>0?'shielded':''}"
         data-uid="${m.uid}" data-cid="${m.id}">
-        <img src="${m.img}" loading="lazy"><div class="nm">${m.name}</div>
+        <div class="artclip"><img src="${m.img}" loading="lazy"></div><div class="nm">${m.name}</div>
         ${kwBadges(m)}
         <div class="gem atk">${m.atk}<i>ATK</i></div><div class="gem hp">${m.hp}<i>HP</i></div></div>`;
     }).join('');
@@ -1850,7 +1859,7 @@ function render(){
   const fanY = (i)=>(Math.pow(Math.abs(i-(hn-1)/2),1.35)*6).toFixed(1);
   hd.innerHTML = my.hand.map((c,i)=>`
     <div class="hcard r-${c.rarity||'common'} ${isSpell(c)?'spell':''} ${E.canPlay(S,'A',i)?'playable':''} ${i>=dealFrom?'deal':''}" data-i="${i}" style="--fr:${fanR(i)}deg;--fy:${fanY(i)}px">
-      <img src="${c.img}" loading="lazy"><div class="vig"></div>
+      <div class="artclip"><img src="${c.img}" loading="lazy"></div><div class="vig"></div>
       <div class="gem cost">${c.cost}</div>
       ${isSpell(c)?`<div class="typerow">${c.type==='edict'?'EDICT':'RELIC'}</div>`:''}
       ${kwBadges(c)}
