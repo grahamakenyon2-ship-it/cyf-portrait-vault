@@ -12296,6 +12296,62 @@
    "cardId": "nymisur-the-blood-tithed@deepholds",
    "cardFile": "the-lord-of-the-rings/erebor/erebor-default-m.jpg",
    "bytes": 319257
+  },
+  {
+   "name": "Karrukh the Flame-Handed",
+   "category": "orc",
+   "status": "queued",
+   "prompt": "Portrait of an orc pyromancer-warlord, one hand charred black and wreathed in ember-light, ash-grey skin scored by old burn scars, molten cracks glowing along his knuckles, an iron jaw-guard, eyes like banked coals",
+   "tribe": "Greenskins",
+   "realm": "marches"
+  },
+  {
+   "name": "Ashen-Prime of the Vanguard",
+   "category": "orc",
+   "status": "queued",
+   "prompt": "Portrait of an ash-pale orc vanguard champion, skin dusted grey like cooled embers, heavy scorched plate fused at the seams, a burned banner-cloak over one shoulder, an unflinching forward stare",
+   "tribe": "Greenskins",
+   "realm": "marches"
+  },
+  {
+   "name": "Vorgath the Skull-Banner",
+   "category": "orc",
+   "status": "queued",
+   "prompt": "Portrait of an orc standard-bearer, a tattered banner of stitched skulls rising behind his shoulder, bone talismans braided into a black topknot, iron fang-caps, a war-torn face split by a grin of filed teeth",
+   "tribe": "Greenskins",
+   "realm": "marches"
+  },
+  {
+   "name": "The Iron Marshal",
+   "category": "living-armor",
+   "status": "queued",
+   "prompt": "Portrait of a hollow suit of plate armour standing at the head of a war-column, empty visor lit from within by furnace-red light, a marshal's sash and campaign medals riveted to its breastplate, a baton of black iron in one gauntlet",
+   "tribe": "Greenskins",
+   "realm": "marches"
+  },
+  {
+   "name": "Delve-King Ordrath Stonefather",
+   "category": "dwarf",
+   "status": "queued",
+   "prompt": "Portrait of an ancient dwarven delve-king, crowned in raw veined stone, skin weathered like granite, a great beard woven with silver mine-rings and fossil beads, deep-set eyes catching distant lantern light",
+   "tribe": "Underfolk",
+   "realm": "deepholds"
+  },
+  {
+   "name": "Warden of the Ninth Deep",
+   "category": "dwarf",
+   "status": "queued",
+   "prompt": "Portrait of a dwarven deep-warden in half-plate carved with ninth-deep glyphs, a lantern-beetle lamp at the shoulder, one eye replaced by a polished onyx stud, watchful beneath a carved stone lintel",
+   "tribe": "Underfolk",
+   "realm": "deepholds"
+  },
+  {
+   "name": "Myrra the Deepwater Oath",
+   "category": "deep-one",
+   "status": "queued",
+   "prompt": "Portrait of a deep-one oathmaiden, pale blue-grey skin, kelp-woven hair pinned with a single pearl, fine gill-lines at the jaw, armour of lacquered shell over scaled hide, eyes reflecting still black water",
+   "tribe": "Underfolk",
+   "realm": "deepholds"
   }
  ],
  "taxonomy": "tribes-v2"
