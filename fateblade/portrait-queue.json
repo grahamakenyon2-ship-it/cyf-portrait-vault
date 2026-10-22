@@ -10428,1718 +10428,1874 @@
   {
    "name": "Guangqiu the Keen-Eyed",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Guangqiu the Keen-Eyed, a commander of the reserves, a mortal warrior of the realm, steel-lamellar and marching-cloak in hundred-banner heraldry, ink-brush calligraphy accents, sharp predator eyes, missing nothing, seated on campaign furniture, elbows on knees, the pass and the war-song",
-   "file": "art/canon/guangqiu-the-keen-eyed-kingdoms.jpg",
+   "file": "art/stockpile/guangqiu-the-keen-eyed.jpg",
    "tribe": "Humans",
    "realm": "kingdoms",
    "cardId": "guangqiu-the-keen-eyed@kingdoms",
-   "cardFile": "romance-of-the-three-kingdoms/hanzhong/hanzhong-default-f.jpg"
+   "cardFile": "romance-of-the-three-kingdoms/hanzhong/hanzhong-default-f.jpg",
+   "bytes": 352043
   },
   {
    "name": "Taomqiu the Unforgotten",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Taomqiu the Unforgotten, a veteran of the siege-lines, a mortal warrior of the realm, steel-lamellar and marching-cloak in hundred-banner heraldry, ink-brush calligraphy accents, marked by the realm’s own trade, head tilted, studying the viewer like a debt, the pass and the war-song",
-   "file": "art/canon/taomqiu-the-unforgotten-kingdoms.jpg",
+   "file": "art/stockpile/taomqiu-the-unforgotten.jpg",
    "tribe": "Humans",
    "realm": "kingdoms",
    "cardId": "taomqiu-the-unforgotten@kingdoms",
-   "cardFile": "romance-of-the-three-kingdoms/hanzhong/hanzhong-default-m.jpg"
+   "cardFile": "romance-of-the-three-kingdoms/hanzhong/hanzhong-default-m.jpg",
+   "bytes": 286297
   },
   {
    "name": "Chenkun the Wanderer",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Chenkun the Wanderer, a commander of the reserves, a mortal warrior of the realm, steel-lamellar and marching-cloak in hundred-banner heraldry, ink-brush calligraphy accents, marked by the realm’s own trade, mid-stride, cloak caught as if in wind, the pass and the war-song",
-   "file": "art/canon/chenkun-the-wanderer-kingdoms.jpg",
+   "file": "art/stockpile/chenkun-the-wanderer.jpg",
    "tribe": "Humans",
    "realm": "kingdoms",
    "cardId": "chenkun-the-wanderer@kingdoms",
-   "cardFile": "romance-of-the-three-kingdoms/jing-province/jingprovince-default-f.jpg"
+   "cardFile": "romance-of-the-three-kingdoms/jing-province/jingprovince-default-f.jpg",
+   "bytes": 304771
   },
   {
    "name": "Duanghai the Unbowed",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Duanghai the Unbowed, a commander of the reserves, a mortal warrior of the realm, steel-lamellar and marching-cloak in hundred-banner heraldry, ink-brush calligraphy accents, battered but unbent bearing, chin high despite ruin, hood drawn, face emerging from shadow, the pass and the war-song",
-   "file": "art/canon/duanghai-the-unbowed-kingdoms.jpg",
+   "file": "art/stockpile/duanghai-the-unbowed.jpg",
    "tribe": "Humans",
    "realm": "kingdoms",
    "cardId": "duanghai-the-unbowed@kingdoms",
-   "cardFile": "romance-of-the-three-kingdoms/jing-province/jingprovince-default-m.jpg"
+   "cardFile": "romance-of-the-three-kingdoms/jing-province/jingprovince-default-m.jpg",
+   "bytes": 311260
   },
   {
    "name": "Meimnan",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Meimnan, a ranged marksman, a mortal warrior of the realm, steel-lamellar and marching-cloak in hundred-banner heraldry, ink-brush calligraphy accents, marked by the realm’s own trade, half-turned toward a window of the realm’s light, the pass and the war-song",
-   "file": "art/canon/meimnan-kingdoms.jpg",
+   "file": "art/stockpile/meimnan.jpg",
    "tribe": "Humans",
    "realm": "kingdoms",
    "cardId": "meimnan@kingdoms",
-   "cardFile": "romance-of-the-three-kingdoms/liang-province/mateng-default-f.jpg"
+   "cardFile": "romance-of-the-three-kingdoms/liang-province/mateng-default-f.jpg",
+   "bytes": 306566
   },
   {
    "name": "Kangshming the Swift-Hooved",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Kangshming the Swift-Hooved, a duelist of the old schools, a mortal warrior of the realm, steel-lamellar and marching-cloak in hundred-banner heraldry, ink-brush calligraphy accents, a lean frame, weight forward, coiled like a runner, half-turned toward a window of the realm’s light, the pass and the war-song",
-   "file": "art/canon/kangshming-the-swift-hooved-kingdoms.jpg",
+   "file": "art/stockpile/kangshming-the-swift-hooved.jpg",
    "tribe": "Humans",
    "realm": "kingdoms",
    "cardId": "kangshming-the-swift-hooved@kingdoms",
-   "cardFile": "romance-of-the-three-kingdoms/liang-province/mateng-default-m.jpg"
+   "cardFile": "romance-of-the-three-kingdoms/liang-province/mateng-default-m.jpg",
+   "bytes": 332219
   },
   {
    "name": "Fengrnan the Thunder-Heeled",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Fengrnan the Thunder-Heeled, a duelist of the old schools, a mortal warrior of the realm, steel-lamellar and marching-cloak in hundred-banner heraldry, ink-brush calligraphy accents, marked by the realm’s own trade, weapon shouldered, chin lowered, eyes up, the pass and the war-song",
-   "file": "art/canon/fengrnan-the-thunder-heeled-kingdoms.jpg",
+   "file": "art/stockpile/fengrnan-the-thunder-heeled.jpg",
    "tribe": "Humans",
    "realm": "kingdoms",
    "cardId": "fengrnan-the-thunder-heeled@kingdoms",
-   "cardFile": "romance-of-the-three-kingdoms/nanman/bailong-default-f.jpg"
+   "cardFile": "romance-of-the-three-kingdoms/nanman/bailong-default-f.jpg",
+   "bytes": 297311
   },
   {
    "name": "Meinfeng the Reckoner",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Meinfeng the Reckoner, a ranged marksman, a mortal warrior of the realm, steel-lamellar and marching-cloak in hundred-banner heraldry, ink-brush calligraphy accents, marked by the realm’s own trade, seated on campaign furniture, elbows on knees, the pass and the war-song",
-   "file": "art/canon/meinfeng-the-reckoner-kingdoms.jpg",
+   "file": "art/stockpile/meinfeng-the-reckoner.jpg",
    "tribe": "Humans",
    "realm": "kingdoms",
    "cardId": "meinfeng-the-reckoner@kingdoms",
-   "cardFile": "romance-of-the-three-kingdoms/nanman/bailong-default-m.jpg"
+   "cardFile": "romance-of-the-three-kingdoms/nanman/bailong-default-m.jpg",
+   "bytes": 323297
   },
   {
    "name": "Taogkun",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Taogkun, a ranged marksman, a mortal warrior of the realm, steel-lamellar and marching-cloak in hundred-banner heraldry, ink-brush calligraphy accents, marked by the realm’s own trade, half-turned toward a window of the realm’s light, the pass and the war-song",
-   "file": "art/canon/taogkun-kingdoms.jpg",
+   "file": "art/stockpile/taogkun.jpg",
    "tribe": "Humans",
    "realm": "kingdoms",
    "cardId": "taogkun@kingdoms",
-   "cardFile": "romance-of-the-three-kingdoms/other-warlords/lubu-default-f.jpg"
+   "cardFile": "romance-of-the-three-kingdoms/other-warlords/lubu-default-f.jpg",
+   "bytes": 315814
   },
   {
    "name": "Qintai",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Qintai, a commander of the reserves, a mortal warrior of the realm, steel-lamellar and marching-cloak in hundred-banner heraldry, ink-brush calligraphy accents, marked by the realm’s own trade, head tilted, studying the viewer like a debt, the pass and the war-song",
-   "file": "art/canon/qintai-kingdoms.jpg",
+   "file": "art/stockpile/qintai.jpg",
    "tribe": "Humans",
    "realm": "kingdoms",
    "cardId": "qintai@kingdoms",
-   "cardFile": "romance-of-the-three-kingdoms/other-warlords/lubu-default-m.jpg"
+   "cardFile": "romance-of-the-three-kingdoms/other-warlords/lubu-default-m.jpg",
+   "bytes": 334700
   },
   {
    "name": "Ruanshyan the Tireless",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Ruanshyan the Tireless, a front-line shield-bearer, a mortal warrior of the realm, steel-lamellar and marching-cloak in hundred-banner heraldry, ink-brush calligraphy accents, marked by the realm’s own trade, half-turned toward a window of the realm’s light, the pass and the war-song",
-   "file": "art/canon/ruanshyan-the-tireless-kingdoms.jpg",
+   "file": "art/stockpile/ruanshyan-the-tireless.jpg",
    "tribe": "Humans",
    "realm": "kingdoms",
    "cardId": "ruanshyan-the-tireless@kingdoms",
-   "cardFile": "romance-of-the-three-kingdoms/other-warlords/yuanshao-default-f.jpg"
+   "cardFile": "romance-of-the-three-kingdoms/other-warlords/yuanshao-default-f.jpg",
+   "bytes": 351480
   },
   {
    "name": "Chenmsong the Patient",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Chenmsong the Patient, a commander of the reserves, a mortal warrior of the realm, steel-lamellar and marching-cloak in hundred-banner heraldry, ink-brush calligraphy accents, marked by the realm’s own trade, facing the viewer directly, weapon grounded, the pass and the war-song",
-   "file": "art/canon/chenmsong-the-patient-kingdoms.jpg",
+   "file": "art/stockpile/chenmsong-the-patient.jpg",
    "tribe": "Humans",
    "realm": "kingdoms",
    "cardId": "chenmsong-the-patient@kingdoms",
-   "cardFile": "romance-of-the-three-kingdoms/other-warlords/yuanshao-default-m.jpg"
+   "cardFile": "romance-of-the-three-kingdoms/other-warlords/yuanshao-default-m.jpg",
+   "bytes": 305490
   },
   {
    "name": "Baoshwei",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Baoshwei, a duelist of the old schools, a mortal warrior of the realm, steel-lamellar and marching-cloak in hundred-banner heraldry, ink-brush calligraphy accents, marked by the realm’s own trade, hood drawn, face emerging from shadow, the pass and the war-song",
-   "file": "art/canon/baoshwei-kingdoms.jpg",
+   "file": "art/stockpile/baoshwei.jpg",
    "tribe": "Humans",
    "realm": "kingdoms",
    "cardId": "baoshwei@kingdoms",
-   "cardFile": "romance-of-the-three-kingdoms/xu-province/xuprovince-default-f.jpg"
+   "cardFile": "romance-of-the-three-kingdoms/xu-province/xuprovince-default-f.jpg",
+   "bytes": 266748
   },
   {
    "name": "Fengmqiu the Far-Walked",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Fengmqiu the Far-Walked, a duelist of the old schools, a mortal warrior of the realm, steel-lamellar and marching-cloak in hundred-banner heraldry, ink-brush calligraphy accents, marked by the realm’s own trade, banners of the realm hanging dark behind, the pass and the war-song",
-   "file": "art/canon/fengmqiu-the-far-walked-kingdoms.jpg",
+   "file": "art/stockpile/fengmqiu-the-far-walked.jpg",
    "tribe": "Humans",
    "realm": "kingdoms",
    "cardId": "fengmqiu-the-far-walked@kingdoms",
-   "cardFile": "romance-of-the-three-kingdoms/xu-province/xuprovince-default-m.jpg"
+   "cardFile": "romance-of-the-three-kingdoms/xu-province/xuprovince-default-m.jpg",
+   "bytes": 314367
   },
   {
    "name": "Taoggang the Iron-Voiced",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Taoggang the Iron-Voiced, a front-line shield-bearer, a mortal warrior of the realm, steel-lamellar and marching-cloak in hundred-banner heraldry, ink-brush calligraphy accents, a mouth open mid-word, or sewn shut, hood drawn, face emerging from shadow, the pass and the war-song",
-   "file": "art/canon/taoggang-the-iron-voiced-kingdoms.jpg",
+   "file": "art/stockpile/taoggang-the-iron-voiced.jpg",
    "tribe": "Humans",
    "realm": "kingdoms",
    "cardId": "taoggang-the-iron-voiced@kingdoms",
-   "cardFile": "romance-of-the-three-kingdoms/yamatai/yamatai-default-f.jpg"
+   "cardFile": "romance-of-the-three-kingdoms/yamatai/yamatai-default-f.jpg",
+   "bytes": 311315
   },
   {
    "name": "Baomkun the Blood-Tithed",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Baomkun the Blood-Tithed, a ranged marksman, a mortal warrior of the realm, steel-lamellar and marching-cloak in hundred-banner heraldry, ink-brush calligraphy accents, marked by the realm’s own trade, mid-stride, cloak caught as if in wind, the pass and the war-song",
-   "file": "art/canon/baomkun-the-blood-tithed-kingdoms.jpg",
+   "file": "art/stockpile/baomkun-the-blood-tithed.jpg",
    "tribe": "Humans",
    "realm": "kingdoms",
    "cardId": "baomkun-the-blood-tithed@kingdoms",
-   "cardFile": "romance-of-the-three-kingdoms/yamatai/yamatai-default-m.jpg"
+   "cardFile": "romance-of-the-three-kingdoms/yamatai/yamatai-default-m.jpg",
+   "bytes": 265159
   },
   {
    "name": "Baorgang of the Long Watch",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Baorgang of the Long Watch, a duelist of the old schools, a mortal warrior of the realm, steel-lamellar and marching-cloak in hundred-banner heraldry, ink-brush calligraphy accents, a sentinel patience, standing guard over something unseen, facing the viewer directly, weapon grounded, the pass and the war-song",
-   "file": "art/canon/baorgang-of-the-long-watch-kingdoms.jpg",
+   "file": "art/stockpile/baorgang-of-the-long-watch.jpg",
    "tribe": "Humans",
    "realm": "kingdoms",
    "cardId": "baorgang-of-the-long-watch@kingdoms",
-   "cardFile": "romance-of-the-three-kingdoms/shu/guan_20yu.jpg"
+   "cardFile": "romance-of-the-three-kingdoms/shu/guan_20yu.jpg",
+   "bytes": 272201
   },
   {
    "name": "Kangsong the Twilight-Born",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Kangsong the Twilight-Born, a commander of the reserves, a mortal warrior of the realm, steel-lamellar and marching-cloak in hundred-banner heraldry, ink-brush calligraphy accents, marked by the realm’s own trade, half-turned toward a window of the realm’s light, the pass and the war-song",
-   "file": "art/canon/kangsong-the-twilight-born-kingdoms.jpg",
+   "file": "art/stockpile/kangsong-the-twilight-born.jpg",
    "tribe": "Humans",
    "realm": "kingdoms",
    "cardId": "kangsong-the-twilight-born@kingdoms",
-   "cardFile": "romance-of-the-three-kingdoms/shu-han/zhuge_20liang.jpg"
+   "cardFile": "romance-of-the-three-kingdoms/shu-han/zhuge_20liang.jpg",
+   "bytes": 306159
   },
   {
    "name": "Meiming",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Meiming, a keeper of the realm’s relics, a mortal warrior of the realm, steel-lamellar and marching-cloak in hundred-banner heraldry, ink-brush calligraphy accents, marked by the realm’s own trade, hood drawn, face emerging from shadow, the pass and the war-song",
-   "file": "art/canon/meiming-kingdoms.jpg",
+   "file": "art/stockpile/meiming.jpg",
    "tribe": "Humans",
    "realm": "kingdoms",
    "cardId": "meiming@kingdoms",
-   "cardFile": "romance-of-the-three-kingdoms/yellow-turans/turbanremnants-default-f.jpg"
+   "cardFile": "romance-of-the-three-kingdoms/yellow-turans/turbanremnants-default-f.jpg",
+   "bytes": 326176
   },
   {
    "name": "Fengrshu the Cold-Blooded",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Fengrshu the Cold-Blooded, a duelist of the old schools, a mortal warrior of the realm, steel-lamellar and marching-cloak in hundred-banner heraldry, ink-brush calligraphy accents, marked by the realm’s own trade, seated on campaign furniture, elbows on knees, the pass and the war-song",
-   "file": "art/canon/fengrshu-the-cold-blooded-kingdoms.jpg",
+   "file": "art/stockpile/fengrshu-the-cold-blooded.jpg",
    "tribe": "Humans",
    "realm": "kingdoms",
    "cardId": "fengrshu-the-cold-blooded@kingdoms",
-   "cardFile": "romance-of-the-three-kingdoms/you-province/gongsunzan-default-f.jpg"
+   "cardFile": "romance-of-the-three-kingdoms/you-province/gongsunzan-default-f.jpg",
+   "bytes": 365097
   },
   {
    "name": "Ruangwei the Steadfast",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Ruangwei the Steadfast, a ranged marksman, a mortal warrior of the realm, steel-lamellar and marching-cloak in hundred-banner heraldry, ink-brush calligraphy accents, an unwavering planted stance and level, unimpressed gaze, hood drawn, face emerging from shadow, the pass and the war-song",
-   "file": "art/canon/ruangwei-the-steadfast-kingdoms.jpg",
+   "file": "art/stockpile/ruangwei-the-steadfast.jpg",
    "tribe": "Humans",
    "realm": "kingdoms",
    "cardId": "ruangwei-the-steadfast@kingdoms",
-   "cardFile": "romance-of-the-three-kingdoms/yellow-turans/yellowturbans-default-f.jpg"
+   "cardFile": "romance-of-the-three-kingdoms/yellow-turans/yellowturbans-default-f.jpg",
+   "bytes": 270148
   },
   {
    "name": "Mekashiel the Bold",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Mekashiel the Bold, a veteran of the siege-lines, a mortal warrior of the realm, steel-lamellar and marching-cloak in hundred-banner heraldry, ink-brush calligraphy accents, a wide fearless grin, half-turned toward a window of the realm’s light, the pass and the war-song",
-   "file": "art/canon/mekashiel-the-bold-kingdoms.jpg",
+   "file": "art/stockpile/mekashiel-the-bold.jpg",
    "tribe": "Humans",
    "realm": "kingdoms",
    "cardId": "mekashiel-the-bold@kingdoms",
-   "cardFile": "romance-of-the-three-kingdoms/wei/cao_20cao.jpg"
+   "cardFile": "romance-of-the-three-kingdoms/wei/cao_20cao.jpg",
+   "bytes": 289335
   },
   {
    "name": "Pyris the Breaker-Line",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Pyris the Breaker-Line, a front-line shield-bearer, a mortal warrior of the realm, steel-lamellar and marching-cloak in hundred-banner heraldry, ink-brush calligraphy accents, marked by the realm’s own trade, mid-stride, cloak caught as if in wind, the pass and the war-song",
-   "file": "art/canon/pyris-the-breaker-line-kingdoms.jpg",
+   "file": "art/stockpile/pyris-the-breaker-line.jpg",
    "tribe": "Humans",
    "realm": "kingdoms",
    "cardId": "pyris-the-breaker-line@kingdoms",
-   "cardFile": "romance-of-the-three-kingdoms/you-province/gongsunzan-default-m.jpg"
+   "cardFile": "romance-of-the-three-kingdoms/you-province/gongsunzan-default-m.jpg",
+   "bytes": 264465
   },
   {
    "name": "Kelielash the Cold-Throned",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Kelielash the Cold-Throned, a keeper of the realm’s relics, a mortal warrior of the realm, steel-lamellar and marching-cloak in hundred-banner heraldry, ink-brush calligraphy accents, marked by the realm’s own trade, weapon shouldered, chin lowered, eyes up, the pass and the war-song",
-   "file": "art/canon/kelielash-the-cold-throned-kingdoms.jpg",
+   "file": "art/stockpile/kelielash-the-cold-throned.jpg",
    "tribe": "Humans",
    "realm": "kingdoms",
    "cardId": "kelielash-the-cold-throned@kingdoms",
-   "cardFile": "the-lord-of-the-rings/numenor/numenor-default-m.jpg"
+   "cardFile": "the-lord-of-the-rings/numenor/numenor-default-m.jpg",
+   "bytes": 300636
   },
   {
    "name": "Orsak",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Orsak, a scout of the outer marches, a mortal warrior of the realm, steel-lamellar and marching-cloak in hundred-banner heraldry, ink-brush calligraphy accents, marked by the realm’s own trade, head tilted, studying the viewer like a debt, the pass and the war-song",
-   "file": "art/canon/orsak-kingdoms.jpg",
+   "file": "art/stockpile/orsak.jpg",
    "tribe": "Humans",
    "realm": "kingdoms",
    "cardId": "orsak@kingdoms",
-   "cardFile": "the-lord-of-the-rings/rohan/rohan-default-f.jpg"
+   "cardFile": "the-lord-of-the-rings/rohan/rohan-default-f.jpg",
+   "bytes": 299497
   },
   {
    "name": "Bryarn",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Bryarn, a ranged marksman, a mortal warrior of the realm, steel-lamellar and marching-cloak in hundred-banner heraldry, ink-brush calligraphy accents, marked by the realm’s own trade, weapon shouldered, chin lowered, eyes up, the pass and the war-song",
-   "file": "art/canon/bryarn-kingdoms.jpg",
+   "file": "art/stockpile/bryarn.jpg",
    "tribe": "Humans",
    "realm": "kingdoms",
    "cardId": "bryarn@kingdoms",
-   "cardFile": "the-lord-of-the-rings/rohan/rohan-default-m.jpg"
+   "cardFile": "the-lord-of-the-rings/rohan/rohan-default-m.jpg",
+   "bytes": 305090
   },
   {
    "name": "Goraxiel of the Long Watch",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Goraxiel of the Long Watch, a banner-champion, a mortal warrior of the realm, steel-lamellar and marching-cloak in hundred-banner heraldry, ink-brush calligraphy accents, a sentinel patience, standing guard over something unseen, head tilted, studying the viewer like a debt, the pass and the war-song",
-   "file": "art/canon/goraxiel-of-the-long-watch-kingdoms.jpg",
+   "file": "art/stockpile/goraxiel-of-the-long-watch.jpg",
    "tribe": "Humans",
    "realm": "kingdoms",
    "cardId": "goraxiel-of-the-long-watch@kingdoms",
-   "cardFile": "the-lord-of-the-rings/the-shire/shire-default-f.jpg"
+   "cardFile": "the-lord-of-the-rings/the-shire/shire-default-f.jpg",
+   "bytes": 292078
   },
   {
    "name": "Mekien",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Mekien, a duelist of the old schools, a mortal warrior of the realm, steel-lamellar and marching-cloak in hundred-banner heraldry, ink-brush calligraphy accents, marked by the realm’s own trade, banners of the realm hanging dark behind, the pass and the war-song",
-   "file": "art/canon/mekien-kingdoms.jpg",
+   "file": "art/stockpile/mekien.jpg",
    "tribe": "Humans",
    "realm": "kingdoms",
    "cardId": "mekien@kingdoms",
-   "cardFile": "the-lord-of-the-rings/the-shire/shire-default-m.jpg"
+   "cardFile": "the-lord-of-the-rings/the-shire/shire-default-m.jpg",
+   "bytes": 244576
   },
   {
    "name": "Jorlas",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Jorlas, a ranged marksman, a mortal warrior of the realm, steel-lamellar and marching-cloak in hundred-banner heraldry, ink-brush calligraphy accents, marked by the realm’s own trade, half-turned toward a window of the realm’s light, the pass and the war-song",
-   "file": "art/canon/jorlas-kingdoms.jpg",
+   "file": "art/stockpile/jorlas.jpg",
    "tribe": "Humans",
    "realm": "kingdoms",
    "cardId": "jorlas@kingdoms",
-   "cardFile": "romance-of-the-three-kingdoms/yellow-turans/turbanremnants-default-m.jpg"
+   "cardFile": "romance-of-the-three-kingdoms/yellow-turans/turbanremnants-default-m.jpg",
+   "bytes": 292208
   },
   {
    "name": "Nymdor",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Nymdor, a keeper of the realm’s relics, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, steel-lamellar and marching-cloak in hundred-banner heraldry, ink-brush calligraphy accents, marked by the realm’s own trade, mid-stride, cloak caught as if in wind, the pass and the war-song",
-   "file": "art/canon/nymdor-kingdoms.jpg",
+   "file": "art/stockpile/nymdor.jpg",
    "tribe": "Elderkin",
    "realm": "kingdoms",
    "cardId": "nymdor@kingdoms",
-   "cardFile": "the-lord-of-the-rings/mirkwood/woodmenmirkwood-default-f.jpg"
+   "cardFile": "the-lord-of-the-rings/mirkwood/woodmenmirkwood-default-f.jpg",
+   "bytes": 308538
   },
   {
    "name": "Thaleth",
    "category": "elderkin",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Thaleth, a banner-champion, a tall ageless elder of the elder races, patrician features, starlight-grey undertones, antique heirloom regalia, steel-lamellar and marching-cloak in hundred-banner heraldry, ink-brush calligraphy accents, marked by the realm’s own trade, hood drawn, face emerging from shadow, the pass and the war-song",
-   "file": "art/canon/thaleth-kingdoms.jpg",
+   "file": "art/stockpile/thaleth.jpg",
    "tribe": "Elderkin",
    "realm": "kingdoms",
    "cardId": "thaleth@kingdoms",
-   "cardFile": "the-lord-of-the-rings/mirkwood/woodmenmirkwood-default-m.jpg"
+   "cardFile": "the-lord-of-the-rings/mirkwood/woodmenmirkwood-default-m.jpg",
+   "bytes": 309165
   },
   {
    "name": "Aelmar the Deep-Minded",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Aelmar the Deep-Minded, a ranged marksman, a mortal warrior of the realm, steel-lamellar and marching-cloak in hundred-banner heraldry, ink-brush calligraphy accents, marked by the realm’s own trade, half-turned toward a window of the realm’s light, the pass and the war-song",
-   "file": "art/canon/aelmar-the-deep-minded-kingdoms.jpg",
+   "file": "art/stockpile/aelmar-the-deep-minded.jpg",
    "tribe": "Humans",
    "realm": "kingdoms",
    "cardId": "aelmar-the-deep-minded@kingdoms",
-   "cardFile": "romance-of-the-three-kingdoms/yellow-turans/yellowturbans-default-m.jpg"
+   "cardFile": "romance-of-the-three-kingdoms/yellow-turans/yellowturbans-default-m.jpg",
+   "bytes": 339196
   },
   {
    "name": "Iseniowynd the Silent",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Iseniowynd the Silent, a commander of the reserves, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, utter silence — mouth closed, eyes speaking, seated on campaign furniture, elbows on knees, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/iseniowynd-the-silent-towers.jpg",
+   "file": "art/stockpile/iseniowynd-the-silent.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "iseniowynd-the-silent@towers",
-   "cardFile": "the-elder-scrolls/cyrodiil-the-empire/potentate_20ocato.jpg"
+   "cardFile": "the-elder-scrolls/cyrodiil-the-empire/potentate_20ocato.jpg",
+   "bytes": 319025
   },
   {
    "name": "Iseniquen the Longbow",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Iseniquen the Longbow, a veteran of the siege-lines, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, a great bow taller than its bearer, string worn to silk, head tilted, studying the viewer like a debt, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/iseniquen-the-longbow-towers.jpg",
+   "file": "art/stockpile/iseniquen-the-longbow.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "iseniquen-the-longbow@towers",
-   "cardFile": "the-elder-scrolls/cyrodiil-the-empire/tiber_20septim.jpg"
+   "cardFile": "the-elder-scrolls/cyrodiil-the-empire/tiber_20septim.jpg",
+   "bytes": 330505
   },
   {
    "name": "Elelume the Bold",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Elelume the Bold, a front-line shield-bearer, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, a wide fearless grin, seated on campaign furniture, elbows on knees, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/elelume-the-bold-towers.jpg",
+   "file": "art/stockpile/elelume-the-bold.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "elelume-the-bold@towers",
-   "cardFile": "the-elder-scrolls/cyrodiil-the-empire/titus_20mede_20ii.jpg"
+   "cardFile": "the-elder-scrolls/cyrodiil-the-empire/titus_20mede_20ii.jpg",
+   "bytes": 332243
   },
   {
    "name": "Bryaedrel the Ash-Cloaked",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Bryaedrel the Ash-Cloaked, a front-line shield-bearer, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, ash smeared ritual across the brow, banners of the realm hanging dark behind, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/bryaedrel-the-ash-cloaked-towers.jpg",
+   "file": "art/stockpile/bryaedrel-the-ash-cloaked.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "bryaedrel-the-ash-cloaked@towers",
-   "cardFile": "the-elder-scrolls/cyrodiil-the-empire/uriel_20septim.jpg"
+   "cardFile": "the-elder-scrolls/cyrodiil-the-empire/uriel_20septim.jpg",
+   "bytes": 332024
   },
   {
    "name": "Maeomere",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Maeomere, a keeper of the realm’s relics, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, half-turned toward a window of the realm’s light, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/maeomere-towers.jpg",
+   "file": "art/stockpile/maeomere.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "maeomere@towers",
-   "cardFile": "the-elder-scrolls/cyrodiil/martin_20septim.jpg"
+   "cardFile": "the-elder-scrolls/cyrodiil/martin_20septim.jpg",
+   "bytes": 330814
   },
   {
    "name": "Lyraerath the Quiet Sentence",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Lyraerath the Quiet Sentence, a banner-champion, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, stillness, a hood half-drawn, watching, half-turned toward a window of the realm’s light, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/lyraerath-the-quiet-sentence-towers.jpg",
+   "file": "art/stockpile/lyraerath-the-quiet-sentence.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "lyraerath-the-quiet-sentence@towers",
-   "cardFile": "the-elder-scrolls/elsweyr-valenwood/aeradan_20camoran.jpg"
+   "cardFile": "the-elder-scrolls/elsweyr-valenwood/aeradan_20camoran.jpg",
+   "bytes": 333262
   },
   {
    "name": "Bryioquen the Nine-Crowned",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Bryioquen the Nine-Crowned, a veteran of the siege-lines, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, a crown — broken, tarnished, or molten — still worn, head tilted, studying the viewer like a debt, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/bryioquen-the-nine-crowned-towers.jpg",
+   "file": "art/stockpile/bryioquen-the-nine-crowned.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "bryioquen-the-nine-crowned@towers",
-   "cardFile": "the-elder-scrolls/high-rock/emeric.jpg"
+   "cardFile": "the-elder-scrolls/high-rock/emeric.jpg",
+   "bytes": 312978
   },
   {
    "name": "Pyraavane the Wanderer",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Pyraavane the Wanderer, a scout of the outer marches, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, head tilted, studying the viewer like a debt, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/pyraavane-the-wanderer-towers.jpg",
+   "file": "art/stockpile/pyraavane-the-wanderer.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "pyraavane-the-wanderer@towers",
-   "cardFile": "the-elder-scrolls/morrowind/dagoth_20ur.jpg"
+   "cardFile": "the-elder-scrolls/morrowind/dagoth_20ur.jpg",
+   "bytes": 314574
   },
   {
    "name": "Bryidrel",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Bryidrel, a banner-champion, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, seated on campaign furniture, elbows on knees, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/bryidrel-towers.jpg",
+   "file": "art/stockpile/bryidrel.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "bryidrel@towers",
-   "cardFile": "the-elder-scrolls/morrowind/hlaalu_20helseth.jpg"
+   "cardFile": "the-elder-scrolls/morrowind/hlaalu_20helseth.jpg",
+   "bytes": 303728
   },
   {
    "name": "Pyrairion the End of All Things",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Pyrairion the End of All Things, a banner-champion, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, banners of the realm hanging dark behind, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/pyrairion-the-end-of-all-things-towers.jpg",
+   "file": "art/stockpile/pyrairion-the-end-of-all-things.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "pyrairion-the-end-of-all-things@towers",
-   "cardFile": "the-elder-scrolls/morrowind/sotha_20sil.jpg"
+   "cardFile": "the-elder-scrolls/morrowind/sotha_20sil.jpg",
+   "bytes": 356803
   },
   {
    "name": "Isenawenna the Bright-Bladed",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Isenawenna the Bright-Bladed, a banner-champion, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, half-turned toward a window of the realm’s light, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/isenawenna-the-bright-bladed-towers.jpg",
+   "file": "art/stockpile/isenawenna-the-bright-bladed.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "isenawenna-the-bright-bladed@towers",
-   "cardFile": "the-elder-scrolls/morrowind/the_20tribunal.jpg"
+   "cardFile": "the-elder-scrolls/morrowind/the_20tribunal.jpg",
+   "bytes": 311073
   },
   {
    "name": "Dorerion of the Ninth Weave",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Dorerion of the Ninth Weave, a keeper of the realm’s relics, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, banners of the realm hanging dark behind, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/dorerion-of-the-ninth-weave-towers.jpg",
+   "file": "art/stockpile/dorerion-of-the-ninth-weave.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "dorerion-of-the-ninth-weave@towers",
-   "cardFile": "the-elder-scrolls/morrowind/vivec.jpg"
+   "cardFile": "the-elder-scrolls/morrowind/vivec.jpg",
+   "bytes": 326392
   },
   {
    "name": "Alaequen",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Alaequen, a scout of the outer marches, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, head tilted, studying the viewer like a debt, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/alaequen-towers.jpg",
+   "file": "art/stockpile/alaequen.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "alaequen@towers",
-   "cardFile": "the-elder-scrolls/skyrim/elisif.jpg"
+   "cardFile": "the-elder-scrolls/skyrim/elisif.jpg",
+   "bytes": 299985
   },
   {
    "name": "Fenawynd",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Fenawynd, a front-line shield-bearer, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, facing the viewer directly, weapon grounded, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/fenawynd-towers.jpg",
+   "file": "art/stockpile/fenawynd.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "fenawynd@towers",
-   "cardFile": "the-elder-scrolls/skyrim/high_20king_20harald.jpg"
+   "cardFile": "the-elder-scrolls/skyrim/high_20king_20harald.jpg",
+   "bytes": 369309
   },
   {
    "name": "Queliovale the Winter-Sworn",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Queliovale the Winter-Sworn, a banner-champion, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, an oath-brand or votive seal burned into a vambrace, banners of the realm hanging dark behind, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/queliovale-the-winter-sworn-towers.jpg",
+   "file": "art/stockpile/queliovale-the-winter-sworn.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "queliovale-the-winter-sworn@towers",
-   "cardFile": "the-elder-scrolls/skyrim/jorunn.jpg"
+   "cardFile": "the-elder-scrolls/skyrim/jorunn.jpg",
+   "bytes": 327956
   },
   {
    "name": "Haliowynd the Swift-Hooved",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Haliowynd the Swift-Hooved, a ranged marksman, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, a lean frame, weight forward, coiled like a runner, mid-stride, cloak caught as if in wind, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/haliowynd-the-swift-hooved-towers.jpg",
+   "file": "art/stockpile/haliowynd-the-swift-hooved.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "haliowynd-the-swift-hooved@towers",
-   "cardFile": "the-elder-scrolls/skyrim/ulfric.jpg"
+   "cardFile": "the-elder-scrolls/skyrim/ulfric.jpg",
+   "bytes": 287532
   },
   {
    "name": "Nymawenna the Red-Handed",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Nymawenna the Red-Handed, a banner-champion, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, red-stained cloth, dried to rust, stained hands, deliberately unhidden, seated on campaign furniture, elbows on knees, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/nymawenna-the-red-handed-towers.jpg",
+   "file": "art/stockpile/nymawenna-the-red-handed.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "nymawenna-the-red-handed@towers",
-   "cardFile": "the-elder-scrolls/uncategorized/balgruuf.jpg"
+   "cardFile": "the-elder-scrolls/uncategorized/balgruuf.jpg",
+   "bytes": 360360
   },
   {
    "name": "Queliaris the First Over",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Queliaris the First Over, a duelist of the old schools, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, banners of the realm hanging dark behind, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/queliaris-the-first-over-towers.jpg",
+   "file": "art/stockpile/queliaris-the-first-over.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "queliaris-the-first-over@towers",
-   "cardFile": "the-elder-scrolls/uncategorized/tullius.jpg"
+   "cardFile": "the-elder-scrolls/uncategorized/tullius.jpg",
+   "bytes": 292532
   },
   {
    "name": "Feniaaris the Wall of Spears",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Feniaaris the Wall of Spears, a scout of the outer marches, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, hood drawn, face emerging from shadow, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/feniaaris-the-wall-of-spears-towers.jpg",
+   "file": "art/stockpile/feniaaris-the-wall-of-spears.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "feniaaris-the-wall-of-spears@towers",
-   "cardFile": "the-lord-of-the-rings/dale/bard.jpg"
+   "cardFile": "the-lord-of-the-rings/dale/bard.jpg",
+   "bytes": 331664
   },
   {
    "name": "Pyraarion of the Ninth Gate",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Pyraarion of the Ninth Gate, a banner-champion, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, gate iron — a massive key, a warded lock, hinges on the pauldron, seated on campaign furniture, elbows on knees, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/pyraarion-of-the-ninth-gate-towers.jpg",
+   "file": "art/stockpile/pyraarion-of-the-ninth-gate.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "pyraarion-of-the-ninth-gate@towers",
-   "cardFile": "the-lord-of-the-rings/gondor/aragorn.jpg"
+   "cardFile": "the-lord-of-the-rings/gondor/aragorn.jpg",
+   "bytes": 344039
   },
   {
    "name": "Maeaaris the Last-Voiced",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Maeaaris the Last-Voiced, a commander of the reserves, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, a mouth open mid-word, or sewn shut, banners of the realm hanging dark behind, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/maeaaris-the-last-voiced-towers.jpg",
+   "file": "art/stockpile/maeaaris-the-last-voiced.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "maeaaris-the-last-voiced@towers",
-   "cardFile": "the-lord-of-the-rings/gondor/denethor.jpg"
+   "cardFile": "the-lord-of-the-rings/gondor/denethor.jpg",
+   "bytes": 300053
   },
   {
    "name": "Maeaeseth the End of All Things",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Maeaeseth the End of All Things, a keeper of the realm’s relics, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, mid-stride, cloak caught as if in wind, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/maeaeseth-the-end-of-all-things-towers.jpg",
+   "file": "art/stockpile/maeaeseth-the-end-of-all-things.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "maeaeseth-the-end-of-all-things@towers",
-   "cardFile": "the-lord-of-the-rings/gondor/earnur.jpg"
+   "cardFile": "the-lord-of-the-rings/gondor/earnur.jpg",
+   "bytes": 286788
   },
   {
    "name": "Pyraethas the Silent",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Pyraethas the Silent, a front-line shield-bearer, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, utter silence — mouth closed, eyes speaking, half-turned toward a window of the realm’s light, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/pyraethas-the-silent-towers.jpg",
+   "file": "art/stockpile/pyraethas-the-silent.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "pyraethas-the-silent@towers",
-   "cardFile": "the-lord-of-the-rings/gondor/tarannon_20falastur.jpg"
+   "cardFile": "the-lord-of-the-rings/gondor/tarannon_20falastur.jpg",
+   "bytes": 308625
   },
   {
    "name": "Isenadrel the Silent",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Isenadrel the Silent, a ranged marksman, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, utter silence — mouth closed, eyes speaking, banners of the realm hanging dark behind, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/isenadrel-the-silent-towers.jpg",
+   "file": "art/stockpile/isenadrel-the-silent.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "isenadrel-the-silent@towers",
-   "cardFile": "the-lord-of-the-rings/harad/suladan_20the_20serpent.jpg"
+   "cardFile": "the-lord-of-the-rings/harad/suladan_20the_20serpent.jpg",
+   "bytes": 297321
   },
   {
    "name": "Quelivale the Thunder-Heeled",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Quelivale the Thunder-Heeled, a duelist of the old schools, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, banners of the realm hanging dark behind, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/quelivale-the-thunder-heeled-towers.jpg",
+   "file": "art/stockpile/quelivale-the-thunder-heeled.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "quelivale-the-thunder-heeled@towers",
-   "cardFile": "the-lord-of-the-rings/isengard/saruman.jpg"
+   "cardFile": "the-lord-of-the-rings/isengard/saruman.jpg",
+   "bytes": 299320
   },
   {
    "name": "Isenaewenna of the Ninth Gate",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Isenaewenna of the Ninth Gate, a ranged marksman, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, gate iron — a massive key, a warded lock, hinges on the pauldron, facing the viewer directly, weapon grounded, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/isenaewenna-of-the-ninth-gate-towers.jpg",
+   "file": "art/stockpile/isenaewenna-of-the-ninth-gate.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "isenaewenna-of-the-ninth-gate@towers",
-   "cardFile": "the-lord-of-the-rings/rhun/khamul_20the_20easterling.jpg"
+   "cardFile": "the-lord-of-the-rings/rhun/khamul_20the_20easterling.jpg",
+   "bytes": 330624
   },
   {
    "name": "Maeolume",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Maeolume, a duelist of the old schools, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, seated on campaign furniture, elbows on knees, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/maeolume-towers.jpg",
+   "file": "art/stockpile/maeolume.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "maeolume@towers",
-   "cardFile": "the-lord-of-the-rings/rohan/eomer.jpg"
+   "cardFile": "the-lord-of-the-rings/rohan/eomer.jpg",
+   "bytes": 240824
   },
   {
    "name": "Haliwenna",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Haliwenna, a ranged marksman, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, seated on campaign furniture, elbows on knees, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/haliwenna-towers.jpg",
+   "file": "art/stockpile/haliwenna.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "haliwenna@towers",
-   "cardFile": "the-lord-of-the-rings/rohan/eorl_20the_20young.jpg"
+   "cardFile": "the-lord-of-the-rings/rohan/eorl_20the_20young.jpg",
+   "bytes": 334368
   },
   {
    "name": "Caelovale the Swift-Hooved",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Caelovale the Swift-Hooved, a scout of the outer marches, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, a lean frame, weight forward, coiled like a runner, facing the viewer directly, weapon grounded, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/caelovale-the-swift-hooved-towers.jpg",
+   "file": "art/stockpile/caelovale-the-swift-hooved.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "caelovale-the-swift-hooved@towers",
-   "cardFile": "the-lord-of-the-rings/rohan/helm_20hammerhand.jpg"
+   "cardFile": "the-lord-of-the-rings/rohan/helm_20hammerhand.jpg",
+   "bytes": 265219
   },
   {
    "name": "Dorivane the Late-Reborn",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Dorivane the Late-Reborn, a ranged marksman, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, weapon shouldered, chin lowered, eyes up, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/dorivane-the-late-reborn-towers.jpg",
+   "file": "art/stockpile/dorivane-the-late-reborn.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "dorivane-the-late-reborn@towers",
-   "cardFile": "the-lord-of-the-rings/the-shire/paladin_20took.jpg"
+   "cardFile": "the-lord-of-the-rings/the-shire/paladin_20took.jpg",
+   "bytes": 336162
   },
   {
    "name": "Elimir",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Elimir, a scout of the outer marches, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, hood drawn, face emerging from shadow, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/elimir-towers.jpg",
+   "file": "art/stockpile/elimir.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "elimir@towers",
-   "cardFile": "the-lord-of-the-rings/uncategorized/anarion.jpg"
+   "cardFile": "the-lord-of-the-rings/uncategorized/anarion.jpg",
+   "bytes": 301944
   },
   {
    "name": "Keliovane of the Long Watch",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Keliovane of the Long Watch, a duelist of the old schools, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, a sentinel patience, standing guard over something unseen, mid-stride, cloak caught as if in wind, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/keliovane-of-the-long-watch-towers.jpg",
+   "file": "art/stockpile/keliovane-of-the-long-watch.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "keliovane-of-the-long-watch@towers",
-   "cardFile": "the-lord-of-the-rings/uncategorized/david_20blunkett.jpg"
+   "cardFile": "the-lord-of-the-rings/uncategorized/david_20blunkett.jpg",
+   "bytes": 371811
   },
   {
    "name": "Eliaquen the Tireless",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Eliaquen the Tireless, a duelist of the old schools, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, weapon shouldered, chin lowered, eyes up, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/eliaquen-the-tireless-towers.jpg",
+   "file": "art/stockpile/eliaquen-the-tireless.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "eliaquen-the-tireless@towers",
-   "cardFile": "the-lord-of-the-rings/uncategorized/denis_20healey.jpg"
+   "cardFile": "the-lord-of-the-rings/uncategorized/denis_20healey.jpg",
+   "bytes": 332329
   },
   {
    "name": "Elolume of the Quiet House",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Elolume of the Quiet House, a duelist of the old schools, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, stillness, a hood half-drawn, watching, half-turned toward a window of the realm’s light, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/elolume-of-the-quiet-house-towers.jpg",
+   "file": "art/stockpile/elolume-of-the-quiet-house.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "elolume-of-the-quiet-house@towers",
-   "cardFile": "the-lord-of-the-rings/uncategorized/elendil.jpg"
+   "cardFile": "the-lord-of-the-rings/uncategorized/elendil.jpg",
+   "bytes": 342196
   },
   {
    "name": "Othathas the Breaker-Line",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Othathas the Breaker-Line, a duelist of the old schools, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, facing the viewer directly, weapon grounded, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/othathas-the-breaker-line-towers.jpg",
+   "file": "art/stockpile/othathas-the-breaker-line.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "othathas-the-breaker-line@towers",
-   "cardFile": "the-lord-of-the-rings/uncategorized/eowyn.jpg"
+   "cardFile": "the-lord-of-the-rings/uncategorized/eowyn.jpg",
+   "bytes": 364315
   },
   {
    "name": "Doromere the First Over",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Doromere the First Over, a front-line shield-bearer, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, mid-stride, cloak caught as if in wind, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/doromere-the-first-over-towers.jpg",
+   "file": "art/stockpile/doromere-the-first-over.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "doromere-the-first-over@towers",
-   "cardFile": "the-lord-of-the-rings/uncategorized/faramir.jpg"
+   "cardFile": "the-lord-of-the-rings/uncategorized/faramir.jpg",
+   "bytes": 338769
   },
   {
    "name": "Aloquen the Steadfast",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Aloquen the Steadfast, a commander of the reserves, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, an unwavering planted stance and level, unimpressed gaze, banners of the realm hanging dark behind, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/aloquen-the-steadfast-towers.jpg",
+   "file": "art/stockpile/aloquen-the-steadfast.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "aloquen-the-steadfast@towers",
-   "cardFile": "the-lord-of-the-rings/uncategorized/franklin_20pierce.jpg"
+   "cardFile": "the-lord-of-the-rings/uncategorized/franklin_20pierce.jpg",
+   "bytes": 330385
   },
   {
    "name": "Keliorion",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Keliorion, a front-line shield-bearer, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, weapon shouldered, chin lowered, eyes up, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/keliorion-towers.jpg",
+   "file": "art/stockpile/keliorion.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "keliorion@towers",
-   "cardFile": "the-lord-of-the-rings/uncategorized/george_20brown.jpg"
+   "cardFile": "the-lord-of-the-rings/uncategorized/george_20brown.jpg",
+   "bytes": 362022
   },
   {
    "name": "Feniarath the Mustering Horn",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Feniarath the Mustering Horn, a keeper of the realm’s relics, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, banners of the realm hanging dark behind, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/feniarath-the-mustering-horn-towers.jpg",
+   "file": "art/stockpile/feniarath-the-mustering-horn.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "feniarath-the-mustering-horn@towers",
-   "cardFile": "the-lord-of-the-rings/uncategorized/harold_20wilson.jpg"
+   "cardFile": "the-lord-of-the-rings/uncategorized/harold_20wilson.jpg",
+   "bytes": 339951
   },
   {
    "name": "Othaquen the Keen-Eyed",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Othaquen the Keen-Eyed, a ranged marksman, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, sharp predator eyes, missing nothing, mid-stride, cloak caught as if in wind, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/othaquen-the-keen-eyed-towers.jpg",
+   "file": "art/stockpile/othaquen-the-keen-eyed.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "othaquen-the-keen-eyed@towers",
-   "cardFile": "the-lord-of-the-rings/uncategorized/healey.jpg"
+   "cardFile": "the-lord-of-the-rings/uncategorized/healey.jpg",
+   "bytes": 297256
   },
   {
    "name": "Caelidrel the Thunder-Heeled",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Caelidrel the Thunder-Heeled, a ranged marksman, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, head tilted, studying the viewer like a debt, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/caelidrel-the-thunder-heeled-towers.jpg",
+   "file": "art/stockpile/caelidrel-the-thunder-heeled.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "caelidrel-the-thunder-heeled@towers",
-   "cardFile": "the-lord-of-the-rings/uncategorized/hurin.jpg"
+   "cardFile": "the-lord-of-the-rings/uncategorized/hurin.jpg",
+   "bytes": 287916
   },
   {
    "name": "Keliorath",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Keliorath, a ranged marksman, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, banners of the realm hanging dark behind, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/keliorath-towers.jpg",
+   "file": "art/stockpile/keliorath.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "keliorath@towers",
-   "cardFile": "the-lord-of-the-rings/uncategorized/imrahil.jpg"
+   "cardFile": "the-lord-of-the-rings/uncategorized/imrahil.jpg",
+   "bytes": 308937
   },
   {
    "name": "Isenivale the First Over",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Isenivale the First Over, a ranged marksman, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, hood drawn, face emerging from shadow, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/isenivale-the-first-over-towers.jpg",
+   "file": "art/stockpile/isenivale-the-first-over.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "isenivale-the-first-over@towers",
-   "cardFile": "the-lord-of-the-rings/uncategorized/isildur.jpg"
+   "cardFile": "the-lord-of-the-rings/uncategorized/isildur.jpg",
+   "bytes": 254645
   },
   {
    "name": "Halaquen",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Halaquen, a scout of the outer marches, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, banners of the realm hanging dark behind, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/halaquen-towers.jpg",
+   "file": "art/stockpile/halaquen.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "halaquen@towers",
-   "cardFile": "the-lord-of-the-rings/uncategorized/theodred.jpg"
+   "cardFile": "the-lord-of-the-rings/uncategorized/theodred.jpg",
+   "bytes": 314508
   },
   {
    "name": "Gwyniaris",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Gwyniaris, a duelist of the old schools, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, seated on campaign furniture, elbows on knees, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/gwyniaris-towers.jpg",
+   "file": "art/stockpile/gwyniaris.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "gwyniaris@towers",
-   "cardFile": "the-lord-of-the-rings/uncategorized/wilson.jpg"
+   "cardFile": "the-lord-of-the-rings/uncategorized/wilson.jpg",
+   "bytes": 295912
   },
   {
    "name": "Nymiolume of the Deep Roads",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Nymiolume of the Deep Roads, a ranged marksman, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, hood drawn, face emerging from shadow, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/nymiolume-of-the-deep-roads-towers.jpg",
+   "file": "art/stockpile/nymiolume-of-the-deep-roads.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "nymiolume-of-the-deep-roads@towers",
-   "cardFile": "the-wheel-of-time/andor/morgase.jpg"
+   "cardFile": "the-wheel-of-time/andor/morgase.jpg",
+   "bytes": 332283
   },
   {
    "name": "Lyriovale the Charge-Sworn",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Lyriovale the Charge-Sworn, a commander of the reserves, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, an oath-brand or votive seal burned into a vambrace, head tilted, studying the viewer like a debt, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/lyriovale-the-charge-sworn-towers.jpg",
+   "file": "art/stockpile/lyriovale-the-charge-sworn.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "lyriovale-the-charge-sworn@towers",
-   "cardFile": "the-wheel-of-time/cairhien/galldrian_20riatin.jpg"
+   "cardFile": "the-wheel-of-time/cairhien/galldrian_20riatin.jpg",
+   "bytes": 315767
   },
   {
    "name": "Bryovane the Charge-Sworn",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Bryovane the Charge-Sworn, a commander of the reserves, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, an oath-brand or votive seal burned into a vambrace, mid-stride, cloak caught as if in wind, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/bryovane-the-charge-sworn-towers.jpg",
+   "file": "art/stockpile/bryovane-the-charge-sworn.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "bryovane-the-charge-sworn@towers",
-   "cardFile": "the-wheel-of-time/malkier/lan_20mandragoran.jpg"
+   "cardFile": "the-wheel-of-time/malkier/lan_20mandragoran.jpg",
+   "bytes": 321998
   },
   {
    "name": "Queliamere the Dusk-Marked",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Queliamere the Dusk-Marked, a scout of the outer marches, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, dusk-purple bruising around the eyes, a creature of late hours, a dusk-dark birthmark like a bruise across one cheek, mid-stride, cloak caught as if in wind, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/queliamere-the-dusk-marked-towers.jpg",
+   "file": "art/stockpile/queliamere-the-dusk-marked.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "queliamere-the-dusk-marked@towers",
-   "cardFile": "the-wheel-of-time/tear-illian/high_20lord_20weiramon.jpg"
+   "cardFile": "the-wheel-of-time/tear-illian/high_20lord_20weiramon.jpg",
+   "bytes": 290315
   },
   {
    "name": "Fenaewynd the Solemn",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Fenaewynd the Solemn, a ranged marksman, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, hood drawn, face emerging from shadow, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/fenaewynd-the-solemn-towers.jpg",
+   "file": "art/stockpile/fenaewynd-the-solemn.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "fenaewynd-the-solemn@towers",
-   "cardFile": "the-wheel-of-time/tear-illian/mattin_20stepaneos.jpg"
+   "cardFile": "the-wheel-of-time/tear-illian/mattin_20stepaneos.jpg",
+   "bytes": 304071
   },
   {
    "name": "Halowenna",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Halowenna, a scout of the outer marches, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, seated on campaign furniture, elbows on knees, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/halowenna-towers.jpg",
+   "file": "art/stockpile/halowenna.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "halowenna@towers",
-   "cardFile": "the-wheel-of-time/the-aiel/rhuarc.jpg"
+   "cardFile": "the-wheel-of-time/the-aiel/rhuarc.jpg",
+   "bytes": 305041
   },
   {
    "name": "Maeaerion of the Burning Field",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Maeaerion of the Burning Field, a commander of the reserves, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, a field commander’s map-case, orders half-burned, hood drawn, face emerging from shadow, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/maeaerion-of-the-burning-field-towers.jpg",
+   "file": "art/stockpile/maeaerion-of-the-burning-field.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "maeaerion-of-the-burning-field@towers",
-   "cardFile": "the-wheel-of-time/the-borderlands/ethenielle_20cosaru.jpg"
+   "cardFile": "the-wheel-of-time/the-borderlands/ethenielle_20cosaru.jpg",
+   "bytes": 339314
   },
   {
    "name": "Queliwenna the Patient",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Queliwenna the Patient, a commander of the reserves, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, half-turned toward a window of the realm’s light, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/queliwenna-the-patient-towers.jpg",
+   "file": "art/stockpile/queliwenna-the-patient.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "queliwenna-the-patient@towers",
-   "cardFile": "the-wheel-of-time/the-seanchan/the_20empress_20radhanie.jpg"
+   "cardFile": "the-wheel-of-time/the-seanchan/the_20empress_20radhanie.jpg",
+   "bytes": 269715
   },
   {
    "name": "Pyraiwenna",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Pyraiwenna, a commander of the reserves, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, facing the viewer directly, weapon grounded, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/pyraiwenna-towers.jpg",
+   "file": "art/stockpile/pyraiwenna.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "pyraiwenna@towers",
-   "cardFile": "the-wheel-of-time/the-white-tower/siuan.jpg"
+   "cardFile": "the-wheel-of-time/the-white-tower/siuan.jpg",
+   "bytes": 332692
   },
   {
    "name": "Fenawynd the Silent",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Fenawynd the Silent, a ranged marksman, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, utter silence — mouth closed, eyes speaking, hood drawn, face emerging from shadow, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/fenawynd-the-silent-towers.jpg",
+   "file": "art/stockpile/fenawynd-the-silent.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "fenawynd-the-silent@towers",
-   "cardFile": "the-wheel-of-time/uncategorized/aemon_20al_20caar.jpg"
+   "cardFile": "the-wheel-of-time/uncategorized/aemon_20al_20caar.jpg",
+   "bytes": 352316
   },
   {
    "name": "Halorath",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Halorath, a ranged marksman, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, mid-stride, cloak caught as if in wind, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/halorath-towers.jpg",
+   "file": "art/stockpile/halorath.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "halorath@towers",
-   "cardFile": "the-wheel-of-time/uncategorized/agelmar_20jagad.jpg"
+   "cardFile": "the-wheel-of-time/uncategorized/agelmar_20jagad.jpg",
+   "bytes": 342397
   },
   {
    "name": "Othioaris",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Othioaris, a keeper of the realm’s relics, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, head tilted, studying the viewer like a debt, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/othioaris-towers.jpg",
+   "file": "art/stockpile/othioaris.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "othioaris@towers",
-   "cardFile": "the-wheel-of-time/uncategorized/artur_20hawkwing.jpg"
+   "cardFile": "the-wheel-of-time/uncategorized/artur_20hawkwing.jpg",
+   "bytes": 289285
   },
   {
    "name": "Kelioaris the Quiet Oracle",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Kelioaris the Quiet Oracle, a keeper of the realm’s relics, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, stillness, a hood half-drawn, watching, mid-stride, cloak caught as if in wind, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/kelioaris-the-quiet-oracle-towers.jpg",
+   "file": "art/stockpile/kelioaris-the-quiet-oracle.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "kelioaris-the-quiet-oracle@towers",
-   "cardFile": "the-wheel-of-time/uncategorized/demandred.jpg"
+   "cardFile": "the-wheel-of-time/uncategorized/demandred.jpg",
+   "bytes": 316213
   },
   {
    "name": "Haliaaris the Ash-Cloaked",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Haliaaris the Ash-Cloaked, a duelist of the old schools, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, ash smeared ritual across the brow, seated on campaign furniture, elbows on knees, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/haliaaris-the-ash-cloaked-towers.jpg",
+   "file": "art/stockpile/haliaaris-the-ash-cloaked.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "haliaaris-the-ash-cloaked@towers",
-   "cardFile": "the-wheel-of-time/uncategorized/dyelin_20taravin.jpg"
+   "cardFile": "the-wheel-of-time/uncategorized/dyelin_20taravin.jpg",
+   "bytes": 344582
   },
   {
    "name": "Doraquen the First Over",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Doraquen the First Over, a duelist of the old schools, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, banners of the realm hanging dark behind, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/doraquen-the-first-over-towers.jpg",
+   "file": "art/stockpile/doraquen-the-first-over.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "doraquen-the-first-over@towers",
-   "cardFile": "the-wheel-of-time/uncategorized/eldrene.jpg"
+   "cardFile": "the-wheel-of-time/uncategorized/eldrene.jpg",
+   "bytes": 316025
   },
   {
    "name": "Isenoseth the Unseen",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Isenoseth the Unseen, a ranged marksman, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, banners of the realm hanging dark behind, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/isenoseth-the-unseen-towers.jpg",
+   "file": "art/stockpile/isenoseth-the-unseen.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "isenoseth-the-unseen@towers",
-   "cardFile": "the-wheel-of-time/uncategorized/harine_20din_20togara.jpg"
+   "cardFile": "the-wheel-of-time/uncategorized/harine_20din_20togara.jpg",
+   "bytes": 321483
   },
   {
    "name": "Isenoquen the Star-Read",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Isenoquen the Star-Read, a keeper of the realm’s relics, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, banners of the realm hanging dark behind, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/isenoquen-the-star-read-towers.jpg",
+   "file": "art/stockpile/isenoquen-the-star-read.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "isenoquen-the-star-read@towers",
-   "cardFile": "the-wheel-of-time/uncategorized/ishamael.jpg"
+   "cardFile": "the-wheel-of-time/uncategorized/ishamael.jpg",
+   "bytes": 294753
   },
   {
    "name": "Bryirath",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Bryirath, a keeper of the realm’s relics, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, banners of the realm hanging dark behind, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/bryirath-towers.jpg",
+   "file": "art/stockpile/bryirath.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "bryirath@towers",
-   "cardFile": "the-wheel-of-time/uncategorized/lanfear.jpg"
+   "cardFile": "the-wheel-of-time/uncategorized/lanfear.jpg",
+   "bytes": 315570
   },
   {
    "name": "Pyrailume the Wanderer",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Pyrailume the Wanderer, a veteran of the siege-lines, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, half-turned toward a window of the realm’s light, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/pyrailume-the-wanderer-towers.jpg",
+   "file": "art/stockpile/pyrailume-the-wanderer.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "pyrailume-the-wanderer@towers",
-   "cardFile": "the-wheel-of-time/uncategorized/lews_20therin_20telamon.jpg"
+   "cardFile": "the-wheel-of-time/uncategorized/lews_20therin_20telamon.jpg",
+   "bytes": 368158
   },
   {
    "name": "Halaemir the Swift-Hooved",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Halaemir the Swift-Hooved, a commander of the reserves, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, a lean frame, weight forward, coiled like a runner, half-turned toward a window of the realm’s light, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/halaemir-the-swift-hooved-towers.jpg",
+   "file": "art/stockpile/halaemir-the-swift-hooved.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "halaemir-the-swift-hooved@towers",
-   "cardFile": "the-wheel-of-time/uncategorized/mat_20cauthon.jpg"
+   "cardFile": "the-wheel-of-time/uncategorized/mat_20cauthon.jpg",
+   "bytes": 323508
   },
   {
    "name": "Keliodrel of the Ashen Vale",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Keliodrel of the Ashen Vale, a commander of the reserves, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, ash smeared ritual across the brow, hood drawn, face emerging from shadow, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/keliodrel-of-the-ashen-vale-towers.jpg",
+   "file": "art/stockpile/keliodrel-of-the-ashen-vale.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "keliodrel-of-the-ashen-vale@towers",
-   "cardFile": "the-wheel-of-time/uncategorized/teclis.jpg"
+   "cardFile": "the-wheel-of-time/uncategorized/teclis.jpg",
+   "bytes": 311472
   },
   {
    "name": "Feniadrel the Late-Reborn",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Feniadrel the Late-Reborn, a banner-champion, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, weapon shouldered, chin lowered, eyes up, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/feniadrel-the-late-reborn-towers.jpg",
+   "file": "art/stockpile/feniadrel-the-late-reborn.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "feniadrel-the-late-reborn@towers",
-   "cardFile": "the-wheel-of-time/uncategorized/tuon.jpg"
+   "cardFile": "the-wheel-of-time/uncategorized/tuon.jpg",
+   "bytes": 308778
   },
   {
    "name": "Eliomere",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Eliomere, a ranged marksman, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, head tilted, studying the viewer like a debt, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/eliomere-towers.jpg",
+   "file": "art/stockpile/eliomere.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "eliomere@towers",
-   "cardFile": "the-elder-scrolls/black-marsh/blackmarsh-default-f.jpg"
+   "cardFile": "the-elder-scrolls/black-marsh/blackmarsh-default-f.jpg",
+   "bytes": 339350
   },
   {
    "name": "Caelowynd the Winter-Sworn",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Caelowynd the Winter-Sworn, a veteran of the siege-lines, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, an oath-brand or votive seal burned into a vambrace, weapon shouldered, chin lowered, eyes up, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/caelowynd-the-winter-sworn-towers.jpg",
+   "file": "art/stockpile/caelowynd-the-winter-sworn.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "caelowynd-the-winter-sworn@towers",
-   "cardFile": "the-elder-scrolls/black-marsh/blackmarsh-default-m.jpg"
+   "cardFile": "the-elder-scrolls/black-marsh/blackmarsh-default-m.jpg",
+   "bytes": 298954
   },
   {
    "name": "Eliquen of the Long Watch",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Eliquen of the Long Watch, a veteran of the siege-lines, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, a sentinel patience, standing guard over something unseen, facing the viewer directly, weapon grounded, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/eliquen-of-the-long-watch-towers.jpg",
+   "file": "art/stockpile/eliquen-of-the-long-watch.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "eliquen-of-the-long-watch@towers",
-   "cardFile": "the-elder-scrolls/cyrodiil-the-empire/cyrodiil-default-f.jpg"
+   "cardFile": "the-elder-scrolls/cyrodiil-the-empire/cyrodiil-default-f.jpg",
+   "bytes": 308313
   },
   {
    "name": "Elomir of the Long Watch",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Elomir of the Long Watch, a commander of the reserves, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, a sentinel patience, standing guard over something unseen, half-turned toward a window of the realm’s light, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/elomir-of-the-long-watch-towers.jpg",
+   "file": "art/stockpile/elomir-of-the-long-watch.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "elomir-of-the-long-watch@towers",
-   "cardFile": "the-elder-scrolls/cyrodiil-the-empire/cyrodiil-default-m.jpg"
+   "cardFile": "the-elder-scrolls/cyrodiil-the-empire/cyrodiil-default-m.jpg",
+   "bytes": 342877
   },
   {
    "name": "Halaelume the Solemn",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Halaelume the Solemn, a front-line shield-bearer, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, mid-stride, cloak caught as if in wind, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/halaelume-the-solemn-towers.jpg",
+   "file": "art/stockpile/halaelume-the-solemn.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "halaelume-the-solemn@towers",
-   "cardFile": "the-elder-scrolls/elsweyr-valenwood/valenwood-default-f.jpg"
+   "cardFile": "the-elder-scrolls/elsweyr-valenwood/valenwood-default-f.jpg",
+   "bytes": 325427
   },
   {
    "name": "Kelomir the Dusk-Marked",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Kelomir the Dusk-Marked, a ranged marksman, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, dusk-purple bruising around the eyes, a creature of late hours, a dusk-dark birthmark like a bruise across one cheek, hood drawn, face emerging from shadow, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/kelomir-the-dusk-marked-towers.jpg",
+   "file": "art/stockpile/kelomir-the-dusk-marked.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "kelomir-the-dusk-marked@towers",
-   "cardFile": "the-elder-scrolls/elsweyr-valenwood/valenwood-default-m.jpg"
+   "cardFile": "the-elder-scrolls/elsweyr-valenwood/valenwood-default-m.jpg",
+   "bytes": 267857
   },
   {
    "name": "Doradrel",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Doradrel, a commander of the reserves, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, mid-stride, cloak caught as if in wind, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/doradrel-towers.jpg",
+   "file": "art/stockpile/doradrel.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "doradrel@towers",
-   "cardFile": "the-elder-scrolls/hammerfell/hammerfell-default-f.jpg"
+   "cardFile": "the-elder-scrolls/hammerfell/hammerfell-default-f.jpg",
+   "bytes": 314795
   },
   {
    "name": "Alamere",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Alamere, a duelist of the old schools, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, banners of the realm hanging dark behind, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/alamere-towers.jpg",
+   "file": "art/stockpile/alamere.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "alamere@towers",
-   "cardFile": "the-elder-scrolls/hammerfell/hammerfell-default-m.jpg"
+   "cardFile": "the-elder-scrolls/hammerfell/hammerfell-default-m.jpg",
+   "bytes": 304301
   },
   {
    "name": "Quelawynd the Gate-Warden",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Quelawynd the Gate-Warden, a front-line shield-bearer, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, gate iron — a massive key, a warded lock, hinges on the pauldron, a gate-warden keys on a chain, door-iron on the belt, hood drawn, face emerging from shadow, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/quelawynd-the-gate-warden-towers.jpg",
+   "file": "art/stockpile/quelawynd-the-gate-warden.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "quelawynd-the-gate-warden@towers",
-   "cardFile": "the-elder-scrolls/morrowind/morrowind-default-f.jpg"
+   "cardFile": "the-elder-scrolls/morrowind/morrowind-default-f.jpg",
+   "bytes": 274873
   },
   {
    "name": "Bryodrel the Cold-Blooded",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Bryodrel the Cold-Blooded, a ranged marksman, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, weapon shouldered, chin lowered, eyes up, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/bryodrel-the-cold-blooded-towers.jpg",
+   "file": "art/stockpile/bryodrel-the-cold-blooded.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "bryodrel-the-cold-blooded@towers",
-   "cardFile": "the-elder-scrolls/morrowind/morrowind-default-m.jpg"
+   "cardFile": "the-elder-scrolls/morrowind/morrowind-default-m.jpg",
+   "bytes": 321423
   },
   {
    "name": "Alearis the Iron-Voiced",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Alearis the Iron-Voiced, a commander of the reserves, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, a mouth open mid-word, or sewn shut, half-turned toward a window of the realm’s light, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/alearis-the-iron-voiced-towers.jpg",
+   "file": "art/stockpile/alearis-the-iron-voiced.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "alearis-the-iron-voiced@towers",
-   "cardFile": "the-elder-scrolls/skyrim/skyrim-default-f.jpg"
+   "cardFile": "the-elder-scrolls/skyrim/skyrim-default-f.jpg",
+   "bytes": 306692
   },
   {
    "name": "Lyriawenna",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Lyriawenna, a duelist of the old schools, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, weapon shouldered, chin lowered, eyes up, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/lyriawenna-towers.jpg",
+   "file": "art/stockpile/lyriawenna.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "lyriawenna@towers",
-   "cardFile": "the-elder-scrolls/skyrim/skyrim-default-m.jpg"
+   "cardFile": "the-elder-scrolls/skyrim/skyrim-default-m.jpg",
+   "bytes": 332728
   },
   {
    "name": "Aleseth the Steadfast",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Aleseth the Steadfast, a banner-champion, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, an unwavering planted stance and level, unimpressed gaze, facing the viewer directly, weapon grounded, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/aleseth-the-steadfast-towers.jpg",
+   "file": "art/stockpile/aleseth-the-steadfast.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "aleseth-the-steadfast@towers",
-   "cardFile": "the-lord-of-the-rings/gondor/gondor-default-f.jpg"
+   "cardFile": "the-lord-of-the-rings/gondor/gondor-default-f.jpg",
+   "bytes": 328955
   },
   {
    "name": "Isenoseth of the Quiet House",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Isenoseth of the Quiet House, a scout of the outer marches, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, stillness, a hood half-drawn, watching, hood drawn, face emerging from shadow, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/isenoseth-of-the-quiet-house-towers.jpg",
+   "file": "art/stockpile/isenoseth-of-the-quiet-house.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "isenoseth-of-the-quiet-house@towers",
-   "cardFile": "the-lord-of-the-rings/gondor/gondor-default-m.jpg"
+   "cardFile": "the-lord-of-the-rings/gondor/gondor-default-m.jpg",
+   "bytes": 335730
   },
   {
    "name": "Othaaris the Tireless",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Othaaris the Tireless, a front-line shield-bearer, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, banners of the realm hanging dark behind, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/othaaris-the-tireless-towers.jpg",
+   "file": "art/stockpile/othaaris-the-tireless.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "othaaris-the-tireless@towers",
-   "cardFile": "the-lord-of-the-rings/harad/harad-default-f.jpg"
+   "cardFile": "the-lord-of-the-rings/harad/harad-default-f.jpg",
+   "bytes": 309181
   },
   {
    "name": "Maeiowynd",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Maeiowynd, a veteran of the siege-lines, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, mid-stride, cloak caught as if in wind, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/maeiowynd-towers.jpg",
+   "file": "art/stockpile/maeiowynd.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "maeiowynd@towers",
-   "cardFile": "the-wheel-of-time/the-white-tower/egwene.jpg"
+   "cardFile": "the-wheel-of-time/the-white-tower/egwene.jpg",
+   "bytes": 318195
   },
   {
    "name": "Maeaemir",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Maeaemir, a banner-champion, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, banners of the realm hanging dark behind, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/maeaemir-towers.jpg",
+   "file": "art/stockpile/maeaemir.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "maeaemir@towers",
-   "cardFile": "the-wheel-of-time/cairhien/elayne.jpg"
+   "cardFile": "the-wheel-of-time/cairhien/elayne.jpg",
+   "bytes": 288941
   },
   {
    "name": "Bryoaris the Steadfast",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Bryoaris the Steadfast, a banner-champion, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, an unwavering planted stance and level, unimpressed gaze, half-turned toward a window of the realm’s light, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/bryoaris-the-steadfast-towers.jpg",
+   "file": "art/stockpile/bryoaris-the-steadfast.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "bryoaris-the-steadfast@towers",
-   "cardFile": "the-wheel-of-time/andor/andor-default-m.jpg"
+   "cardFile": "the-wheel-of-time/andor/andor-default-m.jpg",
+   "bytes": 381136
   },
   {
    "name": "Quelirion",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Quelirion, a ranged marksman, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, hood drawn, face emerging from shadow, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/quelirion-towers.jpg",
+   "file": "art/stockpile/quelirion.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "quelirion@towers",
-   "cardFile": "the-wheel-of-time/tear-illian/illian-default-m.jpg"
+   "cardFile": "the-wheel-of-time/tear-illian/illian-default-m.jpg",
+   "bytes": 318436
   },
   {
    "name": "Queliomir the Last-Voiced",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Queliomir the Last-Voiced, a front-line shield-bearer, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, a mouth open mid-word, or sewn shut, seated on campaign furniture, elbows on knees, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/queliomir-the-last-voiced-towers.jpg",
+   "file": "art/stockpile/queliomir-the-last-voiced.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "queliomir-the-last-voiced@towers",
-   "cardFile": "the-wheel-of-time/tear-illian/tear-default-m.jpg"
+   "cardFile": "the-wheel-of-time/tear-illian/tear-default-m.jpg",
+   "bytes": 307669
   },
   {
    "name": "Ithethak the Bold",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Ithethak the Bold, a commander of the reserves, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, a wide fearless grin, head tilted, studying the viewer like a debt, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/ithethak-the-bold-towers.jpg",
+   "file": "art/stockpile/ithethak-the-bold.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "ithethak-the-bold@towers",
-   "cardFile": "the-wheel-of-time/the-aiel/aielwaste-default-f.jpg"
+   "cardFile": "the-wheel-of-time/the-aiel/aielwaste-default-f.jpg",
+   "bytes": 341255
   },
   {
    "name": "Szaaris",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Szaaris, a ranged marksman, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, mid-stride, cloak caught as if in wind, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/szaaris-towers.jpg",
+   "file": "art/stockpile/szaaris.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "szaaris@towers",
-   "cardFile": "the-wheel-of-time/the-aiel/aielwaste-default-m.jpg"
+   "cardFile": "the-wheel-of-time/the-aiel/aielwaste-default-m.jpg",
+   "bytes": 323751
   },
   {
    "name": "Halume",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Halume, a duelist of the old schools, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, facing the viewer directly, weapon grounded, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/halume-towers.jpg",
+   "file": "art/stockpile/halume.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "halume@towers",
-   "cardFile": "the-wheel-of-time/altara/altara-default-f.jpg"
+   "cardFile": "the-wheel-of-time/altara/altara-default-f.jpg",
+   "bytes": 252704
   },
   {
    "name": "Aeleth",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Aeleth, a veteran of the siege-lines, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, half-turned toward a window of the realm’s light, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/aeleth-towers.jpg",
+   "file": "art/stockpile/aeleth.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "aeleth@towers",
-   "cardFile": "the-wheel-of-time/altara/altara-default-m.jpg"
+   "cardFile": "the-wheel-of-time/altara/altara-default-m.jpg",
+   "bytes": 299366
   },
   {
    "name": "Fenath",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Fenath, a keeper of the realm’s relics, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, weapon shouldered, chin lowered, eyes up, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/fenath-towers.jpg",
+   "file": "art/stockpile/fenath.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "fenath@towers",
-   "cardFile": "the-wheel-of-time/amadicia/amadicia-default-f.jpg"
+   "cardFile": "the-wheel-of-time/amadicia/amadicia-default-f.jpg",
+   "bytes": 343953
   },
   {
    "name": "Eloor",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Eloor, a veteran of the siege-lines, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, banners of the realm hanging dark behind, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/eloor-towers.jpg",
+   "file": "art/stockpile/eloor.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "eloor@towers",
-   "cardFile": "the-wheel-of-time/amadicia/amadicia-default-m.jpg"
+   "cardFile": "the-wheel-of-time/amadicia/amadicia-default-m.jpg",
+   "bytes": 298881
   },
   {
    "name": "Kelwyn",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Kelwyn, a duelist of the old schools, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, marked by the realm’s own trade, facing the viewer directly, weapon grounded, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/kelwyn-towers.jpg",
+   "file": "art/stockpile/kelwyn.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "kelwyn@towers",
-   "cardFile": "the-wheel-of-time/andor/andor-default-f.jpg"
+   "cardFile": "the-wheel-of-time/andor/andor-default-f.jpg",
+   "bytes": 327730
   },
   {
    "name": "Gorakak of the Quiet House",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Gorakak of the Quiet House, a front-line shield-bearer, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, stillness, a hood half-drawn, watching, head tilted, studying the viewer like a debt, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/gorakak-of-the-quiet-house-towers.jpg",
+   "file": "art/stockpile/gorakak-of-the-quiet-house.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "gorakak-of-the-quiet-house@towers",
-   "cardFile": "the-wheel-of-time/arad-doman/araddoman-default-f.jpg"
+   "cardFile": "the-wheel-of-time/arad-doman/araddoman-default-f.jpg",
+   "bytes": 347006
   },
   {
    "name": "Draakur the Steadfast",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Draakur the Steadfast, a duelist of the old schools, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, an unwavering planted stance and level, unimpressed gaze, head tilted, studying the viewer like a debt, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/draakur-the-steadfast-towers.jpg",
+   "file": "art/stockpile/draakur-the-steadfast.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "draakur-the-steadfast@towers",
-   "cardFile": "the-wheel-of-time/arad-doman/araddoman-default-m.jpg"
+   "cardFile": "the-wheel-of-time/arad-doman/araddoman-default-m.jpg",
+   "bytes": 315945
   },
   {
    "name": "Lyrunun of the Quiet House",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Lyrunun of the Quiet House, a veteran of the siege-lines, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, stillness, a hood half-drawn, watching, banners of the realm hanging dark behind, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/lyrunun-of-the-quiet-house-towers.jpg",
+   "file": "art/stockpile/lyrunun-of-the-quiet-house.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "lyrunun-of-the-quiet-house@towers",
-   "cardFile": "the-wheel-of-time/the-borderlands/arafel-default-f.jpg"
+   "cardFile": "the-wheel-of-time/the-borderlands/arafel-default-f.jpg",
+   "bytes": 351120
   },
   {
    "name": "Fenith of the Long Watch",
    "category": "humans",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Fenith of the Long Watch, a front-line shield-bearer, a mortal warrior of the realm, cold azure and moth-silver palette, rune-embroidered robes, astrolabe ornaments, a sentinel patience, standing guard over something unseen, banners of the realm hanging dark behind, the weave — candlelit libraries and the ninth tower",
-   "file": "art/canon/fenith-of-the-long-watch-towers.jpg",
+   "file": "art/stockpile/fenith-of-the-long-watch.jpg",
    "tribe": "Humans",
    "realm": "towers",
    "cardId": "fenith-of-the-long-watch@towers",
-   "cardFile": "the-wheel-of-time/the-borderlands/arafel-default-m.jpg"
+   "cardFile": "the-wheel-of-time/the-borderlands/arafel-default-m.jpg",
+   "bytes": 335584
   },
   {
    "name": "Grymoth the Hollow-Crowned",
    "category": "undead",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Grymoth the Hollow-Crowned, a ranged marksman, one of the honored dead, sunken ashen flesh over regal bone, grave-glow in empty sockets, tarnished crown-remnants, grave-blue and bone-white palette, funerary regalia, dust-veil, a hollow, echoing quality to the gaze, absence behind the eyes, a crown — broken, tarnished, or molten — still worn, banners of the realm hanging dark behind, the long silence — the border-gates of death",
-   "file": "art/canon/grymoth-the-hollow-crowned-necropolis.jpg",
+   "file": "art/stockpile/grymoth-the-hollow-crowned.jpg",
    "tribe": "Undead",
    "realm": "necropolis",
    "cardId": "grymoth-the-hollow-crowned@necropolis",
-   "cardFile": "a-song-of-ice-and-fire/uncategorized/nights_20king.jpg"
+   "cardFile": "a-song-of-ice-and-fire/uncategorized/nights_20king.jpg",
+   "bytes": 325099
   },
   {
    "name": "Belwyn the Twice-Crowned",
    "category": "undead",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Belwyn the Twice-Crowned, a commander of the reserves, one of the honored dead, sunken ashen flesh over regal bone, grave-glow in empty sockets, tarnished crown-remnants, grave-blue and bone-white palette, funerary regalia, dust-veil, a crown — broken, tarnished, or molten — still worn, seated on campaign furniture, elbows on knees, the long silence — the border-gates of death",
-   "file": "art/canon/belwyn-the-twice-crowned-necropolis.jpg",
+   "file": "art/stockpile/belwyn-the-twice-crowned.jpg",
    "tribe": "Undead",
    "realm": "necropolis",
    "cardId": "belwyn-the-twice-crowned@necropolis",
-   "cardFile": "the-lord-of-the-rings/angmar/witch_20king.jpg"
+   "cardFile": "the-lord-of-the-rings/angmar/witch_20king.jpg",
+   "bytes": 314373
   },
   {
    "name": "Malara the Hollow-Crowned",
    "category": "undead",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Malara the Hollow-Crowned, a keeper of the realm’s relics, one of the honored dead, sunken ashen flesh over regal bone, grave-glow in empty sockets, tarnished crown-remnants, grave-blue and bone-white palette, funerary regalia, dust-veil, a hollow, echoing quality to the gaze, absence behind the eyes, a crown — broken, tarnished, or molten — still worn, seated on campaign furniture, elbows on knees, the long silence — the border-gates of death",
-   "file": "art/canon/malara-the-hollow-crowned-necropolis.jpg",
+   "file": "art/stockpile/malara-the-hollow-crowned.jpg",
    "tribe": "Undead",
    "realm": "necropolis",
    "cardId": "malara-the-hollow-crowned@necropolis",
-   "cardFile": "the-lord-of-the-rings/mordor/sauron.jpg"
+   "cardFile": "the-lord-of-the-rings/mordor/sauron.jpg",
+   "bytes": 313601
   },
   {
    "name": "Korrath of the Ninth Abyss",
    "category": "undead",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Korrath of the Ninth Abyss, a ranged marksman, one of the honored dead, sunken ashen flesh over regal bone, grave-glow in empty sockets, tarnished crown-remnants, grave-blue and bone-white palette, funerary regalia, dust-veil, a chasm-deep shadow pooling at the collar, head tilted, studying the viewer like a debt, the long silence — the border-gates of death",
-   "file": "art/canon/korrath-of-the-ninth-abyss-necropolis.jpg",
+   "file": "art/stockpile/korrath-of-the-ninth-abyss.jpg",
    "tribe": "Undead",
    "realm": "necropolis",
    "cardId": "korrath-of-the-ninth-abyss@necropolis",
-   "cardFile": "the-lord-of-the-rings/mordor/the_20witch_20king.jpg"
+   "cardFile": "the-lord-of-the-rings/mordor/the_20witch_20king.jpg",
+   "bytes": 294883
   },
   {
    "name": "Vesswyn the Grave-Sworn",
    "category": "undead",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Vesswyn the Grave-Sworn, a front-line shield-bearer, one of the honored dead, sunken ashen flesh over regal bone, grave-glow in empty sockets, tarnished crown-remnants, grave-blue and bone-white palette, funerary regalia, dust-veil, grave-soil in the seams of the armor, a burial coin on a cord, an oath-brand or votive seal burned into a vambrace, seated on campaign furniture, elbows on knees, the long silence — the border-gates of death",
-   "file": "art/canon/vesswyn-the-grave-sworn-necropolis.jpg",
+   "file": "art/stockpile/vesswyn-the-grave-sworn.jpg",
    "tribe": "Undead",
    "realm": "necropolis",
    "cardId": "vesswyn-the-grave-sworn@necropolis",
-   "cardFile": "warhammer-fantasy/khemri/nagash.jpg"
+   "cardFile": "warhammer-fantasy/khemri/nagash.jpg",
+   "bytes": 348413
   },
   {
    "name": "Ossivar the Undying",
    "category": "undead",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Ossivar the Undying, a scout of the outer marches, one of the honored dead, sunken ashen flesh over regal bone, grave-glow in empty sockets, tarnished crown-remnants, grave-blue and bone-white palette, funerary regalia, dust-veil, marked by the realm’s own trade, hood drawn, face emerging from shadow, the long silence — the border-gates of death",
-   "file": "art/canon/ossivar-the-undying-necropolis.jpg",
+   "file": "art/stockpile/ossivar-the-undying.jpg",
    "tribe": "Undead",
    "realm": "necropolis",
    "cardId": "ossivar-the-undying@necropolis",
-   "cardFile": "warhammer-fantasy/khemri/settra.jpg"
+   "cardFile": "warhammer-fantasy/khemri/settra.jpg",
+   "bytes": 291415
   },
   {
    "name": "Ashvenne the Keen-Eyed",
    "category": "undead",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Ashvenne the Keen-Eyed, a front-line shield-bearer, one of the honored dead, sunken ashen flesh over regal bone, grave-glow in empty sockets, tarnished crown-remnants, grave-blue and bone-white palette, funerary regalia, dust-veil, sharp predator eyes, missing nothing, head tilted, studying the viewer like a debt, the long silence — the border-gates of death",
-   "file": "art/canon/ashvenne-the-keen-eyed-necropolis.jpg",
+   "file": "art/stockpile/ashvenne-the-keen-eyed.jpg",
    "tribe": "Undead",
    "realm": "necropolis",
    "cardId": "ashvenne-the-keen-eyed@necropolis",
-   "cardFile": "warhammer-fantasy/vampire-counts/mannfred.jpg"
+   "cardFile": "warhammer-fantasy/vampire-counts/mannfred.jpg",
+   "bytes": 260314
   },
   {
    "name": "Sarvenne of the Deep Roads",
    "category": "undead",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Sarvenne of the Deep Roads, a commander of the reserves, one of the honored dead, sunken ashen flesh over regal bone, grave-glow in empty sockets, tarnished crown-remnants, grave-blue and bone-white palette, funerary regalia, dust-veil, marked by the realm’s own trade, mid-stride, cloak caught as if in wind, the long silence — the border-gates of death",
-   "file": "art/canon/sarvenne-of-the-deep-roads-necropolis.jpg",
+   "file": "art/stockpile/sarvenne-of-the-deep-roads.jpg",
    "tribe": "Undead",
    "realm": "necropolis",
    "cardId": "sarvenne-of-the-deep-roads@necropolis",
-   "cardFile": "warhammer-fantasy/vampire-counts/vlad_20von_20carstein.jpg"
+   "cardFile": "warhammer-fantasy/vampire-counts/vlad_20von_20carstein.jpg",
+   "bytes": 324198
   },
   {
    "name": "Vesshold the Nine-Crowned",
    "category": "undead",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Vesshold the Nine-Crowned, a veteran of the siege-lines, one of the honored dead, sunken ashen flesh over regal bone, grave-glow in empty sockets, tarnished crown-remnants, grave-blue and bone-white palette, funerary regalia, dust-veil, a crown — broken, tarnished, or molten — still worn, facing the viewer directly, weapon grounded, the long silence — the border-gates of death",
-   "file": "art/canon/vesshold-the-nine-crowned-necropolis.jpg",
+   "file": "art/stockpile/vesshold-the-nine-crowned.jpg",
    "tribe": "Undead",
    "realm": "necropolis",
    "cardId": "vesshold-the-nine-crowned@necropolis",
-   "cardFile": "the-lord-of-the-rings/mordor/mordor-default-f.jpg"
+   "cardFile": "the-lord-of-the-rings/mordor/mordor-default-f.jpg",
+   "bytes": 319646
   },
   {
    "name": "Korgrim the Swift-Loosed",
    "category": "undead",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Korgrim the Swift-Loosed, a commander of the reserves, one of the honored dead, sunken ashen flesh over regal bone, grave-glow in empty sockets, tarnished crown-remnants, grave-blue and bone-white palette, funerary regalia, dust-veil, a lean frame, weight forward, coiled like a runner, an arrow already away, the calm after release, head tilted, studying the viewer like a debt, the long silence — the border-gates of death",
-   "file": "art/canon/korgrim-the-swift-loosed-necropolis.jpg",
+   "file": "art/stockpile/korgrim-the-swift-loosed.jpg",
    "tribe": "Undead",
    "realm": "necropolis",
    "cardId": "korgrim-the-swift-loosed@necropolis",
-   "cardFile": "the-lord-of-the-rings/mordor/mordor-default-m.jpg"
+   "cardFile": "the-lord-of-the-rings/mordor/mordor-default-m.jpg",
+   "bytes": 291950
   },
   {
    "name": "Drevenne the Bold",
    "category": "undead",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Drevenne the Bold, a keeper of the realm’s relics, one of the honored dead, sunken ashen flesh over regal bone, grave-glow in empty sockets, tarnished crown-remnants, grave-blue and bone-white palette, funerary regalia, dust-veil, a wide fearless grin, half-turned toward a window of the realm’s light, the long silence — the border-gates of death",
-   "file": "art/canon/drevenne-the-bold-necropolis.jpg",
+   "file": "art/stockpile/drevenne-the-bold.jpg",
    "tribe": "Undead",
    "realm": "necropolis",
    "cardId": "drevenne-the-bold@necropolis",
-   "cardFile": "warhammer-fantasy/khemri/nehekhara-default-f.jpg"
+   "cardFile": "warhammer-fantasy/khemri/nehekhara-default-f.jpg",
+   "bytes": 316306
   },
   {
    "name": "Grydun the Swift-Loosed",
    "category": "undead",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Grydun the Swift-Loosed, a duelist of the old schools, one of the honored dead, sunken ashen flesh over regal bone, grave-glow in empty sockets, tarnished crown-remnants, grave-blue and bone-white palette, funerary regalia, dust-veil, a lean frame, weight forward, coiled like a runner, an arrow already away, the calm after release, weapon shouldered, chin lowered, eyes up, the long silence — the border-gates of death",
-   "file": "art/canon/grydun-the-swift-loosed-necropolis.jpg",
+   "file": "art/stockpile/grydun-the-swift-loosed.jpg",
    "tribe": "Undead",
    "realm": "necropolis",
    "cardId": "grydun-the-swift-loosed@necropolis",
-   "cardFile": "warhammer-fantasy/khemri/nehekhara-default-m.jpg"
+   "cardFile": "warhammer-fantasy/khemri/nehekhara-default-m.jpg",
+   "bytes": 294189
   },
   {
    "name": "Ossrath the Unseen",
    "category": "undead",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Ossrath the Unseen, a front-line shield-bearer, one of the honored dead, sunken ashen flesh over regal bone, grave-glow in empty sockets, tarnished crown-remnants, grave-blue and bone-white palette, funerary regalia, dust-veil, marked by the realm’s own trade, mid-stride, cloak caught as if in wind, the long silence — the border-gates of death",
-   "file": "art/canon/ossrath-the-unseen-necropolis.jpg",
+   "file": "art/stockpile/ossrath-the-unseen.jpg",
    "tribe": "Undead",
    "realm": "necropolis",
    "cardId": "ossrath-the-unseen@necropolis",
-   "cardFile": "warhammer-fantasy/the-dark-sea/darksea-default-f.jpg"
+   "cardFile": "warhammer-fantasy/the-dark-sea/darksea-default-f.jpg",
+   "bytes": 323675
   },
   {
    "name": "Morgrim",
    "category": "undead",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Morgrim, a ranged marksman, one of the honored dead, sunken ashen flesh over regal bone, grave-glow in empty sockets, tarnished crown-remnants, grave-blue and bone-white palette, funerary regalia, dust-veil, marked by the realm’s own trade, banners of the realm hanging dark behind, the long silence — the border-gates of death",
-   "file": "art/canon/morgrim-necropolis.jpg",
+   "file": "art/stockpile/morgrim.jpg",
    "tribe": "Undead",
    "realm": "necropolis",
    "cardId": "morgrim@necropolis",
-   "cardFile": "warhammer-fantasy/the-dark-sea/darksea-default-m.jpg"
+   "cardFile": "warhammer-fantasy/the-dark-sea/darksea-default-m.jpg",
+   "bytes": 303002
   },
   {
    "name": "Skuzognash the Hundred-Victor",
    "category": "greenskins",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Skuzognash the Hundred-Victor, a commander of the reserves, a tusked brute, scarred green hide, scavenged iron, war-paint, warband scrap-iron and blood-ochre palette, broken banner scraps as trophies, a tally-marked vambrace, counts kept in scratches, trophy rings, one per victory, too many to count, seated on campaign furniture, elbows on knees, the endless march and the waaagh-drums",
-   "file": "art/canon/skuzognash-the-hundred-victor-marches.jpg",
+   "file": "art/stockpile/skuzognash-the-hundred-victor.jpg",
    "tribe": "Greenskins",
    "realm": "marches",
    "cardId": "skuzognash-the-hundred-victor@marches",
-   "cardFile": "warhammer-fantasy/the-badlands/grimgor.jpg"
+   "cardFile": "warhammer-fantasy/the-badlands/grimgor.jpg",
+   "bytes": 302321
   },
   {
    "name": "Kragazog the Swift-Loosed",
    "category": "greenskins",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Kragazog the Swift-Loosed, a veteran of the siege-lines, a tusked brute, scarred green hide, scavenged iron, war-paint, warband scrap-iron and blood-ochre palette, broken banner scraps as trophies, a lean frame, weight forward, coiled like a runner, an arrow already away, the calm after release, weapon shouldered, chin lowered, eyes up, the endless march and the waaagh-drums",
-   "file": "art/canon/kragazog-the-swift-loosed-marches.jpg",
+   "file": "art/stockpile/kragazog-the-swift-loosed.jpg",
    "tribe": "Greenskins",
    "realm": "marches",
    "cardId": "kragazog-the-swift-loosed@marches",
-   "cardFile": "warhammer-40-000/the-orks/orkz-default-f.jpg"
+   "cardFile": "warhammer-40-000/the-orks/orkz-default-f.jpg",
+   "bytes": 301547
   },
   {
    "name": "Garinak the Keen-Eyed",
    "category": "greenskins",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Garinak the Keen-Eyed, a duelist of the old schools, a tusked brute, scarred green hide, scavenged iron, war-paint, warband scrap-iron and blood-ochre palette, broken banner scraps as trophies, sharp predator eyes, missing nothing, weapon shouldered, chin lowered, eyes up, the endless march and the waaagh-drums",
-   "file": "art/canon/garinak-the-keen-eyed-marches.jpg",
+   "file": "art/stockpile/garinak-the-keen-eyed.jpg",
    "tribe": "Greenskins",
    "realm": "marches",
    "cardId": "garinak-the-keen-eyed@marches",
-   "cardFile": "warhammer-40-000/the-orks/orkz-default-m.jpg"
+   "cardFile": "warhammer-40-000/the-orks/orkz-default-m.jpg",
+   "bytes": 314725
   },
   {
    "name": "Zogazog of the Long Watch",
    "category": "greenskins",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Zogazog of the Long Watch, a banner-champion, a tusked brute, scarred green hide, scavenged iron, war-paint, warband scrap-iron and blood-ochre palette, broken banner scraps as trophies, a sentinel patience, standing guard over something unseen, banners of the realm hanging dark behind, the endless march and the waaagh-drums",
-   "file": "art/canon/zogazog-of-the-long-watch-marches.jpg",
+   "file": "art/stockpile/zogazog-of-the-long-watch.jpg",
    "tribe": "Greenskins",
    "realm": "marches",
    "cardId": "zogazog-of-the-long-watch@marches",
-   "cardFile": "warhammer-fantasy/the-badlands/badlandswhf-default-f.jpg"
+   "cardFile": "warhammer-fantasy/the-badlands/badlandswhf-default-f.jpg",
+   "bytes": 331859
   },
   {
    "name": "Snikugnash the Night-Sent",
    "category": "greenskins",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Snikugnash the Night-Sent, a duelist of the old schools, a tusked brute, scarred green hide, scavenged iron, war-paint, warband scrap-iron and blood-ochre palette, broken banner scraps as trophies, a long night in the face, lamp-oil shine on the skin, facing the viewer directly, weapon grounded, the endless march and the waaagh-drums",
-   "file": "art/canon/snikugnash-the-night-sent-marches.jpg",
+   "file": "art/stockpile/snikugnash-the-night-sent.jpg",
    "tribe": "Greenskins",
    "realm": "marches",
    "cardId": "snikugnash-the-night-sent@marches",
-   "cardFile": "warhammer-fantasy/the-badlands/badlandswhf-default-m.jpg"
+   "cardFile": "warhammer-fantasy/the-badlands/badlandswhf-default-m.jpg",
+   "bytes": 317093
   },
   {
    "name": "Thalildor the Gate-Warden",
    "category": "underfolk",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Thalildor the Gate-Warden, a scout of the outer marches, a deep-dwelling stout gate-warden, boulder-broad shoulders, lantern-lit braided beard, gate-forged plate, granite-grey and lantern-amber palette, gate-forged plate, rune-chiseled border, gate iron — a massive key, a warded lock, hinges on the pauldron, a gate-warden keys on a chain, door-iron on the belt, mid-stride, cloak caught as if in wind, the stone remembers — siege-halls deep beneath the world",
-   "file": "art/canon/thalildor-the-gate-warden-deepholds.jpg",
+   "file": "art/stockpile/thalildor-the-gate-warden.jpg",
    "tribe": "Underfolk",
    "realm": "deepholds",
    "cardId": "thalildor-the-gate-warden@deepholds",
-   "cardFile": "the-lord-of-the-rings/erebor/balin.jpg"
+   "cardFile": "the-lord-of-the-rings/erebor/balin.jpg",
+   "bytes": 300375
   },
   {
    "name": "Sorithris the Steadfast",
    "category": "underfolk",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Sorithris the Steadfast, a banner-champion, a deep-dwelling stout gate-warden, boulder-broad shoulders, lantern-lit braided beard, gate-forged plate, granite-grey and lantern-amber palette, gate-forged plate, rune-chiseled border, an unwavering planted stance and level, unimpressed gaze, banners of the realm hanging dark behind, the stone remembers — siege-halls deep beneath the world",
-   "file": "art/canon/sorithris-the-steadfast-deepholds.jpg",
+   "file": "art/stockpile/sorithris-the-steadfast.jpg",
    "tribe": "Underfolk",
    "realm": "deepholds",
    "cardId": "sorithris-the-steadfast@deepholds",
-   "cardFile": "the-lord-of-the-rings/erebor/dain_20ironfoot.jpg"
+   "cardFile": "the-lord-of-the-rings/erebor/dain_20ironfoot.jpg",
+   "bytes": 301653
   },
   {
    "name": "Thalarien the Last-Voiced",
    "category": "underfolk",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Thalarien the Last-Voiced, a ranged marksman, a deep-dwelling stout gate-warden, boulder-broad shoulders, lantern-lit braided beard, gate-forged plate, granite-grey and lantern-amber palette, gate-forged plate, rune-chiseled border, a mouth open mid-word, or sewn shut, hood drawn, face emerging from shadow, the stone remembers — siege-halls deep beneath the world",
-   "file": "art/canon/thalarien-the-last-voiced-deepholds.jpg",
+   "file": "art/stockpile/thalarien-the-last-voiced.jpg",
    "tribe": "Underfolk",
    "realm": "deepholds",
    "cardId": "thalarien-the-last-voiced@deepholds",
-   "cardFile": "the-lord-of-the-rings/erebor/thorin.jpg"
+   "cardFile": "the-lord-of-the-rings/erebor/thorin.jpg",
+   "bytes": 319714
   },
   {
    "name": "Giloriel the Red-Handed",
    "category": "underfolk",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Giloriel the Red-Handed, a scout of the outer marches, a deep-dwelling stout gate-warden, boulder-broad shoulders, lantern-lit braided beard, gate-forged plate, granite-grey and lantern-amber palette, gate-forged plate, rune-chiseled border, red-stained cloth, dried to rust, stained hands, deliberately unhidden, facing the viewer directly, weapon grounded, the stone remembers — siege-halls deep beneath the world",
-   "file": "art/canon/giloriel-the-red-handed-deepholds.jpg",
+   "file": "art/stockpile/giloriel-the-red-handed.jpg",
    "tribe": "Underfolk",
    "realm": "deepholds",
    "cardId": "giloriel-the-red-handed@deepholds",
-   "cardFile": "warhammer-fantasy/the-dwarfs/thorgrim.jpg"
+   "cardFile": "warhammer-fantasy/the-dwarfs/thorgrim.jpg",
+   "bytes": 310692
   },
   {
    "name": "Caelevlas the Gate-Warden",
    "category": "underfolk",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Caelevlas the Gate-Warden, a duelist of the old schools, a deep-dwelling stout gate-warden, boulder-broad shoulders, lantern-lit braided beard, gate-forged plate, granite-grey and lantern-amber palette, gate-forged plate, rune-chiseled border, gate iron — a massive key, a warded lock, hinges on the pauldron, a gate-warden keys on a chain, door-iron on the belt, hood drawn, face emerging from shadow, the stone remembers — siege-halls deep beneath the world",
-   "file": "art/canon/caelevlas-the-gate-warden-deepholds.jpg",
+   "file": "art/stockpile/caelevlas-the-gate-warden.jpg",
    "tribe": "Underfolk",
    "realm": "deepholds",
    "cardId": "caelevlas-the-gate-warden@deepholds",
-   "cardFile": "warhammer-fantasy/the-dwarfs/ungrim_20ironfist.jpg"
+   "cardFile": "warhammer-fantasy/the-dwarfs/ungrim_20ironfist.jpg",
+   "bytes": 317070
   },
   {
    "name": "Gilithdir of the Deep Roads",
    "category": "underfolk",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Gilithdir of the Deep Roads, a front-line shield-bearer, a deep-dwelling stout gate-warden, boulder-broad shoulders, lantern-lit braided beard, gate-forged plate, granite-grey and lantern-amber palette, gate-forged plate, rune-chiseled border, marked by the realm’s own trade, banners of the realm hanging dark behind, the stone remembers — siege-halls deep beneath the world",
-   "file": "art/canon/gilithdir-of-the-deep-roads-deepholds.jpg",
+   "file": "art/stockpile/gilithdir-of-the-deep-roads.jpg",
    "tribe": "Underfolk",
    "realm": "deepholds",
    "cardId": "gilithdir-of-the-deep-roads@deepholds",
-   "cardFile": "the-lord-of-the-rings/erebor/erebor-default-f.jpg"
+   "cardFile": "the-lord-of-the-rings/erebor/erebor-default-f.jpg",
+   "bytes": 293647
   },
   {
    "name": "Nymisur the Blood-Tithed",
    "category": "underfolk",
-   "status": "queued",
+   "status": "minted",
    "prompt": "Portrait of Nymisur the Blood-Tithed, a front-line shield-bearer, a deep-dwelling stout gate-warden, boulder-broad shoulders, lantern-lit braided beard, gate-forged plate, granite-grey and lantern-amber palette, gate-forged plate, rune-chiseled border, marked by the realm’s own trade, mid-stride, cloak caught as if in wind, the stone remembers — siege-halls deep beneath the world",
-   "file": "art/canon/nymisur-the-blood-tithed-deepholds.jpg",
+   "file": "art/stockpile/nymisur-the-blood-tithed.jpg",
    "tribe": "Underfolk",
    "realm": "deepholds",
    "cardId": "nymisur-the-blood-tithed@deepholds",
-   "cardFile": "the-lord-of-the-rings/erebor/erebor-default-m.jpg"
+   "cardFile": "the-lord-of-the-rings/erebor/erebor-default-m.jpg",
+   "bytes": 319257
   }
  ],
  "taxonomy": "tribes-v2"

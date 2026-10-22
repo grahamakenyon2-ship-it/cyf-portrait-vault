@@ -320,15 +320,6 @@
   #battlelog .bl-turn{color:var(--gold); letter-spacing:1px; margin:7px 0 2px; font-size:11.5px; border-bottom:1px solid #2a2216;}
   #battlelog .bld{color:#ff5a4a; font-weight:bold;} /* damage amounts pop */
   #battlelog .blx{color:#8fd;} /* effect names read as cyan */
-  /* v0.26.6: the tutorial coach — a guided first duel (HS/MTGA pattern) */
-  #tutbox{position:absolute; left:10px; bottom:262px; width:330px; background:#000d; border:1px solid var(--gold);
-    padding:10px 14px; z-index:40; animation:etWait 2.2s ease-in-out infinite;}
-  #tutbox .tuthead{font-size:10.5px; letter-spacing:3px; color:var(--gold); margin-bottom:5px; display:flex; justify-content:space-between; align-items:center;}
-  #tutbox .tutskip{cursor:pointer; color:#c9b78e; letter-spacing:1px; border:1px solid var(--gold-dim); padding:0 5px; font-size:10px;}
-  #tutbox .tutskip:hover{color:#fff; border-color:var(--gold);}
-  #tutbox .tuttxt{font-size:13.5px; color:#e8dcc0; line-height:1.5;}
-  #tutbox .tutbtn{margin-top:8px;}
-  #tutbox .tutdots{font-size:10px; color:var(--gold-dim); letter-spacing:4px; margin-top:6px;}
   .modal{position:fixed; inset:0; background:#000d; display:none; align-items:center; justify-content:center; z-index:80;}
   .modal.on{display:flex;}
   .modal .mbox{max-width:420px; background:var(--panel); border:1px solid var(--gold); padding:26px 32px; text-align:center;}
@@ -499,33 +490,7 @@
 
   /* ---- menu polish ---- */
   #menu.on{background-image:var(--menu-bg); background-size:cover; background-position:center;}
-  /* v0.26.7: menu showcase — slow ken-burns drift over the vault hall, edge
-     vignette so buttons stay readable, gold particle motes rising, hover lift */
-  #menu.on{animation:kenburns 64s ease-in-out infinite alternate;}
-  @keyframes kenburns{from{background-position:50% 46%;}to{background-position:52% 54%;}}
-  #menu.on::after{content:''; position:fixed; inset:0; pointer-events:none;
-    background:radial-gradient(ellipse at 50% 42%, transparent 52%, #000c 100%);}
-  #menu .menubtn{transition:transform .16s ease, box-shadow .16s ease;}
-  #menu .menubtn:hover{transform:translateY(-3px); box-shadow:0 10px 24px #000c, 0 0 16px #c9a24b2e;}
-  #menuFx{position:fixed; inset:0; pointer-events:none; overflow:hidden;}
-  .goldmote{position:absolute; bottom:-8px; border-radius:50%;
-    background:radial-gradient(circle at 35% 35%, #ffe9b0, #c9a24b 70%);
-    animation:goldrise linear infinite; opacity:0;}
-  @keyframes goldrise{
-    0%{transform:translateY(0) translateX(0); opacity:0;}
-    12%{opacity:.85;}
-    88%{opacity:.5;}
-    100%{transform:translateY(-88vh) translateX(34px); opacity:0;}}
-  /* v0.26.7: featured Sovereign of the Day — the menu shows the art off */
-  #sovd{display:flex; gap:16px; align-items:center; margin-top:14px; padding:10px 18px;
-    background:#000a; border:1px solid var(--gold-dim); cursor:pointer; max-width:640px;}
-  #sovd:hover{border-color:var(--gold); box-shadow:0 0 16px #c9a24b22;}
-  #sovd .artclip{width:118px; height:118px; flex:none; border:2px solid var(--gold-dim); background:#000;}
-  #sovd .artclip img{width:100%; height:100%; object-fit:cover;}
-  #sovd .sv-title{font-size:10px; letter-spacing:3px; color:#c9b78e;}
-  #sovd .sv-name{font-family:'Cinzel',serif; font-size:17px; color:var(--gold); letter-spacing:1px;}
-  #sovd .sv-realm{font-size:12px; color:#8fd; letter-spacing:1px;}
-  #sovd .sv-pass{font-size:12.5px; font-style:italic; color:var(--pass); margin-top:2px; max-width:420px;}
+  @keyframes bgpan{from{background-position:0 0;} to{background-position:160px 90px;}}
   #menu h1{margin-bottom:26px; background:linear-gradient(100deg, #c9a24b 30%, #fff3cf 48%, #c9a24b 62%);
     background-size:250% 100%; -webkit-background-clip:text; background-clip:text; color:transparent;
     animation:shine 4s linear infinite;}
@@ -562,13 +527,11 @@
 <!-- ============ MAIN MENU ============ -->
 <div id="menu" class="screen on">
   <h1>FATEBLADE<small id="dver">CARDS FROM THE VAULT · v0.8</small></h1>
-  <button class="menubtn themebtn" onclick="startTutorial()" id="tutMenuBtn">🎓 TUTORIAL<small id="tutMenuSub">learn the field in one guided duel — recommended for new players</small></button>
   <button class="menubtn themebtn" onclick="menuSingle()">⚔ SINGLE PLAYER<small>battle the AI with your realm's deck</small></button>
   <button class="menubtn themebtn" onclick="showCampaigns()">📜 CAMPAIGNS<small>eight-chapter sagas — The Ironroad &amp; The Broken Oath</small></button>
   <button class="menubtn themebtn" onclick="menuDeckBuilder()">▦ DECK BUILDER<small>choose 10 cards from your realm's roster</small></button>
   <button class="menubtn themebtn" onclick="watchMatch()">▶ WATCH AN AI DUEL<small>visual playtest with live commentary</small></button>
   <button class="menubtn themebtn" onclick="showMultiplayer()">✦ MULTIPLAYER<small>online duels — coming soon</small></button>
-  <div id="sovd" style="display:none"></div>
   <button class="menubtn themebtn" onclick="showSettings()">⚙ SETTINGS<small>theme art, AI difficulty, watch speed, saved decks</small></button>
   <button class="menubtn themebtn" onclick="quitToDesktop()">✖ QUIT TO DESKTOP<small>close Fateblade</small></button>
   <div id="quitNote" style="display:none;max-width:420px;text-align:center;font-size:13px;color:#c9b78e">Your browser kept this tab open — close the tab to exit. (The desktop app closes itself.)</div>
@@ -705,7 +668,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.26.7';
+const GAME_VERSION = '0.26.5';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
@@ -784,47 +747,7 @@ function deleteDeck(facId, name){ saveDeckList(facId, decksOf(facId).filter(d =>
 function loadDeck(facId){ return facOf(facId) ? facOf(facId).defaultDeck.slice() : null; } // v0.10: the tuned 30-card doctrine deck
 
 /* ---------- screens ---------- */
-function show(id){ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on')); document.getElementById(id).classList.add('on'); document.body.classList.toggle('inmatch', id === 'match'); const mfx = document.getElementById('menuFx'); if(mfx) mfx.style.display = (id==='menu') ? 'block' : 'none'; fitScreen(); musicForScreen(id); if(id==='menu') sovOfDay(); }
-/* v0.26.7: menu showcase — ken-burns, vignette + gold motes are CSS; the motes
-   themselves are one JS build (12 embers, random lanes/drift), and the
-   SOVEREIGN OF THE DAY is a deterministic daily pick across every realm's
-   legends — the menu now shows the art off before you ever pick a banner. */
-function buildMenuFx(){
-  if(document.getElementById('menuFx')) return;
-  const fx = document.createElement('div'); fx.id = 'menuFx';
-  for(let i=0;i<12;i++){
-    const m = document.createElement('div'); m.className = 'goldmote';
-    const sz = 2 + Math.random()*2.5;
-    m.style.width = m.style.height = sz.toFixed(1)+'px';
-    m.style.left = (Math.random()*100).toFixed(1)+'%';
-    m.style.animationDuration = (11 + Math.random()*14).toFixed(1)+'s';
-    m.style.animationDelay = (-Math.random()*20).toFixed(1)+'s';
-    fx.appendChild(m);
-  }
-  document.body.appendChild(fx);
-}
-function sovOfDay(){
-  const allLegs = [];
-  for(const f of DATA.factions) for(const c of legends(f)) allLegs.push({ card:c, fac:f });
-  if(!allLegs.length) return;
-  const day = Math.floor(Date.now() / 86400000);
-  const pick = allLegs[day % allLegs.length];
-  const el = document.getElementById('sovd');
-  if(!el) return;
-  el.style.display = 'flex';
-  el.innerHTML = `
-    <div class="artclip"><img src="${pick.card.img}" alt="${pick.card.name}"></div>
-    <div>
-      <div class="sv-title">◆ SOVEREIGN OF THE DAY ◆</div>
-      <div class="sv-name">${pick.card.name}</div>
-      <div class="sv-realm">${pick.fac.label} — ${pick.fac.identity.name}</div>
-      <div class="sv-pass"><b>${pick.card.passive.name}:</b> ${pick.card.passive.desc}</div>
-    </div>`;
-  el.onmouseenter = (ev)=>showZoom(pick.card, ev, false, true); // sov=true: the passive-only zoom, like the picker rows
-  el.onmousemove = moveZoom;
-  el.onmouseleave = hideZoom;
-}
-buildMenuFx();
+function show(id){ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on')); document.getElementById(id).classList.add('on'); document.body.classList.toggle('inmatch', id === 'match'); fitScreen(); musicForScreen(id); }
 // v0.7.1 FIT-TO-WINDOW: scale any screen that is taller/wider than the window, so the
 // whole interface (menu buttons, board, hand, END TURN / RESIGN) always fits — no scrolling.
 function fitScreen(){
@@ -943,7 +866,6 @@ if(document.fonts && document.fonts.ready) document.fonts.ready.then(()=>fitScre
 function refit(){ requestAnimationFrame(fitScreen); }
 function backToMenu(){ // v0.9.8: leaving a match must also drop the victory/defeat overlay — MENU after VICTORY used to strand it open over the main menu with no way to close it
   const ov = document.getElementById('overlay'); if(ov) ov.classList.remove('on');
-  tutorial.on = false; tutHide(); // v0.26.6: the coach never outlives the match
   camp.active=null; camp.rule=null; aiAnimSeq++; show('menu'); sel=null; powTargeting=false; castTargeting=null; S=null; stopWatch(); applyTheme(null); }
 
 function menuSingle(){ camp.active=null; camp.rule=null; showPoolPick('play'); }
@@ -1092,11 +1014,6 @@ function checkEnd(){
       campBtn.textContent = last ? '📜 CAMPAIGN' : '➤ NEXT CHAPTER';
       campBtn.style.display = '';
     } else { campBtn.style.display = 'none'; }
-    if(tutorial.on && won){ // v0.26.6: winning the guided duel completes the lesson
-      document.getElementById('ovText').textContent = '🎓 TUTORIAL COMPLETE';
-      document.getElementById('ovSub').textContent = 'You know the field now — choose a banner, swear a Sovereign, and take on the campaigns.';
-      tutFinish();
-    }
     ov.classList.add('on');
     vPopReplay(); // v0.12: the verdict lands with weight
     (won ? SFX.win : SFX.lose)(); // v0.9.7: the field deserves a fanfare (or a dirge)
@@ -1104,7 +1021,7 @@ function checkEnd(){
   }
   return false;
 }
-function rematch(){ if(camp.active){ campLaunch(); return; } if(tutorial.on){ startTutorial(); return; } if(me.faction && me.sov) startMatch(); else backToMenu(); } // v0.7.0: campaign retry; v0.26.6: tutorial replay, and never a dead REMATCH click
+function rematch(){ if(camp.active){ campLaunch(); return; } if(me.faction && me.sov) startMatch(); } // v0.7.0: campaign retry
 function quitMatch(){ S=null; backToMenu(); }
 /* v0.10.2: QUIT TO DESKTOP — in the Electron app window.close() closes the
    BrowserWindow and the app quits with it. Plain browsers only allow
@@ -1113,79 +1030,6 @@ function quitMatch(){ S=null; backToMenu(); }
 function quitToDesktop(){
   try{ window.close(); }catch(e){}
   setTimeout(()=>{ const n = document.getElementById('quitNote'); if(n) n.style.display='block'; }, 400);
-}
-
-/* ================= v0.26.6: TUTORIAL — one guided duel ================= */
-/* HS/MTGA pattern: a scripted first match with a coach panel. Fixed realms,
-   easy foe, no mulligan — the lesson starts on the field. Steps advance on
-   real actions (play/attack/power/end-turn) so the player LEARNS by doing. */
-let tutorial = { on:false, step:0, mark:0 };
-const TUT_DONE_KEY = 'fateblade-tutorial-done';
-const TUT_STEPS = [
-  { txt:'Welcome to the field, Sovereign. These cards at the bottom are <b>YOUR HAND</b> — hover any of them to read it in full. Hover anything in this game: everything is readable.', btn:'GOT IT' },
-  { txt:'Play a minion: click an affordable card in your hand. It lands on your board — fresh minions attack from the <b>next</b> turn, unless they carry <b>Charge</b>.', cond:(t)=>S && S.A.board.length > t.mark },
-  { txt:'ATTACK: click your ready minion (golden outline), then click the enemy Sovereign — or a foe minion to trade. Each of your minions strikes once per turn.', cond:(t)=>S && S.events.slice(t.mark).some(ev=>(ev.t==='hit'||ev.t==='heroHit') && ev.side==='A') },
-  { txt:'Your Sovereign power — <b>SKIRMISH</b> — spends mana to deal damage to any target. Click the SKIRMISH button, then pick your victim. It fires once per turn.', cond:(t)=>S && S.events.slice(t.mark).some(ev=>(ev.t==='hit'||ev.t==='heroHit') && ev.side==='A' && ev.id==='POWER') },
-  { txt:'<b>END TURN</b> passes play to the foe. Their whole turn unfolds in the battle log on the right — then your mana crystal grows and you draw a fresh card. Click END TURN.', cond:(t)=>S && S.turn > t.mark },
-  { txt:'That is the whole law of the field: reduce the enemy Sovereign to 0 HP. Everything else — Guard, Battlecries, Relics — is readable on the cards. The field is yours!', btn:'TO BATTLE' },
-];
-function startTutorial(){
-  const canon = DATA.factions.filter(f=>f.pool!=='history');
-  const myF = canon[0], enF = canon[1] || canon.find(f=>f.id!==myF.id);
-  const mySov = legends(myF)[0], enSov = legends(enF)[0];
-  S = E.startMatch(myF, enF, shuffle, { sovA: mySov, sovB: enSov, first: 'A',
-    deckA: loadDeck(myF.id), deckB: loadDeck(enF.id), extraCards: guildCards(), aiB: 'easy' });
-  sel=null; powTargeting=false; castTargeting=null;
-  lastSeen = { hpA:null, hpB:null, minions:{} };
-  aiAnimSeq++; blogReset();
-  document.getElementById('overlay').classList.remove('on');
-  applyTheme(myF.id); show('match'); render();
-  blogTurn('YOUR TURN 1');
-  log('🎓 Tutorial — follow the coach, bottom left.');
-  tutorial.on = true; tutorial.step = 0;
-  tutEnter(); tutShow();
-}
-function tutEnter(){ // snapshot the board/events/turn so a step's condition sees only NEW actions
-  const t = tutorial;
-  if(t.step===1) t.mark = S.A.board.length;
-  else if(t.step===2 || t.step===3) t.mark = S.events.length;
-  else if(t.step===4) t.mark = S.turn;
-}
-function tutShow(){
-  if(!tutorial.on){ tutHide(); return; }
-  const st = TUT_STEPS[tutorial.step];
-  if(!st){ tutFinish(); return; }
-  let el = document.getElementById('tutbox');
-  if(!el){
-    el = document.createElement('div'); el.id = 'tutbox';
-    el.innerHTML = '<div class="tuthead"><span>🎓 THE FIELD LESSON</span><span class="tutskip" onclick="tutSkip()">SKIP</span></div><div class="tuttxt"></div><div class="tutdots"></div>';
-    document.getElementById('match').appendChild(el);
-  }
-  el.querySelector('.tuttxt').innerHTML = st.txt;
-  el.querySelector('.tutdots').textContent = '◆'.repeat(tutorial.step+1) + '◇'.repeat(TUT_STEPS.length - tutorial.step - 1);
-  let btn = el.querySelector('.tutbtn');
-  if(st.btn){
-    if(!btn){ btn = document.createElement('button'); btn.className = 'themebtn tutbtn'; btn.onclick = tutNext; el.appendChild(btn); }
-    btn.textContent = st.btn; btn.style.display = '';
-  } else if(btn) btn.style.display = 'none';
-}
-function tutNext(){
-  tutorial.step++;
-  if(tutorial.step >= TUT_STEPS.length){ tutFinish(); return; }
-  tutEnter(); tutShow();
-}
-function tutSkip(){ tutFinish(); }
-function tutFinish(){
-  tutorial.on = false; tutHide();
-  try{ localStorage.setItem(TUT_DONE_KEY, '1'); }catch(e){}
-  const sub = document.getElementById('tutMenuSub');
-  if(sub) sub.textContent = 'replay the guided duel any time';
-}
-function tutHide(){ const el = document.getElementById('tutbox'); if(el) el.remove(); }
-function tutCheck(){ // called from render(): action steps advance on what the player just DID
-  if(!tutorial.on) return;
-  const st = TUT_STEPS[tutorial.step];
-  if(st && st.cond && st.cond(tutorial)) tutNext();
 }
 
 function endTurn(){
@@ -2070,7 +1914,6 @@ function render(){
   refit(); // v0.9.1: keep the fit-to-window scale correct as the board/hand change
   fxDiff(S); // v0.9.7: lunges, death ghosts + sounds, after the DOM is rebuilt
   if(!aimSrc()) AIM.svg.style.display = 'none'; // v0.26.2: targeting cleared without a mousemove — drop the aim arrow
-  if(tutorial.on) tutCheck(); // v0.26.6: tutorial action steps react to the real board state
 }
 
 function handClick(i, el){
@@ -2592,11 +2435,7 @@ function watchEnd(){
     <h2 style="color:var(--gold);letter-spacing:3px;margin:0 0 12px">✦ MULTIPLAYER</h2>
     <p style="font-size:13px;color:#e6d8b2">Online duels are coming soon — the rules engine is already command-log based, so two clients can replay the same match over a relay.</p>
     <p style="font-size:12px;color:#c9b78e">Until then: sharpen your doctrine in Single Player, or watch the AI fight itself.</p>
-    <div style="display:flex;flex-direction:column;gap:8px;margin-top:14px">
-      <button onclick="document.getElementById('mp').classList.remove('on'); menuSingle();">⚔ SINGLE PLAYER — battle the AI now</button>
-      <button onclick="document.getElementById('mp').classList.remove('on'); watchMatch();">▶ WATCH AN AI DUEL — visual playtest</button>
-      <button onclick="document.getElementById('mp').classList.remove('on')">Close</button>
-    </div>
+    <div style="margin-top:14px"><button onclick="document.getElementById('mp').classList.remove('on')">Close</button></div>
   </div>`;
   // v0.9.5: IN-GAME MENU (Esc / ☰ MENU) — Hearthstone/MTGA style. Resign moved
   // here (two-step confirm) so it can never sit one misclick from END TURN.
