@@ -499,7 +499,33 @@
 
   /* ---- menu polish ---- */
   #menu.on{background-image:var(--menu-bg); background-size:cover; background-position:center;}
-  @keyframes bgpan{from{background-position:0 0;} to{background-position:160px 90px;}}
+  /* v0.26.7: menu showcase — slow ken-burns drift over the vault hall, edge
+     vignette so buttons stay readable, gold particle motes rising, hover lift */
+  #menu.on{animation:kenburns 64s ease-in-out infinite alternate;}
+  @keyframes kenburns{from{background-position:50% 46%;}to{background-position:52% 54%;}}
+  #menu.on::after{content:''; position:fixed; inset:0; pointer-events:none;
+    background:radial-gradient(ellipse at 50% 42%, transparent 52%, #000c 100%);}
+  #menu .menubtn{transition:transform .16s ease, box-shadow .16s ease;}
+  #menu .menubtn:hover{transform:translateY(-3px); box-shadow:0 10px 24px #000c, 0 0 16px #c9a24b2e;}
+  #menuFx{position:fixed; inset:0; pointer-events:none; overflow:hidden;}
+  .goldmote{position:absolute; bottom:-8px; border-radius:50%;
+    background:radial-gradient(circle at 35% 35%, #ffe9b0, #c9a24b 70%);
+    animation:goldrise linear infinite; opacity:0;}
+  @keyframes goldrise{
+    0%{transform:translateY(0) translateX(0); opacity:0;}
+    12%{opacity:.85;}
+    88%{opacity:.5;}
+    100%{transform:translateY(-88vh) translateX(34px); opacity:0;}}
+  /* v0.26.7: featured Sovereign of the Day — the menu shows the art off */
+  #sovd{display:flex; gap:16px; align-items:center; margin-top:14px; padding:10px 18px;
+    background:#000a; border:1px solid var(--gold-dim); cursor:pointer; max-width:640px;}
+  #sovd:hover{border-color:var(--gold); box-shadow:0 0 16px #c9a24b22;}
+  #sovd .artclip{width:118px; height:118px; flex:none; border:2px solid var(--gold-dim); background:#000;}
+  #sovd .artclip img{width:100%; height:100%; object-fit:cover;}
+  #sovd .sv-title{font-size:10px; letter-spacing:3px; color:#c9b78e;}
+  #sovd .sv-name{font-family:'Cinzel',serif; font-size:17px; color:var(--gold); letter-spacing:1px;}
+  #sovd .sv-realm{font-size:12px; color:#8fd; letter-spacing:1px;}
+  #sovd .sv-pass{font-size:12.5px; font-style:italic; color:var(--pass); margin-top:2px; max-width:420px;}
   #menu h1{margin-bottom:26px; background:linear-gradient(100deg, #c9a24b 30%, #fff3cf 48%, #c9a24b 62%);
     background-size:250% 100%; -webkit-background-clip:text; background-clip:text; color:transparent;
     animation:shine 4s linear infinite;}
@@ -542,6 +568,7 @@
   <button class="menubtn themebtn" onclick="menuDeckBuilder()">▦ DECK BUILDER<small>choose 10 cards from your realm's roster</small></button>
   <button class="menubtn themebtn" onclick="watchMatch()">▶ WATCH AN AI DUEL<small>visual playtest with live commentary</small></button>
   <button class="menubtn themebtn" onclick="showMultiplayer()">✦ MULTIPLAYER<small>online duels — coming soon</small></button>
+  <div id="sovd" style="display:none"></div>
   <button class="menubtn themebtn" onclick="showSettings()">⚙ SETTINGS<small>theme art, AI difficulty, watch speed, saved decks</small></button>
   <button class="menubtn themebtn" onclick="quitToDesktop()">✖ QUIT TO DESKTOP<small>close Fateblade</small></button>
   <div id="quitNote" style="display:none;max-width:420px;text-align:center;font-size:13px;color:#c9b78e">Your browser kept this tab open — close the tab to exit. (The desktop app closes itself.)</div>
@@ -678,7 +705,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.26.6';
+const GAME_VERSION = '0.26.7';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
@@ -757,7 +784,47 @@ function deleteDeck(facId, name){ saveDeckList(facId, decksOf(facId).filter(d =>
 function loadDeck(facId){ return facOf(facId) ? facOf(facId).defaultDeck.slice() : null; } // v0.10: the tuned 30-card doctrine deck
 
 /* ---------- screens ---------- */
-function show(id){ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on')); document.getElementById(id).classList.add('on'); document.body.classList.toggle('inmatch', id === 'match'); fitScreen(); musicForScreen(id); }
+function show(id){ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on')); document.getElementById(id).classList.add('on'); document.body.classList.toggle('inmatch', id === 'match'); const mfx = document.getElementById('menuFx'); if(mfx) mfx.style.display = (id==='menu') ? 'block' : 'none'; fitScreen(); musicForScreen(id); if(id==='menu') sovOfDay(); }
+/* v0.26.7: menu showcase — ken-burns, vignette + gold motes are CSS; the motes
+   themselves are one JS build (12 embers, random lanes/drift), and the
+   SOVEREIGN OF THE DAY is a deterministic daily pick across every realm's
+   legends — the menu now shows the art off before you ever pick a banner. */
+function buildMenuFx(){
+  if(document.getElementById('menuFx')) return;
+  const fx = document.createElement('div'); fx.id = 'menuFx';
+  for(let i=0;i<12;i++){
+    const m = document.createElement('div'); m.className = 'goldmote';
+    const sz = 2 + Math.random()*2.5;
+    m.style.width = m.style.height = sz.toFixed(1)+'px';
+    m.style.left = (Math.random()*100).toFixed(1)+'%';
+    m.style.animationDuration = (11 + Math.random()*14).toFixed(1)+'s';
+    m.style.animationDelay = (-Math.random()*20).toFixed(1)+'s';
+    fx.appendChild(m);
+  }
+  document.body.appendChild(fx);
+}
+function sovOfDay(){
+  const allLegs = [];
+  for(const f of DATA.factions) for(const c of legends(f)) allLegs.push({ card:c, fac:f });
+  if(!allLegs.length) return;
+  const day = Math.floor(Date.now() / 86400000);
+  const pick = allLegs[day % allLegs.length];
+  const el = document.getElementById('sovd');
+  if(!el) return;
+  el.style.display = 'flex';
+  el.innerHTML = `
+    <div class="artclip"><img src="${pick.card.img}" alt="${pick.card.name}"></div>
+    <div>
+      <div class="sv-title">◆ SOVEREIGN OF THE DAY ◆</div>
+      <div class="sv-name">${pick.card.name}</div>
+      <div class="sv-realm">${pick.fac.label} — ${pick.fac.identity.name}</div>
+      <div class="sv-pass"><b>${pick.card.passive.name}:</b> ${pick.card.passive.desc}</div>
+    </div>`;
+  el.onmouseenter = (ev)=>showZoom(pick.card, ev, false, true); // sov=true: the passive-only zoom, like the picker rows
+  el.onmousemove = moveZoom;
+  el.onmouseleave = hideZoom;
+}
+buildMenuFx();
 // v0.7.1 FIT-TO-WINDOW: scale any screen that is taller/wider than the window, so the
 // whole interface (menu buttons, board, hand, END TURN / RESIGN) always fits — no scrolling.
 function fitScreen(){
@@ -2525,7 +2592,11 @@ function watchEnd(){
     <h2 style="color:var(--gold);letter-spacing:3px;margin:0 0 12px">✦ MULTIPLAYER</h2>
     <p style="font-size:13px;color:#e6d8b2">Online duels are coming soon — the rules engine is already command-log based, so two clients can replay the same match over a relay.</p>
     <p style="font-size:12px;color:#c9b78e">Until then: sharpen your doctrine in Single Player, or watch the AI fight itself.</p>
-    <div style="margin-top:14px"><button onclick="document.getElementById('mp').classList.remove('on')">Close</button></div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-top:14px">
+      <button onclick="document.getElementById('mp').classList.remove('on'); menuSingle();">⚔ SINGLE PLAYER — battle the AI now</button>
+      <button onclick="document.getElementById('mp').classList.remove('on'); watchMatch();">▶ WATCH AN AI DUEL — visual playtest</button>
+      <button onclick="document.getElementById('mp').classList.remove('on')">Close</button>
+    </div>
   </div>`;
   // v0.9.5: IN-GAME MENU (Esc / ☰ MENU) — Hearthstone/MTGA style. Resign moved
   // here (two-step confirm) so it can never sit one misclick from END TURN.
