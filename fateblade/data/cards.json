@@ -11135,7 +11135,7 @@
    "cards": [
     {
      "id": "sorariel-the-steadfast@stormlit",
-     "name": "Sorariel the Steadfast",
+     "name": "Sorariel, the Unmoved Stone",
      "fl": "Nothing passes Sorariel the Steadfast that has not been named.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11160,7 +11160,7 @@
     },
     {
      "id": "lorarion-the-shield-sworn@stormlit",
-     "name": "Lorarion the Shield-Sworn",
+     "name": "Vigil-Herald of the Elder Ford",
      "fl": "Lorarion the Shield-Sworn was standing guard before the wall was built.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11205,7 +11205,7 @@
     },
     {
      "id": "nerarris-the-steadfast@stormlit",
-     "name": "Nerarris the Steadfast",
+     "name": "Nerarris the Oath-Rooted",
      "fl": "Nothing passes Nerarris the Steadfast that has not been named.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11225,7 +11225,7 @@
     },
     {
      "id": "silevris-the-hollow-crowned@stormlit",
-     "name": "Silevris the Hollow-Crowned",
+     "name": "Silevris the Twice-Mourned",
      "fl": "Silevris the Hollow-Crowned has never left the gate. Nothing has ever made it past Silevris the Hollow-Crowned.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11245,7 +11245,7 @@
     },
     {
      "id": "caelalwyn-the-storm-marked@stormlit",
-     "name": "Caelalwyn the Storm-Marked",
+     "name": "Caelalwyn the Storm-Quelled",
      "fl": "Nothing passes Caelalwyn the Storm-Marked that has not been named.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11265,7 +11265,7 @@
     },
     {
      "id": "gililiel-the-unbowed@stormlit",
-     "name": "Gililiel the Unbowed",
+     "name": "Gililiel the Vow-Keeper",
      "fl": "Gililiel the Unbowed was standing guard before the wall was built.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11285,7 +11285,7 @@
     },
     {
      "id": "caelalwen-the-red-handed@stormlit",
-     "name": "Caelalwen the Red-Handed",
+     "name": "Caelalwen the Too-Remembering",
      "fl": "Caelalwen the Red-Handed tithes the field of its crimson.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11305,7 +11305,7 @@
     },
     {
      "id": "miralien-the-last-voiced@stormlit",
-     "name": "Miralien the Last-Voiced",
+     "name": "Miralien the Late-Reborn",
      "fl": "Miralien the Last-Voiced tithes the field of its crimson.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11325,7 +11325,7 @@
     },
     {
      "id": "aeevwen-the-far-walked@stormlit",
-     "name": "Aeevwen the Far-Walked",
+     "name": "Aeevwen of the Long Rain",
      "fl": "First over the wall, always — Aeevwen the Far-Walked.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11345,7 +11345,7 @@
     },
     {
      "id": "silorlas-the-ward-blessed@stormlit",
-     "name": "Silorlas the Ward-Blessed",
+     "name": "Silorlas the Stone-Chorister",
      "fl": "Silorlas the Ward-Blessed has pulled the dying back across the river — more than once.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11365,7 +11365,7 @@
     },
     {
      "id": "aeenwyn-the-breaker-line@stormlit",
-     "name": "Aeenwyn the Breaker-Line",
+     "name": "Aeenwyn the Unforgotten",
      "fl": "First over the wall, always — Aeenwyn the Breaker-Line.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11405,7 +11405,7 @@
     },
     {
      "id": "gilalwen-the-gate-warden@stormlit",
-     "name": "Gilalwen the Gate-Warden",
+     "name": "Gilalwen the Memory-Scribe",
      "fl": "Gilalwen the Gate-Warden has never left the gate. Nothing has ever made it past Gilalwen the Gate-Warden.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11425,7 +11425,7 @@
     },
     {
      "id": "nerendor-the-wall-of-spears@stormlit",
-     "name": "Nerendor the Wall of Spears",
+     "name": "Moon-House Memory-Keeper",
      "fl": "Nothing passes Nerendor the Wall of Spears that has not been named.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11445,7 +11445,7 @@
     },
     {
      "id": "neradeth-of-the-long-watch@stormlit",
-     "name": "Neradeth of the Long Watch",
+     "name": "Rainmoor Oath-Blade",
      "fl": "Neradeth of the Long Watch was standing guard before the wall was built.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11465,7 +11465,7 @@
     },
     {
      "id": "gilorwyn-the-blood-tithed@stormlit",
-     "name": "Gilorwyn the Blood-Tithed",
+     "name": "Salt-House Moot-Blade",
      "fl": "Gilorwyn the Blood-Tithed tithes the field of its crimson.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11485,7 +11485,7 @@
     },
     {
      "id": "faeardir-the-oath-forged@stormlit",
-     "name": "Faeardir the Oath-Forged",
+     "name": "Rainmoor Vow-Keeper",
      "fl": "Nothing passes Faeardir the Oath-Forged that has not been named.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11505,7 +11505,7 @@
     },
     {
      "id": "ruithien-the-shield-sworn@stormlit",
-     "name": "Ruithien the Shield-Sworn",
+     "name": "Archive Rearguard-Warden",
      "fl": "Nothing passes Ruithien the Shield-Sworn that has not been named.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11525,7 +11525,7 @@
     },
     {
      "id": "faeevien-the-storm-marked@stormlit",
-     "name": "Faeevien the Storm-Marked",
+     "name": "Outer-March Blade-Sworn",
      "fl": "Faeevien the Storm-Marked has never left the gate. Nothing has ever made it past Faeevien the Storm-Marked.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11545,7 +11545,7 @@
     },
     {
      "id": "gilendor-the-grave-sworn@stormlit",
-     "name": "Gilendor the Grave-Sworn",
+     "name": "Vigil-Captain of the Still Pools",
      "fl": "The last thing many saw was a shadow — Gilendor the Grave-Sworn.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11565,7 +11565,7 @@
     },
     {
      "id": "lorithwen-the-far-walked@stormlit",
-     "name": "Lorithwen the Far-Walked",
+     "name": "Quiet-House Gate-Sworn",
      "fl": "Nothing passes Lorithwen the Far-Walked that has not been named.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11585,7 +11585,7 @@
     },
     {
      "id": "silithmar-of-the-ninth-weave@stormlit",
-     "name": "Silithmar of the Ninth Weave",
+     "name": "Fog-Fletcher of the Still House",
      "fl": "Silithmar of the Ninth Weave was born holding half a prophecy.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11605,7 +11605,7 @@
     },
     {
      "id": "ruorris-the-gate-warden@stormlit",
-     "name": "Ruorris the Gate-Warden",
+     "name": "Moss-Back Moonwell Warden",
      "fl": "Ruorris the Gate-Warden was standing guard before the wall was built.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11625,7 +11625,7 @@
     },
     {
      "id": "loraldor-the-gate-warden@stormlit",
-     "name": "Loraldor the Storm-Quelled",
+     "name": "Elder-Ford Oath-Stone Keeper",
      "fl": "Loraldor the Gate-Warden arrives before the war does.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11645,7 +11645,7 @@
     },
     {
      "id": "gililmar-the-bold@stormlit",
-     "name": "Gililmar the Bold",
+     "name": "Archive Drum-Line Herald",
      "fl": "Gililmar the Bold tithes the field of its crimson.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11665,7 +11665,7 @@
     },
     {
      "id": "aearlas-the-oath-forged@stormlit",
-     "name": "Aearlas the Oath-Forged",
+     "name": "Storm-Archer of the Salt Fog",
      "fl": "Nothing passes Aearlas the Oath-Forged that has not been named.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11685,7 +11685,7 @@
     },
     {
      "id": "elithiel-the-shield-sworn@stormlit",
-     "name": "Elithiel of the Quiet House",
+     "name": "Stone-Line Veteran of the Long Vigil",
      "fl": "Elithiel the Shield-Sworn has never left the gate. Nothing has ever made it past Elithiel the Shield-Sworn.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11705,7 +11705,7 @@
     },
     {
      "id": "ithorris-the-shield-sworn@stormlit",
-     "name": "Ithorris of the Standing Stones",
+     "name": "Still-House Garrison-Sworn",
      "fl": "Ithorris the Shield-Sworn has never left the gate. Nothing has ever made it past Ithorris the Shield-Sworn.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11725,7 +11725,7 @@
     },
     {
      "id": "rueneth-the-unbreached@stormlit",
-     "name": "Rueneth the Unbreached",
+     "name": "Muster-Herald",
      "fl": "Rueneth the Unbreached has never left the gate. Nothing has ever made it past Rueneth the Unbreached.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11745,7 +11745,7 @@
     },
     {
      "id": "arildir-the-gate-warden@stormlit",
-     "name": "Arildir the Moss-Crowned",
+     "name": "Moonwell Stone-Fencer",
      "fl": "Nothing passes Arildir the Gate-Warden that has not been named.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11765,7 +11765,7 @@
     },
     {
      "id": "gilalien-the-steadfast@stormlit",
-     "name": "Gilalien the Vow-Keeper",
+     "name": "Outer-March Storm-Archer",
      "fl": "Gilalien the Steadfast read the ending before the beginning.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11785,7 +11785,7 @@
     },
     {
      "id": "gilendor-of-the-crimson-tithe@stormlit",
-     "name": "Gilendor of the Crimson Tithe",
+     "name": "Long-Rain Trove-Sworn",
      "fl": "Every wound Gilendor of the Crimson Tithe takes, it returns with interest.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11805,7 +11805,7 @@
     },
     {
      "id": "ruareth-the-blood-tithed@stormlit",
-     "name": "Ruareth the Blood-Tithed",
+     "name": "Silver-Tide Wayfinder",
      "fl": "Every wound Ruareth the Blood-Tithed takes, it returns with interest.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11825,7 +11825,7 @@
     },
     {
      "id": "ruardor-the-late-reborn@stormlit",
-     "name": "Ruardor the Late-Reborn",
+     "name": "Long-Vigil Stoneguard",
      "fl": "Every wound Ruardor the Late-Reborn takes, it returns with interest.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11845,7 +11845,7 @@
     },
     {
      "id": "mirevris-the-gate-warden@stormlit",
-     "name": "Mirevris the Rain-Mantled",
+     "name": "Shield-Warden",
      "fl": "Mirevris the Gate-Warden has never left the gate. Nothing has ever made it past Mirevris the Gate-Warden.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11865,7 +11865,7 @@
     },
     {
      "id": "halalris-the-red-handed@stormlit",
-     "name": "Halalris the Red-Handed",
+     "name": "Sea-Glass Kin-Marshal",
      "fl": "The last thing many saw was a shadow — Halalris the Red-Handed.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11885,7 +11885,7 @@
     },
     {
      "id": "giladris-of-the-quiet-house@stormlit",
-     "name": "Giladris of the Standing Stones",
+     "name": "Thorn-House Vigil-Bulwark",
      "fl": "Giladris of the Quiet House knows how every one of these stories ends.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11905,7 +11905,7 @@
     },
     {
      "id": "silarwyn-the-host-mustered@stormlit",
-     "name": "Silarwyn the Host-Mustered",
+     "name": "Rain-Archer of the Mourned House",
      "fl": "Where Silarwyn the Host-Mustered stands, a host assembles.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11925,7 +11925,7 @@
     },
     {
      "id": "lorilwyn-the-patient@stormlit",
-     "name": "Lorilwyn the Patient",
+     "name": "Briar-Bound Stone-Line Veteran",
      "fl": "Lorilwyn the Patient was standing guard before the wall was built.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11945,7 +11945,7 @@
     },
     {
      "id": "velalwyn-the-quiet-oracle@stormlit",
-     "name": "Velalwyn the Quiet Oracle",
+     "name": "Salt-Fog Mistway Scout",
      "fl": "Velalwyn the Quiet Oracle dreams with open eyes — and remembers.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11965,7 +11965,7 @@
     },
     {
      "id": "thaladien-the-nine-crowned@stormlit",
-     "name": "Thaladien the Nine-Crowned",
+     "name": "Moonwell Old-Line Soldier",
      "fl": "Every wound Thaladien the Nine-Crowned takes, it returns with interest.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11985,7 +11985,7 @@
     },
     {
      "id": "nerarwen-of-the-still-water@stormlit",
-     "name": "Nerarwen of the Still Water",
+     "name": "Storm-Grey Blade-Sworn",
      "fl": "Wars end; Nerarwen of the Still Water collects the survivors.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12005,7 +12005,7 @@
     },
     {
      "id": "haloriel-of-the-long-watch@stormlit",
-     "name": "Haloriel the First of the Quiet House",
+     "name": "Root-Bound Farpath Walker",
      "fl": "Haloriel of the Long Watch's arrows arrive before the argument.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12025,7 +12025,7 @@
     },
     {
      "id": "caelenion-the-patient@stormlit",
-     "name": "Caelenion the Patient",
+     "name": "Standing-Stone Fog-Walker",
      "fl": "Every wound Caelenion the Patient takes, it returns with interest.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12045,7 +12045,7 @@
     },
     {
      "id": "eleneth-the-bold@stormlit",
-     "name": "Eleneth the Rain-Mantled",
+     "name": "Long-Vigil Bowman of the Moot-Hall",
      "fl": "Eleneth the Bold was standing guard before the wall was built.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12065,7 +12065,7 @@
     },
     {
      "id": "arorwyn-the-twilight-born@stormlit",
-     "name": "Arorwyn the Twilight-Born",
+     "name": "Reserves-Captain of the Quiet House",
      "fl": "Arorwyn the Twilight-Born tithes the field of its crimson.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12085,7 +12085,7 @@
     },
     {
      "id": "arildir-the-red-handed@stormlit",
-     "name": "Arildir of the Elder Ford",
+     "name": "Silver-Tide Grey-Watcher",
      "fl": "Nothing passes Arildir the Red-Handed that has not been named.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12105,7 +12105,7 @@
     },
     {
      "id": "miraddor-of-the-long-watch@stormlit",
-     "name": "Miraddor the Silver-Browed",
+     "name": "Elder-House Muster-Warden",
      "fl": "Miraddor of the Long Watch was standing guard before the wall was built.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12125,7 +12125,7 @@
     },
     {
      "id": "ruarwen-the-thorned@stormlit",
-     "name": "Ruarwen the Thorned",
+     "name": "Vigil-Herald of the Still Pools",
      "fl": "Ruarwen the Thorned tithes the field of its crimson.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12145,7 +12145,7 @@
     },
     {
      "id": "ithaliel-of-the-long-watch@stormlit",
-     "name": "Ithaliel the Moss-Crowned",
+     "name": "Stone-Vigil Siege-Elder",
      "fl": "Ithaliel of the Long Watch has never left the gate. Nothing has ever made it past Ithaliel of the Long Watch.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12165,7 +12165,7 @@
     },
     {
      "id": "arenmar-the-unbreached@stormlit",
-     "name": "Arenmar the Unbreached",
+     "name": "Standing-Stone Wall-Sworn",
      "fl": "Arenmar the Unbreached has never left the gate. Nothing has ever made it past Arenmar the Unbreached.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12185,7 +12185,7 @@
     },
     {
      "id": "nerardor-the-last-voiced@stormlit",
-     "name": "Nerardor the Last-Voiced",
+     "name": "Storm-Grey Banner-Warden",
      "fl": "Nerardor the Last-Voiced has never left the gate. Nothing has ever made it past Nerardor the Last-Voiced.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12205,7 +12205,7 @@
     },
     {
      "id": "itharmar-the-life-drunk@stormlit",
-     "name": "Itharmar the Storm-Quelled",
+     "name": "Moot-Bound Rearguard-Warden",
      "fl": "Itharmar the Life-Drunk tithes the field of its crimson.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12225,7 +12225,7 @@
     },
     {
      "id": "ithalion-the-life-drunk@stormlit",
-     "name": "Ithalion the Life-Drunk",
+     "name": "Duel-Warden of the Mourned House",
      "fl": "Ithalion the Life-Drunk tithes the field of its crimson.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12245,7 +12245,7 @@
     },
     {
      "id": "ithadeth-of-the-quiet-house@stormlit",
-     "name": "Ithadeth the Storm-Grey",
+     "name": "Gate-Sworn",
      "fl": "Nothing passes Ithadeth of the Quiet House that has not been named.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12265,7 +12265,7 @@
     },
     {
      "id": "ararmar-the-blood-tithed@stormlit",
-     "name": "Ararmar the Twice-Mourned",
+     "name": "Council-Captain",
      "fl": "Every wound Ararmar the Blood-Tithed takes, it returns with interest.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12285,7 +12285,7 @@
     },
     {
      "id": "rualmar-the-red-handed@stormlit",
-     "name": "Rualmar the Vow-Keeper",
+     "name": "Blade-Singer",
      "fl": "Rualmar the Red-Handed tithes the field of its crimson.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12305,7 +12305,7 @@
     },
     {
      "id": "elevmar-of-the-long-watch@stormlit",
-     "name": "Elevmar the First of the Quiet House",
+     "name": "Root-Bound Rampart-Elder",
      "fl": "Every wound Elevmar of the Long Watch takes, it returns with interest.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12325,7 +12325,7 @@
     },
     {
      "id": "soreniel-the-steadfast@stormlit",
-     "name": "Soreniel of the Long Rain",
+     "name": "Home-Guard Warden of the Grey Coast",
      "fl": "Nothing passes Soreniel the Steadfast that has not been named.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12345,7 +12345,7 @@
     },
     {
      "id": "aeorion-the-bold@stormlit",
-     "name": "Aeorion the Bold",
+     "name": "Grey Veteran",
      "fl": "Nothing passes Aeorion the Bold that has not been named.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12365,7 +12365,7 @@
     },
     {
      "id": "halithmar-the-life-drunk@stormlit",
-     "name": "Halithmar the Late-Reborn",
+     "name": "Archive Trove-Sworn",
      "fl": "Every wound Halithmar the Life-Drunk takes, it returns with interest.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12385,7 +12385,7 @@
     },
     {
      "id": "thalendor-the-steadfast@stormlit",
-     "name": "Thalendor of the Long Rain",
+     "name": "Drum-Line Fletching-Sentinel",
      "fl": "Nothing passes Thalendor the Steadfast that has not been named.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12405,7 +12405,7 @@
     },
     {
      "id": "faearien-the-patient@stormlit",
-     "name": "Faearien the Storm-Grey",
+     "name": "Briar-Bound Relic-Sworn",
      "fl": "Faearien the Patient has never left the gate. Nothing has ever made it past Faearien the Patient.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12425,7 +12425,7 @@
     },
     {
      "id": "eleneth-the-unforgotten@stormlit",
-     "name": "Eleneth the Unforgotten",
+     "name": "Still-House Banner-Sworn",
      "fl": "Eleneth the Unforgotten has pulled the dying back across the river — more than once.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12445,7 +12445,7 @@
     },
     {
      "id": "aealwen-the-unseen@stormlit",
-     "name": "Aealwen the Unseen",
+     "name": "Rearguard-Warden",
      "fl": "Nothing passes Aealwen the Unseen that has not been named.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12465,7 +12465,7 @@
     },
     {
      "id": "silaldir-the-blood-tithed@stormlit",
-     "name": "Silaldir the Twice-Mourned",
+     "name": "Elder-Bough Fletching-Sentinel",
      "fl": "Silaldir the Blood-Tithed tithes the field of its crimson.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12485,7 +12485,7 @@
     },
     {
      "id": "velarien-the-hollow-crowned@stormlit",
-     "name": "Velarien the Hollow-Crowned",
+     "name": "Mourned-House Fog-Fletcher",
      "fl": "Velarien the Hollow-Crowned tithes the field of its crimson.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12505,7 +12505,7 @@
     },
     {
      "id": "elarwen-the-oath-forged@stormlit",
-     "name": "Elarwen the Silver-Browed",
+     "name": "Elderfen Stone-Fencer",
      "fl": "Elarwen the Oath-Forged has never left the gate. Nothing has ever made it past Elarwen the Oath-Forged.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12525,7 +12525,7 @@
     },
     {
      "id": "thalevion-the-reckoner@stormlit",
-     "name": "Thalevion the Reckoner",
+     "name": "Wayfinder of the Thorn House",
      "fl": "Thalevion the Reckoner tithes the field of its crimson.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12545,7 +12545,7 @@
     },
     {
      "id": "gilithris-the-thorned@stormlit",
-     "name": "Gilithris the Thorned",
+     "name": "Mourned-House Home-Guard Warden",
      "fl": "Gilithris the Thorned has never left the gate. Nothing has ever made it past Gilithris the Thorned.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12565,7 +12565,7 @@
     },
     {
      "id": "aeilion-of-the-long-watch@stormlit",
-     "name": "Aeilion of the Long Watch",
+     "name": "Drum-Line Fog-Walker",
      "fl": "Nothing passes Aeilion of the Long Watch that has not been named.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12585,7 +12585,7 @@
     },
     {
      "id": "mirithiel-the-life-drunk@stormlit",
-     "name": "Mirithiel the Life-Drunk",
+     "name": "Moot-Bound Memory-Keeper",
      "fl": "Every wound Mirithiel the Life-Drunk takes, it returns with interest.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12605,7 +12605,7 @@
     },
     {
      "id": "aealiel-the-steadfast@stormlit",
-     "name": "Aealiel of the Grey Coast",
+     "name": "Elderfen Wayfinder",
      "fl": "Aealiel the Steadfast was standing guard before the wall was built.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12625,7 +12625,7 @@
     },
     {
      "id": "caelorien-the-nine-crowned@stormlit",
-     "name": "Caelorien the Nine-Crowned",
+     "name": "Moot-Blade",
      "fl": "Caelorien the Nine-Crowned tithes the field of its crimson.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12713,7 +12713,7 @@
     },
     {
      "id": "velorwyn@stormlit",
-     "name": "Velorwyn",
+     "name": "Velorwyn, Commander of the Last Reserve",
      "fl": "Wounds close; forests remember.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12737,7 +12737,7 @@
     },
     {
      "id": "araddor-the-grave-sworn@stormlit",
-     "name": "Araddor the Grave-Sworn",
+     "name": "Araddor, Warden of the Grave-Gates",
      "fl": "Starlight outlasts sieges.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12974,7 +12974,7 @@
      "id": "wind-swept-dunes-fortress@stormlit"
     },
     {
-     "name": "Aelok the Cold-Throned",
+     "name": "Moon-House War-Chantor",
      "fl": "The Elderkin keep the long watch.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12992,7 +12992,7 @@
      "tribe": "Elderkin"
     },
     {
-     "name": "Brynien",
+     "name": "Old-Line Soldier",
      "fl": "The Elderkin keep the long watch.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -13010,7 +13010,7 @@
      "tribe": "Elderkin"
     },
     {
-     "name": "Thalwyn",
+     "name": "Windrow Relic-Sworn",
      "fl": "The Elderkin keep the long watch.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -13028,7 +13028,7 @@
      "tribe": "Elderkin"
     },
     {
-     "name": "Mekaketh the Hundred-Victor",
+     "name": "Hedge-Row Grey Veteran",
      "fl": "The Elderkin keep the long watch.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -13046,7 +13046,7 @@
      "tribe": "Humans"
     },
     {
-     "name": "Morris",
+     "name": "Front-Warden of the Moonwell",
      "fl": "The Elderkin keep the long watch.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -13064,7 +13064,7 @@
      "tribe": "Humans"
     },
     {
-     "name": "Goriel the Swift-Loosed",
+     "name": "Salt-Fog Harbor Outrider",
      "fl": "The Elderkin keep the long watch.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -13082,7 +13082,7 @@
      "tribe": "Humans"
     },
     {
-     "name": "Dralas",
+     "name": "Quiet-House Kin-Marshal",
      "fl": "The Elderkin keep the long watch.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -13100,7 +13100,7 @@
      "tribe": "Humans"
     },
     {
-     "name": "Lorveth",
+     "name": "Kin-Sworn Oath-Stone Keeper",
      "fl": "The Elderkin keep the long watch.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -13118,7 +13118,7 @@
      "tribe": "Humans"
     },
     {
-     "name": "Fenaxith the Hundred-Victor",
+     "name": "Stone-Fencer of the Outer Marches",
      "fl": "The Elderkin keep the long watch.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -13136,7 +13136,7 @@
      "tribe": "Humans"
     },
     {
-     "name": "Nerriel the Unforgotten",
+     "name": "Nerriel, Whom the Stones Remember",
      "fl": "The Elderkin keep the long watch.",
      "faction": "stormlit",
      "pool": "fandom",
