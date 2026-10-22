@@ -8,10 +8,14 @@
 #                     offenders. NO image is modified.
 #   crop              crop every file the detector flagged (report is run
 #                     first inside crop mode), trimming the measured dead
-#                     bands plus a small safety pad, re-encoding the JPEG
-#                     (pillow required), and updating fateblade/manifest.json
-#                     (sha256 + size) for every file it touches so the
-#                     Patcher's sha checks stay green.
+#                     bands plus a small safety pad and re-encoding the
+#                     JPEG (pillow required). NON-DESTRUCTIVE BY DESIGN: the
+#                     cropped version is written to fateblade/<folder>-cropped/
+#                     as a NEW file; the original is never modified, so a bad
+#                     crop can never destroy paid-for art. New manifest
+#                     entries are added for the cropped versions (originals
+#                     keep their entries untouched); promoting a cropped
+#                     version over its original is a later, deliberate step.
 #
 # Detection is deterministic and pixel-based (vision models are unreliable
 # for this — pixels are ground truth): the image is reduced to a 64x48 grid
@@ -273,9 +277,13 @@ for i, f in enumerate(files):
                 if min(x1-x0, y1-y0) < MIN_SHORT:
                     entry['action'] = 'skipped-too-small'
                 else:
+                    out_dir = target_dir + '-cropped'
+                    os.makedirs(out_dir, exist_ok=True)
+                    out_path = os.path.join(out_dir, f)
                     im = Image.open(path).convert('RGB').crop((x0, y0, x1, y1))
-                    im.save(path, 'JPEG', quality=JPEG_QUALITY)
-                    entry['action'] = 'cropped'
+                    im.save(out_path, 'JPEG', quality=JPEG_QUALITY)
+                    entry['action'] = 'cropped-new-version'
+                    entry['crop_file'] = FOLDER + '-cropped/' + f
                     entry['new_size'] = [x1-x0, y1-y0]
                     cropped += 1
         report.append(entry)
@@ -299,29 +307,43 @@ with open(rpath, 'w') as fh:
     json.dump(out, fh, indent=1)
 print('report: fateblade/art/crop-report.json')
 
-# crop mode: sync manifest shas for every file we rewrote
+# crop mode: register the cropped versions in the manifest as NEW entries
+# (path/sha256/url/license/src). Originals and their entries are never touched.
 if MODE == 'crop' and cropped:
     mpath = os.path.join(ROOT, 'manifest.json')
     man = json.load(open(mpath))
-    bypath = {}
-    for ent in man.get('files', []):
-        p = ent.get('path', '')
-        bypath[p] = ent
-        alt = p.replace('fateblade/', '', 1) if p.startswith('fateblade/') else 'fateblade/' + p
-        bypath.setdefault(alt, ent)
-    upd = 0
+    bypath = {ent.get('path', ''): ent for ent in man.get('files', [])}
+    added = updated = 0
     for e in report:
-        if e.get('action') != 'cropped': continue
+        if e.get('action') != 'cropped-new-version': continue
         rel = FOLDER + '/' + e['file']
-        ent = bypath.get(rel) or bypath.get('fateblade/' + rel)
-        if not ent:
-            print(f'  WARN: no manifest entry for {rel} (skipped)'); continue
-        data = open(os.path.join(target_dir, e['file']), 'rb').read()
+        crel = FOLDER + '-cropped/' + e['file']
+        src_ent = bypath.get(rel)
+        data = open(os.path.join(target_dir + '-cropped', e['file']), 'rb').read()
+        ent = bypath.get(crel)
+        if ent is None:
+            ent = {}
+            man['files'].append(ent)
+            added += 1
+        else:
+            updated += 1
+        ent['path'] = crel
         ent['sha256'] = hashlib.sha256(data).hexdigest()
-        ent['size'] = len(data)
-        if 'bytes' in ent: ent['bytes'] = len(data)
-        upd += 1
+        if src_ent:
+            for k in ('license', 'src'):
+                if k in src_ent: ent[k] = src_ent[k]
+            if 'url' in src_ent:
+                ent['url'] = src_ent['url'].replace('/' + FOLDER + '/', '/' + FOLDER + '-cropped/')
+        elif 'url' not in ent:
+            ent['url'] = ('https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/'
+                          'fateblade/' + crel)
+        if not ent.get('license'): ent['license'] = 'AI-generated'
+        if not ent.get('src'): ent['src'] = 'Mistral image generation (cropped)'
+        bypath[crel] = ent
     with open(mpath, 'w') as fh:
         json.dump(man, fh, indent=1)
         fh.write('\n')
-    print(f'manifest: {upd} sha/size entries updated')
+    print(f'manifest: {added} new + {updated} updated entries for '
+          f'fateblade/{FOLDER}-cropped/ (originals untouched)')
+    print(f'ORIGINALS UNTOUCHED: every cropped version is a separate file in '
+          f'fateblade/{FOLDER}-cropped/ — review before promoting any of them')

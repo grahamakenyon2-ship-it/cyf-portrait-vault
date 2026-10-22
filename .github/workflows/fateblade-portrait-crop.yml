@@ -51,12 +51,14 @@ jobs:
           echo "rc=$rc" >> "$GITHUB_OUTPUT"
           echo "portrait-crop exit code: $rc"
           exit 0
-      - name: Publish the crop report (artifact, always)
+      - name: Publish the crop report + cropped versions (artifact, always)
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: crop-report-${{ github.run_id }}
-          path: fateblade/art/crop-report.json
+          name: crop-results-${{ github.run_id }}
+          path: |
+            fateblade/art/crop-report.json
+            fateblade/art/**-cropped/
           retention-days: 30
           if-no-files-found: ignore
       - name: Commit the results (crop mode only)
@@ -66,7 +68,7 @@ jobs:
           git config user.email "crop@users.noreply.github.com"
           git add -A fateblade
           git diff --cached --quiet && echo "nothing to commit (no portraits flagged)" && exit 0
-          git commit -m "fateblade: portrait crop pass (${{ github.event.inputs.mode }} mode, folder ${{ github.event.inputs.folder || 'art/stockpile' }})"
+          git commit -m "fateblade: portrait crop pass (${{ github.event.inputs.mode }} mode) — new cropped versions in ${{ github.event.inputs.folder || 'art/stockpile' }}-cropped/, originals untouched"
           git push
       - name: Fail loudly if the tool errored
         if: steps.crop.outputs.rc != '0'

@@ -92,10 +92,16 @@ per-side cap 0.35, outputs below 512px on the short side are skipped).
   fateblade/art/crop-report.json (uploaded as a run artifact) and
   prints the worst 20 offenders in the log. Nothing is modified.
   Eyeball the report before cropping.
-- **mode=crop**: re-runs the report, then crops every flagged file,
-  re-encodes the JPEG (pillow, q92) and updates fateblade/manifest.json
-  (sha256 + size) for every file it touched so the Patcher's sha checks
-  stay green. Results are committed automatically.
+- **mode=crop**: re-runs the report, then crops every flagged file and
+  re-encodes the JPEG (pillow, q92). NON-DESTRUCTIVE: cropped versions
+  are written as NEW files in fateblade/<folder>-cropped/ and registered
+  in fateblade/manifest.json as NEW entries - the originals and their
+  manifest entries are never touched, so a bad crop can never destroy
+  paid-for art (delete the -cropped folder and re-run to start over).
+  Results are committed automatically; the run artifact carries the
+  cropped versions too. Promoting a cropped version over its original
+  (flipping the card's img reference) is a separate, deliberate,
+  eyes-on step.
 - **Fail-soft**: unparseable files are logged and skipped, never
   killing the run. Crop mode refuses to run without pillow.
 - After a crop pass lands, the game re-ships game.html with the art
