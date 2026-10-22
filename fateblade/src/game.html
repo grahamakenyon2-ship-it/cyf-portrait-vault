@@ -373,6 +373,22 @@
     box-shadow:0 0 4px #3b6dc98c;}
   .crystal.empty{background:#141a26; border-color:#2a3a52; box-shadow:none;}
 
+  /* ---- v0.26.2: END TURN affordances + aim arrow ---- */
+  /* green-lit when the player has no good action left (nothing playable, no ready attackers, no Skirmish) */
+  #endbtn.ready{border-color:#3fae5a; color:#b9f0c4; text-shadow:0 0 8px #3fae5a99;}
+  @keyframes etGlow{0%,100%{box-shadow:0 0 8px #3fae5a55;}50%{box-shadow:0 0 22px #3fae5acc;}}
+  #endbtn.ready:not(:disabled){animation:etGlow 1.6s ease-in-out infinite;}
+  /* soft breathing glow while the enemy takes their turn — the eye lands on it when play returns */
+  @keyframes etWait{0%,100%{box-shadow:0 0 6px #c9a24b44;}50%{box-shadow:0 0 16px #c9a24b99;}}
+  #endbtn.oppwait{animation:etWait 2.2s ease-in-out infinite;}
+  /* lethal hint (OPT-IN, settings): ember pulse — your ready board + Skirmish can finish the Sovereign NOW */
+  @keyframes emberPulse{
+    0%,100%{border-color:#c25b2a; box-shadow:0 0 10px #e2662b77, inset 0 0 10px #e2662b33; color:#ffd9a8;}
+    50%{border-color:#ff9a55; box-shadow:0 0 26px #ff7a2ecc, inset 0 0 16px #ff7a2b55; color:#ffe9c9;}}
+  #endbtn.lethal{animation:emberPulse 1.1s ease-in-out infinite;}
+  /* live targeting arrow — drawn from the attacker/aimed card to the cursor while choosing a target */
+  #aimArrow{position:fixed; inset:0; width:100%; height:100%; pointer-events:none; z-index:60; display:none;}
+
   /* ---- floating damage numbers ---- */
   #fx{position:fixed; inset:0; pointer-events:none; z-index:65;}
   .dfloat{position:absolute; font-family:'Cinzel', Georgia, serif; font-weight:900; font-size:26px;
@@ -627,7 +643,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.26.1';
+const GAME_VERSION = '0.26.2';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
@@ -663,7 +679,7 @@ const guildCount = (sel) => [...sel].filter(isGuildCard).length;
 
 /* ---------- settings (localStorage) ---------- */
 const SKEY = 'fateblade-settings-v1';
-let settings = Object.assign({ theme: 'auto', watchSpeed: 1, aiLevel: 'normal', enemyPace: 850, sfxVol: 0.7, musicVol: 0.35, scaleMode: 'auto', uiScale: 100, uiDebug: false, musicSel: 'auto' }, JSON.parse(localStorage.getItem(SKEY) || '{}')); // v0.22.7: display settings — auto-fit (default) or manual scale + debug readout; v0.22.12: musicSel — the player's music picker choice (auto = follow the realm)
+let settings = Object.assign({ theme: 'auto', watchSpeed: 1, aiLevel: 'normal', enemyPace: 850, sfxVol: 0.7, musicVol: 0.35, scaleMode: 'auto', uiScale: 100, uiDebug: false, musicSel: 'auto', lethalHint: false }, JSON.parse(localStorage.getItem(SKEY) || '{}')); // v0.22.7: display settings — auto-fit (default) or manual scale + debug readout; v0.22.12: musicSel — the player's music picker choice (auto = follow the realm); v0.26.2: lethalHint — END TURN ember pulse when the field says finish it, OFF by default (player opt-in)
 function saveSettings(){ localStorage.setItem(SKEY, JSON.stringify(settings)); }
 const WORLDTHEMES = ['ironhall','inkwash','starmaps','dunes','tamriel','teyvat','roshar','antiquity','regency','modern'];
 function applyTheme(factionId){
@@ -1669,6 +1685,70 @@ function showDprevHero(){
   dprevAt(heroEl, after <= 0 ? '−' + dmg + ' · ☠ LETHAL' : '−' + dmg + ' → ' + after, after <= 0 ? 'lethal' : '');
 }
 
+/* ---------- v0.26.2: END TURN affordances ---------- */
+// green-lit state: the player genuinely has nothing left to DO (not "nothing good" — a ready
+// attacker or a playable card both count as an action, even if the trade is bad)
+function endTurnReady(){
+  if(!S || S.active!=='A' || watch.on) return false;
+  if(E.canPower(S,'A')) return false;
+  for(const m of S.A.board) if(m.ready && (m.atk||0) > 0) return false;
+  for(let i=0;i<S.A.hand.length;i++) if(E.canPlay(S,'A',i)) return false;
+  return true;
+}
+// opt-in lethal ember: everything that can hit the enemy Sovereign THIS TURN, ignoring their
+// board except Guards (a Guard wall makes face math unreliable — stay silent rather than guess)
+function playerLethal(){
+  if(!S || S.active!=='A' || watch.on) return false;
+  if(S.B.board.some(m=>hasKw(m,'Guard'))) return false;
+  const ember = S.B.sov && S.B.sov.passive && S.B.sov.passive.id === 'EMBERWARD';
+  const shave = ember ? ((S.first==='B' && S.turn<=5) ? 2 : 1) : 0;
+  let dmg = 0;
+  for(const m of S.A.board) if(m.ready && (m.atk||0) > 0 && !m.shocked) dmg += Math.max(1, (m.atk||0) - shave);
+  if(E.canPower(S,'A')) dmg += E.powerDmg(S,'A');
+  return dmg >= S.B.hp;
+}
+
+/* ---------- v0.26.2: live targeting arrow ---------- */
+const AIM = (function(){
+  const NS = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(NS, 'svg'); svg.id = 'aimArrow';
+  const shaft = document.createElementNS(NS, 'path');
+  shaft.setAttribute('fill', 'none'); shaft.setAttribute('stroke', '#ffd76e');
+  shaft.setAttribute('stroke-width', '5'); shaft.setAttribute('stroke-linecap', 'round');
+  shaft.setAttribute('opacity', '.85'); shaft.setAttribute('style', 'filter:drop-shadow(0 1px 4px #000c)');
+  const head = document.createElementNS(NS, 'path');
+  head.setAttribute('fill', '#ffd76e'); head.setAttribute('opacity', '.95');
+  svg.appendChild(shaft); svg.appendChild(head); document.body.appendChild(svg);
+  return { svg, shaft, head };
+})();
+function aimSrc(){
+  if(!S || watch.on || S.active!=='A') return null;
+  if(castTargeting) return document.querySelector('#hand .hcard[data-i="' + castTargeting.i + '"]');
+  if(powTargeting) return document.getElementById('powerbtn');
+  if(sel) return document.querySelector('#myBoard .minion[data-uid="' + sel + '"]');
+  return null;
+}
+document.addEventListener('mousemove', (ev)=>{
+  const src = aimSrc();
+  if(!src){ AIM.svg.style.display = 'none'; return; }
+  const r = src.getBoundingClientRect();
+  const x1 = r.left + r.width/2, y1 = r.top + r.height/2;
+  const x2 = ev.clientX, y2 = ev.clientY;
+  const len = Math.hypot(x2-x1, y2-y1);
+  if(len < 40){ AIM.svg.style.display = 'none'; return; }
+  const px = -(y2-y1)/len, py = (x2-x1)/len; // perpendicular unit — gentle sideways bow
+  const bow = Math.min(60, len*0.16);
+  const cx = (x1+x2)/2 + px*bow, cy = (y1+y2)/2 + py*bow;
+  AIM.shaft.setAttribute('d', 'M ' + x1 + ' ' + y1 + ' Q ' + cx + ' ' + cy + ' ' + x2 + ' ' + y2);
+  const ang = Math.atan2(y2-cy, x2-cx);
+  const hx = x2 - Math.cos(ang)*8, hy = y2 - Math.sin(ang)*8; // butt of the head, a little back up the curve
+  const tipx = x2 + Math.cos(ang)*20, tipy = y2 + Math.sin(ang)*20;
+  const lx = hx + Math.cos(ang+Math.PI/2)*11, ly = hy + Math.sin(ang+Math.PI/2)*11;
+  const rx = hx + Math.cos(ang-Math.PI/2)*11, ry = hy + Math.sin(ang-Math.PI/2)*11;
+  AIM.head.setAttribute('d', 'M ' + tipx + ' ' + tipy + ' L ' + lx + ' ' + ly + ' L ' + rx + ' ' + ry + ' Z');
+  AIM.svg.style.display = 'block';
+});
+
 /* ---------- rendering ---------- */
 function render(){
   if(!S) return;
@@ -1688,7 +1768,16 @@ function render(){
   // v0.10: HS/MTGA-style enemy hand — a card back for every card they hold
   const fh = document.getElementById('foeHand');
   if(fh) fh.innerHTML = '<div class="fcard"></div>'.repeat(ai.hand.length) + `<span class="fcnt">✋ ${ai.hand.length}</span>`;
-  document.getElementById('endbtn').disabled = S.active!=='A';
+  const eb = document.getElementById('endbtn');
+  eb.disabled = S.active!=='A';
+  // v0.26.2: END TURN affordances — waiting glow on the enemy's turn; green-lit when nothing
+  // good remains; opt-in ember when the field says the Sovereign can be finished this turn.
+  eb.classList.toggle('oppwait', S.active!=='A' && !watch.on);
+  eb.classList.remove('ready', 'lethal');
+  if(S.active==='A' && !watch.on){
+    if(!sel && !powTargeting && !castTargeting && endTurnReady()) eb.classList.add('ready');
+    if(settings.lethalHint && playerLethal()) eb.classList.add('lethal');
+  }
   document.getElementById('powerbtn').disabled = !E.canPower(S,'A');
   document.getElementById('powerbtn').textContent = `SKIRMISH (${E.powerCost(S,'A')}) — deal ${E.powerDmg(S,'A')}`;
 
@@ -1777,6 +1866,7 @@ function render(){
   });
   refit(); // v0.9.1: keep the fit-to-window scale correct as the board/hand change
   fxDiff(S); // v0.9.7: lunges, death ghosts + sounds, after the DOM is rebuilt
+  if(!aimSrc()) AIM.svg.style.display = 'none'; // v0.26.2: targeting cleared without a mousemove — drop the aim arrow
 }
 
 function handClick(i, el){
@@ -2063,6 +2153,8 @@ function showSettings(){
   if(usEl) usEl.value = String(settings.uiScale === undefined ? 100 : settings.uiScale);
   const udEl = document.getElementById('setUiDebug');
   if(udEl) udEl.value = settings.uiDebug ? 'on' : 'off';
+  const lhEl = document.getElementById('setLethalHint'); // v0.26.2: lethal hint — restore the opt-in
+  if(lhEl) lhEl.value = settings.lethalHint ? 'on' : 'off';
   const mselEl = document.getElementById('setMusicSel'); // v0.22.12: music picker — restore the choice
   if(mselEl) mselEl.value = settings.musicSel || 'auto';
   updateVolLabels();
@@ -2077,6 +2169,7 @@ function setPace(v){ settings.enemyPace = Number(v); saveSettings(); }
 function setScaleMode(v){ settings.scaleMode = v; saveSettings(); refit(); }
 function setUiScale(v){ settings.uiScale = Number(v); saveSettings(); if(settings.scaleMode === 'manual') refit(); updateVolLabels(); }
 function setUiDebug(v){ settings.uiDebug = v === 'on'; saveSettings(); uiDebugReport(0, null, null); }
+function setLethalHint(v){ settings.lethalHint = v === 'on'; saveSettings(); if(S) render(); } // v0.26.2: opt-in END TURN ember — re-render applies/unapplies it live
 function setSfxVol(v){ settings.sfxVol = Number(v)/100; saveSettings(); SND.init(); SND.setVol(); updateVolLabels(); }
 // v0.12.2: sliders send 0-100 — full continuous control, not 4 fixed steps
 function setMusicVol(v){ settings.musicVol = Number(v)/100; saveSettings(); if(Number(v) === 0 && MUSIC.el){ MUSIC.el.pause(); } else { MUSIC.setVol(); MUSIC.retry(); } updateVolLabels(); }
@@ -2276,6 +2369,11 @@ function watchEnd(){
     <label>Fit debug readout <span style="text-transform:none;color:#c9b78e">(turn on and include it in bug screenshots — it shows exactly what the fit math sees)</span></label>
     <select id="setUiDebug" onchange="setUiDebug(this.value)">
       <option value="off">Off</option>
+      <option value="on">On</option>
+    </select>
+    <label>Lethal hint <span style="text-transform:none;color:#c9b78e">(an ember pulse on END TURN when your ready attackers + Skirmish can finish the enemy Sovereign this turn — off by default)</span></label>
+    <select id="setLethalHint" onchange="setLethalHint(this.value)">
+      <option value="off">Off (default)</option>
       <option value="on">On</option>
     </select>
     <div style="margin:8px 0"><button onclick="toggleFS()">⛶ Toggle fullscreen</button></div>
