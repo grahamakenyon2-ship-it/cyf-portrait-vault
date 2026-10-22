@@ -6,7 +6,8 @@
   "side_flag": 0.1,
   "max_side": 0.35,
   "cell_std_dead": 6.0,
-  "pad": 0.03
+  "pad": 0.03,
+  "passes": 2
  },
  "backend": "pillow",
  "scanned": 1082,
@@ -297,7 +298,8 @@
    "new_size": [
     744,
     896
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "aeraion-ecthdil-the-skybreaker.jpg",
@@ -374,7 +376,8 @@
    "new_size": [
     992,
     896
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "al-mutasim.jpg",
@@ -581,7 +584,8 @@
    "new_size": [
     800,
     896
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "alris-malford.jpg",
@@ -697,7 +701,8 @@
    "new_size": [
     762,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "arenmar-the-unbreached.jpg",
@@ -774,7 +779,8 @@
    "new_size": [
     880,
     758
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "ashfall-colossus.jpg",
@@ -812,7 +818,8 @@
    "new_size": [
     757,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "ashvenne-the-keen-eyed.jpg",
@@ -850,7 +857,8 @@
    "new_size": [
     725,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "aubemund-the-twilight-born.jpg",
@@ -875,7 +883,8 @@
    "new_size": [
     858,
     896
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "aulanix-the-duskwalker.jpg",
@@ -913,7 +922,8 @@
    "new_size": [
     880,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "aurelith-the-deep-eye.jpg",
@@ -938,7 +948,8 @@
    "new_size": [
     796,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "auroch-of-the-standing-stones.jpg",
@@ -1197,7 +1208,8 @@
    "new_size": [
     914,
     896
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "basion-the-longbow.jpg",
@@ -1259,9 +1271,10 @@
    "action": "cropped-new-version",
    "crop_file": "art/stockpile-cropped/belivar-the-unbowed.jpg",
    "new_size": [
-    955,
+    806,
     758
-   ]
+   ],
+   "passes_used": 2
   },
   {
    "file": "bellringer-of-the-drowned-parish.jpg",
@@ -1286,7 +1299,8 @@
    "new_size": [
     922,
     758
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "belwyn-the-twice-crowned.jpg",
@@ -1363,7 +1377,8 @@
    "new_size": [
     774,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "borgrim-ironhymn.jpg",
@@ -1388,7 +1403,8 @@
    "new_size": [
     824,
     758
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "brackhorn-the-old-stag.jpg",
@@ -1463,9 +1479,10 @@
    "action": "cropped-new-version",
    "crop_file": "art/stockpile-cropped/bramdan-the-silent.jpg",
    "new_size": [
-    939,
-    768
-   ]
+    887,
+    741
+   ],
+   "passes_used": 2
   },
   {
    "file": "bramgan-the-wall-of-spears.jpg",
@@ -1737,7 +1754,8 @@
    "new_size": [
     796,
     741
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "buggore-the-ash-cloaked.jpg",
@@ -1762,7 +1780,8 @@
    "new_size": [
     880,
     758
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "bugrot-the-thorned.jpg",
@@ -1930,7 +1949,8 @@
    "new_size": [
     774,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "cargath-the-dusk-marked.jpg",
@@ -1968,7 +1988,8 @@
    "new_size": [
     746,
     741
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "carmoth-the-silent.jpg",
@@ -1991,9 +2012,10 @@
    "action": "cropped-new-version",
    "crop_file": "art/stockpile-cropped/carmoth-the-silent.jpg",
    "new_size": [
-    712,
-    757
-   ]
+    695,
+    747
+   ],
+   "passes_used": 2
   },
   {
    "file": "casambert-the-shield-sworn.jpg",
@@ -2044,7 +2066,8 @@
    "new_size": [
     876,
     896
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "casanmund-the-steadfast.jpg",
@@ -2264,7 +2287,8 @@
    "new_size": [
     762,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "constanvus-the-first-over.jpg",
@@ -2367,7 +2391,8 @@
    "new_size": [
     889,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "cordell-the-unbowed.jpg",
@@ -2392,7 +2417,8 @@
    "new_size": [
     982,
     758
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "cordin-the-tireless.jpg",
@@ -2430,7 +2456,8 @@
    "new_size": [
     914,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "coriander-thistledown-the-wayward-halfling.jpg",
@@ -2455,7 +2482,8 @@
    "new_size": [
     762,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "corwick-the-hollow-crowned.jpg",
@@ -2526,7 +2554,8 @@
    "new_size": [
     880,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "deathknight-maldrec.jpg",
@@ -2694,7 +2723,8 @@
    "new_size": [
     992,
     896
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "doradrel.jpg",
@@ -2823,7 +2853,8 @@
    "new_size": [
     780,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "dralas.jpg",
@@ -2913,7 +2944,8 @@
    "new_size": [
     746,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "dredun-the-wall-of-spears.jpg",
@@ -2951,7 +2983,8 @@
    "new_size": [
     694,
     741
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "dreissa-the-cold-blooded.jpg",
@@ -3002,7 +3035,8 @@
    "new_size": [
     830,
     741
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "drill-abbot-kessik.jpg",
@@ -3027,7 +3061,8 @@
    "new_size": [
     712,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "droaara-of-the-grey-fletching.jpg",
@@ -3104,7 +3139,8 @@
    "new_size": [
     856,
     758
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "duanghai-the-unbowed.jpg",
@@ -3155,7 +3191,8 @@
    "new_size": [
     838,
     896
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "duannan-of-the-salt-wind.jpg",
@@ -3232,7 +3269,8 @@
    "new_size": [
     864,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "durgan-deepdelve.jpg",
@@ -3283,7 +3321,8 @@
    "new_size": [
     848,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "durwick-the-patient.jpg",
@@ -3308,7 +3347,8 @@
    "new_size": [
     741,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "edier-the-skybreaker.jpg",
@@ -3580,7 +3620,8 @@
    "new_size": [
     712,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "emissary-4-am-of-the-communal-song.jpg",
@@ -3603,9 +3644,10 @@
    "action": "cropped-new-version",
    "crop_file": "art/stockpile-cropped/emissary-4-am-of-the-communal-song.jpg",
    "new_size": [
-    939,
-    768
-   ]
+    907,
+    741
+   ],
+   "passes_used": 2
   },
   {
    "file": "ezzek.jpg",
@@ -4020,7 +4062,8 @@
    "new_size": [
     678,
     758
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "fizzmar-the-grave-sworn.jpg",
@@ -4045,7 +4088,8 @@
    "new_size": [
     762,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "fizzrik-the-thunder-heeled.jpg",
@@ -4083,7 +4127,8 @@
    "new_size": [
     848,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "garen-the-stern.jpg",
@@ -4290,7 +4335,8 @@
    "new_size": [
     992,
     896
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "gilendor-the-grave-sworn.jpg",
@@ -4562,7 +4608,8 @@
    "new_size": [
     948,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "grakgrat-the-dusk-marked.jpg",
@@ -4587,7 +4634,8 @@
    "new_size": [
     939,
     741
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "graknak-the-dusk-marked.jpg",
@@ -4610,9 +4658,10 @@
    "action": "cropped-new-version",
    "crop_file": "art/stockpile-cropped/graknak-the-dusk-marked.jpg",
    "new_size": [
-    932,
-    768
-   ]
+    929,
+    725
+   ],
+   "passes_used": 2
   },
   {
    "file": "grakog-the-thorned.jpg",
@@ -4663,7 +4712,8 @@
    "new_size": [
     905,
     708
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "gralaek-the-deep-minded.jpg",
@@ -4764,9 +4814,10 @@
    "action": "cropped-new-version",
    "crop_file": "art/stockpile-cropped/grandfather-frost.jpg",
    "new_size": [
-    939,
+    785,
     741
-   ]
+   ],
+   "passes_used": 2
   },
   {
    "file": "grandmother-shroud.jpg",
@@ -4791,7 +4842,8 @@
    "new_size": [
     939,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "grantham-slatefist.jpg",
@@ -4842,7 +4894,8 @@
    "new_size": [
     824,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "grashkab-the-reckoner.jpg",
@@ -4867,7 +4920,8 @@
    "new_size": [
     864,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "grashnak-the-goblin-king-beneath.jpg",
@@ -4905,7 +4959,8 @@
    "new_size": [
     988,
     741
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "gravewater-tidewarden.jpg",
@@ -4930,7 +4985,8 @@
    "new_size": [
     830,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "grazash-the-swift-loosed.jpg",
@@ -4955,7 +5011,8 @@
    "new_size": [
     939,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "grazdak-the-dusk-marked.jpg",
@@ -4993,7 +5050,8 @@
    "new_size": [
     864,
     758
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "grazgore-the-wall-of-spears.jpg",
@@ -5018,7 +5076,8 @@
    "new_size": [
     906,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "grazgrat-the-unbowed.jpg",
@@ -5056,7 +5115,8 @@
    "new_size": [
     840,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "grazog-the-reckoner.jpg",
@@ -5107,7 +5167,8 @@
    "new_size": [
     864,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "grimbrew-the-swift-loosed.jpg",
@@ -5145,7 +5206,8 @@
    "new_size": [
     814,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "grimdan-the-thorned.jpg",
@@ -5183,7 +5245,8 @@
    "new_size": [
     898,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "grimdin-the-tireless.jpg",
@@ -5338,7 +5401,8 @@
    "new_size": [
     558,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "grumhild-longtooth.jpg",
@@ -5363,7 +5427,8 @@
    "new_size": [
     746,
     758
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "gryara-the-blood-tithed.jpg",
@@ -5414,7 +5479,8 @@
    "new_size": [
     780,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "grymoth-the-hollow-crowned.jpg",
@@ -5660,7 +5726,8 @@
    "new_size": [
     864,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "halbard-the-cold-blooded.jpg",
@@ -5698,7 +5765,8 @@
    "new_size": [
     848,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "haldelver-the-blood-tithed.jpg",
@@ -5723,7 +5791,8 @@
    "new_size": [
     948,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "haleando.jpg",
@@ -5774,7 +5843,8 @@
    "new_size": [
     914,
     758
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "halgold-the-tireless.jpg",
@@ -5942,7 +6012,8 @@
    "new_size": [
     1030,
     896
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "halrik-the-ash-cloaked.jpg",
@@ -5967,7 +6038,8 @@
    "new_size": [
     906,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "haluemonde-the-gate-warden.jpg",
@@ -5992,7 +6064,8 @@
    "new_size": [
     876,
     896
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "halume.jpg",
@@ -6017,7 +6090,8 @@
    "new_size": [
     724,
     884
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "halwick-the-reckoner.jpg",
@@ -6159,7 +6233,8 @@
    "new_size": [
     856,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "hewdin-the-dusk-marked.jpg",
@@ -6184,7 +6259,8 @@
    "new_size": [
     948,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "hewrik-the-reckoner.jpg",
@@ -6222,7 +6298,8 @@
    "new_size": [
     796,
     758
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "hollowpatch.jpg",
@@ -6258,9 +6335,10 @@
    "action": "cropped-new-version",
    "crop_file": "art/stockpile-cropped/inquisitor-xylanth-of-the-ninth-brood.jpg",
    "new_size": [
-    830,
+    606,
     768
-   ]
+   ],
+   "passes_used": 2
   },
   {
    "file": "io-the-basilisk-guard.jpg",
@@ -6285,7 +6363,8 @@
    "new_size": [
     762,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "ioanos-the-fastfall.jpg",
@@ -6401,7 +6480,8 @@
    "new_size": [
     876,
     896
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "isenoquen-the-star-read.jpg",
@@ -6426,7 +6506,8 @@
    "new_size": [
     1086,
     865
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "isenoseth-of-the-quiet-house.jpg",
@@ -6724,7 +6805,8 @@
    "new_size": [
     782,
     896
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "joranette.jpg",
@@ -6775,7 +6857,8 @@
    "new_size": [
     1148,
     870
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "joren.jpg",
@@ -6904,7 +6987,8 @@
    "new_size": [
     922,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "junano.jpg",
@@ -7163,7 +7247,8 @@
    "new_size": [
     955,
     758
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "king-ashenmane.jpg",
@@ -7435,7 +7520,8 @@
    "new_size": [
     932,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "kragadak-the-far-walked.jpg",
@@ -7486,7 +7572,8 @@
    "new_size": [
     966,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "kragodak-the-keen-eyed.jpg",
@@ -7524,7 +7611,8 @@
    "new_size": [
     948,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "kragtuk-the-swift-loosed.jpg",
@@ -7549,7 +7637,8 @@
    "new_size": [
     824,
     741
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "kragufist-the-oath-forged.jpg",
@@ -7600,7 +7689,8 @@
    "new_size": [
     932,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "lady-everlynn-the-pale.jpg",
@@ -7625,7 +7715,8 @@
    "new_size": [
     848,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "lantern-jawed-boggle.jpg",
@@ -7650,7 +7741,8 @@
    "new_size": [
     660,
     675
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "leshyi-rootfather.jpg",
@@ -7675,7 +7767,8 @@
    "new_size": [
     848,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "lich-queen-vashti.jpg",
@@ -7700,7 +7793,8 @@
    "new_size": [
     814,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "ligming.jpg",
@@ -7907,7 +8001,8 @@
    "new_size": [
     914,
     896
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "lucanrik-of-the-long-watch.jpg",
@@ -8257,7 +8352,8 @@
    "new_size": [
     914,
     896
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "maeomere.jpg",
@@ -8321,7 +8417,8 @@
    "new_size": [
     814,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "malesande.jpg",
@@ -8372,7 +8469,8 @@
    "new_size": [
     873,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "malirio.jpg",
@@ -8475,7 +8573,8 @@
    "new_size": [
     898,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "malvia.jpg",
@@ -8552,7 +8651,8 @@
    "new_size": [
     972,
     896
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "mars-the-hawk-eyed.jpg",
@@ -8590,7 +8690,8 @@
    "new_size": [
     823,
     758
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "mathilda-coalbraid.jpg",
@@ -8810,7 +8911,8 @@
    "new_size": [
     876,
     896
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "mekithor-the-blood-tithed.jpg",
@@ -8835,7 +8937,8 @@
    "new_size": [
     704,
     896
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "mekoaal-the-cold-throned.jpg",
@@ -8886,7 +8989,8 @@
    "new_size": [
     762,
     896
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "mercon-the-uncertain.jpg",
@@ -8924,7 +9028,8 @@
    "new_size": [
     728,
     758
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "mhahide-the-wall-of-spears.jpg",
@@ -8975,7 +9080,8 @@
    "new_size": [
     922,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "michiosios-the-twilight.jpg",
@@ -9013,7 +9119,8 @@
    "new_size": [
     896,
     896
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "miralien-the-last-voiced.jpg",
@@ -9116,7 +9223,8 @@
    "new_size": [
     889,
     741
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "moratusk-of-the-long-watch.jpg",
@@ -9154,7 +9262,8 @@
    "new_size": [
     906,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "morenis-the-nine-crowned.jpg",
@@ -9231,7 +9340,8 @@
    "new_size": [
     762,
     758
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "morris.jpg",
@@ -9280,9 +9390,10 @@
    "action": "cropped-new-version",
    "crop_file": "art/stockpile-cropped/morwick-the-steadfast.jpg",
    "new_size": [
-    914,
+    727,
     768
-   ]
+   ],
+   "passes_used": 2
   },
   {
    "file": "mossheart-the-treant-warden.jpg",
@@ -9307,7 +9418,8 @@
    "new_size": [
     922,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "mother-craggle.jpg",
@@ -9332,7 +9444,8 @@
    "new_size": [
     922,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "mother-greyhide.jpg",
@@ -9370,7 +9483,8 @@
    "new_size": [
     898,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "mug-the-moderate.jpg",
@@ -9408,7 +9522,8 @@
    "new_size": [
     728,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "nagadak-the-patient.jpg",
@@ -9446,7 +9561,8 @@
    "new_size": [
     780,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "naldelver-the-swift-loosed.jpg",
@@ -9471,7 +9587,8 @@
    "new_size": [
     790,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "naleshek-the-reckoner.jpg",
@@ -9522,7 +9639,8 @@
    "new_size": [
     780,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "naliaal-the-keen-eyed.jpg",
@@ -9560,7 +9678,8 @@
    "new_size": [
     856,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "naloraal-the-thousand-yard.jpg",
@@ -9611,7 +9730,8 @@
    "new_size": [
     814,
     725
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "nardak-the-deep-minded.jpg",
@@ -9649,7 +9769,8 @@
    "new_size": [
     932,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "neferu-the-twice-wrapped.jpg",
@@ -9674,7 +9795,8 @@
    "new_size": [
     830,
     758
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "neradeth-of-the-long-watch.jpg",
@@ -9816,7 +9938,8 @@
    "new_size": [
     922,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "niegshu-the-keen-eyed.jpg",
@@ -9880,7 +10003,8 @@
    "new_size": [
     780,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "nors.jpg",
@@ -9931,7 +10055,8 @@
    "new_size": [
     922,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "nymane-the-wall-of-spears.jpg",
@@ -10047,7 +10172,8 @@
    "new_size": [
     830,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "nyroke-the-grave-sworn.jpg",
@@ -10085,7 +10211,8 @@
    "new_size": [
     906,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "octantor-the-twilight-born.jpg",
@@ -10188,7 +10315,8 @@
    "new_size": [
     791,
     758
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "olgar-stonefat-the-troll-elder.jpg",
@@ -10213,7 +10341,8 @@
    "new_size": [
     939,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "ondirir-the-bold.jpg",
@@ -10446,7 +10575,8 @@
    "new_size": [
     758,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "ossivar-the-undying.jpg",
@@ -10497,7 +10627,8 @@
    "new_size": [
     780,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "othaaris-the-tireless.jpg",
@@ -10717,7 +10848,8 @@
    "new_size": [
     905,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "peruebelle.jpg",
@@ -10742,7 +10874,8 @@
    "new_size": [
     1056,
     896
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "peruesande.jpg",
@@ -10780,7 +10913,8 @@
    "new_size": [
     824,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "poxworth-the-unburied.jpg",
@@ -10974,7 +11108,8 @@
    "new_size": [
     694,
     758
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "pyris-the-breaker-line.jpg",
@@ -11181,7 +11316,8 @@
    "new_size": [
     1068,
     896
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "quenen.jpg",
@@ -11271,7 +11407,8 @@
    "new_size": [
     660,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "rhoamane-the-thunder-heeled.jpg",
@@ -11322,7 +11459,8 @@
    "new_size": [
     728,
     725
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "rhoasha-the-hollow-crowned.jpg",
@@ -11347,7 +11485,8 @@
    "new_size": [
     939,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "roamvaine-the-ward-blessed.jpg",
@@ -11409,9 +11548,10 @@
    "action": "cropped-new-version",
    "crop_file": "art/stockpile-cropped/robnine-the-hooded.jpg",
    "new_size": [
-    1144,
-    870
-   ]
+    1138,
+    858
+   ],
+   "passes_used": 2
   },
   {
    "file": "robton-the-dauntless.jpg",
@@ -11527,7 +11667,8 @@
    "new_size": [
     939,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "rokdak-the-grave-sworn.jpg",
@@ -11552,7 +11693,8 @@
    "new_size": [
     814,
     758
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "rokiskab-the-bright-bladed.jpg",
@@ -11590,7 +11732,8 @@
    "new_size": [
     939,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "roknak-the-wall-of-spears.jpg",
@@ -11615,7 +11758,8 @@
    "new_size": [
     966,
     758
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "rokog-the-patient.jpg",
@@ -11705,7 +11849,8 @@
    "new_size": [
     914,
     741
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "rolel-the-fierce.jpg",
@@ -11912,7 +12057,8 @@
    "new_size": [
     1030,
     896
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "rukoruk-the-bright-bladed.jpg",
@@ -11976,7 +12122,8 @@
    "new_size": [
     914,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "samer-the-valiant.jpg",
@@ -12064,9 +12211,10 @@
    "action": "cropped-new-version",
    "crop_file": "art/stockpile-cropped/sarrath-the-steadfast.jpg",
    "new_size": [
-    638,
+    604,
     725
-   ]
+   ],
+   "passes_used": 2
   },
   {
    "file": "sarrek-the-thorned.jpg",
@@ -12091,7 +12239,8 @@
    "new_size": [
     746,
     758
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "sartooth-the-silent.jpg",
@@ -12116,7 +12265,8 @@
    "new_size": [
     864,
     758
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "sarvenne-of-the-deep-roads.jpg",
@@ -12154,7 +12304,8 @@
    "new_size": [
     678,
     758
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "seramonde-the-unseen.jpg",
@@ -12205,7 +12356,8 @@
    "new_size": [
     782,
     896
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "serevaine-of-the-still-water.jpg",
@@ -12373,7 +12525,8 @@
    "new_size": [
     660,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "shaiauia.jpg",
@@ -12541,7 +12694,8 @@
    "new_size": [
     746,
     758
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "sister-lumenna.jpg",
@@ -12579,7 +12733,8 @@
    "new_size": [
     610,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "skarfist-the-deep-minded.jpg",
@@ -12604,7 +12759,8 @@
    "new_size": [
     906,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "skarfist-the-steadfast.jpg",
@@ -12642,7 +12798,8 @@
    "new_size": [
     864,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "skarneth-the-matriarch.jpg",
@@ -12745,7 +12902,8 @@
    "new_size": [
     1048,
     896
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "skragg-the-longshanks.jpg",
@@ -12770,7 +12928,8 @@
    "new_size": [
     807,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "skuzashgrat-the-thunder-heeled.jpg",
@@ -12847,7 +13006,8 @@
    "new_size": [
     791,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "skuznak-the-hollow-crowned.jpg",
@@ -12950,7 +13110,8 @@
    "new_size": [
     728,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "snaggletooth-fenn.jpg",
@@ -12975,7 +13136,8 @@
    "new_size": [
     694,
     758
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "snikazog-the-steady.jpg",
@@ -13091,7 +13253,8 @@
    "new_size": [
     971,
     758
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "snikograt-the-first-over.jpg",
@@ -13155,7 +13318,8 @@
    "new_size": [
     955,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "sorariel-the-steadfast.jpg",
@@ -13193,7 +13357,8 @@
    "new_size": [
     914,
     896
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "sorilris-the-quiet-sentence.jpg",
@@ -13244,7 +13409,8 @@
    "new_size": [
     712,
     741
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "ssarnak-lizardpriest.jpg",
@@ -13269,7 +13435,8 @@
    "new_size": [
     774,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "ssharessk-the-venom-oracle.jpg",
@@ -13294,7 +13461,8 @@
    "new_size": [
     880,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "steffardor-the-shieldbearer.jpg",
@@ -13371,7 +13539,8 @@
    "new_size": [
     780,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "sylur-the-hundred-victor.jpg",
@@ -13565,7 +13734,8 @@
    "new_size": [
     796,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "talclaw-the-wall-of-spears.jpg",
@@ -13590,7 +13760,8 @@
    "new_size": [
     830,
     741
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "taleek-of-the-long-watch.jpg",
@@ -13641,7 +13812,8 @@
    "new_size": [
     938,
     758
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "talhide-the-tireless.jpg",
@@ -13666,7 +13838,8 @@
    "new_size": [
     830,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "talior-the-keen-eyed.jpg",
@@ -14185,7 +14358,8 @@
    "new_size": [
     906,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "the-barghest-of-pyre-lane.jpg",
@@ -14210,7 +14384,8 @@
    "new_size": [
     840,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "the-cartographer-of-epsilon-nine.jpg",
@@ -14248,7 +14423,8 @@
    "new_size": [
     746,
     758
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "the-chimera-of-the-ashen-vale.jpg",
@@ -14286,7 +14462,8 @@
    "new_size": [
     914,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "the-cockatrix-of-the-moor.jpg",
@@ -14337,7 +14514,8 @@
    "new_size": [
     889,
     741
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "the-gilded-wyrm-prince.jpg",
@@ -14362,7 +14540,8 @@
    "new_size": [
     939,
     741
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "the-gravewarden.jpg",
@@ -14400,7 +14579,8 @@
    "new_size": [
     814,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "the-hollow-panoply.jpg",
@@ -14425,7 +14605,8 @@
    "new_size": [
     780,
     758
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "the-hollow-piper.jpg",
@@ -14450,7 +14631,8 @@
    "new_size": [
     762,
     741
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "the-hollow-shepherd.jpg",
@@ -14475,7 +14657,8 @@
    "new_size": [
     914,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "the-lantern-of-hollow-rest.jpg",
@@ -14498,9 +14681,10 @@
    "action": "cropped-new-version",
    "crop_file": "art/stockpile-cropped/the-lantern-of-hollow-rest.jpg",
    "new_size": [
-    948,
+    879,
     758
-   ]
+   ],
+   "passes_used": 2
   },
   {
    "file": "the-legion-s-standard-bearer.jpg",
@@ -14525,7 +14709,8 @@
    "new_size": [
     898,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "the-moth-countess.jpg",
@@ -14563,7 +14748,8 @@
    "new_size": [
     864,
     758
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "the-penitent-engine.jpg",
@@ -14614,7 +14800,8 @@
    "new_size": [
     780,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "the-selkie-bride-of-the-winter-tide.jpg",
@@ -14639,7 +14826,8 @@
    "new_size": [
     678,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "the-stitched-migration.jpg",
@@ -14664,7 +14852,8 @@
    "new_size": [
     898,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "the-weeping-colossus.jpg",
@@ -14700,9 +14889,10 @@
    "action": "cropped-new-version",
    "crop_file": "art/stockpile-cropped/the-will-o-wisp-choir.jpg",
    "new_size": [
-    712,
-    758
-   ]
+    708,
+    748
+   ],
+   "passes_used": 2
   },
   {
    "file": "thrabard-the-wall-of-spears.jpg",
@@ -14727,7 +14917,8 @@
    "new_size": [
     932,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "thrag-the-twice-broken.jpg",
@@ -14752,7 +14943,8 @@
    "new_size": [
     948,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "thragold-the-grave-sworn.jpg",
@@ -14777,7 +14969,8 @@
    "new_size": [
     988,
     741
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "thramar-the-wall-of-spears.jpg",
@@ -14932,7 +15125,8 @@
    "new_size": [
     939,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "tibor-the-ironheart.jpg",
@@ -14970,7 +15164,8 @@
    "new_size": [
     840,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "tinkbard-the-dusk-marked.jpg",
@@ -15008,7 +15203,8 @@
    "new_size": [
     880,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "tinkla-coppersprocket-the-grand-artificer.jpg",
@@ -15059,7 +15255,8 @@
    "new_size": [
     864,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "torbrew-the-thorned.jpg",
@@ -15084,7 +15281,8 @@
    "new_size": [
     898,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "tordell-the-nine-crowned.jpg",
@@ -15122,7 +15320,8 @@
    "new_size": [
     914,
     758
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "torgold-the-wall-of-spears.jpg",
@@ -15145,9 +15344,10 @@
    "action": "cropped-new-version",
    "crop_file": "art/stockpile-cropped/torgold-the-wall-of-spears.jpg",
    "new_size": [
-    796,
+    632,
     768
-   ]
+   ],
+   "passes_used": 2
   },
   {
    "file": "torolara-the-relentless.jpg",
@@ -15198,7 +15398,8 @@
    "new_size": [
     762,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "tyrach-the-relentless.jpg",
@@ -15249,7 +15450,8 @@
    "new_size": [
     914,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "ugmaw-the-tireless.jpg",
@@ -15313,7 +15515,8 @@
    "new_size": [
     914,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "ugusk-the-unbowed.jpg",
@@ -15338,7 +15541,8 @@
    "new_size": [
     898,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "umbael-the-blooded.jpg",
@@ -15376,7 +15580,8 @@
    "new_size": [
     889,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "unit-vesper-9.jpg",
@@ -15401,7 +15606,8 @@
    "new_size": [
     780,
     758
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "ureis-the-twice-sworn.jpg",
@@ -15504,7 +15710,8 @@
    "new_size": [
     728,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "uziskab.jpg",
@@ -15555,7 +15762,8 @@
    "new_size": [
     746,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "vaelith-the-thorned.jpg",
@@ -15645,7 +15853,8 @@
    "new_size": [
     880,
     758
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "vessel-of-the-quiet-engine.jpg",
@@ -15670,7 +15879,8 @@
    "new_size": [
     898,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "vesshold-the-nine-crowned.jpg",
@@ -15721,7 +15931,8 @@
    "new_size": [
     830,
     758
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "vessvenne-the-steadfast.jpg",
@@ -15746,7 +15957,8 @@
    "new_size": [
     880,
     758
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "vesswyn-the-grave-sworn.jpg",
@@ -15875,7 +16087,8 @@
    "new_size": [
     791,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "vitoian-the-unseen.jpg",
@@ -15978,7 +16191,8 @@
    "new_size": [
     934,
     896
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "vororn-the-swift.jpg",
@@ -16068,7 +16282,8 @@
    "new_size": [
     1068,
     896
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "vrexeek-the-zealot-kissed.jpg",
@@ -16145,7 +16360,8 @@
    "new_size": [
     914,
     741
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "vrumane-the-silent.jpg",
@@ -16196,7 +16412,8 @@
    "new_size": [
     938,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "vylasse-the-wall-of-spears.jpg",
@@ -16221,7 +16438,8 @@
    "new_size": [
     848,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "vylgrim-the-cold-blooded.jpg",
@@ -16246,7 +16464,8 @@
    "new_size": [
     678,
     758
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "vylhold-the-cold-blooded.jpg",
@@ -16271,7 +16490,8 @@
    "new_size": [
     762,
     728
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "vylissa-the-ash-cloaked.jpg",
@@ -16296,7 +16516,8 @@
    "new_size": [
     592,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "vylmoth-the-unbowed.jpg",
@@ -16321,7 +16542,8 @@
    "new_size": [
     728,
     758
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "vyrraxa-the-ashen-wyrm.jpg",
@@ -16346,7 +16568,8 @@
    "new_size": [
     824,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "warlord-skarnag-the-everburning.jpg",
@@ -16371,7 +16594,8 @@
    "new_size": [
     889,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "wazzik-sparkbit.jpg",
@@ -16396,7 +16620,8 @@
    "new_size": [
     948,
     758
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "weaver-ashlume.jpg",
@@ -16445,9 +16670,10 @@
    "action": "cropped-new-version",
    "crop_file": "art/stockpile-cropped/whisper-of-the-outer-dark.jpg",
    "new_size": [
-    746,
-    768
-   ]
+    544,
+    758
+   ],
+   "passes_used": 2
   },
   {
    "file": "wiliwod.jpg",
@@ -16615,7 +16841,8 @@
    "new_size": [
     694,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "ydra-of-the-nine-heads.jpg",
@@ -16666,7 +16893,8 @@
    "new_size": [
     932,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "zekeax-the-swift-loosed.jpg",
@@ -16795,7 +17023,8 @@
    "new_size": [
     880,
     741
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "zogtuk-the-grave-sworn.jpg",
@@ -16820,7 +17049,8 @@
    "new_size": [
     966,
     768
-   ]
+   ],
+   "passes_used": 1
   },
   {
    "file": "zogusk-the-ash-cloaked.jpg",
