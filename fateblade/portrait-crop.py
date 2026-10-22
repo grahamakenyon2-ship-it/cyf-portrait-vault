@@ -27,13 +27,22 @@
 # capped at MAX_SIDE so a false-positive strip can never gut a portrait,
 # and outputs smaller than 512px on the short side are skipped.
 #
+# MULTI-PASS: one pass can leave residual dead space when the measured band
+# is deeper than the per-side cap allows in one trim. Crop mode therefore
+# re-measures its OWN crop and trims again in the same run, up to PASSES
+# iterations (default 2, capped at 3), always starting from the untouched
+# original; only the final version is written to fateblade/<folder>-cropped/.
+# Each pass keeps the same per-side cap and 512px floor, so iteration can
+# still never gut a portrait.
+#
 # Fail-soft: a file that cannot be parsed (e.g. progressive JPEG without
 # pillow) is logged and skipped, never killing the run.
 #
 # Usage:
-#   python3 fateblade/portrait-crop.py report [folder] [min_dead] [max_side]
-#   python3 fateblade/portrait-crop.py crop   [folder] [min_dead] [max_side]
+#   python3 fateblade/portrait-crop.py report [folder] [min_dead] [max_side] [passes]
+#   python3 fateblade/portrait-crop.py crop   [folder] [min_dead] [max_side] [passes]
 # folder is relative to the vault's fateblade/ dir, default art/stockpile.
+# passes (crop mode only, default 2) = max trim iterations per portrait.
 # Local dev without pillow: report mode still works via the embedded
 # pure-stdlib baseline JPEG decoder (crop mode needs pillow).
 
@@ -50,6 +59,7 @@ SIDE_FLAG = 0.10         # any single dead side >= this flags a crop
 PAD = 0.03               # safety pad kept around the subject (fraction)
 MIN_SHORT = 512          # never produce an output smaller than this
 JPEG_QUALITY = 92
+PASSES = max(1, min(3, int(sys.argv[5]))) if len(sys.argv) > 5 and sys.argv[5].isdigit() else 2
 
 assert MODE in ('report', 'crop'), 'mode must be report or crop'
 
@@ -205,12 +215,12 @@ def grid_of(path):
     """64x48 grid of (mean, std) luma cells — identical math for both backends."""
     if HAVE_PIL:
         im = Image.open(path).convert('L')
-        W, H = im.size
-        px = list(im.getdata())
-        get = lambda x, y: px[y*W + x]
-    else:
-        W, H, P = _luma(path)
-        get = lambda x, y: max(0.0, min(255.0, P[y][x]))
+        return grid_from(im.size[0], im.size[1], px=list(im.getdata()))
+    W, H, P = _luma(path)
+    return grid_from(W, H, P=P)
+
+def grid_from(W, H, px=None, P=None):
+    get = (lambda x, y: px[y*W + x]) if px is not None else (lambda x, y: max(0.0, min(255.0, P[y][x])))
     cw, ch = W / GC, H / GR
     cells = []
     step = max(1, int(min(cw, ch) / 4))  # ~4x4 samples per cell keeps it fast
@@ -255,7 +265,8 @@ def crop_window(W, H, d):
 target_dir = os.path.join(ROOT, FOLDER)
 files = sorted(f for f in os.listdir(target_dir) if f.lower().endswith(('.jpg', '.jpeg')))
 print(f'portrait-crop [{MODE}]: {len(files)} files in fateblade/{FOLDER} '
-      f'(min_dead={MIN_DEAD}, max_side={MAX_SIDE}, backend={"pillow" if HAVE_PIL else "stdlib"})')
+      f'(min_dead={MIN_DEAD}, max_side={MAX_SIDE}, passes={PASSES if MODE == "crop" else "-"}, '
+      f'backend={"pillow" if HAVE_PIL else "stdlib"})')
 if MODE == 'crop' and not HAVE_PIL:
     print('CROP ABORTED: crop mode requires pillow (pip install pillow)')
     sys.exit(3)
@@ -280,11 +291,27 @@ for i, f in enumerate(files):
                     out_dir = target_dir + '-cropped'
                     os.makedirs(out_dir, exist_ok=True)
                     out_path = os.path.join(out_dir, f)
+                    # MULTI-PASS: trim, re-measure our own crop, trim again
                     im = Image.open(path).convert('RGB').crop((x0, y0, x1, y1))
+                    used = 1
+                    for _pass in range(PASSES - 1):
+                        cw2, ch2 = im.size
+                        L = im.convert('L')
+                        _, _, cells2 = grid_from(cw2, ch2, px=list(L.getdata()))
+                        d2 = dead_sides(cells2)
+                        t2 = d2['top'] + d2['bot'] + d2['left'] + d2['right']
+                        if t2 < MIN_DEAD and max(d2.values()) < SIDE_FLAG:
+                            break
+                        a0, b0, a1, b1 = crop_window(cw2, ch2, d2)
+                        if min(a1-a0, b1-b0) < MIN_SHORT:
+                            break
+                        im = im.crop((a0, b0, a1, b1))
+                        used += 1
                     im.save(out_path, 'JPEG', quality=JPEG_QUALITY)
                     entry['action'] = 'cropped-new-version'
                     entry['crop_file'] = FOLDER + '-cropped/' + f
-                    entry['new_size'] = [x1-x0, y1-y0]
+                    entry['new_size'] = list(im.size)
+                    entry['passes_used'] = used
                     cropped += 1
         report.append(entry)
     except Exception as e:
@@ -298,7 +325,7 @@ for e in sorted(flagged, key=lambda x: -x['dead_total'])[:20]:
     print('  %-45s dead_total=%.2f  %s' % (e['file'], e['dead_total'], e.get('action', 'flag')))
 
 out = {'mode': MODE, 'folder': FOLDER, 'thresholds': {'min_dead': MIN_DEAD, 'side_flag': SIDE_FLAG,
-       'max_side': MAX_SIDE, 'cell_std_dead': CELL_STD_DEAD, 'pad': PAD},
+       'max_side': MAX_SIDE, 'cell_std_dead': CELL_STD_DEAD, 'pad': PAD, 'passes': PASSES},
        'backend': 'pillow' if HAVE_PIL else 'stdlib',
        'scanned': len(report), 'flagged': len(flagged), 'cropped': cropped, 'errors': errors,
        'files': report}

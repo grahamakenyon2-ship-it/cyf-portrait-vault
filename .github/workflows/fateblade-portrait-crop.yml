@@ -22,6 +22,10 @@ on:
         description: 'Never trim more than this fraction off any one side (default 0.35)'
         required: false
         default: '0.35'
+      passes:
+        description: 'Max trim iterations per portrait — re-measures its own crop and trims again (default 2, max 3)'
+        required: false
+        default: '2'
 permissions:
   contents: write
 concurrency:
@@ -46,7 +50,8 @@ jobs:
             "${{ github.event.inputs.mode }}" \
             "${{ github.event.inputs.folder || 'art/stockpile' }}" \
             "${{ github.event.inputs.min_dead || '0.12' }}" \
-            "${{ github.event.inputs.max_side || '0.35' }}"
+            "${{ github.event.inputs.max_side || '0.35' }}" \
+            "${{ github.event.inputs.passes || '2' }}"
           rc=$?
           echo "rc=$rc" >> "$GITHUB_OUTPUT"
           echo "portrait-crop exit code: $rc"

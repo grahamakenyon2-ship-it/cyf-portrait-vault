@@ -93,7 +93,12 @@ per-side cap 0.35, outputs below 512px on the short side are skipped).
   prints the worst 20 offenders in the log. Nothing is modified.
   Eyeball the report before cropping.
 - **mode=crop**: re-runs the report, then crops every flagged file and
-  re-encodes the JPEG (pillow, q92). NON-DESTRUCTIVE: cropped versions
+  re-encodes the JPEG (pillow, q92). MULTI-PASS (passes input, default 2,
+  max 3): after each trim the tool re-measures its own crop and trims
+  again in the same run, so portraits whose dead band was deeper than
+  one capped trim can still come out tight — always from the untouched
+  original, only the final version is written.
+  NON-DESTRUCTIVE: cropped versions
   are written as NEW files in fateblade/<folder>-cropped/ and registered
   in fateblade/manifest.json as NEW entries - the originals and their
   manifest entries are never touched, so a bad crop can never destroy
