@@ -4857,6 +4857,1854 @@
       "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/ruarwen-the-thorned.jpg",
       "license": "AI-generated",
       "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/ithaliel-of-the-long-watch.jpg",
+      "sha256": "c39ced33e70a7e5050f81732614884ff6366aa4f202349de7fb19da4b998691d",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/ithaliel-of-the-long-watch.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/arenmar-the-unbreached.jpg",
+      "sha256": "32b8e3b5e71a4467e60347ae84a154fb3bb4dead4563e616c9fd7fa2fd9c78bd",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/arenmar-the-unbreached.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/nerardor-the-last-voiced.jpg",
+      "sha256": "5566d8b1457a618aef90411d22af74782c250a85932c3ccc51675ab7c679c327",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/nerardor-the-last-voiced.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/itharmar-the-life-drunk.jpg",
+      "sha256": "c4f73189654412f18f11ed8dda46c463de35efb8501b0e24bb6641bebddd51f4",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/itharmar-the-life-drunk.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/ithalion-the-life-drunk.jpg",
+      "sha256": "7d9b14a293f0030a7cc1131960375c46c300813ae9f4dcfcf78f9716ab48331b",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/ithalion-the-life-drunk.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/ithadeth-of-the-quiet-house.jpg",
+      "sha256": "3f642bad14e6499dd0800fef4e32920c50611b360bac54c5542172c13317ed28",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/ithadeth-of-the-quiet-house.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/ararmar-the-blood-tithed.jpg",
+      "sha256": "0fcc179f0d21a8840c755410ba59ce1c751888fc2925d7998eb57a438edb99f6",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/ararmar-the-blood-tithed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/rualmar-the-red-handed.jpg",
+      "sha256": "a13b94b9e018f2b326499784a725215cbb94eae0c43fedaa5c11a39be5c8ec36",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/rualmar-the-red-handed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/elevmar-of-the-long-watch.jpg",
+      "sha256": "d223b4de5be52ce791383a341db6e52d054bc97c5e6cd4c4228d588180cc2d61",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/elevmar-of-the-long-watch.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/soreniel-the-steadfast.jpg",
+      "sha256": "5d956ce7f3cd5a74ac68b293c0d0c83e03c24eca9c1c902ea74479d1d54d361a",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/soreniel-the-steadfast.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/aeorion-the-bold.jpg",
+      "sha256": "21131f1365b97e7bab24e4ae4f7c9f00aa65548a11c674994b4288eebb5c506d",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/aeorion-the-bold.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/halithmar-the-life-drunk.jpg",
+      "sha256": "9826afcb4a437e6612467ee8b51634a327f176c183a6e6674d745f95fa03e2a2",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/halithmar-the-life-drunk.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/thalendor-the-steadfast.jpg",
+      "sha256": "fdb62d05bd94a43cbec0dec244c18bbd85ffa4c83b62733f4ac0ad085630f25e",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/thalendor-the-steadfast.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/faearien-the-patient.jpg",
+      "sha256": "cc58a1a5a135557da2bcd1cbac98e96aae873d99f184a120f1db7272f9ef2d4a",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/faearien-the-patient.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/eleneth-the-unforgotten.jpg",
+      "sha256": "1b8765996cf9addb8c392a24698688da8b0186aea8983ee2f6b3f3ca71c815f4",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/eleneth-the-unforgotten.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/aealwen-the-unseen.jpg",
+      "sha256": "44d70a308a1cd0ab1b219e0032117ab38bcc1932639b6bf662a7bffe6b9735ce",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/aealwen-the-unseen.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/silaldir-the-blood-tithed.jpg",
+      "sha256": "fd4add6039b55b6953288c5a867cc523f7bd435a5815c1b0cfd2dd2b49a7a32d",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/silaldir-the-blood-tithed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/velarien-the-hollow-crowned.jpg",
+      "sha256": "5c333f971224683e19d949762618bbb4d2fb864919348b8fc381e8d47feb1de9",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/velarien-the-hollow-crowned.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/elarwen-the-oath-forged.jpg",
+      "sha256": "9b3295a53eb8a0b42a8d7646c72bc0d46162465a558b770def8799f37332291b",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/elarwen-the-oath-forged.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/thalevion-the-reckoner.jpg",
+      "sha256": "be206993cc0244415225048e9bca3a9cb18458f3565cc3d235125e973c42ccb3",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/thalevion-the-reckoner.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/gilithris-the-thorned.jpg",
+      "sha256": "75270059b8744c4a06218bb2e1f939fd430ef585165e02267b498e1c91cd08bf",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/gilithris-the-thorned.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/aeilion-of-the-long-watch.jpg",
+      "sha256": "e573b8aaa5abde5339abe38270cdd6bc42dea49aaea3e3176404c7995a62c220",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/aeilion-of-the-long-watch.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/mirithiel-the-life-drunk.jpg",
+      "sha256": "37c9a3d5cb4dea669eba2f800cb4917704ce2f78a6a71a9366d679c5b78fb146",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/mirithiel-the-life-drunk.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/aealiel-the-steadfast.jpg",
+      "sha256": "ac07f54c4a67f8cddb073a3d09352f3cfeb8f14409a15242b827e299cb77ebba",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/aealiel-the-steadfast.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/caelorien-the-nine-crowned.jpg",
+      "sha256": "c69146a3b119bcc4291a909a98098bf5d55d8ba0696000136939b46f356b38f2",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/caelorien-the-nine-crowned.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/velorwyn.jpg",
+      "sha256": "c4a480ed0d31cb7cd7e2afdfbd57abeee6370ce76deb3f9a75e94c11343aec3e",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/velorwyn.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/araddor-the-grave-sworn.jpg",
+      "sha256": "b7c6c5fd20ddaabb7ade9eed81f0a061ce623287172b0863238af48bdac4ebcb",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/araddor-the-grave-sworn.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/aelok-the-cold-throned.jpg",
+      "sha256": "a8af51e08fdd70aac39ce73775528ae8f215c64ac5be239f78212acb5b6a33d1",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/aelok-the-cold-throned.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/brynien.jpg",
+      "sha256": "ebdf000d2f3f02c15194049a163f8e5b843930cacad2e2c169b0f3da0b375ba5",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/brynien.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/thalwyn.jpg",
+      "sha256": "cbe347a2ae1bcbc17b8d5aef2a274a73813100e23517c90e4186c4ae68b1fc19",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/thalwyn.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/mekaketh-the-hundred-victor.jpg",
+      "sha256": "7b9f55263cd832d90949e786627cf78eb8bdf721fba0fe37a09a77b8b12145e7",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/mekaketh-the-hundred-victor.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/morris.jpg",
+      "sha256": "5ea9f52896e2e7acf4b6c668e08d95987aafedf8fc234d5c4d9b50acb3d84c04",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/morris.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/goriel-the-swift-loosed.jpg",
+      "sha256": "0630957d70e3a81db296955403162f41c85b11ee438021931b7c9107a3dcfdcc",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/goriel-the-swift-loosed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/dralas.jpg",
+      "sha256": "77e2185ed4de552ae936d0e7d1882fc598ddc0e9a9e247e4414a914858159223",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/dralas.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/lorveth.jpg",
+      "sha256": "d6ed103a1c3b200d8b0b0a8002f3a9babc6613223e9514d3526b9622db18d9b0",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/lorveth.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/fenaxith-the-hundred-victor.jpg",
+      "sha256": "a4f897c5d293963f735edc467ce41df48f3c10356459275185f5ec309a77e894",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/fenaxith-the-hundred-victor.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/nerriel-the-bold.jpg",
+      "sha256": "e8d979f13fb334c9c61acd327658800db800f9bdf0312c465dd8e6707b90fb5e",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/nerriel-the-bold.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/drooruk-of-the-red-field.jpg",
+      "sha256": "7c2b3f01d8197e9c4800a18f5ba77cb9f83cff06ff059d406fb396fe241a36c5",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/drooruk-of-the-red-field.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/thakeaal-the-war-sworn.jpg",
+      "sha256": "14833aa26e7e940c88e35c56623b1dafddc247748bc4c49f3bf9dd3b6f0b4902",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/thakeaal-the-war-sworn.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/koriis-of-the-grey-fletching.jpg",
+      "sha256": "ca38230893276433684eadebe4355d48081e6d0d36d7b6c1d2fc7f9dc5e8acc5",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/koriis-of-the-grey-fletching.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/tavureth-the-faith-blind.jpg",
+      "sha256": "8277205ede822c16f258df88d6f6a11210f973eab345687cf5256854b7d30fb9",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/tavureth-the-faith-blind.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/vrexeeth-the-hundred-victor.jpg",
+      "sha256": "5e2f6fc70e08fef294e438a6f1ef9d471f624814db7a375a45f798bf8a49ca17",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/vrexeeth-the-hundred-victor.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/mekeek-the-end-of-all-things.jpg",
+      "sha256": "72eafed4e646816401ae55121517870da2cc65853ac068d2b8fe97f5233a4338",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/mekeek-the-end-of-all-things.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/vrexeek-the-zealot-kissed.jpg",
+      "sha256": "e33cf7636542bd3e39fbc3a128492c376226a49e745cf45659b367172b178137",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/vrexeek-the-zealot-kissed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/graleuk-the-thorned.jpg",
+      "sha256": "6e612c3718c9bd63ee83bda47ca9f3922be5ff4cb1b82b9e3095ac69deef5b33",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/graleuk-the-thorned.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/thakiuk-the-thousand-yard.jpg",
+      "sha256": "d5cbd2374df4d0b030297143795944546a572e9e00904363e883b879d4d105c6",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/thakiuk-the-thousand-yard.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/skorakosh-the-thousand-yard.jpg",
+      "sha256": "1d7519f59b990372093b2ab204c16f1fd003d64ecd94340a8bfb79d6588cde2d",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/skorakosh-the-thousand-yard.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/nalorusk-the-winter-sworn.jpg",
+      "sha256": "8a4868e369330f004c8da60dc5929efbe6318ff97fc18577221696a285aa50c3",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/nalorusk-the-winter-sworn.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/xeliara-the-patient.jpg",
+      "sha256": "ad2ff77fc77c8e9d4b22c5ac28724ce1e11f364f2ffd65c6024eefd6d9f8a0a1",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/xeliara-the-patient.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/skororek-the-breaker-line.jpg",
+      "sha256": "95c1c5b808f3b47cf65cd353c5b505c1429361c9d1bde6e1f0ca52955dddf2d6",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/skororek-the-breaker-line.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/taveara-of-the-ninth-gate.jpg",
+      "sha256": "aef3ad93d89f189f008eea5adbc2dce62540b086bb038f0fa21bf7016f57fa9b",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/taveara-of-the-ninth-gate.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/uroeth-the-ash-cloaked.jpg",
+      "sha256": "a3f856bb181544038dc2318548d0a5c070f786a792c77bfa71a6c9042039d6c9",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/uroeth-the-ash-cloaked.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/thakoraal-the-late-reborn.jpg",
+      "sha256": "d433f465361b483c896ffb9b4779f1678e94bf585c1aaaa205791066364e90eb",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/thakoraal-the-late-reborn.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/koriath-the-swift-loosed.jpg",
+      "sha256": "e05e8dcf5560be50de3e15fec78e629e933346ae42d7feab75611e4662e84c99",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/koriath-the-swift-loosed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/droaara-of-the-grey-fletching.jpg",
+      "sha256": "a882624491c54eaadd227053994ec1aee40e9ce4c3e6ee8883228880b73c52b2",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/droaara-of-the-grey-fletching.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/vrexeshis-the-keen-eyed.jpg",
+      "sha256": "e0723d5c12c13bf6f8552ec8f040dc88543b19ae61e33c9fdbb18cfd68c6f714",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/vrexeshis-the-keen-eyed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/graleuk-of-the-long-watch.jpg",
+      "sha256": "6b6c73baebef5bb45004c29b2868beb7d5fb3f438b02a8f1ce1b9aeefa30d2ec",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/graleuk-of-the-long-watch.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/mekoara-the-twice-sworn.jpg",
+      "sha256": "1408050bd48c365786997a442144359abd3ebdfa779299f5df339cda29fd9fc4",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/mekoara-the-twice-sworn.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/xeloris-the-thorned.jpg",
+      "sha256": "3d88bd163ed7799256f2f53cad24998d60e54f9a568f400070f87ec0bb50a373",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/xeloris-the-thorned.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/thakorun-the-quiet-dagger.jpg",
+      "sha256": "b16bed864f4e84cb80267f14f03a4be95e3bb152c78ffe55b408121772f8c1df",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/thakorun-the-quiet-dagger.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/skoreshek-the-late-reborn.jpg",
+      "sha256": "bfa3a6196a3e833777ff02effcef92a7c849489c604c36a7f5b3cb16280f1e13",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/skoreshek-the-late-reborn.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/thakior-the-hollow-crowned.jpg",
+      "sha256": "398b0268cf00edaa7acf85d70142729c668f46e137549c77f6bc1cbdf10b50db",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/thakior-the-hollow-crowned.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/kororuk-the-thousand-yard.jpg",
+      "sha256": "73edb6c165b834c2105c49b5bfc8abdcb6923cd2dae1752d8a052e9ae0d37502",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/kororuk-the-thousand-yard.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/tavuror-the-storm-marked.jpg",
+      "sha256": "df7c7ab213d1e53464b59d94a0849eb02a18902d3da738a7beee58d9f8e116ae",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/tavuror-the-storm-marked.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/gralaek-the-deep-minded.jpg",
+      "sha256": "d8ba99d366168d44f83375fb19db14327e92c5576d1e780ec26ef45b55ab02ff",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/gralaek-the-deep-minded.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/zekiusk-the-thousand-yard.jpg",
+      "sha256": "527dbc0c36690d662b5708964b85a898a92b313a725c5bcf29a6980cc9cb35c6",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/zekiusk-the-thousand-yard.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/talior-the-keen-eyed.jpg",
+      "sha256": "bf28b0d9168242c410bd3246b89196e7654e00ab9bab542aaf98a86967bbd48e",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/talior-the-keen-eyed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/rukouk-the-swift-hooved.jpg",
+      "sha256": "2dc4bdc278f8a9640a90c34a6ab453f4b16b611d11c90dd9ee4cc13577535d6e",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/rukouk-the-swift-hooved.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/tavaara-the-thousand-yard.jpg",
+      "sha256": "e6ecff697f3ff8ee4d4bf2feca106aafdc8fe5bb98d6c3da53f6f4d7d73871fe",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/tavaara-the-thousand-yard.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/zekeax-the-swift-loosed.jpg",
+      "sha256": "94efd182e5092ed7139995bd0e0f4fbdc3964194a56566eba981f933d774e42a",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/zekeax-the-swift-loosed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/rukaara-the-thunder-heeled.jpg",
+      "sha256": "0b67188fe506e8c1c35fa3e8dd00827f96969d6febfb60735c7d044e0c63e33a",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/rukaara-the-thunder-heeled.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/taleshath-the-unforgotten.jpg",
+      "sha256": "b7bf368c2146def0429316bd30c7696e3fd69b6ee06e72d1ce31e49f02b192f4",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/taleshath-the-unforgotten.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/korurek-the-keen-eyed.jpg",
+      "sha256": "f1443cace07af605ed43bba3bfce78c80d8c5d8b210cabe41404c78c204815a9",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/korurek-the-keen-eyed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/naliaal-the-keen-eyed.jpg",
+      "sha256": "5736cbe0f7ad9ce77e6805f1fc8c9d9754d574469f1594aa381eec2c929c6de0",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/naliaal-the-keen-eyed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/xelakuk-the-keen-eyed.jpg",
+      "sha256": "ac18c3a0f8b6440ae25db852f28f22d2574f20551cd9521ed8c59a15d91f40d9",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/xelakuk-the-keen-eyed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/korakax-of-the-quiet-house.jpg",
+      "sha256": "53ad5794f07c68c66a4a016c393f5d3618b28cb6b934622afc60612ee962964c",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/korakax-of-the-quiet-house.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/droeax-the-wall-of-spears.jpg",
+      "sha256": "a4ec8167ad9a5ac7e3f58c03a0dd41a5bd9b456b67a5a3007e029a2de7a5c091",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/droeax-the-wall-of-spears.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/mekeshara-the-thousand-yard.jpg",
+      "sha256": "a806ec8e41af1a6ad112b4959bfe8650652fcd86dfda0e4e6a463d10eb27ff1f",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/mekeshara-the-thousand-yard.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/skoreath-the-first-over.jpg",
+      "sha256": "3c9cf92de8e931f17b95808be8f20842c8d47596637d2490052f1f367ca001b7",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/skoreath-the-first-over.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/zekorosh-the-night-sent.jpg",
+      "sha256": "807db1d81ddd925abc877237c7c533cd9e167520c4ae15f713b5a58428742051",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/zekorosh-the-night-sent.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/mekakaal-of-the-last-breath.jpg",
+      "sha256": "fd317bd553dc591584fdee8bf96021ba2af3055e929dd6adb74d25eff925219c",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/mekakaal-of-the-last-breath.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/voreara-the-swift-loosed.jpg",
+      "sha256": "2ccedf5bcca7e7d76cd24182fa50a37218edc46e351e1ea8a0a0703e74f29fbe",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/voreara-the-swift-loosed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/rukoruk-the-bright-bladed.jpg",
+      "sha256": "7429d50fa6e1400bca9391f710ee1fca56c5f8009d1aae0afa53a5124783250c",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/rukoruk-the-bright-bladed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/korurusk-the-unseen.jpg",
+      "sha256": "87d226a8f1f52e6bb45630ad4581a2feb94032686a6e3b1ec03dd3f92849aeae",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/korurusk-the-unseen.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/vrexeaal-the-shield-sworn.jpg",
+      "sha256": "2dca7c20b99ec5e04290cfe02d1584b1bd6910b9d4695c28961cdb5d02cb09e9",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/vrexeaal-the-shield-sworn.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/gralakax-the-breaker-line.jpg",
+      "sha256": "2196ff4eece39d0c442b72c4c44e7fe1df84a9971e94a6e318c60c54af67b257",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/gralakax-the-breaker-line.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/naloraal-the-thousand-yard.jpg",
+      "sha256": "33fdef24a693ce4e9a1fa18412fabf00f3e8eebb6eac3555bce990cab886f1c7",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/naloraal-the-thousand-yard.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/ureshun-the-keen-eyed.jpg",
+      "sha256": "70fc7656964b8a542ac8f7e3ba1c7af5470d9443bc8e67fc7c14d0bc7a3c16a1",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/ureshun-the-keen-eyed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/koreshax-of-the-grey-fletching.jpg",
+      "sha256": "7860ebcfafc9d73b20fde4d3998f32963fd5744d8682ca08af1c56d51c558073",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/koreshax-of-the-grey-fletching.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/skoroath-of-the-grey-fletching.jpg",
+      "sha256": "02dbe343cab9ff8d3f9c7550b7fc0f72b2973ad7d8cce562bd7849a746ad8000",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/skoroath-of-the-grey-fletching.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/tavorosh-the-swift-loosed.jpg",
+      "sha256": "83346f580b2d5211b4c38592b83c1c07bcb36bc3df4bd2a73c3f8eff44c420b8",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/tavorosh-the-swift-loosed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/talaek-the-thousand-yard.jpg",
+      "sha256": "27f9ee39b1744a37d0119289bc333ec9b6086d75a487d7d13390d81cb8c6d5fd",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/talaek-the-thousand-yard.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/voreis-the-gate-warden.jpg",
+      "sha256": "466db09332b34d233da5250b0b343e69498edb11da29eeb7c5bc40824bb0a2b2",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/voreis-the-gate-warden.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/urorun-the-wanderer.jpg",
+      "sha256": "f68e728dddb5643f4f0f82b69c7202617b772f6f251070b1b35634ee5ed05f5f",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/urorun-the-wanderer.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/graleax-the-mending-light.jpg",
+      "sha256": "724c2240b492665bbe2351c4b4a32dc4256066df4fa084cdd56e3ce3440575e2",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/graleax-the-mending-light.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/ureis-the-twice-sworn.jpg",
+      "sha256": "77ada72728d8e010897d6c3299e3d3fb6c4b1a03e50d7135d61fcdebff0efe23",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/ureis-the-twice-sworn.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/mekoax-of-the-ninth-gate.jpg",
+      "sha256": "92e2fb538372feaac722c29ac17ec4458f9958ce960551c84ae7fc4004087ce2",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/mekoax-of-the-ninth-gate.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/vorausk-the-twilight-born.jpg",
+      "sha256": "92e95482f87d4588dac7f6351e56a3c6a25b9044b0350fba6825ddbbd752429b",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/vorausk-the-twilight-born.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/mekoaal-the-cold-throned.jpg",
+      "sha256": "6f27bedf05d444959d6718bf461396fa6ff63cfd94acdd236398449b756875bd",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/mekoaal-the-cold-throned.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/talakax-the-longbow.jpg",
+      "sha256": "4f7627fcd59a81a215d0dedb8077a7117a8fa67074a2ba7cd3ddfd25a8abae31",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/talakax-the-longbow.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/voriis-the-usurper.jpg",
+      "sha256": "60639a09bc382c94a3bb0877083ba96621437053548a7df788398d1dd7e600d0",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/voriis-the-usurper.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/vrexior-the-thousand-yard.jpg",
+      "sha256": "7eba487fb23a22f4880be0555c95499eca802a5387a4e7c5223a0cca8cafed67",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/vrexior-the-thousand-yard.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/tavakosh-of-the-grey-fletching.jpg",
+      "sha256": "b02b4488dc90ed7d2e5ecd74ccec8d079fe5b68251b7244abb846faeebb49bce",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/tavakosh-of-the-grey-fletching.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/koreshax-of-the-long-watch.jpg",
+      "sha256": "643233d6b269d02f08826513edefef1c62e75c8e858e8c9108d230eafa34ddb1",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/koreshax-of-the-long-watch.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/talaaal-the-thousand-yard.jpg",
+      "sha256": "77062721c3e71febcc318c3bba92b80b0d720ff5237d7d71f7ab1e0124910a6e",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/talaaal-the-thousand-yard.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/zekorara-the-winter-sworn.jpg",
+      "sha256": "42a47941b2fa73b88650d1217ae31b8b07a009de7645839ec1d0470a706db55c",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/zekorara-the-winter-sworn.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/koriek-the-unbreached.jpg",
+      "sha256": "3397f06d2f2d49905772b39c3555b75491af6871f678e8e418464be70d26f221",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/koriek-the-unbreached.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/naleusk-the-usurper.jpg",
+      "sha256": "5c6a661c27d0eb9a547b9cc9be68205693c235f91dde4fd9055143de0f14e146",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/naleusk-the-usurper.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/xelorath-the-wanderer.jpg",
+      "sha256": "c6cfe4e0773448f43a01bac3f2e1d50186a8ef876b92edc60617753f60e043fb",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/xelorath-the-wanderer.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/thakiun-of-the-quiet-house.jpg",
+      "sha256": "d6268c58011bc4b40c0ebff01a683d148975cba1984908a853e025f186c1be23",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/thakiun-of-the-quiet-house.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/vororis-the-swift-loosed.jpg",
+      "sha256": "f984b433942917df0417f7154f0336bba1ea6d8c09359215af0e58c7e5291faa",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/vororis-the-swift-loosed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/droeath-the-longbow.jpg",
+      "sha256": "33aee6be15c0d40ad349d6dbadec45acab64267b4c84df4883f1652d3e714416",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/droeath-the-longbow.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/taleek-of-the-long-watch.jpg",
+      "sha256": "2328ac4cc336d8565a166da922f05804e235ee872935794d09a88c96385696c5",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/taleek-of-the-long-watch.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/gralurun-the-keen-eyed.jpg",
+      "sha256": "db3e35c763ca20dbd7496b1c42b57114baa4ada06c543a4a958df0063f4cfa7f",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/gralurun-the-keen-eyed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/naleshek-the-reckoner.jpg",
+      "sha256": "efcf97a97da3ff5ebfe58f5c23cd66c312b4d448704ae7a007706173f84ac8aa",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/naleshek-the-reckoner.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/rukeusk-the-swift-loosed.jpg",
+      "sha256": "9b01e658b27aed9361109bedf785c31fde9e58f10e34321536399302d5a39109",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/rukeusk-the-swift-loosed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/koroor-of-the-grey-fletching.jpg",
+      "sha256": "ec229656d7266dc42b48d1580be2620797c5919a4d3aad8d8a9cf70047271361",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/koroor-of-the-grey-fletching.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/talorath-the-unbowed.jpg",
+      "sha256": "3b123d66085ad05164ec6ba100dc4a7cdcb665332f867efc5c880e5e35773a71",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/talorath-the-unbowed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/xeleuk-of-the-hollow-shore.jpg",
+      "sha256": "4527e994831765ab07bef84e354d10f88661b2ec4af5ca0dc7de82b5a735ca86",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/xeleuk-of-the-hollow-shore.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/tavaeth-the-tireless.jpg",
+      "sha256": "b1604c00ba51f500902b6c4fdb5c7156099d61a9d709bc427e6e14af9e9c16f2",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/tavaeth-the-tireless.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/pyrashith-the-keen-eyed.jpg",
+      "sha256": "8b1fadf57ae2346fb57e60715de0679b477347c3d32e46fe9f48386d3250fc51",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/pyrashith-the-keen-eyed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/sylieth.jpg",
+      "sha256": "f2d124969d6547d9bd9e7e9979cab937c9fac517f688fa19407fa1be73f0be50",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/sylieth.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/lyroon.jpg",
+      "sha256": "163c4c58c9c12c94b565d8973c39853eddf51bc430e1d145cd6a0a5df45cbde2",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/lyroon.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/lyrorak-the-breaker-line.jpg",
+      "sha256": "e5ff02cc70a718b22026bb5604b67e35b09c5985a2c7ef95de1474dcf783096d",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/lyrorak-the-breaker-line.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/sylokok-the-hundred-victor.jpg",
+      "sha256": "e566e0907d2abe9af1753ce989e0ffc34ce297aafc6c6e7d0e992ef98c4061d7",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/sylokok-the-hundred-victor.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/jorielash-the-keen-eyed.jpg",
+      "sha256": "0813952907f17ab44d695562c585c62cb06c5b03ff15e0e604a17d83649cd5c0",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/jorielash-the-keen-eyed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/nyax.jpg",
+      "sha256": "e5a2415c6cb49b9a1801d37efc90a7128c27771be245dd1e92ef0fd818982590",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/nyax.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/fenur-of-the-grey-fletching.jpg",
+      "sha256": "39a097e7d55b1168d190f7da027fb1f3e438a2be430cf008482b7be7474e312a",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/fenur-of-the-grey-fletching.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/vreis.jpg",
+      "sha256": "c99eaaf852ffa7aa83575715a7843eadc55edaf51dd3d49705587717cd8c937b",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/vreis.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/moreth.jpg",
+      "sha256": "a1a411598f5ee9732a1dd28b82e8018e9286ec27af9724f50ade2286e965daee",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/moreth.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/sylur-the-hundred-victor.jpg",
+      "sha256": "959f04d0642044236d8e6828771190735203723df4a6cdade1c056d28d48e603",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/sylur-the-hundred-victor.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/kragufist-the-oath-forged.jpg",
+      "sha256": "dd89c8ae62724691683e2031f7594f7c3749d4beefbfdee67ad0a4ecd96a6e26",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/kragufist-the-oath-forged.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/garoggrat-of-the-grey-fletching.jpg",
+      "sha256": "42ca2152ca76f7483f82a00b1bcb7c58cd9cba29bb852c99534d690aea6f24bf",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/garoggrat-of-the-grey-fletching.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/skuzoskab-the-dusk-marked.jpg",
+      "sha256": "62e4b01fc777241a86a3038a0479d291fbdd0642b964ecf9252a57249c10cc8d",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/skuzoskab-the-dusk-marked.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/thuganak-of-the-long-night.jpg",
+      "sha256": "5759f59048e6ae770cbebd9b786b24b790b5cae979d0fef7e275ac9a63378ecd",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/thuganak-of-the-long-night.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/ugogskab-the-dusk-marked.jpg",
+      "sha256": "0cd4fb33f01c4be49442a9da7aaffecb861b6b4d0be36f0a3b75852e00409a7e",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/ugogskab-the-dusk-marked.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/molufist-the-swift-loosed.jpg",
+      "sha256": "cb05082e031f63898748bdaebde9db1715f1e7406e8fe00f5a92a05c9904431d",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/molufist-the-swift-loosed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/snikirot-the-swift-hooved.jpg",
+      "sha256": "d5ef2387865400cd02b4107a25ed7d848f7ebe31d6b40be72867501db3a68cfc",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/snikirot-the-swift-hooved.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/snikograt-the-first-over.jpg",
+      "sha256": "6f240ec69cc38d62c73e40b7bc91bd4f201848d630d6403c75a18e436e237403",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/snikograt-the-first-over.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/rokonak-the-oath-forged.jpg",
+      "sha256": "be52838a8d4d134d7b94944f1d47fd10439fc1531d2a08d24f45b2a19eb0e170",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/rokonak-the-oath-forged.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/grokashskab-the-swift-hooved.jpg",
+      "sha256": "c318be225aa483f70445f173137907efba2cafa1f6184e1a467c3a878d01b426",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/grokashskab-the-swift-hooved.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/uzogrot-the-cold-blooded.jpg",
+      "sha256": "13120bacb704700ee36e604eb5a624174af3ce96881e0f5080bc5da1caed4195",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/uzogrot-the-cold-blooded.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/garirot-of-the-salt-wind.jpg",
+      "sha256": "cc536c8db7d5b5f3b936c61a80cc98ad84ea5c5376ead66079e9417a0bfaad38",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/garirot-of-the-salt-wind.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/thugashgrat-the-grave-sworn.jpg",
+      "sha256": "36db711fe33c7fb233afd85af4e78d05c8086370e0ed1495f6767eb745e99096",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/thugashgrat-the-grave-sworn.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/garukzog-the-gate-warden.jpg",
+      "sha256": "e6e6acf953106fc10f9146019686aa0167129125b98c8616f2f827e365aa551a",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/garukzog-the-gate-warden.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/kragadak-the-far-walked.jpg",
+      "sha256": "642a00132203a76b1364495d5046f9dcd94195d7be23e0ba1c81e45013fd1d72",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/kragadak-the-far-walked.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/thuginak-the-hollow-crowned.jpg",
+      "sha256": "35c4219da44fd01c3f5fe4428f412c1023e1bdfe8c28c90b5dc390de881602ea",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/thuginak-the-hollow-crowned.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/grokogrek-the-cold-blooded.jpg",
+      "sha256": "75073e5e24558af3792a31aebe715748be06f542cd470a5882eeda0e38ea04ea",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/grokogrek-the-cold-blooded.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/garuknak-the-bold.jpg",
+      "sha256": "8bd46645de4730c7a70fd3def62004c5017d2fae80ec97515eb9acf7982a8025",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/garuknak-the-bold.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/skuzogrek-the-keen-eyed.jpg",
+      "sha256": "338aa774f759c7193b23a3a611f5919ddd1a597c613964b2ff4f040c4db274d5",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/skuzogrek-the-keen-eyed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/garurot-the-reckoner.jpg",
+      "sha256": "2d9eb6102c807544fd748a114d20dd888021b9cfb90f95cc8db3508cd279088e",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/garurot-the-reckoner.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/rokiskab-the-bright-bladed.jpg",
+      "sha256": "92a4493cd104b27778d6aed49356dce98d262613dca827d4139cf803ba964724",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/rokiskab-the-bright-bladed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/grokogtusk-the-first-over.jpg",
+      "sha256": "97bbbe04ae298146d0aa82ed3e140384a59c9fb98042718d1862106208413cfa",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/grokogtusk-the-first-over.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/ugukrot-the-keen-eyed.jpg",
+      "sha256": "56946da56b04bd767060722d7c501ef004206f2c6822402a3cbe73921f17b8ca",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/ugukrot-the-keen-eyed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/grakoggnash-the-unbreached.jpg",
+      "sha256": "b32c8603691d55e7554af4636ce5438c021ed137ad196d08b65573564e15d0ab",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/grakoggnash-the-unbreached.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/molashrek-the-tireless.jpg",
+      "sha256": "76b239ced9e85e4bf4fe41e0e42afe92d812d687652c00b73841b766c210d415",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/molashrek-the-tireless.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/kragodak-the-keen-eyed.jpg",
+      "sha256": "702d4e7b310ea18121603670ec84079fe97e6a12a0911704aad804282e6bcabd",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/kragodak-the-keen-eyed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/skuzashgrat-the-thunder-heeled.jpg",
+      "sha256": "5934f65417f480303a6c0cf5c324d930cb3759daa20481a301a14735d6f5fbe5",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/skuzashgrat-the-thunder-heeled.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/rokoggnash-the-breaker-line.jpg",
+      "sha256": "863505aa553c02b23db95efaf99612ce34c961d6920a4c42e65c0efb289240e0",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/rokoggnash-the-breaker-line.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/skuzuzog-the-ash-cloaked.jpg",
+      "sha256": "f6fc56715461ea847cc27c4e37a3d94d92ac6effd3122c4b66d2300774463f59",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/skuzuzog-the-ash-cloaked.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/thugoggore-the-swift-loosed.jpg",
+      "sha256": "acbcfb8f355e2ee461218f87784c69f057b6f51a38b7c211ec55705213a1c3c4",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/thugoggore-the-swift-loosed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/skuziskab-the-bright-bladed.jpg",
+      "sha256": "08c02edc26b01a735d0065613f9361fc66a27d1eaeb67a3e153f31b5146d9eea",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/skuziskab-the-bright-bladed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/rokomaw-the-deep-minded.jpg",
+      "sha256": "5d56a6f2d3f9693cbc482f5ba8b1260037fbf62b44ff4ff308eb6e10a6a5dfa5",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/rokomaw-the-deep-minded.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/nagadak-the-patient.jpg",
+      "sha256": "3e59fc7d743a7bbe10bf08a9a208a0c2fd93e6fc65be3358fc0603efc80f7df1",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/nagadak-the-patient.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/snikazog-the-steady.jpg",
+      "sha256": "0311cfaa15cc03e506d10787c0a93e36768f27dd687ce40636f63df1aed8b7ba",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/snikazog-the-steady.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/garogdak-the-bold.jpg",
+      "sha256": "7c745d0af9c382bcfcd13a711c18cdf54dc6db75c012bbeac7a4472607a6b183",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/garogdak-the-bold.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/thugufist-the-thunder-heeled.jpg",
+      "sha256": "a3fbd74b0bac8800d528facf633f0b667d132b75de36de49b6810559184c93ab",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/thugufist-the-thunder-heeled.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/grokogdak-the-steadfast.jpg",
+      "sha256": "f954a2ac70086238c468f9b7126362ca7b4fa813625550bacf16f145cbaa7ec9",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/grokogdak-the-steadfast.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/moratusk-of-the-long-watch.jpg",
+      "sha256": "b657e890125f6b2525c96438aa5a347bbdb8a73c5c7984c8fffaecaae2fe9b00",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/moratusk-of-the-long-watch.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/uziskab.jpg",
+      "sha256": "2e2fdf5b714e52cc1251461415faaeeda0a2f73a41199971c2562b04241c6d2d",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/uziskab.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/brynielor-the-swift-loosed.jpg",
+      "sha256": "2799c755919b118c951b3556ae7dc4a04ac39eb239996977c6e8ca24bdf4e0ed",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/brynielor-the-swift-loosed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/aelor.jpg",
+      "sha256": "abcb71e9aaf524ad7d850a03a4444883b35bb03c30ad81c87395a51b8c01219e",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/aelor.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/aelokax-the-nine-crowned.jpg",
+      "sha256": "798d2aef1e28ee43840aa0bee293e56df1582f532c4e9ad4146a03cf59c62631",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/aelokax-the-nine-crowned.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/fenisor-the-swift-loosed.jpg",
+      "sha256": "dd394ac002d1216cb6b5a7d6eed21b7c0b355ea7c73c6a4ec7e909a73fd5e28b",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/fenisor-the-swift-loosed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/szaashis-the-steadfast.jpg",
+      "sha256": "0b5f7775b9871c16c66a3c98f1cf0b23808cd771533a897936fb183ac5c993a1",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/szaashis-the-steadfast.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/moran.jpg",
+      "sha256": "d743a68081daa4bf79050edfdb2c0f12d00d2f021c56f188db85039b7838f368",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/moran.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/keluk.jpg",
+      "sha256": "834e0678b400edd5592a090840bb136b3933e872da2bf6834a988f35dc79a152",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/keluk.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/draak.jpg",
+      "sha256": "9c904130c2e2e9fe597a6d3efc106b7b5fd3ce974e169490d5f3270a91ed7a3b",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/draak.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/nymar.jpg",
+      "sha256": "feb668d586a193d801617f027a5a0d5fa09bdb27a40a730a12812b4cba77d0f6",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/nymar.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/thaeth-the-shield-sworn.jpg",
+      "sha256": "7e172ee695e68529fdc45d4b49c461cb77b99a477c2f5138d65b762b0aa9abf8",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/thaeth-the-shield-sworn.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/ravek.jpg",
+      "sha256": "10dfa46082a4942a7f1bf817805e3da54b4d5c0a0367e15d5a6d852d6ecb53f7",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/ravek.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/barach-the-unbowed.jpg",
+      "sha256": "5d6d9bfb3d14c2f245a27d2b5030f3395c3d38eec729d4ee1121528fe62afec2",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/barach-the-unbowed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/sevaio-the-valiant.jpg",
+      "sha256": "8500dd28ac78846859046cc7f2a2f100c080362c1005aabe8c18052015feb00c",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/sevaio-the-valiant.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/xerek-the-undaunted.jpg",
+      "sha256": "900ff90a11c75d287e98aa3ad470fd88db7b7651fd9b792fa48a19d65a873535",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/xerek-the-undaunted.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/malirio.jpg",
+      "sha256": "4ab08823c992bdb1f2847c314b47b93bc04a051d89b605a9346d8604d7147ca3",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/malirio.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/tyrach-the-relentless.jpg",
+      "sha256": "9cef681116519ccd5406587e533569a8717158b315e0f6a4c5bb94288036fc73",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/tyrach-the-relentless.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/praek.jpg",
+      "sha256": "fc5459c7df695935a4609a3f65f9938acda788fa6b152ab8a0a346d75f5463e3",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/praek.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/tyrael-ezhek.jpg",
+      "sha256": "6394e80b1b8ed3d6afc9985386563a58fa822fbda98b5bf0ef181360141e6224",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/tyrael-ezhek.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/grulek-tyrach.jpg",
+      "sha256": "be78171d82900cca402555c456c1d46dce34d185cf0d2367eb555d9679b1abe4",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/grulek-tyrach.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/halio.jpg",
+      "sha256": "2f8fb8170d20dde9e161e99c1c5ac88023813abcf9adbf5af4cef107bc961d66",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/halio.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/praoael.jpg",
+      "sha256": "678827656a21c3bedc462518f7c81ceef08d1a7dad79af1576981f514275069c",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/praoael.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/korvaio.jpg",
+      "sha256": "cb9992398d0af96f6ace788fbfe771b05af153b678d791e29e523a9c999ddb76",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/korvaio.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/vorus-quorach.jpg",
+      "sha256": "9e51bd5ca51c68037136006c39861e6a47f9aee6356e98b7b1598c5295eeeccf",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/vorus-quorach.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/xerael.jpg",
+      "sha256": "7f736b9622d28189e68dc31783343c79f2145026cf1811881e3575f8a35dabbc",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/xerael.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/quoroek-the-relentless.jpg",
+      "sha256": "27ed517a4e86b3f51d19395763dad3e7ef5b5fcb8076881534155fa54f5f239c",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/quoroek-the-relentless.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/xerio-the-wall-of-spears.jpg",
+      "sha256": "17ddaba8e699a1764e6b94cb38c37028b7a260024693fe4a8df03325ffe4d0fb",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/xerio-the-wall-of-spears.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/halael-the-wall-of-spears.jpg",
+      "sha256": "21b9638d6dc62df4799882bad84d53ab76f8a6100c823d72856434cff1315210",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/halael-the-wall-of-spears.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/korvus-the-bulwark.jpg",
+      "sha256": "7a8efcbc934f94c34bf7feb4fef6bbbe5d427e5a101b41b160c82773a3ee78f2",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/korvus-the-bulwark.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/korva-the-unseen.jpg",
+      "sha256": "4e37432335ba809003977a3d05931cc05023d17d9cc414fe047103e153de969b",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/korva-the-unseen.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/ravus-grulael-the-sanguine.jpg",
+      "sha256": "bfaaa8f3488fa35c628809a400960a1eae10a97ee646968b5c1b70ceff100cf2",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/ravus-grulael-the-sanguine.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/umbael-the-blooded.jpg",
+      "sha256": "ca24faf149af07404c475e2d3ac70a48b4b28c6f00c35d596d994f44c73dc231",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/umbael-the-blooded.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/korveael-of-the-ossuary-gate.jpg",
+      "sha256": "a8131076a298328619b3172f8f70aaf0128598713e48cb749f29c437da9dc7d1",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/korveael-of-the-ossuary-gate.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/draio-the-thunderclad.jpg",
+      "sha256": "9f9c284dfbc5f32ec481e06b9204c8b4581ef4d78ce25968ecfc41cc030997c2",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/draio-the-thunderclad.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/achior-of-the-iron-crusade.jpg",
+      "sha256": "7cc2a3bf7cc164c53a1759ecf9cfbc6110fd8401b802cef8eb44692a887de616",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/achior-of-the-iron-crusade.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/achach-the-hooded.jpg",
+      "sha256": "1dfac72737aef404b90436246f7cb32e95a44034971d2f788f229a41d8abbfbd",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/achach-the-hooded.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/grulior-the-skybreaker.jpg",
+      "sha256": "ceb7d1ac8b18502fa928bd6fd2335ddb3e9d94333b9104d1358c4d15f3a284b9",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/grulior-the-skybreaker.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/quorael-sevach-the-skybreaker.jpg",
+      "sha256": "900c5bf2756e591bdb523f37a2686ee758360e357d368aa0eda7d59ab3d7e4c2",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/quorael-sevach-the-skybreaker.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/bario-the-nightborn.jpg",
+      "sha256": "654ffae6abc8c004c1b86509b5ca955be081c8ccbad96c274cdfa1e80de150f9",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/bario-the-nightborn.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/zephael-the-nightborn.jpg",
+      "sha256": "e130b4e249fdb96244bdcb3c21fd05ef6baa0c57fbb3d58ea77f7a239cf70960",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/zephael-the-nightborn.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/praia-the-gatewarden.jpg",
+      "sha256": "8b987352ef33998e0468077f0f43850f769b1090ab4e8658f83b329de97e22f0",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/praia-the-gatewarden.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/korvirus-the-whisper.jpg",
+      "sha256": "568782424ce471652f981b99991d72e29103eb0ab3de51986d56e85adf285420",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/korvirus-the-whisper.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/halior-the-swift.jpg",
+      "sha256": "97a5ed47380a61edbb78370c3c6fbd368a1b7ac0649779e7223afebcfe859841",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/halior-the-swift.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/dravaian.jpg",
+      "sha256": "39a1360c7222c9f65d44ee5d8805d4450c7fdd75eab6825f3f6e3958a288dc18",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/dravaian.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/vitoian-the-unseen.jpg",
+      "sha256": "5615f817ba106faa1c0fa901e3294970092c49711aa5f65c1b8e83d144778e82",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/vitoian-the-unseen.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/casanlius-the-storm-marked.jpg",
+      "sha256": "0dbc8cbf4b54a0a3813439f686b3f4491806c47052baa33e84ed9308b2baef45",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/casanlius-the-storm-marked.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/lucivus-the-shield-sworn.jpg",
+      "sha256": "0545542d5eeb2e2ffa2457b667fe61848d9a380fd0dd29be8d3b15bbc7816abf",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/lucivus-the-shield-sworn.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/lucephel-of-the-hollow-shore.jpg",
+      "sha256": "7436f7084d4f599b1ee79172e5b6e706261c9b92f628223a9d0e1e1c088461ec",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/lucephel-of-the-hollow-shore.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/casanmund-the-steadfast.jpg",
+      "sha256": "4cb7ce377b634239f0d7d780b56efe04dd3bead785256e543eea5247fe6383a7",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/casanmund-the-steadfast.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/sevigan.jpg",
+      "sha256": "921a298bc6512022167ae309fe9db58c52fe93c5e229698cdd63579a09c65e71",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/sevigan.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/aubemund-the-twilight-born.jpg",
+      "sha256": "8fa5b27152e8ee0ed7d3db7451f88ec32891553a1c9de8b7e2f741e0780238b3",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/aubemund-the-twilight-born.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/sylverand.jpg",
+      "sha256": "84797ceead071683014054bba90a44f2e3202c5ba6b90de8ef1a412b5ef3982d",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/sylverand.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/constanvus-the-first-over.jpg",
+      "sha256": "65605484258393c78ea0c534c7d460672740d1137860c4c4ecade1994cf1dcd7",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/constanvus-the-first-over.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/lucanrik-of-the-long-watch.jpg",
+      "sha256": "3408ef95fdf57296ab2c49405f8c0d5c2692963e94605a61c6ee048fa5f998c2",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/lucanrik-of-the-long-watch.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/hadomund-the-ninth-archive.jpg",
+      "sha256": "54c1cf8b375baa391626708d35a11abbda0ad7741e54bc44a0313badcf2abb0f",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/hadomund-the-ninth-archive.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/sevolius-of-the-deep-roads.jpg",
+      "sha256": "0f3610ba7a343983187a5491d3d972002a5737ac8da7ce0001fc56b8e5d7b711",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/sevolius-of-the-deep-roads.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/octantor-the-twilight-born.jpg",
+      "sha256": "d8e06a148b7877cb22f8cc46cf2d8bd13ae3d0550ec531b9adf1cf108093fcee",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/octantor-the-twilight-born.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/casitor-the-thunder-heeled.jpg",
+      "sha256": "5dcb8773f930e9d77a8be9b61bd4c038a8daca9c30337cf5aad7565980f515fb",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/casitor-the-thunder-heeled.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/sylvirand-the-keen-eyed.jpg",
+      "sha256": "1308415100803faa6f85f07147afa0e551c0b9f74f9bad348a2176291b0a5f64",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/sylvirand-the-keen-eyed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/alriphel-the-wall-of-spears.jpg",
+      "sha256": "4a7296939e79dea6df34c837710f8ef957411ae9e20889e8068d73523110c8c9",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/alriphel-the-wall-of-spears.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/marcotor-the-steadfast.jpg",
+      "sha256": "1196eb84d93560ce8d4feb1c8c3d0d12c04b08607d2ad1b0e5a9e9a1ca344ea6",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/marcotor-the-steadfast.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/hadrirand-the-last-voiced.jpg",
+      "sha256": "4d3c176b3984cb51a80cec669c990db72f6c322783e7e45042490a9e5890b49a",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/hadrirand-the-last-voiced.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/octavus.jpg",
+      "sha256": "8311906b6e291dae6039102cf262f30af0467648ec9cc41880419ce708fc8718",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/octavus.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/marcotor-the-charge-sworn.jpg",
+      "sha256": "6ff404041c59041492f3da3d1ee09c752dd417583f30a7479f3376842dcf8e53",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/marcotor-the-charge-sworn.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/sylvolius.jpg",
+      "sha256": "09107f7b1f61a1ecfdb1c471bcb8c50e40cbff27c69a5bf6eda2766b3191e31b",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/sylvolius.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/sevanrand.jpg",
+      "sha256": "1af5c1eee45aca3d7728f14b52b6afd4c8dc3a9872fb2468d90490ed032a6ee4",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/sevanrand.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/sevaphel-the-last-voiced.jpg",
+      "sha256": "568514d2923c4448cdd7cd7f2a507480ee930cb6cc30334b249ba9336cb6f34b",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/sevaphel-the-last-voiced.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/lucalius.jpg",
+      "sha256": "d71d8173c038d4f4642ac7d238f8d28e77d869657559bf310b0f422275d72294",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/lucalius.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/constviphel-the-twilight-born.jpg",
+      "sha256": "8dc9cfecf9018fdf355fd44685edd79a5231cbfed51c5212d2c7c050b4b103c4",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/constviphel-the-twilight-born.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/ferevus-the-twilight-born.jpg",
+      "sha256": "0bdfd1c6600a17382cc165672a44dab7ee7ef54d91bcda9bad89cce572057ee9",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/ferevus-the-twilight-born.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/sevridric-the-dusk-marked.jpg",
+      "sha256": "fb4564bab2920a263a030afd54d40a0e670fedeacc27d1e1e2deab9fb477736a",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/sevridric-the-dusk-marked.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/orinridric-the-bold.jpg",
+      "sha256": "85408a67184bae19f7b7904c738121f719e064340c4664fe2e127119f3c8f93b",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/orinridric-the-bold.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/lucririk.jpg",
+      "sha256": "102e4bbd13eea221e6bdeaa6b9e0796075c2dbfa03582aa27d99c4a049673417",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/lucririk.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/sevrilius-the-thorned.jpg",
+      "sha256": "e4388e73265ac1afb2624125a6d503b4d6d3c39c48a41356d493aa7281a23598",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/sevrilius-the-thorned.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/ferantor-the-unbowed.jpg",
+      "sha256": "c6b6c7d8810be827d4b5584213abab8fd86bce5cc5fcc3a6e29a770f73b3d243",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/ferantor-the-unbowed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/vitarik-the-twice-sworn.jpg",
+      "sha256": "e12eca9c4fcdec157f130b9d0f615b78cf079494cd3d3f6c61f89406add9a61f",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/vitarik-the-twice-sworn.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/vitovus-the-gate-warden.jpg",
+      "sha256": "beadb86f950186151d5ce6266f1ca6eda121042681be4f11ed105bd348a088f8",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/vitovus-the-gate-warden.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/orinegan-the-quiet-sentence.jpg",
+      "sha256": "400a40ef8701dd4288458f92ed1d3c341377499e05abf7d2fbd8a3fba06f183b",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/orinegan-the-quiet-sentence.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/lucrivus-the-shield-sworn.jpg",
+      "sha256": "e72da257f90dac0b206e15974340acd404fc67e34730ef4d2b91b6148042320e",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/lucrivus-the-shield-sworn.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/lucerik-of-the-long-watch.jpg",
+      "sha256": "618769c3ee45eed422e1077dff2d8dc23f3e6a231fdf5641d7de91fe9f166b86",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/lucerik-of-the-long-watch.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/vitanrand-the-steadfast.jpg",
+      "sha256": "e52d2d2e9a6095c0ba0552e18deebaf6a76f5ab081cb0500c13162f7a96ff81c",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/vitanrand-the-steadfast.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/constomund.jpg",
+      "sha256": "46fc35524ad678930e0e2714553769e67bcaccf51c17b508d5befcf92f9decb9",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/constomund.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/orinvigan.jpg",
+      "sha256": "45ef42d43599e0cf6a6acf3885bc51ef0c76d57ab5e9411ece4c87088343668b",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/orinvigan.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/domagan-the-thousand-yard.jpg",
+      "sha256": "3c13a0a4595d87a19f3944c62c0306d231684ec73b496da07ffefa73c93563f9",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/domagan-the-thousand-yard.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/sylvevus-the-swift-loosed.jpg",
+      "sha256": "c145cb900868835ed29d001b906590d72296698d30145a379cc36e7cdef2c58d",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/sylvevus-the-swift-loosed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/dravarand-the-red-handed.jpg",
+      "sha256": "ad0d2ae67c7b529c77638d9febe3f322a03d615923a0de317789b876cfbf8f5c",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/dravarand-the-red-handed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/constomund-the-winter-sworn.jpg",
+      "sha256": "80b9311d87497b54fde2f18c0ac52c675cc92865283c64ff15e745874e80edb6",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/constomund-the-winter-sworn.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/alritor-the-thorned.jpg",
+      "sha256": "2ef218b2fe687955b5660323c986fe24c6d16b7abfd3448e62703c963e3e9d31",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/alritor-the-thorned.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/sylvirik.jpg",
+      "sha256": "12b5a336970ca36c65ac79f56e1b9689de83cd12862f13281f47c328ed9a7f57",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/sylvirik.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/sevolius-the-deep-minded.jpg",
+      "sha256": "8cbc8c71f5a334545153a59b61d1e3b3f1e557b3c50282d9ac9d2851b7010ee6",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/sevolius-the-deep-minded.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/domovus-the-unbreached.jpg",
+      "sha256": "a1e8ff0ea78ba44b691f37c067bb33c876f277588d07b51fabe623d10c2cd3a3",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/domovus-the-unbreached.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/octvivus-the-unbowed.jpg",
+      "sha256": "c13fdcad3a69ddcbac89b5fecb76cecc3df3a3e08147e7443dba45e54e90f2f2",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/octvivus-the-unbowed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/domanian-the-bold.jpg",
+      "sha256": "64eddfbcd68dd081d9c980decc05aec9cdfa57ccd685e5658f853a6911a60d51",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/domanian-the-bold.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/constiphel-of-the-ninth-gate.jpg",
+      "sha256": "b6b659d638c83b824ebaf94bb78e3fde4c9193cbd0efd7803d511651e67a98b8",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/constiphel-of-the-ninth-gate.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
+    },
+    {
+      "path": "art/stockpile/koren-the-swift-loosed.jpg",
+      "sha256": "7ad57dd4b370bd7d5c7323124efa16b2b487424611cbb0871f9c1e1f9e0fb204",
+      "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art/stockpile/koren-the-swift-loosed.jpg",
+      "license": "AI-generated",
+      "src": "Mistral image generation"
     }
   ]
 }
