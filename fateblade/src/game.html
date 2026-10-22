@@ -20,6 +20,11 @@
   body{margin:0; background:var(--bg); color:var(--ink); font:15px/1.4 Georgia,serif; overflow:hidden;}
   body.themed{ background-image:var(--theme-bg); background-size:cover; background-position:center; }
   body.themed::before{content:''; position:fixed; inset:0; background:#000a; pointer-events:none; z-index:-1;}
+  /* v0.26.1: board art lives on the body, NOT #match — fitScreen's transform shrinks #match and
+     letterboxes the whole screen when the window is smaller than the fixed board. body.inmatch is
+     untransformed, so the table paints edge-to-edge while the UI still scales over it. */
+  body.inmatch{ background-image:var(--board-bg); background-size:cover; background-position:center; }
+  body.inmatch::before{content:none;}
   h1{font-size:54px; letter-spacing:8px; color:var(--gold); margin:0 0 4px; text-shadow:0 0 30px #000;}
   h1 small{display:block; font-size:13px; letter-spacing:4px; color:var(--gold-dim); font-weight:normal;}
   .screen{display:none; height:100vh; flex-direction:column; align-items:center; justify-content:center; gap:14px; overflow:auto; padding:20px;}
@@ -51,7 +56,7 @@
 
   /* ===== match ===== */
   #match{justify-content:flex-start; padding:8px; gap:8px;}
-  #match.on{background-image:var(--board-bg); background-size:cover; background-position:center;}
+  /* v0.26.1: bg moved to body.inmatch (untransformed) so fitScreen scaling cannot letterbox it */
   .lane{display:flex; justify-content:center; align-items:center; gap:12px; min-height:190px;}
   .board{display:flex; gap:16px; justify-content:center; min-height:205px; align-items:center;}
   .hero{width:190px; height:190px; border:2px solid var(--gold-dim); background:#000; text-align:center; cursor:pointer; position:relative;}
@@ -622,7 +627,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.25.2';
+const GAME_VERSION = '0.26.1';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
@@ -701,7 +706,7 @@ function deleteDeck(facId, name){ saveDeckList(facId, decksOf(facId).filter(d =>
 function loadDeck(facId){ return facOf(facId) ? facOf(facId).defaultDeck.slice() : null; } // v0.10: the tuned 30-card doctrine deck
 
 /* ---------- screens ---------- */
-function show(id){ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on')); document.getElementById(id).classList.add('on'); fitScreen(); musicForScreen(id); }
+function show(id){ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on')); document.getElementById(id).classList.add('on'); document.body.classList.toggle('inmatch', id === 'match'); fitScreen(); musicForScreen(id); }
 // v0.7.1 FIT-TO-WINDOW: scale any screen that is taller/wider than the window, so the
 // whole interface (menu buttons, board, hand, END TURN / RESIGN) always fits — no scrolling.
 function fitScreen(){
@@ -1454,14 +1459,17 @@ document.addEventListener('click', (e) => { if (e.target.closest('button')) SFX.
 /* ---------- hover-zoom ---------- */
 const zoom = document.getElementById('zoom');
 function kwList(c){ return (c.kw||'').split(/[+,]/).map(s=>s.trim()).filter(Boolean).map(k=>`<b>${KWTXT[k]||k}</b> — ${KWDESC[k]||''}`).join('<br>'); } // v0.20-ready: renders multi-keyword lists
-function showZoom(c, ev, db){ // db=true: deck-builder context — sovereign passives shown (v0.21.2); in-game zoom keeps them hidden (decked legends are bodies only)
+function showZoom(c, ev, db, sov){ // db=true: deck-builder; sov=true: sovereign PICKER row (passive-only).
+  // v0.26.1: deck-builder zooms of deckable Sovereigns show the FULL body view (cost/stats/kw/ability/tribe)
+  // WITHOUT the passive — a decked Legendary is a body, never your played Sovereign. The picker row
+  // (sov=true) and in-game zoom (!db) stay passive-only (v0.22.6 rule).
   const esc = (s)=>String(s||'').replace(/"/g,'&quot;');
   zoom.className = 'r-' + (c.rarity || 'common');
   // v0.22.6: SOVEREIGN ZOOM = PASSIVE ONLY. Sovereigns lead from the hero box —
   // they are never played as cards, so keywords/battlecries/stats are noise here.
   // Only the passive matters, so that's all the zoom shows (decked legends, which
   // ARE bodies, keep the full card view below).
-  if (c.passive) {
+  if (c.passive && (sov || !db)) {
     zoom.innerHTML = `<img src="${c.img}">
       <div class="zn">${c.name}</div>
       <div class="zr">${c.rarity} · SOVEREIGN</div>
@@ -1945,7 +1953,7 @@ function renderDB(){
     d.onmousemove = moveZoom; d.onmouseleave = hideZoom;
   });
   coll.querySelectorAll('.dbsovcard').forEach(d=>{ // v0.19.1: sovereign hover gets the zoom view too
-    d.onmouseenter = (ev)=>{ const c = sovs.find(x=>x.id===d.dataset.id); if(c) showZoom(c, ev, true); };
+    d.onmouseenter = (ev)=>{ const c = sovs.find(x=>x.id===d.dataset.id); if(c) showZoom(c, ev, true, true); };
     d.onmousemove = moveZoom; d.onmouseleave = hideZoom;
   });
   // deck list: one row per distinct card with its copy count; click removes ONE copy
