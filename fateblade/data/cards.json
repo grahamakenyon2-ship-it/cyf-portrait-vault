@@ -4892,7 +4892,7 @@
      "id": "legion-siege-ramp@lucerre"
     },
     {
-     "name": "Moonlit stone Bridge",
+     "name": "Moonlit Stone Bridge",
      "fl": "The Gilded Sun buys what it cannot burn.",
      "faction": "lucerre",
      "pool": "history",
@@ -11625,7 +11625,7 @@
     },
     {
      "id": "loraldor-the-gate-warden@stormlit",
-     "name": "Loraldor the Gate-Warden",
+     "name": "Loraldor the Storm-Quelled",
      "fl": "Loraldor the Gate-Warden arrives before the war does.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11685,7 +11685,7 @@
     },
     {
      "id": "elithiel-the-shield-sworn@stormlit",
-     "name": "Elithiel the Shield-Sworn",
+     "name": "Elithiel of the Quiet House",
      "fl": "Elithiel the Shield-Sworn has never left the gate. Nothing has ever made it past Elithiel the Shield-Sworn.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11705,7 +11705,7 @@
     },
     {
      "id": "ithorris-the-shield-sworn@stormlit",
-     "name": "Ithorris the Shield-Sworn",
+     "name": "Ithorris of the Standing Stones",
      "fl": "Ithorris the Shield-Sworn has never left the gate. Nothing has ever made it past Ithorris the Shield-Sworn.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11745,7 +11745,7 @@
     },
     {
      "id": "arildir-the-gate-warden@stormlit",
-     "name": "Arildir the Gate-Warden",
+     "name": "Arildir the Moss-Crowned",
      "fl": "Nothing passes Arildir the Gate-Warden that has not been named.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11765,7 +11765,7 @@
     },
     {
      "id": "gilalien-the-steadfast@stormlit",
-     "name": "Gilalien the Steadfast",
+     "name": "Gilalien the Vow-Keeper",
      "fl": "Gilalien the Steadfast read the ending before the beginning.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11845,7 +11845,7 @@
     },
     {
      "id": "mirevris-the-gate-warden@stormlit",
-     "name": "Mirevris the Gate-Warden",
+     "name": "Mirevris the Rain-Mantled",
      "fl": "Mirevris the Gate-Warden has never left the gate. Nothing has ever made it past Mirevris the Gate-Warden.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -11885,7 +11885,7 @@
     },
     {
      "id": "giladris-of-the-quiet-house@stormlit",
-     "name": "Giladris of the Quiet House",
+     "name": "Giladris of the Standing Stones",
      "fl": "Giladris of the Quiet House knows how every one of these stories ends.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12005,7 +12005,7 @@
     },
     {
      "id": "haloriel-of-the-long-watch@stormlit",
-     "name": "Haloriel of the Long Watch",
+     "name": "Haloriel the First of the Quiet House",
      "fl": "Haloriel of the Long Watch's arrows arrive before the argument.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12045,7 +12045,7 @@
     },
     {
      "id": "eleneth-the-bold@stormlit",
-     "name": "Eleneth the Bold",
+     "name": "Eleneth the Rain-Mantled",
      "fl": "Eleneth the Bold was standing guard before the wall was built.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12085,7 +12085,7 @@
     },
     {
      "id": "arildir-the-red-handed@stormlit",
-     "name": "Arildir the Red-Handed",
+     "name": "Arildir of the Elder Ford",
      "fl": "Nothing passes Arildir the Red-Handed that has not been named.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12105,7 +12105,7 @@
     },
     {
      "id": "miraddor-of-the-long-watch@stormlit",
-     "name": "Miraddor of the Long Watch",
+     "name": "Miraddor the Silver-Browed",
      "fl": "Miraddor of the Long Watch was standing guard before the wall was built.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12145,7 +12145,7 @@
     },
     {
      "id": "ithaliel-of-the-long-watch@stormlit",
-     "name": "Ithaliel of the Long Watch",
+     "name": "Ithaliel the Moss-Crowned",
      "fl": "Ithaliel of the Long Watch has never left the gate. Nothing has ever made it past Ithaliel of the Long Watch.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12205,7 +12205,7 @@
     },
     {
      "id": "itharmar-the-life-drunk@stormlit",
-     "name": "Itharmar the Life-Drunk",
+     "name": "Itharmar the Storm-Quelled",
      "fl": "Itharmar the Life-Drunk tithes the field of its crimson.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12245,7 +12245,7 @@
     },
     {
      "id": "ithadeth-of-the-quiet-house@stormlit",
-     "name": "Ithadeth of the Quiet House",
+     "name": "Ithadeth the Storm-Grey",
      "fl": "Nothing passes Ithadeth of the Quiet House that has not been named.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12265,7 +12265,7 @@
     },
     {
      "id": "ararmar-the-blood-tithed@stormlit",
-     "name": "Ararmar the Blood-Tithed",
+     "name": "Ararmar the Twice-Mourned",
      "fl": "Every wound Ararmar the Blood-Tithed takes, it returns with interest.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12285,7 +12285,7 @@
     },
     {
      "id": "rualmar-the-red-handed@stormlit",
-     "name": "Rualmar the Red-Handed",
+     "name": "Rualmar the Vow-Keeper",
      "fl": "Rualmar the Red-Handed tithes the field of its crimson.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12305,7 +12305,7 @@
     },
     {
      "id": "elevmar-of-the-long-watch@stormlit",
-     "name": "Elevmar of the Long Watch",
+     "name": "Elevmar the First of the Quiet House",
      "fl": "Every wound Elevmar of the Long Watch takes, it returns with interest.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12325,7 +12325,7 @@
     },
     {
      "id": "soreniel-the-steadfast@stormlit",
-     "name": "Soreniel the Steadfast",
+     "name": "Soreniel of the Long Rain",
      "fl": "Nothing passes Soreniel the Steadfast that has not been named.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12365,7 +12365,7 @@
     },
     {
      "id": "halithmar-the-life-drunk@stormlit",
-     "name": "Halithmar the Life-Drunk",
+     "name": "Halithmar the Late-Reborn",
      "fl": "Every wound Halithmar the Life-Drunk takes, it returns with interest.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12385,7 +12385,7 @@
     },
     {
      "id": "thalendor-the-steadfast@stormlit",
-     "name": "Thalendor the Steadfast",
+     "name": "Thalendor of the Long Rain",
      "fl": "Nothing passes Thalendor the Steadfast that has not been named.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12405,7 +12405,7 @@
     },
     {
      "id": "faearien-the-patient@stormlit",
-     "name": "Faearien the Patient",
+     "name": "Faearien the Storm-Grey",
      "fl": "Faearien the Patient has never left the gate. Nothing has ever made it past Faearien the Patient.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12465,7 +12465,7 @@
     },
     {
      "id": "silaldir-the-blood-tithed@stormlit",
-     "name": "Silaldir the Blood-Tithed",
+     "name": "Silaldir the Twice-Mourned",
      "fl": "Silaldir the Blood-Tithed tithes the field of its crimson.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12505,7 +12505,7 @@
     },
     {
      "id": "elarwen-the-oath-forged@stormlit",
-     "name": "Elarwen the Oath-Forged",
+     "name": "Elarwen the Silver-Browed",
      "fl": "Elarwen the Oath-Forged has never left the gate. Nothing has ever made it past Elarwen the Oath-Forged.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -12605,7 +12605,7 @@
     },
     {
      "id": "aealiel-the-steadfast@stormlit",
-     "name": "Aealiel the Steadfast",
+     "name": "Aealiel of the Grey Coast",
      "fl": "Aealiel the Steadfast was standing guard before the wall was built.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -13136,7 +13136,7 @@
      "tribe": "Humans"
     },
     {
-     "name": "Nerriel the Bold",
+     "name": "Nerriel the Unforgotten",
      "fl": "The Elderkin keep the long watch.",
      "faction": "stormlit",
      "pool": "fandom",
@@ -13601,7 +13601,7 @@
     },
     {
      "id": "droaara-of-the-grey-fletching@starwind",
-     "name": "Droaara of the Grey Fletching",
+     "name": "Droaara the Distance-Crossed",
      "fl": "Droaara of the Grey Fletching's arrows arrive before the argument.",
      "faction": "starwind",
      "pool": "fandom",
@@ -13761,7 +13761,7 @@
     },
     {
      "id": "kororuk-the-thousand-yard@starwind",
-     "name": "Kororuk the Thousand-Yard",
+     "name": "Kororuk the Light-Bearing",
      "fl": "One breath, one arrow, one silence — Kororuk the Thousand-Yard's creed.",
      "faction": "starwind",
      "pool": "fandom",
@@ -13821,7 +13821,7 @@
     },
     {
      "id": "zekiusk-the-thousand-yard@starwind",
-     "name": "Zekiusk the Thousand-Yard",
+     "name": "Zekiusk the Chitin-Bright",
      "fl": "Zekiusk the Thousand-Yard's arrows arrive before the argument.",
      "faction": "starwind",
      "pool": "fandom",
@@ -13841,7 +13841,7 @@
     },
     {
      "id": "talior-the-keen-eyed@starwind",
-     "name": "Talior the Keen-Eyed",
+     "name": "Talior of the Ninth Drift",
      "fl": "One breath, one arrow, one silence — Talior the Keen-Eyed's creed.",
      "faction": "starwind",
      "pool": "fandom",
@@ -13881,7 +13881,7 @@
     },
     {
      "id": "tavaara-the-thousand-yard@starwind",
-     "name": "Tavaara the Thousand-Yard",
+     "name": "Tavaara the Light-Bearing",
      "fl": "Tavaara the Thousand-Yard's arrows arrive before the argument.",
      "faction": "starwind",
      "pool": "fandom",
@@ -13901,7 +13901,7 @@
     },
     {
      "id": "zekeax-the-swift-loosed@starwind",
-     "name": "Zekeax the Swift-Loosed",
+     "name": "Zekeax of the Cold Lattice",
      "fl": "Zekeax the Swift-Loosed's arrows arrive before the argument.",
      "faction": "starwind",
      "pool": "fandom",
@@ -13961,7 +13961,7 @@
     },
     {
      "id": "korurek-the-keen-eyed@starwind",
-     "name": "Korurek the Keen-Eyed",
+     "name": "Korurek of the Long Dark",
      "fl": "Korurek the Keen-Eyed's arrows arrive before the argument.",
      "faction": "starwind",
      "pool": "fandom",
@@ -13981,7 +13981,7 @@
     },
     {
      "id": "naliaal-the-keen-eyed@starwind",
-     "name": "Naliaal the Keen-Eyed",
+     "name": "Naliaal the Silence-Sown",
      "fl": "Naliaal the Keen-Eyed's arrows arrive before the argument.",
      "faction": "starwind",
      "pool": "fandom",
@@ -14001,7 +14001,7 @@
     },
     {
      "id": "xelakuk-the-keen-eyed@starwind",
-     "name": "Xelakuk the Keen-Eyed",
+     "name": "Xelakuk of the Hollow Shore",
      "fl": "One breath, one arrow, one silence — Xelakuk the Keen-Eyed's creed.",
      "faction": "starwind",
      "pool": "fandom",
@@ -14061,7 +14061,7 @@
     },
     {
      "id": "mekeshara-the-thousand-yard@starwind",
-     "name": "Mekeshara the Thousand-Yard",
+     "name": "Mekeshara the Void-Polished",
      "fl": "One breath, one arrow, one silence — Mekeshara the Thousand-Yard's creed.",
      "faction": "starwind",
      "pool": "fandom",
@@ -14241,7 +14241,7 @@
     },
     {
      "id": "naloraal-the-thousand-yard@starwind",
-     "name": "Naloraal the Thousand-Yard",
+     "name": "Naloraal the Chitin-Bright",
      "fl": "Naloraal the Thousand-Yard's arrows arrive before the argument.",
      "faction": "starwind",
      "pool": "fandom",
@@ -14261,7 +14261,7 @@
     },
     {
      "id": "ureshun-the-keen-eyed@starwind",
-     "name": "Ureshun the Keen-Eyed",
+     "name": "Ureshun of the Outer Veil",
      "fl": "One breath, one arrow, one silence — Ureshun the Keen-Eyed's creed.",
      "faction": "starwind",
      "pool": "fandom",
@@ -14281,7 +14281,7 @@
     },
     {
      "id": "koreshax-of-the-grey-fletching@starwind",
-     "name": "Koreshax of the Grey Fletching",
+     "name": "Koreshax the Signal-Kept",
      "fl": "One breath, one arrow, one silence — Koreshax of the Grey Fletching's creed.",
      "faction": "starwind",
      "pool": "fandom",
@@ -14301,7 +14301,7 @@
     },
     {
      "id": "skoroath-of-the-grey-fletching@starwind",
-     "name": "Skoroath of the Grey Fletching",
+     "name": "Skoroath the Vector-Held",
      "fl": "One breath, one arrow, one silence — Skoroath of the Grey Fletching's creed.",
      "faction": "starwind",
      "pool": "fandom",
@@ -14321,7 +14321,7 @@
     },
     {
      "id": "tavorosh-the-swift-loosed@starwind",
-     "name": "Tavorosh the Swift-Loosed",
+     "name": "Tavorosh the Membrane-Crested",
      "fl": "Tavorosh the Swift-Loosed's arrows arrive before the argument.",
      "faction": "starwind",
      "pool": "fandom",
@@ -14341,7 +14341,7 @@
     },
     {
      "id": "talaek-the-thousand-yard@starwind",
-     "name": "Talaek the Thousand-Yard",
+     "name": "Talaek the Unset",
      "fl": "One breath, one arrow, one silence — Talaek the Thousand-Yard's creed.",
      "faction": "starwind",
      "pool": "fandom",
@@ -14541,7 +14541,7 @@
     },
     {
      "id": "vrexior-the-thousand-yard@starwind",
-     "name": "Vrexior the Thousand-Yard",
+     "name": "Vrexior the Once-Clustered",
      "fl": "One breath, one arrow, one silence — Vrexior the Thousand-Yard's creed.",
      "faction": "starwind",
      "pool": "fandom",
@@ -14561,7 +14561,7 @@
     },
     {
      "id": "tavakosh-of-the-grey-fletching@starwind",
-     "name": "Tavakosh of the Grey Fletching",
+     "name": "Tavakosh the Vector-Held",
      "fl": "Tavakosh of the Grey Fletching's arrows arrive before the argument.",
      "faction": "starwind",
      "pool": "fandom",
@@ -14581,7 +14581,7 @@
     },
     {
      "id": "koreshax-of-the-long-watch@starwind",
-     "name": "Koreshax of the Long Watch",
+     "name": "Koreshax of the Cold Lattice",
      "fl": "Koreshax of the Long Watch dreams with open eyes — and remembers.",
      "faction": "starwind",
      "pool": "fandom",
@@ -14601,7 +14601,7 @@
     },
     {
      "id": "talaaal-the-thousand-yard@starwind",
-     "name": "Talaaal the Thousand-Yard",
+     "name": "Talaaal the Unset",
      "fl": "One breath, one arrow, one silence — Talaaal the Thousand-Yard's creed.",
      "faction": "starwind",
      "pool": "fandom",
@@ -14721,7 +14721,7 @@
     },
     {
      "id": "vororis-the-swift-loosed@starwind",
-     "name": "Vororis the Swift-Loosed",
+     "name": "Vororis the Void-Polished",
      "fl": "Vororis the Swift-Loosed's arrows arrive before the argument.",
      "faction": "starwind",
      "pool": "fandom",
@@ -14781,7 +14781,7 @@
     },
     {
      "id": "gralurun-the-keen-eyed@starwind",
-     "name": "Gralurun the Keen-Eyed",
+     "name": "Gralurun of the Outer Veil",
      "fl": "One breath, one arrow, one silence — Gralurun the Keen-Eyed's creed.",
      "faction": "starwind",
      "pool": "fandom",
@@ -14821,7 +14821,7 @@
     },
     {
      "id": "rukeusk-the-swift-loosed@starwind",
-     "name": "Rukeusk the Swift-Loosed",
+     "name": "Rukeusk the Membrane-Crested",
      "fl": "One breath, one arrow, one silence — Rukeusk the Swift-Loosed's creed.",
      "faction": "starwind",
      "pool": "fandom",
@@ -14841,7 +14841,7 @@
     },
     {
      "id": "koroor-of-the-grey-fletching@starwind",
-     "name": "Koroor of the Grey Fletching",
+     "name": "Koroor the Signal-Kept",
      "fl": "One breath, one arrow, one silence — Koroor of the Grey Fletching's creed.",
      "faction": "starwind",
      "pool": "fandom",
@@ -15229,7 +15229,7 @@
      "dr": null
     },
     {
-     "name": "Pyrashith the Keen-Eyed",
+     "name": "Pyrashith of the Ninth Drift",
      "fl": "The Dominion aims from beyond the horizon.",
      "faction": "starwind",
      "pool": "fandom",
@@ -15282,7 +15282,7 @@
      "tribe": "Constructs"
     },
     {
-     "name": "Lyrorak the Breaker-Line",
+     "name": "Lyrorak the Distance-Crossed",
      "fl": "The Dominion aims from beyond the horizon.",
      "faction": "starwind",
      "pool": "fandom",
@@ -15408,7 +15408,7 @@
      "tribe": "Constructs"
     },
     {
-     "name": "Sylur the Hundred-Victor",
+     "name": "Sylur the Silence-Sown",
      "fl": "The Dominion aims from beyond the horizon.",
      "faction": "starwind",
      "pool": "fandom",
@@ -16023,7 +16023,7 @@
     },
     {
      "id": "kragodak-the-keen-eyed@tigerpass",
-     "name": "Kragodak the Keen-Eyed",
+     "name": "Kragodak the Wall-Crosser",
      "fl": "One breath, one arrow, one silence — Kragodak the Keen-Eyed's creed.",
      "faction": "tigerpass",
      "pool": "fandom",
@@ -16103,7 +16103,7 @@
     },
     {
      "id": "thugoggore-the-swift-loosed@tigerpass",
-     "name": "Thugoggore the Swift-Loosed",
+     "name": "Thugoggore the Famine-Feeder",
      "fl": "Thugoggore the Swift-Loosed's arrows arrive before the argument.",
      "faction": "tigerpass",
      "pool": "fandom",
@@ -16442,7 +16442,7 @@
      "id": "the-hive-spire@tigerpass"
     },
     {
-     "name": "The werebeast Moon",
+     "name": "The Werebeast Moon",
      "fl": "The Horde runs before the thunder.",
      "faction": "tigerpass",
      "pool": "fandom",
@@ -16528,7 +16528,7 @@
      "tribe": "Humans"
     },
     {
-     "name": "Fenisor the Swift-Loosed",
+     "name": "Fenisor the Wall-Crosser",
      "fl": "The Horde runs before the thunder.",
      "faction": "tigerpass",
      "pool": "fandom",
@@ -17244,7 +17244,7 @@
     },
     {
      "id": "vect@zephek",
-     "name": "Halael the Wall of Spears",
+     "name": "Halael the Cathode-Eyed",
      "fl": "Sworn to the Ossuary Gate.",
      "faction": "zephek",
      "pool": "fandom",
@@ -17741,7 +17741,7 @@
     },
     {
      "id": "casanmund-the-steadfast@zephek",
-     "name": "Casanmund the Steadfast",
+     "name": "Casanmund the Rampart-Held",
      "fl": "Casanmund the Steadfast's arrows arrive before the argument.",
      "faction": "zephek",
      "pool": "fandom",
@@ -17901,7 +17901,7 @@
     },
     {
      "id": "octantor-the-twilight-born@zephek",
-     "name": "Octantor the Twilight-Born",
+     "name": "Octantor the Cathode-Eyed",
      "fl": "Octantor the Twilight-Born was standing guard before the wall was built.",
      "faction": "zephek",
      "pool": "fandom",
@@ -18161,7 +18161,7 @@
     },
     {
      "id": "ferevus-the-twilight-born@zephek",
-     "name": "Ferevus the Twilight-Born",
+     "name": "Ferevus the Purity-Gold",
      "fl": "Ferevus the Twilight-Born was standing guard before the wall was built.",
      "faction": "zephek",
      "pool": "fandom",
@@ -18201,7 +18201,7 @@
     },
     {
      "id": "orinridric-the-bold@zephek",
-     "name": "Orinridric the Bold",
+     "name": "Orinridric the Rampart-Held",
      "fl": "Orinridric the Bold arrives before the war does.",
      "faction": "zephek",
      "pool": "fandom",
@@ -18261,7 +18261,7 @@
     },
     {
      "id": "ferantor-the-unbowed@zephek",
-     "name": "Ferantor the Unbowed",
+     "name": "Ferantor the Crusade-Burdened",
      "fl": "Ferantor the Unbowed is the full stop at the end of legends.",
      "faction": "zephek",
      "pool": "fandom",
@@ -19890,7 +19890,7 @@
     },
     {
      "id": "heseltine@wayfarers",
-     "name": "Aler the Nightborn",
+     "name": "Aler the Road-Worn",
      "fl": "Sworn to the Long Campaign.",
      "faction": "wayfarers",
      "pool": "neutral",
@@ -20090,7 +20090,7 @@
     },
     {
      "id": "tytos lannister@wayfarers",
-     "name": "Osric the Nightborn",
+     "name": "Osric the Toll-Taken",
      "fl": "Sworn to the Black Harbors.",
      "faction": "wayfarers",
      "pool": "neutral",
@@ -20110,7 +20110,7 @@
     },
     {
      "id": "wellington@wayfarers",
-     "name": "Oser the Nightborn",
+     "name": "Oser the Toll-Taken",
      "fl": "Sworn to the Chalk Cliffs.",
      "faction": "wayfarers",
      "pool": "neutral",
@@ -20390,7 +20390,7 @@
     },
     {
      "id": "truss@wayfarers",
-     "name": "Ediwyn Robine the Unseen",
+     "name": "Ediwyn Robine the Road-Opened",
      "fl": "Sworn to the Frontier Line.",
      "faction": "wayfarers",
      "pool": "neutral",
@@ -22290,7 +22290,7 @@
     },
     {
      "id": "casemonde-the-unseen@courts",
-     "name": "Casemonde the Unseen",
+     "name": "Casemonde the Ledger-Balanced",
      "fl": "First over the wall, always — Casemonde the Unseen.",
      "faction": "courts",
      "pool": "fandom",
@@ -22370,7 +22370,7 @@
     },
     {
      "id": "vioiric-the-unseen@courts",
-     "name": "Vioiric the Unseen",
+     "name": "Vioiric the Twice-Betrothed",
      "fl": "Every wound Vioiric the Unseen takes, it returns with interest.",
      "faction": "courts",
      "pool": "fandom",
@@ -22770,7 +22770,7 @@
     },
     {
      "id": "gisalor-of-the-quiet-house@courts",
-     "name": "Gisalor of the Quiet House",
+     "name": "Gisalor the Ledger-Balanced",
      "fl": "Gisalor of the Quiet House arrives before the war does.",
      "faction": "courts",
      "pool": "fandom",
@@ -23825,7 +23825,7 @@
     },
     {
      "id": "shenrgang-the-keen-eyed@kingdoms",
-     "name": "Shenrgang the Keen-Eyed",
+     "name": "Shenrgang the Siege-Weathered",
      "fl": "One breath, one arrow, one silence — Shenrgang the Keen-Eyed's creed.",
      "faction": "kingdoms",
      "pool": "fandom",
@@ -23885,7 +23885,7 @@
     },
     {
      "id": "taonnan-the-red-handed@kingdoms",
-     "name": "Taonnan the Red-Handed",
+     "name": "Taonnan the Anvil-Blooded",
      "fl": "One breath, one arrow, one silence — Taonnan the Red-Handed's creed.",
      "faction": "kingdoms",
      "pool": "fandom",
@@ -24025,7 +24025,7 @@
     },
     {
      "id": "lizhen-of-the-long-watch@kingdoms",
-     "name": "Lizhen of the Long Watch",
+     "name": "Lizhen the Lamellar-Bright",
      "fl": "Lizhen of the Long Watch treats defeat like a rumor — unverified and beneath notice.",
      "faction": "kingdoms",
      "pool": "fandom",
@@ -24185,7 +24185,7 @@
     },
     {
      "id": "guanmming-the-keen-eyed@kingdoms",
-     "name": "Guanmming the Keen-Eyed",
+     "name": "Guanmming the Banner-Raised",
      "fl": "Guanmming the Keen-Eyed brings the weather to the argument.",
      "faction": "kingdoms",
      "pool": "fandom",
@@ -24345,7 +24345,7 @@
     },
     {
      "id": "peiling-the-steadfast@kingdoms",
-     "name": "Peiling the Steadfast",
+     "name": "Peiling the Ink-Stained",
      "fl": "Nothing passes Peiling the Steadfast that has not been named.",
      "faction": "kingdoms",
      "pool": "fandom",
@@ -24405,7 +24405,7 @@
     },
     {
      "id": "chengyan-the-blood-tithed@kingdoms",
-     "name": "Chengyan the Blood-Tithed",
+     "name": "Chengyan the Family-Unfinished",
      "fl": "Chengyan the Blood-Tithed tithes the field of its crimson.",
      "faction": "kingdoms",
      "pool": "fandom",
@@ -24465,7 +24465,7 @@
     },
     {
      "id": "taorgang-the-steadfast@kingdoms",
-     "name": "Taorgang the Steadfast",
+     "name": "Taorgang the Family-Unfinished",
      "fl": "Taorgang the Steadfast tithes the field of its crimson.",
      "faction": "kingdoms",
      "pool": "fandom",
@@ -24525,7 +24525,7 @@
     },
     {
      "id": "jiantai-the-iron-voiced@kingdoms",
-     "name": "Jiantai the Iron-Voiced",
+     "name": "Jiantai the Pass-Held",
      "fl": "The map ends where Jiantai the Iron-Voiced's footprints begin.",
      "faction": "kingdoms",
      "pool": "fandom",
@@ -24705,7 +24705,7 @@
     },
     {
      "id": "guangang-the-end-of-all-things@kingdoms",
-     "name": "Guangang the End of All Things",
+     "name": "Guangang the Line-Ended",
      "fl": "Guangang the End of All Things is the full stop at the end of legends.",
      "faction": "kingdoms",
      "pool": "fandom",
@@ -24885,7 +24885,7 @@
     },
     {
      "id": "meiwei-the-swift-hooved@kingdoms",
-     "name": "Meiwei the Swift-Hooved",
+     "name": "Meiwei the Duty-Sworn",
      "fl": "First over the wall, always — Meiwei the Swift-Hooved.",
      "faction": "kingdoms",
      "pool": "fandom",
@@ -24905,7 +24905,7 @@
     },
     {
      "id": "niegshu-the-keen-eyed@kingdoms",
-     "name": "Niegshu the Keen-Eyed",
+     "name": "Niegshu the Banner-Raised",
      "fl": "One breath, one arrow, one silence — Niegshu the Keen-Eyed's creed.",
      "faction": "kingdoms",
      "pool": "fandom",
@@ -24925,7 +24925,7 @@
     },
     {
      "id": "guangqiu-the-keen-eyed@kingdoms",
-     "name": "Guangqiu the Keen-Eyed",
+     "name": "Guangqiu the Siege-Weathered",
      "fl": "Guangqiu the Keen-Eyed brings the weather to the argument.",
      "faction": "kingdoms",
      "pool": "fandom",
@@ -25025,7 +25025,7 @@
     },
     {
      "id": "kangshming-the-swift-hooved@kingdoms",
-     "name": "Kangshming the Swift-Hooved",
+     "name": "Kangshming the Anvil-Blooded",
      "fl": "Kangshming the Swift-Hooved arrives before the war does.",
      "faction": "kingdoms",
      "pool": "fandom",
@@ -25065,7 +25065,7 @@
     },
     {
      "id": "meinfeng-the-reckoner@kingdoms",
-     "name": "Meinfeng the Reckoner",
+     "name": "Meinfeng the Lamellar-Bright",
      "fl": "Meinfeng the Reckoner was standing guard before the wall was built.",
      "faction": "kingdoms",
      "pool": "fandom",
@@ -25205,7 +25205,7 @@
     },
     {
      "id": "taoggang-the-iron-voiced@kingdoms",
-     "name": "Taoggang the Iron-Voiced",
+     "name": "Taoggang the Pass-Held",
      "fl": "Taoggang the Iron-Voiced's arrows arrive before the argument.",
      "faction": "kingdoms",
      "pool": "fandom",
@@ -25344,7 +25344,7 @@
     },
     {
      "id": "ruangwei-the-steadfast@kingdoms",
-     "name": "Ruangwei the Steadfast",
+     "name": "Ruangwei the Ink-Stained",
      "fl": "The wall holds because brothers hold it.",
      "faction": "kingdoms",
      "pool": "fandom",
@@ -25912,7 +25912,7 @@
    "cards": [
     {
      "id": "iseniowynd-the-silent@towers",
-     "name": "Iseniowynd the Silent",
+     "name": "Iseniowynd the Ink-Fingered",
      "fl": "Iseniowynd the Silent was standing guard before the wall was built.",
      "faction": "towers",
      "pool": "fandom",
@@ -26092,7 +26092,7 @@
     },
     {
      "id": "pyrairion-the-end-of-all-things@towers",
-     "name": "Pyrairion the End of All Things",
+     "name": "Pyrairion the Unwritten",
      "fl": "Pyrairion the End of All Things is the full stop at the end of legends.",
      "faction": "towers",
      "pool": "fandom",
@@ -26252,7 +26252,7 @@
     },
     {
      "id": "queliaris-the-first-over@towers",
-     "name": "Queliaris the First Over",
+     "name": "Queliaris the Weave-Mended",
      "fl": "Queliaris the First Over arrives before the war does.",
      "faction": "towers",
      "pool": "fandom",
@@ -26332,7 +26332,7 @@
     },
     {
      "id": "maeaeseth-the-end-of-all-things@towers",
-     "name": "Maeaeseth the End of All Things",
+     "name": "Maeaeseth the Overdue-Returned",
      "fl": "Maeaeseth the End of All Things is the full stop at the end of legends.",
      "faction": "towers",
      "pool": "fandom",
@@ -26632,7 +26632,7 @@
     },
     {
      "id": "aloquen-the-steadfast@towers",
-     "name": "Aloquen the Steadfast",
+     "name": "Aloquen the Astrolabe-Burdened",
      "fl": "Aloquen the Steadfast was standing guard before the wall was built.",
      "faction": "towers",
      "pool": "fandom",
@@ -26752,7 +26752,7 @@
     },
     {
      "id": "isenivale-the-first-over@towers",
-     "name": "Isenivale the First Over",
+     "name": "Isenivale the Weave-Mended",
      "fl": "First over the wall, always — Isenivale the First Over.",
      "faction": "towers",
      "pool": "fandom",
@@ -26992,7 +26992,7 @@
     },
     {
      "id": "fenawynd-the-silent@towers",
-     "name": "Fenawynd the Silent",
+     "name": "Fenawynd the Ink-Fingered",
      "fl": "Fenawynd the Silent was standing guard before the wall was built.",
      "faction": "towers",
      "pool": "fandom",
@@ -27192,7 +27192,7 @@
     },
     {
      "id": "halaemir-the-swift-hooved@towers",
-     "name": "Halaemir the Swift-Hooved",
+     "name": "Halaemir the Lexicon-Saved",
      "fl": "First over the wall, always — Halaemir the Swift-Hooved.",
      "faction": "towers",
      "pool": "fandom",
@@ -27292,7 +27292,7 @@
     },
     {
      "id": "eliquen-of-the-long-watch@towers",
-     "name": "Eliquen of the Long Watch",
+     "name": "Eliquen the Moth-Silvered",
      "fl": "Nothing passes Eliquen of the Long Watch that has not been named.",
      "faction": "towers",
      "pool": "fandom",
@@ -27492,7 +27492,7 @@
     },
     {
      "id": "aleseth-the-steadfast@towers",
-     "name": "Aleseth the Steadfast",
+     "name": "Aleseth the Astrolabe-Burdened",
      "fl": "Nothing passes Aleseth the Steadfast that has not been named.",
      "faction": "towers",
      "pool": "fandom",
@@ -28144,7 +28144,7 @@
      "tribe": "Humans"
     },
     {
-     "name": "Gorakak of the Quiet House",
+     "name": "Gorakak the Gate-Sealed",
      "fl": "The Nine Towers price fate itself.",
      "faction": "towers",
      "pool": "fandom",
@@ -28180,7 +28180,7 @@
      "tribe": "Humans"
     },
     {
-     "name": "Lyrunun of the Quiet House",
+     "name": "Lyrunun the Gate-Sealed",
      "fl": "The Nine Towers price fate itself.",
      "faction": "towers",
      "pool": "fandom",
@@ -28197,7 +28197,7 @@
      "tribe": "Humans"
     },
     {
-     "name": "Fenith of the Long Watch",
+     "name": "Fenith the Moth-Silvered",
      "fl": "The Nine Towers price fate itself.",
      "faction": "towers",
      "pool": "fandom",
@@ -28397,7 +28397,7 @@
     },
     {
      "id": "ashvenne-the-keen-eyed@necropolis",
-     "name": "Ashvenne the Keen-Eyed",
+     "name": "Ashvenne the Liturgy-Finished",
      "fl": "One breath, one arrow, one silence — Skuzashskab the Keen-Eyed's creed.",
      "faction": "necropolis",
      "pool": "fandom",
@@ -28457,7 +28457,7 @@
     },
     {
      "id": "korgrim-the-swift-loosed@necropolis",
-     "name": "Korgrim the Swift-Loosed",
+     "name": "Korgrim the Liturgy-Finished",
      "fl": "One breath, one arrow, one silence — Kragurot the Swift-Loosed's creed.",
      "faction": "necropolis",
      "pool": "fandom",
@@ -28558,7 +28558,7 @@
      "tribe": "Undead"
     },
     {
-     "name": "Blood moon",
+     "name": "Blood Moon",
      "fl": "The Horde runs before the thunder.",
      "faction": "necropolis",
      "pool": "fandom",
@@ -29361,7 +29361,7 @@
     },
     {
      "id": "belivar-the-unbowed@necropolis",
-     "name": "Belivar the Unbowed",
+     "name": "Belivar the Silence-Content",
      "fl": "The crown outlasted the flesh.",
      "faction": "necropolis",
      "pool": "fandom",
@@ -29445,7 +29445,7 @@
     },
     {
      "id": "vylgrim-the-cold-blooded@necropolis",
-     "name": "Vylgrim the Cold-Blooded",
+     "name": "Vylgrim the Dust-Veiled",
      "fl": "Dry humor, drier bones.",
      "faction": "necropolis",
      "pool": "fandom",
@@ -29466,7 +29466,7 @@
     },
     {
      "id": "cargrim-the-unbowed@necropolis",
-     "name": "Cargrim the Unbowed",
+     "name": "Cargrim the Grave-Glow-Eyed",
      "fl": "Dry humor, drier bones.",
      "faction": "necropolis",
      "pool": "fandom",
@@ -29487,7 +29487,7 @@
     },
     {
      "id": "drewyn-the-wall-of-spears@necropolis",
-     "name": "Drewyn the Wall of Spears",
+     "name": "Drewyn the Bone-White Procession",
      "fl": "Dry humor, drier bones.",
      "faction": "necropolis",
      "pool": "fandom",
@@ -29529,7 +29529,7 @@
     },
     {
      "id": "morasse-the-keen-eyed@necropolis",
-     "name": "Morasse the Keen-Eyed",
+     "name": "Morasse the Border-Gate-Held",
      "fl": "Manners came later. Appetite came first.",
      "faction": "necropolis",
      "pool": "fandom",
@@ -29571,7 +29571,7 @@
     },
     {
      "id": "morissa-the-thunder-heeled@necropolis",
-     "name": "Morissa the Thunder-Heeled",
+     "name": "Morissa the Bone-White Procession",
      "fl": "Manners came later. Appetite came first.",
      "faction": "necropolis",
      "pool": "fandom",
@@ -29760,7 +29760,7 @@
     },
     {
      "id": "vessasse-the-hollow-crowned@necropolis",
-     "name": "Vessasse the Hollow-Crowned",
+     "name": "Vessasse the Vigil-Sung",
      "fl": "Patient hunger, immaculate taste.",
      "faction": "necropolis",
      "pool": "fandom",
@@ -29970,7 +29970,7 @@
     },
     {
      "id": "sarasse-the-unbowed@necropolis",
-     "name": "Sarasse the Unbowed",
+     "name": "Sarasse the Silence-Content",
      "fl": "Cough once. That is all it takes.",
      "faction": "necropolis",
      "pool": "fandom",
@@ -30033,7 +30033,7 @@
     },
     {
      "id": "vesswyn-the-thunder-heeled@necropolis",
-     "name": "Vesswyn the Thunder-Heeled",
+     "name": "Vesswyn the Dust-Veiled",
      "fl": "You will see it before you hear it.",
      "faction": "necropolis",
      "pool": "fandom",
@@ -30054,7 +30054,7 @@
     },
     {
      "id": "grygath-the-hollow-crowned@necropolis",
-     "name": "Grygath the Hollow-Crowned",
+     "name": "Grygath the Border-Gate-Held",
      "fl": "What is left when the light wins?",
      "faction": "necropolis",
      "pool": "fandom",
@@ -30096,7 +30096,7 @@
     },
     {
      "id": "drehold-the-dusk-marked@necropolis",
-     "name": "Drehold the Dusk-Marked",
+     "name": "Drehold the Unquiet",
      "fl": "Old treasure, older grudges.",
      "faction": "necropolis",
      "pool": "fandom",
@@ -30117,7 +30117,7 @@
     },
     {
      "id": "nhalgath-the-cold-blooded@necropolis",
-     "name": "Nhalgath the Cold-Blooded",
+     "name": "Nhalgath the Vigil-Sung",
      "fl": "Old treasure, older grudges.",
      "faction": "necropolis",
      "pool": "fandom",
@@ -30481,7 +30481,7 @@
     },
     {
      "id": "kragazog-the-swift-loosed@marches",
-     "name": "Kragazog the Swift-Loosed",
+     "name": "Kragazog of the Broken Banner",
      "fl": "Kragazog the Swift-Loosed's arrows arrive before the argument.",
      "faction": "marches",
      "pool": "fandom",
@@ -30703,7 +30703,7 @@
     },
     {
      "id": "krukk-the-unbowed@marches",
-     "name": "Krukk the Unbowed",
+     "name": "Krukk the Tusk-Chipped",
      "fl": "Bigger hat, bigger axe.",
      "faction": "marches",
      "pool": "fandom",
@@ -31081,7 +31081,7 @@
     },
     {
      "id": "grazog-the-reckoner@marches",
-     "name": "Grazog the Reckoner",
+     "name": "Grazog of the Endless March",
      "fl": "Bigger hat, bigger axe.",
      "faction": "marches",
      "pool": "fandom",
@@ -31102,7 +31102,7 @@
     },
     {
      "id": "roktuk-the-hollow-crowned@marches",
-     "name": "Roktuk the Hollow-Crowned",
+     "name": "Roktuk Drumsplitter",
      "fl": "Bigger hat, bigger axe.",
      "faction": "marches",
      "pool": "fandom",
@@ -31123,7 +31123,7 @@
     },
     {
      "id": "skartuk-the-swift-loosed@marches",
-     "name": "Skartuk the Swift-Loosed",
+     "name": "Skartuk of the Broken Banner",
      "fl": "Bigger hat, bigger axe.",
      "faction": "marches",
      "pool": "fandom",
@@ -31144,7 +31144,7 @@
     },
     {
      "id": "skuznak-the-blood-tithed@marches",
-     "name": "Skuznak the Blood-Tithed",
+     "name": "Skuznak Shieldchewer",
      "fl": "Bigger hat, bigger axe.",
      "faction": "marches",
      "pool": "fandom",
@@ -31165,7 +31165,7 @@
     },
     {
      "id": "skuzgnash-the-ash-cloaked@marches",
-     "name": "Skuzgnash the Ash-Cloaked",
+     "name": "Skuzgnash Helmsmasher",
      "fl": "Bigger hat, bigger axe.",
      "faction": "marches",
      "pool": "fandom",
@@ -31207,7 +31207,7 @@
     },
     {
      "id": "snikmaw-the-hollow-crowned@marches",
-     "name": "Snikmaw the Hollow-Crowned",
+     "name": "Snikmaw the Iron-Scrappy",
      "fl": "Bigger hat, bigger axe.",
      "faction": "marches",
      "pool": "fandom",
@@ -31228,7 +31228,7 @@
     },
     {
      "id": "zogusk-the-ash-cloaked@marches",
-     "name": "Zogusk the Ash-Cloaked",
+     "name": "Zogusk the Twice-Broken",
      "fl": "Bigger hat, bigger axe.",
      "faction": "marches",
      "pool": "fandom",
@@ -31249,7 +31249,7 @@
     },
     {
      "id": "snikfist-the-patient@marches",
-     "name": "Snikfist the Patient",
+     "name": "Snikfist the Last-Waaagh-Heard",
      "fl": "Bigger hat, bigger axe.",
      "faction": "marches",
      "pool": "fandom",
@@ -31333,7 +31333,7 @@
     },
     {
      "id": "skuzgore-the-unbowed@marches",
-     "name": "Skuzgore the Unbowed",
+     "name": "Skuzgore the Grudge-Chewing",
      "fl": "Bigger hat, bigger axe.",
      "faction": "marches",
      "pool": "fandom",
@@ -31375,7 +31375,7 @@
     },
     {
      "id": "snikkab-the-patient@marches",
-     "name": "Snikkab the Patient",
+     "name": "Snikkab the Kindly",
      "fl": "Bigger hat, bigger axe.",
      "faction": "marches",
      "pool": "fandom",
@@ -31396,7 +31396,7 @@
     },
     {
      "id": "grazgore-the-reckoner@marches",
-     "name": "Grazgore the Reckoner",
+     "name": "Grazgore the Loud-Bragging",
      "fl": "Six knives, no plan, total confidence.",
      "faction": "marches",
      "pool": "fandom",
@@ -31417,7 +31417,7 @@
     },
     {
      "id": "grazgrat-the-unbowed@marches",
-     "name": "Grazgrat the Unbowed",
+     "name": "Grazgrat the Never-Sated",
      "fl": "Six knives, no plan, total confidence.",
      "faction": "marches",
      "pool": "fandom",
@@ -31480,7 +31480,7 @@
     },
     {
      "id": "kragtuk-the-swift-loosed@marches",
-     "name": "Kragtuk the Swift-Loosed",
+     "name": "Kragtuk the Blood-Ochred",
      "fl": "Six knives, no plan, total confidence.",
      "faction": "marches",
      "pool": "fandom",
@@ -31501,7 +31501,7 @@
     },
     {
      "id": "rokkab-the-nine-crowned@marches",
-     "name": "Rokkab the Nine-Crowned",
+     "name": "Rokkab the Last-Waaagh-Heard",
      "fl": "Six knives, no plan, total confidence.",
      "faction": "marches",
      "pool": "fandom",
@@ -31522,7 +31522,7 @@
     },
     {
      "id": "kragrot-the-ash-cloaked@marches",
-     "name": "Kragrot the Ash-Cloaked",
+     "name": "Kragrot Helmsmasher",
      "fl": "Six knives, no plan, total confidence.",
      "faction": "marches",
      "pool": "fandom",
@@ -31543,7 +31543,7 @@
     },
     {
      "id": "grakog-the-thorned@marches",
-     "name": "Grakog the Thorned",
+     "name": "Grakog the Blood-Ochred",
      "fl": "Six knives, no plan, total confidence.",
      "faction": "marches",
      "pool": "fandom",
@@ -31564,7 +31564,7 @@
     },
     {
      "id": "grazdak-the-dusk-marked@marches",
-     "name": "Grazdak the Dusk-Marked",
+     "name": "Grazdak Gate-Biter",
      "fl": "Six knives, no plan, total confidence.",
      "faction": "marches",
      "pool": "fandom",
@@ -31585,7 +31585,7 @@
     },
     {
      "id": "thuggnash-the-dusk-marked@marches",
-     "name": "Thuggnash the Dusk-Marked",
+     "name": "Thuggnash the Scar-Hide",
      "fl": "Six knives, no plan, total confidence.",
      "faction": "marches",
      "pool": "fandom",
@@ -31627,7 +31627,7 @@
     },
     {
      "id": "grazash-the-swift-loosed@marches",
-     "name": "Grazash the Swift-Loosed",
+     "name": "Grazash the Loud-Bragging",
      "fl": "Six knives, no plan, total confidence.",
      "faction": "marches",
      "pool": "fandom",
@@ -31669,7 +31669,7 @@
     },
     {
      "id": "uggrat-the-nine-crowned@marches",
-     "name": "Uggrat the Nine-Crowned",
+     "name": "Uggrat of the Endless March",
      "fl": "Six knives, no plan, total confidence.",
      "faction": "marches",
      "pool": "fandom",
@@ -31711,7 +31711,7 @@
     },
     {
      "id": "thugrot-the-grave-sworn@marches",
-     "name": "Thugrot the Grave-Sworn",
+     "name": "Thugrot Banner-Breaker",
      "fl": "Discipline is a weapon too.",
      "faction": "marches",
      "pool": "fandom",
@@ -31753,7 +31753,7 @@
     },
     {
      "id": "rokdak-the-grave-sworn@marches",
-     "name": "Rokdak the Grave-Sworn",
+     "name": "Rokdak Banner-Breaker",
      "fl": "Discipline is a weapon too.",
      "faction": "marches",
      "pool": "fandom",
@@ -31963,7 +31963,7 @@
     },
     {
      "id": "grakzog-the-dusk-marked@marches",
-     "name": "Grakzog the Dusk-Marked",
+     "name": "Grakzog Gate-Biter",
      "fl": "Regret nothing; heal everything.",
      "faction": "marches",
      "pool": "fandom",
@@ -32026,7 +32026,7 @@
     },
     {
      "id": "zoggnash-the-deep-minded@marches",
-     "name": "Zoggnash the Deep-Minded",
+     "name": "Zoggnash the Scar-Hide",
      "fl": "Regret nothing; heal everything.",
      "faction": "marches",
      "pool": "fandom",
@@ -32089,7 +32089,7 @@
     },
     {
      "id": "grashgnash-the-grave-sworn@marches",
-     "name": "Grashgnash the Grave-Sworn",
+     "name": "Grashgnash the Iron-Scrappy",
      "fl": "The club is the argument.",
      "faction": "marches",
      "pool": "fandom",
@@ -32110,7 +32110,7 @@
     },
     {
      "id": "snikgnash-the-swift-loosed@marches",
-     "name": "Snikgnash the Swift-Loosed",
+     "name": "Snikgnash the Never-Sated",
      "fl": "The club is the argument.",
      "faction": "marches",
      "pool": "fandom",
@@ -32152,7 +32152,7 @@
     },
     {
      "id": "skarfist-the-deep-minded@marches",
-     "name": "Skarfist the Deep-Minded",
+     "name": "Skarfist Shieldchewer",
      "fl": "The club is the argument.",
      "faction": "marches",
      "pool": "fandom",
@@ -32278,7 +32278,7 @@
     },
     {
      "id": "grakgnash-the-hollow-crowned@marches",
-     "name": "Grakgnash the Hollow-Crowned",
+     "name": "Grakgnash Drumsplitter",
      "fl": "You heard nothing. That was the last thing you heard.",
      "faction": "marches",
      "pool": "fandom",
@@ -32800,7 +32800,7 @@
      "tribe": "Underfolk"
     },
     {
-     "name": "Nymisur the Blood-Tithed",
+     "name": "Nymisur the Lantern-Eyed",
      "fl": "The Elderkin keep the long watch.",
      "faction": "deepholds",
      "pool": "fandom",
@@ -33200,7 +33200,7 @@
     },
     {
      "id": "balbard-the-silent@deepholds",
-     "name": "Balbard the Silent",
+     "name": "Balbard of the Ninth Deep",
      "fl": "The stone keeps its promises.",
      "faction": "deepholds",
      "pool": "fandom",
@@ -33221,7 +33221,7 @@
     },
     {
      "id": "thragold-the-grave-sworn@deepholds",
-     "name": "Thragold the Grave-Sworn",
+     "name": "Thragold the Coal-Bearded",
      "fl": "The stone keeps its promises.",
      "faction": "deepholds",
      "pool": "fandom",
@@ -33242,7 +33242,7 @@
     },
     {
      "id": "hewdin-the-dusk-marked@deepholds",
-     "name": "Hewdin the Dusk-Marked",
+     "name": "Hewdin the Lantern-Eyed",
      "fl": "The stone keeps its promises.",
      "faction": "deepholds",
      "pool": "fandom",
@@ -33263,7 +33263,7 @@
     },
     {
      "id": "cordell-the-unbowed@deepholds",
-     "name": "Cordell the Unbowed",
+     "name": "Cordell of the Under-Marsh",
      "fl": "The stone keeps its promises.",
      "faction": "deepholds",
      "pool": "fandom",
@@ -33284,7 +33284,7 @@
     },
     {
      "id": "haldelver-the-blood-tithed@deepholds",
-     "name": "Haldelver the Blood-Tithed",
+     "name": "Haldelver the Deep-Watered",
      "fl": "The stone keeps its promises.",
      "faction": "deepholds",
      "pool": "fandom",
@@ -33305,7 +33305,7 @@
     },
     {
      "id": "halwick-the-reckoner@deepholds",
-     "name": "Halwick the Reckoner",
+     "name": "Halwick the Stone-Remembered",
      "fl": "The stone keeps its promises.",
      "faction": "deepholds",
      "pool": "fandom",
@@ -33326,7 +33326,7 @@
     },
     {
      "id": "corwick-the-hollow-crowned@deepholds",
-     "name": "Corwick the Hollow-Crowned",
+     "name": "Corwick the Stone-Remembered",
      "fl": "The stone keeps its promises.",
      "faction": "deepholds",
      "pool": "fandom",
@@ -33368,7 +33368,7 @@
     },
     {
      "id": "balbard-the-grave-sworn@deepholds",
-     "name": "Balbard the Grave-Sworn",
+     "name": "Balbard the Granite-Browed",
      "fl": "The stone keeps its promises.",
      "faction": "deepholds",
      "pool": "fandom",
@@ -33431,7 +33431,7 @@
     },
     {
      "id": "hewdell-the-thorned@deepholds",
-     "name": "Hewdell the Thorned",
+     "name": "Hewdell the Seam-Followed",
      "fl": "The stone keeps its promises.",
      "faction": "deepholds",
      "pool": "fandom",
@@ -33452,7 +33452,7 @@
     },
     {
      "id": "torbrew-the-thorned@deepholds",
-     "name": "Torbrew the Thorned",
+     "name": "Torbrew the Seam-Followed",
      "fl": "The stone keeps its promises.",
      "faction": "deepholds",
      "pool": "fandom",
@@ -33473,7 +33473,7 @@
     },
     {
      "id": "bramgold-the-bold@deepholds",
-     "name": "Bramgold the Bold",
+     "name": "Bramgold the Gate-Forged",
      "fl": "The stone keeps its promises.",
      "faction": "deepholds",
      "pool": "fandom",
@@ -33494,7 +33494,7 @@
     },
     {
      "id": "grimdin-the-tireless@deepholds",
-     "name": "Grimdin the Tireless",
+     "name": "Grimdin of the Lower Gate",
      "fl": "The stone keeps its promises.",
      "faction": "deepholds",
      "pool": "fandom",
@@ -33515,7 +33515,7 @@
     },
     {
      "id": "bramgan-the-wall-of-spears@deepholds",
-     "name": "Bramgan the Wall of Spears",
+     "name": "Bramgan the Stone-Sworn",
      "fl": "The stone keeps its promises.",
      "faction": "deepholds",
      "pool": "fandom",
@@ -33536,7 +33536,7 @@
     },
     {
      "id": "thramar-the-wall-of-spears@deepholds",
-     "name": "Thramar the Wall of Spears",
+     "name": "Thramar of the Lower Gate",
      "fl": "The stone keeps its promises.",
      "faction": "deepholds",
      "pool": "fandom",
@@ -33557,7 +33557,7 @@
     },
     {
      "id": "tordin-the-silent@deepholds",
-     "name": "Tordin the Silent",
+     "name": "Tordin the Rune-Chiseled",
      "fl": "The stone keeps its promises.",
      "faction": "deepholds",
      "pool": "fandom",
@@ -33641,7 +33641,7 @@
     },
     {
      "id": "bregbrew-the-reckoner@deepholds",
-     "name": "Bregbrew the Reckoner",
+     "name": "Bregbrew the Rune-Chiseled",
      "fl": "Ninety-four percent reliable.",
      "faction": "deepholds",
      "pool": "fandom",
@@ -33662,7 +33662,7 @@
     },
     {
      "id": "durdan-the-reckoner@deepholds",
-     "name": "Durdan the Reckoner",
+     "name": "Durdan the Coal-Bearded",
      "fl": "Ninety-four percent reliable.",
      "faction": "deepholds",
      "pool": "fandom",
@@ -33683,7 +33683,7 @@
     },
     {
      "id": "bramdan-the-dusk-marked@deepholds",
-     "name": "Bramdan the Dusk-Marked",
+     "name": "Bramdan the Gate-Forged",
      "fl": "Ninety-four percent reliable.",
      "faction": "deepholds",
      "pool": "fandom",
@@ -33704,7 +33704,7 @@
     },
     {
      "id": "brambard-the-silent@deepholds",
-     "name": "Brambard the Silent",
+     "name": "Brambard the Delve-Deepened",
      "fl": "Ninety-four percent reliable.",
      "faction": "deepholds",
      "pool": "fandom",
@@ -33893,7 +33893,7 @@
     },
     {
      "id": "grimdan-the-thorned@deepholds",
-     "name": "Grimdan the Thorned",
+     "name": "Grimdan the Stone-Sworn",
      "fl": "Ninety-four percent reliable.",
      "faction": "deepholds",
      "pool": "fandom",
@@ -34103,7 +34103,7 @@
     },
     {
      "id": "corgan-the-blood-tithed@deepholds",
-     "name": "Corgan the Blood-Tithed",
+     "name": "Corgan the Deep-Watered",
      "fl": "Small folk, large coincidences.",
      "faction": "deepholds",
      "pool": "fandom",
@@ -34166,7 +34166,7 @@
     },
     {
      "id": "fizzmar-the-grave-sworn@deepholds",
-     "name": "Fizzmar the Grave-Sworn",
+     "name": "Fizzmar the Granite-Browed",
      "fl": "Small folk, large coincidences.",
      "faction": "deepholds",
      "pool": "fandom",
@@ -34229,7 +34229,7 @@
     },
     {
      "id": "grimbrew-the-swift-loosed@deepholds",
-     "name": "Grimbrew the Swift-Loosed",
+     "name": "Grimbrew of the First Seam",
      "fl": "Small folk, large coincidences.",
      "faction": "deepholds",
      "pool": "fandom",
@@ -34292,7 +34292,7 @@
     },
     {
      "id": "tinkstone-the-steadfast@deepholds",
-     "name": "Tinkstone the Steadfast",
+     "name": "Tinkstone the Delve-Deepened",
      "fl": "Spores before swords.",
      "faction": "deepholds",
      "pool": "fandom",
