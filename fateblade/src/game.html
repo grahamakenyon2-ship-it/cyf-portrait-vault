@@ -415,20 +415,26 @@
     color:#ff5a4a; text-shadow:0 1px 2px #000; pointer-events:none;}
   .dprev.blk{color:#e8dcc0;}
   .dprev.lethal{color:#ff2a1a; border-color:#ff2a1a; font-size:15px; box-shadow:0 0 12px #f006;}
-  /* v0.13 JUICE: the mulligan screen */
-  .mullrow{display:flex; gap:10px; justify-content:center; margin:14px 0; flex-wrap:wrap;}
-  .mcard{width:118px; height:164px; border:6px solid transparent; border-image:var(--theme-panel, linear-gradient(#2a2216,#191308)) 40;
-    background:#0d0a07; cursor:pointer; position:relative; transition:transform .12s, filter .12s;}
-  .mcard:hover{transform:translateY(-8px);}
-  .mcard.repl{filter:saturate(.25) brightness(.6); transform:translateY(10px);}
-  .mcard.repl:hover{transform:translateY(4px);}
-  .mcard .rtag{position:absolute; top:-14px; left:50%; transform:translateX(-50%); font-size:11px; letter-spacing:1px;
-    background:#7a1f1f; color:#fff; padding:2px 6px; border:1px solid #ff5a4a; white-space:nowrap;}
-  .mcard img{width:100%; height:100px; object-fit:cover; display:block;}
-  .mcard .nm{font-size:10.5px; white-space:nowrap; overflow:hidden; padding:0 2px;}
-  .mcard .st{font-size:13px; text-align:center;}
-  .mcard .cost{position:absolute; top:-7px; left:-7px; width:22px; height:22px; border-radius:50%;
-    background:#1c4d8a; color:#fff; font-size:13px; font-weight:bold; display:flex; align-items:center; justify-content:center; border:1px solid #6ea8ff;}
+  /* v0.26.4: the mulligan — presented as your actual hand (HS/MTGA pattern):
+     full-size fanned cards, hover to read them, click to mark a replace. */
+  .mullrow{display:flex; gap:12px; justify-content:center; margin:20px 0 14px; align-items:flex-end;}
+  .mcard{width:154px; height:210px; border:6px solid transparent; border-image:var(--theme-panel, linear-gradient(#2a2216,#191308)) 40;
+    background:#0d0a07; cursor:pointer; position:relative; transition:transform .14s, filter .14s;
+    transform:translateY(var(--fy,0px)) rotate(var(--fr,0deg)); transform-origin:50% 130%;}
+  .mcard:hover{transform:translateY(calc(var(--fy,0px) - 16px)) rotate(var(--fr,0deg)) scale(1.07); z-index:5;}
+  .mcard.spell{box-shadow:inset 0 0 0 3px #7a5a1a, inset 0 0 0 4px #000;}
+  .mcard.repl{filter:saturate(.2) brightness(.55); outline:2px solid #f44;}
+  .mcard.repl:hover{filter:saturate(.45) brightness(.75);}
+  .mcard .rtag{position:absolute; top:-12px; left:50%; transform:translateX(-50%); font-size:11px; letter-spacing:1px;
+    background:#7a1f1f; color:#fff; padding:2px 6px; border:1px solid #ff5a4a; white-space:nowrap; z-index:3;}
+  .mcard img{width:100%; height:128px; object-fit:cover; display:block;}
+  .mcard .nm{font-size:13px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding:2px 2px 0;}
+  .mcard .cost{position:absolute; top:-8px; left:-8px; width:26px; height:26px; border-radius:50%;
+    background:#1c4d8a; color:#fff; font-size:15px; font-weight:bold; display:flex; align-items:center; justify-content:center; border:1px solid #6ea8ff;}
+  .mcard .typerow{position:absolute; top:24px; left:3px; font-size:9px; letter-spacing:1px; color:var(--abil); background:#000c; padding:1px 4px;}
+  .mcard .kw{position:absolute; top:3px; right:3px; font-size:10px; background:#000c; color:#8fd;
+    padding:1px 4px; letter-spacing:1px; cursor:help; height:auto;}
+  .mcard .gem.atk{bottom:2px; left:4px;} .mcard .gem.hp{bottom:2px; right:4px;}
   /* v0.9.7 battle FX */
   .dghost{position:absolute; z-index:30; pointer-events:none; border:6px solid transparent;
     border-image:var(--theme-panel, linear-gradient(#2a2216,#191308)) 40; background:#0d0a07;
@@ -652,7 +658,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.26.3';
+const GAME_VERSION = '0.26.4';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
@@ -1574,7 +1580,7 @@ let mullMarked = new Set(); // hand indices to replace
 let mullTook = 0;           // exchanged count, for the reveal banner
 (function injectMullModal(){
   const m = document.createElement('div'); m.className='modal'; m.id='mull';
-  m.innerHTML = '<div class="mbox" id="mullbox"></div>';
+  m.innerHTML = '<div class="mbox" id="mullbox" style="max-width:980px"></div>';
   document.body.appendChild(m);
 })();
 function openMull(reveal){
@@ -1583,28 +1589,41 @@ function openMull(reveal){
   box.innerHTML = `
     <div style="font-size:12px;letter-spacing:3px;color:#c9b78e">THE OPENING HAND</div>
     <h2 style="color:var(--gold);letter-spacing:3px;margin:6px 0 4px">MULLIGAN</h2>
-    <div style="font-size:13.5px;color:#e6d8b2;font-style:italic;max-width:420px;margin:0 auto">
-      Click a card to send it back into the deck and draw a fresh one; click again to keep it.
-      Your foe reshuffles their openers too.</div>
+    <div style="font-size:13.5px;color:#e6d8b2;font-style:italic;max-width:480px;margin:0 auto">
+      Hover a card to read it in full. Click a card to send it back and draw a fresh one; click again to keep it. Your foe reshuffles their openers too.</div>
     <div class="mullrow" id="mullRow"></div>
     <div style="display:flex;gap:10px;justify-content:center">
-      <button class="themebtn" onclick="mullConfirm()">⚔ TO BATTLE</button></div>`;
-  document.getElementById('mullRow').innerHTML = S.A.hand.map((c,i)=>{
-    const isSpell = c.type==='edict'||c.type==='relic';
-    return `<div class="mcard" onclick="mullToggle(${i},this)">
-      <div class="artclip"><img src="${c.img}" loading="lazy"></div><div class="nm">${c.name}</div>
+      <button class="themebtn" id="mullbtn" onclick="mullConfirm()">⚔ KEEP HAND — TO BATTLE</button></div>`;
+  // v0.26.4: this IS your hand — same size, same fan, same faces as the in-game hand
+  const isSpell = (c)=>c.type==='edict'||c.type==='relic';
+  const hn = S.A.hand.length;
+  const fanR = (i)=>((i-(hn-1)/2)*Math.min(3.5, 28/hn)).toFixed(1);
+  const fanY = (i)=>(Math.pow(Math.abs(i-(hn-1)/2),1.35)*6).toFixed(1);
+  document.getElementById('mullRow').innerHTML = S.A.hand.map((c,i)=>`
+    <div class="mcard ${isSpell(c)?'spell':''}" data-i="${i}" style="--fr:${fanR(i)}deg;--fy:${fanY(i)}px" onclick="mullToggle(${i},this)">
+      <div class="artclip"><img src="${c.img}" loading="lazy"></div>
+      ${isSpell(c)?`<div class="typerow">${c.type==='edict'?'EDICT':'RELIC'}</div>`:''}
       <div class="cost">${c.cost}</div>
-      <div class="st">${isSpell?`<span style="color:var(--abil);letter-spacing:1px">${c.type.toUpperCase()}</span>`:`<span style="color:var(--atk)">${c.atk} ATK</span> · <span style="color:var(--hp)">${c.hp} HP</span>`}</div>
-      ${kwBadges(c)}</div>`;
-  }).join('');
+      ${kwBadges(c)}
+      <div class="nm">${c.name}</div>
+      ${isSpell(c)?'':`<div class="gem atk">${c.atk}<i>ATK</i></div><div class="gem hp">${c.hp}<i>HP</i></div>`}</div>`).join('');
+  document.querySelectorAll('#mullRow .mcard').forEach(d=>{ // v0.26.4: full read access before committing
+    d.onmouseenter = (ev)=>showZoom(S.A.hand[+d.dataset.i], ev);
+    d.onmousemove = moveZoom;
+    d.onmouseleave = hideZoom;
+    d.querySelectorAll('.kw[data-kw]').forEach((kwEl)=>{ kwEl.title = KWDESC[kwEl.dataset.kw]; });
+  });
   document.getElementById('mull').classList.add('on');
 }
 function mullToggle(i, el){
   const tag = el.querySelector('.rtag');
   if(mullMarked.has(i)){ mullMarked.delete(i); el.classList.remove('repl'); if(tag) tag.remove(); }
   else { mullMarked.add(i); el.classList.add('repl'); const t = document.createElement('div'); t.className='rtag'; t.textContent='↺ REPLACE'; el.appendChild(t); }
+  const btn = document.getElementById('mullbtn'); // v0.26.4: the button always says exactly what will happen
+  if(btn) btn.textContent = mullMarked.size ? `↺ REPLACE ${mullMarked.size} — TO BATTLE` : '⚔ KEEP HAND — TO BATTLE';
 }
 function mullConfirm(){
+  hideZoom(); // v0.26.4: the reading lens must not outlive the mulligan
   document.getElementById('mull').classList.remove('on');
   const rep = [...mullMarked].sort((a,b)=>b-a); // splice high-first so indices stay true
   for(const i of rep) S.A.deck.push(S.A.hand.splice(i,1)[0]);
