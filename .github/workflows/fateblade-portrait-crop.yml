@@ -1,0 +1,73 @@
+name: fateblade-portrait-crop
+on:
+  workflow_dispatch:            # run by hand from the Actions tab
+    inputs:
+      mode:
+        description: 'report = measure dead space only (no files touched); crop = crop every file the detector flags'
+        required: true
+        default: 'report'
+        type: choice
+        options:
+          - report
+          - crop
+      folder:
+        description: 'Art folder under fateblade/ to scan (default art/stockpile)'
+        required: false
+        default: 'art/stockpile'
+      min_dead:
+        description: 'Flag a portrait when total dead space >= this fraction (default 0.12)'
+        required: false
+        default: '0.12'
+      max_side:
+        description: 'Never trim more than this fraction off any one side (default 0.35)'
+        required: false
+        default: '0.35'
+permissions:
+  contents: write
+concurrency:
+  group: vault-painter           # SHARED with the other forges: one painter in the repo at a time
+  cancel-in-progress: false
+jobs:
+  crop:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pillow (JPEG re-encode for crop mode)
+        run: pip install pillow
+      - name: Run the crop tool
+        id: crop
+        run: |
+          set +e
+          python3 fateblade/portrait-crop.py \
+            "${{ github.event.inputs.mode }}" \
+            "${{ github.event.inputs.folder || 'art/stockpile' }}" \
+            "${{ github.event.inputs.min_dead || '0.12' }}" \
+            "${{ github.event.inputs.max_side || '0.35' }}"
+          rc=$?
+          echo "rc=$rc" >> "$GITHUB_OUTPUT"
+          echo "portrait-crop exit code: $rc"
+          exit 0
+      - name: Publish the crop report (artifact, always)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: crop-report-${{ github.run_id }}
+          path: fateblade/art/crop-report.json
+          retention-days: 30
+          if-no-files-found: ignore
+      - name: Commit the results (crop mode only)
+        if: github.event.inputs.mode == 'crop' && steps.crop.outputs.rc == '0'
+        run: |
+          git config user.name "portrait-crop"
+          git config user.email "crop@users.noreply.github.com"
+          git add -A fateblade
+          git diff --cached --quiet && echo "nothing to commit (no portraits flagged)" && exit 0
+          git commit -m "fateblade: portrait crop pass (${{ github.event.inputs.mode }} mode, folder ${{ github.event.inputs.folder || 'art/stockpile' }})"
+          git push
+      - name: Fail loudly if the tool errored
+        if: steps.crop.outputs.rc != '0'
+        run: exit 1

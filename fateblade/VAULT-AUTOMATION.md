@@ -1,4 +1,4 @@
-# VAULT AUTOMATION - Audio Keeper + Portrait Forge + Scene Forge
+# VAULT AUTOMATION - Audio Keeper + Portrait Forge + Scene Forge + Portrait Crop QA
 
 Two self-service pipelines live in this repo, both driven from the
 Actions tab. Both are FAIL-SOFT: a dead source or a refused
@@ -74,6 +74,34 @@ Warring Kingdoms, the Nine Towers).
   "file" recorded per queue entry.
 - Shares the vault-painter concurrency group - it queues politely
   behind fateblade-portraits rather than racing it.
+
+## 4. fateblade-portrait-crop (Portrait Crop QA)
+
+Measures the uniform dead space (plain margins) around each portrait's
+subject and reports - or trims - it. Deterministic and pixel-based
+(vision models are unreliable for this; pixels are ground truth): the
+image is reduced to a 64x48 grid of luma cells, and a border band is
+DEAD while every strip of cells along it is near-uniform. A portrait is
+flagged when total dead space >= min_dead (default 0.12) or any single
+side >= 0.10. NEVER re-mints art - report mode touches nothing, and crop
+mode only trims measured-uniform bands (subject-safe by construction,
+per-side cap 0.35, outputs below 512px on the short side are skipped).
+
+- **Run it**: Actions tab -> fateblade-portrait-crop -> Run workflow.
+- **mode=report**: scans the folder (default art/stockpile), writes
+  fateblade/art/crop-report.json (uploaded as a run artifact) and
+  prints the worst 20 offenders in the log. Nothing is modified.
+  Eyeball the report before cropping.
+- **mode=crop**: re-runs the report, then crops every flagged file,
+  re-encodes the JPEG (pillow, q92) and updates fateblade/manifest.json
+  (sha256 + size) for every file it touched so the Patcher's sha checks
+  stay green. Results are committed automatically.
+- **Fail-soft**: unparseable files are logged and skipped, never
+  killing the run. Crop mode refuses to run without pillow.
+- After a crop pass lands, the game re-ships game.html with the art
+  zoom back to 1.0 in the usual release cycle (the current 1.16 zoom
+  masks dead space that this tool removes).
+- Shares the vault-painter concurrency group.
 
 ## Patcher + game pickup
 
