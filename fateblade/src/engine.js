@@ -158,6 +158,7 @@
       discountUsed: false,
       fatigue: 0,
       sovOnce: {}, turnDraws: 0, tookHeroDmg: false, heroDmgOnce: false, // v0.15: per-turn sovereign hook state
+      deathsThisRound: 0, diedLastTurn: 0, edictsThisTurn: 0, drawsThisTurn: 0, ownTurns: 0, warProfCount: 0, lastRitesUsed: false, // v0.26: sovereign overhaul state
       pending: [], fallen: [], // v0.16: delayed decrees queue + graveyard-lite (recursion)
     });
     const first = opts.first === 'B' ? 'B' : 'A';
@@ -190,6 +191,8 @@
       return;
     }
     if (p.hand.length < MAX_HAND) p.hand.push(p.deck.pop());
+    p.drawsThisTurn = (p.drawsThisTurn || 0) + 1; // v0.26: POISON_PEN counts every draw, phase or not
+    if (!phase && p.drawsThisTurn >= 2 && hasP(p, 'POISON_PEN') && S[other(side)].board.length) { const t = S[other(side)].board[Math.floor(S.rng() * S[other(side)].board.length)]; S.events.push({ t: 'passive', side, id: 'POISON_PEN', on: t.id }); damageMinion(S, other(side), t.uid, 1 * rites(S, side)); } // Isolelvaine: the second letter cuts deeper
     // v0.15 sovereign draw hooks — only on draws OUTSIDE the draw phase
     if (!phase && (hasP(p, 'PRIVATEERING') || hasP(p, 'CHAOS_LADDER'))) {
       if (hasP(p, 'CHAOS_LADDER')) p.turnDraws += 1;
@@ -211,6 +214,7 @@
     if (t.shield > 0) { t.shield -= 1; S.events.push({ t: 'shield', side: victimSide, id: t.id, uid }); return; }
     // v0.15 TESTUDO: your Guard minions take 1 less combat damage (min 1)
     if (combat && hasP(vp, 'TESTUDO') && hasKw(t, 'Guard')) dmg = Math.max(1, dmg - 1 * rites(S, victimSide));
+    if (combat && hasP(vp, 'TITAN_PLATING') && t.tribe === 'Constructs') dmg = Math.max(1, dmg - 1 * rites(S, victimSide)); // v0.26: Ithael — machine plating shrugs off steel
     if (combat && hasKw(t, 'Guard') && hasRelic(vp, 'rlBasilica')) dmg = Math.max(1, dmg - 1); // v0.16: Iron Basilica
     t.hp -= dmg;
     if (t.hp <= 0) {
@@ -246,6 +250,10 @@
       }
       // v0.16 graveyard-lite + recursion/politics relic hooks
       vp.fallen.push({ id: t.id, name: t.name, img: t.img, file: t.file }); if (vp.fallen.length > 24) vp.fallen.shift();
+      // v0.26: sovereign overhaul — death hooks
+      vp.deathsThisRound = (vp.deathsThisRound || 0) + 1;
+      if (hasP(vp, 'BANNER_OF_SKULLS') && t.id.startsWith('TOKEN@')) { const d = 1 * rites(S, victimSide); S[foeSide].hp -= d; S.events.push({ t: 'heroHit', side: foeSide, id: 'BANNER_OF_SKULLS', dmg: d }); } // Vorgath: every fallen levy burns the foe
+      if (hasP(vp, 'LAST_RITES') && !vp.lastRitesUsed) { vp.lastRitesUsed = true; if (vp.board.length < MAX_BOARD) { vp.board.push({ id: 'ECHO@' + t.id, name: 'Echo of ' + t.name, cost: 1, atk: 1, hp: 1, maxhp: 1, kw: null, uid: 'ECHO-' + Math.floor(S.rng() * 1e9), img: t.img, file: t.file, tribe: t.tribe, fl: 'Called back beyond the veil.' }); S.events.push({ t: 'passive', side: victimSide, id: 'LAST_RITES', on: t.id }); } } // Morvenne: once per game the Pale Court gives back its dead
       if (hasRelic(vp, 'rlMoonwell') && !vp.moonwellOnce && vp.hand.length <= 2 && vp.deck.length) { vp.moonwellOnce = true; draw(S, victimSide); S.events.push({ t: 'passive', side: victimSide, id: 'RL_MOONWELL' }); }
       if (combat && hasRelic(S[foeSide], 'rlTrophy')) { const ap2 = S[foeSide]; ap2.hp = Math.min(MAX_HP, ap2.hp + 1); S.events.push({ t: 'passive', side: foeSide, id: 'RL_TROPHY' }); }
       if (hasP(vp, 'DEATHGIFT')) {
@@ -258,6 +266,11 @@
         const d = 3 * rites(S, victimSide); // v0.15.1 buff: 2 -> 3
         S[foeSide].hp -= d;
         S.events.push({ t: 'heroHit', side: foeSide, id: 'GLORY_IN_BATTLE', dmg: d });
+      }
+      if (combat === 'retal' && hasP(vp, 'VENGEANCE_MOON')) { // v0.26: Baibars — kin that fall mid-charge are avenged
+        const d = 2 * rites(S, victimSide);
+        S[foeSide].hp -= d;
+        S.events.push({ t: 'heroHit', side: foeSide, id: 'VENGEANCE_MOON', dmg: d });
       }
       if (combat === 'hit' && hasP(S[foeSide], 'BLOOD_MONEY')) {
         const ap = S[foeSide];
@@ -272,6 +285,11 @@
       uid: 'TOKEN-' + Math.floor(S.rng() * 1e9), img: p.fac.commander, file: p.fac.commanderFile, fl: 'Sworn to the banner.' };
     if (hasRelic(p, 'rlDrillyard')) { t.atk += 1; t.hp += 1; } // Iron Yards: sworn levies drill to 2/2
     if (hasRelic(p, 'rlDrum')) t.atk += 1; // v0.16: Warlord's Drum — every summoned levy hits harder
+    // v0.26: token sovereign passives (tokens never pass through playCard)
+    if (hasP(p, 'PRESS_GANG')) { t.atk += 1; t.hp += 1; } // Genghis Khan: pressed levies muster stronger
+    if (hasP(p, 'ENDLESS_LEVY')) t.atk += 1; // Skarnag: the banner never runs out of soldiers
+    if (hasP(p, 'DRILL_MARSHAL')) t.kw = t.kw ? t.kw + ', Guard' : 'Guard'; // the Iron Marshal: levies stand as a wall
+    t.maxhp = t.hp; // v0.26: heal bookkeeping for FIELD_MEDIC
     return t;
   }
   const hasRelic = (p, rl) => p.relics.some((x) => x.rl === rl);
@@ -280,6 +298,8 @@
   function heroDamage(S, victimSide, dmg, fromAttack) {
     const vp = S[victimSide];
     if (hasP(vp, 'EMBERWARD')) dmg = Math.max(1, dmg - rites(S, victimSide));
+    if (fromAttack && hasP(vp, 'JADE_BULWARK')) dmg = Math.max(1, dmg - 1 * rites(S, victimSide)); // v0.26: Ruangwei — the jade wall turns aside steel
+    if (vp.hand.length >= 6 && hasP(vp, 'NINTH_GATE')) dmg = Math.max(1, dmg - 1 * rites(S, victimSide)); // v0.26: Warden of the Ninth Deep — a prepared delve endures
     vp.hp -= dmg;
     if (dmg > 0) {
       vp.tookHeroDmg = true; // v0.15: STILLNESS — no hero damage since your last turn
@@ -302,6 +322,7 @@
       S.events.push({ t: 'passive', side: other(atkSide), id: 'RL_NULLIFY', on: id });
       return;
     }
+    if (dmg > 0 && hasP(foe, 'COOLANT_VEIL')) dmg = Math.max(0, dmg - 1 * rites(S, other(atkSide))); // v0.26: Praia — enemy edicts splash off the gate
     foe.hp -= dmg;
     if (dmg > 0) S.events.push({ t: 'heroHit', side: other(atkSide), id, dmg });
   }
@@ -313,6 +334,11 @@
     // v0.15: once-per-turn sovereign discounts
     if (hasP(p, 'ORIFLAMME') && hasKw(c, 'Charge') && !p.sovOnce.oriflamme) return Math.max(0, c.cost - rites(S, side));
     if (hasP(p, 'BAZAAR') && c.type === 'edict' && (p.sovOnce.bazaar || 0) < 2) return Math.max(0, c.cost - rites(S, side)); // v0.16 buff: two edicts/turn
+    // v0.26: sovereign discount passives
+    if (hasP(p, 'STRATAGEM') && c.type === 'edict' && !p.sovOnce.stratagem) return Math.max(0, c.cost - 1 * rites(S, side)); // Meiming: the first edict of the day is on the dynasty
+    if (hasP(p, 'DIWAN') && c.type === 'relic') return Math.max(0, c.cost - 1 * rites(S, side)); // Al-Adid: the treasury sponsors the court
+    if (hasP(p, 'SOLAR_FLARE') && hasKw(c, 'Ranged') && !p.sovOnce.solarflare) return Math.max(0, c.cost - 1 * rites(S, side)); // Tavaeth: the flare opens the volley
+    if (hasP(p, 'ENDLESS_MARCH') && hasKw(c, 'Relentless') && !p.sovOnce.endlessmarch) return Math.max(0, c.cost - 1 * rites(S, side)); // Aelmar: the first banner-bearer marches free
     // v0.16: laws + relic economy/politics hooks
     if (S.laws.some((l) => l.id === 'lawTariff' && l.side !== side)) return c.cost + 1; // Temporary Law: the tariff
     if (hasRelic(p, 'rlAmulet') && c.type === 'edict') return Math.max(0, c.cost - 1);
@@ -370,6 +396,9 @@
     if (hasP(p, 'SWIFTRANKS') && !p.discountUsed) p.discountUsed = true; // stays spent for the whole game (v0.6.4)
     if (hasP(p, 'ORIFLAMME') && hasKw(c, 'Charge')) p.sovOnce.oriflamme = true; // v0.15: once per turn
     if (hasP(p, 'BAZAAR') && c.type === 'edict') p.sovOnce.bazaar = (p.sovOnce.bazaar || 0) + 1; // v0.16 buff: two/turn
+    if (hasP(p, 'STRATAGEM') && c.type === 'edict') p.sovOnce.stratagem = true; // v0.26: first edict each turn
+    if (hasP(p, 'SOLAR_FLARE') && hasKw(c, 'Ranged')) p.sovOnce.solarflare = true;
+    if (hasP(p, 'ENDLESS_MARCH') && hasKw(c, 'Relentless')) p.sovOnce.endlessmarch = true;
     if (hasRelic(p, 'rlVault') && cost < c.cost) p.sovOnce.vault = true; // v0.16: Gilded Vault — once per turn
     p.mana -= cost;
 
@@ -377,7 +406,13 @@
     if (c.type === 'edict') {
       S.events.push({ t: 'edict', side, id: c.id, fx: c.fx });
       if (hasP(p, 'NENYA')) { p.hp = Math.min(MAX_HP, p.hp + 1 * rites(S, side)); S.events.push({ t: 'passive', side, id: 'NENYA' }); } // v0.15: edicts also mend the Sovereign
+      // v0.26: sovereign overhaul — edict hooks
+      p.edictsThisTurn = (p.edictsThisTurn || 0) + 1;
+      if (hasP(p, 'BURNING_BANNER') && !p.sovOnce.burningbanner) { p.sovOnce.burningbanner = true; if (foe.board.length) { const t = foe.board[Math.floor(S.rng() * foe.board.length)]; S.events.push({ t: 'passive', side, id: 'BURNING_BANNER', on: t.id }); damageMinion(S, other(side), t.uid, 1 * rites(S, side)); } } // Karrukh: the banner scatters embers before the order lands
+      if (hasP(foe, 'WAR_PROFITEER')) { foe.warProfCount = (foe.warProfCount || 0) + 1; if (foe.warProfCount % 2 === 0 && foe.deck.length) { draw(S, other(side)); S.events.push({ t: 'passive', side: other(side), id: 'WAR_PROFITEER', on: c.id }); } } // Brynelric: every second enemy decree feeds the court's informants
       resolveEdict(S, side, c.fx, c, opts); // v0.20: target flows into the edict switch
+      if (hasP(p, 'RESONANCE') && ['fxPingAll', 'fxPingAll2', 'fxAoe2', 'fxAoe3'].includes(c.fx)) edictHeroHit(S, side, 'RESONANCE', 1 * rites(S, side)); // Maeaemir: the spire rings with every sweep
+      if (hasP(p, 'FARSIGHT') && ['fxScry2', 'fxScry3'].includes(c.fx) && foe.board.length) { const t = foe.board.slice().sort((a, b) => (b.atk + b.hp) - (a.atk + a.hp))[0]; S.events.push({ t: 'passive', side, id: 'FARSIGHT', on: t.id }); damageMinion(S, other(side), t.uid, 1 * rites(S, side)); } // Fenith: the tower's eye marks the target
       if (c.bc) resolveBc(S, side, c, opts, null); // v0.20 A9: multi-part edicts — the battlecry rider resolves after the fx
       return true;
     }
@@ -390,6 +425,7 @@
       if (c.rl === 'rlLookout') p.board.forEach((m) => { if (hasKw(m, 'Ranged')) { m.atk += 1; m.hp += 1; } }); // v0.16 buff: +1/+1
       if (c.rl === 'rlTribeStandard' && c.tribe) p.board.forEach((m) => { if (m.tribe === c.tribe) m.atk += 1; }); // v0.23: the standard rises — kin already on the field rally +1 ATK
       if (c.rl === 'rlMirror') { const top = p.deck.splice(-Math.min(2, p.deck.length)); const val = (cc) => cc.type === 'minion' ? (cc.atk + cc.hp + (cc.bc ? 2 : 0) + (cc.dr ? 1 : 0)) : 6; top.sort((a, b) => val(b) - val(a)); while (top.length) p.deck.push(top.pop()); } // v0.16: Dreamer's Mirror — the best of the top two surfaces
+      if (hasP(p, 'WARDSMITH')) { p.hp = Math.min(MAX_HP, p.hp + 2 * rites(S, side)); S.events.push({ t: 'passive', side, id: 'WARDSMITH' }); } // v0.26: Emile Oliivier — every ward forged mends its smith
       return true;
     }
 
@@ -412,6 +448,24 @@
     if (hasKw(m, 'Ranged') && hasP(p, 'STRAFING') && !p.sovOnce.strafing) { m.atk += r; m.hp += r; p.sovOnce.strafing = true; } // v0.15.1 buff: +1 ATK -> +1/+1
     if (c.cost <= 2 && hasP(p, 'PICKET')) { m.atk += r; m.hp += r; } // v0.15.1 buff: +1 HP -> +1/+1
     if (hasKw(m, 'Charge') && hasP(p, 'NIZARI')) m.shield = (m.shield || 0) + r; // v0.15.1 buff: every Charge, not just the first
+    // v0.26: sovereign overhaul — entry passives
+    p.sovOnce.minion = (p.sovOnce.minion || 0) + 1; // minions fielded this turn (SCARAB_SWARM)
+    if (p.sovOnce.minion >= 2 && hasP(p, 'SCARAB_SWARM')) { m.atk += r; m.hp += r; } // Nefertiti: the second beetle rides the first's shell
+    if (!p.sovOnce.ghost && hasP(p, 'GHOST_STEP')) { p.sovOnce.ghost = true; m.shield = (m.shield || 0) + r; } // Ubayd Allah: the first servant of the turn walks veiled
+    if (hasKw(m, 'Guard')) {
+      if (hasP(p, 'STONE_REMEMBERS')) m.hp += 2 * r; // Breggan: the stone remembers every siege
+      if (hasP(p, 'VEILED_COURT')) m.shield = (m.shield || 0) + r; // Orsuesande: the court's wall arrives shielded
+      if (hasP(p, 'THORN_GUARD')) m.kw = m.kw ? m.kw + ', Lifesteal' : 'Lifesteal'; // Sorariel: the briar drinks what it bleeds
+    }
+    if (hasP(p, 'BARRICADE') && c.cost <= 2) m.hp += r; // Bryoaris: cheap spires stack the wall
+    if (hasP(p, 'GRAVE_CHARGE') && hasKw(m, 'Charge')) m.hp += r; // Belwyn: the dead charge harder to escape
+    if (hasP(p, 'AMBUSH') && hasKw(m, 'Charge') && !p.sovOnce.ambush) { p.sovOnce.ambush = true; m.ready = true; m.shocked = true; } // Babur: the first charge of the day hits before it's seen
+    if (hasP(p, 'PRIDE_OF_THE_PACK') && m.tribe === 'Beasts') m.hp += r; // Ashenmane: pride swells the chest
+    if (hasP(p, 'DEN_GUARD') && m.tribe === 'Beasts' && !p.sovOnce.dengu && !hasKw(m, 'Guard')) { p.sovOnce.dengu = true; m.kw = m.kw ? m.kw + ', Guard' : 'Guard'; } // Brannoc: the first beast of the turn stakes the den
+    if (hasP(p, 'PACK_HUNTER') && m.tribe && countTribe(p.board, m.tribe) >= 3) { m.atk += r; m.hp += r; } // Moratusk: the pack hunts as one
+    if (hasP(p, 'IRON_FIST') && m.atk <= 2) m.atk += r; // Shah Rukh: the small are made to strike above their weight
+    if (hasP(p, 'DEEP_RITES') && c.cost >= 5) { m.atk += r; m.hp += r; } // Ordrath: the deep rites crown the mighty
+    m.maxhp = m.hp; // v0.26: heal bookkeeping for FIELD_MEDIC (set after entry buffs)
     if (m.tribe && p.relics.some((x) => x.rl === 'rlTribeStandard' && x.tribe === m.tribe)) m.atk += 1; // v0.23: Kin Standard — kinsmen march in with +1 ATK
     p.board.push(m);
     S.events.push({ t: 'play', side, id: c.id, uid: c.uid, kw: c.kw || null, cost: c.cost });
@@ -487,7 +541,7 @@
         draw(S, side);
         break;
       }
-      case 'fxScorchX': { const d = p.mana; const t = pickTarget(opts, foe.board) || foe.board.slice().sort((a,b) => (b.atk+b.hp)-(a.atk+a.hp))[0]; if (t && d > 0) damageMinion(S, other(side), t.uid, d); p.mana = 0; S.events.push({ t: 'passive', side, id: 'FX_SCORCHX', dmg: d }); break; } // X-spell: spend ALL remaining mana as damage to one foe minion
+      case 'fxScorchX': { const d = p.mana + (hasP(p, 'PYROMANCER') ? 1 * rites(S, side) : 0); const t = pickTarget(opts, foe.board) || foe.board.slice().sort((a,b) => (b.atk+b.hp)-(a.atk+a.hp))[0]; if (t && d > 0) damageMinion(S, other(side), t.uid, d); p.mana = 0; S.events.push({ t: 'passive', side, id: 'FX_SCORCHX', dmg: d }); if (hasP(p, 'SCORCHED_VICTORY') && t && d > 0 && !foe.board.find((x) => x.uid === t.uid)) { const vd = 1 * rites(S, side); S[other(side)].hp -= vd; S.events.push({ t: 'heroHit', side: other(side), id: 'SCORCHED_VICTORY', dmg: vd }); } break; } // X-spell: spend ALL remaining mana as damage to one foe minion; v0.26: PYROMANCER +1 / SCORCHED_VICTORY rider
       // v0.23 T2: tribal payoff edicts — all read the card's own tribe
       case 'fxTribeMuster': { const tr = c.tribe; const n = Math.min(3, countTribe(p.board, tr)); for (let i = 0; i < n && p.board.length < MAX_BOARD; i++) p.board.push(token(p, S)); S.events.push({ t: 'passive', side, id: 'FX_TRIBE_MUSTER', on: tr, n }); break; } // one levy per kinsman, up to three
       case 'fxTribeWarCry': { const tr = c.tribe; p.board.forEach((m) => { if (tr && m.tribe === tr) m.atk += 2; }); if (tr) S.events.push({ t: 'passive', side, id: 'FX_TRIBE_WARCRY', on: tr }); break; } // the war cry — kin gain +2 ATK
@@ -526,6 +580,7 @@
       }
       if (hasKw(m, 'Lifesteal') && m.hp > 0) p.hp = Math.min(MAX_HP, p.hp + m.atk);
       damageMinion(S, other(side), t.uid, hasKw(m, 'Bane') ? 999 : m.atk, 'hit'); // v0.11 Bane; v0.15 combat tag for BLOOD_MONEY/TESTUDO
+      if (hasKw(m, 'Ranged') && m.hp > 0 && hasP(p, 'SIEGECRAFT')) { const d = 1 * rites(S, side); heroDamage(S, other(side), d, false); S.events.push({ t: 'heroHit', side: other(side), id: 'SIEGECRAFT', dmg: d }); } // v0.26: Talorath — every aimed volley looses a splinter at the Sovereign
     }
     return true;
   }
@@ -556,10 +611,18 @@
       S.events.push({ t: 'hit', side, id: 'POWER', dmg, on: t.id });
       damageMinion(S, other(side), t.uid, dmg);
     }
+    if (hasP(p, 'ARCANE_LANCE') && foe.board.length) { const t = foe.board[Math.floor(S.rng() * foe.board.length)]; S.events.push({ t: 'passive', side, id: 'ARCANE_LANCE', on: t.id }); damageMinion(S, other(side), t.uid, 1 * rites(S, side)); } // v0.26: Queliomir — the Skirmish looses a stray arc
     return true;
   }
 
   function endTurn(S) {
+    // v0.26: sovereign overhaul — end-of-turn hooks for the closing side
+    {
+      const ep = S[S.active];
+      if (hasP(ep, 'COURT_WHISPERS') && (ep.edictsThisTurn || 0) >= 2 && ep.deck.length) { S.events.push({ t: 'passive', side: S.active, id: 'COURT_WHISPERS' }); draw(S, S.active); } // Lysobelle: two decrees a day earn the court's ear
+      if (hasP(ep, 'FIELD_MEDIC') && ep.board.some((m) => m.hp > 0 && m.maxhp && m.hp < m.maxhp)) { ep.board.forEach((m) => { if (m.hp > 0 && m.maxhp && m.hp < m.maxhp) m.hp += 1 * rites(S, S.active); }); S.events.push({ t: 'passive', side: S.active, id: 'FIELD_MEDIC' }); } // Nerriel: the medic makes her rounds
+      ep.edictsThisTurn = 0; // reset for the next round
+    }
     // v0.11: the ending side's Shock window closes and Relentless counters settle
     S[S.active].board.forEach((m) => { m.shocked = false; m.attacks = 0; });
     const next = other(S.active);
@@ -574,7 +637,7 @@
     if (hasRelic(foe, 'rlLibrary') && foe.mana >= 2) { draw(S, other(next)); S.events.push({ t: 'relicfx', side: other(next), id: 'rlLibrary' }); }
     if (hasRelic(foe, 'rlForage') && foe.board.length < 3 && foe.board.length < MAX_BOARD) { foe.board.push(token(foe, S)); S.events.push({ t: 'relicfx', side: other(next), id: 'rlForage' }); }
     const r = rites(S, next);
-    np.sovOnce = {}; np.turnDraws = 0; np.heroDmgOnce = false; // v0.15: per-turn sovereign state (tookHeroDmg resets below, after STILLNESS checks it)
+    np.sovOnce = {}; np.turnDraws = 0; np.heroDmgOnce = false; np.drawsThisTurn = 0; // v0.15: per-turn sovereign state (tookHeroDmg resets below, after STILLNESS checks it); v0.26: drawsThisTurn
     np.moonwellOnce = false; // v0.16: Moonwell Vial per-turn gate
     // v0.16: Temporary Laws expire with the round (created on turn T, live through your turn T+2)
     S.laws = S.laws.filter((l) => S.turn < l.until);
@@ -597,16 +660,8 @@
     if (hasRelic(np, 'rlWarStandard') && np.board.length >= 4) np.board.forEach((m) => { m.atk += 1; }); // War Standard of the Houses
     if (hasRelic(np, 'rlQuill') && np.fallen.length && np.board.length < MAX_BOARD) { const gc = np.fallen.pop(); np.board.push({ id: 'ECHO@' + gc.id, name: 'Echo of ' + gc.name, cost: 1, atk: 1, hp: 1, kw: null, uid: 'ECHO-' + Math.floor(S.rng() * 1e9), img: gc.img, file: gc.file, fl: 'Called back beyond the veil.' }); S.events.push({ t: 'play', side: next, id: 'ECHO', uid: 'ECHO' + np.board.length, kw: null, cost: 1 }); } // Chronicler's Quill: the last of the fallen returns as a 1/1 Echo
     if (hasRelic(np, 'rlDebt') && foe.hand.length >= 7) { const hi = foe.hand.reduce((acc, cc, i2) => (cc.cost > foe.hand[acc].cost ? i2 : acc), 0); const dc = foe.hand.splice(hi, 1)[0]; S.events.push({ t: 'passive', side: other(next), id: 'RL_DISCARD', on: dc.id }); } // The Crown's Debt: hoarders pay
-    // STORMCALL (v0.9.2 nerf): only fires while behind on the board — was the
-    // strongest passive in sims (63.5% when leading) as unconditional chip.
-    if (hasP(np, 'STORMCALL') && foe.board.length && np.board.length < foe.board.length) {
-      for (let i = 0; i < r; i++) {
-        if (!foe.board.length) break;
-        const t = foe.board[Math.floor(S.rng() * foe.board.length)];
-        S.events.push({ t: 'passive', side: next, id: 'STORMCALL', on: t.id });
-        damageMinion(S, other(next), t.uid, 1);
-      }
-    }
+    // v0.26: TEMPEST (Wellington) — the storm gathers every other turn while you are outnumbered
+    if (hasP(np, 'TEMPEST') && foe.board.length && np.board.length < foe.board.length && np.ownTurns % 2 === 0) { const wv = 1 * r; foe.board.slice().forEach((t) => damageMinion(S, other(next), t.uid, wv)); S.events.push({ t: 'passive', side: next, id: 'TEMPEST' }); }
     // v0.9.4 buff: threshold 3 -> 4 (deep playtest 9.6M games: Second Sight
     // 28.7% when leading = weakest passive; the <=3 gate rarely fired).
     if (hasP(np, 'SECOND_SIGHT') && np.hand.length <= 3 && np.deck.length) { // v0.21.1: 5 -> 3 (CI: constant draw fatigues courts decks under lysobelle)
@@ -615,15 +670,28 @@
     }
     // v0.15 sovereign start-of-turn passives
     const weak = (arr) => arr.length ? arr.reduce((a, b) => (a.atk <= b.atk ? a : b)) : null;
+    // v0.26: sovereign overhaul — start-of-turn bookkeeping + hooks
+    np.ownTurns = (np.ownTurns || 0) + 1;
+    np.diedLastTurn = np.deathsThisRound || 0; np.deathsThisRound = 0;
+    if (hasP(np, 'TITHE') && foe.hand.length > np.hand.length) { np.mana += 1 * r; S.events.push({ t: 'passive', side: next, id: 'TITHE' }); } // Asquith: a thin purse taxes the rich
+    if (hasP(np, 'MASQUERADE') && np.board.length) { const w0 = weak(np.board); w0.hp += 2 * r; if (w0.maxhp) w0.maxhp += 2 * r; S.events.push({ t: 'passive', side: next, id: 'MASQUERADE', on: w0.id }); } // Fiouenette: the mask hides the frail
+    if (hasP(np, 'ELDER_COUNCIL') && np.deck.length) { const tr = [...new Set(np.board.map((m) => m.tribe).filter(Boolean))].find((tr2) => countTribe(np.board, tr2) >= 3); if (tr) { S.events.push({ t: 'passive', side: next, id: 'ELDER_COUNCIL', on: tr }); draw(S, next); } } // Velorwyn: three elders make a quorum
+    if (hasP(np, 'TIDE_OF_KIN') && countTribe(np.board, 'Underfolk') >= 3) { np.hp = Math.min(MAX_HP, np.hp + 2 * r); S.events.push({ t: 'passive', side: next, id: 'TIDE_OF_KIN' }); } // Myrra: the tide renews the sworn
+    if (hasP(np, 'OVERCLOCK') && np.board.length) { const cs = np.board.filter((m) => m.tribe === 'Constructs'); if (cs.length) { const t2 = cs[Math.floor(S.rng() * cs.length)]; t2.atk += r; t2.hp += r; if (t2.maxhp) t2.maxhp += r; S.events.push({ t: 'passive', side: next, id: 'OVERCLOCK', on: t2.id }); } } // Halior: the engines surge
+    if (hasP(np, 'WATCHTOWER_PROTOCOL') && np.board.some((m) => hasKw(m, 'Guard')) && foe.board.length) { const w2 = foe.board.slice().sort((a, b) => (a.atk + a.hp) - (b.atk + b.hp))[0]; S.events.push({ t: 'passive', side: next, id: 'WATCHTOWER_PROTOCOL', on: w2.id }); damageMinion(S, other(next), w2.uid, 1 * r); } // Octtivus: the gate marks the weakest
+    if (hasP(np, 'IRON_LEVEY') && np.board.length >= 3 && np.board.length < MAX_BOARD) { np.board.push(token(np, S)); S.events.push({ t: 'passive', side: next, id: 'IRON_LEVEY' }); } // Ashen-Prime: a warband this size drafts itself
+    if (hasP(np, 'GRAVE_HUNGER') && np.diedLastTurn > 0 && np.board.length) { const w3 = weak(np.board); w3.atk += 1 * r; S.events.push({ t: 'passive', side: next, id: 'GRAVE_HUNGER', on: w3.id }); } // Ossrath: what died yesterday feeds today
+    if (hasP(np, 'REVENANT_HOST') && np.diedLastTurn >= 3 && np.board.length < MAX_BOARD) { np.board.push(token(np, S)); S.events.push({ t: 'passive', side: next, id: 'REVENANT_HOST' }); } // the Hollow Choir: a fallen chorus rises one voice stronger
+    if (hasP(np, 'NOVA_CASCADE') && np.hand.length >= 5 && foe.board.length) { const t3 = foe.board[Math.floor(S.rng() * foe.board.length)]; S.events.push({ t: 'passive', side: next, id: 'NOVA_CASCADE', on: t3.id }); damageMinion(S, other(next), t3.uid, 1 * r); } // Sylur: the hundredth victory leaves an ember
+    if (hasP(np, 'THUNDER_SPIRE') && foe.board.length > np.board.length) { const w4 = foe.board.slice().sort((a, b) => (a.atk + a.hp) - (b.atk + b.hp)).slice(0, 2); for (const t4 of w4) { S.events.push({ t: 'passive', side: next, id: 'THUNDER_SPIRE', on: t4.id }); damageMinion(S, other(next), t4.uid, 1 * r); } } // Maeiowynd: the spire answers numbers with thunder
+    if (hasP(np, 'WAR_DRUMS') && np.board.length > foe.board.length && np.board.length) { const w5 = weak(np.board); w5.atk += r; w5.hp += r; if (w5.maxhp) w5.maxhp += r; S.events.push({ t: 'passive', side: next, id: 'WAR_DRUMS', on: w5.id }); } // Baorgang: the drums roll for the bigger line
     if (hasP(np, 'FERAL_HOWL') && np.board.length) { const w = weak(np.board); w.atk += 1 * r; S.events.push({ t: 'passive', side: next, id: 'FERAL_HOWL', on: w.id }); } // v0.25.0: +2 -> +1 ATK (Ossrath 89.2% hot in deep audit)
-    if (hasP(np, 'FOR_THE_EMPEROR') && np.board.length >= 4) { const w = weak(np.board); w.atk += 1 * r; S.events.push({ t: 'passive', side: next, id: 'FOR_THE_EMPEROR', on: w.id }); }
     if (hasP(np, 'MARCHING_ORDERS') && np.board.length) { const w = weak(np.board); w.atk += r; w.hp += r; S.events.push({ t: 'passive', side: next, id: 'MARCHING_ORDERS', on: w.id }); }
     if (hasP(np, 'BLOCKADE') && foe.board.length - np.board.length >= 2 && np.board.length < MAX_BOARD) { np.board.push(token(np, S)); S.events.push({ t: 'passive', side: next, id: 'BLOCKADE' }); } // v0.15.1 buff: 3 -> 2
     if (hasP(np, 'STANDARDS') && np.board.filter((m) => hasKw(m, 'Guard')).length >= 3 && np.deck.length) { S.events.push({ t: 'passive', side: next, id: 'STANDARDS' }); draw(S, next); }
     if (hasP(np, 'TARGETING_GRID') && np.hand.length >= 4 && foe.board.length) { const t = foe.board.slice().sort((a, b) => (b.atk + b.hp) - (a.atk + a.hp))[0]; S.events.push({ t: 'passive', side: next, id: 'TARGETING_GRID', on: t.id }); damageMinion(S, other(next), t.uid, 1 * r); }
     if (hasP(np, 'MOONLIGHT') && np.board.some((m) => hasKw(m, 'Lifesteal'))) { np.hp = Math.min(MAX_HP, np.hp + 3 * r); S.events.push({ t: 'passive', side: next, id: 'MOONLIGHT' }); } // v0.15.1 buff: 2 -> 3
     if (hasP(np, 'STILLNESS') && !np.tookHeroDmg) { np.hp = Math.min(MAX_HP, np.hp + 3 * r); S.events.push({ t: 'passive', side: next, id: 'STILLNESS' }); }
-    if (hasP(np, 'ART_OF_WAR') && np.board.filter((m) => hasKw(m, 'Guard')).length > foe.board.length) { foe.hp -= 1 * r; S.events.push({ t: 'heroHit', side: other(next), id: 'ART_OF_WAR', dmg: 1 * r }); }
     np.tookHeroDmg = false; // v0.15: STILLNESS window reopens (after the check above)
     draw(S, next, true); // v0.15: draw-phase draw — sovereign draw hooks skip it
   }
@@ -646,8 +714,7 @@
   function threat(S, side) {
     const p = S[side], foe = S[other(side)];
     const foeReach = foe.board.reduce((s, m) => s + m.atk * (hasKw(m, 'Relentless') ? 2 : 1), 0)
-      + powerDmg(S, other(side)) // v0.18: their Skirmish comes back around — a player counts it
-      + (hasP(foe, 'ART_OF_WAR') && foe.board.filter((m) => hasKw(m, 'Guard')).length > p.board.length ? 1 : 0); // v0.18: their cannon is loaded
+      + powerDmg(S, other(side)) // v0.18: their Skirmish comes back around — a player counts it; // v0.26: ART_OF_WAR clause removed (passive rewritten as WAR_DRUMS, no hero damage)
     const guardHp = p.board.filter((m) => hasKw(m, 'Guard')).reduce((s, m) => s + m.hp, 0);
     return { foeReach, guardHp, danger: foeReach > 0 && foeReach >= p.hp + guardHp };
   }
@@ -755,18 +822,37 @@
     if (hasP(p, 'WEAVE') && sweepFx) v += 0.5;                 // rites amplify every sweep
     if (hasP(p, 'COURT_INTRIGUE') && burnFx) v += 0.3;         // rites amplify the burn
     if (hasP(p, 'STANDARDS') && hasKw(c, 'Guard')) v += p.board.filter((m) => hasKw(m, 'Guard')).length < 3 ? 0.4 : 0.3; // 3 Guards = the draw engine
-    else if ((hasP(p, 'BULWARK') || hasP(p, 'TESTUDO') || hasP(p, 'ART_OF_WAR') || hasP(p, 'VANGUARD')) && hasKw(c, 'Guard')) v += 0.3;
+    else if ((hasP(p, 'BULWARK') || hasP(p, 'TESTUDO') || hasP(p, 'STONE_REMEMBERS') || hasP(p, 'VEILED_COURT') || hasP(p, 'THORN_GUARD') || hasP(p, 'VANGUARD')) && hasKw(c, 'Guard')) v += 0.3;
     if (hasP(p, 'MOONLIGHT') && hasKw(c, 'Lifesteal')) v += 0.6; // the engine is live
     if (hasP(p, 'SOULTITHE') && hasKw(c, 'Lifesteal')) v += 0.4;
     if (hasP(p, 'ORIFLAMME') && hasKw(c, 'Charge')) v += 0.3;
     if (hasP(p, 'NIZARI') && hasKw(c, 'Charge')) v += 0.3;
+    if (hasP(p, 'GHOST_STEP') && c.type === 'minion') v += 0.2; // v0.26: the veiled first servant
+    if (hasP(p, 'SIEGECRAFT') && hasKw(c, 'Ranged')) v += 0.3; // v0.26: aimed volleys reach the Sovereign
     if (hasP(p, 'STRAFING') && hasKw(c, 'Ranged')) v += 0.3;
     if (hasP(p, 'PICKET') && c.type === 'minion' && c.cost <= 2) v += 0.25;
+    if (hasP(p, 'BARRICADE') && c.type === 'minion' && c.cost <= 2) v += 0.25; // v0.26
     if (hasP(p, 'BAZAAR') && c.type === 'edict') v += 0.25;
+    if (hasP(p, 'STRATAGEM') && c.type === 'edict') v += 0.25; // v0.26
+    if (hasP(p, 'COURT_WHISPERS') && c.type === 'edict') v += 0.2; // v0.26: decree density pays
     if (hasP(p, 'TARGETING_GRID') && drawish && p.hand.length <= 4) v += 0.5; // fuel the grid
     if ((hasP(p, 'PRIVATEERING') || hasP(p, 'CHAOS_LADDER')) && drawish) v += 0.3;
-    if (hasP(p, 'FOR_THE_EMPEROR') && c.type === 'minion' && p.board.length < 4) v += 0.2;
     if (hasP(p, 'BLOCKADE') && c.type === 'minion' && p.board.length + 2 <= foe.board.length) v += 0.2;
+    if (hasP(p, 'WARD_SMITH') && c.type === 'relic') v += 0.3; // v0.26
+    if (hasP(p, 'DIWAN') && c.type === 'relic') v += 0.3; // v0.26
+    if (hasP(p, 'PACK_HUNTER') && c.tribe) v += 0.25; // v0.26: kin feed the pack
+    if (hasP(p, 'DEN_GUARD') && c.tribe === 'Beasts') v += 0.25; // v0.26
+    if (hasP(p, 'PRIDE_OF_THE_PACK') && c.tribe === 'Beasts') v += 0.2; // v0.26
+    if (hasP(p, 'ELDER_COUNCIL') && c.tribe) v += 0.2; // v0.26: elders count kin
+    if (hasP(p, 'TITAN_PLATING') && c.tribe === 'Constructs') v += 0.25; // v0.26
+    if (hasP(p, 'AMBUSH') && hasKw(c, 'Charge')) v += 0.3; // v0.26
+    if (hasP(p, 'GRAVE_CHARGE') && hasKw(c, 'Charge')) v += 0.25; // v0.26
+    if (hasP(p, 'IRON_FIST') && c.type === 'minion' && c.atk <= 2) v += 0.25; // v0.26
+    if (hasP(p, 'PYROMANCER') && c.fx === 'fxScorchX') v += 0.5; // v0.26: the flame bends to her will
+    if (hasP(p, 'RESONANCE') && sweepFx) v += 0.4; // v0.26: the spire rings
+    if (hasP(p, 'DEEP_RITES') && c.cost >= 5) v += 0.3; // v0.26: the deep crown the mighty
+    if (hasP(p, 'SOLAR_FLARE') && hasKw(c, 'Ranged')) v += 0.2; // v0.26
+    if (hasP(p, 'ENDLESS_MARCH') && hasKw(c, 'Relentless')) v += 0.25; // v0.26
     return v;
   }
   // spyAdjust(): play AROUND their answers — the counting-cards layer.
