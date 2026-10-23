@@ -1,10 +1,10 @@
 {
   "pending": [
     {
-      "patch": "cards-patch-v031-realms.mjs",
-      "version": "0.31.0",
-      "output_sha256": "344c64a740a77a524931925d235c0a651af7b3ec97e80b18fc599405df2c0423"
+      "patch": "cards-patch-v032-pairmint.mjs",
+      "version": "0.32.0",
+      "output_sha256": "05650f00982e5e120f3e82effa0c23e9cdc3adfc158a61bba7cd76406f404cd7"
     }
   ],
-  "note": "v0.31.0 realms 2-16 grand redesign sync (queue-triggered)"
+  "note": "v0.32.0 pairing mint sync (queue-triggered)"
 }
