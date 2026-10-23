@@ -85,11 +85,26 @@
   .minion.ready{border-image:var(--theme-panel) 40; outline:1px solid var(--gold); box-shadow:0 0 8px #000;}
   .minion.selected{outline:2px solid #fff;}
   .minion.targetable{border-color:var(--hp); box-shadow:0 0 8px var(--hp);}
+  /* v0.29.2 STATE CLARITY (plan section 9b): standing states get SEPARATE channels
+     so they compose instead of overwriting each other's outline (the v0.29.1 bug:
+     a shadowed minion's live Aegis was silently hidden — all four states fought for
+     one outline). Rim/border = legality (Guard Bulwark). Portrait overlay = presence
+     (Shadow Veil, Enrage Ember). Inner ring = Aegis Gilded Wreath. Sigils = counters. */
+  .minion.guard{border-image:linear-gradient(#4a3416,#241a0c) 40; box-shadow:0 0 12px #f9677;} /* the Bulwark — must-attack reads on the plate itself, not a badge */
   .minion.guard .kw{color:#f96; font-weight:bold;}
-  .minion.shielded{outline:2px solid #9cf; box-shadow:0 0 10px #9cf9, inset 0 0 12px #9cf4;}
-  .minion.auraholder{outline:2px solid #ffd76e; box-shadow:0 0 10px #ffd76e66, inset 0 0 12px #ffd76e22;} /* v0.27.0: the banner-bearer's gift glows gold */
-  .minion.enraged{outline:2px solid #ff5a4a; box-shadow:0 0 10px #ff5a4a88, inset 0 0 12px #ff5a4a22;} /* v0.27.0: wounded and furious — red ember rim */
-  .minion.shadowed{outline:2px solid #9d8cff; box-shadow:0 0 10px #9d8cff88, inset 0 0 12px #9d8cff22;} /* v0.29.0: veiled in dusk-violet until it strikes */
+  .minion.shielded .artclip{box-shadow:inset 0 0 0 2px #ffd76e, inset 0 0 20px #ffd76e55;} /* the Gilded Wreath — armed gold ring around the portrait */
+  .minion.auraholder{box-shadow:0 0 10px #ffd76e66, inset 0 0 12px #ffd76e22;} /* v0.27.0: the banner-bearer's gift glows gold */
+  .minion.enraged{box-shadow:0 0 10px #ff5a4a66;}
+  .minion.enraged .artclip{filter:saturate(1.35) contrast(1.08);} /* the Ember — fury burns IN the portrait, not on the rim */
+  .minion.shadowed{box-shadow:0 0 12px #9d8cff66;}
+  .minion.shadowed .artclip{filter:saturate(.4) brightness(.7) contrast(1.05); box-shadow:inset 0 0 26px #9d8cff99;} /* the Veil — dusk drains the portrait until it strikes */
+  .minion .sigil{position:absolute; z-index:3; font-size:13px; background:#000d; border:1px solid #000; padding:0 3px; cursor:help; text-shadow:0 0 4px #000; line-height:16px;}
+  .minion .sigil.wreath{bottom:30px; right:4px; color:#ffd76e;} /* Aegis — count shown when stacked >1 (NIZARI/GHOST_STEP/VEILED_COURT) */
+  .minion .sigil.swings{bottom:30px; left:4px; color:#e2b93b; font-size:11.5px; letter-spacing:1px;} /* Relentless — filled dots = swings left this turn */
+  .minion .sigil.muzzle{bottom:30px; left:50%; transform:translateX(-50%); color:#c9b78e; font-size:10.5px; letter-spacing:1px;} /* Shock — Sovereign-locked this turn */
+  .minion.veilburn{animation:veilburn .4s ease-out;} /* v0.29.2: the Veil burns off the moment the assassin strikes */
+  @keyframes veilburn{0%{box-shadow:0 0 26px #9d8cffdd, inset 0 0 20px #9d8cffaa;} 100%{box-shadow:0 0 0 #0000;}}
+  .hcard .cost.kdisc{background:#6a5210; border-color:#ffd76e; color:#ffd76e;} /* v0.29.2: kin-discounted — the cost gem glows kin-gold */
   .minion .ragebadge{position:absolute; top:2px; right:2px; font-size:13.5px; background:#000d; padding:1px 3px; color:#ff7a6a; text-shadow:0 0 4px #ff5a4a;} /* v0.27.0: 🔥 badge while enraged */
   .hand{display:flex; gap:12px; justify-content:center; min-height:220px; align-items:flex-end;}
   /* v0.13 JUICE: the hand fans in an arc — per-card rotation/lift come from
@@ -1564,6 +1579,7 @@ const SFX = {
   death:   () => AUD.sfx('death',     () => { SND.v({ f: 330, f2: 60, type: 'sawtooth', dur: .35, vol: .18 }); SND.v({ noise: true, lp: 900, lp2: 200, dur: .3, vol: .22 }); }),
   buff:    () => AUD.sfx('buff',      () => { [523, 659, 784].forEach((f, i) => SND.v({ f, f2: f * 1.02, dur: .12, vol: .13, delay: i * .06 })); }),
   shield:  () => AUD.sfx('shield',    () => SND.v({ f: 1200, f2: 820, dur: .18, vol: .15 })), // v0.12: the Aegis ring gets its own metal
+  veil:    () => AUD.sfx('veil',      () => SND.v({ f: 700, f2: 200, dur: .28, vol: .12 })), // v0.29.2: the Veil burns away — a low receding hiss
   passive: () => SND.v({ f: 1046, dur: .16, vol: .11 }),
   fatigue: () => AUD.sfx('fatigue',   () => SND.v({ f: 110, f2: 55, dur: .5, vol: .3 })),
   turnYou: () => AUD.sfx('turn-you',  () => { SND.v({ f: 262, type: 'sawtooth', dur: .25, vol: .11 }); SND.v({ f: 392, type: 'sawtooth', dur: .4, vol: .11, delay: .12 }); }), // rising fifth
@@ -1675,6 +1691,13 @@ function fxEvent(ev){
       fxDart(atkEl, tgtEl); // v0.22.11: the targeting arrow — who struck what, unmistakable
       fxLunge(atkEl, tgtEl || heroOf(vicSide)); // POWER strikes have no attacker card — just sound
       fxShake(tgtEl);
+      if (atkEl && atkEl.classList.contains('shadowed')) { atkEl.classList.add('veilburn'); setTimeout(() => atkEl.classList.remove('veilburn'), 420); SFX.veil(); } // v0.29.2: the Veil burns off the moment the assassin strikes
+      break;
+    }
+    case 'trigger': { // v0.29.2: onDraw/onSpell triggers announce themselves — SOT/EOT board triggers pulse their holder
+      SFX.passive();
+      const tel = findMinion(ev.side, ev.on);
+      if (tel) { fxGlow(tel); floatAt(tel, '✦ ' + ev.fx, true); }
       break;
     }
     case 'heroHit': {
@@ -1686,7 +1709,7 @@ function fxEvent(ev){
       break; // the victim hero's hitflash + damage number come from the render diff
     }
     case 'death': deathGhost(ev.uid); break;
-    case 'shield': SFX.shield(); fxGlow(findMinion(ev.side, ev.id), 'blue'); break; // v0.12: Aegis absorption — its own ring, not the buff chime; v0.22.10: blue plate glow
+    case 'shield': SFX.shield(); fxGlow(findMinion(ev.side, ev.id), 'blue'); fxBurst(findMinion(ev.side, ev.id)); break; // v0.12: Aegis absorption — its own ring, not the buff chime; v0.22.10: blue plate glow; v0.29.2: the Gilded Wreath SHATTERS into a gold burst
     case 'buff': SFX.buff(); fxGlow(findMinion(ev.side, ev.id)); break; // v0.22.10: gold plate glow where the buff lands
     case 'passive': SFX.passive(); fxGlow(heroOf(ev.side)); floatAt(heroOf(ev.side), '✦ ' + (BL_LABELS[ev.id] || blName(ev.id)), true); break; // v0.22.11: triggered effects ANNOUNCE themselves — the passive name floats over its owner
     case 'fatigue': SFX.fatigue(); fxBurst(heroOf(ev.side), 'red'); break; // v0.22.10: the deck-out burn rings the Sovereign
@@ -2054,6 +2077,9 @@ function render(){
         <div class="artclip"><img src="${m.img}" loading="lazy"></div><div class="nm">${m.name}</div>
         ${kwBadges(m)}
         ${m.rage&&m.maxhp&&m.hp<m.maxhp?'<div class="ragebadge">🔥</div>':''}
+        ${m.shield>0?`<div class="sigil wreath" title="Aegis${m.shield>1?' ×'+m.shield:''} — ${KWDESC.Aegis}">${m.shield>1?'⛨'+m.shield:'⛨'}</div>`:''}
+        ${hasKw(m,'Relentless')?`<div class="sigil swings" title="Relentless — ${KWDESC.Relentless}">⚔ ${'●'.repeat(Math.max(0,2-(m.attacks||0)))}${'○'.repeat(Math.min(2,m.attacks||0))}</div>`:''}
+        ${m.shocked?`<div class="sigil muzzle" title="Shock — cannot reach the enemy Sovereign this turn">⊘ SOV</div>`:''}
         <div class="gem atk">${m.atk}<i>ATK</i></div><div class="gem hp">${m.hp}<i>HP</i></div></div>`;
     }).join('');
     el.querySelectorAll('.minion').forEach(div=>{
@@ -2094,7 +2120,7 @@ function render(){
   hd.innerHTML = my.hand.map((c,i)=>`
     <div class="hcard r-${c.rarity||'common'} ${isSpell(c)?'spell':''} ${E.canPlay(S,'A',i)?'playable':''} ${i>=dealFrom?'deal':''}" data-i="${i}" style="--fr:${fanR(i)}deg;--fy:${fanY(i)}px">
       <div class="artclip"><img src="${c.img}" loading="lazy"></div><div class="vig"></div>
-      <div class="gem cost">${c.cost}</div>
+      ${(function(){ const ec=E.effCost(S,'A',c); return '<div class="gem cost'+(ec<c.cost?' kdisc':'')+'"'+(ec<c.cost?' title="Discounted to '+ec+' — kin held, relic rites, or First Rites"':'')+'>'+ec+'</div>'; })()}
       ${isSpell(c)?`<div class="typerow">${c.type==='edict'?'EDICT':'RELIC'}</div>`:''}
       ${kwBadges(c)}
       ${c.ability?`<div class="abilglyph">${isSpell(c)?'✦':(c.ability.startsWith('Battlecry')?'▸':'☠')}</div>`:''}
