@@ -497,7 +497,9 @@
       p.edictsThisTurn = (p.edictsThisTurn || 0) + 1;
       if (hasP(p, 'BURNING_BANNER') && !p.sovOnce.burningbanner) { p.sovOnce.burningbanner = true; if (foe.board.length) { const t = foe.board[Math.floor(S.rng() * foe.board.length)]; S.events.push({ t: 'passive', side, id: 'BURNING_BANNER', on: t.id }); damageMinion(S, other(side), t.uid, 1 * rites(S, side)); } } // Karrukh: the banner scatters embers before the order lands
       if (hasP(foe, 'WAR_PROFITEER')) { foe.warProfCount = (foe.warProfCount || 0) + 1; if (foe.warProfCount % 2 === 0 && foe.deck.length) { draw(S, other(side)); S.events.push({ t: 'passive', side: other(side), id: 'WAR_PROFITEER', on: c.id }); } } // Brynelric: every second enemy decree feeds the court's informants
+      const svPrey = hasP(p, 'SCORCHED_VICTORY') ? foe.board.map((t) => t.uid) : null; // v0.32.1 rework: Cynisca — snapshot the field before the decree lands
       resolveEdict(S, side, c.fx, c, opts); // v0.20: target flows into the edict switch
+      if (svPrey && svPrey.some((uid) => !foe.board.find((t) => t.uid === uid))) edictHeroHit(S, side, 'SCORCHED_VICTORY', 1 * rites(S, side)); // v0.32.1: the decree that kills feeds the pyre
       if (hasP(p, 'RESONANCE') && ['fxPingAll', 'fxPingAll2', 'fxAoe2', 'fxAoe3'].includes(c.fx)) edictHeroHit(S, side, 'RESONANCE', 1 * rites(S, side)); // Maeaemir: the spire rings with every sweep
       if (hasP(p, 'FARSIGHT') && ['fxScry2', 'fxScry3'].includes(c.fx) && foe.board.length) { const t = foe.board.slice().sort((a, b) => (b.atk + b.hp) - (a.atk + a.hp))[0]; S.events.push({ t: 'passive', side, id: 'FARSIGHT', on: t.id }); damageMinion(S, other(side), t.uid, 1 * rites(S, side)); } // Fenith: the tower's eye marks the target
       if (c.bc) resolveBc(S, side, c, opts, null); // v0.20 A9: multi-part edicts — the battlecry rider resolves after the fx
@@ -555,7 +557,7 @@
     }
     if (hasP(p, 'BARRICADE') && c.cost <= 2) m.hp += r; // Bryoaris: cheap spires stack the wall
     if (hasP(p, 'GRAVE_CHARGE') && hasKw(m, 'Charge')) m.hp += r; // Belwyn: the dead charge harder to escape
-    if (hasP(p, 'AMBUSH') && hasKw(m, 'Charge') && !p.sovOnce.ambush) { p.sovOnce.ambush = true; m.ready = true; m.shocked = true; } // Babur: the first charge of the day hits before it's seen
+    if (hasP(p, 'AMBUSH') && hasKw(m, 'Charge') && !p.sovOnce.ambush) { p.sovOnce.ambush = true; m.atk += r; m.hp += r; S.events.push({ t: 'passive', side, id: 'AMBUSH', on: m.id }); } // v0.32.1 rework: Babur — the first charge of the day arrives battle-hardened (+1/+1; Charge already readies)
     if (hasP(p, 'PRIDE_OF_THE_PACK') && m.tribe === 'Beasts') m.hp += r; // Ashenmane: pride swells the chest
     if (hasP(p, 'DEN_GUARD') && m.tribe === 'Beasts' && !p.sovOnce.dengu && !hasKw(m, 'Guard')) { p.sovOnce.dengu = true; m.kw = m.kw ? m.kw + ', Guard' : 'Guard'; } // Brannoc: the first beast of the turn stakes the den
     if (hasP(p, 'PACK_HUNTER') && m.tribe && countTribe(p.board, m.tribe) >= 3) { m.atk += r; m.hp += r; } // Moratusk: the pack hunts as one
@@ -576,10 +578,11 @@
   function resolveEdict(S, side, fx, c, opts) { // v0.20: opts.target aims single-target edicts
     const p = S[side], foe = S[other(side)];
     const wv = hasP(p, 'WEAVE') ? rites(S, side) : 0; // v0.15: the Weave empowers every sweep
+    const pv = hasP(p, 'PYROMANCER') ? rites(S, side) : 0; // v0.32.1 rework: Suleiman — every sweep burns hotter
     switch (fx) {
       case 'fxDraw2': draw(S, side); draw(S, side); break;
-      case 'fxPingAll': foe.board.slice().forEach((t) => damageMinion(S, other(side), t.uid, 1 + wv)); break;
-      case 'fxAoe2':   foe.board.slice().forEach((t) => damageMinion(S, other(side), t.uid, 2 + wv)); break;
+      case 'fxPingAll': foe.board.slice().forEach((t) => damageMinion(S, other(side), t.uid, 1 + wv + pv)); break;
+      case 'fxAoe2':   foe.board.slice().forEach((t) => damageMinion(S, other(side), t.uid, 2 + wv + pv)); break;
       case 'fxSnipe3': { const t = pickTarget(opts, foe.board) || foe.board.slice().sort((a,b) => (b.atk+b.hp)-(a.atk+a.hp))[0]; if (t) damageMinion(S, other(side), t.uid, 3); break; } // v0.20: aimed, else auto-best
       case 'fxExecute': { const t = pickTarget(opts, foe.board) || foe.board.slice().sort((a,b) => b.atk-a.atk)[0]; if (t) damageMinion(S, other(side), t.uid, t.hp + 99); break; } // v0.20: aimed, else auto-biggest
       case 'fxHealHero4': p.hp = Math.min(MAX_HP, p.hp + 4); break;
@@ -592,8 +595,8 @@
       case 'fxLevy': { p.board.forEach((m) => { if (m.id.startsWith('TOKEN@')) { m.atk += 1; m.hp += 1; } }); if (p.board.length < MAX_BOARD) p.board.push(token(p, S)); refreshPrim(S); break; }
       case 'fxPillage': { const pi = 2 + (hasP(p, 'COURT_INTRIGUE') ? 2 * rites(S, side) : 0); edictHeroHit(S, side, 'PILLAGE', pi); if (p.board.length > foe.board.length) draw(S, side); break; } // v0.21: routes through rlNullify; v0.15.1: COURT_INTRIGUE
       // v0.12: stronger variants — the edict tier the audit asked for
-      case 'fxPingAll2': foe.board.slice().forEach((t) => damageMinion(S, other(side), t.uid, 2 + wv)); break;
-      case 'fxAoe3':     foe.board.slice().forEach((t) => damageMinion(S, other(side), t.uid, 3 + wv)); break;
+      case 'fxPingAll2': foe.board.slice().forEach((t) => damageMinion(S, other(side), t.uid, 2 + wv + pv)); break;
+      case 'fxAoe3':     foe.board.slice().forEach((t) => damageMinion(S, other(side), t.uid, 3 + wv + pv)); break;
       case 'fxSnipe4': { const t = pickTarget(opts, foe.board) || foe.board.slice().sort((a,b) => (b.atk+b.hp)-(a.atk+a.hp))[0]; if (t) damageMinion(S, other(side), t.uid, 4); break; } // v0.20: aimed, else auto-best
       case 'fxVolley2': { const n = p.board.filter((m) => hasKw(m, 'Ranged')).length; const d = n * (2 + (hasP(p, 'COURT_INTRIGUE') ? 2 * rites(S, side) : 0)); if (d > 0) edictHeroHit(S, side, 'VOLLEY', d); break; } // v0.21: routes through rlNullify; v0.15.1: COURT_INTRIGUE
       case 'fxHero3': { edictHeroHit(S, side, 'BURN', 3); break; } // v0.21: routes through rlNullify
@@ -638,7 +641,7 @@
         draw(S, side);
         break;
       }
-      case 'fxScorchX': { const d = p.mana + (hasP(p, 'PYROMANCER') ? 1 * rites(S, side) : 0); const t = pickTarget(opts, foe.board) || foe.board.slice().sort((a,b) => (b.atk+b.hp)-(a.atk+a.hp))[0]; if (t && d > 0) damageMinion(S, other(side), t.uid, d); p.mana = 0; S.events.push({ t: 'passive', side, id: 'FX_SCORCHX', dmg: d }); if (hasP(p, 'SCORCHED_VICTORY') && t && d > 0 && !foe.board.find((x) => x.uid === t.uid)) { const vd = 1 * rites(S, side); S[other(side)].hp -= vd; S.events.push({ t: 'heroHit', side: other(side), id: 'SCORCHED_VICTORY', dmg: vd }); } break; } // X-spell: spend ALL remaining mana as damage to one foe minion; v0.26: PYROMANCER +1 / SCORCHED_VICTORY rider
+      case 'fxScorchX': { const d = p.mana; const t = pickTarget(opts, foe.board) || foe.board.slice().sort((a,b) => (b.atk+b.hp)-(a.atk+a.hp))[0]; if (t && d > 0) damageMinion(S, other(side), t.uid, d); p.mana = 0; S.events.push({ t: 'passive', side, id: 'FX_SCORCHX', dmg: d }); break; } // X-spell: spend ALL remaining mana as damage to one foe minion
       // v0.23 T2: tribal payoff edicts — all read the card's own tribe
       case 'fxTribeMuster': { const tr = c.tribe; const n = Math.min(3, countTribe(p.board, tr)); for (let i = 0; i < n && p.board.length < MAX_BOARD; i++) p.board.push(token(p, S)); S.events.push({ t: 'passive', side, id: 'FX_TRIBE_MUSTER', on: tr, n }); refreshPrim(S); break; } // one levy per kinsman, up to three
       case 'fxTribeWarCry': { const tr = c.tribe; p.board.forEach((m) => { if (tr && m.tribe === tr) m.atk += 2; }); if (tr) S.events.push({ t: 'passive', side, id: 'FX_TRIBE_WARCRY', on: tr }); break; } // the war cry — kin gain +2 ATK
@@ -779,7 +782,7 @@
     if (hasP(np, 'TIDE_OF_KIN') && countTribe(np.board, 'Underfolk') >= 3) { np.hp = Math.min(MAX_HP, np.hp + 2 * r); S.events.push({ t: 'passive', side: next, id: 'TIDE_OF_KIN' }); } // Myrra: the tide renews the sworn
     if (hasP(np, 'OVERCLOCK') && np.board.length) { const cs = np.board.filter((m) => m.tribe === 'Constructs'); if (cs.length) { const t2 = cs[Math.floor(S.rng() * cs.length)]; t2.atk += r; t2.hp += r; if (t2.maxhp) t2.maxhp += r; S.events.push({ t: 'passive', side: next, id: 'OVERCLOCK', on: t2.id }); refreshPrim(S); } } // Halior: the engines surge
     if (hasP(np, 'WATCHTOWER_PROTOCOL') && np.board.some((m) => hasKw(m, 'Guard')) && foe.board.length) { const w2 = foe.board.slice().sort((a, b) => (a.atk + a.hp) - (b.atk + b.hp))[0]; S.events.push({ t: 'passive', side: next, id: 'WATCHTOWER_PROTOCOL', on: w2.id }); damageMinion(S, other(next), w2.uid, 1 * r); } // Octtivus: the gate marks the weakest
-    if (hasP(np, 'IRON_LEVEY') && np.board.length >= 3 && np.board.length < MAX_BOARD) { np.board.push(token(np, S)); S.events.push({ t: 'passive', side: next, id: 'IRON_LEVEY' }); refreshPrim(S); } // Ashen-Prime: a warband this size drafts itself
+    if (hasP(np, 'IRON_LEVY') && np.board.length >= 3 && np.board.length < MAX_BOARD) { np.board.push(token(np, S)); S.events.push({ t: 'passive', side: next, id: 'IRON_LEVY' }); refreshPrim(S); } // Ashen-Prime: a warband this size drafts itself
     if (hasP(np, 'GRAVE_HUNGER') && np.diedLastTurn > 0 && np.board.length) { const w3 = weak(np.board); w3.atk += 1 * r; S.events.push({ t: 'passive', side: next, id: 'GRAVE_HUNGER', on: w3.id }); } // Ossrath: what died yesterday feeds today
     if (hasP(np, 'REVENANT_HOST') && np.diedLastTurn >= 3 && np.board.length < MAX_BOARD) { np.board.push(token(np, S)); S.events.push({ t: 'passive', side: next, id: 'REVENANT_HOST' }); refreshPrim(S); } // the Hollow Choir: a fallen chorus rises one voice stronger
     if (hasP(np, 'NOVA_CASCADE') && np.hand.length >= 5 && foe.board.length) { const t3 = foe.board[Math.floor(S.rng() * foe.board.length)]; S.events.push({ t: 'passive', side: next, id: 'NOVA_CASCADE', on: t3.id }); damageMinion(S, other(next), t3.uid, 1 * r); } // Sylur: the hundredth victory leaves an ember
@@ -948,7 +951,8 @@
     if (hasP(p, 'AMBUSH') && hasKw(c, 'Charge')) v += 0.3; // v0.26
     if (hasP(p, 'GRAVE_CHARGE') && hasKw(c, 'Charge')) v += 0.25; // v0.26
     if (hasP(p, 'IRON_FIST') && c.type === 'minion' && c.atk <= 2) v += 0.25; // v0.26
-    if (hasP(p, 'PYROMANCER') && c.fx === 'fxScorchX') v += 0.5; // v0.26: the flame bends to her will
+    if (hasP(p, 'PYROMANCER') && sweepFx) v += 0.4; // v0.32.1 rework: Suleiman — every sweep burns hotter
+    if (hasP(p, 'SCORCHED_VICTORY') && sweepFx) v += 0.3; // v0.32.1 rework: Cynisca — killing decrees feed the pyre
     if (hasP(p, 'RESONANCE') && sweepFx) v += 0.4; // v0.26: the spire rings
     if (hasP(p, 'DEEP_RITES') && c.cost >= 5) v += 0.3; // v0.26: the deep crown the mighty
     if (hasP(p, 'SOLAR_FLARE') && hasKw(c, 'Ranged')) v += 0.2; // v0.26
@@ -1007,6 +1011,7 @@
       if (guards.length) return guards.map((g) => ({ uid: g.uid }));
       if (S.rng() < 0.65 || !foe.board.length) return [{ hero: true }];
       const opts = foe.board.filter((t) => !shadowed(t)).map((t) => ({ uid: t.uid })); // v0.29.0: never aim at a shadowed body
+      if (!opts.length) return [{ hero: true }]; // v0.32.1 fix: an all-Shadow board still offers the face
       return [opts[Math.floor(S.rng() * opts.length)]];
     };
     me.board.slice().forEach((m) => {
@@ -1113,15 +1118,16 @@
     const th = threat(S, side);
     if (c.type === 'edict') {
       const wv = hasP(p, 'WEAVE') ? rites(S, side) : 0;
+      const pv = hasP(p, 'PYROMANCER') ? rites(S, side) : 0; // v0.32.1: Suleiman's sweeps burn hotter
       const kills = (d) => foe.board.reduce((s2, t) => s2 + (t.hp <= d ? (t.atk + t.hp) * 1.25 : d * 0.5), 0);
       const top = (cmp) => foe.board.slice().sort(cmp)[0];
       switch (c.fx) {
         case 'fxDraw2': return 2.6 + (p.hand.length <= 2 ? 1.2 : 0);
         case 'fxDraw3': return 3.1 + (p.hand.length <= 3 ? 1.0 : 0) - (p.hand.length >= 7 ? 1.2 : 0);
-        case 'fxPingAll': return kills(1 + wv);
-        case 'fxPingAll2': return kills(2 + wv);
-        case 'fxAoe2': return kills(2 + wv);
-        case 'fxAoe3': return kills(3 + wv) - 1;
+        case 'fxPingAll': return kills(1 + wv + pv);
+        case 'fxPingAll2': return kills(2 + wv + pv);
+        case 'fxAoe2': return kills(2 + wv + pv);
+        case 'fxAoe3': return kills(3 + wv + pv) - 1;
         case 'fxSnipe3': { const t = top((a, b) => (b.atk + b.hp) - (a.atk + a.hp)); return t ? (t.hp <= 3 ? (t.atk + t.hp) * 1.3 : 3.6) : 0; }
         case 'fxSnipe4': { const t = top((a, b) => (b.atk + b.hp) - (a.atk + a.hp)); return t ? (t.hp <= 4 ? (t.atk + t.hp) * 1.3 : 3.4) : 0; }
         case 'fxExecute': { const t = top((a, b) => b.atk - a.atk); return t ? (t.atk + t.hp) * 1.45 : 0; }
