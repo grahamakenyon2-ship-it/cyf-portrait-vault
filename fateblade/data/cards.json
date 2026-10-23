@@ -2035,7 +2035,7 @@
      "rarity": "common",
      "file": "annals/barning/guild-seal-wax.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/annals/barning/guild-seal-wax.jpg",
-     "ability": "At the start of your turn, if you control fewer minions than the enemy, draw a card.",
+     "ability": "At the start of your turn, if you control at most as many minions as the enemy, draw a card.",
      "id": "guild-seal-wax@barning"
     },
     {
@@ -2269,15 +2269,15 @@
      "fl": "The Tidebound Crown rules the waves.",
      "faction": "barning",
      "pool": "history",
-     "cost": 1,
+     "cost": 2,
      "type": "edict",
      "fx": "fxScry2",
      "rl": null,
-     "bc": null,
+     "bc": "bcDraw",
      "rarity": "common",
      "file": "annals/barning/the-chart-room.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/annals/barning/the-chart-room.jpg",
-     "ability": "Scry 2 — draw the best of the top 2 cards of your deck.",
+     "ability": "Scry 2 — draw the best of the top 2 cards of your deck. Then draw a card.",
      "id": "the-chart-room@barning"
     },
     {
@@ -2365,15 +2365,15 @@
      "fl": "The Tidebound Crown rules the waves.",
      "faction": "barning",
      "pool": "history",
-     "cost": 1,
+     "cost": 2,
      "type": "edict",
      "fx": "fxScry3",
      "rl": null,
-     "bc": null,
+     "bc": "bcDraw",
      "rarity": "common",
      "file": "annals/barning/the-ironclad-turret.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/annals/barning/the-ironclad-turret.jpg",
-     "ability": "Scry 3 — draw the best of the top 3 cards of your deck.",
+     "ability": "Scry 3 — draw the best of the top 3 cards of your deck. Then draw a card.",
      "id": "the-ironclad-turret@barning"
     },
     {
@@ -4934,15 +4934,15 @@
      "fl": "The Gilded Sun buys what it cannot burn.",
      "faction": "lucerre",
      "pool": "history",
-     "cost": 1,
+     "cost": 2,
      "type": "edict",
      "fx": "fxScry3",
      "rl": null,
-     "bc": null,
+     "bc": "bcDraw",
      "rarity": "common",
      "file": "annals/lucerre/musketeer-duel-at-dawn.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/annals/lucerre/musketeer-duel-at-dawn.jpg",
-     "ability": "Scry 3 — draw the best of the top 3 cards of your deck.",
+     "ability": "Scry 3 — draw the best of the top 3 cards of your deck. Then draw a card.",
      "id": "musketeer-duel-at-dawn@lucerre"
     },
     {
@@ -4950,15 +4950,15 @@
      "fl": "The Gilded Sun buys what it cannot burn.",
      "faction": "lucerre",
      "pool": "history",
-     "cost": 1,
+     "cost": 2,
      "type": "edict",
      "fx": "fxScry2",
      "rl": null,
-     "bc": null,
+     "bc": "bcDraw",
      "rarity": "common",
      "file": "annals/lucerre/ottoman-war-galleys.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/annals/lucerre/ottoman-war-galleys.jpg",
-     "ability": "Scry 2 — draw the best of the top 2 cards of your deck.",
+     "ability": "Scry 2 — draw the best of the top 2 cards of your deck. Then draw a card.",
      "id": "ottoman-war-galleys@lucerre"
     },
     {
@@ -5038,7 +5038,7 @@
      "rarity": "common",
      "file": "annals/lucerre/the-beacon-fires.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/annals/lucerre/the-beacon-fires.jpg",
-     "ability": "At the start of your turn, if you control fewer minions than the enemy, draw a card.",
+     "ability": "At the start of your turn, if you control at most as many minions as the enemy, draw a card.",
      "id": "the-beacon-fires@lucerre"
     },
     {
@@ -7459,15 +7459,15 @@
      "fl": "Two courts, one crown, endless intrigue.",
      "faction": "fenorian",
      "pool": "history",
-     "cost": 1,
+     "cost": 2,
      "type": "edict",
      "fx": "fxScry2",
      "rl": null,
-     "bc": null,
+     "bc": "bcDraw",
      "rarity": "common",
      "file": "annals/fenorian/carrion-crows-field.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/annals/fenorian/carrion-crows-field.jpg",
-     "ability": "Scry 2 — draw the best of the top 2 cards of your deck.",
+     "ability": "Scry 2 — draw the best of the top 2 cards of your deck. Then draw a card.",
      "id": "carrion-crows-field@fenorian"
     },
     {
@@ -8985,7 +8985,7 @@
      "passive": {
       "id": "GHOST_STEP",
       "name": "Ghost Step",
-      "desc": "The first minion you play each turn enters with Aegis."
+      "desc": "The first minion you play each turn, if it costs 3 or less, enters with Aegis."
      },
      "fx": null,
      "rl": null,
@@ -9096,15 +9096,15 @@
      "fl": "The Purge Court never forgives twice.",
      "faction": "crescent",
      "pool": "history",
-     "cost": 1,
+     "cost": 2,
      "type": "edict",
      "fx": "fxScry2",
      "rl": null,
-     "bc": null,
+     "bc": "bcDraw",
      "rarity": "common",
      "file": "annals/crescent/the-purge-court.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/annals/crescent/the-purge-court.jpg",
-     "ability": "Scry 2 — draw the best of the top 2 cards of your deck.",
+     "ability": "Scry 2 — draw the best of the top 2 cards of your deck. Then draw a card.",
      "id": "the-purge-court@crescent"
     },
     {
@@ -12886,7 +12886,7 @@
      "fl": "The forest keeps its own.",
      "faction": "stormlit",
      "pool": "fandom",
-     "cost": 3,
+     "cost": 2,
      "rarity": "epic",
      "file": "scenes/stormlit/the-glade-ward.jpg",
      "bc": null,
@@ -12919,15 +12919,15 @@
      "fl": "The Elderkin keep the long watch.",
      "faction": "stormlit",
      "pool": "fandom",
-     "cost": 1,
+     "cost": 2,
      "type": "edict",
      "fx": "fxScry2",
      "rl": null,
-     "bc": null,
+     "bc": "bcDraw",
      "rarity": "common",
      "file": "scenes/stormlit/the-long-vigil.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/stormlit/the-long-vigil.jpg",
-     "ability": "Scry 2 — draw the best of the top 2 cards of your deck.",
+     "ability": "Scry 2 — draw the best of the top 2 cards of your deck. Then draw a card.",
      "id": "the-long-vigil@stormlit"
     },
     {
@@ -12986,13 +12986,13 @@
      "pool": "fandom",
      "cost": 2,
      "type": "edict",
-     "fx": "fxHealHero6",
+     "fx": "fxSnipe3",
      "rl": null,
      "bc": "bcHeal2",
      "rarity": "common",
      "file": "scenes/stormlit/the-coronation-oil.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/stormlit/the-coronation-oil.jpg",
-     "ability": "Deal 3 damage to an enemy minion. Then Restore 2 HP to your hero.",
+     "ability": "Deal 3 damage to an enemy minion. Then restore 2 HP to your hero.",
      "id": "the-coronation-oil@stormlit"
     },
     {
@@ -15542,7 +15542,7 @@
      "id": "the-cartographer-of-epsilon-nine@starwind",
      "name": "The Cartographer of Epsilon Nine",
      "fl": "Every dawn, three new stars; every dawn, one more page.",
-     "cost": 5,
+     "cost": 3,
      "rarity": "rare",
      "type": "minion",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/cards/starwind/the-cartographer-of-epsilon-nine.jpg",
@@ -16809,12 +16809,12 @@
      "type": "edict",
      "file": "scenes/tigerpass/the-long-stalk.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/tigerpass/the-long-stalk.jpg",
-     "bc": null,
+     "bc": "bcDraw",
      "dr": null,
      "fx": "fxScry3",
      "rl": null,
      "passive": null,
-     "ability": "Look at the top 3 cards of your pile."
+     "ability": "Scry 3 — draw the best of the top 3 cards of your deck. Then draw a card."
     },
     {
      "id": "pack-alphas@tigerpass",
@@ -23347,13 +23347,13 @@
      "fl": "The crown always collects — eventually.",
      "faction": "courts",
      "pool": "fandom",
-     "cost": 1,
+     "cost": 2,
      "rarity": "rare",
      "file": "scenes/courts/the-crown-s-debt.jpg",
-     "bc": null,
+     "bc": "bcDraw",
      "dr": null,
      "fx": "fxScry2",
-     "ability": "Scry 2 — draw the best of the top 2 cards of your deck.",
+     "ability": "Scry 2 — draw the best of the top 2 cards of your deck. Then draw a card.",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/courts/the-crown-s-debt.jpg",
      "type": "edict",
      "rl": null
@@ -25560,7 +25560,7 @@
      "passive": {
       "id": "WAR_DRUMS",
       "name": "War Drums",
-      "desc": "At the start of your turn, if you control more minions than your opponent, your weakest gains +1/+1."
+      "desc": "At the start of your turn, if you control at least two more minions than your opponent, your weakest gains +1/+1."
      },
      "ability": null,
      "bc": null,
@@ -27996,10 +27996,10 @@
      "cost": 2,
      "rarity": "common",
      "file": "scenes/towers/the-novice-trials.jpg",
-     "bc": null,
+     "bc": "bcDraw",
      "dr": null,
      "fx": "fxDeliberate",
-     "ability": "Face the trials: look at the top 3 cards of your deck, take the best one.",
+     "ability": "Face the trials: look at the top 3 cards of your deck, take the best one, then draw a card.",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/towers/the-novice-trials.jpg",
      "type": "edict"
     },
@@ -28127,7 +28127,7 @@
      "fl": "It does not show the future. It rearranges it.",
      "faction": "towers",
      "pool": "fandom",
-     "cost": 3,
+     "cost": 2,
      "rarity": "epic",
      "file": "scenes/towers/the-dreamer-s-mirror.jpg",
      "bc": null,
@@ -28210,13 +28210,13 @@
      "pool": "fandom",
      "cost": 2,
      "type": "edict",
-     "fx": "fxHealHero6",
+     "fx": "fxSnipe3",
      "rl": null,
      "bc": "bcDraw",
      "rarity": "common",
      "file": "scenes/towers/redcoat-volley.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/towers/redcoat-volley.jpg",
-     "ability": "Deal 3 damage to an enemy minion. Then Draw a card.",
+     "ability": "Deal 3 damage to an enemy minion. Then draw a card.",
      "id": "redcoat-volley@towers"
     },
     {
@@ -28240,15 +28240,15 @@
      "fl": "The Nine Towers price fate itself.",
      "faction": "towers",
      "pool": "fandom",
-     "cost": 1,
+     "cost": 2,
      "type": "edict",
      "fx": "fxScry3",
      "rl": null,
-     "bc": null,
+     "bc": "bcDraw",
      "rarity": "common",
      "file": "scenes/towers/the-blind-oracle.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/towers/the-blind-oracle.jpg",
-     "ability": "Scry 3 — draw the best of the top 3 cards of your deck.",
+     "ability": "Scry 3 — draw the best of the top 3 cards of your deck. Then draw a card.",
      "id": "the-blind-oracle@towers"
     },
     {
@@ -28320,7 +28320,7 @@
      "fl": "The Nine Towers price fate itself.",
      "faction": "towers",
      "pool": "fandom",
-     "cost": 3,
+     "cost": 2,
      "type": "relic",
      "fx": null,
      "rl": "rlLibrary",
@@ -34826,7 +34826,7 @@
      "fl": "We never get lost. We get delayed.",
      "faction": "deepholds",
      "pool": "fandom",
-     "cost": 1,
+     "cost": 2,
      "atk": null,
      "hp": null,
      "kw": null,
@@ -34834,12 +34834,12 @@
      "type": "edict",
      "file": "scenes/deepholds/the-deep-roads.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/deepholds/the-deep-roads.jpg",
-     "bc": null,
+     "bc": "bcDraw",
      "dr": null,
      "fx": "fxScry3",
      "rl": null,
      "passive": null,
-     "ability": "Look at the top 3 cards of your pile."
+     "ability": "Scry 3 — draw the best of the top 3 cards of your deck. Then draw a card."
     },
     {
      "id": "grudge-settled@deepholds",
@@ -34931,7 +34931,7 @@
      "fl": "It sorts 94% correctly. Usually.",
      "faction": "deepholds",
      "pool": "fandom",
-     "cost": 4,
+     "cost": 2,
      "atk": null,
      "hp": null,
      "kw": null,
@@ -34939,12 +34939,12 @@
      "type": "edict",
      "file": "scenes/deepholds/gnomeish-contraption.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/deepholds/gnomeish-contraption.jpg",
-     "bc": null,
+     "bc": "bcDraw",
      "dr": null,
      "fx": "fxDeliberate",
      "rl": null,
      "passive": null,
-     "ability": "Look at the top 3 cards of a pile and take the best one."
+     "ability": "Look at the top 3 cards of a pile and take the best one, then draw a card."
     },
     {
      "id": "the-last-rampart@deepholds",
@@ -35150,5 +35150,5 @@
    ]
   }
  ],
- "version": "0.32.1"
+ "version": "0.34.0"
 }

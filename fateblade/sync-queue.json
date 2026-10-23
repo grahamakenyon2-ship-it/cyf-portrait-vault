@@ -1,4 +1,4 @@
 {
-  "version": "0.32.1",
-  "note": "v0.33.2 Realm Command telemetry (power/powerSkip events; report-only, decisions unchanged); version label follows cards.json (next data release)"
+ "version": "0.34.0",
+ "note": "v0.34.0 balance pass: Guard-wall stall fix (AI sweeps + rlHardAttackChoice), Assembly Rite redesign (+1/+1+Aegis), Exhume 2/2, Jade Vow 3, Salvage 3, War Drums lead-of-2, Ghost Step <=3 gate, scry class draw rider, fx template mismatches fixed (redcoat-volley, coronation-oil), Cartographer 5->3"
 }

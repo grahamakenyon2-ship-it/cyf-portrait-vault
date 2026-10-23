@@ -83,6 +83,17 @@
   // Legal ATTACK targets on a board (edicts bypass this). Guards that are
   // shadowed cannot be attacked, so they do not pull attacks either.
   const guardsOn = (foe) => foe.board.filter((x) => hasKw(x, 'Guard') && !shadowed(x));
+  // v0.34 STALL FIX: the wall canAttack() enforces, factored out so every AI
+  // sweep can pre-check it. lawGuarded mirrors the v0.23 Tribal Law kin.
+  const lawGuarded = (S, side, t) => !!(t.tribe && S.laws.some((l) => l.id === 'lawTribeGuard' && l.side !== side && l.tribe === t.tribe));
+  // A minion can only REACH t if no enemy Guard/law-guard stands, or t is one.
+  // The old sweeps picked value trades that ignore this wall; attack() refused,
+  // the sweep still `return`ed, and both boards froze to the turn cap (the
+  // 4.2% hard-mode stall). Every trade pick now clears this check first.
+  const atkReach = (S, side, t) => {
+    const wall = S[other(side)].board.some((x) => !shadowed(x) && (hasKw(x, 'Guard') || lawGuarded(S, side, x)));
+    return !shadowed(t) && (!wall || hasKw(t, 'Guard') || lawGuarded(S, side, t));
+  };
   // v0.23 T2: tribal system — minions carry a `tribe` string (the 15-tribe
   // taxonomy). All payoff templates read the CARD'S OWN tribe (kin-matters design),
   // so one field serves both identity and synergy. Inert on pre-tribe data.
@@ -549,7 +560,7 @@
     // v0.26: sovereign overhaul — entry passives
     p.sovOnce.minion = (p.sovOnce.minion || 0) + 1; // minions fielded this turn (SCARAB_SWARM)
     if (p.sovOnce.minion >= 2 && hasP(p, 'SCARAB_SWARM')) { m.atk += r; m.hp += r; } // Nefertiti: the second beetle rides the first's shell
-    if (!p.sovOnce.ghost && hasP(p, 'GHOST_STEP')) { p.sovOnce.ghost = true; m.shield = (m.shield || 0) + r; } // Ubayd Allah: the first servant of the turn walks veiled
+    if (!p.sovOnce.ghost && hasP(p, 'GHOST_STEP') && c.cost <= 3) { p.sovOnce.ghost = true; m.shield = (m.shield || 0) + r; } // Ubayd Allah: the first servant of the turn walks veiled — v0.34: only servants costing ≤3 (the free Aegis on every big drop was the strongest passive in the field at 93.5%)
     if (hasKw(m, 'Guard')) {
       if (hasP(p, 'STONE_REMEMBERS')) m.hp += 2 * r; // Breggan: the stone remembers every siege
       if (hasP(p, 'VEILED_COURT')) m.shield = (m.shield || 0) + r; // Orsuesande: the court's wall arrives shielded
@@ -699,13 +710,13 @@
     lucerre:     { name: 'Sound the Charge', cost: 2, kind: 'buff', text: 'Give a friendly minion +1 Attack this turn.' },
     crescent:    { name: 'Conscription',   cost: 2, kind: 'dmg', dmg: 1, tset: 'foeMinion', rider: 'conscript', text: 'Deal 1 damage to an enemy minion. If it dies, summon a Conscript.' },
     stormlit:    { name: 'Oathward',       cost: 2, kind: 'heal', heal: 2, text: 'Restore 2 Health to a friendly character.' },
-    starwind:    { name: 'Salvage',        cost: 2, kind: 'salvage', text: 'Look at the top card of your deck. Draw it, or put it back.' },
+    starwind:    { name: 'Salvage',        cost: 3, kind: 'salvage', text: 'Look at the top card of your deck. Draw it, or put it back.' }, // v0.34: 2→3 — the keep-gate was decorative (98.6% keep), so this read "draw a card for 2" every turn; Arcane Bolt already set the premium-cost precedent
     tigerpass:   { name: 'Blood Rite',     cost: 2, kind: 'selfdmg', dmg: 2, self: 1, tset: 'foeHero', text: 'Deal 2 damage to the enemy Sovereign and 1 damage to your own.' },
-    zephek:      { name: 'Assembly Rite',  cost: 2, kind: 'buffself', text: 'Give a friendly minion +0/+1 and Aegis.' },
+    zephek:      { name: 'Assembly Rite',  cost: 2, kind: 'buffself', text: 'Give a friendly minion +1/+1 and Aegis.' }, // v0.34 redesign: was +0/+1+Aegis — 91.9% skip share, 15.6% cast WR; a buff that wins the next trade is worth the ceremony
     courts:      { name: 'Petition the Court', cost: 2, kind: 'draw', text: 'Draw a card.' },
-    kingdoms:     { name: 'Jade Vow',       cost: 2, kind: 'buff2',  text: 'Give two friendly minions +0/+1.' },
+    kingdoms:     { name: 'Jade Vow',       cost: 3, kind: 'buff2',  text: 'Give two friendly minions +0/+1.' }, // v0.34: 2→3 cost walk-up — the most win-correlated command (71.0% cast WR vs 54.8 no-cast); every-turn permanent buffs were a grind engine
     towers:      { name: 'Arcane Bolt',    cost: 3, kind: 'dmg', dmg: 2, tset: 'any', text: 'Deal 2 damage to any target.' }, // cost-for-effect doctrine: the realm of magic pays premium for flexibility
-    necropolis:  { name: 'Exhume',         cost: 2, kind: 'exhume', text: 'Return the last friendly minion that died as a 1/1 Echo.' },
+    necropolis:  { name: 'Exhume',         cost: 2, kind: 'exhume', text: 'Return the last friendly minion that died as a 2/2 Echo.' }, // v0.34: 1/1→2/2 — on-curve body for the mana; the 1/1 was refuse-cast chaff (46.6% cast WR)
     marches:     { name: 'Raid',           cost: 2, kind: 'raid', dmg: 1, face: 1, text: 'Deal 1 damage to an enemy minion and 1 damage to the enemy Sovereign.' },
     deepholds:   { name: 'Delve',          cost: 2, kind: 'delve',  text: 'Gain 1 mana this turn.' },
     wayfarers:   null, // the neutral guild fields no command
@@ -844,8 +855,8 @@
         refreshPrim(S);
         break;
       }
-      case 'buffself': { // Assembly Rite: +0/+1 and Aegis
-        tm.hp += 1; if (tm.maxhp) tm.maxhp += 1;
+      case 'buffself': { // Assembly Rite: +1/+1 and Aegis (v0.34: was +0/+1 — it never won a trade)
+        tm.atk += 1; tm.hp += 1; if (tm.maxhp) tm.maxhp += 1;
         if (!hasKw(tm, 'Aegis')) tm.kw = tm.kw ? tm.kw + ', Aegis' : 'Aegis';
         KW_CACHE.delete(tm); // same stale-cache guard as Shield Wall
         tm.shield = 1;
@@ -879,7 +890,7 @@
       case 'draw': { draw(S, side); S.events.push({ t: 'passive', side, id: 'POWER' }); break; } // Petition the Court
       case 'exhume': {
         const gc = p.fallen.pop(); if (!gc) { p.power = false; p.mana += powerCost(S, side); return false; } // paranoia: never strand the flag
-        p.board.push({ id: 'ECHO@' + gc.id, name: 'Echo of ' + gc.name, cost: 1, atk: 1, hp: 1, maxhp: 1, kw: null, uid: 'ECHO-' + Math.floor(S.rng() * 1e9), img: gc.img, file: gc.file, fl: 'Called back beyond the veil.' });
+        p.board.push({ id: 'ECHO@' + gc.id, name: 'Echo of ' + gc.name, cost: 2, atk: 2, hp: 2, maxhp: 2, kw: null, uid: 'ECHO-' + Math.floor(S.rng() * 1e9), img: gc.img, file: gc.file, fl: 'Called back beyond the veil.' }); // v0.34: 2/2, on curve
         S.events.push({ t: 'play', side, id: 'ECHO', uid: 'ECHO' + p.board.length, kw: null, cost: 1 });
         refreshPrim(S);
         break;
@@ -914,13 +925,13 @@
       }
       case 'salvage': return p.deck.length ? { salvage: p.hand.length < 7 ? 'keep' : 'put' } : null; // top card stays seen; hold a full hand back
       case 'selfdmg': return (p.hp <= 6) ? null : { hero: true }; // Blood Rite: never the last mistake (lethal override lives in the brains)
-      case 'buffself': { // Assembly Rite: Aegis only under fire
-        if (!th.danger) return null;
-        const t = big(p.board); return t ? { uid: t.uid } : null;
+      case 'buffself': { // Assembly Rite (v0.34): shield a body that actually fights — or brace under fire
+        if (th.danger) { const t = big(p.board); return t ? { uid: t.uid } : null; }
+        const t2 = big(p.board.filter((m) => m.atk >= 3)); return t2 ? { uid: t2.uid } : null; // a real attacker earns the Aegis; don't waste it on chaff
       }
       case 'draw': return p.deck.length ? {} : null; // Petition the Court: always
       case 'buff2': { const t = big(p.board); return t ? { uid: t.uid } : null; } // Jade Vow: the engine buffs the biggest and its neighbor
-      case 'exhume': return (p.fallen.length && p.board.length < 3) ? {} : null; // a small board earns the dead back
+      case 'exhume': return (p.fallen.length && p.board.length < MAX_BOARD - 1) ? {} : null; // v0.34: earn the dead back on any non-full board — the <3 gate starved the command
       case 'raid': { if (!foe.board.length) return { hero: true }; const t = big(foe.board.filter((m) => m.hp <= c.dmg)) || big(foe.board); return t ? { uid: t.uid } : null; }
       case 'delve': return p.hand.some((cd) => effCost(S, side, cd) > p.mana) ? {} : null; // Delve: only when something costlier waits
       default: return null;
@@ -982,7 +993,7 @@
     if (hasRelic(np, 'rlHearth') && np.hand.length >= 5) np.hp = Math.min(MAX_HP, np.hp + 2); // Winter Hearth: rewards a full hand
     if (hasRelic(np, 'rlMusketeers')) np.board.forEach((m) => { if (hasKw(m, 'Ranged')) m.atk += 1; }); // King's Musketeers
     if (hasRelic(np, 'rlCistern') && S.turn % 3 === 0) np.mana += 1; // Grand Cistern: every third turn
-    if (hasRelic(np, 'rlCuria') && foe.board.length > np.board.length && np.deck.length) { draw(S, next); S.events.push({ t: 'passive', side: next, id: 'RL_CURIA' }); } // Curia Julia: the senate reacts
+    if (hasRelic(np, 'rlCuria') && foe.board.length >= np.board.length && np.deck.length) { draw(S, next); S.events.push({ t: 'passive', side: next, id: 'RL_CURIA' }); } // Curia Julia: the senate reacts — v0.34: draws at parity too (the strictly-behind gate left both bearers in the worst-40; catch-up that never fires while even is a dead card)
     if (hasRelic(np, 'rlWarStandard') && np.board.length >= 4) np.board.forEach((m) => { m.atk += 1; }); // War Standard of the Houses
     if (hasRelic(np, 'rlQuill') && np.fallen.length && np.board.length < MAX_BOARD) { const gc = np.fallen.pop(); np.board.push({ id: 'ECHO@' + gc.id, name: 'Echo of ' + gc.name, cost: 1, atk: 1, hp: 1, kw: null, uid: 'ECHO-' + Math.floor(S.rng() * 1e9), img: gc.img, file: gc.file, fl: 'Called back beyond the veil.' }); S.events.push({ t: 'play', side: next, id: 'ECHO', uid: 'ECHO' + np.board.length, kw: null, cost: 1 }); refreshPrim(S); } // Chronicler's Quill: the last of the fallen returns as a 1/1 Echo
     if (hasRelic(np, 'rlDebt') && foe.hand.length >= 7) { const hi = foe.hand.reduce((acc, cc, i2) => (cc.cost > foe.hand[acc].cost ? i2 : acc), 0); const dc = foe.hand.splice(hi, 1)[0]; S.events.push({ t: 'passive', side: other(next), id: 'RL_DISCARD', on: dc.id }); } // The Crown's Debt: hoarders pay
@@ -1010,7 +1021,7 @@
     if (hasP(np, 'REVENANT_HOST') && np.diedLastTurn >= 3 && np.board.length < MAX_BOARD) { np.board.push(token(np, S)); S.events.push({ t: 'passive', side: next, id: 'REVENANT_HOST' }); refreshPrim(S); } // the Hollow Choir: a fallen chorus rises one voice stronger
     if (hasP(np, 'NOVA_CASCADE') && np.hand.length >= 5 && foe.board.length) { const t3 = foe.board[Math.floor(S.rng() * foe.board.length)]; S.events.push({ t: 'passive', side: next, id: 'NOVA_CASCADE', on: t3.id }); damageMinion(S, other(next), t3.uid, 1 * r); } // Sylur: the hundredth victory leaves an ember
     if (hasP(np, 'THUNDER_SPIRE') && foe.board.length > np.board.length) { const w4 = foe.board.slice().sort((a, b) => (a.atk + a.hp) - (b.atk + b.hp)).slice(0, 2); for (const t4 of w4) { S.events.push({ t: 'passive', side: next, id: 'THUNDER_SPIRE', on: t4.id }); damageMinion(S, other(next), t4.uid, 1 * r); } } // Maeiowynd: the spire answers numbers with thunder
-    if (hasP(np, 'WAR_DRUMS') && np.board.length > foe.board.length && np.board.length) { const w5 = weak(np.board); w5.atk += r; w5.hp += r; if (w5.maxhp) w5.maxhp += r; S.events.push({ t: 'passive', side: next, id: 'WAR_DRUMS', on: w5.id }); refreshPrim(S); } // Baorgang: the drums roll for the bigger line
+    if (hasP(np, 'WAR_DRUMS') && np.board.length >= foe.board.length + 2 && np.board.length) { const w5 = weak(np.board); w5.atk += r; w5.hp += r; if (w5.maxhp) w5.maxhp += r; S.events.push({ t: 'passive', side: next, id: 'WAR_DRUMS', on: w5.id }); refreshPrim(S); } // Baorgang: the drums roll for the bigger line — v0.34: needs a lead of two (was any lead; 79.1% top cluster, the +1/+1 every turn snowballed a 1-body edge)
     if (hasP(np, 'FERAL_HOWL') && np.board.length) { const w = weak(np.board); w.atk += 1 * r; S.events.push({ t: 'passive', side: next, id: 'FERAL_HOWL', on: w.id }); } // v0.25.0: +2 -> +1 ATK (Ossrath 89.2% hot in deep audit)
     if (hasP(np, 'MARCHING_ORDERS') && np.board.length) { const w = weak(np.board); w.atk += r; w.hp += r; S.events.push({ t: 'passive', side: next, id: 'MARCHING_ORDERS', on: w.id }); refreshPrim(S); }
     if (hasP(np, 'BLOCKADE') && foe.board.length - np.board.length >= 2 && np.board.length < MAX_BOARD) { np.board.push(token(np, S)); S.events.push({ t: 'passive', side: next, id: 'BLOCKADE' }); refreshPrim(S); } // v0.15.1 buff: 3 -> 2
@@ -1300,8 +1311,8 @@
       if (!foe.board.length && !guard() && !m.shocked && !scorchCautious) { atk(m.uid, { hero: true }); return; }
       if (foe.hp <= m.atk && !guard() && !m.shocked) { atk(m.uid, { hero: true }); return; }
       // favorable trades: kill something without dying (or dying to something smaller than us)
-      const opts = foe.board.filter((t) => !shadowed(t) &&
-        t.hp <= m.atk && (hasKw(m, 'Ranged') || m.hp > t.atk || t.atk < m.atk));
+      const opts = foe.board.filter((t) => atkReach(S, side, t) &&
+        t.hp <= m.atk && (hasKw(m, 'Ranged') || m.hp > t.atk || t.atk < m.atk)); // v0.34: legal trades only — a walled pick freezes the sweep
       if (opts.length) {
         const t = opts.sort((a, b) => b.atk - a.atk)[0];
         atk(m.uid, { uid: t.uid });
@@ -1513,7 +1524,7 @@
     }
 
     // lethal check BEFORE acting: if the board can end it, everything goes face
-    const guards = () => guardsOn(foe); // v0.29.0: shadowed guards do not pull attacks
+    const guards = () => foe.board.filter((x) => !shadowed(x) && (hasKw(x, 'Guard') || lawGuarded(S, side, x))); // v0.34: the same wall canAttack enforces (law kin included)
     const readyAtk = me.board.filter((m) => m.ready).reduce((s, m) => s + m.atk, 0);
     const pd = canPower(S, side) ? powerFaceDmg(S, side) : 0;
     // spell lethal: the full burn read (pillage, hero-burn, both volleys) counts toward the kill
@@ -1537,7 +1548,7 @@
 
       // value trades: prefer kills we survive; among them, kill the most valuable
       // v0.11: Bane's touch kills anything it can reach
-      const kills = hasKw(m, 'Bane') ? foe.board.filter((t) => !shadowed(t)) : foe.board.filter((t) => !shadowed(t) && t.hp <= m.atk); // v0.29.0: never aim at a shadowed body
+      const kills = hasKw(m, 'Bane') ? foe.board.filter((t) => atkReach(S, side, t)) : foe.board.filter((t) => atkReach(S, side, t) && t.hp <= m.atk); // v0.29.0 shadow; v0.34: trades must clear the Guard wall or attack() refuses and the board freezes
       const safe = kills.filter((t) => hasKw(m, 'Ranged') || hasKw(m, 'Bane') || m.hp > t.atk);
       const pool = safe.length ? safe : kills;
       if (pool.length) {
@@ -1646,7 +1657,7 @@
   // computed WITHOUT attacking, so the learned layer can override.
   function rlHardAttackChoice(S, side, m, foe, lethal, guards, scorchCautious) {
     if (lethal && !guards().length && !m.shocked) return { hero: true };
-    const kills = hasKw(m, 'Bane') ? foe.board.slice() : foe.board.filter((t) => t.hp <= m.atk);
+    const kills = hasKw(m, 'Bane') ? foe.board.filter((t) => atkReach(S, side, t)) : foe.board.filter((t) => atkReach(S, side, t) && t.hp <= m.atk); // v0.34: mirrors the aiHard wall fix so the learned layer never overrides into an illegal pick
     const safe = kills.filter((t) => hasKw(m, 'Ranged') || hasKw(m, 'Bane') || m.hp > t.atk);
     const pool = safe.length ? safe : kills;
     if (pool.length) {
@@ -1697,7 +1708,7 @@
     }
 
     // lethal check BEFORE acting (verbatim)
-    const guards = () => guardsOn(foe); // v0.29.0: shadowed guards do not pull attacks
+    const guards = () => foe.board.filter((x) => !shadowed(x) && (hasKw(x, 'Guard') || lawGuarded(S, side, x))); // v0.34: the same wall canAttack enforces (law kin included)
     const readyAtk = me.board.filter((m) => m.ready).reduce((s, m) => s + m.atk, 0);
     const pd = canPower(S, side) ? powerFaceDmg(S, side) : 0;
     const spellDmg = burnInHand(S, side);
