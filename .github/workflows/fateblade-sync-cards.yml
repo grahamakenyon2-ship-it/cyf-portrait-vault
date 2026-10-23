@@ -1,0 +1,83 @@
+name: Fateblade Sync Cards (from CYF-Cards)
+
+# Pulls fateblade/data/cards.json from CYF-Cards main into the vault.
+# The 1.1MB payload cannot ride the GitHub connector push (memory budget),
+# so the vault fetches it from the source-of-truth repo instead, behind a
+# sha256 gate. The vault's own Fateblade Build Cards workflow then fires
+# on the cards.json push and regenerates cards.js + manifest + guard.
+
+on:
+  workflow_dispatch:
+    inputs:
+      expected_sha:
+        description: 'sha256 of cards.json in CYF-Cards main (gate)'
+        required: true
+        default: '22c7fc314fdaafd7a736d0d42498e8c4b8036de9323b3f3a48ab73e911871e8d'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fateblade-sync-cards
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            fateblade
+      - name: Fetch cards.json from CYF-Cards main
+        run: |
+          set -e
+          curl -fsSL --retry 3 \
+            "https://raw.githubusercontent.com/grahamakenyon2-ship-it/CYF-Cards/main/data/cards.json" \
+            -o /tmp/cards.json.new
+          ACTUAL=$(sha256sum /tmp/cards.json.new | cut -d' ' -f1)
+          EXPECTED="${{ inputs.expected_sha }}"
+          echo "actual   sha256: $ACTUAL"
+          echo "expected sha256: $EXPECTED"
+          if [ "$ACTUAL" != "$EXPECTED" ]; then
+            echo "SHA GATE FAILED - refusing to write"
+            exit 1
+          fi
+      - name: No-op if identical
+        run: |
+          if cmp -s /tmp/cards.json.new fateblade/data/cards.json; then
+            echo "vault cards.json already in sync - nothing to do"
+            echo "SYNCED=0" >> "$GITHUB_ENV"
+          else
+            echo "SYNCED=1" >> "$GITHUB_ENV"
+          fi
+      - name: Commit cards.json
+        if: env.SYNCED == '1'
+        run: |
+          set -e
+          cp /tmp/cards.json.new fateblade/data/cards.json
+          # Replayable-artifact pattern: never pull --rebase.
+          git fetch origin main
+          git reset --hard origin/main
+          cp /tmp/cards.json.new fateblade/data/cards.json
+          git config user.name "fateblade-bot"
+          git config user.email "fateblade-bot@users.noreply.github.com"
+          git add fateblade/data/cards.json
+          # NOTE: no [skip ci] - the vault regen workflow must fire on this push.
+          git commit -m "vault sync: cards.json from CYF-Cards main (v0.30.0 courts redesign, sha-gated)"
+          if ! git push origin main; then
+            echo "push raced; replaying on fresh main"
+            sleep 15
+            git fetch origin main
+            git reset --hard origin/main
+            cp /tmp/cards.json.new fateblade/data/cards.json
+            git add fateblade/data/cards.json
+            git commit -m "vault sync: cards.json from CYF-Cards main (v0.30.0 courts redesign, sha-gated)"
+            git push origin main
+          fi
+      - name: Result
+        run: |
+          if [ "$SYNCED" = "1" ]; then
+            echo "cards.json synced - vault regen workflow should now be running"
+          else
+            echo "vault was already up to date"
+          fi
