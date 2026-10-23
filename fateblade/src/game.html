@@ -320,17 +320,22 @@
   /* v0.26.5: the battle log — READABLE. Wide panel, 13px type, header with a
      collapse toggle, damage amounts and effect targets surfaced on every line.
      #blwrap is position:absolute so fitScreen keeps skipping it (v0.9.7 rule). */
-  #blwrap{position:absolute; right:10px; top:36px; width:352px; max-height:62vh; display:flex; flex-direction:column; z-index:30;}
+  /* v0.29.1: battle log — BIG. Default roughly 2x the old footprint (width
+     352->560, font 13.5->17) and every size is driven by --blz so the player
+     can scale it further in SETTINGS (80-200%). #blwrap is position:absolute
+     so fitScreen keeps skipping it (v0.9.7 rule). max-width:60vw keeps the
+     slider's top end from running off a small window. */
+  #blwrap{position:absolute; right:10px; top:36px; width:calc(560px * var(--blz, 1)); max-width:60vw; max-height:76vh; display:flex; flex-direction:column; z-index:30;}
   #blhead{display:flex; justify-content:space-between; align-items:center; background:#000d; border:1px solid var(--gold-dim);
-    padding:5px 10px; font-size:11px; letter-spacing:3px; color:var(--gold); cursor:pointer; user-select:none;}
+    padding:5px 10px; font-size:calc(13px * var(--blz, 1)); letter-spacing:3px; color:var(--gold); cursor:pointer; user-select:none;}
   #blhead:hover{border-color:var(--gold);}
   #battlelog{overflow-y:auto; flex:1; min-height:0;
-    background:#0009; border:1px solid var(--gold-dim); border-top:none; padding:6px 10px; font-size:13.5px; line-height:1.55;
+    background:#0009; border:1px solid var(--gold-dim); border-top:none; padding:8px 12px; font-size:calc(17px * var(--blz, 1)); line-height:1.5;
     color:#c9b78e;}
   #blwrap.min #battlelog{display:none;}
   #battlelog .bl-a{color:#a8d8b0;}
   #battlelog .bl-b{color:#e8a2a2;}
-  #battlelog .bl-turn{color:var(--gold); letter-spacing:1px; margin:7px 0 2px; font-size:11.5px; border-bottom:1px solid #2a2216;}
+  #battlelog .bl-turn{color:var(--gold); letter-spacing:1px; margin:8px 0 3px; font-size:calc(14px * var(--blz, 1)); border-bottom:1px solid #2a2216;}
   #battlelog .bld{color:#ff5a4a; font-weight:bold;} /* damage amounts pop */
   #battlelog .blx{color:#8fd;} /* effect names read as cyan */
   /* v0.26.6: the tutorial coach — a guided first duel (HS/MTGA pattern) */
@@ -770,7 +775,7 @@ const guildCount = (sel) => [...sel].filter(isGuildCard).length;
 
 /* ---------- settings (localStorage) ---------- */
 const SKEY = 'fateblade-settings-v1';
-let settings = Object.assign({ theme: 'auto', watchSpeed: 1, aiLevel: 'normal', enemyPace: 850, sfxVol: 0.7, musicVol: 0.35, scaleMode: 'auto', uiScale: 100, uiDebug: false, musicSel: 'auto', lethalHint: false }, JSON.parse(localStorage.getItem(SKEY) || '{}')); // v0.22.7: display settings — auto-fit (default) or manual scale + debug readout; v0.22.12: musicSel — the player's music picker choice (auto = follow the realm); v0.26.2: lethalHint — END TURN ember pulse when the field says finish it, OFF by default (player opt-in)
+let settings = Object.assign({ theme: 'auto', watchSpeed: 1, aiLevel: 'normal', enemyPace: 850, sfxVol: 0.7, musicVol: 0.35, scaleMode: 'auto', uiScale: 100, uiDebug: false, musicSel: 'auto', lethalHint: false, blScale: 100 }, JSON.parse(localStorage.getItem(SKEY) || '{}')); // v0.22.7: display settings — auto-fit (default) or manual scale + debug readout; v0.22.12: musicSel — the player's music picker choice (auto = follow the realm); v0.26.2: lethalHint — END TURN ember pulse when the field says finish it, OFF by default (player opt-in); v0.29.1: blScale — battle log size 80-200% (default 100 = the new 2x-default log)
 function saveSettings(){ localStorage.setItem(SKEY, JSON.stringify(settings)); }
 const WORLDTHEMES = ['ironhall','inkwash','starmaps','dunes','tamriel','teyvat','roshar','antiquity','regency','modern'];
 function applyTheme(factionId){
@@ -2411,6 +2416,8 @@ function showSettings(){
   if(smEl) smEl.value = settings.scaleMode || 'auto';
   const usEl = document.getElementById('setUiScale');
   if(usEl) usEl.value = String(settings.uiScale === undefined ? 100 : settings.uiScale);
+  const bsEl = document.getElementById('setBlScale'); // v0.29.1: battle log size — restore the choice
+  if(bsEl) bsEl.value = String(settings.blScale === undefined ? 100 : settings.blScale);
   const udEl = document.getElementById('setUiDebug');
   if(udEl) udEl.value = settings.uiDebug ? 'on' : 'off';
   const lhEl = document.getElementById('setLethalHint'); // v0.26.2: lethal hint — restore the opt-in
@@ -2447,18 +2454,23 @@ function setPace(v){ settings.enemyPace = Number(v); saveSettings(); }
 // v0.22.7: display settings — auto-fit or a player-locked scale; the readout makes fit bugs diagnosable from one screenshot
 function setScaleMode(v){ settings.scaleMode = v; saveSettings(); refit(); }
 function setUiScale(v){ settings.uiScale = Number(v); saveSettings(); if(settings.scaleMode === 'manual') refit(); updateVolLabels(); }
+// v0.29.1: battle log size — 80-200% player scale, live preview, persisted.
+// Set on :root so #blwrap's calc() sizes (width + every font-size) all follow.
+function blApply(){ document.documentElement.style.setProperty('--blz', String(Math.max(0.8, Math.min(2, (Number(settings.blScale) || 100) / 100)))); }
+function setBlScale(v){ settings.blScale = Number(v); saveSettings(); blApply(); updateVolLabels(); }
 function setUiDebug(v){ settings.uiDebug = v === 'on'; saveSettings(); uiDebugReport(0, null, null); }
 function setLethalHint(v){ settings.lethalHint = v === 'on'; saveSettings(); if(S) render(); } // v0.26.2: opt-in END TURN ember — re-render applies/unapplies it live
 function setSfxVol(v){ settings.sfxVol = Number(v)/100; saveSettings(); SND.init(); SND.setVol(); updateVolLabels(); }
 // v0.12.2: sliders send 0-100 — full continuous control, not 4 fixed steps
 function setMusicVol(v){ settings.musicVol = Number(v)/100; saveSettings(); if(Number(v) === 0 && MUSIC.el){ MUSIC.el.pause(); } else { MUSIC.setVol(); MUSIC.retry(); } updateVolLabels(); }
 function updateVolLabels(){
-  const s = document.getElementById('sfxVolPct'), m = document.getElementById('musicVolPct'), u = document.getElementById('uiScalePct');
+  const s = document.getElementById('sfxVolPct'), m = document.getElementById('musicVolPct'), u = document.getElementById('uiScalePct'), b = document.getElementById('blScalePct');
   const sv = Math.round((settings.sfxVol === undefined ? 0.7 : settings.sfxVol) * 100);
   const mv = Math.round((settings.musicVol === undefined ? 0.35 : settings.musicVol) * 100);
   if(s) s.textContent = sv + '%';
   if(m) m.textContent = mv + '%';
   if(u) u.textContent = (settings.uiScale === undefined ? 100 : settings.uiScale) + '%' + (settings.scaleMode === 'manual' ? ' (active)' : ' (auto-fit active)');
+  if(b) b.textContent = (settings.blScale === undefined ? 100 : settings.blScale) + '%';
 }
 function clearDecks(){ savedDecks = {}; localStorage.removeItem(DKEY2); localStorage.removeItem(DKEY); alert('Saved decks cleared — realms return to their doctrine decks.'); location.reload(); }
 /* v0.13.3: in-game updater — the desktop shell (window.fateblade, exposed via
@@ -2651,6 +2663,8 @@ function watchEnd(){
     </select>
     <label>Manual UI scale <span id="uiScalePct" style="color:var(--gold)"></span></label>
     <input type="range" id="setUiScale" min="60" max="160" step="5" oninput="setUiScale(this.value)">
+    <label>Battle log size <span id="blScalePct" style="color:var(--gold)"></span> <span style="text-transform:none;color:#c9b78e">(default 100% = the new big log; go higher if you like it huge)</span></label>
+    <input type="range" id="setBlScale" min="80" max="200" step="10" oninput="setBlScale(this.value)">
     <label>Fit debug readout <span style="text-transform:none;color:#c9b78e">(turn on and include it in bug screenshots — it shows exactly what the fit math sees)</span></label>
     <select id="setUiDebug" onchange="setUiDebug(this.value)">
       <option value="off">Off</option>
@@ -2987,6 +3001,7 @@ function campNext(){
   else campIntro(cid, idx + 1);
 }
 
+blApply(); // v0.29.1: apply the saved battle log size at boot (before first render)
 applyTheme(null);
 blLogHoverBind(); // v0.22.11: battle-log card names are hoverable — one delegated binding for all lines past and future
 show('menu'); // v0.22.4: boot through show() so musicForScreen fires at startup — the menu used to start with class="on" hardcoded, MUSIC.cur stayed null, and there was nothing for the first-gesture retry to resume (music only started once you LEFT a screen and came back)
