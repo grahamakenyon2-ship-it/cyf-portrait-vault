@@ -1,5 +1,5 @@
 {
- "version": "0.30.1",
+ "version": "0.30.2",
  "files": [
   {
    "path": "scenes/starwind/the-satrap-s-seal.jpg",
@@ -12961,7 +12961,7 @@
   },
   {
    "path": "src/game.html",
-   "sha256": "f51d02a3652f4c6707f2c8b540feadee4d93c1d474b93030d83af9d4121a45fd",
+   "sha256": "8be775bc0830aa1fbbbbac72b0e24bcd2690118ada8bdd24c6ad17582f7b2c82",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/src/game.html"
   },
   {
