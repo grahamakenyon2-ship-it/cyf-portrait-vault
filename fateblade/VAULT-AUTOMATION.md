@@ -31,8 +31,8 @@ license + source recorded.
 Mints AI-generated NON-HUMAN character portraits (undead, elf, dwarf,
 orc, goblin, construct, ogre, treant, dragonkin, vampire, troll,
 voidborn...) into fateblade/art/stockpile/, updating the manifest
-(license "AI-generated", src "Mistral image generation") so the Patcher
-ships them and the card pipeline can pick them up.
+(license "AI-generated", src "Mistral image generation") so the
+Patcher ships them and the card pipeline can pick them up.
 
 - **Requires**: the MISTRAL_KEY secret (Settings -> Secrets and
   variables -> Actions) - the same secret paint-vault/paint-themes use.
@@ -113,6 +113,34 @@ per-side cap 0.35, outputs below 512px on the short side are skipped).
   zoom back to 1.0 in the usual release cycle (the current 1.16 zoom
   masks dead space that this tool removes).
 - Shares the vault-painter concurrency group.
+
+## 5. fateblade-vault-organize (Vault Housekeeping)
+
+One-shot v0.28.0 layout migration (kept for reference + future re-runs).
+As of v0.28.0 every BOUND art file is named what it is in-game and lives
+where a human can find it:
+
+- fateblade/cards/<realm>/<slug(card.name)>.jpg      canon + wayfarers minion portraits
+- fateblade/commanders/<realm>.jpg                  all 16 sovereigns
+- fateblade/scenes/<realm>/<slug(card.name)>.jpg     canon + wayfarers edict/relic art
+- fateblade/annals/<realm>/<slug(card.name)>.jpg     history minions + edicts (Annals pool)
+- fateblade/theme/                                  UI textures (fateblade-plate, board-texture, menu-hall, spare-texture)
+- fateblade/art/stockpile | stockpile-cropped | scenes  UNBOUND minted art stays here — the
+  forge workflows are UNCHANGED and still mint into art/stockpile + art/scenes.
+
+Cards reference art fateblade-relatively (file) with img = PAGES + '/fateblade/' + file —
+one URL formula for every pool; the old vault/ dual-root convention and _20-mangled
+filenames are gone.
+
+- **Run it**: Actions tab -> fateblade-vault-organize -> Run workflow,
+  mode=report first (dry-run: prints fateblade/organize-report.json,
+  commits nothing), then mode=apply (moves files, rewrites
+cards.json/cards.js/queues/manifest/game.html theme refs, runs the
+  verify suite fateblade/verify-organize.mjs, and only then commits).
+- **Safety**: exits nonzero on missing sources or destination
+collisions; apply copies-then-renames multi-use sources (commander/card
+face reuse, face-reuse splits) so no bytes are ever lost; unreferenced
+art is never touched.
 
 ## Patcher + game pickup
 
