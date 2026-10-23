@@ -373,6 +373,8 @@
     background:#0009; border:1px solid var(--gold-dim); border-top:none; padding:8px 12px; font-size:calc(17px * var(--blz, 1)); line-height:1.5;
     color:#c9b78e;}
   #blwrap.min #battlelog{display:none;}
+  #blhead .blbtn{font-size:calc(11px * var(--blz, 1)); padding:1px 8px; margin:0; border:1px solid var(--gold-dim); background:#191308; color:var(--gold); cursor:pointer; letter-spacing:1px; line-height:1.5;} /* v0.35.3: resize the log FROM the log — no settings safari needed */
+  #blhead .blbtn:hover{border-color:var(--gold);}
   #battlelog .bl-a{color:#a8d8b0;}
   #battlelog .bl-b{color:#e8a2a2;}
   #battlelog .bl-turn{color:var(--gold); letter-spacing:1px; margin:8px 0 3px; font-size:calc(14px * var(--blz, 1)); border-bottom:1px solid #2a2216;}
@@ -730,7 +732,7 @@
 </div>
 
 <div id="match" class="screen">
-  <div id="blwrap"><div id="blhead" onclick="blToggle()"><span>📜 BATTLE LOG</span><span id="blchev">▾</span></div><div id="battlelog"></div></div>
+  <div id="blwrap"><div id="blhead" onclick="blToggle()"><span>📜 BATTLE LOG</span><span style="display:flex;gap:4px;align-items:center;letter-spacing:0"><span id="blSizeTag" title="log size"></span><button class="blbtn" title="Smaller log" onclick="event.stopPropagation();blBump(-20)">A−</button><button class="blbtn" title="Bigger log" onclick="event.stopPropagation();blBump(20)">A+</button><span id="blchev">▾</span></span></div><div id="battlelog"></div></div>
   <div id="topbar"></div>
   <div class="lane"><div id="foeHand" title="cards in the enemy hand"></div><div class="hero" id="aiHero"></div></div>
   <div class="board" id="aiBoard"></div>
@@ -1123,7 +1125,7 @@ const lan = {
   on:false, inMatch:false, ws:null, side:null, token:null, seed:null,
   ready:null, foeReady:null, mullSent:false, foeMull:null, matchShown:false,
   spec:false, params:null, rematch:false, foeRematch:false, lastAddr:null,
-  room:null, role:null, name:'?', resume:null, lastRoomSeats:null,
+  room:null, role:null, name:'?', resume:null, lastRoomSeats:null, foeName:'',
 };
 function lanHashSeed(str){ let h = 2166136261 >>> 0; for(let i=0;i<str.length;i++){ h ^= str.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; } return h >>> 0; }
 function lanRng(seed){ // state-object rng so reconnect RESUME can serialize it
@@ -1292,6 +1294,7 @@ function lanOnMsg(m){
       const mySeat = rs.seats[lan.side];
       if(mySeat && !mySeat.connected && lan.lastRoomSeats[lan.side] && lan.lastRoomSeats[lan.side].connected) log('⚠ You are disconnected from the duel — reconnecting…');
     }
+    if(lan.side !== 'S' && rs.seats[FOE] && rs.seats[FOE].name) lan.foeName = rs.seats[FOE].name; // v0.35.3: chat labels carry the foe's chosen name
     lan.lastRoomSeats = rs.seats;
     return;
   }
@@ -1439,14 +1442,20 @@ function lanActPlay(i, tgt){ if(!lan.on || !lan.inMatch || lan.spec) return; lan
 function lanActAtk(uid, hero){ if(!lan.on || !lan.inMatch || lan.spec) return; lanSend({ t:'ACT', k:'atk', side: ME, uid, hero: !!hero }); }
 function lanActPow(opt){ if(!lan.on || !lan.inMatch || lan.spec) return; lanSend({ t:'ACT', k:'pow', side: ME, opt: opt || {} }); }
 function lanActEnd(){ if(!lan.on || !lan.inMatch || lan.spec) return; lanSend({ t:'ACT', k:'end', side: ME }); lanSend({ t:'HASH', h: lanStateHash() }); }
-// chat (Phase 2): a thin bar under the log while a LAN match is live
+// chat (v0.35.3: 4x bigger, persistent, seat-labeled — "Player One/Two", never "You" for both)
+function lanSeatLabel(side){ return side === 'A' ? 'Player One' : (side === 'B' ? 'Player Two' : 'Spectator'); }
 function lanChatLine(side, x){
   let el = document.getElementById('lanChatLog');
   if(!el){ el = document.createElement('div'); el.id = 'lanChatLog';
-    el.style.cssText = 'position:fixed; left:10px; bottom:8px; z-index:60; font-size:12px; color:#e6d8b2; background:#191308e8; border:1px solid #7a6a3f; border-radius:6px; padding:4px 8px; max-width:340px; pointer-events:none; line-height:1.5';
+    el.style.cssText = 'position:fixed; left:10px; bottom:64px; z-index:60; color:#e6d8b2; background:#191308ee; border:1px solid #7a6a3f; border-radius:8px; padding:10px 16px; width:min(560px,46vw); pointer-events:none; line-height:1.65; font-size:15.5px; max-height:46vh; overflow:hidden; transition:opacity .8s';
     document.body.appendChild(el); }
-  el.innerHTML = (side === ME ? 'You' : (side === FOE ? 'Foe' : 'Spectator')) + ': ' + String(x).slice(0,140) + '<br>' + el.innerHTML;
-  el.style.opacity = 1; clearTimeout(el._t); el._t = setTimeout(()=>{ el.style.opacity = 0; }, 8000);
+  const mine = (side === ME && !lan.spec);
+  const name = (side === lan.side) ? lan.name : (side === 'S' ? '' : (lan.foeName || ''));
+  const lbl = lanSeatLabel(side) + (name ? ' · ' + String(name).slice(0,20) : '') + (mine ? ' (you)' : '');
+  const col = mine ? 'var(--gold)' : (side === 'S' ? '#8fd' : '#a8d8b0');
+  el.insertAdjacentHTML('afterbegin', `<div style="font-weight:600;color:${col}">${lbl}: <span style="color:#e8dcc0;font-weight:400">${String(x).slice(0,140)}</span></div>`);
+  while(el.children.length > 8) el.removeChild(el.lastChild); // 4x the readable history — the box holds a conversation now, not a flash
+  el.style.opacity = 1; clearTimeout(el._t); el._t = setTimeout(()=>{ el.style.opacity = 0.18; }, 14000);
 }
 function lanChatSend(){
   let bar = document.getElementById('lanChatBar');
@@ -1460,11 +1469,11 @@ function lanChatOpen(){
   let bar = document.getElementById('lanChatBar');
   if(bar) return;
   bar = document.createElement('div'); bar.id = 'lanChatBar';
-  bar.style.cssText = 'position:fixed; left:10px; bottom:34px; z-index:61; display:flex; gap:4px';
+  bar.style.cssText = 'position:fixed; left:10px; bottom:10px; z-index:61; display:flex; gap:6px; align-items:center';
   const inp = document.createElement('input'); inp.id = 'lanChatIn'; inp.maxLength = 140; inp.placeholder = 'chat — Enter to send';
-  inp.style.width = '240px';
+  inp.style.cssText = 'width:min(500px,42vw); font-size:15px; padding:8px 12px; background:#191308e8; color:var(--ink); border:1px solid #7a6a3f; border-radius:6px; font-family:inherit'; // v0.35.3: 4x the bar to match the log
   inp.addEventListener('keydown', (ev)=>{ if(ev.key === 'Enter'){ lanChatSend(); inp.blur(); } ev.stopPropagation(); });
-  const btn = document.createElement('button'); btn.className = 'themebtn'; btn.style.padding = '4px 8px'; btn.textContent = '➤';
+  const btn = document.createElement('button'); btn.className = 'themebtn'; btn.style.padding = '8px 16px'; btn.style.fontSize = '15px'; btn.textContent = '➤';
   btn.onclick = lanChatSend;
   bar.appendChild(inp); bar.appendChild(btn); document.body.appendChild(bar);
 }
@@ -3052,7 +3061,9 @@ function setScaleMode(v){ settings.scaleMode = v; saveSettings(); refit(); }
 function setUiScale(v){ settings.uiScale = Number(v); saveSettings(); if(settings.scaleMode === 'manual') refit(); updateVolLabels(); }
 // v0.29.1: battle log size — 80-200% player scale, live preview, persisted.
 // Set on :root so #blwrap's calc() sizes (width + every font-size) all follow.
-function blApply(){ document.documentElement.style.setProperty('--blz', String(Math.max(0.8, Math.min(2, (Number(settings.blScale) || 100) / 100)))); }
+function blApply(){ document.documentElement.style.setProperty('--blz', String(Math.max(0.8, Math.min(2, (Number(settings.blScale) || 100) / 100))));
+  const tag = document.getElementById('blSizeTag'); if(tag) tag.textContent = (Number(settings.blScale) || 100) + '%'; }
+function blBump(d){ setBlScale((Number(settings.blScale) || 100) + d); } // v0.35.3: the A− / A+ buttons on the log header
 function setBlScale(v){ settings.blScale = Number(v); saveSettings(); blApply(); updateVolLabels(); }
 function setUiDebug(v){ settings.uiDebug = v === 'on'; saveSettings(); uiDebugReport(0, null, null); }
 function setLethalHint(v){ settings.lethalHint = v === 'on'; saveSettings(); if(S) render(); } // v0.26.2: opt-in END TURN ember — re-render applies/unapplies it live
