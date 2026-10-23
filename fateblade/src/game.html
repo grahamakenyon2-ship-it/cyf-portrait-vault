@@ -260,6 +260,7 @@
   .dbrow.guild .nm{color:var(--abil);}
   .dbdecktitle{font-size:13px; letter-spacing:2px; color:var(--gold); text-align:center; margin:6px 0 8px;}
   #deckb .dbGrid{display:flex; gap:10px; flex-wrap:wrap; justify-content:center;}
+  #deckb .dbcard.r-legendary .nm{color:#f0b13d; text-shadow:0 0 6px #f0b13d55;} #deckb .dbcard.r-epic .nm{color:#c99ae0;} /* v0.31.2: rarity reads on the tile — legendaries never hide in the grid again */
   #deckb .dbcard{width:154px; border:8px solid transparent; border-image:var(--theme-panel) 40; background:#0d0a07; padding:8px; cursor:pointer; position:relative; box-shadow:0 3px 10px #000a;} /* v0.22.6: 132 -> 154 — deck builder matches in-game hand card width */
   #deckb .dbcard img{width:100%; height:128px; object-fit:cover; display:block;}
   #deckb .dbcard .nm{font-size:12px; white-space:nowrap; overflow:hidden; color:var(--ink);}
@@ -696,6 +697,7 @@
   <div class="dbhead2">
     <input id="dbSearch" type="text" placeholder="🔎 Search name or card text…" oninput="dbFilterSet('q', this.value)">
     <span class="dblab">COST</span><span id="dbCostChips"></span>
+    <span class="dblab">RARITY</span><span id="dbRarChips"></span>
     <span class="dblab">TYPE</span><span id="dbTypeChips"></span>
     <span class="dblab">KEYWORD</span><span id="dbKwChips"></span>
     <span class="dblab">TRIBE</span><span id="dbTribeChips"></span>
@@ -796,7 +798,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.31.1';
+const GAME_VERSION = '0.31.2';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
@@ -2255,7 +2257,7 @@ function legTotal(){
   }
   return n;
 }
-let dbFilters = { q:'', cost:null, type:null, kw:null, tribe:null, mech:null, src:null }; // v0.9.5: Arena-style filters; v0.22.6: mechanic (Battlecry/Deathrattle) + source (Realm/Guild); v0.24: tribe
+let dbFilters = { q:'', cost:null, rar:null, type:null, kw:null, tribe:null, mech:null, src:null }; // v0.9.5: Arena-style filters; v0.22.6: mechanic (Battlecry/Deathrattle) + source (Realm/Guild); v0.24: tribe; v0.31.2: rarity
 function dbFilterSet(k, v){ dbFilters[k] = v; if(k==='q'){ /* input keeps its own text */ } else { const inp = document.getElementById('dbSearch'); if(inp && inp.value !== dbFilters.q) inp.value = dbFilters.q; } renderDB(); }
 function dbChipRow(elId, opts, cur, key){
   const el = document.getElementById(elId); if(!el) return;
@@ -2270,6 +2272,7 @@ function dbPass(c, src){ // v0.22.6: src = 'realm' | 'guild' — the SOURCE chip
     if(dbFilters.cost === '7+'){ if(c.cost < 7) return false; }
     else if(c.cost !== Number(dbFilters.cost)) return false;
   }
+  if(dbFilters.rar !== null && (c.rarity || 'common') !== dbFilters.rar) return false; // v0.31.2: rarity filter — the legendaries are one click away
   if(dbFilters.type !== null && (c.type || 'minion') !== dbFilters.type) return false;
   if(dbFilters.kw !== null && !(c.kw||'').split(/[+,]/).map(s=>s.trim()).includes(dbFilters.kw)) return false; // v0.20-ready: matches inside multi-keyword lists
   if(dbFilters.tribe !== null && c.tribe !== dbFilters.tribe) return false; // v0.24: tribal filter (Mimic changelings count as kin of every tribe on the field, not in the builder)
@@ -2292,7 +2295,7 @@ function openDeckBuilder(facId){
   dbFac = facId; applyTheme(facId);
   const f = facOf(facId);
   dbCnt = new Map(); dbDirty = false; dbSov = null; // clean slate — ↺ Restore Doctrine loads the tuned 30-card default
-  dbFilters = { q:'', cost:null, type:null, kw:null, tribe:null, mech:null, src:null, sort:'cost' }; // v0.9.5 fresh filters; v0.19.1 sort chips; v0.22.6 mech + src; v0.24: tribe
+  dbFilters = { q:'', cost:null, rar:null, type:null, kw:null, tribe:null, mech:null, src:null, sort:'cost' }; // v0.9.5 fresh filters; v0.19.1 sort chips; v0.22.6 mech + src; v0.24: tribe; v0.31.2: rarity
   const inp = document.getElementById('dbSearch'); if(inp) inp.value = '';
   const nm = document.getElementById('dbName'); if(nm) nm.value = '';
   document.getElementById('dbTitle').textContent = f.label.toUpperCase() + ' — ' + f.identity.name.toUpperCase();
@@ -2320,6 +2323,7 @@ function renderDB(){
   const gc = guildCards();
   // v0.9.5: filter chips (search + cost + type + keyword, Arena/HS style)
   dbChipRow('dbCostChips', [{t:'ALL',v:null},{t:'1',v:'1'},{t:'2',v:'2'},{t:'3',v:'3'},{t:'4',v:'4'},{t:'5',v:'5'},{t:'6',v:'6'},{t:'7+',v:'7+'}], dbFilters.cost, 'cost');
+  dbChipRow('dbRarChips', [{t:'ALL',v:null},{t:'★ LEGENDS',v:'legendary'},{t:'EPIC',v:'epic'},{t:'RARE',v:'rare'},{t:'COMMON',v:'common'}], dbFilters.rar, 'rar'); // v0.31.2: rarity filter — legendaries are findable at a click instead of hiding at the expensive end of the grid
   dbChipRow('dbTypeChips', [{t:'ALL',v:null},{t:'MINIONS',v:'minion'},{t:'EDICTS',v:'edict'},{t:'RELICS',v:'relic'}], dbFilters.type, 'type');
   dbChipRow('dbKwChips', [{t:'ALL',v:null},{t:'RANGED',v:'Ranged'},{t:'CHARGE',v:'Charge'},{t:'GUARD',v:'Guard'},{t:'LIFESTEAL',v:'Lifesteal'},{t:'SHOCK',v:'Shock'},{t:'BANE',v:'Bane'},{t:'RELENTLESS',v:'Relentless'},{t:'AEGIS',v:'Aegis'},{t:'SHADOW',v:'Shadow'}], dbFilters.kw, 'kw'); // v0.19.1: all 8 keywords // v0.29.0: SHADOW joins the filter row
   const tribesAvail = [...new Set(f.cards.concat(gc).map((c)=>c.tribe).filter(Boolean))].sort(); // v0.24: tribes present in this realm's roster + Guild hires
