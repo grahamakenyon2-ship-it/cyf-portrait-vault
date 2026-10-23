@@ -1,21 +1,18 @@
 name: Fateblade Sync Cards (from CYF-Cards)
 
-# Self-firing vault sync. The 1.1MB cards.json cannot ride the GitHub
-# connector push (memory budget) and CYF-Cards is private (raw URL 404s),
-# so the vault applies the same sha-gated patch script used in CYF-Cards
-# against its own baseline copy of fateblade/data/cards.json.
+# Self-firing vault sync: patch cards.json + regen wrappers + manifest +
+# guard, all in ONE commit.
 #
-# TRIGGER: the agent pushes fateblade/sync-queue.json (tiny file) after a
-# realm PR merge; also runnable by hand from the Actions tab if needed.
-# No manual runs required in the normal pipeline.
+# LESSON (learned v0.30 ship #1): commits made with GITHUB_TOKEN do NOT
+# trigger other workflows, so a sync commit relying on the separate
+# Fateblade Build Cards workflow never fires it. This workflow therefore
+# runs regen-wrappers.mjs itself and commits cards.json + cards.js +
+# manifest.json together, then runs the consistency guard.
 #
-# Idempotent: if cards.json already hashes to the expected output, the
-# run is a clean no-op. The patch script itself hard-gates the output
-# sha256 and exits 1 on any mismatch, so a wrong baseline can never ship.
-#
-# The commit is NOT [skip ci]: the vault's Fateblade Build Cards workflow
-# fires on this push and regenerates cards.js + manifest + consistency
-# guard (with its own race-replay).
+# TRIGGER: agent pushes fateblade/sync-queue.json after a realm PR
+# merge; also runnable by hand from the Actions tab.
+# Idempotent: no-op when everything already matches. The patch script
+# hard-gates the output sha256 (exit 1, no commit) on any mismatch.
 
 on:
   push:
@@ -39,52 +36,79 @@ jobs:
             fateblade
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
-      - name: Apply pending sha-gated patch
+      - name: Apply pending sha-gated patch (skip if already synced)
         run: |
           set -e
           CARD=fateblade/data/cards.json
           ACTUAL=$(sha256sum "$CARD" | cut -d' ' -f1)
           echo "vault cards.json sha256: $ACTUAL"
           if [ "$ACTUAL" = "$EXPECTED_OUT" ]; then
-            echo "vault already synced (sha matches) - no-op"
-            echo "SYNCED=0" >> "$GITHUB_ENV"
-            exit 0
+            echo "cards.json already synced - skipping patch"
+          else
+            cp "$CARD" /tmp/cards.json
+            FB_CARDS_PATH=/tmp/cards.json node fateblade/sync/cards-patch-v030-courts.mjs
+            cp /tmp/cards.json "$CARD"
+            echo "patch applied + sha-gated"
           fi
-          cp "$CARD" /tmp/cards.json
-          FB_CARDS_PATH=/tmp/cards.json node fateblade/sync/cards-patch-v030-courts.mjs
-          cp /tmp/cards.json "$CARD"
-          echo "patch applied + sha-gated"
-          echo "SYNCED=1" >> "$GITHUB_ENV"
         env:
           EXPECTED_OUT: '22c7fc314fdaafd7a736d0d42498e8c4b8036de9323b3f3a48ab73e911871e8d'
-      - name: Commit cards.json
-        if: env.SYNCED == '1'
+      - name: Regen wrappers + manifest (always)
         run: |
           set -e
+          node fateblade/regen-wrappers.mjs --apply
+      - name: Commit if anything drifted
+        run: |
+          set -e
+          git add -A fateblade
+          if git diff --cached --quiet; then
+            echo "NO DRIFT - vault fully in sync"
+            exit 0
+          fi
           # Replayable-artifact pattern: never pull --rebase.
-          cp fateblade/data/cards.json /tmp/cards.json.new
+          mkdir -p /tmp/staged
+          git diff --cached --name-only | while read -r p; do
+            mkdir -p "/tmp/staged/$(dirname "$p")"
+            cp "$p" "/tmp/staged/$p"
+          done
           git fetch origin main
           git reset --hard origin/main
-          cp /tmp/cards.json.new fateblade/data/cards.json
+          while read -r p; do
+            cp "/tmp/staged/$p" "$p"
+          done < /tmp/staged-files.txt
+        # (list built below to survive replay)
+      - name: Commit cards (with race replay)
+        run: |
+          set -e
+          git add -A fateblade
+          if git diff --cached --quiet; then echo "NO DRIFT"; exit 0; fi
+          git diff --cached --name-only > /tmp/staged-files.txt
+          mkdir -p /tmp/staged
+          while read -r p; do
+            mkdir -p "/tmp/staged/$(dirname "$p")"
+            cp "$p" "/tmp/staged/$p"
+          done < /tmp/staged-files.txt
+          git fetch origin main
+          git reset --hard origin/main
+          while read -r p; do
+            cp "/tmp/staged/$p" "$p"
+          done < /tmp/staged-files.txt
           git config user.name "fateblade-bot"
           git config user.email "fateblade-bot@users.noreply.github.com"
-          git add fateblade/data/cards.json
-          # NOTE: no [skip ci] - the vault regen workflow must fire on this push.
-          git commit -m "vault sync: cards.json v0.30.0 courts redesign (sha-gated patch from CYF-Cards, queue-triggered)"
+          git add -A fateblade
+          git commit -m "vault sync: cards.json v0.30.0 courts redesign + wrappers + manifest (sha-gated patch, queue-triggered)"
           if ! git push origin main; then
             echo "push raced; replaying on fresh main"
             sleep 15
             git fetch origin main
-            git reset --hard origin/main
-            cp /tmp/cards.json.new fateblade/data/cards.json
-            git add fateblade/data/cards.json
-            git commit -m "vault sync: cards.json v0.30.0 courts redesign (sha-gated patch from CYF-Cards, queue-triggered)"
+            git reset --hard origin main
+            while read -r p; do
+              cp "/tmp/staged/$p" "$p"
+            done < /tmp/staged-files.txt
+            git add -A fateblade
+            git commit -m "vault sync: cards.json v0.30.0 courts redesign + wrappers + manifest (sha-gated patch, queue-triggered)"
             git push origin main
           fi
-      - name: Result
+      - name: Guard (drift never ships)
         run: |
-          if [ "$SYNCED" = "1" ]; then
-            echo "cards.json synced - vault regen workflow should now be running"
-          else
-            echo "vault was already up to date"
-          fi
+          set -e
+          node fateblade/vault-consistency-guard.mjs
