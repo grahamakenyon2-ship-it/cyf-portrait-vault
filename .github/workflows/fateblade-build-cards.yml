@@ -1,0 +1,62 @@
+name: Fateblade Build Cards (vault)
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'report (print drift only) or apply (commit regen)'
+        type: choice
+        default: report
+        options: [report, apply]
+  push:
+    branches: [main]
+    paths: ['fateblade/data/cards.json']
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fateblade-build-cards
+
+jobs:
+  regen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            fateblade
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Regen report (always print drift)
+        run: node fateblade/regen-wrappers.mjs
+      - name: Apply (commit only if drift)
+        if: github.event_name == 'push' || inputs.mode == 'apply'
+        run: |
+          set -e
+          node fateblade/regen-wrappers.mjs --apply
+          if git diff --quiet; then echo "NO DRIFT"; exit 0; fi
+          # Replayable-artifact pattern (lesson 34): never pull --rebase.
+          cp fateblade/data/cards.js /tmp/cards.js.new
+          cp fateblade/manifest.json /tmp/manifest.json.new
+          git fetch origin main
+          git reset --hard origin/main
+          cp /tmp/cards.js.new fateblade/data/cards.js
+          cp /tmp/manifest.json.new fateblade/manifest.json
+          git config user.name "fateblade-bot"
+          git config user.email "fateblade-bot@users.noreply.github.com"
+          git add fateblade/data/cards.js fateblade/manifest.json
+          git commit -m "vault auto: regen cards.js + manifest shas/version [skip ci]"
+          if ! git push origin main; then
+            echo "push raced; replaying on fresh main"
+            sleep 15
+            git fetch origin main
+            git reset --hard origin/main
+            cp /tmp/cards.js.new fateblade/data/cards.js
+            cp /tmp/manifest.json.new fateblade/manifest.json
+            git add fateblade/data/cards.js fateblade/manifest.json
+            git commit -m "vault auto: regen cards.js + manifest shas/version [skip ci]"
+            git push origin main
+          fi
+      - name: Guard after apply (drift never ships)
+        if: github.event_name == 'push' || inputs.mode == 'apply'
+        run: node fateblade/vault-consistency-guard.mjs

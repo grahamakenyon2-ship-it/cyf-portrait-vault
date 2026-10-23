@@ -1,0 +1,24 @@
+name: Vault Consistency Guard
+on:
+  schedule:
+    - cron: '30 7 * * *'   # 07:30 UTC nightly (02:30 America/Winnipeg)
+  push:
+    branches: [main]
+    paths: ['fateblade/**']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            fateblade
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Manifest sha consistency (HARD FAIL)
+        run: node fateblade/vault-consistency-guard.mjs
