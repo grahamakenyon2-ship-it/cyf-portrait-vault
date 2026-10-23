@@ -657,7 +657,7 @@
     <button class="playbig themebtn" onclick="menuSingle()"><b>⚔ PLAY</b><small>single player — battle the AI with your realm's deck</small></button>
     <div class="mcol">
       <button class="menubtn themebtn" onclick="watchMatch()">▶ WATCH AN AI DUEL<small>visual playtest with live commentary</small></button>
-      <button class="menubtn themebtn" onclick="showMultiplayer()">✦ MULTIPLAYER<small>online duels — coming soon</small></button>
+      <button class="menubtn themebtn" onclick="showMultiplayer()">✦ MULTIPLAYER<small>hotseat &amp; LAN duels — play a friend today</small></button>
       <button class="menubtn themebtn" onclick="showSettings()">⚙ SETTINGS<small>theme art, AI difficulty, watch speed, saved decks</small></button>
       <button class="menubtn themebtn" onclick="quitToDesktop()">✖ QUIT TO DESKTOP<small>close Fateblade</small></button>
     </div>
@@ -824,7 +824,14 @@ const hasKw = (o, k) => E.hasKw(o, k); // v0.20: multi-keyword-safe checks
 const KWGLYPH = { Guard:'🛡', Charge:'⚡', Lifesteal:'🩸', Ranged:'🏹', Shock:'⊘', Aegis:'⛨', Bane:'☠', Relentless:'⚔', Shadow:'☾' }; // v0.31.1: keyword EMBLEMS — the board reads at a glance, the zoom keeps the words
 const kwBadges = (c) => { const ks = [...E.kwsOf(c)]; return ks.length ? '<div class="kwbadges">' + ks.map((k) => `<div class="kw" data-kw="${k}" title="${KWTXT[k]||k} — ${KWDESC[k]||''}">${KWGLYPH[k]||'◆'}<span class="kwt">${KWTXT[k]||k}</span></div>`).join('') + '</div>' : ''; }; // v0.20: one badge per keyword; v0.31.1: glyph pills in a corner cluster (multi-kw rows cleanly)
 const KWTXT = E.KWTXT, KWDESC = E.KWDESC;
-let S = null; // engine match state; you are side 'A' (or watching)
+let S = null; // engine match state; the LOCAL player is side ME (or watching)
+// v0.35 MULTIPLAYER GROUNDWORK: ME = engine side of the local player ('A' solo,
+// 'A'/'B' fixed per client in LAN, tracks S.active each turn in hotseat).
+// FOE = the other side. oppAI=false when the opponent is a human at another
+// seat (hotseat pass-the-laptop or LAN) — the endTurn aiTurn hook gates on it.
+// Default (ME='A', oppAI=true) is byte-identical to the pre-0.35 behavior.
+let ME = 'A', FOE = 'B', oppAI = true;
+function setME(s){ ME = s; FOE = (s === 'A') ? 'B' : 'A'; }
 let me = { pool: null, faction: null, sov: null, deck: null };
 let sel = null, powTargeting = false, castTargeting = null; // v0.20: castTargeting = { i, card } while a targetable play awaits its target
 let watch = { on: false, timer: null, speed: 1 };
@@ -1040,14 +1047,438 @@ function refit(){ requestAnimationFrame(fitScreen); }
 function backToMenu(){ // v0.9.8: leaving a match must also drop the victory/defeat overlay — MENU after VICTORY used to strand it open over the main menu with no way to close it
   const ov = document.getElementById('overlay'); if(ov) ov.classList.remove('on');
   tutorial.on = false; tutHide(); // v0.26.6: the coach never outlives the match
-  camp.active=null; camp.rule=null; aiAnimSeq++; show('menu'); sel=null; powTargeting=false; castTargeting=null; S=null; stopWatch(); applyTheme(null); }
+  camp.active=null; camp.rule=null; aiAnimSeq++; show('menu'); sel=null; powTargeting=false; castTargeting=null; S=null; stopWatch(); applyTheme(null);
+  hotseat = false; hs = null; setME('A'); oppAI = true; // v0.35: local-duel state never leaks into the next solo match
+  lan.on = false; lan.inMatch = false; lan.ready = null; lan.foeReady = null; lan.spec = false; // v0.35: LAN link drops with the match
+  try{ lan.ws && lan.ws.close(); }catch(e){} lan.ws = null;
+  for(const id of ['lanChatBar','lanChatLog']){ const el = document.getElementById(id); if(el) el.remove(); }
+}
+
+/* ================= v0.35 LOCAL MULTIPLAYER — hotseat (pass-the-laptop) ================= */
+let hs = null;       // setup session { seat:1|2, p1:{faction,sov,deck}, p2:{...} }
+let hotseat = false; // a hotseat match is live
+let hsInfo = { f1: '', f2: '' }; // realm labels for the pass veil
+function hsTag(){ return hs ? 'PLAYER ' + hs.seat + ' — ' : ''; }
+function hsStart(){
+  hs = { seat: 1, p1: null, p2: null };
+  document.getElementById('mp').classList.remove('on');
+  showPoolPick('play');
+}
+function hsVeil(title, sub, cb){
+  let v = document.getElementById('hsveil');
+  if(!v){ v = document.createElement('div'); v.id = 'hsveil'; v.className = 'modal'; document.body.appendChild(v); }
+  v.innerHTML = `<div class="mbox" style="text-align:center">
+    <h2 style="color:var(--gold);letter-spacing:3px;margin:0 0 10px">${title}</h2>
+    <p style="font-size:13px;color:#e6d8b2">${sub}</p>
+    <div style="margin-top:14px"><button class="themebtn" id="hsveilbtn">I HAVE THE LAPTOP</button></div>
+  </div>`;
+  v.classList.add('on');
+  document.getElementById('hsveilbtn').onclick = ()=>{ v.classList.remove('on'); if(cb) cb(); };
+}
+function hsNextSeat(){
+  if(hs.seat === 1){
+    hs.seat = 2;
+    hsVeil('PLAYER 2', 'Pass the laptop — Player 2 picks pool, realm, deck &amp; Sovereign.', ()=>{ me.deck = null; showPoolPick('play'); });
+  } else {
+    const p1 = hs.p1, p2 = hs.p2; hs = null;
+    hsStartMatch(p1, p2);
+  }
+}
+function hsStartMatch(p1, p2){
+  const f1 = facOf(p1.faction), f2 = facOf(p2.faction);
+  const first = Math.random() < 0.5 ? 'A' : 'B';
+  hotseat = true; oppAI = false;
+  hsInfo = { f1: f1.label, f2: f2.label };
+  setME(first);
+  S = E.startMatch(f1, f2, shuffle, { sovA: p1.sov, sovB: p2.sov, first,
+    deckA: p1.deck || loadDeck(p1.faction), deckB: p2.deck || loadDeck(p2.faction), extraCards: guildCards() });
+  sel=null; powTargeting=false; castTargeting=null;
+  lastSeen = { hpA:null, hpB:null, minions:{} };
+  aiAnimSeq++; blogReset();
+  blogTurn((first==='A'?f1.label:f2.label).toUpperCase() + ' GOES FIRST');
+  const mullSeat = (side, cb)=>{
+    setME(side);
+    hsVeil('PLAYER ' + (side==='A'?1:2) + ' — ' + (side==='A'?f1.label:f2.label).toUpperCase(),
+      'Your opening hand — mulligan in private, then pass.', ()=> openMull(cb));
+  };
+  mullSeat(first, ()=> mullSeat(first==='A'?'B':'A', ()=>{
+    document.getElementById('overlay').classList.remove('on');
+    show('match'); render();
+    log(`🪙 ${(first==='A'?f1.label:f2.label)} won the coin flip — First Rites blesses ${first==='A'?p1.sov.name:p2.sov.name} for their first three turns.`);
+  }));
+}
+function hsPass(){
+  const side = S.active;
+  hsVeil('PLAYER ' + (side==='A'?1:2) + ' — ' + (side==='A'?hsInfo.f1:hsInfo.f2).toUpperCase(),
+    'Pass the laptop — take your turn.', ()=>{ setME(side); render(); log(`Turn ${Math.ceil(S.turn/2)} — your move.`); });
+}
+
+/* ================= v0.35 LAN DUEL — lockstep over WebSocket ================= */
+// Design: engine.js is seeded-deterministic (the sim/RL infrastructure depends
+// on it), so both clients simulate the SAME match from the same seed and only
+// exchange player decisions. The server (tools/lan-server.mjs, run by the host
+// on the LAN) is a dumb relay: every message is broadcast to the other clients.
+// A state hash exchanged after every end-turn catches any desync loudly.
+const lan = {
+  on:false, inMatch:false, ws:null, side:null, token:null, seed:null,
+  ready:null, foeReady:null, mullSent:false, foeMull:null, matchShown:false,
+  spec:false, params:null, rematch:false, foeRematch:false, lastAddr:null,
+  room:null, role:null, name:'?', resume:null, lastRoomSeats:null,
+};
+function lanHashSeed(str){ let h = 2166136261 >>> 0; for(let i=0;i<str.length;i++){ h ^= str.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; } return h >>> 0; }
+function lanRng(seed){ // state-object rng so reconnect RESUME can serialize it
+  const r = { s: seed >>> 0, next(){ r.s |= 0; r.s = (r.s + 0x6D2B79F5) | 0; let t = Math.imul(r.s ^ (r.s >>> 15), 1 | r.s); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; } };
+  return r;
+}
+function lanShuffleWith(r){ return (a)=>{ for(let i=a.length-1;i>0;i--){ const j = Math.floor(r.next()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }; }
+let lanMatchRng = null;
+function lanStateHash(){
+  try { const j = JSON.stringify(S, (k,v)=> typeof v === 'function' ? undefined : v);
+    let h = 5381; for(let i=0;i<j.length;i++){ h = ((h*33) ^ j.charCodeAt(i)) >>> 0; }
+    return h + ':' + j.length; } catch(e){ return 'ERR'; }
+}
+function lanSend(m){ if(lan.ws && lan.ws.readyState === 1) lan.ws.send(JSON.stringify(m)); }
+function lanTag(){ return (lan.on && !lan.inMatch) ? 'LAN DUEL — ' : ''; }
+function lanMenu(){
+  const m = document.getElementById('mp');
+  m.classList.add('on');
+  m.querySelector('.mbox').innerHTML = `
+    <h2 style="color:var(--gold);letter-spacing:3px;margin:0 0 12px">🌐 LAN DUEL</h2>
+    <p style="font-size:13px;color:#e6d8b2">The game browser lists every Fateblade duel on this wifi. Host a new duel, or click JOIN / SPECTATE on a listed one — no addresses to type.</p>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-top:14px">
+      <button onclick="lanBrowse()">⚔ OPEN THE GAME BROWSER</button>
+      <p id="lanStatus" style="font-size:12px;color:#c9b78e;margin:2px 0"></p>
+      <button onclick="document.getElementById('mp').classList.remove('on')">Back</button>
+    </div>
+    <p style="font-size:11px;color:#8f8462;margin-top:10px">No server running yet? The host runs <code>node tools/lan-server.mjs</code> in their Fateblade folder (Node 18+), opens <code>http://localhost:7777</code>, and everyone else opens the wifi address it prints.</p>`;
+}
+// v0.35.1: IN-APP GAME BROWSER — desktop-first. The exe runs its own embedded
+// LAN server (UDP-discovering every other copy on the wifi), so the room list
+// is fetched from localhost and JOIN/SPECTATE seat you right here. When the
+// page itself is served by a lan-server over http (browser fallback), that
+// same server is used directly.
+let lanBrowserTimer = null;
+function lanBrowse(){
+  const m = document.getElementById('mp');
+  m.classList.add('on');
+  m.querySelector('.mbox').innerHTML = `
+    <h2 style="color:var(--gold);letter-spacing:3px;margin:0 0 12px">🌐 LAN GAME BROWSER</h2>
+    <p style="font-size:12px;color:#c9b78e;margin:0 0 10px">Every Fateblade duel on this wifi, hosted from any copy of the game.</p>
+    <div style="display:flex;gap:8px;margin-bottom:10px">
+      <input id="lanbName" type="text" placeholder="Your name" maxlength="20" value="${(localStorage.getItem('fb-lan-name') || '').replace(/"/g, '&quot;')}" style="flex:1;background:#191308;border:1px solid var(--gold-dim);color:var(--ink);padding:8px 10px;font-family:inherit">
+      <button id="lanbHost" class="themebtn" style="padding:8px 14px">⚔ HOST A NEW DUEL</button>
+    </div>
+    <div id="lanbPeers" style="font-size:11px;color:#8f8462;margin-bottom:6px;min-height:14px"></div>
+    <div id="lanbList" style="max-height:260px;overflow:auto;text-align:left;font-size:14px">Looking for duels…</div>
+    <div style="margin-top:12px;display:flex;gap:8px;justify-content:center">
+      <button onclick="lanBrowserTick()">↻ Refresh</button>
+      <button onclick="lanBrowseStop()">Close</button>
+    </div>`;
+  document.getElementById('lanbName').oninput = (ev)=> localStorage.setItem('fb-lan-name', ev.target.value);
+  document.getElementById('lanbHost').onclick = lanHostNew;
+  clearInterval(lanBrowserTimer);
+  lanBrowserTimer = setInterval(lanBrowserTick, 2000);
+  lanBrowserTick();
+}
+function lanBrowseStop(){
+  if(lanBrowserTimer){ clearInterval(lanBrowserTimer); lanBrowserTimer = null; }
+  document.getElementById('mp').classList.remove('on');
+}
+async function lanSrvBase(){
+  if(location.protocol.startsWith('http')) return location.host; // already served by a lan-server → it is one
+  try { // desktop exe: ask the embedded server (started by the Electron shell) for its port
+    const p = (window.fateblade && fateblade.isDesktop && await fateblade.lanPort());
+    if(p) return 'localhost:' + p;
+  } catch(e){}
+  return 'localhost:7777';
+}
+function lanBrowserName(){ const el = document.getElementById('lanbName'); return (el && el.value.trim()) || (localStorage.getItem('fb-lan-name') || '').trim() || 'Duelist'; }
+async function lanBrowserTick(){
+  const L = document.getElementById('lanbList'); if(!L) return;
+  try {
+    const base = await lanSrvBase();
+    const d = await (await fetch('http://' + base + '/rooms.json', { cache: 'no-store' })).json();
+    const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    const all = [];
+    for(const r of d.me.rooms) all.push({ ...r, srv: d.me.addr + ':' + d.me.port, mine: true });
+    for(const p of d.peers) for(const r of p.rooms) all.push({ ...r, srv: p.addr + ':' + p.port, host: p.host });
+    if(!all.length){ L.innerHTML = '<div style="text-align:center;color:#9a8b74;padding:16px">No duels yet — click ⚔ HOST A NEW DUEL to create one.</div>'; }
+    else L.innerHTML = all.map(r => {
+      const seat = (s) => s ? (esc(s.name) + (s.connected ? '' : ' <span style="color:#c9a86a">⏳</span>')) : '<span style="color:#7ac98a">OPEN</span>';
+      const open = !r.seats.A || !r.seats.B;
+      const seatA = r.seats.A ? seat(r.seats.A) : '<span style="color:#7ac98a">OPEN</span>';
+      const seatB = r.seats.B ? seat(r.seats.B) : '<span style="color:#7ac98a">OPEN</span>';
+      return `<div style="background:#191308;border:1px solid #3a3128;padding:8px 10px;margin-bottom:8px;display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <div style="flex:1;min-width:180px"><b>${esc(r.name)}</b>${r.mine ? '' : ` <span style="font-size:11px;color:#8f8462">on ${esc(r.host || '?')}</span>`}
+          <div style="font-size:11px;color:#9a8b74">${r.state === 'match' ? 'IN DUEL' : 'PICKING REALMS'} · A: ${seatA} · B: ${seatB}${r.specCount ? ' · 👁 ' + r.specCount : ''}</div></div>
+        ${(r.state !== 'match' && open) ? `<button class="themebtn" style="padding:6px 12px" onclick="lanJoinRoom('${r.srv}','${r.id}','player')">⚔ JOIN</button>` : ''}
+        <button class="themebtn" style="padding:6px 12px" onclick="lanJoinRoom('${r.srv}','${r.id}','spec')">👁 SPECTATE</button>
+      </div>`;
+    }).join('');
+    const P = document.getElementById('lanbPeers');
+    if(P) P.textContent = d.peers.length ? ('Seeing ' + d.peers.length + ' other Fateblade host' + (d.peers.length > 1 ? 's' : '') + ' on this network') : '';
+  } catch(e){
+    L.innerHTML = '<div style="text-align:center;color:#9a8b74;padding:16px">No LAN server reachable. Every desktop copy runs one automatically — make sure the host\'s game is open on the same wifi.</div>';
+  }
+}
+function lanJoinRoom(srv, room, role){
+  lanBrowseStop();
+  lanJoin(srv, room, role, lanBrowserName().slice(0, 20));
+}
+async function lanHostNew(){
+  const name = lanBrowserName().slice(0, 20);
+  localStorage.setItem('fb-lan-name', name);
+  try {
+    const base = await lanSrvBase();
+    const res = await fetch('http://' + base + '/host?name=' + encodeURIComponent(name + "'s duel"), { redirect: 'manual', cache: 'no-store' });
+    const loc = res.headers.get('location') || '';
+    const rm = (loc.match(/room=([A-Z0-9]+)/) || [])[1];
+    const srv = decodeURIComponent((loc.match(/srv=([^&]+)/) || [])[1] || '');
+    if(!rm || !srv) throw 0;
+    lanBrowseStop();
+    lanJoin(srv, rm, 'player', name);
+  } catch(e){
+    const L = document.getElementById('lanbList');
+    if(L) L.innerHTML = '<div style="color:#c96a5a;text-align:center;padding:14px">Could not create the duel — the LAN server did not answer.</div>';
+  }
+}
+function lanStatus(t){ const el = document.getElementById('lanStatus'); if(el) el.textContent = t; }
+function lanJoin(srv, room, role, name){
+  const addr = (/^wss?:\/\//.test(srv) ? srv : 'ws://' + srv).trim();
+  const key = 'fateblade-lan-' + room;
+  const saved = JSON.parse(localStorage.getItem(key) || 'null');
+  lan.room = room; lan.role = role; lan.name = name; lan.lastAddr = addr;
+  lan.resume = (saved && saved.token && saved.side && saved.side !== 'S' && role !== 'spec') ? saved : null;
+  const m = document.getElementById('mp');
+  m.classList.add('on');
+  m.querySelector('.mbox').innerHTML = `
+    <h2 style="color:var(--gold);letter-spacing:3px;margin:0 0 12px">🌐 LAN DUEL</h2>
+    <p id="lanStatus" style="font-size:13px;color:#e6d8b2">Connecting…</p>
+    <p style="font-size:11px;color:#8f8462">This box closes by itself once you are seated.</p>`;
+  lanStatus((lan.resume ? 'Rejoining your duel' : 'Joining the duel') + '…');
+  try { lan.ws = new WebSocket(addr); } catch(e){ lanStatus('Could not reach that duel — is the host still running?'); return; }
+  lan.ws.onopen = ()=>{ lanSend({ t:'HELLO', name, room, role, token: lan.resume ? lan.resume.token : null }); };
+  lan.ws.onmessage = (ev)=>{ try{ lanOnMsg(JSON.parse(ev.data)); }catch(e){} };
+  lan.ws.onclose = ()=>{ if(lan.on) lanFail('Connection lost'); else lanStatus('Connection closed — the host may have shut down the server.'); };
+  lan.ws.onerror = ()=>{ if(!lan.on) lanStatus('Connection failed — the host is not reachable right now.'); };
+}
+function lanBoot(){ // v0.35.1: game-browser redirect → #srv=host:port&room=ID&role=player|spec&name=Name
+  if(!location.hash || !/srv=/.test(location.hash)) return;
+  const h = new URLSearchParams(location.hash.slice(1));
+  const srv = h.get('srv'); if(!srv) return;
+  const room = h.get('room') || '';
+  const role = h.get('role') === 'spec' ? 'spec' : 'player';
+  const name = (h.get('name') || localStorage.getItem('fb-lan-name') || 'Duelist').slice(0, 20);
+  localStorage.setItem('fb-lan-name', name);
+  lanJoin(srv, room, role, name); // hash stays put: a refresh = reconnect to the same seat
+}
+window.addEventListener('load', ()=> setTimeout(lanBoot, 250));
+function lanFail(t){
+  const wasMatch = lan.inMatch; lan.on = false; lan.inMatch = false; lan.ready = null; lan.foeReady = null;
+  try{ lan.ws && lan.ws.close(); }catch(e){}
+  lan.ws = null;
+  if(wasMatch) log('⚠ ' + t); else lanStatus(t);
+}
+function lanOnMsg(m){
+  if(m.t === 'ERR'){ lanStatus(m.x || 'That duel is no longer listed — open the game browser to find a live one.'); return; }
+  if(m.t === 'ROOMSTATE'){ // v0.35.1: registry state — seats joining/leaving, reconnect status
+    const rs = m.room;
+    if(lan.inMatch && lan.side !== 'S' && lan.lastRoomSeats){
+      const foeSeat = rs.seats[FOE], hadFoe = lan.lastRoomSeats[FOE];
+      if(!foeSeat && hadFoe) log('⚠ Your opponent disconnected — they have 2 minutes to rejoin.');
+      else if(foeSeat && hadFoe && !hadFoe.connected && foeSeat.connected) log('↻ Your opponent reconnected.');
+    }
+    if(lan.inMatch && lan.side !== 'S' && lan.lastRoomSeats){
+      const mySeat = rs.seats[lan.side];
+      if(mySeat && !mySeat.connected && lan.lastRoomSeats[lan.side] && lan.lastRoomSeats[lan.side].connected) log('⚠ You are disconnected from the duel — reconnecting…');
+    }
+    lan.lastRoomSeats = rs.seats;
+    return;
+  }
+  if(m.t === 'WELCOME'){
+    lan.side = m.side; lan.token = m.token;
+    if(m.side === 'S'){ // Phase 2: spectator seats render everything and act on nothing
+      lan.on = true; lan.inMatch = false; lan.spec = true;
+      lanStatus('Seated as a SPECTATOR — you will see the duel once it begins.');
+      lanSend({ t:'RESYNC' }); // if a match is already live, a player streams us the state
+      return;
+    }
+    lan.on = true; lan.spec = false;
+    { // persist the seat token (per room) so a dropped laptop can rejoin mid-duel
+      const key = 'fateblade-lan-' + (lan.room || '');
+      const s2 = JSON.parse(localStorage.getItem(key) || 'null') || {};
+      s2.token = m.token; s2.side = m.side; s2.name = lan.name; localStorage.setItem(key, JSON.stringify(s2));
+    }
+    if(lan.resume && m.side === lan.resume.side){ // re-seated at our old chair — ask the peer to stream us the live state
+      lan.on = true; lan.inMatch = false;
+      lanSend({ t:'RESYNC' });
+      lanStatus('Seat ' + m.side + ' re-claimed — restoring the duel…');
+      return;
+    }
+    document.getElementById('mp').classList.remove('on');
+    lanStatus('Seated as side ' + m.side + ' — pick your realm.');
+    me.deck = null; showPoolPick('play');
+    return;
+  }
+  if(m.t === 'HELLO'){ if(!lan.inMatch && !lan.spec) lanStatus((m.name || 'Your foe') + ' joined the room.'); return; }
+  if(m.t === 'LEAVE'){ if(lan.inMatch) log('⚠ ' + (m.side === FOE ? 'Your opponent disconnected.' : 'A spectator left.')); return; }
+  if(m.t === 'READY'){
+    lan.foeReady = m.cfg;
+    if(lan.ready && lan.side === 'A') lanHostStart();
+    else if(!lan.ready && !lan.inMatch) lanStatus('Your foe is ready — pick your realm to begin.');
+    return;
+  }
+  if(m.t === 'START'){ lanStartMatch(m.p); return; }
+  if(m.t === 'MULL'){
+    lan.foeMull = m.rep;
+    if(S && !lan.spec) lanApplyMull(FOE, m.rep);
+    lanBeginMatch(); return;
+  }
+  if(m.t === 'ACT'){ lanApplyAct(m); return; }
+  if(m.t === 'HASH'){
+    if(lan.lastHash === undefined || true){ /* every end-turn: compare */ }
+    const mine = lanStateHash();
+    if(m.h !== mine && !lan.desynced){ lan.desynced = true; log('⚠ DESYNC DETECTED — the clients disagree on the game state. Ask the host to restart the duel.'); }
+    return;
+  }
+  if(m.t === 'CHAT'){ lanChatLine(m.side, m.x); return; }
+  if(m.t === 'REMATCH'){
+    lan.foeRematch = true;
+    if(lan.rematch) lanDoRematch(); else log('↻ ' + (m.side === FOE ? 'Opponent' : 'Spectator') + ' wants a rematch — click ↻ REMATCH to accept.');
+    return;
+  }
+  if(m.t === 'STATE'){ if(m.s && (lan.side === 'S' || (lan.on && !lan.inMatch))) lanRestore(m); return; }
+  if(m.t === 'RESYNC'){ if(lan.inMatch && lan.side !== 'S' && S) lanSend({ t:'STATE', s: lanSerialize() }); return; }
+}
+function lanReadyUp(){
+  lan.ready = { faction: me.faction, sov: me.sov, deck: me.deck || loadDeck(me.faction) };
+  lanSend({ t:'READY', cfg: lan.ready });
+  document.getElementById('mp').classList.remove('on');
+  if(lan.foeReady && lan.side === 'A') lanHostStart();
+  else showLobby('Realm locked in — waiting for your opponent…');
+}
+function lanHostStart(){
+  const seed = 'lan-' + Date.now() + '-' + Math.floor(Math.random()*1e9);
+  const p = { facA: lan.ready, facB: lan.foeReady, first: Math.random() < 0.5 ? 'A' : 'B', seed };
+  lanSend({ t:'START', p });
+  lanStartMatch(p);
+}
+function showLobby(t){ const m = document.getElementById('mp'); m.classList.add('on');
+  m.querySelector('.mbox').innerHTML = `<h2 style="color:var(--gold);letter-spacing:3px;margin:0 0 12px">🌐 LAN DUEL</h2>
+  <p style="font-size:13px;color:#e6d8b2">${t}</p>
+  <button onclick="document.getElementById('mp').classList.remove('on')">Close this box (the duel starts automatically)</button>`; }
+function lanStartMatch(p){
+  lan.params = p; lan.seed = p.seed; lan.inMatch = true; lan.on = true;
+  lan.mullSent = false; lan.foeMull = null; lan.matchShown = false; lan.desynced = false;
+  lan.rematch = false; lan.foeRematch = false;
+  hotseat = false; oppAI = !lan.spec ? false : true;
+  setME(lan.side === 'S' ? 'A' : lan.side);
+  if(lan.spec) watch.on = true; // spectators render everything and may never act — the existing watch gates do exactly this
+  const r = lanRng(lanHashSeed('fateblade-lan|' + p.seed)); lanMatchRng = r;
+  const fA = facOf(p.facA.faction), fB = facOf(p.facB.faction);
+  S = E.startMatch(fA, fB, lanShuffleWith(r), { sovA: p.facA.sov, sovB: p.facB.sov, first: p.first,
+    deckA: p.facA.deck || loadDeck(p.facA.faction), deckB: p.facB.deck || loadDeck(p.facB.faction),
+    extraCards: guildCards(), rng: r.next });
+  sel=null; powTargeting=false; castTargeting=null;
+  lastSeen = { hpA:null, hpB:null, minions:{} };
+  aiAnimSeq++; blogReset();
+  blogTurn((p.first==='A'?fA.label:fB.label).toUpperCase() + ' GOES FIRST');
+  document.getElementById('mp').classList.remove('on');
+  if(lan.spec){ document.getElementById('overlay').classList.remove('on'); show('match'); render(); return; }
+  openMull(()=>{ lan.mullSent = true; lanSend({ t:'MULL', rep: mullTook }); lanBeginMatch(); });
+}
+function lanBeginMatch(){
+  if(lan.matchShown || !lan.inMatch) return;
+  if(!lan.mullSent || lan.foeMull === null) return;
+  lan.matchShown = true;
+  document.getElementById('overlay').classList.remove('on');
+  show('match'); render();
+  if(!lan.spec) lanChatOpen(); // v0.35: LAN chat bar rides along during the match
+  const fA = facOf(lan.params.facA.faction), fB = facOf(lan.params.facB.faction);
+  log(`🪙 ${(lan.params.first==='A'?fA.label:fB.label)} won the coin flip — First Rites blesses their Sovereign.`);
+}
+function lanApplyMull(side, rep){
+  if(!S) return;
+  const mr = lanShuffleWith(lanRng(lanHashSeed('fateblade-lan|' + lan.seed + '|mull|' + side)));
+  const rr = [...rep].sort((a,b)=>b-a);
+  for(const i of rr) S[side].deck.push(S[side].hand.splice(i,1)[0]);
+  mr(S[side].deck); for(let i=0;i<rr.length;i++) E.draw(S, side, true);
+}
+function lanApplyAct(m){
+  if(!S || !lan.inMatch) return;
+  if(m.side !== S.active || m.side === ME) return; // stale/out-of-turn/echo — drop
+  if(m.k === 'play'){ E.playCard(S, m.side, m.i, m.tgt ? { target:{ uid: m.tgt } } : undefined); }
+  else if(m.k === 'atk'){ E.attack(S, m.side, m.uid, m.hero ? { hero:true } : { uid: m.tgt }); }
+  else if(m.k === 'pow'){ E.power(S, m.side, m.opt || {}); }
+  else if(m.k === 'end'){ E.endTurn(S); lanSend({ t:'HASH', h: lanStateHash() }); }
+  render(); checkEnd();
+}
+// local-action choke: the engine call already applied locally; ship the decision
+function lanActPlay(i, tgt){ if(!lan.on || !lan.inMatch || lan.spec) return; lanSend({ t:'ACT', k:'play', side: ME, i, tgt: tgt || null }); }
+function lanActAtk(uid, hero){ if(!lan.on || !lan.inMatch || lan.spec) return; lanSend({ t:'ACT', k:'atk', side: ME, uid, hero: !!hero }); }
+function lanActPow(opt){ if(!lan.on || !lan.inMatch || lan.spec) return; lanSend({ t:'ACT', k:'pow', side: ME, opt: opt || {} }); }
+function lanActEnd(){ if(!lan.on || !lan.inMatch || lan.spec) return; lanSend({ t:'ACT', k:'end', side: ME }); lanSend({ t:'HASH', h: lanStateHash() }); }
+// chat (Phase 2): a thin bar under the log while a LAN match is live
+function lanChatLine(side, x){
+  let el = document.getElementById('lanChatLog');
+  if(!el){ el = document.createElement('div'); el.id = 'lanChatLog';
+    el.style.cssText = 'position:fixed; left:10px; bottom:8px; z-index:60; font-size:12px; color:#e6d8b2; background:#191308e8; border:1px solid #7a6a3f; border-radius:6px; padding:4px 8px; max-width:340px; pointer-events:none; line-height:1.5';
+    document.body.appendChild(el); }
+  el.innerHTML = (side === ME ? 'You' : (side === FOE ? 'Foe' : 'Spectator')) + ': ' + String(x).slice(0,140) + '<br>' + el.innerHTML;
+  el.style.opacity = 1; clearTimeout(el._t); el._t = setTimeout(()=>{ el.style.opacity = 0; }, 8000);
+}
+function lanChatSend(){
+  let bar = document.getElementById('lanChatBar');
+  if(!bar) lanChatOpen();
+  bar = document.getElementById('lanChatBar');
+  const inp = document.getElementById('lanChatIn');
+  const x = inp.value.trim(); inp.value = '';
+  if(x){ lanSend({ t:'CHAT', side: lan.side, x }); lanChatLine(lan.side, x); }
+}
+function lanChatOpen(){
+  let bar = document.getElementById('lanChatBar');
+  if(bar) return;
+  bar = document.createElement('div'); bar.id = 'lanChatBar';
+  bar.style.cssText = 'position:fixed; left:10px; bottom:34px; z-index:61; display:flex; gap:4px';
+  const inp = document.createElement('input'); inp.id = 'lanChatIn'; inp.maxLength = 140; inp.placeholder = 'chat — Enter to send';
+  inp.style.width = '240px';
+  inp.addEventListener('keydown', (ev)=>{ if(ev.key === 'Enter'){ lanChatSend(); inp.blur(); } ev.stopPropagation(); });
+  const btn = document.createElement('button'); btn.className = 'themebtn'; btn.style.padding = '4px 8px'; btn.textContent = '➤';
+  btn.onclick = lanChatSend;
+  bar.appendChild(inp); bar.appendChild(btn); document.body.appendChild(bar);
+}
+function lanSerialize(){
+  return { s: JSON.parse(JSON.stringify(S, (k,v)=> typeof v === 'function' ? undefined : v)), rngS: lanMatchRng ? lanMatchRng.s : null,
+           side: lan.side, seed: lan.seed, params: lan.params, active: S.active, turn: S.turn };
+}
+function lanRestore(m){
+  lanMatchRng = lanRng(1); if(m.rngS !== null && m.rngS !== undefined) lanMatchRng.s = m.rngS;
+  lan.seed = m.seed; lan.params = m.params; lan.inMatch = true; lan.on = true;
+  lan.mullSent = true; lan.foeMull = []; lan.matchShown = true; lan.desynced = false;
+  hotseat = false; oppAI = false; setME(lan.side === 'S' ? 'A' : lan.side); watch.on = !!lan.spec;
+  S = m.s.s; if(!S.rng) S.rng = lanMatchRng.next;
+  lastSeen = { hpA:null, hpB:null, minions:{} }; aiAnimSeq++; blogReset();
+  document.getElementById('overlay').classList.remove('on');
+  show('match'); render();
+  log('↻ Reconnected — the duel resumes.');
+}
+function lanRematchUI(){
+  if(!lan.inMatch || lan.rematch) return;
+  lan.rematch = true; lanSend({ t:'REMATCH', side: lan.side });
+  if(lan.foeRematch) lanDoRematch(); else log('↻ Rematch requested — waiting for your opponent.');
+}
+function lanDoRematch(){
+  if(lan.side === 'A'){ lanHostStart(); } // fresh seed + coin, same realms
+  else log('↻ Rematch — the host is re-seeding the duel…');
+}
+
 
 function menuSingle(){ camp.active=null; camp.rule=null; showPoolPick('play'); }
 function menuDeckBuilder(){ showPoolPick('db'); }
 
 function showPoolPick(mode){
   me.poolMode = mode; applyTheme(null);
-  document.getElementById('poolTitle').textContent = 'CHOOSE YOUR CARD POOL';
+  document.getElementById('poolTitle').textContent = hsTag() + lanTag() + 'CHOOSE YOUR CARD POOL';
   const pools = [
     { id:'history', label:'THE ANNALS', tag:'the five historical realms — fleets, legions, sultanates, hordes' },
     { id:'fandom',  label:'THE CANON',  tag:'the four fandom realms — marches, starfleets, dynasties, crusades' },
@@ -1059,7 +1490,7 @@ function showPoolPick(mode){
 }
 
 function pickPool(p){ me.pool = p; applyTheme(null);
-  document.getElementById('facTitle').textContent = (p==='history'?'THE ANNALS':'THE CANON')+' — CHOOSE YOUR BANNER';
+  document.getElementById('facTitle').textContent = hsTag() + lanTag() + (p==='history'?'THE ANNALS':'THE CANON')+' — CHOOSE YOUR BANNER';
   const row = document.getElementById('facRow');
   row.innerHTML = DATA.factions.filter(f=>f.pool===p).map(f=>`
     <div class="cardpick" onclick="pickFaction('${f.id}')">
@@ -1120,7 +1551,7 @@ function dpBack(){
   else pickPool(me.pool || 'history');
 }
 function toSovSelect(f, deckSov){
-  document.getElementById('sovTitle').textContent = (f.label).toUpperCase() + ' — CHOOSE YOUR SOVEREIGN';
+  document.getElementById('sovTitle').textContent = hsTag() + lanTag() + (f.label).toUpperCase() + ' — CHOOSE YOUR SOVEREIGN';
   document.getElementById('sovRow').innerHTML = legends(f).map((c,i)=>{
     const isDeck = deckSov && deckSov.id === c.id;
     return `<div class="cardpick ${isDeck?'sovchosen':''}" onclick="pickSovereign(${i})">
@@ -1131,12 +1562,23 @@ function toSovSelect(f, deckSov){
   }).join('');
   show('sovereigns');
 }
-function pickSovereign(i){ camp.active=null; camp.rule=null; me.sov = legends(facOf(me.faction))[i]; startMatch(); }
+function pickSovereign(i){
+  camp.active=null; camp.rule=null;
+  const sov = legends(facOf(me.faction))[i];
+  if(hs){ // v0.35: hotseat seat picks feed the session, not a solo match
+    hs['p' + hs.seat] = { faction: me.faction, sov, deck: me.deck || loadDeck(me.faction) };
+    hsNextSeat(); return;
+  }
+  if(lan.on && !lan.inMatch){ // v0.35: LAN lobby — my pick goes to the room, not a solo match
+    me.sov = sov; lanReadyUp(); return;
+  }
+  me.sov = sov; startMatch(); }
 
 /* ---------- match ---------- */
 function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
 
 function startMatch(){
+  setME('A'); oppAI = true; // v0.35: solo duel — the local player is always side A here; clear any hotseat/LAN perspective
   const myF = facOf(me.faction);
   const enemyPool = DATA.factions.filter(f=>f.pool===myF.pool && f.id!==me.faction);
   const enF = enemyPool[Math.floor(Math.random()*enemyPool.length)];
@@ -1165,9 +1607,9 @@ function checkEnd(){
   const w = E.checkEnd(S);
   const ov = document.getElementById('overlay');
   if(w){
-    const won = w==='A';
-    const sov = won ? (S.A.sov||{}) : (S.B.sov||{});
-    const fac = won ? S.A.fac : S.B.fac;
+    const won = w===ME;
+    const sov = won ? (S[ME].sov||{}) : (S[FOE].sov||{});
+    const fac = won ? S[ME].fac : S[FOE].fac;
     document.getElementById('ovText').textContent = won ? 'VICTORY' : 'DEFEAT';
     document.getElementById('ovText').style.color = won ? '' : '#c96a5a';
     const img = document.getElementById('ovImg');
@@ -1192,6 +1634,15 @@ function checkEnd(){
       document.getElementById('ovText').textContent = '🎓 TUTORIAL COMPLETE';
       document.getElementById('ovSub').textContent = 'You know the field now — choose a banner, swear a Sovereign, and take on the campaigns.';
       tutFinish();
+    }
+    if(lan.on && lan.inMatch && !lan.spec){ // v0.35 LAN: rematch offers a fresh seed + coin with the same realms
+      let rb = document.getElementById('ovRematchBtn');
+      if(!rb){ rb = document.createElement('button'); rb.id = 'ovRematchBtn'; rb.className = 'themebtn';
+        rb.style.margin = '10px 6px 0'; rb.onclick = lanRematchUI;
+        document.getElementById('ovSub').after(rb); }
+      rb.textContent = lan.rematch ? (lan.foeRematch ? '↻ REMATCH…' : '↻ REMATCH REQUESTED — waiting…') : '↻ REMATCH';
+      rb.style.display = '';
+      if(lan.rematch && lan.foeRematch && lan.side === 'A') rb.textContent = '↻ RESEEDING…';
     }
     ov.classList.add('on');
     vPopReplay(); // v0.12: the verdict lands with weight
@@ -1287,10 +1738,21 @@ function tutCheck(){ // called from render(): action steps advance on what the p
 function endTurn(){
   E.endTurn(S);
   castTargeting=null; // v0.20: never carry an unfinished aim across turns
+  if(lan.on && lan.inMatch && !lan.spec){ // v0.35 LAN: ship the end decision + a state-hash for the desync guard
+    lanActEnd();
+    render();
+    if(checkEnd()) return;
+    log('Turn passed — waiting on your opponent.');
+    return;
+  }
+  if(hotseat){ // v0.35: veil BEFORE rendering — the next player's hand never flashes on screen
+    if(E.checkEnd(S)){ render(); checkEnd(); return; }
+    hsPass(); return;
+  }
   if(camp.active && camp.rule && camp.rule.extraDraw && S.active==='B'){ E.draw(S,'B'); } // v0.7.0: campaign Furnace/Chapter/Worthy rule
   render();
   if(checkEnd()) return;
-  if(S.active==='B'){ setTimeout(aiTurn, 700); }
+  if(S.active===FOE && oppAI){ setTimeout(aiTurn, 700); } // v0.35: human opponent seats take their turn themselves
   else log(`Turn ${Math.ceil(S.turn/2)} — your move.`);
 }
 // v0.9.6: THE ENEMY TURN NOW PLAYS OUT VISIBLY. The engine still resolves the
@@ -1388,7 +1850,7 @@ function blToggle(){ // v0.26.5: collapse the log when it's in the way of a big 
   const ch = document.getElementById('blchev'); if(ch) ch.textContent = w.classList.contains('min') ? '▸' : '▾';
 }
 function evLine(ev){
-  const who = ev.side==='B' ? 'Enemy' : ev.side==='A' ? 'You' : '';
+  const who = ev.side===FOE ? 'Enemy' : ev.side===ME ? 'You' : '';
   switch(ev.t){
     case 'play':
       return String(ev.id||'').startsWith('TOKEN')
@@ -1405,7 +1867,7 @@ function evLine(ev){
       // damage (DEATHGIFT, VOLLEY, PILLAGE, BC, DR). v0.9.6 printed these
       // two cases with the hero swapped — now the log names the real victim.
       const atkSide = (blNames.has(ev.id) || ev.id === 'POWER') ? ev.side : (ev.side === 'A' ? 'B' : 'A');
-      const vic = atkSide === 'A' ? 'B' : 'A';
+      const vic = atkSide === ME ? FOE : ME;
       if (blNames.has(ev.id)) { // a named attacker struck the hero
         return { s: ev.side, x:`⚔ ${blSpan(ev.id)} hits ${vic === 'A' ? 'your' : 'the enemy'} Sovereign for <span class="bld">${ev.dmg}</span>` };
       }
@@ -1701,11 +2163,11 @@ function fxDart(fromEl, toEl){ // v0.22.11: MTGA/Hearthstone-style targeting arr
   setTimeout(() => d.remove(), 900);
 }
 function findMinion(side, cid){
-  const b = document.getElementById(side === 'A' ? 'myBoard' : 'aiBoard');
+  const b = document.getElementById(side === ME ? 'myBoard' : 'aiBoard');
   if (!b) return null;
   try { return b.querySelector('[data-cid="' + String(cid).replace(/"/g, '\\"') + '"]'); } catch (e) { return null; }
 }
-function heroOf(side){ return document.getElementById(side === 'A' ? 'myHero' : 'aiHero'); }
+function heroOf(side){ return document.getElementById(side === ME ? 'myHero' : 'aiHero'); }
 function deathGhost(uid){
   const info = prevRects[uid];
   if (info) { // dissolve in place where the card last stood
@@ -1879,10 +2341,10 @@ function openMull(reveal){
       <button class="themebtn" id="mullbtn" onclick="mullConfirm()">⚔ KEEP HAND — TO BATTLE</button></div>`;
   // v0.26.4: this IS your hand — same size, same fan, same faces as the in-game hand
   const isSpell = (c)=>c.type==='edict'||c.type==='relic';
-  const hn = S.A.hand.length;
+  const hn = S[ME].hand.length;
   const fanR = (i)=>((i-(hn-1)/2)*Math.min(3.5, 28/hn)).toFixed(1);
   const fanY = (i)=>(Math.pow(Math.abs(i-(hn-1)/2),1.35)*6).toFixed(1);
-  document.getElementById('mullRow').innerHTML = S.A.hand.map((c,i)=>`
+  document.getElementById('mullRow').innerHTML = S[ME].hand.map((c,i)=>`
     <div class="mcard ${isSpell(c)?'spell':''}" data-i="${i}" style="--fr:${fanR(i)}deg;--fy:${fanY(i)}px" onclick="mullToggle(${i},this)">
       <div class="artclip"><img src="${c.img}" loading="lazy"></div>
       ${isSpell(c)?`<div class="typerow">${c.type==='edict'?'EDICT':'RELIC'}</div>`:''}
@@ -1891,7 +2353,7 @@ function openMull(reveal){
       <div class="nm">${c.name}</div>
       ${isSpell(c)?'':`<div class="gem atk">${c.atk}<i>ATK</i></div><div class="gem hp">${c.hp}<i>HP</i></div>`}</div>`).join('');
   document.querySelectorAll('#mullRow .mcard').forEach(d=>{ // v0.26.4: full read access before committing
-    d.onmouseenter = (ev)=>showZoom(S.A.hand[+d.dataset.i], ev);
+    d.onmouseenter = (ev)=>showZoom(S[ME].hand[+d.dataset.i], ev);
     d.onmousemove = moveZoom;
     d.onmouseleave = hideZoom;
     d.querySelectorAll('.kw[data-kw]').forEach((kwEl)=>{ kwEl.title = (KWTXT[kwEl.dataset.kw]||kwEl.dataset.kw) + ' — ' + KWDESC[kwEl.dataset.kw]; });
@@ -1909,14 +2371,21 @@ function mullConfirm(){
   hideZoom(); // v0.26.4: the reading lens must not outlive the mulligan
   document.getElementById('mull').classList.remove('on');
   const rep = [...mullMarked].sort((a,b)=>b-a); // splice high-first so indices stay true
-  for(const i of rep) S.A.deck.push(S.A.hand.splice(i,1)[0]);
-  shuffle(S.A.deck); for(let i=0;i<rep.length;i++) E.draw(S,'A',true); // v0.15: draw-phase flag keeps PRIVATEERING/CHAOS_LADDER from firing on mulligans
-  mullTook = rep.length;
-  // the foe mulligans like a sensible rival: overpriced openers go back
-  const thr = S.first === 'B' ? 5 : 4;
-  const eb = []; S.B.hand.forEach((c,i)=>{ if(c.cost >= thr) eb.push(i); });
-  for(const i of eb.sort((a,b)=>b-a)) S.B.deck.push(S.B.hand.splice(i,1)[0]);
-  shuffle(S.B.deck); for(let i=0;i<eb.length;i++) E.draw(S,'B',true);
+  if(lan.on && lan.inMatch && !lan.spec){
+    // v0.35 LAN: the mull must replay identically on the peer — seeded shuffle
+    lanApplyMull(ME, rep); mullTook = rep.length;
+  } else {
+    for(const i of rep) S[ME].deck.push(S[ME].hand.splice(i,1)[0]);
+    shuffle(S[ME].deck); for(let i=0;i<rep.length;i++) E.draw(S,ME,true); // v0.15: draw-phase flag keeps PRIVATEERING/CHAOS_LADDER from firing on mulligans
+    mullTook = rep.length;
+    // the foe mulligans like a sensible rival: overpriced openers go back
+    if(oppAI){ // v0.35: a human foe mulligans their own hand (hotseat seat swap / their own client in LAN)
+      const thr = S.first === FOE ? 5 : 4;
+      const eb = []; S[FOE].hand.forEach((c,i)=>{ if(c.cost >= thr) eb.push(i); });
+      for(const i of eb.sort((a,b)=>b-a)) S[FOE].deck.push(S[FOE].hand.splice(i,1)[0]);
+      shuffle(S[FOE].deck); for(let i=0;i<eb.length;i++) E.draw(S,FOE,true);
+    }
+  }
   const r = mullReveal; mullReveal = null;
   if(r) r();
 }
@@ -1951,7 +2420,7 @@ function dprevAt(host, txt, cls){
 }
 function showDprevMinion(div){
   clearDprev();
-  const t = S.B.board.find(x=>x.uid===div.dataset.uid); if(!t) return;
+  const t = S[FOE].board.find(x=>x.uid===div.dataset.uid); if(!t) return;
   if(castTargeting){ // v0.20: damage preview while aiming a single-target play
     const cc = castTargeting.card;
     const d = ({bcPing:1,bcPing2:2,bcPing3:3,fxSnipe3:3,fxSnipe4:4}[cc.bc||cc.fx]||((cc.fx==='fxExecute'||cc.fx==='fxExecute2')?999:0));
@@ -1960,17 +2429,17 @@ function showDprevMinion(div){
     return;
   }
   if(!powTargeting){
-    if(!E.canAttack(S,'A',sel,{uid:t.uid})){ dprevAt(div, '⛔ A GUARD BLOCKS THE WAY', 'blk'); return; }
+    if(!E.canAttack(S,ME,sel,{uid:t.uid})){ dprevAt(div, '⛔ A GUARD BLOCKS THE WAY', 'blk'); return; }
   }
-  const bane = !powTargeting && hasKw(S.A.board.find(x=>x.uid===sel)||{}, 'Bane');
-  const dmg = powTargeting ? E.powerDmg(S,'A') : (bane ? 999 : (S.A.board.find(x=>x.uid===sel)||{}).atk);
+  const bane = !powTargeting && hasKw(S[ME].board.find(x=>x.uid===sel)||{}, 'Bane');
+  const dmg = powTargeting ? E.powerDmg(S,ME) : (bane ? 999 : (S[ME].board.find(x=>x.uid===sel)||{}).atk);
   if(powTargeting && !dmg) return; // v0.33: non-damage Realm Commands show no damage preview
   if(t.shield > 0) dprevAt(div, '🛡 AEGIS ABSORBS', 'blk');
   else if(bane) dprevAt(div, '☠ BANE DESTROYS');
   else dprevAt(div, '−' + dmg + (t.hp <= dmg ? ' ☠' : ''));
   // attacker retaliation badge (attacks only — Skirmish never takes retaliation)
   if(!powTargeting){
-    const m = S.A.board.find(x=>x.uid===sel);
+    const m = S[ME].board.find(x=>x.uid===sel);
     const atkEl = document.querySelector('#myBoard .minion[data-uid="'+sel+'"]');
     if(m && atkEl){
       if(hasKw(t, 'Bane')) dprevAt(atkEl, '☠ BANE DESTROYS YOU');
@@ -1987,13 +2456,13 @@ function showDprevHero(){
   let dmg;
   if(powTargeting){ dmg = E.powerDmg(S,'A'); if(!dmg) return; } // v0.33: non-damage Realm Commands show no damage preview
   else {
-    const m = S.A.board.find(x=>x.uid===sel); if(!m) return;
+    const m = S[ME].board.find(x=>x.uid===sel); if(!m) return;
     if(m.shocked){ dprevAt(heroEl, 'SHOCK CANNOT HIT THE SOVEREIGN', 'blk'); return; }
-    if(!E.canAttack(S,'A',sel,{hero:true})){ dprevAt(heroEl, '⛔ A GUARD BLOCKS THE WAY', 'blk'); return; }
-    const ember = S.B.sov && S.B.sov.passive && S.B.sov.passive.id === 'EMBERWARD';
-    dmg = ember ? Math.max(1, m.atk - ((S.first==='B' && S.turn<=5) ? 2 : 1)) : m.atk;
+    if(!E.canAttack(S,ME,sel,{hero:true})){ dprevAt(heroEl, '⛔ A GUARD BLOCKS THE WAY', 'blk'); return; }
+    const ember = S[FOE].sov && S[FOE].sov.passive && S[FOE].sov.passive.id === 'EMBERWARD';
+    dmg = ember ? Math.max(1, m.atk - ((S.first===FOE && S.turn<=5) ? 2 : 1)) : m.atk;
   }
-  const after = S.B.hp - dmg;
+  const after = S[FOE].hp - dmg;
   dprevAt(heroEl, after <= 0 ? '−' + dmg + ' · ☠ LETHAL' : '−' + dmg + ' → ' + after, after <= 0 ? 'lethal' : '');
 }
 
@@ -2001,23 +2470,23 @@ function showDprevHero(){
 // green-lit state: the player genuinely has nothing left to DO (not "nothing good" — a ready
 // attacker or a playable card both count as an action, even if the trade is bad)
 function endTurnReady(){
-  if(!S || S.active!=='A' || watch.on) return false;
-  if(E.canPower(S,'A')) return false;
-  for(const m of S.A.board) if(m.ready && (m.atk||0) > 0) return false;
-  for(let i=0;i<S.A.hand.length;i++) if(E.canPlay(S,'A',i)) return false;
+  if(!S || S.active!==ME || watch.on) return false;
+  if(E.canPower(S,ME)) return false;
+  for(const m of S[ME].board) if(m.ready && (m.atk||0) > 0) return false;
+  for(let i=0;i<S[ME].hand.length;i++) if(E.canPlay(S,ME,i)) return false;
   return true;
 }
 // opt-in lethal ember: everything that can hit the enemy Sovereign THIS TURN, ignoring their
 // board except Guards (a Guard wall makes face math unreliable — stay silent rather than guess)
 function playerLethal(){
-  if(!S || S.active!=='A' || watch.on) return false;
-  if(S.B.board.some(m=>hasKw(m,'Guard')&&!hasKw(m,'Shadow'))) return false; // v0.29.0: a shadowed Guard cannot be attacked, so it does not gate face math
-  const ember = S.B.sov && S.B.sov.passive && S.B.sov.passive.id === 'EMBERWARD';
-  const shave = ember ? ((S.first==='B' && S.turn<=5) ? 2 : 1) : 0;
+  if(!S || S.active!==ME || watch.on) return false;
+  if(S[FOE].board.some(m=>hasKw(m,'Guard')&&!hasKw(m,'Shadow'))) return false; // v0.29.0: a shadowed Guard cannot be attacked, so it does not gate face math
+  const ember = S[FOE].sov && S[FOE].sov.passive && S[FOE].sov.passive.id === 'EMBERWARD';
+  const shave = ember ? ((S.first===FOE && S.turn<=5) ? 2 : 1) : 0;
   let dmg = 0;
-  for(const m of S.A.board) if(m.ready && (m.atk||0) > 0 && !m.shocked) dmg += Math.max(1, (m.atk||0) - shave);
-  if(E.canPower(S,'A') && E.powerTargets(S,'A').hero) dmg += E.powerDmg(S,'A'); // v0.33: only commands that can reach the Sovereign count toward the ember
-  return dmg >= S.B.hp;
+  for(const m of S[ME].board) if(m.ready && (m.atk||0) > 0 && !m.shocked) dmg += Math.max(1, (m.atk||0) - shave);
+  if(E.canPower(S,ME) && E.powerTargets(S,ME).hero) dmg += E.powerDmg(S,ME); // v0.33: only commands that can reach the Sovereign count toward the ember
+  return dmg >= S[FOE].hp;
 }
 
 /* ---------- v0.26.2: live targeting arrow ---------- */
@@ -2034,7 +2503,7 @@ const AIM = (function(){
   return { svg, shaft, head };
 })();
 function aimSrc(){
-  if(!S || watch.on || S.active!=='A') return null;
+  if(!S || watch.on || S.active!==ME) return null;
   if(castTargeting) return document.querySelector('#hand .hcard[data-i="' + castTargeting.i + '"]');
   if(powTargeting) return document.getElementById('powerbtn');
   if(sel) return document.querySelector('#myBoard .minion[data-uid="' + sel + '"]');
@@ -2066,14 +2535,14 @@ function render(){
   if(!S) return;
   blogDiff(S); // v0.9.6: every render flushes new engine events to the battle log
   hideZoom(); // v0.9.8: the rebuild below can remove the hovered card — its mouseleave never fires, so the zoom would freeze on screen
-  const my = S.A, ai = S.B;
+  const my = S[ME], ai = S[FOE];
   if (lastSeen.handA !== null && my.hand.length > lastSeen.handA) SFX.draw(); // v0.12: the slide of a fresh draw
   const dealFrom = (lastSeen.handA !== null && my.hand.length - lastSeen.handA > 0 && my.hand.length - lastSeen.handA <= 3) ? lastSeen.handA : 1e9; // v0.22.10: fresh draws (1-3) slide up out of the deck; bigger jumps (mulligan/rematch) don't flash
   lastSeen.handA = my.hand.length;
   const tb = document.getElementById('topbar');
   tb.innerHTML = `<b>${my.fac.label}</b> ${crystals(my.mana, my.maxmana)}
     <b style="color:#ccc">vs ${ai.fac.label}</b> ${crystals(ai.mana, ai.maxmana)}
-    <span>${S.active==='A'?'YOUR TURN':'ENEMY TURN'}</span> <span>decks ${my.deck.length} / ${ai.deck.length}</span>
+    <span>${S.active===ME?'YOUR TURN':'ENEMY TURN'}</span> <span>decks ${my.deck.length} / ${ai.deck.length}</span>
     <span title="cards in the enemy hand">enemy hand ${ai.hand.length}</span>
     ${!watch.on && (S.aiB||'normal')!=='normal' ? `<span>AI: ${(S.aiB||'normal').toUpperCase()}</span>`:''}
     ${my.fatigue||ai.fatigue?`<span class="fat">fatigue ${my.fatigue||0} / ${ai.fatigue||0}</span>`:''}`;
@@ -2081,18 +2550,18 @@ function render(){
   const fh = document.getElementById('foeHand');
   if(fh) fh.innerHTML = '<div class="fcard"></div>'.repeat(ai.hand.length) + `<span class="fcnt">✋ ${ai.hand.length}</span>`;
   const eb = document.getElementById('endbtn');
-  eb.disabled = S.active!=='A';
+  eb.disabled = S.active!==ME;
   // v0.26.2: END TURN affordances — waiting glow on the enemy's turn; green-lit when nothing
   // good remains; opt-in ember when the field says the Sovereign can be finished this turn.
-  eb.classList.toggle('oppwait', S.active!=='A' && !watch.on);
+  eb.classList.toggle('oppwait', S.active!==ME && !watch.on);
   eb.classList.remove('ready', 'lethal');
-  if(S.active==='A' && !watch.on){
+  if(S.active===ME && !watch.on){
     if(!sel && !powTargeting && !castTargeting && endTurnReady()) eb.classList.add('ready');
     if(settings.lethalHint && playerLethal()) eb.classList.add('lethal');
   }
-  document.getElementById('powerbtn').disabled = !E.canPower(S,'A');
-  document.getElementById('powerbtn').textContent = `${E.powerName(S,'A').toUpperCase()} (${E.powerCost(S,'A')})`;
-  document.getElementById('powerbtn').title = E.powerText(S,'A');
+  document.getElementById('powerbtn').disabled = !E.canPower(S,ME);
+  document.getElementById('powerbtn').textContent = `${E.powerName(S,ME).toUpperCase()} (${E.powerCost(S,ME)})`;
+  document.getElementById('powerbtn').title = E.powerText(S,ME);
 
   const mk = (p, id, side)=>{
     const el = document.getElementById(id);
@@ -2100,35 +2569,35 @@ function render(){
     el.innerHTML = `<div class="artclip"><img src="${p.sov ? p.sov.img : p.fac.commander}"></div><div class="nm">${p.fac.label.toUpperCase()}</div>${sov}<div class="hp">${p.hp}</div>` +
       (p.relics && p.relics.length ? `<div class="relics">${p.relics.map(r=>`<span class="rk" title="${r.name}: ${(r.ability||'').replace(/"/g,'&quot;')}">${r.name}</span>`).join('')}</div>` : '');
     el.title = p.sov ? `${p.sov.name} — ${p.sov.passive.name}: ${p.sov.passive.desc}` : '';
-    const ptt = (powTargeting && !watch.on && S && S.active==='A') ? E.powerTargets(S,'A') : null; // v0.33: what the armed Realm Command can legally hit
-    const heroTgt = (side==='B' && !watch.on && ((ptt&&ptt.hero) || ((sel&&!castTargeting) && !ai.board.some((m)=>hasKw(m,'Guard')&&!hasKw(m,'Shadow'))))) // v0.33.1: Realm Commands aim at the Sovereign past Guards (and with an empty foe field)
-      || (side==='A' && ptt && E.powerKind(S,'A')==='heal' && S.A.hp < 30);
+    const ptt = (powTargeting && !watch.on && S && S.active===ME) ? E.powerTargets(S,ME) : null; // v0.33: what the armed Realm Command can legally hit
+    const heroTgt = (side===FOE && !watch.on && ((ptt&&ptt.hero) || ((sel&&!castTargeting) && !ai.board.some((m)=>hasKw(m,'Guard')&&!hasKw(m,'Shadow'))))) // v0.33.1: Realm Commands aim at the Sovereign past Guards (and with an empty foe field)
+      || (side===ME && ptt && E.powerKind(S,ME)==='heal' && my.hp < 30);
     el.className = 'hero' + (heroTgt ? ' targetable' : ''); // v0.29.0: shadowed Guards cannot be attacked, so they do not wall the hero
     el.onclick = ()=>heroClick(side);
-    if(side==='B'){ // v0.13: hover the enemy Sovereign while targeting → damage preview
-      el.onmouseenter = ()=>{ if(!watch.on && S && S.active==='A' && (sel||powTargeting)) showDprevHero(); };
+    if(side===FOE){ // v0.13: hover the enemy Sovereign while targeting → damage preview
+      el.onmouseenter = ()=>{ if(!watch.on && S && S.active===ME && (sel||powTargeting)) showDprevHero(); };
       el.onmouseleave = ()=>clearDprev();
     }
-    const prev = side==='A' ? lastSeen.hpA : lastSeen.hpB;
+    const prev = side===ME ? lastSeen.hpA : lastSeen.hpB;
     if(prev !== null && p.hp !== prev){
       floatAt(el, (p.hp > prev ? '+' : '−') + Math.abs(p.hp - prev), p.hp > prev);
       if(p.hp < prev){ el.classList.remove('hitflash'); void el.offsetWidth; el.classList.add('hitflash'); }
     }
-    if(side==='A') lastSeen.hpA = p.hp; else lastSeen.hpB = p.hp;
+    if(side===ME) lastSeen.hpA = p.hp; else lastSeen.hpB = p.hp;
   };
-  mk(my, 'myHero', 'A'); mk(ai, 'aiHero', 'B');
+  mk(my, 'myHero', ME); mk(ai, 'aiHero', FOE);
 
   const boardEl = (p, id, side)=>{
     const el = document.getElementById(id);
     el.innerHTML = p.board.map(m=>{
-      const castable = !!castTargeting && (E.targetSpec(castTargeting.card)==='foe' ? side==='B' : side==='A'); // v0.20: aiming highlights the valid side
+      const castable = !!castTargeting && (E.targetSpec(castTargeting.card)==='foe' ? side===FOE : side===ME); // v0.20: aiming highlights the valid side
       const atkAim = !!sel && !castTargeting; // v0.29.0: an aimed ATTACK (not a spell/power) — Shadow soaks these
-      const powSide = powTargeting ? E.powerTargets(S,'A').minion : false; // v0.33: Realm Command targeting highlights its legal side
-      const targetable = !watch.on && S.active==='A' && (
-        (side==='B' && ((atkAim && !hasKw(m,'Shadow')) || (powTargeting && (powSide==='foe'||powSide==='any'))))
-        || (side==='A' && powTargeting && (powSide==='friend'||powSide==='any'))
+      const powSide = powTargeting ? E.powerTargets(S,ME).minion : false; // v0.33: Realm Command targeting highlights its legal side
+      const targetable = !watch.on && S.active===ME && (
+        (side===FOE && ((atkAim && !hasKw(m,'Shadow')) || (powTargeting && (powSide==='foe'||powSide==='any'))))
+        || (side===ME && powTargeting && (powSide==='friend'||powSide==='any'))
         || castable); // v0.29.0: spells/powers may still aim at a shadowed body; attacks cannot
-      return `<div class="minion ${hasKw(m,'Guard')?'guard':''} ${m.ready&&side===S.active?'ready':''} ${targetable?'targetable':''} ${sel===m.uid&&side==='A'?'selected':''} ${m.shield>0?'shielded':''} ${m.aura?'auraholder':''} ${m.rage&&m.maxhp&&m.hp<m.maxhp?'enraged':''} ${hasKw(m,'Shadow')?'shadowed':''}"
+      return `<div class="minion ${hasKw(m,'Guard')?'guard':''} ${m.ready&&side===S.active?'ready':''} ${targetable?'targetable':''} ${sel===m.uid&&side===ME?'selected':''} ${m.shield>0?'shielded':''} ${m.aura?'auraholder':''} ${m.rage&&m.maxhp&&m.hp<m.maxhp?'enraged':''} ${hasKw(m,'Shadow')?'shadowed':''}"
         data-uid="${m.uid}" data-cid="${m.id}">
         <div class="artclip"><img src="${m.img}" loading="lazy"></div><div class="nm">${m.name}</div>
         ${kwBadges(m)}
@@ -2141,7 +2610,7 @@ function render(){
     el.querySelectorAll('.minion').forEach(div=>{
       div.onclick = ()=>minionClick(side, div.dataset.uid);
       div.onmouseenter = (ev)=>{ const m = p.board.find(x=>x.uid===div.dataset.uid); if(m) showZoom(m, ev);
-        if(side==='B' && !watch.on && S && S.active==='A' && (sel||powTargeting||castTargeting)) showDprevMinion(div); };
+        if(side===FOE && !watch.on && S && S.active===ME && (sel||powTargeting||castTargeting)) showDprevMinion(div); };
       div.onmousemove = moveZoom;
       div.onmouseleave = ()=>{ hideZoom(); clearDprev(); };
       div.querySelectorAll('.kw').forEach((kwEl)=>{ kwEl.title = (KWTXT[kwEl.dataset.kw]||kwEl.dataset.kw) + ' — ' + KWDESC[kwEl.dataset.kw]; });
@@ -2154,7 +2623,7 @@ function render(){
     prevRects[d.dataset.uid] = { left: r.left, top: r.top, width: r.width, height: r.height,
       img: (d.querySelector('img') || {}).src || '' };
   });
-  boardEl(my, 'myBoard', 'A'); boardEl(ai, 'aiBoard', 'B');
+  boardEl(my, 'myBoard', ME); boardEl(ai, 'aiBoard', FOE);
   // floating damage numbers for minions (diff vs last render)
   const nowBoard = {};
   for(const m of my.board) nowBoard[m.uid] = m.hp;
@@ -2196,59 +2665,59 @@ function render(){
 }
 
 function handClick(i, el){
-  if(watch.on || S.active!=='A') return;
+  if(watch.on || S.active!==ME) return;
   if(castTargeting){ const same = castTargeting.i===i; castTargeting=null; if(same){ render(); return; } } // v0.20: re-click the aiming card = cancel; a different card cancels + processes normally
-  const c = S.A.hand[i];
+  const c = S[ME].hand[i];
   const spec = E.targetSpec(c); // v0.20: aimable single-target cards enter targeting mode instead of resolving blind
   if(spec){
-    const vt = E.validTargets(S,'A',c);
+    const vt = E.validTargets(S,ME,c);
     if(vt && vt.length){ castTargeting = { i, card: c }; sel=null; powTargeting=false; render(); log('Choose a target for ' + c.name + '.'); return; }
     // no valid targets: fall through and play unaimed (legacy no-op / random behavior)
   }
-  if(E.playCard(S, 'A', i)){ sel=null; const r0 = el.getBoundingClientRect(); render(); playArc(r0, c); checkEnd(); }
+  if(E.playCard(S, ME, i)){ sel=null; const r0 = el.getBoundingClientRect(); render(); playArc(r0, c); checkEnd(); lanActPlay(i); }
   else {
-    const reason = S.A.mana < E.effCost(S, 'A', c) ? 'Not enough mana.'
-      : (c.type === 'relic' && S.A.relics.length >= E.MAX_RELICS) ? 'Your relic seats are full (2 max).'
+    const reason = S[ME].mana < E.effCost(S, ME, c) ? 'Not enough mana.'
+      : (c.type === 'relic' && S[ME].relics.length >= E.MAX_RELICS) ? 'Your relic seats are full (2 max).'
       : 'Your battle line is full (6 minions max).';
     log(reason);
     el.classList.remove('shake'); void el.offsetWidth; el.classList.add('shake');
   }
 }
 function heroClick(side){
-  if(watch.on || S.active!=='A' || side!=='B') return;
+  if(watch.on || S.active!==ME || side!==FOE) return;
   if(castTargeting){ castTargeting=null; render(); return; } // v0.20: no hero-target templates yet — clicking the Sovereign cancels aiming
-  if(powTargeting){ const pk = E.powerKind(S,'A'); if(pk==='heal' || E.powerTargets(S,'A').hero){ if(E.power(S,'A',{hero:true})){ powTargeting=false; render(); checkEnd(); } } return; } // v0.33.1: hero-aimed Realm Commands (Oathward / Broadside / Bolt / Raid face-only)
-  if(sel){ if(E.attack(S,'A',sel,{hero:true})){ sel=null; render(); checkEnd(); } else log('A Guard blocks the way.'); }
+  if(powTargeting){ const pk = E.powerKind(S,ME); if(pk==='heal' || E.powerTargets(S,ME).hero){ if(E.power(S,ME,{hero:true})){ powTargeting=false; render(); checkEnd(); lanActPow({hero:true}); } } return; } // v0.33.1: hero-aimed Realm Commands (Oathward / Broadside / Bolt / Raid face-only)
+  if(sel){ const au = sel; if(E.attack(S,ME,sel,{hero:true})){ sel=null; render(); checkEnd(); lanActAtk(au,true); } else log('A Guard blocks the way.'); }
 }
 function minionClick(side, uid){
-  if(watch.on || S.active!=='A') return;
+  if(watch.on || S.active!==ME) return;
   if(castTargeting){ // v0.20: resolve or cancel the aimed play
     const wantFoe = E.targetSpec(castTargeting.card)==='foe';
-    if((wantFoe && side==='B') || (!wantFoe && side==='A')){
+    if((wantFoe && side===FOE) || (!wantFoe && side===ME)){
       const ct = castTargeting; castTargeting=null;
       const hdEl = document.querySelector('#hand .hcard[data-i="'+ct.i+'"]');
-      if(E.playCard(S,'A',ct.i,{target:{uid}})){
+      if(E.playCard(S,ME,ct.i,{target:{uid}})){
         const r0 = hdEl ? hdEl.getBoundingClientRect() : null; if(r0) playArc(r0, ct.card);
-        render(); checkEnd();
+        render(); checkEnd(); lanActPlay(ct.i, uid);
       } else render(); // play refused (mana/board changed since aiming) — drop the aim cleanly
     } else { castTargeting=null; render(); } // clicked the wrong side: cancel
     return;
   }
-  if(powTargeting){ if(E.power(S,'A',{uid})){ powTargeting=false; render(); checkEnd(); } return; } // v0.33: Realm Commands may aim at either side (engine validates)
-  if(side==='A'){ const m = S.A.board.find(x=>x.uid===uid); sel = (sel===uid||!m.ready)?null:uid; powTargeting=false; render(); return; }
-  if(sel){ if(E.attack(S,'A',sel,{uid})){ sel=null; render(); checkEnd(); } else log('A Guard blocks the way.'); }
+  if(powTargeting){ if(E.power(S,ME,{uid})){ powTargeting=false; render(); checkEnd(); lanActPow({uid}); } return; } // v0.33: Realm Commands may aim at either side (engine validates)
+  if(side===ME){ const m = S[ME].board.find(x=>x.uid===uid); sel = (sel===uid||!m.ready)?null:uid; powTargeting=false; render(); return; }
+  if(sel){ const au = sel; if(E.attack(S,ME,sel,{uid})){ sel=null; render(); checkEnd(); lanActAtk(au,false); } else log('A Guard blocks the way.'); }
 }
 document.getElementById('powerbtn').onclick = ()=>{
-  if(!S || watch.on || S.active!=='A' || !E.canPower(S,'A')) return;
-  if(E.powerKind(S,'A')==='salvage'){ openSalvage(); return; } // v0.33: Salvage's two-button mini-choice
-  const tt = E.powerTargets(S,'A');
-  if(tt.free){ if(E.power(S,'A',{})){ render(); checkEnd(); } return; } // Muster Levy / Petition / Exhume / Delve: no target
+  if(!S || watch.on || S.active!==ME || !E.canPower(S,ME)) return;
+  if(E.powerKind(S,ME)==='salvage'){ openSalvage(); return; } // v0.33: Salvage's two-button mini-choice
+  const tt = E.powerTargets(S,ME);
+  if(tt.free){ if(E.power(S,ME,{})){ render(); checkEnd(); lanActPow({}); } return; } // Muster Levy / Petition / Exhume / Delve: no target
   powTargeting = true; sel=null; castTargeting=null; render();
-  log('Choose a target for ' + E.powerName(S,'A') + '.');
+  log('Choose a target for ' + E.powerName(S,ME) + '.');
 };
 // v0.33: Salvage — look at the top card of your deck, draw it or put it back
 function openSalvage(){
-  const top = S.A.deck[S.A.deck.length-1];
+  const top = S[ME].deck[S[ME].deck.length-1];
   if(!top){ log('Your deck is empty — nothing to Salvage.'); return; }
   const md = document.getElementById('salvageModal');
   md.innerHTML = `<div style="text-align:center; font-size:13px; letter-spacing:.14em; color:#c9b78e; margin-bottom:10px">SALVAGE — TOP CARD OF YOUR DECK</div>
@@ -2258,10 +2727,10 @@ function openSalvage(){
     </div>
     <div style="display:flex; gap:10px; justify-content:center"><button id="salvKeep" class="themebtn">DRAW IT</button><button id="salvPut" class="themebtn">PUT IT BACK</button></div>`;
   md.style.display = 'flex';
-  document.getElementById('salvKeep').onclick = ()=>{ md.style.display='none'; if(E.power(S,'A',{salvage:'keep'})){ render(); checkEnd(); } };
-  document.getElementById('salvPut').onclick = ()=>{ md.style.display='none'; if(E.power(S,'A',{salvage:'put'})){ render(); checkEnd(); } };
+  document.getElementById('salvKeep').onclick = ()=>{ md.style.display='none'; if(E.power(S,ME,{salvage:'keep'})){ render(); checkEnd(); lanActPow({salvage:'keep'}); } };
+  document.getElementById('salvPut').onclick = ()=>{ md.style.display='none'; if(E.power(S,ME,{salvage:'put'})){ render(); checkEnd(); lanActPow({salvage:'put'}); } };
 };
-document.getElementById('endbtn').onclick = ()=>{ if(S && !watch.on && S.active==='A') endTurn(); };
+document.getElementById('endbtn').onclick = ()=>{ if(S && !watch.on && S.active===ME) endTurn(); };
 
 /* ================= DECK BUILDER ================= */
 let dbFac = null;
@@ -2599,7 +3068,17 @@ async function checkForUpdates(){
 
 /* ================= MULTIPLAYER (v0.5 teaser) ================= */
 function showMultiplayer(){
-  document.getElementById('mp').classList.add('on');
+  const m = document.getElementById('mp');
+  m.classList.add('on');
+  // v0.35: the modal is rewritten live — hotseat ships now, LAN joins it in this build
+  m.querySelector('.mbox').innerHTML = `
+    <h2 style="color:var(--gold);letter-spacing:3px;margin:0 0 12px">✦ MULTIPLAYER</h2>
+    <p style="font-size:13px;color:#e6d8b2">Two ways to duel a human today. Online matchmaking is Phase&nbsp;3.</p>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-top:14px">
+      <button onclick="document.getElementById('mp').classList.remove('on'); hsStart();">⚔ HOTSEAT DUEL — pass-the-laptop; both players pick realms &amp; decks, hands stay hidden between turns</button>
+      <button onclick="document.getElementById('mp').classList.remove('on'); lanMenu();">🌐 LAN DUEL — same wifi; open the game browser, click JOIN or SPECTATE on any listed duel</button>
+      <button onclick="document.getElementById('mp').classList.remove('on')">Close</button>
+    </div>`;
 }
 
 /* ================= WATCH MODE — visual AI playtester ================= */
