@@ -1,18 +1,27 @@
 name: Fateblade Sync Cards (from CYF-Cards)
 
-# Pulls fateblade/data/cards.json from CYF-Cards main into the vault.
-# The 1.1MB payload cannot ride the GitHub connector push (memory budget),
-# so the vault fetches it from the source-of-truth repo instead, behind a
-# sha256 gate. The vault's own Fateblade Build Cards workflow then fires
-# on the cards.json push and regenerates cards.js + manifest + guard.
+# Self-firing vault sync. The 1.1MB cards.json cannot ride the GitHub
+# connector push (memory budget) and CYF-Cards is private (raw URL 404s),
+# so the vault applies the same sha-gated patch script used in CYF-Cards
+# against its own baseline copy of fateblade/data/cards.json.
+#
+# TRIGGER: the agent pushes fateblade/sync-queue.json (tiny file) after a
+# realm PR merge; also runnable by hand from the Actions tab if needed.
+# No manual runs required in the normal pipeline.
+#
+# Idempotent: if cards.json already hashes to the expected output, the
+# run is a clean no-op. The patch script itself hard-gates the output
+# sha256 and exits 1 on any mismatch, so a wrong baseline can never ship.
+#
+# The commit is NOT [skip ci]: the vault's Fateblade Build Cards workflow
+# fires on this push and regenerates cards.js + manifest + consistency
+# guard (with its own race-replay).
 
 on:
+  push:
+    branches: [main]
+    paths: ['fateblade/sync-queue.json']
   workflow_dispatch:
-    inputs:
-      expected_sha:
-        description: 'sha256 of cards.json in CYF-Cards main (gate)'
-        required: true
-        default: '22c7fc314fdaafd7a736d0d42498e8c4b8036de9323b3f3a48ab73e911871e8d'
 
 permissions:
   contents: write
@@ -28,34 +37,32 @@ jobs:
         with:
           sparse-checkout: |
             fateblade
-      - name: Fetch cards.json from CYF-Cards main
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Apply pending sha-gated patch
         run: |
           set -e
-          curl -fsSL --retry 3 \
-            "https://raw.githubusercontent.com/grahamakenyon2-ship-it/CYF-Cards/main/data/cards.json" \
-            -o /tmp/cards.json.new
-          ACTUAL=$(sha256sum /tmp/cards.json.new | cut -d' ' -f1)
-          EXPECTED="${{ inputs.expected_sha }}"
-          echo "actual   sha256: $ACTUAL"
-          echo "expected sha256: $EXPECTED"
-          if [ "$ACTUAL" != "$EXPECTED" ]; then
-            echo "SHA GATE FAILED - refusing to write"
-            exit 1
-          fi
-      - name: No-op if identical
-        run: |
-          if cmp -s /tmp/cards.json.new fateblade/data/cards.json; then
-            echo "vault cards.json already in sync - nothing to do"
+          CARD=fateblade/data/cards.json
+          ACTUAL=$(sha256sum "$CARD" | cut -d' ' -f1)
+          echo "vault cards.json sha256: $ACTUAL"
+          if [ "$ACTUAL" = "$EXPECTED_OUT" ]; then
+            echo "vault already synced (sha matches) - no-op"
             echo "SYNCED=0" >> "$GITHUB_ENV"
-          else
-            echo "SYNCED=1" >> "$GITHUB_ENV"
+            exit 0
           fi
+          cp "$CARD" /tmp/cards.json
+          FB_CARDS_PATH=/tmp/cards.json node fateblade/sync/cards-patch-v030-courts.mjs
+          cp /tmp/cards.json "$CARD"
+          echo "patch applied + sha-gated"
+          echo "SYNCED=1" >> "$GITHUB_ENV"
+        env:
+          EXPECTED_OUT: '22c7fc314fdaafd7a736d0d42498e8c4b8036de9323b3f3a48ab73e911871e8d'
       - name: Commit cards.json
         if: env.SYNCED == '1'
         run: |
           set -e
-          cp /tmp/cards.json.new fateblade/data/cards.json
           # Replayable-artifact pattern: never pull --rebase.
+          cp fateblade/data/cards.json /tmp/cards.json.new
           git fetch origin main
           git reset --hard origin/main
           cp /tmp/cards.json.new fateblade/data/cards.json
@@ -63,7 +70,7 @@ jobs:
           git config user.email "fateblade-bot@users.noreply.github.com"
           git add fateblade/data/cards.json
           # NOTE: no [skip ci] - the vault regen workflow must fire on this push.
-          git commit -m "vault sync: cards.json from CYF-Cards main (v0.30.0 courts redesign, sha-gated)"
+          git commit -m "vault sync: cards.json v0.30.0 courts redesign (sha-gated patch from CYF-Cards, queue-triggered)"
           if ! git push origin main; then
             echo "push raced; replaying on fresh main"
             sleep 15
@@ -71,7 +78,7 @@ jobs:
             git reset --hard origin/main
             cp /tmp/cards.json.new fateblade/data/cards.json
             git add fateblade/data/cards.json
-            git commit -m "vault sync: cards.json from CYF-Cards main (v0.30.0 courts redesign, sha-gated)"
+            git commit -m "vault sync: cards.json v0.30.0 courts redesign (sha-gated patch from CYF-Cards, queue-triggered)"
             git push origin main
           fi
       - name: Result
