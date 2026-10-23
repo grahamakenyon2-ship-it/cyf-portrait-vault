@@ -1,0 +1,49 @@
+name: fateblade-vault-organize
+on:
+  workflow_dispatch:            # run by hand: report first (eyeball fateblade/organize-report.json), then apply
+    inputs:
+      mode:
+        description: 'report = dry-run (no commits) | apply = move files + rewrite refs + commit'
+        required: true
+        default: 'report'
+        type: choice
+        options:
+          - report
+          - apply
+permissions:
+  contents: write
+concurrency:
+  group: vault-painter           # SHARED with paint-vault/paint-themes/fetchers: one painter in the repo at a time
+  cancel-in-progress: false
+jobs:
+  organize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Run organizer (${{ inputs.mode }})
+        run: node fateblade/organize-vault.mjs ${{ inputs.mode }}
+      - name: Sanity-verify the new layout (apply only)
+        if: inputs.mode == 'apply'
+        run: node fateblade/verify-organize.mjs
+      - name: Commit the new layout (apply only)
+        if: inputs.mode == 'apply'
+        run: |
+          git config user.name "vault-organizer"
+          git config user.email "organizer@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet && echo "nothing changed" && exit 0
+          git commit -m "fateblade v0.28.0: vault grand housekeeping - human-named art layout (cards/commanders/scenes/annals/theme)"
+          for i in 1 2 3; do
+            if git push; then exit 0; fi
+            echo "push rejected - rebasing on remote and retrying (attempt $i)"
+            git pull --rebase origin "$GITHUB_REF_NAME" || true
+          done
+          echo "push failed after 3 attempts - check the run log; the local report is at fateblade/organize-report.json"
+          exit 1
+      - name: Report mode summary
+        if: inputs.mode == 'report'
+        run: cat fateblade/organize-report.json
