@@ -1,0 +1,10 @@
+{
+  "pending": [
+    {
+      "patch": "cards-patch-v030-courts.mjs",
+      "version": "0.30.0",
+      "output_sha256": "22c7fc314fdaafd7a736d0d42498e8c4b8036de9323b3f3a48ab73e911871e8d"
+    }
+  ],
+  "note": "queue push triggers .github/workflows/fateblade-sync-cards.yml"
+}
