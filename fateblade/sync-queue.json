@@ -1,10 +1,10 @@
 {
   "pending": [
     {
-      "patch": "cards-patch-v032-pairmint.mjs",
-      "version": "0.32.0",
-      "output_sha256": "05650f00982e5e120f3e82effa0c23e9cdc3adfc158a61bba7cd76406f404cd7"
+      "patch": "cards-patch-v0321-sovfix.mjs",
+      "version": "0.32.1",
+      "output_sha256": "9b42073686d2d673c0835c38199f8d86e0e98c83f213eb5d79c5e38b50da333b"
     }
   ],
-  "note": "v0.32.0 pairing mint sync (queue-triggered)"
+  "note": "v0.32.1 sovfix sync (queue-triggered)"
 }
