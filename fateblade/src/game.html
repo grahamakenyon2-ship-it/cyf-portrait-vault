@@ -1135,14 +1135,15 @@ const lan = {
   ready:null, foeReady:null, mullSent:false, foeMull:null, matchShown:false,
   spec:false, params:null, rematch:false, foeRematch:false, lastAddr:null,
   room:null, role:null, name:'?', resume:null, lastRoomSeats:null, foeName:'',
-  foeVer:null, foeDiscAt:0, foeGoneLogged:false,
+  foeVer:null, foeDiscAt:0, foeGoneLogged:false, retries:0, resyncs:0,
+  squelch: localStorage.getItem('fb-lan-squelch') === '1',
 };
 // v0.35.4: the LAN protocol version this build speaks — the handshake gate
 // below REFUSES cross-version duels (deterministic lockstep between two
 // different builds is a guaranteed desync, and the patcher means two machines
 // on one LAN are often on different versions). Bump this EVERY release that
 // changes game.html, together with the vault manifest version.
-const FB_LAN_VER = '0.35.4';
+const FB_LAN_VER = '0.35.5';
 function lanHashSeed(str){ let h = 2166136261 >>> 0; for(let i=0;i<str.length;i++){ h ^= str.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; } return h >>> 0; }
 function lanRng(seed){ // state-object rng so reconnect RESUME can serialize it
   const r = { s: seed >>> 0, next(){ r.s |= 0; r.s = (r.s + 0x6D2B79F5) | 0; let t = Math.imul(r.s ^ (r.s >>> 15), 1 | r.s); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; } };
@@ -1152,7 +1153,11 @@ function lanShuffleWith(r){ return (a)=>{ for(let i=a.length-1;i>0;i--){ const j
 let lanMatchRng = null;
 function lanStateHash(){
   try { const j = JSON.stringify(S, (k,v)=> typeof v === 'function' ? undefined : v);
-    let h = 5381; for(let i=0;i<j.length;i++){ h = ((h*33) ^ j.charCodeAt(i)) >>> 0; }
+    // v0.35.5: the RNG STATE must be part of the hash — two clients with
+    // identical cards but a diverged RNG stream hash EQUAL today and would
+    // desync on the very next random event instead of being caught.
+    const pre = 'rng:' + (lanMatchRng ? (lanMatchRng.s >>> 0) : 'x') + '|';
+    let h = 5381; for(let i=0;i<pre.length + j.length;i++){ const c = i < pre.length ? pre.charCodeAt(i) : j.charCodeAt(i - pre.length); h = ((h*33) ^ c) >>> 0; }
     return h + ':' + j.length; } catch(e){ return 'ERR'; }
 }
 function lanSend(m){ if(lan.ws && lan.ws.readyState === 1) lan.ws.send(JSON.stringify(m)); }
@@ -1170,7 +1175,20 @@ function lanDrain(){
   if(!m){ lanActBusy = false; return; }
   lanActBusy = true;
   try{ if(m.t === 'ACT') lanApplyAct(m);
-    else if(m.t === 'HASH'){ if(m.h !== lanStateHash() && !lan.desynced){ lan.desynced = true; log('⚠ DESYNC DETECTED — the clients disagree on the game state. Both players: click ↻ REMATCH to restart the duel with a fresh seed.'); } }
+    else if(m.t === 'SYNC'){ // v0.35.5: the host's snapshot — the peer adopts it and the duel continues
+      if(m.s && m.side === 'A' && lan.side !== 'A'){ lanQReset(); lanRestore(m); }
+    }
+    else if(m.t === 'HASH'){
+      if(m.h !== lanStateHash() && !lan.desynced && lan.inMatch){
+        lan.desynced = true;
+        if(lan.resyncs >= 3){ log('⚠ DESYNC DETECTED — the clients keep disagreeing. Both players: click ↻ REMATCH to restart with a fresh seed.'); }
+        else {
+          lan.resyncs++;
+          if(lan.side === 'A'){ lanSend({ t:'SYNC', s: lanSerialize() }); log('⚠ DESYNC DETECTED — resyncing the duel from your state…'); }
+          else { lanSend({ t:'RESYNC' }); log('⚠ DESYNC DETECTED — restoring the host\'s state to continue the duel…'); }
+        }
+      }
+    }
   }catch(e){}
   lanActTimer = setTimeout(lanDrain, 430);
 }
@@ -1187,6 +1205,7 @@ function lanClockTick(){
   if(!el) return;
   const seats = lan.lastRoomSeats;
   if(!lan.inMatch || !S || !lan.matchShown){ el.style.display = 'none'; return; }
+  if(lan.retries > 0){ el.style.display = 'block'; return; } // v0.35.5: mid-reconnect — lanDrop's "attempt N of 5" message owns the clock
   el.style.display = 'block';
   const eb = document.getElementById('endbtn');
   if(lan.side !== 'S' && seats && seats[FOE] && !seats[FOE].connected){ // foe inside the 120s reconnect grace
@@ -1336,8 +1355,47 @@ function lanJoin(srv, room, role, name){
   try { lan.ws = new WebSocket(addr); } catch(e){ lanStatus('Could not reach that duel — is the host still running?'); return; }
   lan.ws.onopen = ()=>{ lanSend({ t:'HELLO', name, room, role, token: lan.resume ? lan.resume.token : null }); };
   lan.ws.onmessage = (ev)=>{ try{ lanOnMsg(JSON.parse(ev.data)); }catch(e){} };
-  lan.ws.onclose = ()=>{ if(lan.on) lanFail('Connection lost'); else lanStatus('Connection closed — the host may have shut down the server.'); };
-  lan.ws.onerror = ()=>{ if(!lan.on) lanStatus('Connection failed — the host is not reachable right now.'); };
+  lan.ws.onclose = ()=>{ lanDrop(); };
+  lan.ws.onerror = ()=>{ if(!lan.on && !lan.inMatch) lanStatus('Connection failed — the host is not reachable right now.'); };
+}
+// v0.35.5: AUTO-RECONNECT — a mid-duel wifi blip no longer strands the duel.
+// The seat token stays valid for the server's 120s grace, so we re-HELLO up
+// to 5 times with growing backoff and stream the state back via RESYNC.
+function lanDrop(){
+  if(lan.inMatch && lan.token && lan.retries < 5){
+    lan.retries++;
+    const wait = Math.min(8000, 1000 * lan.retries * lan.retries); // 1s → 4s → 9s → 16s → 25s
+    const el = document.getElementById('lanClock');
+    if(el){ el.style.display = 'block'; el.innerHTML = '↻ Connection lost — reconnecting… (attempt ' + lan.retries + ' of 5)'; }
+    setTimeout(lanReconnect, wait);
+    return;
+  }
+  if(lan.inMatch){ lanFail('Could not get you back into the duel. Your seat stays valid for 2 minutes — rejoin from the game browser.'); return; }
+  if(lan.on) lanFail('Connection lost');
+  else lanStatus('Connection closed — the host may have shut down the server.');
+}
+function lanReconnect(){
+  if(!lan.inMatch) return; // the player gave up / left meanwhile
+  try { lan.ws = new WebSocket(lan.lastAddr); } catch(e){ lanDrop(); return; }
+  lan.ws.onopen = ()=>{ lanSend({ t:'HELLO', name: lan.name, room: lan.room, role: lan.role, token: lan.token }); };
+  lan.ws.onmessage = (ev)=>{ try{ lanOnMsg(JSON.parse(ev.data)); }catch(e){} };
+  lan.ws.onclose = ()=>{ lanDrop(); };
+  lan.ws.onerror = ()=>{};
+}
+// v0.35.5: the end-of-link modal — a dead duel now EXPLAINS itself instead of
+// leaving a frozen board. (Host-left is the common cause: the embedded server
+// lives in the host's exe, so when they quit, the room dies with them.)
+function lanEndModal(t){
+  const m = document.getElementById('mp');
+  m.classList.add('on');
+  m.querySelector('.mbox').innerHTML = `
+    <h2 style="color:var(--gold);letter-spacing:3px;margin:0 0 12px">🌐 DUEL LINK DROPPED</h2>
+    <p style="font-size:14px;color:#e6d8b2">${t}</p>
+    <p style="font-size:12px;color:#c9b78e">If the host is still running, your seat stays valid for 2 minutes — rejoin from the game browser. If the host quit, their server went with them: anyone can host a new duel.</p>
+    <div style="display:flex;gap:8px;justify-content:center;margin-top:12px">
+      <button onclick="lanBrowse()">⚔ OPEN THE GAME BROWSER</button>
+      <button onclick="quitMatch()">BACK TO MENU</button>
+    </div>`;
 }
 function lanBoot(){ // v0.35.1: game-browser redirect → #srv=host:port&room=ID&role=player|spec&name=Name
   if(!location.hash || !/srv=/.test(location.hash)) return;
@@ -1355,10 +1413,14 @@ function lanFail(t){
   lanQReset();
   try{ lan.ws && lan.ws.close(); }catch(e){}
   lan.ws = null;
-  if(wasMatch) log('⚠ ' + t); else lanStatus(t);
+  if(wasMatch){ log('⚠ ' + t); lanEndModal(t); return; } // v0.35.5: modal with rejoin guidance + game browser
+  lanStatus(t);
 }
 function lanOnMsg(m){
-  if(m.t === 'ERR'){ lanStatus(m.x || 'That duel is no longer listed — open the game browser to find a live one.'); return; }
+  if(m.t === 'ERR'){
+    if(lan.inMatch){ lan.inMatch = false; lanEndModal(m.x || 'The duel is no longer listed — the host may have shut down.'); return; } // v0.35.5: a dead room gets the explanatory modal, not a frozen board
+    lanStatus(m.x || 'That duel is no longer listed — open the game browser to find a live one.'); return;
+  }
   if(m.t === 'ROOMSTATE'){ // v0.35.1: registry state — seats joining/leaving, reconnect status
     const rs = m.room;
     if(lan.inMatch && lan.side !== 'S' && lan.lastRoomSeats){
@@ -1375,7 +1437,7 @@ function lanOnMsg(m){
     return;
   }
   if(m.t === 'WELCOME'){
-    lan.side = m.side; lan.token = m.token;
+    lan.side = m.side; lan.token = m.token; lan.retries = 0; // v0.35.5: a successful (re)seat clears the reconnect budget
     lanSend({ t:'VER', side: lan.side, v: FB_LAN_VER }); // v0.35.4: announce our build so the handshake gate can compare
     if(lan.side === 'S'){ // Phase 2: spectator seats render everything and act on nothing
       lan.on = true; lan.inMatch = false; lan.spec = true;
@@ -1430,6 +1492,7 @@ function lanOnMsg(m){
     lanBeginMatch(); return;
   }
   if(m.t === 'ACT'){ lanEnqueue(m); return; }
+  if(m.t === 'SYNC'){ lanEnqueue(m); return; } // v0.35.5: host snapshot rides the queue so it can't land mid-action
   if(m.t === 'HASH'){
     // v0.35.4: the comparison runs at the END of the pacing queue — if their
     // end-turn ACT is still draining, an immediate compare would false-DESYNC.
@@ -1446,7 +1509,7 @@ function lanOnMsg(m){
     if(lan.rematch) lanDoRematch(); else log('↻ ' + (m.side === FOE ? 'Opponent' : 'Spectator') + ' wants a rematch — click ↻ REMATCH to accept.');
     return;
   }
-  if(m.t === 'STATE'){ if(m.s && (lan.side === 'S' || (lan.on && !lan.inMatch))) lanRestore(m); return; }
+  if(m.t === 'STATE'){ if(m.s && (lan.side === 'S' || (lan.on && (!lan.inMatch || lan.desynced)))) lanRestore(m); return; } // v0.35.5: a DESYNC-flagged client also restores from the host's snapshot
   if(m.t === 'RESYNC'){ if(lan.inMatch && lan.side !== 'S' && S) lanSend({ t:'STATE', s: lanSerialize() }); return; }
 }
 function lanReadyUp(){
@@ -1478,7 +1541,8 @@ function showLobby(t){ const m = document.getElementById('mp'); m.classList.add(
 function lanStartMatch(p){
   lan.params = p; lan.seed = p.seed; lan.inMatch = true; lan.on = true;
   lan.mullSent = false; lan.foeMull = null; lan.matchShown = false; lan.desynced = false;
-  lanQReset(); lanTurnKey = null; lan.foeDiscAt = 0; lan.foeGoneLogged = false; // v0.35.4: fresh pacing queue + fresh clock per match
+  lanQReset(); lanTurnKey = null; lan.foeDiscAt = 0; lan.foeGoneLogged = false; lan.retries = 0; // v0.35.4: fresh pacing queue + fresh clock per match
+  lan.resyncs = 0; lan.desynced = false; // v0.35.5: resync budget resets per match (desynced re-cleared here for safety)
   lan.rematch = false; lan.foeRematch = false;
   hotseat = false; oppAI = !lan.spec ? false : true;
   setME(lan.side === 'S' ? 'A' : lan.side);
@@ -1537,6 +1601,9 @@ function lanApplyAct(m){
   else if(m.k === 'pow'){ E.power(S, m.side, m.opt || {}); }
   else if(m.k === 'end'){ E.endTurn(S); blogTurn('YOUR TURN ' + Math.ceil(S.turn/2)); log('Your opponent ended their turn.'); lanSend({ t:'HASH', h: lanStateHash() }); }
   render(); checkEnd();
+  // v0.35.5: per-act hash echo — the receiver hashes right after applying each
+  // action, so divergence surfaces within ONE action instead of a whole turn.
+  if(m.k !== 'end') lanSend({ t:'HASH', h: lanStateHash() });
 }
 // local-action choke: the engine call already applied locally; ship the decision
 function lanActPlay(i, tgt){ if(!lan.on || !lan.inMatch || lan.spec) return; lanSend({ t:'ACT', k:'play', side: ME, i, tgt: tgt || null }); }
@@ -1546,6 +1613,7 @@ function lanActEnd(){ if(!lan.on || !lan.inMatch || lan.spec) return; lanSend({ 
 // chat (v0.35.3: 4x bigger, persistent, seat-labeled — "Player One/Two", never "You" for both)
 function lanSeatLabel(side){ return side === 'A' ? 'Player One' : (side === 'B' ? 'Player Two' : 'Spectator'); }
 function lanChatLine(side, x){
+  if(lan.squelch && side !== lan.side) return; // v0.35.5: squelch mutes the foe + spectators — your own lines always show (Hearthstone squelch semantics)
   let el = document.getElementById('lanChatLog');
   if(!el){ el = document.createElement('div'); el.id = 'lanChatLog';
     el.style.cssText = 'position:fixed; left:10px; bottom:64px; z-index:60; color:#e6d8b2; background:#191308ee; border:1px solid #7a6a3f; border-radius:8px; padding:10px 16px; width:min(560px,46vw); pointer-events:none; line-height:1.65; font-size:15.5px; max-height:46vh; overflow:hidden; transition:opacity .8s';
@@ -1576,19 +1644,39 @@ function lanChatOpen(){
   inp.addEventListener('keydown', (ev)=>{ if(ev.key === 'Enter'){ lanChatSend(); inp.blur(); } ev.stopPropagation(); });
   const btn = document.createElement('button'); btn.className = 'themebtn'; btn.style.padding = '8px 16px'; btn.style.fontSize = '15px'; btn.textContent = '➤';
   btn.onclick = lanChatSend;
-  bar.appendChild(inp); bar.appendChild(btn); document.body.appendChild(bar);
+  bar.appendChild(inp); bar.appendChild(btn);
+  // v0.35.5: quick emotes — the Hearthstone insight: with a turn timer, most
+  // in-game talk is "well played" / "your go"; one tap beats typing mid-duel.
+  for(const e of ['⚔ Good luck!', '👏 Well played!', '👉 Your go.', '😮 Nice move!']){
+    const eb = document.createElement('button'); eb.className = 'themebtn';
+    eb.style.cssText = 'padding:8px 10px; font-size:13px'; eb.textContent = e;
+    eb.onclick = ()=>{ lanSend({ t:'CHAT', side: lan.side, x: e }); lanChatLine(lan.side, e); };
+    bar.appendChild(eb);
+  }
+  // v0.35.5: squelch — mute the foe/spectators for this duel (own lines still render)
+  const sq = document.createElement('button'); sq.id = 'lanSquelchBtn'; sq.className = 'themebtn';
+  sq.style.cssText = 'padding:8px 12px; font-size:13px'; sq.title = 'Mute opponent chat for this duel';
+  const sqSet = ()=>{ sq.textContent = lan.squelch ? '🔇' : '🔈'; };
+  sq.onclick = ()=>{ lan.squelch = !lan.squelch; localStorage.setItem('fb-lan-squelch', lan.squelch ? '1' : ''); sqSet(); };
+  sqSet(); bar.appendChild(sq);
+  document.body.appendChild(bar);
 }
 function lanSerialize(){
   return { s: JSON.parse(JSON.stringify(S, (k,v)=> typeof v === 'function' ? undefined : v)), rngS: lanMatchRng ? lanMatchRng.s : null,
            side: lan.side, seed: lan.seed, params: lan.params, active: S.active, turn: S.turn };
 }
 function lanRestore(m){
-  lanMatchRng = lanRng(1); if(m.rngS !== null && m.rngS !== undefined) lanMatchRng.s = m.rngS;
-  lan.seed = m.seed; lan.params = m.params; lan.inMatch = true; lan.on = true;
+  // v0.35.5 CRITICAL FIX: lanSerialize nests everything (s, rngS, seed, params)
+  // under m.s — the old code read m.rngS/m.seed/m.params at the TOP level, so a
+  // reconnect-restore silently dropped the RNG state + seed + params and the
+  // clients were GUARANTEED to diverge on the next random event.
+  const p = m.s || m;
+  lanMatchRng = lanRng(1); if(p.rngS !== null && p.rngS !== undefined) lanMatchRng.s = p.rngS;
+  lan.seed = p.seed; lan.params = p.params; lan.inMatch = true; lan.on = true;
   lan.mullSent = true; lan.foeMull = []; lan.matchShown = true; lan.desynced = false;
   lanQReset(); lanTurnKey = null; lan.foeDiscAt = 0; lan.foeGoneLogged = false;
   hotseat = false; oppAI = false; setME(lan.side === 'S' ? 'A' : lan.side); watch.on = !!lan.spec;
-  S = m.s.s; if(!S.rng) S.rng = lanMatchRng.next;
+  S = p.s; if(!S.rng) S.rng = lanMatchRng.next;
   lastSeen = { hpA:null, hpB:null, minions:{} }; aiAnimSeq++; blogReset();
   document.getElementById('overlay').classList.remove('on');
   show('match'); render();
