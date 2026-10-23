@@ -8023,7 +8023,7 @@
      "passive": {
       "id": "PYROMANCER",
       "name": "Pyromancer",
-      "desc": "Your X-spells (Scorch) deal 1 more damage."
+      "desc": "Your AoE edicts deal 1 more damage."
      },
      "bc": null,
      "dr": null,
@@ -9453,7 +9453,7 @@
      "passive": {
       "id": "AMBUSH",
       "name": "Ambush",
-      "desc": "Your first Charge minion each turn enters with Shock."
+      "desc": "Your first Charge minion each turn enters with +1/+1."
      },
      "file": "annals/crescent/babur.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/annals/crescent/babur.jpg",
@@ -11145,7 +11145,7 @@
      "passive": {
       "id": "SCORCHED_VICTORY",
       "name": "Scorched Victory",
-      "desc": "When your X-spell kills a minion, deal 1 damage to the enemy Sovereign."
+      "desc": "When your edict kills a minion, deal 1 damage to the enemy Sovereign."
      },
      "file": "annals/ironsteppes/cynisca.jpg",
      "img": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/annals/ironsteppes/cynisca.jpg",
@@ -32923,7 +32923,7 @@
      "rl": null,
      "ability": null,
      "passive": {
-      "id": "IRON_LEVEY",
+      "id": "IRON_LEVY",
       "name": "Iron Levy",
       "desc": "At the start of your turn, if you control 3 or more minions, summon a 1/1 Conscript."
      }
@@ -35150,5 +35150,5 @@
    ]
   }
  ],
- "version": "0.32.0"
+ "version": "0.32.1"
 }
