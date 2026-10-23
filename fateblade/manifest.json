@@ -1,5 +1,5 @@
 {
- "version": "0.35.1",
+ "version": "0.35.2",
  "files": [
   {
    "path": "scenes/starwind/the-satrap-s-seal.jpg",
@@ -12946,7 +12946,7 @@
   },
   {
    "path": "data/cards.js",
-   "sha256": "eca9029088462d25b456dad5dd4b086abd5088a1c6be016c7415f2200d1c7fb5",
+   "sha256": "b9c7b11ef86eaf8b4f26e8e993c5920fb82a6bae57ea2c3bf73fca48accc17e0",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/data/cards.js"
   },
   {
@@ -12956,12 +12956,12 @@
   },
   {
    "path": "src/engine.js",
-   "sha256": "68d2f95a3411df0941a2687e2ab4fec80041cb089d8289ca8f8db404ceea4117",
+   "sha256": "28b8641d986318f49d5d903c8f20235993673069f4444793fb362ebe5ff8768b",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/src/engine.js"
   },
   {
    "path": "src/game.html",
-   "sha256": "cab36bfaeda2d59b93eda2ab24a5f947d7511989b0b8812bf2221910bb2d41a1",
+   "sha256": "e3427207c96441150091324a2795c0038b3ee80362df99cf2691b0974ec077da",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/src/game.html"
   },
   {
