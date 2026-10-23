@@ -784,7 +784,7 @@
         else if (c.tset === 'any') { if (!target.hero && !tm && !fm) return false; }
         break;
       case 'selfdmg': if (!target.hero) return false; break;
-      case 'raid': if (!fm) return false; break;
+      case 'raid': if (!fm && !(target.hero && !foe.board.length)) return false; break; // face-only raid when the foe field is empty
       case 'guard': case 'buff': case 'buffself': if (!tm) return false; break;
       case 'heal': if (!target.hero && !tm) return false; break;
       case 'salvage': if (!p.deck.length || (target.salvage !== 'keep' && target.salvage !== 'put')) return false; break;
@@ -815,8 +815,10 @@
         break;
       }
       case 'raid': {
-        S.events.push({ t: 'hit', side, id: 'POWER', dmg: c.dmg, on: fm.id });
-        damageMinion(S, other(side), fm.uid, c.dmg);
+        if (fm) { // empty foe field: face-only raid, the chip rides only the Sovereign
+          S.events.push({ t: 'hit', side, id: 'POWER', dmg: c.dmg, on: fm.id });
+          damageMinion(S, other(side), fm.uid, c.dmg);
+        }
         foe.hp -= pd;
         S.events.push({ t: 'heroHit', side, id: 'POWER', dmg: pd });
         break;
@@ -911,7 +913,7 @@
       case 'draw': return p.deck.length ? {} : null; // Petition the Court: always
       case 'buff2': { const t = big(p.board); return t ? { uid: t.uid } : null; } // Jade Vow: the engine buffs the biggest and its neighbor
       case 'exhume': return (p.fallen.length && p.board.length < 3) ? {} : null; // a small board earns the dead back
-      case 'raid': { const t = big(foe.board.filter((m) => m.hp <= c.dmg)) || big(foe.board); return t ? { uid: t.uid } : null; }
+      case 'raid': { if (!foe.board.length) return { hero: true }; const t = big(foe.board.filter((m) => m.hp <= c.dmg)) || big(foe.board); return t ? { uid: t.uid } : null; }
       case 'delve': return p.hand.some((cd) => effCost(S, side, cd) > p.mana) ? {} : null; // Delve: only when something costlier waits
       default: return null;
     }

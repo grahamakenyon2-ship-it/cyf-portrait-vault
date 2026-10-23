@@ -2101,7 +2101,7 @@ function render(){
       (p.relics && p.relics.length ? `<div class="relics">${p.relics.map(r=>`<span class="rk" title="${r.name}: ${(r.ability||'').replace(/"/g,'&quot;')}">${r.name}</span>`).join('')}</div>` : '');
     el.title = p.sov ? `${p.sov.name} — ${p.sov.passive.name}: ${p.sov.passive.desc}` : '';
     const ptt = (powTargeting && !watch.on && S && S.active==='A') ? E.powerTargets(S,'A') : null; // v0.33: what the armed Realm Command can legally hit
-    const heroTgt = (side==='B' && !watch.on && ((sel&&!castTargeting)||(ptt&&ptt.hero)) && !ai.board.some((m)=>hasKw(m,'Guard')&&!hasKw(m,'Shadow')))
+    const heroTgt = (side==='B' && !watch.on && ((ptt&&ptt.hero) || ((sel&&!castTargeting) && !ai.board.some((m)=>hasKw(m,'Guard')&&!hasKw(m,'Shadow'))))) // v0.33.1: Realm Commands aim at the Sovereign past Guards (and with an empty foe field)
       || (side==='A' && ptt && E.powerKind(S,'A')==='heal' && S.A.hp < 30);
     el.className = 'hero' + (heroTgt ? ' targetable' : ''); // v0.29.0: shadowed Guards cannot be attacked, so they do not wall the hero
     el.onclick = ()=>heroClick(side);
@@ -2217,7 +2217,7 @@ function handClick(i, el){
 function heroClick(side){
   if(watch.on || S.active!=='A' || side!=='B') return;
   if(castTargeting){ castTargeting=null; render(); return; } // v0.20: no hero-target templates yet — clicking the Sovereign cancels aiming
-  if(powTargeting){ if(E.powerKind(S,'A')==='heal'){ if(E.power(S,'A',{hero:true})){ powTargeting=false; render(); checkEnd(); } } return; } // v0.33: Oathward may aim at the own Sovereign (side A highlighted separately)
+  if(powTargeting){ const pk = E.powerKind(S,'A'); if(pk==='heal' || E.powerTargets(S,'A').hero){ if(E.power(S,'A',{hero:true})){ powTargeting=false; render(); checkEnd(); } } return; } // v0.33.1: hero-aimed Realm Commands (Oathward / Broadside / Bolt / Raid face-only)
   if(sel){ if(E.attack(S,'A',sel,{hero:true})){ sel=null; render(); checkEnd(); } else log('A Guard blocks the way.'); }
 }
 function minionClick(side, uid){
