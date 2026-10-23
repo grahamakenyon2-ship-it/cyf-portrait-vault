@@ -1,18 +1,13 @@
 name: Fateblade Sync Cards (from CYF-Cards)
 
-# Self-firing vault sync: patch cards.json + regen wrappers + manifest +
-# guard, all in ONE commit.
-#
-# LESSON (learned v0.30 ship #1): commits made with GITHUB_TOKEN do NOT
-# trigger other workflows, so a sync commit relying on the separate
-# Fateblade Build Cards workflow never fires it. This workflow therefore
-# runs regen-wrappers.mjs itself and commits cards.json + cards.js +
-# manifest.json together, then runs the consistency guard.
-#
-# TRIGGER: agent pushes fateblade/sync-queue.json after a realm PR
-# merge; also runnable by hand from the Actions tab.
-# Idempotent: no-op when everything already matches. The patch script
-# hard-gates the output sha256 (exit 1, no commit) on any mismatch.
+# SYNC-V3 (Oct 23 2026): "ship by bumping the queue" — PAT-free.
+# The agent pushes the source files to the vault in vault format
+# (fateblade/src/*, fateblade/data/cards.json as JSON.stringify(D,null,1)+'\n')
+# plus the sync-queue bump; THIS workflow then recomputes everything:
+# wrappers (cards.js), manifest (all sha256s from the tree, version from
+# cards.json), guard, commit. No per-version patch scripts, no hand-built
+# manifests. The guard runs BEFORE the commit: drift never lands on main.
+# Also runnable by hand from the Actions tab. Idempotent: no-op on clean.
 
 on:
   push:
@@ -36,26 +31,24 @@ jobs:
             fateblade
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
-      - name: Apply pending sha-gated patch (skip if already synced)
+      - name: Sanity (queue version == cards.json version, fresh sync)
         run: |
           set -e
-          CARD=fateblade/data/cards.json
-          ACTUAL=$(sha256sum "$CARD" | cut -d' ' -f1)
-          echo "vault cards.json sha256: $ACTUAL"
-          if [ "$ACTUAL" = "$EXPECTED_OUT" ]; then
-            echo "cards.json already synced - skipping patch"
-          else
-            cp "$CARD" /tmp/cards.json
-            FB_CARDS_PATH=/tmp/cards.json node fateblade/sync/cards-patch-v0321-sovfix.mjs
-            cp /tmp/cards.json "$CARD"
-            echo "patch applied + sha-gated"
+          QV=$(node -e "const q=require('./fateblade/sync-queue.json');console.log(q.version||q.pending[0].version||'')")
+          CV=$(node -e "const c=require('./fateblade/data/cards.json');console.log(c.version||'')")
+          echo "queue=$QV cards=$CV"
+          if [ "$QV" != "$CV" ]; then
+            echo "SYNC RIG MISMATCH: sync-queue.json version ($QV) != data/cards.json version ($CV) — the agent must push both in the same ship"; exit 1
           fi
-        env:
-          EXPECTED_OUT: '9b42073686d2d673c0835c38199f8d86e0e98c83f213eb5d79c5e38b50da333b'
-      - name: Regen wrappers + manifest (always)
+      - name: Regen wrappers + manifest (recompute from the tree)
         run: |
           set -e
           node fateblade/regen-wrappers.mjs --apply
+          node fateblade/regen-manifest.mjs --apply
+      - name: Guard (drift never ships — runs BEFORE the commit)
+        run: |
+          set -e
+          node fateblade/vault-consistency-guard.mjs
       - name: Commit if anything drifted (with race replay)
         run: |
           set -e
@@ -76,10 +69,11 @@ jobs:
           while read -r p; do
             cp "/tmp/staged/$p" "$p"
           done < /tmp/staged-files.txt
+          SYNCV=$(node -e "const c=require('./fateblade/data/cards.json');console.log(c.version)")
           git config user.name "fateblade-bot"
           git config user.email "fateblade-bot@users.noreply.github.com"
           git add -A fateblade
-          git commit -m "vault sync: cards.json v0.32.1 sovfix + wrappers + manifest (sha-gated patch, queue-triggered)"
+          git commit -m "vault sync: version $SYNCV — recompute wrappers+manifest+guard (SYNC-V3, queue-triggered)"
           if ! git push origin main; then
             echo "push raced; replaying on fresh main"
             sleep 15
@@ -89,10 +83,10 @@ jobs:
               cp "/tmp/staged/$p" "$p"
             done < /tmp/staged-files.txt
             git add -A fateblade
-            git commit -m "vault sync: cards.json v0.32.1 sovfix + wrappers + manifest (sha-gated patch, queue-triggered)"
+            git commit -m "vault sync: version $SYNCV — recompute wrappers+manifest+guard (SYNC-V3, queue-triggered)"
             git push origin main
           fi
-      - name: Guard (drift never ships)
+      - name: Guard again post-commit
         run: |
           set -e
           node fateblade/vault-consistency-guard.mjs

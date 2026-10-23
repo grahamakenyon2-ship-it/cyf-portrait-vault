@@ -1,10 +1,4 @@
 {
-  "pending": [
-    {
-      "patch": "cards-patch-v0321-sovfix.mjs",
-      "version": "0.32.1",
-      "output_sha256": "9b42073686d2d673c0835c38199f8d86e0e98c83f213eb5d79c5e38b50da333b"
-    }
-  ],
-  "note": "v0.32.1 sovfix sync (queue-triggered)"
+  "version": "0.32.1",
+  "note": "SYNC-V3 PAT-free recompute rig live (smoke test on clean 0.32.1 state)"
 }
