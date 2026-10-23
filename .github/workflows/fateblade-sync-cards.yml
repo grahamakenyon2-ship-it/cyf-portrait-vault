@@ -46,12 +46,12 @@ jobs:
             echo "cards.json already synced - skipping patch"
           else
             cp "$CARD" /tmp/cards.json
-            FB_CARDS_PATH=/tmp/cards.json node fateblade/sync/cards-patch-v030-courts.mjs
+            FB_CARDS_PATH=/tmp/cards.json node fateblade/sync/cards-patch-v031-realms.mjs
             cp /tmp/cards.json "$CARD"
             echo "patch applied + sha-gated"
           fi
         env:
-          EXPECTED_OUT: '22c7fc314fdaafd7a736d0d42498e8c4b8036de9323b3f3a48ab73e911871e8d'
+          EXPECTED_OUT: '344c64a740a77a524931925d235c0a651af7b3ec97e80b18fc599405df2c0423'
       - name: Regen wrappers + manifest (always)
         run: |
           set -e
@@ -79,7 +79,7 @@ jobs:
           git config user.name "fateblade-bot"
           git config user.email "fateblade-bot@users.noreply.github.com"
           git add -A fateblade
-          git commit -m "vault sync: cards.json v0.30.0 courts redesign + wrappers + manifest (sha-gated patch, queue-triggered)"
+          git commit -m "vault sync: cards.json v0.31.0 realms 2-16 redesign + wrappers + manifest (sha-gated patch, queue-triggered)"
           if ! git push origin main; then
             echo "push raced; replaying on fresh main"
             sleep 15
@@ -89,7 +89,7 @@ jobs:
               cp "/tmp/staged/$p" "$p"
             done < /tmp/staged-files.txt
             git add -A fateblade
-            git commit -m "vault sync: cards.json v0.30.0 courts redesign + wrappers + manifest (sha-gated patch, queue-triggered)"
+            git commit -m "vault sync: cards.json v0.31.0 realms 2-16 redesign + wrappers + manifest (sha-gated patch, queue-triggered)"
             git push origin main
           fi
       - name: Guard (drift never ships)
