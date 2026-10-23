@@ -1,4 +1,4 @@
 {
   "version": "0.32.1",
-  "note": "v0.33.1 Raid face-only cast hotfix — engine + game.html; version label follows cards.json (next data release)"
+  "note": "v0.33.2 Realm Command telemetry (power/powerSkip events; report-only, decisions unchanged); version label follows cards.json (next data release)"
 }

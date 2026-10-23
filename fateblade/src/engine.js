@@ -794,7 +794,15 @@
       case 'delve': break; // the deep holds always answer
     }
     // commit
-    p.power = true; p.mana -= powerCost(S, side);
+    // v0.33.2 POWER TELEMETRY: one marker per cast (id = command name). The
+    // harness reports key off it — every POWER-keyed hit/heroHit/buff/passive
+    // event that follows belongs to this cast (a side casts at most once a
+    // turn, so the nearest preceding marker of that side owns them).
+    const pcost = powerCost(S, side);
+    p.power = true; p.mana -= pcost;
+    S.events.push({ t: 'power', side, id: c.name, kind: c.kind, cost: pcost, base: c.cost, fr: pcost < c.cost,
+      hero: !!target.hero, uid: target.uid || null, choice: target.salvage || null,
+      foeBoard: foe.board.length, ownBoard: p.board.length, turn: S.turn });
     switch (c.kind) {
       case 'summon': { p.board.push(token(p, S)); refreshPrim(S); S.events.push({ t: 'play', side, id: 'TOKEN', uid: 'TOKEN' + p.board.length, kw: null, cost: 1 }); break; }
       case 'dmg':
@@ -920,6 +928,17 @@
   }
 
   function endTurn(S) {
+    // v0.33.2 POWER TELEMETRY: the closing side never cast its command and
+    // could still afford it at turn end — the report reads this as AI
+    // refusal/under-use (for marches, foeBoard 0 skips = the pre-v0.33.1
+    // dead-state frequency the Raid hotfix removed).
+    {
+      const ep = S[S.active];
+      const cc = realmCmd(S, S.active);
+      if (cc && !ep.power && ep.mana >= powerCost(S, S.active))
+        S.events.push({ t: 'powerSkip', side: S.active, id: cc.name, cost: powerCost(S, S.active),
+          mana: ep.mana, foeBoard: S[other(S.active)].board.length, turn: S.turn });
+    }
     // v0.26: sovereign overhaul — end-of-turn hooks for the closing side
     {
       const ep = S[S.active];
