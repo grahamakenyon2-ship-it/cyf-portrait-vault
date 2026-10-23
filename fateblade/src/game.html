@@ -526,6 +526,14 @@
   .mcard .kw{position:absolute; top:3px; right:3px; font-size:10px; background:#000c; color:#8fd;
     padding:1px 4px; letter-spacing:1px; cursor:help; height:auto;}
   .mcard .gem.atk{bottom:2px; left:4px;} .mcard .gem.hp{bottom:2px; right:4px;}
+  /* v0.31.1 KEYWORD EMBLEMS: kwBadges now wraps its chips in a .kwbadges cluster
+     (top-left on board minions, top-right on hand/mulligan cards). Each chip is a
+     glyph pill — the keyword NAME lives in the hover tooltip and the zoom, so the
+     board reads like a tabletop: icons at a glance, words on inspection. */
+  .kwbadges{position:absolute; top:2px; left:2px; display:flex; gap:2px; z-index:3;}
+  .hcard .kwbadges, .mcard .kwbadges{left:auto; right:3px; top:3px;}
+  .kwbadges .kw{position:static; top:auto; right:auto; left:auto; height:auto; display:flex; align-items:center; gap:3px; font-size:13px; line-height:1; padding:2px 4px; background:#000d; border-radius:3px; color:#8fd; cursor:help; white-space:nowrap;}
+  .kwbadges .kw .kwt{display:none;}
   /* v0.9.7 battle FX */
   .dghost{position:absolute; z-index:30; pointer-events:none; border:6px solid transparent;
     border-image:var(--theme-panel, linear-gradient(#2a2216,#191308)) 40; background:#0d0a07;
@@ -788,7 +796,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.30.3';
+const GAME_VERSION = '0.31.1';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
@@ -810,7 +818,8 @@ const THEME = ART.replace(/\/art$/, '/theme'); // v0.28.0 vault housekeeping: th
 window.FB_PATCH = function(msg, pct){ const h = document.getElementById('patchhud'); h.style.display='block'; h.textContent = 'PATCHING: ' + msg + (pct ? ' — ' + pct + '%' : ''); };
 const E = window.FBEngine;
 const hasKw = (o, k) => E.hasKw(o, k); // v0.20: multi-keyword-safe checks
-const kwBadges = (c) => [...E.kwsOf(c)].map((k) => `<div class="kw" data-kw="${k}">${KWTXT[k]||k}</div>`).join(''); // v0.20: one badge per keyword
+const KWGLYPH = { Guard:'🛡', Charge:'⚡', Lifesteal:'🩸', Ranged:'🏹', Shock:'⊘', Aegis:'⛨', Bane:'☠', Relentless:'⚔', Shadow:'☾' }; // v0.31.1: keyword EMBLEMS — the board reads at a glance, the zoom keeps the words
+const kwBadges = (c) => { const ks = [...E.kwsOf(c)]; return ks.length ? '<div class="kwbadges">' + ks.map((k) => `<div class="kw" data-kw="${k}" title="${KWTXT[k]||k} — ${KWDESC[k]||''}">${KWGLYPH[k]||'◆'}<span class="kwt">${KWTXT[k]||k}</span></div>`).join('') + '</div>' : ''; }; // v0.20: one badge per keyword; v0.31.1: glyph pills in a corner cluster (multi-kw rows cleanly)
 const KWTXT = E.KWTXT, KWDESC = E.KWDESC;
 let S = null; // engine match state; you are side 'A' (or watching)
 let me = { pool: null, faction: null, sov: null, deck: null };
@@ -1882,7 +1891,7 @@ function openMull(reveal){
     d.onmouseenter = (ev)=>showZoom(S.A.hand[+d.dataset.i], ev);
     d.onmousemove = moveZoom;
     d.onmouseleave = hideZoom;
-    d.querySelectorAll('.kw[data-kw]').forEach((kwEl)=>{ kwEl.title = KWDESC[kwEl.dataset.kw]; });
+    d.querySelectorAll('.kw[data-kw]').forEach((kwEl)=>{ kwEl.title = (KWTXT[kwEl.dataset.kw]||kwEl.dataset.kw) + ' — ' + KWDESC[kwEl.dataset.kw]; });
   });
   document.getElementById('mull').classList.add('on');
 }
@@ -2123,7 +2132,7 @@ function render(){
         if(side==='B' && !watch.on && S && S.active==='A' && (sel||powTargeting||castTargeting)) showDprevMinion(div); };
       div.onmousemove = moveZoom;
       div.onmouseleave = ()=>{ hideZoom(); clearDprev(); };
-      div.querySelectorAll('.kw').forEach((kwEl)=>{ kwEl.title = KWDESC[kwEl.dataset.kw]; });
+      div.querySelectorAll('.kw').forEach((kwEl)=>{ kwEl.title = (KWTXT[kwEl.dataset.kw]||kwEl.dataset.kw) + ' — ' + KWDESC[kwEl.dataset.kw]; });
     });
   };
   // v0.9.7: remember where the living minions stand — death ghosts dissolve here
@@ -2166,7 +2175,7 @@ function render(){
     d.onmouseenter = (ev)=>showZoom(my.hand[+d.dataset.i], ev);
     d.onmousemove = moveZoom;
     d.onmouseleave = hideZoom;
-    d.querySelectorAll('.kw[data-kw]').forEach((kwEl)=>{ kwEl.title = KWDESC[kwEl.dataset.kw]; });
+    d.querySelectorAll('.kw[data-kw]').forEach((kwEl)=>{ kwEl.title = (KWTXT[kwEl.dataset.kw]||kwEl.dataset.kw) + ' — ' + KWDESC[kwEl.dataset.kw]; });
   });
   refit(); // v0.9.1: keep the fit-to-window scale correct as the board/hand change
   fxDiff(S); // v0.9.7: lunges, death ghosts + sounds, after the DOM is rebuilt
