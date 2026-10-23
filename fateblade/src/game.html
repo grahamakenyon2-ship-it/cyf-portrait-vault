@@ -51,8 +51,19 @@
   .cardpick .idn{font-size:13px; color:var(--abil); font-style:italic; margin-top:4px;}
 
   /* ===== main menu ===== */
-  #menu .menubtn{width:480px; font-size:21px; padding:16px; margin:4px;}
-  #menu .menubtn small{display:block; font-size:13px; letter-spacing:1px; color:#c9b78e; margin-top:2px; text-transform:none;}
+  /* v0.30.2 showcase layout: Hearthstone-style centerpiece — giant PLAY plate
+     flanked by two stacks of secondary action plates, SOVD showcase below. */
+  #menuGrid{display:flex; gap:34px; align-items:center; justify-content:center; margin-top:8px;}
+  .mcol{display:flex; flex-direction:column; gap:12px; width:340px;}
+  #menu .menubtn{width:340px; font-size:16px; padding:13px 16px; margin:0;}
+  #menu .menubtn small{display:block; font-size:12.5px; letter-spacing:1px; color:#c9b78e; margin-top:2px; text-transform:none;}
+  .playbig{width:340px; padding:36px 12px; border-width:3px; border-color:var(--gold);
+    animation:playGlow 2.8s ease-in-out infinite; text-align:center;}
+  .playbig b{display:block; font-family:'Cinzel', Georgia, serif; font-size:46px; letter-spacing:9px;
+    color:var(--gold); text-shadow:0 2px 10px #000, 0 0 26px #c9a24b55;}
+  .playbig small{display:block; font-size:13px; letter-spacing:1px; color:#c9b78e; margin-top:10px; text-transform:none;}
+  .playbig:hover{transform:translateY(-4px) scale(1.02); box-shadow:0 16px 34px #000c, 0 0 28px #c9a24b55;}
+  @keyframes playGlow{0%,100%{box-shadow:0 12px 30px #000c, 0 0 16px #c9a24b2e;} 50%{box-shadow:0 12px 34px #000c, 0 0 34px #c9a24b66;}}
   #poolRow{margin-top:10px;}
 
   /* ===== match ===== */
@@ -77,6 +88,13 @@
      portrait-crop pass trimmed the in-image dead margins this overscale was
      masking (--artzoom back over 1.0 is available if future art needs it). */
   .artclip{position:relative; overflow:hidden;}
+  /* v0.30.2 HAND ART FIX: the hand template wraps art in .artclip (state-clarity
+     overlays), but .hcard img is position:absolute inset:0 (full-bleed card design)
+     — an absolute child is OUT OF FLOW, so artclip collapsed to ZERO HEIGHT and
+     every hand card rendered its art 154px x 0px. In the hand, the clip fills the
+     card itself (hcard is position:relative) so the art paints full-bleed behind
+     the vig gradient + gems, as the full-bleed rules intend. */
+  .hcard .artclip{position:absolute; inset:0; overflow:hidden;}
   .artclip img{transform:scale(var(--artzoom,1.0)); transform-origin:50% 22%;}
   .minion .nm{font-size:14.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding:1px 3px; background:#000c;}
   .minion .atk{position:absolute; bottom:2px; left:4px; font-size:22px; color:var(--atk); text-shadow:0 0 4px #000;}
@@ -615,15 +633,21 @@
 <!-- ============ MAIN MENU ============ -->
 <div id="menu" class="screen on">
   <h1>FATEBLADE<small id="dver">CARDS FROM THE VAULT · v0.8</small></h1>
-  <button class="menubtn themebtn" onclick="startTutorial()" id="tutMenuBtn">🎓 TUTORIAL<small id="tutMenuSub">learn the field in one guided duel — recommended for new players</small></button>
-  <button class="menubtn themebtn" onclick="menuSingle()">⚔ SINGLE PLAYER<small>battle the AI with your realm's deck</small></button>
-  <button class="menubtn themebtn" onclick="showCampaigns()">📜 CAMPAIGNS<small>eight-chapter sagas — The Ironroad &amp; The Broken Oath</small></button>
-  <button class="menubtn themebtn" onclick="menuDeckBuilder()">▦ DECK BUILDER<small>choose 10 cards from your realm's roster</small></button>
-  <button class="menubtn themebtn" onclick="watchMatch()">▶ WATCH AN AI DUEL<small>visual playtest with live commentary</small></button>
-  <button class="menubtn themebtn" onclick="showMultiplayer()">✦ MULTIPLAYER<small>online duels — coming soon</small></button>
+  <div id="menuGrid">
+    <div class="mcol">
+      <button class="menubtn themebtn" onclick="showCampaigns()">📜 CAMPAIGNS<small>eight-chapter sagas — The Ironroad &amp; The Broken Oath</small></button>
+      <button class="menubtn themebtn" onclick="menuDeckBuilder()">▦ DECK BUILDER<small>forge your realm's deck from its full roster</small></button>
+      <button class="menubtn themebtn" onclick="startTutorial()" id="tutMenuBtn">🎓 TUTORIAL<small id="tutMenuSub">one guided duel — learn the field in five minutes</small></button>
+    </div>
+    <button class="playbig themebtn" onclick="menuSingle()"><b>⚔ PLAY</b><small>single player — battle the AI with your realm's deck</small></button>
+    <div class="mcol">
+      <button class="menubtn themebtn" onclick="watchMatch()">▶ WATCH AN AI DUEL<small>visual playtest with live commentary</small></button>
+      <button class="menubtn themebtn" onclick="showMultiplayer()">✦ MULTIPLAYER<small>online duels — coming soon</small></button>
+      <button class="menubtn themebtn" onclick="showSettings()">⚙ SETTINGS<small>theme art, AI difficulty, watch speed, saved decks</small></button>
+      <button class="menubtn themebtn" onclick="quitToDesktop()">✖ QUIT TO DESKTOP<small>close Fateblade</small></button>
+    </div>
+  </div>
   <div id="sovd" style="display:none"></div>
-  <button class="menubtn themebtn" onclick="showSettings()">⚙ SETTINGS<small>theme art, AI difficulty, watch speed, saved decks</small></button>
-  <button class="menubtn themebtn" onclick="quitToDesktop()">✖ QUIT TO DESKTOP<small>close Fateblade</small></button>
   <div id="quitNote" style="display:none;max-width:420px;text-align:center;font-size:13px;color:#c9b78e">Your browser kept this tab open — close the tab to exit. (The desktop app closes itself.)</div>
 </div>
 
@@ -758,7 +782,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.30.1';
+const GAME_VERSION = '0.30.2';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
