@@ -6,5 +6,5 @@
       "output_sha256": "22c7fc314fdaafd7a736d0d42498e8c4b8036de9323b3f3a48ab73e911871e8d"
     }
   ],
-  "note": "sync-queue push triggers fateblade-sync-cards.yml; v3 regen included"
+  "note": "v3.1 regen-included sync, rerun after vestigial-step fix"
 }

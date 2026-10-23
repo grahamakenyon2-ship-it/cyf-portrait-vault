@@ -56,7 +56,7 @@ jobs:
         run: |
           set -e
           node fateblade/regen-wrappers.mjs --apply
-      - name: Commit if anything drifted
+      - name: Commit if anything drifted (with race replay)
         run: |
           set -e
           git add -A fateblade
@@ -65,22 +65,6 @@ jobs:
             exit 0
           fi
           # Replayable-artifact pattern: never pull --rebase.
-          mkdir -p /tmp/staged
-          git diff --cached --name-only | while read -r p; do
-            mkdir -p "/tmp/staged/$(dirname "$p")"
-            cp "$p" "/tmp/staged/$p"
-          done
-          git fetch origin main
-          git reset --hard origin/main
-          while read -r p; do
-            cp "/tmp/staged/$p" "$p"
-          done < /tmp/staged-files.txt
-        # (list built below to survive replay)
-      - name: Commit cards (with race replay)
-        run: |
-          set -e
-          git add -A fateblade
-          if git diff --cached --quiet; then echo "NO DRIFT"; exit 0; fi
           git diff --cached --name-only > /tmp/staged-files.txt
           mkdir -p /tmp/staged
           while read -r p; do
