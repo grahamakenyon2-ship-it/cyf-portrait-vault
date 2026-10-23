@@ -489,6 +489,14 @@
     0%,100%{border-color:#c25b2a; box-shadow:0 0 10px #e2662b77, inset 0 0 10px #e2662b33; color:#ffd9a8;}
     50%{border-color:#ff9a55; box-shadow:0 0 26px #ff7a2ecc, inset 0 0 16px #ff7a2b55; color:#ffe9c9;}}
   #endbtn.lethal{animation:emberPulse 1.1s ease-in-out infinite;}
+  /* ---- v0.35.4: LAN turn timer — the rope (last 20s of a 75s turn) + the clock pill ---- */
+  #endbtn.rope{animation:lanRope .8s ease-in-out infinite;}
+  @keyframes lanRope{
+    0%,100%{border-color:#c25b2a; box-shadow:0 0 8px #e2662b66; color:#ffcf9e;}
+    50%{border-color:#ff5a3c; box-shadow:0 0 26px #ff5a3c; color:#ffe4d1;}}
+  #lanClock{position:fixed; right:10px; bottom:10px; z-index:60; display:none; pointer-events:none;
+    background:#191308ee; border:1px solid #7a6a3f; border-radius:8px; padding:8px 16px;
+    color:#e6d8b2; font-size:15px; font-weight:600; letter-spacing:.5px;}
   /* live targeting arrow — drawn from the attacker/aimed card to the cursor while choosing a target */
   #aimArrow{position:fixed; inset:0; width:100%; height:100%; pointer-events:none; z-index:60; display:none;}
 
@@ -1052,6 +1060,7 @@ function backToMenu(){ // v0.9.8: leaving a match must also drop the victory/def
   camp.active=null; camp.rule=null; aiAnimSeq++; show('menu'); sel=null; powTargeting=false; castTargeting=null; S=null; stopWatch(); applyTheme(null);
   hotseat = false; hs = null; setME('A'); oppAI = true; // v0.35: local-duel state never leaks into the next solo match
   lan.on = false; lan.inMatch = false; lan.ready = null; lan.foeReady = null; lan.spec = false; // v0.35: LAN link drops with the match
+  lanQReset(); const lc = document.getElementById('lanClock'); if(lc) lc.style.display = 'none'; // v0.35.4: pacing queue + timer die with the match
   try{ lan.ws && lan.ws.close(); }catch(e){} lan.ws = null;
   for(const id of ['lanChatBar','lanChatLog']){ const el = document.getElementById(id); if(el) el.remove(); }
 }
@@ -1126,7 +1135,14 @@ const lan = {
   ready:null, foeReady:null, mullSent:false, foeMull:null, matchShown:false,
   spec:false, params:null, rematch:false, foeRematch:false, lastAddr:null,
   room:null, role:null, name:'?', resume:null, lastRoomSeats:null, foeName:'',
+  foeVer:null, foeDiscAt:0, foeGoneLogged:false,
 };
+// v0.35.4: the LAN protocol version this build speaks — the handshake gate
+// below REFUSES cross-version duels (deterministic lockstep between two
+// different builds is a guaranteed desync, and the patcher means two machines
+// on one LAN are often on different versions). Bump this EVERY release that
+// changes game.html, together with the vault manifest version.
+const FB_LAN_VER = '0.35.4';
 function lanHashSeed(str){ let h = 2166136261 >>> 0; for(let i=0;i<str.length;i++){ h ^= str.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; } return h >>> 0; }
 function lanRng(seed){ // state-object rng so reconnect RESUME can serialize it
   const r = { s: seed >>> 0, next(){ r.s |= 0; r.s = (r.s + 0x6D2B79F5) | 0; let t = Math.imul(r.s ^ (r.s >>> 15), 1 | r.s); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; } };
@@ -1140,6 +1156,65 @@ function lanStateHash(){
     return h + ':' + j.length; } catch(e){ return 'ERR'; }
 }
 function lanSend(m){ if(lan.ws && lan.ws.readyState === 1) lan.ws.send(JSON.stringify(m)); }
+// v0.35.4: PACED REMOTE ACTIONS — received ACTs (and the end-of-turn HASH that
+// follows them) flow through a ~430ms-beat queue so an opponent's turn UNFOLDS
+// instead of dumping all at once (Hearthstone-style reveal pacing). The HASH
+// rides the same queue: comparing it while their end-ACT is still pending
+// would be a guaranteed false DESYNC.
+let lanActQ = [], lanActBusy = false, lanActTimer = null;
+function lanQReset(){ lanActQ = []; lanActBusy = false; if(lanActTimer){ clearTimeout(lanActTimer); lanActTimer = null; } }
+function lanEnqueue(m){ lanActQ.push(m); if(!lanActBusy) lanDrain(); }
+function lanDrain(){
+  if(!lan.inMatch){ lanQReset(); return; }
+  const m = lanActQ.shift();
+  if(!m){ lanActBusy = false; return; }
+  lanActBusy = true;
+  try{ if(m.t === 'ACT') lanApplyAct(m);
+    else if(m.t === 'HASH'){ if(m.h !== lanStateHash() && !lan.desynced){ lan.desynced = true; log('⚠ DESYNC DETECTED — the clients disagree on the game state. Both players: click ↻ REMATCH to restart the duel with a fresh seed.'); } }
+  }catch(e){}
+  lanActTimer = setTimeout(lanDrain, 430);
+}
+// v0.35.4: TURN TIMER (Hearthstone rope pattern) — 75s per turn, the last 20s
+// burn (rope glow on END TURN), 0 = the turn ends itself. The clock also
+// carries the drop countdown: while the foe's seat is inside the server's
+// 120s reconnect grace it reads OPPONENT OFFLINE — Ns, and once their seat is
+// freed it says so permanently. Runs LAN matches only; AI/hotseat/campaign
+// stay untimed.
+const LAN_TURN_MS = 75000;
+let lanClockIv = null, lanTurnKey = null, lanTurnT0 = 0, lanEndedTurn = false;
+function lanClockTick(){
+  const el = document.getElementById('lanClock');
+  if(!el) return;
+  const seats = lan.lastRoomSeats;
+  if(!lan.inMatch || !S || !lan.matchShown){ el.style.display = 'none'; return; }
+  el.style.display = 'block';
+  const eb = document.getElementById('endbtn');
+  if(lan.side !== 'S' && seats && seats[FOE] && !seats[FOE].connected){ // foe inside the 120s reconnect grace
+    if(!lan.foeDiscAt) lan.foeDiscAt = Date.now();
+    const left = Math.max(0, 120 - Math.floor((Date.now() - lan.foeDiscAt) / 1000));
+    el.innerHTML = `📴 OPPONENT OFFLINE — <b style="color:var(--gold)">${left}s</b> to rejoin`;
+    if(eb) eb.classList.remove('rope');
+    return;
+  }
+  if(lan.foeDiscAt) lan.foeDiscAt = 0;
+  if(lan.side !== 'S' && seats && !seats[FOE]){ // grace expired — the server freed their seat
+    el.innerHTML = '📴 OPPONENT LEFT THE DUEL';
+    if(!lan.foeGoneLogged){ lan.foeGoneLogged = true; log('⚠ Your opponent did not return in time — their seat was released. You can wait for them to rejoin, or ↻ REMATCH once they are back.'); }
+    if(eb) eb.classList.remove('rope');
+    return;
+  }
+  lan.foeGoneLogged = false;
+  const key = S.active + ':' + S.turn; // fresh clock per side+turn
+  if(key !== lanTurnKey){ lanTurnKey = key; lanTurnT0 = Date.now(); lanEndedTurn = false; }
+  const left = Math.max(0, LAN_TURN_MS - (Date.now() - lanTurnT0));
+  const secs = Math.ceil(left / 1000);
+  const mine = (S.active === ME && !lan.spec);
+  el.innerHTML = (mine ? '⏳ YOUR TURN — <b style="color:var(--gold)">' : '⌛ ' + lanSeatLabel(S.active) + ' THINKING — <b style="color:#c9b78e">') + secs + '</b>s';
+  if(eb) eb.classList.toggle('rope', mine && left <= 20000 && left > 0);
+  if(mine && left <= 0 && !lanEndedTurn){ lanEndedTurn = true; log('⏱ Time up — your turn ends.'); endTurn(); }
+}
+function lanClockStart(){ if(!lanClockIv) lanClockIv = setInterval(lanClockTick, 250); }
+window.addEventListener('load', ()=>{ const c = document.createElement('div'); c.id = 'lanClock'; document.body.appendChild(c); lanClockStart(); });
 function lanTag(){ return (lan.on && !lan.inMatch) ? 'LAN DUEL — ' : ''; }
 function lanMenu(){
   const m = document.getElementById('mp');
@@ -1277,6 +1352,7 @@ function lanBoot(){ // v0.35.1: game-browser redirect → #srv=host:port&room=ID
 window.addEventListener('load', ()=> setTimeout(lanBoot, 250));
 function lanFail(t){
   const wasMatch = lan.inMatch; lan.on = false; lan.inMatch = false; lan.ready = null; lan.foeReady = null;
+  lanQReset();
   try{ lan.ws && lan.ws.close(); }catch(e){}
   lan.ws = null;
   if(wasMatch) log('⚠ ' + t); else lanStatus(t);
@@ -1300,7 +1376,8 @@ function lanOnMsg(m){
   }
   if(m.t === 'WELCOME'){
     lan.side = m.side; lan.token = m.token;
-    if(m.side === 'S'){ // Phase 2: spectator seats render everything and act on nothing
+    lanSend({ t:'VER', side: lan.side, v: FB_LAN_VER }); // v0.35.4: announce our build so the handshake gate can compare
+    if(lan.side === 'S'){ // Phase 2: spectator seats render everything and act on nothing
       lan.on = true; lan.inMatch = false; lan.spec = true;
       lanStatus('Seated as a SPECTATOR — you will see the duel once it begins.');
       lanSend({ t:'RESYNC' }); // if a match is already live, a player streams us the state
@@ -1331,7 +1408,17 @@ function lanOnMsg(m){
     else if(!lan.ready && !lan.inMatch) lanStatus('Your foe is ready — pick your realm to begin.');
     return;
   }
-  if(m.t === 'START'){ lanStartMatch(m.p); return; }
+  if(m.t === 'START'){
+    // v0.35.4 handshake gate: never run lockstep against a different build.
+    if(lan.side !== 'S' && lan.foeVer !== FB_LAN_VER){
+      const why = !lan.foeVer ? 'Your opponent\'s build predates the version check (v0.35.3 or older).'
+        : ('You are on v' + FB_LAN_VER + ', they are on v' + lan.foeVer + '.');
+      log('⚠ DUEL BLOCKED — ' + why + ' Both players: Settings → Check for Updates, restart, and host again.');
+      lanStatus('Duel blocked — version mismatch. Both players need the same version (Settings → Check for Updates).');
+      return;
+    }
+    lanStartMatch(m.p); return;
+  }
   if(m.t === 'MULL'){
     // v0.35.2: rep MUST be an index array (a bare count used to throw inside
     // lanApplyMull and get eaten by the onmessage try/catch — the foe's mulligan
@@ -1342,11 +1429,15 @@ function lanOnMsg(m){
     if(!lan.mullSent && !lan.spec) lanMullFoeReady();
     lanBeginMatch(); return;
   }
-  if(m.t === 'ACT'){ lanApplyAct(m); return; }
+  if(m.t === 'ACT'){ lanEnqueue(m); return; }
   if(m.t === 'HASH'){
-    if(lan.lastHash === undefined || true){ /* every end-turn: compare */ }
-    const mine = lanStateHash();
-    if(m.h !== mine && !lan.desynced){ lan.desynced = true; log('⚠ DESYNC DETECTED — the clients disagree on the game state. Both players: click ↻ REMATCH to restart the duel with a fresh seed.'); }
+    // v0.35.4: the comparison runs at the END of the pacing queue — if their
+    // end-turn ACT is still draining, an immediate compare would false-DESYNC.
+    lanEnqueue(m);
+    return;
+  }
+  if(m.t === 'VER'){ // v0.35.4 handshake: every client announces its build after seating
+    if(m.side !== 'S' && m.side !== lan.side) lan.foeVer = m.v || 'pre-0.35.4';
     return;
   }
   if(m.t === 'CHAT'){ lanChatLine(m.side, m.x); return; }
@@ -1366,6 +1457,15 @@ function lanReadyUp(){
   else showLobby('Realm locked in — waiting for your opponent…');
 }
 function lanHostStart(){
+  // v0.35.4 handshake gate: a match between two different builds is a
+  // guaranteed desync (the patcher means friends are often versions apart).
+  if(lan.foeVer !== FB_LAN_VER){
+    const why = !lan.foeVer ? 'Your opponent\'s build predates the version check (v0.35.3 or older).'
+      : ('You are on v' + FB_LAN_VER + ', they are on v' + lan.foeVer + '.');
+    showLobby('⚠ DUEL BLOCKED — ' + why + ' Both players: Settings → Check for Updates, restart the game, then ready up again.');
+    log('⚠ Duel blocked — version mismatch with your opponent. Both players need the same version.');
+    return;
+  }
   const seed = 'lan-' + Date.now() + '-' + Math.floor(Math.random()*1e9);
   const p = { facA: lan.ready, facB: lan.foeReady, first: Math.random() < 0.5 ? 'A' : 'B', seed };
   lanSend({ t:'START', p });
@@ -1378,6 +1478,7 @@ function showLobby(t){ const m = document.getElementById('mp'); m.classList.add(
 function lanStartMatch(p){
   lan.params = p; lan.seed = p.seed; lan.inMatch = true; lan.on = true;
   lan.mullSent = false; lan.foeMull = null; lan.matchShown = false; lan.desynced = false;
+  lanQReset(); lanTurnKey = null; lan.foeDiscAt = 0; lan.foeGoneLogged = false; // v0.35.4: fresh pacing queue + fresh clock per match
   lan.rematch = false; lan.foeRematch = false;
   hotseat = false; oppAI = !lan.spec ? false : true;
   setME(lan.side === 'S' ? 'A' : lan.side);
@@ -1485,6 +1586,7 @@ function lanRestore(m){
   lanMatchRng = lanRng(1); if(m.rngS !== null && m.rngS !== undefined) lanMatchRng.s = m.rngS;
   lan.seed = m.seed; lan.params = m.params; lan.inMatch = true; lan.on = true;
   lan.mullSent = true; lan.foeMull = []; lan.matchShown = true; lan.desynced = false;
+  lanQReset(); lanTurnKey = null; lan.foeDiscAt = 0; lan.foeGoneLogged = false;
   hotseat = false; oppAI = false; setME(lan.side === 'S' ? 'A' : lan.side); watch.on = !!lan.spec;
   S = m.s.s; if(!S.rng) S.rng = lanMatchRng.next;
   lastSeen = { hpA:null, hpB:null, minions:{} }; aiAnimSeq++; blogReset();
