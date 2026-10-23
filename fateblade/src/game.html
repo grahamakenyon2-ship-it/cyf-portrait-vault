@@ -89,6 +89,7 @@
   .minion.shielded{outline:2px solid #9cf; box-shadow:0 0 10px #9cf9, inset 0 0 12px #9cf4;}
   .minion.auraholder{outline:2px solid #ffd76e; box-shadow:0 0 10px #ffd76e66, inset 0 0 12px #ffd76e22;} /* v0.27.0: the banner-bearer's gift glows gold */
   .minion.enraged{outline:2px solid #ff5a4a; box-shadow:0 0 10px #ff5a4a88, inset 0 0 12px #ff5a4a22;} /* v0.27.0: wounded and furious — red ember rim */
+  .minion.shadowed{outline:2px solid #9d8cff; box-shadow:0 0 10px #9d8cff88, inset 0 0 12px #9d8cff22;} /* v0.29.0: veiled in dusk-violet until it strikes */
   .minion .ragebadge{position:absolute; top:2px; right:2px; font-size:13.5px; background:#000d; padding:1px 3px; color:#ff7a6a; text-shadow:0 0 4px #ff5a4a;} /* v0.27.0: 🔥 badge while enraged */
   .hand{display:flex; gap:12px; justify-content:center; min-height:220px; align-items:flex-end;}
   /* v0.13 JUICE: the hand fans in an arc — per-card rotation/lift come from
@@ -732,7 +733,7 @@ const _ver = v => String(v || '0.0.0').split('.').map(Number);
 const _older = (a, b) => { const x = _ver(a), y = _ver(b); for (let i = 0; i < 3; i++) if ((x[i]||0) !== (y[i]||0)) return (x[i]||0) < (y[i]||0); return false; };
 // v0.9.5: UI shell version — the menu shows the HIGHER of this and the data
 // version, so a UI-only release (game.html) is still visible in-game.
-const GAME_VERSION = '0.27.0';
+const GAME_VERSION = '0.29.0';
 let DATA = !window.CARDS_LOCAL ? window.CARDS
   : !window.CARDS ? window.CARDS_LOCAL
   : (window.CARDS.version && _older(window.CARDS_LOCAL.version, window.CARDS.version)) ? window.CARDS
@@ -1934,7 +1935,7 @@ function endTurnReady(){
 // board except Guards (a Guard wall makes face math unreliable — stay silent rather than guess)
 function playerLethal(){
   if(!S || S.active!=='A' || watch.on) return false;
-  if(S.B.board.some(m=>hasKw(m,'Guard'))) return false;
+  if(S.B.board.some(m=>hasKw(m,'Guard')&&!hasKw(m,'Shadow'))) return false; // v0.29.0: a shadowed Guard cannot be attacked, so it does not gate face math
   const ember = S.B.sov && S.B.sov.passive && S.B.sov.passive.id === 'EMBERWARD';
   const shave = ember ? ((S.first==='B' && S.turn<=5) ? 2 : 1) : 0;
   let dmg = 0;
@@ -2022,7 +2023,7 @@ function render(){
     el.innerHTML = `<div class="artclip"><img src="${p.sov ? p.sov.img : p.fac.commander}"></div><div class="nm">${p.fac.label.toUpperCase()}</div>${sov}<div class="hp">${p.hp}</div>` +
       (p.relics && p.relics.length ? `<div class="relics">${p.relics.map(r=>`<span class="rk" title="${r.name}: ${(r.ability||'').replace(/"/g,'&quot;')}">${r.name}</span>`).join('')}</div>` : '');
     el.title = p.sov ? `${p.sov.name} — ${p.sov.passive.name}: ${p.sov.passive.desc}` : '';
-    el.className = 'hero' + (side==='B' && !watch.on && ((sel&&!castTargeting)||powTargeting) && !ai.board.some((m)=>hasKw(m,'Guard')) ? ' targetable' : '');
+    el.className = 'hero' + (side==='B' && !watch.on && ((sel&&!castTargeting)||powTargeting) && !ai.board.some((m)=>hasKw(m,'Guard')&&!hasKw(m,'Shadow')) ? ' targetable' : ''); // v0.29.0: shadowed Guards cannot be attacked, so they do not wall the hero
     el.onclick = ()=>heroClick(side);
     if(side==='B'){ // v0.13: hover the enemy Sovereign while targeting → damage preview
       el.onmouseenter = ()=>{ if(!watch.on && S && S.active==='A' && (sel||powTargeting)) showDprevHero(); };
@@ -2041,8 +2042,9 @@ function render(){
     const el = document.getElementById(id);
     el.innerHTML = p.board.map(m=>{
       const castable = !!castTargeting && (E.targetSpec(castTargeting.card)==='foe' ? side==='B' : side==='A'); // v0.20: aiming highlights the valid side
-      const targetable = !watch.on && S.active==='A' && ((side==='B'&&(sel||powTargeting)) || castable);
-      return `<div class="minion ${hasKw(m,'Guard')?'guard':''} ${m.ready&&side===S.active?'ready':''} ${targetable?'targetable':''} ${sel===m.uid&&side==='A'?'selected':''} ${m.shield>0?'shielded':''} ${m.aura?'auraholder':''} ${m.rage&&m.maxhp&&m.hp<m.maxhp?'enraged':''}"
+      const atkAim = !!sel && !castTargeting; // v0.29.0: an aimed ATTACK (not a spell/power) — Shadow soaks these
+      const targetable = !watch.on && S.active==='A' && ((side==='B' && ((atkAim && !hasKw(m,'Shadow')) || powTargeting)) || castable); // v0.29.0: spells/powers may still aim at a shadowed body; attacks cannot
+      return `<div class="minion ${hasKw(m,'Guard')?'guard':''} ${m.ready&&side===S.active?'ready':''} ${targetable?'targetable':''} ${sel===m.uid&&side==='A'?'selected':''} ${m.shield>0?'shielded':''} ${m.aura?'auraholder':''} ${m.rage&&m.maxhp&&m.hp<m.maxhp?'enraged':''} ${hasKw(m,'Shadow')?'shadowed':''}"
         data-uid="${m.uid}" data-cid="${m.id}">
         <div class="artclip"><img src="${m.img}" loading="lazy"></div><div class="nm">${m.name}</div>
         ${kwBadges(m)}
@@ -2244,7 +2246,7 @@ function renderDB(){
   // v0.9.5: filter chips (search + cost + type + keyword, Arena/HS style)
   dbChipRow('dbCostChips', [{t:'ALL',v:null},{t:'1',v:'1'},{t:'2',v:'2'},{t:'3',v:'3'},{t:'4',v:'4'},{t:'5',v:'5'},{t:'6',v:'6'},{t:'7+',v:'7+'}], dbFilters.cost, 'cost');
   dbChipRow('dbTypeChips', [{t:'ALL',v:null},{t:'MINIONS',v:'minion'},{t:'EDICTS',v:'edict'},{t:'RELICS',v:'relic'}], dbFilters.type, 'type');
-  dbChipRow('dbKwChips', [{t:'ALL',v:null},{t:'RANGED',v:'Ranged'},{t:'CHARGE',v:'Charge'},{t:'GUARD',v:'Guard'},{t:'LIFESTEAL',v:'Lifesteal'},{t:'SHOCK',v:'Shock'},{t:'BANE',v:'Bane'},{t:'RELENTLESS',v:'Relentless'},{t:'AEGIS',v:'Aegis'}], dbFilters.kw, 'kw'); // v0.19.1: all 8 keywords
+  dbChipRow('dbKwChips', [{t:'ALL',v:null},{t:'RANGED',v:'Ranged'},{t:'CHARGE',v:'Charge'},{t:'GUARD',v:'Guard'},{t:'LIFESTEAL',v:'Lifesteal'},{t:'SHOCK',v:'Shock'},{t:'BANE',v:'Bane'},{t:'RELENTLESS',v:'Relentless'},{t:'AEGIS',v:'Aegis'},{t:'SHADOW',v:'Shadow'}], dbFilters.kw, 'kw'); // v0.19.1: all 8 keywords // v0.29.0: SHADOW joins the filter row
   const tribesAvail = [...new Set(f.cards.concat(gc).map((c)=>c.tribe).filter(Boolean))].sort(); // v0.24: tribes present in this realm's roster + Guild hires
   dbChipRow('dbTribeChips', [{t:'ALL',v:null}].concat(tribesAvail.map((t)=>({t:t.toUpperCase(),v:t}))), dbFilters.tribe, 'tribe'); // v0.24: tribal deck-building filter
   dbChipRow('dbMechChips', [{t:'ALL',v:null},{t:'⚔ BATTLECRY',v:'Battlecry'},{t:'☠ DEATHRATTLE',v:'Deathrattle'}], dbFilters.mech, 'mech'); // v0.22.6: mechanic filter — HS-style

@@ -43,7 +43,7 @@
   const AI_LEVELS = ['easy', 'normal', 'hard', 'impossible']; // v0.25.2: Impossible = hard heuristics + learned residual (RL rig v2, 70.06% vs hard)
 
   const KWTXT = { Guard: 'GUARD', Charge: 'CHARGE', Lifesteal: 'LIFESTEAL', Ranged: 'RANGED',
-    Shock: 'SHOCK', Aegis: 'AEGIS', Bane: 'BANE', Relentless: 'RELENTLESS' };
+    Shock: 'SHOCK', Aegis: 'AEGIS', Bane: 'BANE', Relentless: 'RELENTLESS', Shadow: 'SHADOW' };
   const KWDESC = {
     Guard: 'Enemies must attack this minion before any other target.',
     Charge: 'This minion can attack the turn it is played.',
@@ -53,6 +53,7 @@
     Aegis: 'The first damage this would take is negated.',
     Bane: 'Any minion this damages is destroyed, whatever its remaining health.',
     Relentless: 'This minion can attack twice each turn.',
+    Shadow: 'This minion cannot be attacked until it attacks.',
   };
 
   const other = (side) => (side === 'A' ? 'B' : 'A');
@@ -68,6 +69,20 @@
     return s;
   };
   const hasKw = (o, k) => kwsOf(o).has(k);
+  // ---------- v0.29.0 ENGINE PRIMITIVES II: SHADOW (our Stealth dialect) ----------
+  // A shadowed minion cannot be ATTACKED until it attacks; aimed edicts still
+  // reach it. Shadow is stripped the moment its holder attacks (multi-kw-safe
+  // rebuild — never string-replace a kw list).
+  const shadowed = (m) => hasKw(m, 'Shadow');
+  const stripShadow = (m) => {
+    if (!hasKw(m, 'Shadow')) return;
+    const rest = [...kwsOf(m)].filter((k) => k !== 'Shadow');
+    m.kw = rest.length ? rest.join(', ') : null;
+    KW_CACHE.delete(m);
+  };
+  // Legal ATTACK targets on a board (edicts bypass this). Guards that are
+  // shadowed cannot be attacked, so they do not pull attacks either.
+  const guardsOn = (foe) => foe.board.filter((x) => hasKw(x, 'Guard') && !shadowed(x));
   // v0.23 T2: tribal system — minions carry a `tribe` string (the 15-tribe
   // taxonomy). All payoff templates read the CARD'S OWN tribe (kin-matters design),
   // so one field serves both identity and synergy. Inert on pre-tribe data.
@@ -190,7 +205,17 @@
       S.events.push({ t: 'fatigue', side, dmg: p.fatigue });
       return;
     }
-    if (p.hand.length < MAX_HAND) p.hand.push(p.deck.pop());
+    if (p.hand.length < MAX_HAND) {
+      p.hand.push(p.deck.pop());
+      // v0.29.0 PRIMITIVES II: on-draw triggers fire when the card lands in hand
+      const got = p.hand[p.hand.length - 1];
+      if (got && got.onDraw) {
+        S.events.push({ t: 'trigger', side, id: 'ONDRAW', on: got.id, fx: got.onDraw });
+        if (got.onDraw === 'odDraw') draw(S, side); // guarded: an empty deck fatigues instead of recursing
+        else if (got.onDraw === 'odPing') { const fb = S[other(side)].board; if (fb.length) damageMinion(S, other(side), fb[Math.floor(S.rng() * fb.length)].uid, 1); }
+        else if (got.onDraw === 'odHeal') p.hp = Math.min(MAX_HP, p.hp + 1);
+      }
+    }
     p.drawsThisTurn = (p.drawsThisTurn || 0) + 1; // v0.26: POISON_PEN counts every draw, phase or not
     if (!phase && p.drawsThisTurn >= 2 && hasP(p, 'POISON_PEN') && S[other(side)].board.length) { const t = S[other(side)].board[Math.floor(S.rng() * S[other(side)].board.length)]; S.events.push({ t: 'passive', side, id: 'POISON_PEN', on: t.id }); damageMinion(S, other(side), t.uid, 1 * rites(S, side)); } // Isolelvaine: the second letter cuts deeper
     // v0.15 sovereign draw hooks — only on draws OUTSIDE the draw phase
@@ -401,6 +426,7 @@
     if (hasRelic(p, 'rlVault') && !p.sovOnce.vault) return Math.max(0, c.cost - 1);
     if (hasRelic(S[other(side)], 'rlScales') && c.cost >= 4) return c.cost + 1;
     if (c.tribe && c.tribeCost && p.board.some((m) => m.tribe === c.tribe)) return Math.max(0, c.cost - 1); // v0.23: kin discount — cheaper while a kinsman holds the field
+    if (c.ih && p.hand.some((h) => h !== c && h.tribe === c.ih.tribe)) return Math.max(0, c.cost - (c.ih.amount || 1)); // v0.29.0 PRIMITIVES II: in-hand kin discount — cheaper while you HOLD a kinsman
     return c.cost;
   }
   function canPlay(S, side, i) {
@@ -475,6 +501,15 @@
       if (hasP(p, 'RESONANCE') && ['fxPingAll', 'fxPingAll2', 'fxAoe2', 'fxAoe3'].includes(c.fx)) edictHeroHit(S, side, 'RESONANCE', 1 * rites(S, side)); // Maeaemir: the spire rings with every sweep
       if (hasP(p, 'FARSIGHT') && ['fxScry2', 'fxScry3'].includes(c.fx) && foe.board.length) { const t = foe.board.slice().sort((a, b) => (b.atk + b.hp) - (a.atk + a.hp))[0]; S.events.push({ t: 'passive', side, id: 'FARSIGHT', on: t.id }); damageMinion(S, other(side), t.uid, 1 * rites(S, side)); } // Fenith: the tower's eye marks the target
       if (c.bc) resolveBc(S, side, c, opts, null); // v0.20 A9: multi-part edicts — the battlecry rider resolves after the fx
+      // v0.29.0 PRIMITIVES II: spell-synergy bodies — every friendly minion with
+      // onSpell fires once after the edict resolves (relics do not count).
+      // Effects are minion-level only, never edict casts — no recursion by construction.
+      for (const sm of p.board.slice()) {
+        if (!sm.onSpell || !p.board.includes(sm)) continue; // may have died inside the edict's damage
+        S.events.push({ t: 'trigger', side, id: 'ONSPELL', on: sm.id, fx: sm.onSpell });
+        if (sm.onSpell === 'spPing') { const fb = foe.board; if (fb.length && p.board.includes(sm)) damageMinion(S, other(side), fb[Math.floor(S.rng() * fb.length)].uid, 1); }
+        else if (sm.onSpell === 'spGrow') { if (p.board.includes(sm)) { sm.atk += 1; refreshPrim(S); } }
+      }
       return true;
     }
     // ---- RELICS: persistent seats of power; take a relic slot ----
@@ -617,10 +652,10 @@
     if (!m || !m.ready) return false;
     if (hasKw(m, 'Relentless') && (m.attacks || 0) >= 2) return false; // v0.11: two swings max
     if (target.hero && m.shocked) return false; // v0.11: Shock cannot reach the Sovereign this turn
-    const guards = foe.board.filter((x) => hasKw(x, 'Guard') || (x.tribe && S.laws.some((l) => l.id === 'lawTribeGuard' && l.side !== side && l.tribe === x.tribe))); // v0.23: Tribal Law — enemy kin stand as guards
+    const guards = foe.board.filter((x) => !shadowed(x) && (hasKw(x, 'Guard') || (x.tribe && S.laws.some((l) => l.id === 'lawTribeGuard' && l.side !== side && l.tribe === x.tribe)))); // v0.23: Tribal Law — enemy kin stand as guards // v0.29.0: a shadowed minion (even a Guard) is not attackable, so it never pulls attacks
     if (target.hero) return guards.length === 0;
     const t = foe.board.find((x) => x.uid === target.uid);
-    if (!t) return false;
+    if (!t || shadowed(t)) return false; // v0.29.0: Shadow — cannot be attacked until it attacks
     return guards.length === 0 || hasKw(t, 'Guard') || (t.tribe && S.laws.some((l) => l.id === 'lawTribeGuard' && l.side !== side && l.tribe === t.tribe)); // v0.23: law-guarded kin are attackable, like any guard
   }
   function attack(S, side, uid, target) {
@@ -628,6 +663,7 @@
     const p = S[side], foe = S[other(side)];
     const m = p.board.find((x) => x.uid === uid);
     m.attacks = (m.attacks || 0) + 1;
+    stripShadow(m); // v0.29.0: Shadow drops the moment its holder attacks
     m.ready = hasKw(m, 'Relentless') && m.attacks < 2; // v0.11: Relentless swings twice
     if (target.hero) {
       const dealt = heroDamage(S, other(side), m.atk, true);
@@ -967,10 +1003,10 @@
 
     // attacks: aims face more often than it should, trades at random otherwise
     const legalTargets = () => {
-      const guards = foe.board.filter((m) => hasKw(m, 'Guard'));
+      const guards = guardsOn(foe); // v0.29.0: shadowed guards do not pull attacks
       if (guards.length) return guards.map((g) => ({ uid: g.uid }));
       if (S.rng() < 0.65 || !foe.board.length) return [{ hero: true }];
-      const opts = foe.board.map((t) => ({ uid: t.uid }));
+      const opts = foe.board.filter((t) => !shadowed(t)).map((t) => ({ uid: t.uid })); // v0.29.0: never aim at a shadowed body
       return [opts[Math.floor(S.rng() * opts.length)]];
     };
     me.board.slice().forEach((m) => {
@@ -994,7 +1030,7 @@
     const spy = spyRead(S, side); // v0.18: count their outs
     const pd0 = canPower(S, side) ? powerDmg(S, side) : 0;
     const readyAtk0 = me.board.filter((m) => m.ready).reduce((s, m) => s + m.atk, 0);
-    const lethal = !foe.board.some((m) => hasKw(m, 'Guard')) && foe.hp <= readyAtk0 + pd0 + burnInHand(S, side);
+    const lethal = !guardsOn(foe).length && foe.hp <= readyAtk0 + pd0 + burnInHand(S, side);
 
     // v0.17 plays: contextual value with a hold threshold — no AOE into thin
     // boards, no buffs with no carriers; Guards/removal jump the queue under fire.
@@ -1031,7 +1067,7 @@
     }
 
     // attacks
-    const guard = () => foe.board.some((m) => hasKw(m, 'Guard'));
+    const guard = () => guardsOn(foe).length > 0; // v0.29.0: shadowed guards do not pull attacks
     // v0.18: against Scorched Earth, going face sweeps our own 1-HP board —
     // a player checks their leader before swinging
     const scorchCautious = spy.foeScorched && me.board.filter((m) => m.hp === 1).length >= 3 && foe.hp > 15 && !lethal;
@@ -1040,7 +1076,7 @@
       if (!foe.board.length && !guard() && !m.shocked && !scorchCautious) { atk(m.uid, { hero: true }); return; }
       if (foe.hp <= m.atk && !guard() && !m.shocked) { atk(m.uid, { hero: true }); return; }
       // favorable trades: kill something without dying (or dying to something smaller than us)
-      const opts = foe.board.filter((t) =>
+      const opts = foe.board.filter((t) => !shadowed(t) &&
         t.hp <= m.atk && (hasKw(m, 'Ranged') || m.hp > t.atk || t.atk < m.atk));
       if (opts.length) {
         const t = opts.sort((a, b) => b.atk - a.atk)[0];
@@ -1051,7 +1087,7 @@
       // v0.6.4: never pass forever into a Guard wall — kill one if possible,
       // otherwise chip the weakest Guard (the old pass-only behavior stalled
       // 12-14% of games at the turn cap).
-      const gs2 = foe.board.filter((t) => hasKw(t, 'Guard'));
+      const gs2 = guardsOn(foe);
       if (gs2.length) {
         const kill = gs2.filter((t) => t.hp <= m.atk).sort((a, b) => b.atk - a.atk)[0];
         const chip = kill || gs2.slice().sort((a, b) => a.hp - b.hp)[0];
@@ -1193,6 +1229,12 @@
     if (c.rage) v += (RAGE_SPECS[c.rage] || 0) * 0.6;
     if (c.t0) v += ({ ttPing: 0.8, ttHeal: 0.5, ttDraw: 1.4, ttSummon: 1.2 }[c.tt] || 1.0);
     if (c.bc === 'bcPerm') v += p.board.length * 1.1;
+    // v0.29.0 PRIMITIVES II: price Shadow by its guaranteed setup turn, and the
+    // new triggers by what they accomplish in context
+    if (hasKw(c, 'Shadow')) v += 0.5; // one guaranteed turn of setup, premium on utility bodies
+    if (c.ih) v += p.hand.filter((h) => h !== c && h.tribe === c.ih.tribe).length ? 0.4 : 0;
+    if (c.onDraw) v += ({ odDraw: 1.4, odPing: 0.7, odHeal: 0.4 }[c.onDraw] || 0.5);
+    if (c.onSpell) v += ({ spPing: 0.9, spGrow: 0.7 }[c.onSpell] || 0.5);
     // v0.12: deathrattle value scales with magnitude (dr quality mattered in the audit)
     // v0.12: every v0.11 dr template keeps its exact old score (flat 0.9);
     // only the NEW magnitude templates scale — old data must play identically
@@ -1246,7 +1288,7 @@
     }
 
     // lethal check BEFORE acting: if the board can end it, everything goes face
-    const guards = () => foe.board.filter((m) => hasKw(m, 'Guard'));
+    const guards = () => guardsOn(foe); // v0.29.0: shadowed guards do not pull attacks
     const readyAtk = me.board.filter((m) => m.ready).reduce((s, m) => s + m.atk, 0);
     const pd = canPower(S, side) ? powerDmg(S, side) : 0;
     // spell lethal: the full burn read (pillage, hero-burn, both volleys) counts toward the kill
@@ -1272,7 +1314,7 @@
 
       // value trades: prefer kills we survive; among them, kill the most valuable
       // v0.11: Bane's touch kills anything it can reach
-      const kills = hasKw(m, 'Bane') ? foe.board.slice() : foe.board.filter((t) => t.hp <= m.atk);
+      const kills = hasKw(m, 'Bane') ? foe.board.filter((t) => !shadowed(t)) : foe.board.filter((t) => !shadowed(t) && t.hp <= m.atk); // v0.29.0: never aim at a shadowed body
       const safe = kills.filter((t) => hasKw(m, 'Ranged') || hasKw(m, 'Bane') || m.hp > t.atk);
       const pool = safe.length ? safe : kills;
       if (pool.length) {
@@ -1432,7 +1474,7 @@
     }
 
     // lethal check BEFORE acting (verbatim)
-    const guards = () => foe.board.filter((m) => hasKw(m, 'Guard'));
+    const guards = () => guardsOn(foe); // v0.29.0: shadowed guards do not pull attacks
     const readyAtk = me.board.filter((m) => m.ready).reduce((s, m) => s + m.atk, 0);
     const pd = canPower(S, side) ? powerDmg(S, side) : 0;
     const spellDmg = burnInHand(S, side);
@@ -1471,7 +1513,7 @@
       const hc = rlHardAttackChoice(S, side, m, foe, lethal, guards, scorchCautious);
       const gs = guards();
       const hcCand = hc === null ? 'PASS' : (hc.hero ? 'FACE' : foe.board.find((x) => x.uid === hc.uid));
-      const legal = gs.length ? gs.slice() : foe.board.slice();
+      const legal = gs.length ? gs.slice() : foe.board.filter((t) => !shadowed(t)); // v0.29.0: never aim at a shadowed body
       const cands = [hcCand, 'PASS', ...legal, ...(gs.length ? [] : (!m.shocked ? ['FACE'] : []))];
       const uniq = cands.filter((c, i) => c !== undefined && c !== null && cands.indexOf(c) === i);
       let best = null, bs = 0;
@@ -1508,6 +1550,7 @@
     canPlay, playCard, canAttack, attack, canPower, power, endTurn, checkEnd, aiTurn,
     threat, spyRead, seenPlays, sovSynergy, spyAdjust, deckPlan,
     hasKw, kwsOf, // v0.20: multi-keyword helpers exported for tests (inert in browser)
+    shadowed, guardsOn, // v0.29.0: Shadow helpers exported for the RL brain's engine-replica blocks (inert in browser)
     tribeOf, countTribe, // v0.23: tribal helpers exported for tests (inert in browser)
     pickTarget, targetSpec, validTargets, aiTarget, resolveBc, // v0.20 A3+A6+A9: targeting + multi-part riders exported
   };
