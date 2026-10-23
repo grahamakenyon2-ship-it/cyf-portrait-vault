@@ -1330,15 +1330,20 @@ function lanOnMsg(m){
   }
   if(m.t === 'START'){ lanStartMatch(m.p); return; }
   if(m.t === 'MULL'){
+    // v0.35.2: rep MUST be an index array (a bare count used to throw inside
+    // lanApplyMull and get eaten by the onmessage try/catch — the foe's mulligan
+    // silently never applied and the clients desynced from turn one).
+    if(!Array.isArray(m.rep)) m.rep = [];
     lan.foeMull = m.rep;
-    if(S && !lan.spec) lanApplyMull(FOE, m.rep);
+    if(S && (m.side === 'A' || m.side === 'B')) lanApplyMull(m.side, m.rep);
+    if(!lan.mullSent && !lan.spec) lanMullFoeReady();
     lanBeginMatch(); return;
   }
   if(m.t === 'ACT'){ lanApplyAct(m); return; }
   if(m.t === 'HASH'){
     if(lan.lastHash === undefined || true){ /* every end-turn: compare */ }
     const mine = lanStateHash();
-    if(m.h !== mine && !lan.desynced){ lan.desynced = true; log('⚠ DESYNC DETECTED — the clients disagree on the game state. Ask the host to restart the duel.'); }
+    if(m.h !== mine && !lan.desynced){ lan.desynced = true; log('⚠ DESYNC DETECTED — the clients disagree on the game state. Both players: click ↻ REMATCH to restart the duel with a fresh seed.'); }
     return;
   }
   if(m.t === 'CHAT'){ lanChatLine(m.side, m.x); return; }
@@ -1385,10 +1390,11 @@ function lanStartMatch(p){
   blogTurn((p.first==='A'?fA.label:fB.label).toUpperCase() + ' GOES FIRST');
   document.getElementById('mp').classList.remove('on');
   if(lan.spec){ document.getElementById('overlay').classList.remove('on'); show('match'); render(); return; }
-  openMull(()=>{ lan.mullSent = true; lanSend({ t:'MULL', rep: mullTook }); lanBeginMatch(); });
+  openMull(()=>{ lan.mullSent = true; lanSend({ t:'MULL', rep: mullRep }); lanBeginMatch(); });
 }
 function lanBeginMatch(){
   if(lan.matchShown || !lan.inMatch) return;
+  if(lan.mullSent && lan.foeMull === null){ lanMullWait(); return; } // v0.35.2: visible wait — hand locked, foe still choosing
   if(!lan.mullSent || lan.foeMull === null) return;
   lan.matchShown = true;
   document.getElementById('overlay').classList.remove('on');
@@ -1396,6 +1402,21 @@ function lanBeginMatch(){
   if(!lan.spec) lanChatOpen(); // v0.35: LAN chat bar rides along during the match
   const fA = facOf(lan.params.facA.faction), fB = facOf(lan.params.facB.faction);
   log(`🪙 ${(lan.params.first==='A'?fA.label:fB.label)} won the coin flip — First Rites blesses their Sovereign.`);
+}
+function lanMullWait(){ // v0.35.2: no more silent black screen while the foe mulligans
+  const m = document.getElementById('mp'); m.classList.add('on');
+  m.querySelector('.mbox').innerHTML = `
+    <h2 style="color:var(--gold);letter-spacing:3px;margin:0 0 12px">🌐 LAN DUEL</h2>
+    <p style="font-size:14px;color:#e6d8b2">Hand locked in — waiting for your opponent to finish their mulligan…</p>
+    <div style="font-size:30px;color:var(--gold);margin:10px 0;animation:etWait 2.2s ease-in-out infinite">⏳</div>
+    <p style="font-size:11px;color:#8f8462">The duel begins the moment they confirm. This box closes by itself.</p>`;
+}
+function lanMullFoeReady(){ // v0.35.2: the foe locked in first — note it inside the still-open mulligan modal
+  const box = document.getElementById('mullbox'); if(!box) return;
+  let el = document.getElementById('mullFoeReady');
+  if(!el){ el = document.createElement('div'); el.id = 'mullFoeReady';
+    el.style.cssText = 'font-size:12px;color:#8fd;margin-top:8px;text-align:center'; box.appendChild(el); }
+  el.textContent = '✓ Your opponent has locked their hand.';
 }
 function lanApplyMull(side, rep){
   if(!S) return;
@@ -1406,11 +1427,11 @@ function lanApplyMull(side, rep){
 }
 function lanApplyAct(m){
   if(!S || !lan.inMatch) return;
-  if(m.side !== S.active || m.side === ME) return; // stale/out-of-turn/echo — drop
+  if(m.side !== S.active || (m.side === ME && !lan.spec)) return; // stale/out-of-turn/echo — drop (v0.35.2: spectators mirror BOTH seats, not just side B)
   if(m.k === 'play'){ E.playCard(S, m.side, m.i, m.tgt ? { target:{ uid: m.tgt } } : undefined); }
   else if(m.k === 'atk'){ E.attack(S, m.side, m.uid, m.hero ? { hero:true } : { uid: m.tgt }); }
   else if(m.k === 'pow'){ E.power(S, m.side, m.opt || {}); }
-  else if(m.k === 'end'){ E.endTurn(S); lanSend({ t:'HASH', h: lanStateHash() }); }
+  else if(m.k === 'end'){ E.endTurn(S); blogTurn('YOUR TURN ' + Math.ceil(S.turn/2)); log('Your opponent ended their turn.'); lanSend({ t:'HASH', h: lanStateHash() }); }
   render(); checkEnd();
 }
 // local-action choke: the engine call already applied locally; ship the decision
@@ -1742,6 +1763,7 @@ function endTurn(){
     lanActEnd();
     render();
     if(checkEnd()) return;
+    blogTurn('ENEMY TURN ' + Math.ceil(S.turn/2)); // v0.35.2: the banner + SFX fire for human opponents too
     log('Turn passed — waiting on your opponent.');
     return;
   }
@@ -2323,6 +2345,7 @@ function showCoin(iAmFirst, enF){
 let mullReveal = null;      // what runs when the duel actually begins
 let mullMarked = new Set(); // hand indices to replace
 let mullTook = 0;           // exchanged count, for the reveal banner
+let mullRep = [];           // v0.35.2 LAN: the actual hand indices exchanged — MULL messages carry THIS (mullTook is just a count; sending it desynced the clients)
 (function injectMullModal(){
   const m = document.createElement('div'); m.className='modal'; m.id='mull';
   m.innerHTML = '<div class="mbox" id="mullbox" style="max-width:980px"></div>';
@@ -2373,7 +2396,7 @@ function mullConfirm(){
   const rep = [...mullMarked].sort((a,b)=>b-a); // splice high-first so indices stay true
   if(lan.on && lan.inMatch && !lan.spec){
     // v0.35 LAN: the mull must replay identically on the peer — seeded shuffle
-    lanApplyMull(ME, rep); mullTook = rep.length;
+    lanApplyMull(ME, rep); mullTook = rep.length; mullRep = rep;
   } else {
     for(const i of rep) S[ME].deck.push(S[ME].hand.splice(i,1)[0]);
     shuffle(S[ME].deck); for(let i=0;i<rep.length;i++) E.draw(S,ME,true); // v0.15: draw-phase flag keeps PRIVATEERING/CHAOS_LADDER from firing on mulligans
