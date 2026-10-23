@@ -738,8 +738,9 @@
   <div class="lane"><div class="hero" id="myHero"></div></div>
   <div id="log"></div>
   <div class="hand" id="hand"></div>
+  <div id="salvageModal" style="position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:var(--panel); border:1px solid var(--gold); padding:24px 30px; z-index:78; display:none;"></div>
   <div style="display:flex; gap:10px; align-items:center">
-    <button id="powerbtn" class="themebtn">SKIRMISH (2)</button>
+    <button id="powerbtn" class="themebtn">POWER (2)</button>
     <button id="endbtn" class="themebtn">END TURN</button>
     <button onclick="openGameMenu()" class="themebtn">☰ MENU</button>
   </div>
@@ -762,7 +763,7 @@
   <p>Reduce the enemy Sovereign to 0 HP. Play cards with mana (ramps +1 per turn, max 10), attack with your minions once each per turn. Your deck is 10 warlords × 2 copies, led by a Sovereign.</p>
   <div class="kwrow"><b>SOVEREIGN</b><p>Each deck is led by one of its realm's Legendary cards. The Sovereign sits in the hero box and grants a passive ability all game — printed under their portrait (hover for the full text).</p></div>
   <div class="kwrow"><b>REALM IDENTITY</b><p>Every realm has a gameplay identity (its own "color") — the Chaguan Horde charges, the Frosthold Dominion walls, the Ionaran Empire out-draws. Hover a realm on the pick screen to read its doctrine.</p></div>
-  <div class="kwrow"><b>COIN FLIP</b><p>Each match flips a coin for who acts first. The second player draws an extra card; the first player's Sovereign gets <b>First Rites</b> — passive ×2, +1 mana, and 1-mana Skirmish for their first three turns.</p></div>
+  <div class="kwrow"><b>COIN FLIP</b><p>Each match flips a coin for who acts first. The second player draws an extra card; the first player's Sovereign gets <b>First Rites</b> — passive ×2, +1 mana, and your Realm Command costs (1) less on your first three turns.</p></div>
   <div class="kwrow"><b>FATIGUE</b><p>Drawing from an empty deck deals escalating damage to your hero (1, 2, 3…). Long games end — Guard walls cannot save you.</p></div>
   <div class="kwrow"><b>BATTLECRY</b><p>Does something the moment the card is played (damage, heal, draw, buff, or summon a Conscript).</p></div>
   <div class="kwrow"><b>DEATHRATTLE</b><p>Does something when the minion dies.</p></div>
@@ -772,7 +773,7 @@
   <div class="kwrow"><b>CHARGE</b><p>This minion can attack the turn it is played.</p></div>
   <div class="kwrow"><b>LIFESTEAL</b><p>Damage this minion deals also heals your hero.</p></div>
   <div class="kwrow"><b>RANGED</b><p>This minion attacks without taking retaliation damage.</p></div>
-  <p style="margin-top:12px">Skirmish (hero power, 2 mana, once/turn): deal 1 damage to any target. Board holds 6 minions; hand holds 8 cards.</p>
+  <p style="margin-top:12px">Realm Command (hero power, 2 mana, once/turn): your realm's own command — each of the fifteen realms fields a different one. Hover the power button for its text. Board holds 6 minions; hand holds 8 cards.</p>
   <p>Click anywhere to close. Hover any card to zoom in.</p>
 </div></div>
 <div id="confirm"><div id="confirmbox"><div id="cmsg"></div><div class="crow" id="cbtns"></div></div></div>
@@ -1220,7 +1221,7 @@ const TUT_STEPS = [
   { txt:'Welcome to the field, Sovereign. These cards at the bottom are <b>YOUR HAND</b> — hover any of them to read it in full. Hover anything in this game: everything is readable.', btn:'GOT IT' },
   { txt:'Play a minion: click an affordable card in your hand. It lands on your board — fresh minions attack from the <b>next</b> turn, unless they carry <b>Charge</b>.', cond:(t)=>S && S.A.board.length > t.mark },
   { txt:'ATTACK: click your ready minion (golden outline), then click the enemy Sovereign — or a foe minion to trade. Each of your minions strikes once per turn.', cond:(t)=>S && S.events.slice(t.mark).some(ev=>(ev.t==='hit'||ev.t==='heroHit') && ev.side==='A') },
-  { txt:'Your Sovereign power — <b>SKIRMISH</b> — spends mana to deal damage to any target. Click the SKIRMISH button, then pick your victim. It fires once per turn.', cond:(t)=>S && S.events.slice(t.mark).some(ev=>(ev.t==='hit'||ev.t==='heroHit') && ev.side==='A' && ev.id==='POWER') },
+  { txt:'Your realm\'s hero power — the <b>REALM COMMAND</b> — spends mana once per turn to do your realm\'s bidding. Click the power button, then pick your target (some commands fire on their own).', cond:(t)=>S && S.events.slice(t.mark).some(ev=>(ev.t==='hit'||ev.t==='heroHit') && ev.side==='A' && ev.id==='POWER') },
   { txt:'<b>END TURN</b> passes play to the foe. Their whole turn unfolds in the battle log on the right — then your mana crystal grows and you draw a fresh card. Click END TURN.', cond:(t)=>S && S.turn > t.mark },
   { txt:'That is the whole law of the field: reduce the enemy Sovereign to 0 HP. Everything else — Guard, Battlecries, Relics — is readable on the cards. The field is yours!', btn:'TO BATTLE' },
 ];
@@ -1347,7 +1348,7 @@ function aiTurn(){
 
 /* ---------- v0.9.6 battle log: human-readable record of every engine event ---------- */
 let blLastEv = 0, blNames = null, blLastDivider = '';
-const BL_LABELS = { TEMPEST:'Tempest', TITHE:'Tithe', WARD_SMITH:'Ward Smith', VENGEANCE_MOON:'Vengeance Moon', PYROMANCER:'Pyromancer', GHOST_STEP:'Ghost Step', SCARAB_SWARM:'Scarab Swarm', DIWAN:'Diwan', AMBUSH:'Ambush', PRESS_GANG:'Press Gang', IRON_FIST:'Iron Fist', SCORCHED_VICTORY:'Scorched Victory', THORN_GUARD:'Thorn Guard', ELDER_COUNCIL:'Elder Council', FIELD_MEDIC:'Field Medic', SIEGECRAFT:'Siegecraft', SOLAR_FLARE:'Solar Flare', NOVA_CASCADE:'Nova Cascade', PACK_HUNTER:'Pack Hunter', PRIDE_OF_THE_PACK:'Pride Of The Pack', DEN_GUARD:'Den Guard', COOLANT_VEIL:'Coolant Veil', OVERCLOCK:'Overclock', WATCHTOWER_PROTOCOL:'Watchtower Protocol', TITAN_PLATING:'Titan Plating', COURT_WHISPERS:'Court Whispers', POISON_PEN:'Poison Pen', MASQUERADE:'Masquerade', VEILED_COURT:'Veiled Court', WAR_PROFITEER:'War Profiteer', WAR_DRUMS:'War Drums', STRATAGEM:'Stratagem', JADE_BULWARK:'Jade Bulwark', ENDLESS_MARCH:'Endless March', THUNDER_SPIRE:'Thunder Spire', RESONANCE:'Resonance', BARRICADE:'Barricade', ARCANE_LANCE:'Arcane Lance', FARSIGHT:'Farsight', GRAVE_CHARGE:'Grave Charge', GRAVE_HUNGER:'Grave Hunger', LAST_RITES:'Last Rites', REVENANT_HOST:'Revenant Host', ENDLESS_LEVY:'Endless Levy', BURNING_BANNER:'Burning Banner', IRON_LEVY:'Iron Levy', BANNER_OF_SKULLS:'Banner Of Skulls', DRILL_MARSHAL:'Drill Marshal', STONE_REMEMBERS:'Stone Remembers', DEEP_RITES:'Deep Rites', NINTH_GATE:'Ninth Gate', TIDE_OF_KIN:'Tide Of Kin', POWER:'Skirmish', BC:'battlecry', DR:'deathrattle', DEATHGIFT:'Deathgift', VOLLEY:'volley',
+const BL_LABELS = { TEMPEST:'Tempest', TITHE:'Tithe', WARD_SMITH:'Ward Smith', VENGEANCE_MOON:'Vengeance Moon', PYROMANCER:'Pyromancer', GHOST_STEP:'Ghost Step', SCARAB_SWARM:'Scarab Swarm', DIWAN:'Diwan', AMBUSH:'Ambush', PRESS_GANG:'Press Gang', IRON_FIST:'Iron Fist', SCORCHED_VICTORY:'Scorched Victory', THORN_GUARD:'Thorn Guard', ELDER_COUNCIL:'Elder Council', FIELD_MEDIC:'Field Medic', SIEGECRAFT:'Siegecraft', SOLAR_FLARE:'Solar Flare', NOVA_CASCADE:'Nova Cascade', PACK_HUNTER:'Pack Hunter', PRIDE_OF_THE_PACK:'Pride Of The Pack', DEN_GUARD:'Den Guard', COOLANT_VEIL:'Coolant Veil', OVERCLOCK:'Overclock', WATCHTOWER_PROTOCOL:'Watchtower Protocol', TITAN_PLATING:'Titan Plating', COURT_WHISPERS:'Court Whispers', POISON_PEN:'Poison Pen', MASQUERADE:'Masquerade', VEILED_COURT:'Veiled Court', WAR_PROFITEER:'War Profiteer', WAR_DRUMS:'War Drums', STRATAGEM:'Stratagem', JADE_BULWARK:'Jade Bulwark', ENDLESS_MARCH:'Endless March', THUNDER_SPIRE:'Thunder Spire', RESONANCE:'Resonance', BARRICADE:'Barricade', ARCANE_LANCE:'Arcane Lance', FARSIGHT:'Farsight', GRAVE_CHARGE:'Grave Charge', GRAVE_HUNGER:'Grave Hunger', LAST_RITES:'Last Rites', REVENANT_HOST:'Revenant Host', ENDLESS_LEVY:'Endless Levy', BURNING_BANNER:'Burning Banner', IRON_LEVY:'Iron Levy', BANNER_OF_SKULLS:'Banner Of Skulls', DRILL_MARSHAL:'Drill Marshal', STONE_REMEMBERS:'Stone Remembers', DEEP_RITES:'Deep Rites', NINTH_GATE:'Ninth Gate', TIDE_OF_KIN:'Tide Of Kin', BC:'battlecry', DR:'deathrattle', DEATHGIFT:'Deathgift', VOLLEY:'volley', // POWER label resolves dynamically via powerName
   PILLAGE:'pillage', STORMCALL:'Stormcall', FIRST_RITES:'First Rites', SECOND_SIGHT:'Second Sight',
   EMBERWARD:'Emberward', BLOODLETTER:'Bloodletter', BULWARK:'Bulwark', SWIFTRANKS:'Swiftranks',
   LONGSIGHT:'Longsight', SOULTITHE:'Soultithe', VANGUARD:'Vanguard', ORIFLAMME:'Oriflamme', BAZAAR:'Bazaar',
@@ -1408,14 +1409,14 @@ function evLine(ev){
       if (blNames.has(ev.id)) { // a named attacker struck the hero
         return { s: ev.side, x:`⚔ ${blSpan(ev.id)} hits ${vic === 'A' ? 'your' : 'the enemy'} Sovereign for <span class="bld">${ev.dmg}</span>` };
       }
-      const lb = BL_LABELS[ev.id] || ev.id;
+      const lb = ev.id === 'POWER' ? E.powerName(S, ev.side) : (BL_LABELS[ev.id] || ev.id);
       return { s: vic, x:`💥 <span class="blx">${lb}</span> deals <span class="bld">${ev.dmg}</span> damage to ${vic === 'A' ? 'your' : 'the enemy'} Sovereign` };
     }
     case 'death':  return { s:ev.side, x:`☠ ${blSpan(ev.id)} falls` };
     case 'shield': return { s:ev.side, x:`⛨ ${blSpan(ev.id)} absorbs the blow` };
     case 'buff':   return { s:ev.side, x:`✚ ${blSpan(ev.id)} is blessed (+1/+1)` };
     case 'passive': { // v0.26.5: passives name their TARGET when the event carries one
-      const lb = BL_LABELS[ev.id] || blName(ev.id);
+      const lb = ev.id === 'POWER' ? E.powerName(S, ev.side) : (BL_LABELS[ev.id] || blName(ev.id));
       const tgt = ev.on ? ` — target: ${blSpan(ev.on)}` : '';
       return { s:ev.side, x:`✦ <span class="blx">${lb}</span> triggers for ${who.toLowerCase()}${tgt}` };
     }
@@ -1963,6 +1964,7 @@ function showDprevMinion(div){
   }
   const bane = !powTargeting && hasKw(S.A.board.find(x=>x.uid===sel)||{}, 'Bane');
   const dmg = powTargeting ? E.powerDmg(S,'A') : (bane ? 999 : (S.A.board.find(x=>x.uid===sel)||{}).atk);
+  if(powTargeting && !dmg) return; // v0.33: non-damage Realm Commands show no damage preview
   if(t.shield > 0) dprevAt(div, '🛡 AEGIS ABSORBS', 'blk');
   else if(bane) dprevAt(div, '☠ BANE DESTROYS');
   else dprevAt(div, '−' + dmg + (t.hp <= dmg ? ' ☠' : ''));
@@ -1983,7 +1985,7 @@ function showDprevHero(){
   clearDprev();
   const heroEl = document.getElementById('aiHero');
   let dmg;
-  if(powTargeting){ dmg = E.powerDmg(S,'A'); } // Skirmish: no EMBERWARD shave on heroes
+  if(powTargeting){ dmg = E.powerDmg(S,'A'); if(!dmg) return; } // v0.33: non-damage Realm Commands show no damage preview
   else {
     const m = S.A.board.find(x=>x.uid===sel); if(!m) return;
     if(m.shocked){ dprevAt(heroEl, 'SHOCK CANNOT HIT THE SOVEREIGN', 'blk'); return; }
@@ -2014,7 +2016,7 @@ function playerLethal(){
   const shave = ember ? ((S.first==='B' && S.turn<=5) ? 2 : 1) : 0;
   let dmg = 0;
   for(const m of S.A.board) if(m.ready && (m.atk||0) > 0 && !m.shocked) dmg += Math.max(1, (m.atk||0) - shave);
-  if(E.canPower(S,'A')) dmg += E.powerDmg(S,'A');
+  if(E.canPower(S,'A') && E.powerTargets(S,'A').hero) dmg += E.powerDmg(S,'A'); // v0.33: only commands that can reach the Sovereign count toward the ember
   return dmg >= S.B.hp;
 }
 
@@ -2089,7 +2091,8 @@ function render(){
     if(settings.lethalHint && playerLethal()) eb.classList.add('lethal');
   }
   document.getElementById('powerbtn').disabled = !E.canPower(S,'A');
-  document.getElementById('powerbtn').textContent = `SKIRMISH (${E.powerCost(S,'A')}) — deal ${E.powerDmg(S,'A')}`;
+  document.getElementById('powerbtn').textContent = `${E.powerName(S,'A').toUpperCase()} (${E.powerCost(S,'A')})`;
+  document.getElementById('powerbtn').title = E.powerText(S,'A');
 
   const mk = (p, id, side)=>{
     const el = document.getElementById(id);
@@ -2097,7 +2100,10 @@ function render(){
     el.innerHTML = `<div class="artclip"><img src="${p.sov ? p.sov.img : p.fac.commander}"></div><div class="nm">${p.fac.label.toUpperCase()}</div>${sov}<div class="hp">${p.hp}</div>` +
       (p.relics && p.relics.length ? `<div class="relics">${p.relics.map(r=>`<span class="rk" title="${r.name}: ${(r.ability||'').replace(/"/g,'&quot;')}">${r.name}</span>`).join('')}</div>` : '');
     el.title = p.sov ? `${p.sov.name} — ${p.sov.passive.name}: ${p.sov.passive.desc}` : '';
-    el.className = 'hero' + (side==='B' && !watch.on && ((sel&&!castTargeting)||powTargeting) && !ai.board.some((m)=>hasKw(m,'Guard')&&!hasKw(m,'Shadow')) ? ' targetable' : ''); // v0.29.0: shadowed Guards cannot be attacked, so they do not wall the hero
+    const ptt = (powTargeting && !watch.on && S && S.active==='A') ? E.powerTargets(S,'A') : null; // v0.33: what the armed Realm Command can legally hit
+    const heroTgt = (side==='B' && !watch.on && ((sel&&!castTargeting)||(ptt&&ptt.hero)) && !ai.board.some((m)=>hasKw(m,'Guard')&&!hasKw(m,'Shadow')))
+      || (side==='A' && ptt && E.powerKind(S,'A')==='heal' && S.A.hp < 30);
+    el.className = 'hero' + (heroTgt ? ' targetable' : ''); // v0.29.0: shadowed Guards cannot be attacked, so they do not wall the hero
     el.onclick = ()=>heroClick(side);
     if(side==='B'){ // v0.13: hover the enemy Sovereign while targeting → damage preview
       el.onmouseenter = ()=>{ if(!watch.on && S && S.active==='A' && (sel||powTargeting)) showDprevHero(); };
@@ -2117,7 +2123,11 @@ function render(){
     el.innerHTML = p.board.map(m=>{
       const castable = !!castTargeting && (E.targetSpec(castTargeting.card)==='foe' ? side==='B' : side==='A'); // v0.20: aiming highlights the valid side
       const atkAim = !!sel && !castTargeting; // v0.29.0: an aimed ATTACK (not a spell/power) — Shadow soaks these
-      const targetable = !watch.on && S.active==='A' && ((side==='B' && ((atkAim && !hasKw(m,'Shadow')) || powTargeting)) || castable); // v0.29.0: spells/powers may still aim at a shadowed body; attacks cannot
+      const powSide = powTargeting ? E.powerTargets(S,'A').minion : false; // v0.33: Realm Command targeting highlights its legal side
+      const targetable = !watch.on && S.active==='A' && (
+        (side==='B' && ((atkAim && !hasKw(m,'Shadow')) || (powTargeting && (powSide==='foe'||powSide==='any'))))
+        || (side==='A' && powTargeting && (powSide==='friend'||powSide==='any'))
+        || castable); // v0.29.0: spells/powers may still aim at a shadowed body; attacks cannot
       return `<div class="minion ${hasKw(m,'Guard')?'guard':''} ${m.ready&&side===S.active?'ready':''} ${targetable?'targetable':''} ${sel===m.uid&&side==='A'?'selected':''} ${m.shield>0?'shielded':''} ${m.aura?'auraholder':''} ${m.rage&&m.maxhp&&m.hp<m.maxhp?'enraged':''} ${hasKw(m,'Shadow')?'shadowed':''}"
         data-uid="${m.uid}" data-cid="${m.id}">
         <div class="artclip"><img src="${m.img}" loading="lazy"></div><div class="nm">${m.name}</div>
@@ -2207,7 +2217,7 @@ function handClick(i, el){
 function heroClick(side){
   if(watch.on || S.active!=='A' || side!=='B') return;
   if(castTargeting){ castTargeting=null; render(); return; } // v0.20: no hero-target templates yet — clicking the Sovereign cancels aiming
-  if(powTargeting){ if(E.power(S,'A',{hero:true})){ powTargeting=false; render(); checkEnd(); } return; }
+  if(powTargeting){ if(E.powerKind(S,'A')==='heal'){ if(E.power(S,'A',{hero:true})){ powTargeting=false; render(); checkEnd(); } } return; } // v0.33: Oathward may aim at the own Sovereign (side A highlighted separately)
   if(sel){ if(E.attack(S,'A',sel,{hero:true})){ sel=null; render(); checkEnd(); } else log('A Guard blocks the way.'); }
 }
 function minionClick(side, uid){
@@ -2224,12 +2234,32 @@ function minionClick(side, uid){
     } else { castTargeting=null; render(); } // clicked the wrong side: cancel
     return;
   }
+  if(powTargeting){ if(E.power(S,'A',{uid})){ powTargeting=false; render(); checkEnd(); } return; } // v0.33: Realm Commands may aim at either side (engine validates)
   if(side==='A'){ const m = S.A.board.find(x=>x.uid===uid); sel = (sel===uid||!m.ready)?null:uid; powTargeting=false; render(); return; }
-  if(powTargeting){ if(E.power(S,'A',{uid})){ powTargeting=false; render(); checkEnd(); } return; }
   if(sel){ if(E.attack(S,'A',sel,{uid})){ sel=null; render(); checkEnd(); } else log('A Guard blocks the way.'); }
 }
 document.getElementById('powerbtn').onclick = ()=>{
-  if(S && !watch.on && S.active==='A' && E.canPower(S,'A')){ powTargeting = true; sel=null; castTargeting=null; render(); log('Choose a target for Skirmish.'); }
+  if(!S || watch.on || S.active!=='A' || !E.canPower(S,'A')) return;
+  if(E.powerKind(S,'A')==='salvage'){ openSalvage(); return; } // v0.33: Salvage's two-button mini-choice
+  const tt = E.powerTargets(S,'A');
+  if(tt.free){ if(E.power(S,'A',{})){ render(); checkEnd(); } return; } // Muster Levy / Petition / Exhume / Delve: no target
+  powTargeting = true; sel=null; castTargeting=null; render();
+  log('Choose a target for ' + E.powerName(S,'A') + '.');
+};
+// v0.33: Salvage — look at the top card of your deck, draw it or put it back
+function openSalvage(){
+  const top = S.A.deck[S.A.deck.length-1];
+  if(!top){ log('Your deck is empty — nothing to Salvage.'); return; }
+  const md = document.getElementById('salvageModal');
+  md.innerHTML = `<div style="text-align:center; font-size:13px; letter-spacing:.14em; color:#c9b78e; margin-bottom:10px">SALVAGE — TOP CARD OF YOUR DECK</div>
+    <div style="display:flex; gap:14px; align-items:center; margin-bottom:14px">
+      <img src="${top.img}" loading="lazy" style="width:92px; border-radius:8px; border:1px solid #7a6a3f">
+      <div style="font-size:13px; line-height:1.5"><b>${top.name}</b> <span style="color:#c9b78e">(${top.cost} mana)</span><br>${top.ability||''}</div>
+    </div>
+    <div style="display:flex; gap:10px; justify-content:center"><button id="salvKeep" class="themebtn">DRAW IT</button><button id="salvPut" class="themebtn">PUT IT BACK</button></div>`;
+  md.style.display = 'flex';
+  document.getElementById('salvKeep').onclick = ()=>{ md.style.display='none'; if(E.power(S,'A',{salvage:'keep'})){ render(); checkEnd(); } };
+  document.getElementById('salvPut').onclick = ()=>{ md.style.display='none'; if(E.power(S,'A',{salvage:'put'})){ render(); checkEnd(); } };
 };
 document.getElementById('endbtn').onclick = ()=>{ if(S && !watch.on && S.active==='A') endTurn(); };
 
@@ -2635,7 +2665,8 @@ function watchStep(){
 }
 let evMark = 0;
 function cardName(id){
-  if(id==='POWER') return 'Skirmish';
+  if(id==='POWER') return 'Realm Command';
+  if(id==='POWER_SELF') return "Blood Rite's price";
   if(id==='DEATHGIFT') return 'Deathgift';
   if(id==='BC' || id==='DR' || id==='TOKEN') return 'A battle ability';
   for(const f of DATA.factions){ const c = f.cards.find(x=>x.id===id); if(c) return c.name; }
@@ -2690,7 +2721,7 @@ function watchEnd(){
     <div class="setsec">⚔ GAMEPLAY</div>
     <label>AI difficulty (single player)</label>
     <select id="setAI" onchange="setAI(this.value)">
-      <option value="easy">Easy — a careless levy: sloppy trades, forgets Skirmish</option>
+      <option value="easy">Easy — a careless levy: sloppy trades, forgets the Realm Command</option>
       <option value="normal">Normal — the classic greedy AI</option>
       <option value="hard">Hard — a veteran marshal: reads lethal, trades for value</option>
       <option value="impossible">Impossible — the evolved brain: 70% vs hard, it holds, it aims, it never misses lethal</option>
@@ -2707,7 +2738,7 @@ function watchEnd(){
       <option value="450">Animated — fast</option>
       <option value="0">Instant — classic behavior</option>
     </select>
-    <label>Lethal hint <span style="text-transform:none;color:#c9b78e">(an ember pulse on END TURN when your ready attackers + Skirmish can finish the enemy Sovereign this turn — off by default)</span></label>
+    <label>Lethal hint <span style="text-transform:none;color:#c9b78e">(an ember pulse on END TURN when your ready attackers + your Realm Command can finish the enemy Sovereign this turn — off by default)</span></label>
     <select id="setLethalHint" onchange="setLethalHint(this.value)">
       <option value="off">Off (default)</option>
       <option value="on">On</option>

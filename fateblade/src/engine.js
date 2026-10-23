@@ -686,34 +686,235 @@
     return true;
   }
 
+  // ================= v0.33 REALM COMMANDS =================
+  // One hero power per realm, replacing the universal Skirmish. Wayfarers are
+  // the neutral guild — not a playable realm, no command. Every command is
+  // priced at ~1.0–1.2 power-equivalents; Decrees (once-per-game riders) are
+  // designed but deliberately NOT implemented — see the Realm Commands design
+  // doc for the sovOnce grammar when they ship.
+  const REALM_COMMANDS = {
+    ironsteppes: { name: 'Muster Levy',    cost: 2, kind: 'summon',   text: 'Summon a 1/1 Conscript.' },
+    barning:     { name: 'Broadside',      cost: 2, kind: 'dmg', dmg: 1, tset: 'foeHero',   text: 'Deal 1 damage to the enemy Sovereign.' },
+    fenorian:    { name: 'Shield Wall',    cost: 2, kind: 'guard',   text: 'Give a friendly minion Guard.' },
+    lucerre:     { name: 'Sound the Charge', cost: 2, kind: 'buff', text: 'Give a friendly minion +1 Attack this turn.' },
+    crescent:    { name: 'Conscription',   cost: 2, kind: 'dmg', dmg: 1, tset: 'foeMinion', rider: 'conscript', text: 'Deal 1 damage to an enemy minion. If it dies, summon a Conscript.' },
+    stormlit:    { name: 'Oathward',       cost: 2, kind: 'heal', heal: 2, text: 'Restore 2 Health to a friendly character.' },
+    starwind:    { name: 'Salvage',        cost: 2, kind: 'salvage', text: 'Look at the top card of your deck. Draw it, or put it back.' },
+    tigerpass:   { name: 'Blood Rite',     cost: 2, kind: 'selfdmg', dmg: 2, self: 1, tset: 'foeHero', text: 'Deal 2 damage to the enemy Sovereign and 1 damage to your own.' },
+    zephek:      { name: 'Assembly Rite',  cost: 2, kind: 'buffself', text: 'Give a friendly minion +0/+1 and Aegis.' },
+    courts:      { name: 'Petition the Court', cost: 2, kind: 'draw', text: 'Draw a card.' },
+    kingdoms:     { name: 'Jade Vow',       cost: 2, kind: 'buff2',  text: 'Give two friendly minions +0/+1.' },
+    towers:      { name: 'Arcane Bolt',    cost: 3, kind: 'dmg', dmg: 2, tset: 'any', text: 'Deal 2 damage to any target.' }, // cost-for-effect doctrine: the realm of magic pays premium for flexibility
+    necropolis:  { name: 'Exhume',         cost: 2, kind: 'exhume', text: 'Return the last friendly minion that died as a 1/1 Echo.' },
+    marches:     { name: 'Raid',           cost: 2, kind: 'raid', dmg: 1, face: 1, text: 'Deal 1 damage to an enemy minion and 1 damage to the enemy Sovereign.' },
+    deepholds:   { name: 'Delve',          cost: 2, kind: 'delve',  text: 'Gain 1 mana this turn.' },
+    wayfarers:   null, // the neutral guild fields no command
+  };
+  function realmCmd(S, side) {
+    const f = S[side].fac;
+    return (f && REALM_COMMANDS[f.id] !== undefined) ? REALM_COMMANDS[f.id] : null;
+  }
+  function powerName(S, side) { const c = realmCmd(S, side); return c ? c.name : 'Realm Command'; }
+  function powerText(S, side) { const c = realmCmd(S, side); return c ? c.text : ''; }
+  function powerKind(S, side) { const c = realmCmd(S, side); return c ? c.kind : null; }
+  // What the armed command can legally hit. minion: 'friend' | 'foe' | 'any' | false.
+  function powerTargets(S, side) {
+    const c = realmCmd(S, side); if (!c) return { hero: false, minion: false, free: false };
+    switch (c.kind) {
+      case 'summon': case 'draw': case 'exhume': case 'delve':
+        return { hero: false, minion: false, free: true };
+      case 'salvage': // the UI opens the two-button mini-choice; the AI passes {salvage}
+        return { hero: false, minion: false, free: true };
+      case 'dmg':
+        return { hero: c.tset !== 'foeMinion', minion: c.tset === 'foeMinion' ? 'foe' : (c.tset === 'any' ? 'any' : false), free: false };
+      case 'selfdmg':
+        return { hero: true, minion: false, free: false };
+      case 'raid':
+        return { hero: true, minion: 'foe', free: false }; // the face chip rides the raid
+      case 'guard': case 'buff': case 'buffself': case 'buff2': case 'heal':
+        return { hero: false, minion: 'friend', free: false }; // heal may also take the own hero via {hero:true}
+      default:
+        return { hero: false, minion: false, free: false };
+    }
+  }
   function canPower(S, side) {
     const p = S[side];
-    return S.active === side && !p.power && p.mana >= powerCost(S, side);
+    return !!realmCmd(S, side) && S.active === side && !p.power && p.mana >= powerCost(S, side);
   }
-  // First Rites: during the coin-flip winner's first four turns, Skirmish costs 1 mana
+  // First Rites (rework): the coin-flip winner's first THREE turns, their Realm
+  // Command costs (1) less. The old ≤9 window and rites() coupling are gone —
+  // First Rites serves the commands, not the other way around.
   function powerCost(S, side) {
-    return (S.first === side && S.turn <= 9) ? 1 : 2; // v0.25.0: widen 7 -> 9
+    const c = realmCmd(S, side); if (!c) return 0;
+    return (S.first === side && S.turn <= 5) ? Math.max(1, c.cost - 1) : c.cost;
   }
-  // Bloodletter's Skirmish deals 2; First Rites doubles it in the opening.
+  // The command's damage number (per aimed target). Realm-aware: only damage
+  // commands carry one. Riders: BLOODLETTER (×2 — dead text under fenorian's
+  // Shield Wall until a future cards.json pass) and Unbowed Banner (+1).
+  // rites() no longer multiplies powers.
   function powerDmg(S, side) {
-    return (hasP(S[side], 'BLOODLETTER') ? 2 : 1) * rites(S, side) + (S[side].relics.some((x) => x.rl === 'rlBanner') ? 1 : 0); // v0.16: Unbowed Banner
+    const c = realmCmd(S, side); if (!c) return 0;
+    let d = 0;
+    if (c.kind === 'dmg') d = c.dmg;          // Broadside / Conscription / Arcane Bolt
+    else if (c.kind === 'selfdmg') d = c.dmg; // Blood Rite
+    else if (c.kind === 'raid') d = c.face;   // Raid's chip at the Sovereign
+    if (!d) return 0;
+    if (hasP(S[side], 'BLOODLETTER')) d *= 2;
+    if (S[side].relics.some((x) => x.rl === 'rlBanner')) d += 1;
+    return d;
+  }
+  // Face reach only — what lethal reads and threat() count.
+  function powerFaceDmg(S, side) {
+    return powerTargets(S, side).hero ? powerDmg(S, side) : 0;
   }
   function power(S, side, target) {
     if (!canPower(S, side)) return false;
+    const c = realmCmd(S, side); if (!c) return false;
     const p = S[side], foe = S[other(side)];
-    p.power = true; p.mana -= powerCost(S, side);
-    const dmg = powerDmg(S, side);
-    if (target.hero) {
-      foe.hp -= dmg;
-      S.events.push({ t: 'heroHit', side, id: 'POWER', dmg });
-    } else {
-      const t = foe.board.find((x) => x.uid === target.uid);
-      if (!t) return false;
-      S.events.push({ t: 'hit', side, id: 'POWER', dmg, on: t.id });
-      damageMinion(S, other(side), t.uid, dmg);
+    target = target || {};
+    // validate BEFORE committing mana and the once-per-turn flag
+    const tm = target.uid ? p.board.find((x) => x.uid === target.uid) : null;
+    const fm = target.uid ? foe.board.find((x) => x.uid === target.uid) : null;
+    const pd = powerDmg(S, side);
+    switch (c.kind) {
+      case 'summon': if (p.board.length >= MAX_BOARD) return false; break;
+      case 'dmg':
+        if (c.tset === 'foeHero') { if (!target.hero) return false; }
+        else if (c.tset === 'foeMinion') { if (!fm) return false; }
+        else if (c.tset === 'any') { if (!target.hero && !tm && !fm) return false; }
+        break;
+      case 'selfdmg': if (!target.hero) return false; break;
+      case 'raid': if (!fm) return false; break;
+      case 'guard': case 'buff': case 'buffself': if (!tm) return false; break;
+      case 'heal': if (!target.hero && !tm) return false; break;
+      case 'salvage': if (!p.deck.length || (target.salvage !== 'keep' && target.salvage !== 'put')) return false; break;
+      case 'buff2': if (!p.board.length || (target.uid && !tm)) return false; break;
+      case 'exhume': if (!p.fallen.length || p.board.length >= MAX_BOARD) return false; break;
+      case 'draw': if (!p.deck.length) return false; break;
+      case 'delve': break; // the deep holds always answer
     }
-    if (hasP(p, 'ARCANE_LANCE') && foe.board.length) { const t = foe.board[Math.floor(S.rng() * foe.board.length)]; S.events.push({ t: 'passive', side, id: 'ARCANE_LANCE', on: t.id }); damageMinion(S, other(side), t.uid, 1 * rites(S, side)); } // v0.26: Queliomir — the Skirmish looses a stray arc
+    // commit
+    p.power = true; p.mana -= powerCost(S, side);
+    switch (c.kind) {
+      case 'summon': { p.board.push(token(p, S)); refreshPrim(S); S.events.push({ t: 'play', side, id: 'TOKEN', uid: 'TOKEN' + p.board.length, kw: null, cost: 1 }); break; }
+      case 'dmg':
+        if (target.hero) {
+          foe.hp -= pd;
+          S.events.push({ t: 'heroHit', side, id: 'POWER', dmg: pd });
+        } else {
+          S.events.push({ t: 'hit', side, id: 'POWER', dmg: pd, on: fm.id });
+          damageMinion(S, other(side), fm.uid, pd);
+          if (c.rider === 'conscript' && !foe.board.some((x) => x.uid === fm.uid) && p.board.length < MAX_BOARD) { p.board.push(token(p, S)); refreshPrim(S); S.events.push({ t: 'play', side, id: 'TOKEN', uid: 'TOKEN' + p.board.length, kw: null, cost: 1 }); } // Conscription: the fallen foe's kit is pressed into service
+        }
+        break;
+      case 'selfdmg': {
+        foe.hp -= pd;
+        S.events.push({ t: 'heroHit', side, id: 'POWER', dmg: pd });
+        p.hp -= c.self;
+        S.events.push({ t: 'heroHit', side, id: 'POWER_SELF', dmg: c.self });
+        break;
+      }
+      case 'raid': {
+        S.events.push({ t: 'hit', side, id: 'POWER', dmg: c.dmg, on: fm.id });
+        damageMinion(S, other(side), fm.uid, c.dmg);
+        foe.hp -= pd;
+        S.events.push({ t: 'heroHit', side, id: 'POWER', dmg: pd });
+        break;
+      }
+      case 'guard': {
+        if (!hasKw(tm, 'Guard')) tm.kw = tm.kw ? tm.kw + ', Guard' : 'Guard';
+        KW_CACHE.delete(tm); // kw mutated after kwsOf may have cached — invalidate
+        S.events.push({ t: 'buff', side, id: 'POWER', on: tm.id });
+        refreshPrim(S);
+        break;
+      }
+      case 'buff': { // Sound the Charge: +1 ATK this turn only
+        tm.atk += 1; tm.tmpAtk = (tm.tmpAtk || 0) + 1;
+        S.events.push({ t: 'buff', side, id: 'POWER', on: tm.id });
+        refreshPrim(S);
+        break;
+      }
+      case 'buffself': { // Assembly Rite: +0/+1 and Aegis
+        tm.hp += 1; if (tm.maxhp) tm.maxhp += 1;
+        if (!hasKw(tm, 'Aegis')) tm.kw = tm.kw ? tm.kw + ', Aegis' : 'Aegis';
+        KW_CACHE.delete(tm); // same stale-cache guard as Shield Wall
+        tm.shield = 1;
+        S.events.push({ t: 'buff', side, id: 'POWER', on: tm.id });
+        refreshPrim(S);
+        break;
+      }
+      case 'buff2': { // Jade Vow: two friendly minions +0/+1
+        const big = (arr) => arr.slice().sort((a, b) => (b.atk + b.hp) - (a.atk + a.hp));
+        const first = tm || big(p.board)[0];
+        const rest = big(p.board.filter((x) => x.uid !== first.uid));
+        for (const b of [first, rest[0]]) {
+          if (!b) continue;
+          b.hp += 1; if (b.maxhp) b.maxhp += 1;
+          S.events.push({ t: 'buff', side, id: 'POWER', on: b.id });
+        }
+        refreshPrim(S);
+        break;
+      }
+      case 'heal': {
+        if (target.hero) p.hp = Math.min(MAX_HP, p.hp + c.heal);
+        else if (tm.maxhp) tm.hp = Math.min(tm.maxhp, tm.hp + c.heal);
+        S.events.push({ t: 'passive', side, id: 'POWER' });
+        break;
+      }
+      case 'salvage': { // the top card is the deck's tail: draws pop from the end
+        if (target.salvage === 'keep') draw(S, side);
+        S.events.push({ t: 'passive', side, id: 'POWER' });
+        break;
+      }
+      case 'draw': { draw(S, side); S.events.push({ t: 'passive', side, id: 'POWER' }); break; } // Petition the Court
+      case 'exhume': {
+        const gc = p.fallen.pop(); if (!gc) { p.power = false; p.mana += powerCost(S, side); return false; } // paranoia: never strand the flag
+        p.board.push({ id: 'ECHO@' + gc.id, name: 'Echo of ' + gc.name, cost: 1, atk: 1, hp: 1, maxhp: 1, kw: null, uid: 'ECHO-' + Math.floor(S.rng() * 1e9), img: gc.img, file: gc.file, fl: 'Called back beyond the veil.' });
+        S.events.push({ t: 'play', side, id: 'ECHO', uid: 'ECHO' + p.board.length, kw: null, cost: 1 });
+        refreshPrim(S);
+        break;
+      }
+      case 'delve': { p.mana += 1; S.events.push({ t: 'passive', side, id: 'POWER' }); break; }
+    }
+    if (hasP(p, 'ARCANE_LANCE') && foe.board.length) { const t = foe.board[Math.floor(S.rng() * foe.board.length)]; S.events.push({ t: 'passive', side, id: 'ARCANE_LANCE', on: t.id }); damageMinion(S, other(side), t.uid, 1 * rites(S, side)); } // v0.26: Queliomir — every cast looses a stray arc
     return true;
+  }
+  // v0.33: the shared power oracle — every brain asks the plan what its realm's
+  // command should do THIS turn. Answers, not routines: a legal target object
+  // for power(), or null to hold. The brains layer their lethal override on top.
+  function aiPowerPlan(S, side) {
+    if (!canPower(S, side)) return null;
+    const c = realmCmd(S, side); if (!c) return null;
+    const p = S[side], foe = S[other(side)];
+    const th = threat(S, side);
+    const pd = powerDmg(S, side);
+    const big = (arr) => arr.slice().sort((a, b) => (b.atk + b.hp) - (a.atk + a.hp))[0];
+    switch (c.kind) {
+      case 'summon': return p.board.length < MAX_BOARD ? {} : null; // Muster Levy: always another body
+      case 'dmg':
+        if (c.tset === 'foeHero') return { hero: true }; // Broadside: every turn, the cannons speak
+        if (c.tset === 'foeMinion') { const t = big(foe.board.filter((m) => m.hp <= pd)); return t ? { uid: t.uid } : null; } // Conscription: press the kill
+        { const t = big(foe.board.filter((m) => m.hp <= pd)); if (t) return { uid: t.uid }; return foe.hp <= pd ? { hero: true } : null; } // Arcane Bolt
+      case 'guard': { const t = big(p.board.filter((m) => !hasKw(m, 'Guard'))); return t ? { uid: t.uid } : null; } // Shield Wall: the biggest body stands watch
+      case 'buff': { const t = big(p.board.filter((m) => m.ready && m.atk > 0)); return t ? { uid: t.uid } : null; } // Sound the Charge: swing with it now
+      case 'heal': {
+        if (MAX_HP - p.hp >= 4) return { hero: true }; // Oathward: mend the Sovereign only when it hurts
+        const t = big(p.board.filter((m) => m.maxhp && m.hp < m.maxhp));
+        return t ? { uid: t.uid } : null;
+      }
+      case 'salvage': return p.deck.length ? { salvage: p.hand.length < 7 ? 'keep' : 'put' } : null; // top card stays seen; hold a full hand back
+      case 'selfdmg': return (p.hp <= 6) ? null : { hero: true }; // Blood Rite: never the last mistake (lethal override lives in the brains)
+      case 'buffself': { // Assembly Rite: Aegis only under fire
+        if (!th.danger) return null;
+        const t = big(p.board); return t ? { uid: t.uid } : null;
+      }
+      case 'draw': return p.deck.length ? {} : null; // Petition the Court: always
+      case 'buff2': { const t = big(p.board); return t ? { uid: t.uid } : null; } // Jade Vow: the engine buffs the biggest and its neighbor
+      case 'exhume': return (p.fallen.length && p.board.length < 3) ? {} : null; // a small board earns the dead back
+      case 'raid': { const t = big(foe.board.filter((m) => m.hp <= c.dmg)) || big(foe.board); return t ? { uid: t.uid } : null; }
+      case 'delve': return p.hand.some((cd) => effCost(S, side, cd) > p.mana) ? {} : null; // Delve: only when something costlier waits
+      default: return null;
+    }
   }
 
   function endTurn(S) {
@@ -726,7 +927,8 @@
       ep.edictsThisTurn = 0; // reset for the next round
     }
     // v0.11: the ending side's Shock window closes and Relentless counters settle
-    S[S.active].board.forEach((m) => { m.shocked = false; m.attacks = 0; });
+    // v0.33: Sound the Charge's +1 ATK expires with the turn
+    S[S.active].board.forEach((m) => { m.shocked = false; m.attacks = 0; if (m.tmpAtk) { m.atk -= m.tmpAtk; m.tmpAtk = 0; } });
     const next = other(S.active);
     S.active = next; S.turn++;
     const np = S[next], foe = S[other(next)];
@@ -817,7 +1019,7 @@
   function threat(S, side) {
     const p = S[side], foe = S[other(side)];
     const foeReach = foe.board.reduce((s, m) => s + m.atk * (hasKw(m, 'Relentless') ? 2 : 1), 0)
-      + powerDmg(S, other(side)) // v0.18: their Skirmish comes back around — a player counts it; // v0.26: ART_OF_WAR clause removed (passive rewritten as WAR_DRUMS, no hero damage)
+      + powerFaceDmg(S, other(side)) // v0.18: their Realm Command comes back around if it can reach us; // v0.26: ART_OF_WAR clause removed (passive rewritten as WAR_DRUMS, no hero damage)
     const guardHp = p.board.filter((m) => hasKw(m, 'Guard')).reduce((s, m) => s + m.hp, 0);
     return { foeReach, guardHp, danger: foeReach > 0 && foeReach >= p.hp + guardHp };
   }
@@ -998,11 +1200,10 @@
     });
     if (bi >= 0) pc(bi);
 
-    // hero power: remembers it exists about half the time
+    // hero power (v0.33 REALM COMMANDS): remembers it exists about half the time
     if (canPower(S, side) && S.rng() > 0.5) {
-      const pd = powerDmg(S, side);
-      const t = foe.board.filter((m) => m.hp <= pd).sort((a, b) => b.atk - a.atk)[0];
-      if (t || foe.hp <= pd) pw(t ? { uid: t.uid } : { hero: true });
+      const t = aiPowerPlan(S, side);
+      if (t) pw(t);
     }
 
     // attacks: aims face more often than it should, trades at random otherwise
@@ -1033,7 +1234,7 @@
 
     const th = threat(S, side);
     const spy = spyRead(S, side); // v0.18: count their outs
-    const pd0 = canPower(S, side) ? powerDmg(S, side) : 0;
+    const pd0 = canPower(S, side) ? powerFaceDmg(S, side) : 0;
     const readyAtk0 = me.board.filter((m) => m.ready).reduce((s, m) => s + m.atk, 0);
     const lethal = !guardsOn(foe).length && foe.hp <= readyAtk0 + pd0 + burnInHand(S, side);
 
@@ -1061,14 +1262,11 @@
       if (bi >= 0 && bv >= holdN) { pc(bi); played = true; }
     }
 
-    // hero power: lethal first, then finish a wounded minion, then push face
+    // hero power (v0.33): lethal first, then the realm oracle's plan
     if (canPower(S, side)) {
-      const pd = powerDmg(S, side);
-      if (lethal) pw({ hero: true });
-      else {
-        const t = foe.board.filter((m) => m.hp <= pd).sort((a, b) => b.atk - a.atk)[0];
-        if (t || foe.hp <= pd) pw(t ? { uid: t.uid } : { hero: true });
-      }
+      const c = realmCmd(S, side);
+      if (lethal && c && c.kind === 'dmg' && c.tset !== 'foeMinion') pw({ hero: true });
+      else { const t = aiPowerPlan(S, side); if (t) pw(t); }
     }
 
     // attacks
@@ -1296,19 +1494,17 @@
     // lethal check BEFORE acting: if the board can end it, everything goes face
     const guards = () => guardsOn(foe); // v0.29.0: shadowed guards do not pull attacks
     const readyAtk = me.board.filter((m) => m.ready).reduce((s, m) => s + m.atk, 0);
-    const pd = canPower(S, side) ? powerDmg(S, side) : 0;
+    const pd = canPower(S, side) ? powerFaceDmg(S, side) : 0;
     // spell lethal: the full burn read (pillage, hero-burn, both volleys) counts toward the kill
     const spellDmg = burnInHand(S, side); // v0.17: was volley/pillage only
     const lethal = !guards().length && foe.hp <= readyAtk + pd + spellDmg;
 
-    // hero power: on lethal it's damage; otherwise remove the juiciest minion we can kill
+    // hero power (v0.33 REALM COMMANDS): on lethal a damage command goes face;
+    // otherwise the shared oracle says what this realm's command does.
     if (canPower(S, side)) {
-      if (lethal) pw({ hero: true });
-      else {
-        const t = foe.board.filter((m) => m.hp <= pd).sort((a, b) => (b.atk + b.hp) - (a.atk + a.hp))[0];
-        if (t) pw({ uid: t.uid });
-        else if (foe.hp <= pd) pw({ hero: true });
-      }
+      const c = realmCmd(S, side);
+      if (lethal && c && c.kind === 'dmg' && c.tset !== 'foeMinion') pw({ hero: true });
+      else { const t = aiPowerPlan(S, side); if (t) pw(t); }
     }
 
     // attacks: biggest attackers decide first, so small minions clean up after them
@@ -1482,33 +1678,43 @@
     // lethal check BEFORE acting (verbatim)
     const guards = () => guardsOn(foe); // v0.29.0: shadowed guards do not pull attacks
     const readyAtk = me.board.filter((m) => m.ready).reduce((s, m) => s + m.atk, 0);
-    const pd = canPower(S, side) ? powerDmg(S, side) : 0;
+    const pd = canPower(S, side) ? powerFaceDmg(S, side) : 0;
     const spellDmg = burnInHand(S, side);
     const lethal = !guards().length && foe.hp <= readyAtk + pd + spellDmg;
 
-    // HEAD 3 — hero power: hard's choice first, learned override after.
+    // HEAD 3 — hero power (v0.33 REALM COMMANDS): the shared oracle answers;
+    // damage commands keep a learned candidate head (hard's choice, then the
+    // field). Non-damage commands take the plan directly — W=0 ≡ hard.
     if (canPower(S, side)) {
-      let hardChoice = null;
-      if (lethal) hardChoice = { hero: true };
-      else {
-        const t = foe.board.filter((m) => m.hp <= pd).sort((a, b) => (b.atk + b.hp) - (a.atk + a.hp))[0];
-        if (t) hardChoice = { uid: t.uid };
-        else if (foe.hp <= pd) hardChoice = { hero: true };
+      const c = realmCmd(S, side);
+      if (lethal && c && c.kind === 'dmg' && c.tset !== 'foeMinion') pw({ hero: true });
+      else if (c && (c.kind === 'dmg' || c.kind === 'raid')) {
+        const fullPd = powerDmg(S, side);
+        const tt = powerTargets(S, side);
+        const pool = tt.minion === 'friend' ? me.board : foe.board; // what the command can aim at
+        const hitDmg = c.kind === 'raid' ? c.dmg : fullPd; // raid's minion chip is not the face chip
+        const killable = tt.minion ? pool.filter((m) => m.hp <= hitDmg) : [];
+        const plan = aiPowerPlan(S, side);
+        const cands = [];
+        if (plan && plan.uid) { const h = killable.find((t) => t.uid === plan.uid) || pool.find((t) => t.uid === plan.uid); if (h) cands.push(h); } // hard's aim leads; W=0 takes it
+        if (plan && plan.hero && tt.hero) cands.push('FACE');
+        cands.push('SKIP'); // v0.33 W=0 contract: no plan means hard would NOT cast — SKIP leads so W=0 skips
+        if (tt.hero && !(plan && plan.hero)) cands.push('FACE');
+        cands.push(...killable);
+        const uniq = cands.filter((x, i) => x !== undefined && cands.indexOf(x) === i);
+        let best = null, bs = 0;
+        for (const x of uniq) {
+          const f = rlPowFeatures(S, side, x, fullPd);
+          f[6] = lethal ? 1 : 0;
+          const s = rlDot(RL_PW_OFF, f);
+          if (!best || s > bs) { best = x; bs = s; }
+        }
+        if (best === 'FACE') pw({ hero: true });
+        else if (best !== 'SKIP' && best) pw({ uid: best.uid });
+      } else {
+        const plan = aiPowerPlan(S, side);
+        if (plan) pw(plan);
       }
-      const killable = foe.board.filter((m) => m.hp <= pd);
-      const cands = [];
-      if (hardChoice) cands.push(hardChoice.hero ? 'FACE' : killable.find((t) => t.uid === hardChoice.uid));
-      cands.push('SKIP', 'FACE', ...killable);
-      const uniq = cands.filter((c, i) => c !== undefined && cands.indexOf(c) === i);
-      let best = null, bs = 0;
-      for (const c of uniq) {
-        const f = rlPowFeatures(S, side, c, pd);
-        f[6] = lethal ? 1 : 0;
-        const s = rlDot(RL_PW_OFF, f);
-        if (!best || s > bs) { best = c; bs = s; }
-      }
-      if (best === 'FACE') pw({ hero: true });
-      else if (best !== 'SKIP' && best) pw({ uid: best.uid });
     }
 
     // HEAD 2 — attacks: per minion, hard's target first among candidates,
@@ -1551,7 +1757,8 @@
 
   return {
     MAX_BOARD, MAX_HAND, MAX_HP, MAX_MANA, MAX_RELICS, AI_LEVELS,
-    KWTXT, KWDESC, hasP, powerDmg, powerCost, effCost,
+    KWTXT, KWDESC, hasP, powerDmg, powerFaceDmg, powerCost, effCost,
+    powerName, powerText, powerKind, powerTargets, aiPowerPlan, realmCmd, // v0.33 REALM COMMANDS — the UI and the RL brain read the table through these
     other, startMatch, draw,
     canPlay, playCard, canAttack, attack, canPower, power, endTurn, checkEnd, aiTurn,
     threat, spyRead, seenPlays, sovSynergy, spyAdjust, deckPlan,
