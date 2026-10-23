@@ -1288,7 +1288,7 @@
    "cardId": "the-second-burial@necropolis",
    "status": "minted",
    "prompt": "A funeral procession lowering a too-weak enemy champion into an open grave as the Necropolis bell tolls, grave-mist swallowing the fallen banner, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/the-second-burial.jpg",
+   "file": "scenes/necropolis/the-second-burial.jpg",
    "bytes": 391919
   },
   {
@@ -1298,7 +1298,7 @@
    "cardId": "grave-tithe@necropolis",
    "status": "minted",
    "prompt": "A bone-chested tax-collector of the dead counting freshly raised conscripts out of a mass grave at the tithe-stone, coins on dead eyes, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/grave-tithe.jpg",
+   "file": "scenes/necropolis/grave-tithe.jpg",
    "bytes": 383768
   },
   {
@@ -1308,7 +1308,7 @@
    "cardId": "the-carrion-call@necropolis",
    "status": "minted",
    "prompt": "A flock of grave-birds swirling down onto a battlefield of the fallen, assembling around a skeletal herald as a revenant stands up mid-swarm, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/the-carrion-call.jpg",
+   "file": "scenes/necropolis/the-carrion-call.jpg",
    "bytes": 367910
   },
   {
@@ -1318,7 +1318,7 @@
    "cardId": "marrow-harvest@necropolis",
    "status": "minted",
    "prompt": "A hunched bone-cutter gathering marrow-light from stacked femurs into a lantern that pours pale warmth into a wounded sovereign's chest, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/marrow-harvest.jpg",
+   "file": "scenes/necropolis/marrow-harvest.jpg",
    "bytes": 314196
   },
   {
@@ -1328,7 +1328,7 @@
    "cardId": "the-pale-vigil@necropolis",
    "status": "minted",
    "prompt": "Rank on rank of standing dead in a candle-lit barrow hall, each soldier straightening as a pale flame passes down the line, armor knitting back together, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/the-pale-vigil.jpg",
+   "file": "scenes/necropolis/the-pale-vigil.jpg",
    "bytes": 375180
   },
   {
@@ -1338,7 +1338,7 @@
    "cardId": "exhumation@necropolis",
    "status": "minted",
    "prompt": "Gravediggers hauling a coffin lid aside as a wight in ancient mail climbs out sword-first, grave-light spilling from the pit, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/exhumation.jpg",
+   "file": "scenes/necropolis/exhumation.jpg",
    "bytes": 341566
   },
   {
@@ -1348,7 +1348,7 @@
    "cardId": "necrotic-volley@necropolis",
    "status": "minted",
    "prompt": "A volley of grave-splinter arrows loosed by skeletal archers from a tomb balcony, each bolt trailing green rot as they strike, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/necrotic-volley.jpg",
+   "file": "scenes/necropolis/necrotic-volley.jpg",
    "bytes": 373313
   },
   {
@@ -1358,7 +1358,7 @@
    "cardId": "the-silent-choir@necropolis",
    "status": "minted",
    "prompt": "A choir of veiled wraiths surrounding an enemy champion mid-song, his armor's glow and battle-runes visibly draining away into their open mouths, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/the-silent-choir.jpg",
+   "file": "scenes/necropolis/the-silent-choir.jpg",
    "bytes": 366229
   },
   {
@@ -1368,7 +1368,7 @@
    "cardId": "plague-wind@necropolis",
    "status": "minted",
    "prompt": "A green-tinged gale rolling across an enemy war-camp, soldiers and beasts sagging mid-charge as their banners dissolve into black rags, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/plague-wind.jpg",
+   "file": "scenes/necropolis/plague-wind.jpg",
    "bytes": 368576
   },
   {
@@ -1378,7 +1378,7 @@
    "cardId": "the-bone-crown@necropolis",
    "status": "minted",
    "prompt": "A crown of fused finger-bones on a sarcophagus throne, new knuckle-bones crawling up its band each time a drop of sovereign blood falls nearby, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/the-bone-crown.jpg",
+   "file": "scenes/necropolis/the-bone-crown.jpg",
    "bytes": 314568
   },
   {
@@ -1388,7 +1388,7 @@
    "cardId": "catacomb-granary@necropolis",
    "status": "minted",
    "prompt": "A vast catacomb hall stacked with funerary jars and preserved grave-goods, warm broth being ladled from a sarcophagus pot by a skeletal cook, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/catacomb-granary.jpg",
+   "file": "scenes/necropolis/catacomb-granary.jpg",
    "bytes": 417881
   },
   {
@@ -1398,7 +1398,7 @@
    "cardId": "reliquary-of-the-unquiet@necropolis",
    "status": "minted",
    "prompt": "A bone-carved reliquary cabinet in a crypt, a ghost-scribe sliding a fresh nameplate into an endless rack as a fallen soldier's shade waits patiently, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/reliquary-of-the-unquiet.jpg",
+   "file": "scenes/necropolis/reliquary-of-the-unquiet.jpg",
    "bytes": 404360
   },
   {
@@ -1408,7 +1408,7 @@
    "cardId": "the-endless-levy@marches",
    "status": "minted",
    "prompt": "A goblin conscription officer stamping every forehead in a mud-street market line, each stamped orc or goblin instantly kitted with a rusted spear by unseen hands, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/the-endless-levy.jpg",
+   "file": "scenes/marches/the-endless-levy.jpg",
    "bytes": 393973
   },
   {
@@ -1418,7 +1418,7 @@
    "cardId": "waaagh-momentum@marches",
    "status": "minted",
    "prompt": "A wave of greenskins stampeding downhill, the front ranks swelling visibly as the crush of bodies behind forces them bigger and meaner, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/waaagh-momentum.jpg",
+   "file": "scenes/marches/waaagh-momentum.jpg",
    "bytes": 488008
   },
   {
@@ -1428,7 +1428,7 @@
    "cardId": "raiding-parties@marches",
    "status": "minted",
    "prompt": "Three orc raiding crews tearing open a captured wagon train in a mountain pass, each band of greenskins growing rowdier and thicker-armed as loot piles up, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/raiding-parties.jpg",
+   "file": "scenes/marches/raiding-parties.jpg",
    "bytes": 405903
   },
   {
@@ -1438,7 +1438,7 @@
    "cardId": "the-scrapworks@marches",
    "status": "minted",
    "prompt": "A goblin scrap-smith riveting looted breastplates onto a grinning orc with a hammer and pure enthusiasm, sparks flying in a junkyard forge, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/the-scrapworks.jpg",
+   "file": "scenes/marches/the-scrapworks.jpg",
    "bytes": 437529
   },
   {
@@ -1448,7 +1448,7 @@
    "cardId": "maw-of-the-horde@marches",
    "status": "minted",
    "prompt": "The entire war-host crashing into an enemy shieldline like a tide, jaws and tusks visible everywhere as the enemy front rank vanishes into the crush, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/maw-of-the-horde.jpg",
+   "file": "scenes/marches/maw-of-the-horde.jpg",
    "bytes": 472459
   },
   {
@@ -1458,7 +1458,7 @@
    "cardId": "goblin-gambit@marches",
    "status": "minted",
    "prompt": "A goblin gambler fanning three stolen battle-plans behind a rock, picking the shiniest one while an oblivious enemy scout walks past, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/goblin-gambit.jpg",
+   "file": "scenes/marches/goblin-gambit.jpg",
    "bytes": 395029
   },
   {
@@ -1468,7 +1468,7 @@
    "cardId": "the-pits@marches",
    "status": "minted",
    "prompt": "A roaring pit-fight arena of stamping greenskins, the loser of the bout falling on spikes that spray the jeering crowd with spoils, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/the-pits.jpg",
+   "file": "scenes/marches/the-pits.jpg",
    "bytes": 459081
   },
   {
@@ -1478,7 +1478,7 @@
    "cardId": "warlords-ascension@marches",
    "status": "minted",
    "prompt": "A towering warchief raising a slain rival's iron jaw-plate as a crown, every orc and goblin in the horde below raising weapons with glowing red eyes, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/warlord-s-ascension.jpg",
+   "file": "scenes/marches/warlord-s-ascension.jpg",
    "bytes": 413032
   },
   {
@@ -1488,7 +1488,7 @@
    "cardId": "the-great-maw-idol@marches",
    "status": "minted",
    "prompt": "A colossal iron maw-idol being carried on a rolling scaffold through a horde encampment, greenskin warriors shoving offerings in as their own eyes gleam with borrowed hunger, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/the-great-maw-idol.jpg",
+   "file": "scenes/marches/the-great-maw-idol.jpg",
    "bytes": 472497
   },
   {
@@ -1498,7 +1498,7 @@
    "cardId": "stone-sleep@deepholds",
    "status": "minted",
    "prompt": "A wounded dwarf sovereign resting against a humming basalt wall deep in the holds, cracked stone knitting over his wounds like slow amber, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/stone-sleep.jpg",
+   "file": "scenes/deepholds/stone-sleep.jpg",
    "bytes": 413974
   },
   {
@@ -1508,7 +1508,7 @@
    "cardId": "the-anvil-chorus@deepholds",
    "status": "minted",
    "prompt": "A gallery of dwarf forge-masters striking anvils in thunderous unison, runes flaring down the cavern as frontline dwarves charge with glowing weapons, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/the-anvil-chorus.jpg",
+   "file": "scenes/deepholds/the-anvil-chorus.jpg",
    "bytes": 436302
   },
   {
@@ -1518,7 +1518,7 @@
    "cardId": "rune-of-warding@deepholds",
    "status": "minted",
    "prompt": "A rune-priest carving a glowing ward-sigil onto a gate as dwarf soldiers march out beneath it, each shield catching the rune's blue gleam, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/rune-of-warding.jpg",
+   "file": "scenes/deepholds/rune-of-warding.jpg",
    "bytes": 417492
   },
   {
@@ -1528,7 +1528,7 @@
    "cardId": "barrow-upheaval@deepholds",
    "status": "minted",
    "prompt": "An ornate stone barrow door swinging open in a mountain crypt as an ancient armored guardian steps out, saluting with a rune-blade, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/barrow-upheaval.jpg",
+   "file": "scenes/deepholds/barrow-upheaval.jpg",
    "bytes": 401307
   },
   {
@@ -1538,7 +1538,7 @@
    "cardId": "the-deep-roads@deepholds",
    "status": "minted",
    "prompt": "A lantern-crew of dwarf scouts at a three-way tunnel junction carved with route-runes, the chief navigator pointing confidently down the widest bore, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/the-deep-roads.jpg",
+   "file": "scenes/deepholds/the-deep-roads.jpg",
    "bytes": 450279
   },
   {
@@ -1548,7 +1548,7 @@
    "cardId": "grudge-settled@deepholds",
    "status": "minted",
    "prompt": "A dwarf grudge-keeper solemnly crossing out a name in an iron-bound ledger as the offending enemy champion crumbles to dust before him, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/grudge-settled.jpg",
+   "file": "scenes/deepholds/grudge-settled.jpg",
    "bytes": 351647
   },
   {
@@ -1558,7 +1558,7 @@
    "cardId": "vault-tithe@deepholds",
    "status": "minted",
    "prompt": "A great vault door with toll-bells and ledgers, a gnome paymaster charging a fleeing enemy spy double as gem-stamped receipts pile up, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/vault-tithe.jpg",
+   "file": "scenes/deepholds/vault-tithe.jpg",
    "bytes": 318231
   },
   {
@@ -1568,7 +1568,7 @@
    "cardId": "the-windlass@deepholds",
    "status": "minted",
    "prompt": "A massive dwarf windlass raising a platform of shield-dwarves from a lower gallery, each warrior growing more imposing as they rise into the lamplight, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/the-windlass.jpg",
+   "file": "scenes/deepholds/the-windlass.jpg",
    "bytes": 341054
   },
   {
@@ -1578,7 +1578,7 @@
    "cardId": "ember-rite@deepholds",
    "status": "minted",
    "prompt": "A gnome fire-rite swirling forge-embers into a ring of power around a dwarf caster, molten light pouring into his outstretched hammer, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/ember-rite.jpg",
+   "file": "scenes/deepholds/ember-rite.jpg",
    "bytes": 455727
   },
   {
@@ -1588,7 +1588,7 @@
    "cardId": "gnomeish-contraption@deepholds",
    "status": "minted",
    "prompt": "A brass contraption of arms and lenses sorting gems into three chutes, a gnome plucking the fattest gem with tweezers while the machine smokes, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/gnomeish-contraption.jpg",
+   "file": "scenes/deepholds/gnomeish-contraption.jpg",
    "bytes": 372538
   },
   {
@@ -1598,7 +1598,7 @@
    "cardId": "the-last-rampart@deepholds",
    "status": "minted",
    "prompt": "A final rampart of locked tower-shields sealing a breached gate hall, every gap vanishing as dwarf shoulders lock behind an unbroken iron line, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/the-last-rampart.jpg",
+   "file": "scenes/deepholds/the-last-rampart.jpg",
    "bytes": 380636
   },
   {
@@ -1608,7 +1608,7 @@
    "cardId": "stonesong@deepholds",
    "status": "minted",
    "prompt": "A dwarf stonesinger pressing her palm to a cavern wall as runes ripple outward, a carved rune-scroll sliding loose from the living rock into her hands, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/stonesong.jpg",
+   "file": "scenes/deepholds/stonesong.jpg",
    "bytes": 357835
   },
   {
@@ -1618,7 +1618,7 @@
    "cardId": "the-unbroken-anvil@deepholds",
    "status": "minted",
    "prompt": "An ancient anvil enshrined in the deepest forge-temple, a wounded dwarf sovereign standing behind it as incoming arrows shatter to pebbles mid-flight, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/the-unbroken-anvil.jpg",
+   "file": "scenes/deepholds/the-unbroken-anvil.jpg",
    "bytes": 410354
   },
   {
@@ -1628,7 +1628,7 @@
    "cardId": "cistern-of-echoes@deepholds",
    "status": "minted",
    "prompt": "A vaulted cistern hall where water drips up as much as down, a gnome aquarist blessing the echoes as pale water-light heals a resting dwarf line, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/cistern-of-echoes.jpg",
+   "file": "scenes/deepholds/cistern-of-echoes.jpg",
    "bytes": 397172
   },
   {
@@ -1638,7 +1638,7 @@
    "cardId": "the-tally-vault@deepholds",
    "status": "minted",
    "prompt": "A walking-vault chamber where a gnome auditor stamps a receipt the instant a dwarf falls in battle above, the stamp-light visibly restocking the armory, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/the-tally-vault.jpg",
+   "file": "scenes/deepholds/the-tally-vault.jpg",
    "bytes": 424737
   },
   {
@@ -1648,7 +1648,7 @@
    "cardId": "lantern-of-the-lower-gate@deepholds",
    "status": "minted",
    "prompt": "A great whale-oil lantern swinging above the lower gates, its beam sweeping a distant tunnel and pinning a sneaking enemy scout in full detail, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/lantern-of-the-lower-gate.jpg",
+   "file": "scenes/deepholds/lantern-of-the-lower-gate.jpg",
    "bytes": 326899
   },
   {
@@ -1658,7 +1658,7 @@
    "cardId": "the-baited-snare@tigerpass",
    "status": "minted",
    "prompt": "A panicked enemy column herded between thorn-walls by wolf shadows, the thorns themselves snapping closed like jaws as the pack watches from the ridge, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/the-baited-snare.jpg",
+   "file": "scenes/tigerpass/the-baited-snare.jpg",
    "bytes": 384261
   },
   {
@@ -1668,7 +1668,7 @@
    "cardId": "rutting-season@tigerpass",
    "status": "minted",
    "prompt": "Two colossal stags clashing antlers in a moonlit glen, the impact sending a shockwave of pollen-light that visibly swells every beast massed at the treeline, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/rutting-season.jpg",
+   "file": "scenes/tigerpass/rutting-season.jpg",
    "bytes": 465023
   },
   {
@@ -1678,7 +1678,7 @@
    "cardId": "the-long-stalk@tigerpass",
    "status": "minted",
    "prompt": "A shadow panther flat on a rock overhang above a waterhole, tracking three separate herds below with slow amber eyes before choosing the slowest, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/the-long-stalk.jpg",
+   "file": "scenes/tigerpass/the-long-stalk.jpg",
    "bytes": 268180
   },
   {
@@ -1688,7 +1688,7 @@
    "cardId": "pack-alphas@tigerpass",
    "status": "minted",
    "prompt": "A ring of alpha predators — dire wolf, cave bear, sabre-tooth — feeding at a kill while the massed pack looks on, each watcher's fur bristling thicker as they wait their turn, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/pack-alphas.jpg",
+   "file": "scenes/tigerpass/pack-alphas.jpg",
    "bytes": 417485
   },
   {
@@ -1698,7 +1698,7 @@
    "cardId": "the-molt@tigerpass",
    "status": "minted",
    "prompt": "A colossal serpent mid-molt in a jungle clearing, its fresh scales gleaming as the shed husk behind it crawls away on its own, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/the-molt.jpg",
+   "file": "scenes/tigerpass/the-molt.jpg",
    "bytes": 491575
   },
   {
@@ -1708,7 +1708,7 @@
    "cardId": "the-primal-idol@tigerpass",
    "status": "minted",
    "prompt": "A moss-choked tusk-idol deep in a beast-shrine hollow, a fallen wolf's outline flowing into the idol as a nearby bear visibly grows, dramatic cinematic lighting, oil painting texture, rich deep color, dynamic action composition, the moment an event unfolds, no text, no lettering, no borders",
-   "file": "art/scenes/the-primal-idol.jpg",
+   "file": "scenes/tigerpass/the-primal-idol.jpg",
    "bytes": 397091
   }
  ]

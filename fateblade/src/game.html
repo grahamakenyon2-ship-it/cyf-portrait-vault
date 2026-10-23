@@ -749,7 +749,8 @@ if(!IS_ELECTRON){
   window.addEventListener('pointerdown', goFS);
 }
 const THEMES = (DATA.themes || 'https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/themes');
-const ART = (DATA.art || 'https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art'); // v0.6.7 universal art
+const ART = (DATA.art || 'https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/art');
+const THEME = ART.replace(/\/art$/, '/theme'); // v0.28.0 vault housekeeping: theme textures live in fateblade/theme/ // v0.6.7 universal art
 window.FB_PATCH = function(msg, pct){ const h = document.getElementById('patchhud'); h.style.display='block'; h.textContent = 'PATCHING: ' + msg + (pct ? ' — ' + pct + '%' : ''); };
 const E = window.FBEngine;
 const hasKw = (o, k) => E.hasKw(o, k); // v0.20: multi-keyword-safe checks
@@ -784,10 +785,10 @@ function applyTheme(factionId){
   // proper galacticemp panel ships; bg stays galacticemp (it is dark and fine).
   const PANEL_OVERRIDE = { galacticemp: 'bothawui' };
   root.style.setProperty('--theme-panel', `url(${THEMES}/${PANEL_OVERRIDE[key] || key}/panel.jpg)`);
-  root.style.setProperty('--theme-btn', `url(${ART}/5b572857-1561-4de3-933e-9e2ced9432e1.jpg)`); // v0.6.8: universal Fateblade plate (AI art from the vault)
-  root.style.setProperty('--fb-btn', `url(${ART}/5b572857-1561-4de3-933e-9e2ced9432e1.jpg)`);
-  root.style.setProperty('--board-bg', `url(${ART}/af4a2781-01b1-45ea-9a22-498eefb5543c.jpg)`);
-  root.style.setProperty('--menu-bg', `url(${ART}/76054395-130d-4733-b8ae-547067638433.jpg)`); // v0.6.9: AI-art vault hall (user-picked)
+  root.style.setProperty('--theme-btn', `url(${THEME}/fateblade-plate.jpg)`); // v0.6.8: universal Fateblade plate (AI art from the vault)
+  root.style.setProperty('--fb-btn', `url(${THEME}/fateblade-plate.jpg)`);
+  root.style.setProperty('--board-bg', `url(${THEME}/board-texture.jpg)`);
+  root.style.setProperty('--menu-bg', `url(${THEME}/menu-hall.jpg)`); // v0.6.9: AI-art vault hall (user-picked)
   document.body.classList.add('themed');
 }
 
