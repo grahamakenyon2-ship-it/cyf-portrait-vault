@@ -1796,6 +1796,7 @@
     threat, spyRead, seenPlays, sovSynergy, spyAdjust, deckPlan,
     hasKw, kwsOf, // v0.20: multi-keyword helpers exported for tests (inert in browser)
     shadowed, guardsOn, // v0.29.0: Shadow helpers exported for the RL brain's engine-replica blocks (inert in browser)
+    atkReach, lawGuarded, // v0.34: Guard-wall reach helpers exported for the RL brain (inert in browser)
     tribeOf, countTribe, // v0.23: tribal helpers exported for tests (inert in browser)
     pickTarget, targetSpec, validTargets, aiTarget, resolveBc, // v0.20 A3+A6+A9: targeting + multi-part riders exported
   };
