@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FATEBLADE — a digital card game</title>
+<meta name="description" content="FATEBLADE — a free browser-based collectible card game. 16 realms, 1,600+ cards, two campaigns, LAN multiplayer. Play in your browser.">
+<style>
+  :root{
+    --gold:#c9a227; --gold-hi:#f0d377; --ink:#0d0b08; --ink2:#17130d;
+    --parch:#e8dcc0; --dim:#9c8f72; --line:rgba(201,162,39,.25);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:var(--ink); color:var(--parch);
+    font-family:Georgia,'Times New Roman',serif;
+    line-height:1.6; overflow-x:hidden;
+  }
+  .wrap{max-width:1060px;margin:0 auto;padding:0 24px}
+  a{color:var(--gold-hi);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  /* HERO */
+  header{
+    min-height:88vh; display:flex; flex-direction:column;
+    justify-content:center; align-items:center; text-align:center;
+    background:
+      radial-gradient(ellipse at 50% 110%, rgba(201,162,39,.16), transparent 55%),
+      radial-gradient(ellipse at 50% -10%, rgba(120,30,20,.12), transparent 60%),
+      var(--ink);
+    padding:48px 24px;
+  }
+  .crest{width:96px;height:96px;margin-bottom:20px;filter:drop-shadow(0 0 24px rgba(201,162,39,.45))}
+  h1{
+    font-size:clamp(3rem,9vw,5.6rem); letter-spacing:.14em; font-weight:700;
+    color:var(--gold-hi);
+    text-shadow:0 0 40px rgba(201,162,39,.35), 0 2px 0 #6b5210;
+  }
+  .tagline{font-size:1.25rem;color:var(--dim);font-style:italic;margin:14px 0 34px;max-width:640px}
+  /* WHAT'S NEW (auto-generated block — tools/release-notes.mjs --landing) */
+  .whatsnew{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:34px 0;margin:0}
+  .whatsnew h2{color:var(--gold-hi);font-size:1.5rem;letter-spacing:.08em;margin-bottom:14px}
+  .whatsnew .wnver{color:var(--gold);font-weight:700;margin-bottom:8px}
+  .whatsnew .wndate{color:var(--dim);font-weight:400;font-size:.85rem;margin-left:8px}
+  .whatsnew ul{list-style:none}
+  .whatsnew li{padding-left:1.2em;position:relative;margin:4px 0;color:var(--parch)}
+  .whatsnew li::before{content:"◆";position:absolute;left:0;color:var(--gold);font-size:.7em;top:.45em}
+  .whatsnew .wnupd{color:var(--dim);font-size:.85rem;margin-top:10px;font-style:italic}
+  .cta{
+    display:inline-block; font-size:1.3rem; letter-spacing:.12em;
+    padding:16px 54px; border:2px solid var(--gold); border-radius:4px;
+    color:var(--gold-hi); background:linear-gradient(180deg, rgba(201,162,39,.14), rgba(201,162,39,.03));
+    transition:all .18s ease;
+  }
+  .cta:hover{background:var(--gold);color:var(--ink);text-decoration:none;box-shadow:0 0 40px rgba(201,162,39,.5)}
+  .cta-sub{margin-top:12px;font-size:.85rem;color:var(--dim)}
+  .stats{display:flex;gap:42px;margin-top:52px;flex-wrap:wrap;justify-content:center}
+  .stat b{display:block;font-size:1.9rem;color:var(--gold-hi)}
+  .stat span{font-size:.8rem;letter-spacing:.14em;color:var(--dim);text-transform:uppercase}
+
+  /* SECTIONS */
+  section{padding:72px 0;border-top:1px solid var(--line)}
+  h2{
+    font-size:1.9rem;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--gold-hi);text-align:center;margin-bottom:38px;
+  }
+  h2::after{content:"";display:block;width:64px;height:2px;background:var(--gold);margin:14px auto 0}
+  .lead{text-align:center;max-width:720px;margin:0 auto 44px;color:var(--parch);font-size:1.08rem}
+
+  /* REALMS */
+  .realms{
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+    gap:16px;
+  }
+  .realm{
+    background:var(--ink2); border:1px solid var(--line); border-radius:6px;
+    overflow:hidden; transition:transform .15s ease, border-color .15s ease;
+  }
+  .realm:hover{transform:translateY(-4px);border-color:var(--gold)}
+  .realm img{width:100%;aspect-ratio:1;object-fit:cover;display:block}
+  .realm .nm{padding:10px 12px;font-size:.88rem;text-align:center;color:var(--parch)}
+
+  /* FEATURES */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+  .card{
+    background:var(--ink2);border:1px solid var(--line);border-radius:6px;
+    padding:24px;
+  }
+  .card h3{color:var(--gold-hi);font-size:1.05rem;letter-spacing:.06em;margin-bottom:10px}
+  .card p{font-size:.95rem;color:var(--dim)}
+
+  /* CRAFT */
+  .craft p{max-width:760px;margin:0 auto 18px;font-size:1.02rem}
+  .craft ul{max-width:640px;margin:26px auto;list-style:none}
+  .craft li{padding:10px 0 10px 30px;border-bottom:1px solid var(--line);position:relative}
+  .craft li::before{content:"⚔";position:absolute;left:2px;color:var(--gold)}
+
+  footer{
+    border-top:1px solid var(--line);padding:34px 24px;text-align:center;
+    color:var(--dim);font-size:.85rem;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <svg class="crest" viewBox="0 0 100 100" aria-hidden="true">
+    <defs>
+      <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#f0d377"/><stop offset="1" stop-color="#c9a227"/>
+      </linearGradient>
+    </defs>
+    <path d="M50 6 L62 14 L62 46 L78 30 L88 40 L60 66 L60 88 L40 88 L40 66 L12 40 L22 30 L38 46 L38 14 Z"
+          fill="url(#g)" stroke="#6b5210" stroke-width="2" stroke-linejoin="round"/>
+    <circle cx="50" cy="24" r="5" fill="#0d0b08"/>
+  </svg>
+  <h1>FATEBLADE</h1>
+  <p class="tagline">A free digital card game of conquest, guile, and grim&nbsp;destiny — forged one&nbsp;realm at a&nbsp;time.</p>
+  <a class="cta" href="/cyf-portrait-vault/fateblade/src/game.html">⚔ &nbsp;PLAY NOW</a>
+  <p class="cta-sub">No install. No account. Runs in your desktop browser.</p>
+  <div class="stats">
+    <div class="stat"><b>16</b><span>Realms</span></div>
+    <div class="stat"><b>1,600+</b><span>Cards</span></div>
+    <div class="stat"><b>2</b><span>Campaigns</span></div>
+    <div class="stat"><b>LAN</b><span>Multiplayer</span></div>
+  </div>
+</header>
+
+<!-- whatsnew:start -->
+<section class="whatsnew">
+  <div class="wrap">
+    <h2>What&#39;s New</h2>
+    <p class="wnver">v0.38.0 — PATCHABLE LAN SERVER + TRUNCATION RECOVERY<span class="wndate">Oct 24</span></p>
+<ul>
+      <li>LAN server updates now arrive via the in-game patcher (Settings → Check for Updates) — server fixes no longer need an installer rebuild</li>
+      <li>New Setup.exe: installs for all users automatically and sets its own Windows firewall rule</li>
+      <li>LAN relay hardened with continuation-frame reassembly — big duels can't stall the connection</li>
+    </ul>
+    <p class="wnupd">How to update: in-game Settings → Check for Updates. Desktop players: Patcher → Check for Updates (first try may say "up to date" — the CDN lags ~10 minutes).</p>
+  </div>
+</section>
+<!-- whatsnew:end -->
+<section>
+  <div class="wrap">
+    <h2>The Sixteen Realms</h2>
+    <p class="lead">Every realm has its own card pool, Sovereign, and win condition — from the undead legions of the Necropolis to the far-flying Human Star Empire.</p>
+    <div class="realms">
+      <div class="realm"><img src="/cyf-portrait-vault/fateblade/commanders/barning.jpg" alt="The Tidebound Crown"><div class="nm">The Tidebound Crown</div></div>
+      <div class="realm"><img src="/cyf-portrait-vault/fateblade/commanders/lucerre.jpg" alt="The Gilded Sun"><div class="nm">The Gilded Sun</div></div>
+      <div class="realm"><img src="/cyf-portrait-vault/fateblade/commanders/fenorian.jpg" alt="The Twin Courts of Fenor"><div class="nm">The Twin Courts of Fenor</div></div>
+      <div class="realm"><img src="/cyf-portrait-vault/fateblade/commanders/crescent.jpg" alt="The Crescent Sultanates"><div class="nm">The Crescent Sultanates</div></div>
+      <div class="realm"><img src="/cyf-portrait-vault/fateblade/commanders/ironsteppes.jpg" alt="The Ironsteppes Horde"><div class="nm">The Ironsteppes Horde</div></div>
+      <div class="realm"><img src="/cyf-portrait-vault/fateblade/commanders/stormlit.jpg" alt="The Elderkin"><div class="nm">The Elderkin</div></div>
+      <div class="realm"><img src="/cyf-portrait-vault/fateblade/commanders/starwind.jpg" alt="The Alien Dominion"><div class="nm">The Alien Dominion</div></div>
+      <div class="realm"><img src="/cyf-portrait-vault/fateblade/commanders/tigerpass.jpg" alt="The Bestial Horde"><div class="nm">The Bestial Horde</div></div>
+      <div class="realm"><img src="/cyf-portrait-vault/fateblade/commanders/zephek.jpg" alt="The Human Star Empire"><div class="nm">The Human Star Empire</div></div>
+      <div class="realm"><img src="/cyf-portrait-vault/fateblade/commanders/courts.jpg" alt="The Gilded Courts"><div class="nm">The Gilded Courts</div></div>
+      <div class="realm"><img src="/cyf-portrait-vault/fateblade/commanders/kingdoms.jpg" alt="The Warring Kingdoms"><div class="nm">The Warring Kingdoms</div></div>
+      <div class="realm"><img src="/cyf-portrait-vault/fateblade/commanders/towers.jpg" alt="The Nine Towers"><div class="nm">The Nine Towers</div></div>
+      <div class="realm"><img src="/cyf-portrait-vault/fateblade/commanders/necropolis.jpg" alt="The Necropolis"><div class="nm">The Necropolis</div></div>
+      <div class="realm"><img src="/cyf-portrait-vault/fateblade/commanders/marches.jpg" alt="The Broken Marches"><div class="nm">The Broken Marches</div></div>
+      <div class="realm"><img src="/cyf-portrait-vault/fateblade/commanders/deepholds.jpg" alt="The Deepholds"><div class="nm">The Deepholds</div></div>
+      <div class="realm"><img src="/cyf-portrait-vault/fateblade/commanders/wayfarers.jpg" alt="The Wayfarers' Guild"><div class="nm">The Wayfarers' Guild</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>What's In The Box</h2>
+    <div class="grid">
+      <div class="card"><h3>Full Deckbuilding</h3><p>Sixteen realms, each with a unique Sovereign, card pool, and playstyle. Build decks from any pool and take them against the AI or a friend.</p></div>
+      <div class="card"><h3>Two Campaigns</h3><p>Two 8-chapter story campaigns — <em>The Ironroad</em> and <em>The Broken Oath</em> — with per-chapter rule twists, boss duels, and progression.</p></div>
+      <div class="card"><h3>LAN Multiplayer</h3><p>Duel a friend over your local network: shared lobby, live opponent status, turn timers, spectator mode, in-match chat, reconnect, and replay export.</p></div>
+      <div class="card"><h3>Serious AI</h3><p>Multiple difficulty tiers of computer opponents, trained and validated through tens of millions of simulated matches.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="craft">
+  <div class="wrap">
+    <h2>How It's Made</h2>
+    <p>Fateblade is a one-person project, built with an AI-assisted development workflow — and a heavy bias toward <em>measuring instead of guessing</em>.</p>
+    <ul>
+      <li>Every balance change is validated across millions of simulated AI matches, tracking win rates per realm before it ships</li>
+      <li>A card-economy model — benchmarked against published data from Magic: The Gathering, Hearthstone, and Gwent — prices every card against a measured stat curve</li>
+      <li>Nightly automated playtests run real AI agents through the game and file their own bug reports</li>
+      <li>Every release is verified with automated test suites and distributed through a checksum-verified patcher</li>
+    </ul>
+    <p style="text-align:center;color:var(--dim);font-size:.9rem">Card data and balance reports are versioned and auditable. 370+ releases shipped.</p>
+  </div>
+</section>
+
+<footer>
+  FATEBLADE — a free browser card game · v0.38 · Desktop browser recommended<br>
+  Built solo with an AI-assisted workflow · All cards free, no purchases<br>
+  © 2026 Alex Kenyon. All rights reserved.
+</footer>
+
+</body>
+</html>
