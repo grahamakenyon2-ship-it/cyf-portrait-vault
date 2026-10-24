@@ -108,8 +108,13 @@ const httpServer = createServer((req, res) => {
   if (path === '/host') {
     const name = (url.searchParams.get('name') || '').slice(0, 40) || 'Fateblade duel';
     const id = rnd(5);
-    rooms.set(id, { id, name, seats: { A: null, B: null }, specCount: 0, state: 'lobby', created: Date.now(), lastEmpty: Date.now() });
-    console.log('[room] created ' + id + ' "' + name + '"');
+    // v0.38.1: stamp the creation time into the room NAME — every attempt
+    // used to read identically ("Kenyon's duel" x4) and looked like ghost
+    // clones in the browser. HH:MM (24h, locale-free) is enough to tell
+    // attempts apart at a glance.
+    const stamped = name + ' · ' + new Date().toTimeString().slice(0, 5);
+    rooms.set(id, { id, name: stamped, seats: { A: null, B: null }, specCount: 0, state: 'lobby', created: Date.now(), lastEmpty: Date.now() });
+    console.log('[room] created ' + id + ' "' + stamped + '"');
     const loc = '/src/game.html#srv=' + encodeURIComponent(lanAddrs().map(a => a + ':' + PORT).join(',')) + '&room=' + id + '&role=player';
     res.writeHead(302, { location: loc, 'access-control-allow-origin': '*', 'access-control-expose-headers': 'location' }); res.end();
     return;

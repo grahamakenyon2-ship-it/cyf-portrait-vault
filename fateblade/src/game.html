@@ -1148,7 +1148,7 @@ const lan = {
 // different builds is a guaranteed desync, and the patcher means two machines
 // on one LAN are often on different versions). Bump this EVERY release that
 // changes game.html, together with the vault manifest version.
-const FB_LAN_VER = '0.38.0'; // v0.38.0: patchable LAN server (rides the patcher) — LAN protocol unchanged from 0.37.0
+const FB_LAN_VER = '0.38.1'; // v0.38.1: desktop localhost ws fallback + stamped room names (LAN protocol unchanged)
 function lanHashSeed(str){ let h = 2166136261 >>> 0; for(let i=0;i<str.length;i++){ h ^= str.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; } return h >>> 0; }
 function lanRng(seed){ // state-object rng so reconnect RESUME can serialize it
   const r = { s: seed >>> 0, next(){ r.s |= 0; r.s = (r.s + 0x6D2B79F5) | 0; let t = Math.imul(r.s ^ (r.s >>> 15), 1 | r.s); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; } };
@@ -1437,10 +1437,11 @@ async function lanSrvBase(){
   if(location.protocol.startsWith('http')) return location.host; // already served by a lan-server → it is one
   try { // desktop exe: ask the embedded server (started by the Electron shell) for its port
     const p = (window.fateblade && fateblade.isDesktop && await fateblade.lanPort());
-    if(p) return 'localhost:' + p;
+    if(p){ lanEmbPort = p; return 'localhost:' + p; } // v0.38.1: cache it so joins can fall back to localhost
   } catch(e){}
   return 'localhost:7777';
 }
+let lanEmbPort = null; // v0.38.1: the desktop exe's embedded server port (cached by lanSrvBase)
 function lanBrowserName(){ const el = document.getElementById('lanbName'); return (el && el.value.trim()) || (localStorage.getItem('fb-lan-name') || '').trim() || 'Duelist'; }
 async function lanBrowserTick(){
   const L = document.getElementById('lanbList'); if(!L) return;
@@ -1517,7 +1518,17 @@ function lanStatus(t){ const el = document.getElementById('lanStatus'); if(el) e
 function lanJoinAddrs(srv){
   const list = String(srv || '').split(',').map(s => s.trim()).filter(Boolean)
     .map(s => /^wss?:\/\//.test(s) ? s : ('ws://' + s));
-  return list.length ? list : ['ws://' + String(srv || '')];
+  if(!list.length) list.push('ws://' + String(srv || ''));
+  // v0.38.1: DESKTOP localhost fallback, APPENDED LAST — Windows classifies a
+  // connect to your OWN lan IP as inbound, so a Public-profile wifi (or any
+  // firewall hiccup) silently kills the ws join even though /host succeeded
+  // over loopback. The desktop's own embedded server is on localhost, which
+  // the firewall never blocks, so same-machine host+join always has a path.
+  // Cross-PC duels still work: the real addrs are tried first, and localhost
+  // only ever answers if this machine really runs the room's server.
+  if(window.fateblade && fateblade.isDesktop && lanEmbPort && !list.includes('ws://localhost:' + lanEmbPort))
+    list.push('ws://localhost:' + lanEmbPort);
+  return list;
 }
 let lanConnectTimer = null;
 function lanConnectClearTimer(){ if(lanConnectTimer){ clearTimeout(lanConnectTimer); lanConnectTimer = null; } }
