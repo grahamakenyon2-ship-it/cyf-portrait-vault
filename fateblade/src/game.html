@@ -1148,7 +1148,7 @@ const lan = {
 // different builds is a guaranteed desync, and the patcher means two machines
 // on one LAN are often on different versions). Bump this EVERY release that
 // changes game.html, together with the vault manifest version.
-const FB_LAN_VER = '0.38.1'; // v0.38.1: desktop localhost ws fallback + stamped room names (LAN protocol unchanged)
+const FB_LAN_VER = '0.38.2'; // v0.38.2: zombie-room filter (beacon v + created stamps; hide unprovable empty peer rooms)
 function lanHashSeed(str){ let h = 2166136261 >>> 0; for(let i=0;i<str.length;i++){ h ^= str.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; } return h >>> 0; }
 function lanRng(seed){ // state-object rng so reconnect RESUME can serialize it
   const r = { s: seed >>> 0, next(){ r.s |= 0; r.s = (r.s + 0x6D2B79F5) | 0; let t = Math.imul(r.s ^ (r.s >>> 15), 1 | r.s); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; } };
@@ -1455,7 +1455,15 @@ async function lanBrowserTick(){
     const addrList = (addrs, addr, port) => ((Array.isArray(addrs) && addrs.length ? addrs : [addr || '127.0.0.1']).map(a => a + ':' + port).join(','));
     const all = [];
     for(const r of d.me.rooms) all.push({ ...r, srv: addrList(d.me.addrs, d.me.addr, d.me.port), mine: true });
-    for(const p of d.peers) for(const r of p.rooms) all.push({ ...r, srv: addrList(p.addrs, p.addr, p.port), host: p.host });
+    // v0.38.2 ZOMBIE FILTER: an EMPTY room advertised by another host with no created
+    // stamp is unprovable — current servers GC empties within 120s AND stamp created,
+    // so an ageless empty room can only come from an old pre-GC server process whose
+    // ghost rooms would otherwise clutter the lobby forever. Hide + count them.
+    let staleRooms = 0;
+    for(const p of d.peers) for(const r of p.rooms){
+      if(!r.seats.A && !r.seats.B && !r.specCount && !r.created){ staleRooms++; continue; }
+      all.push({ ...r, srv: addrList(p.addrs, p.addr, p.port), host: p.host });
+    }
     if(!all.length){ L.innerHTML = '<div style="text-align:center;color:#9a8b74;padding:16px">No duels yet — click ⚔ HOST A NEW DUEL to create one.</div>'; }
     else L.innerHTML = all.map(r => {
       const seat = (s) => s ? (esc(s.name) + (s.connected ? '' : ' <span style="color:#c9a86a">⏳</span>')) : '<span style="color:#7ac98a">OPEN</span>';
@@ -1470,7 +1478,8 @@ async function lanBrowserTick(){
       </div>`;
     }).join('');
     const P = document.getElementById('lanbPeers');
-    if(P) P.textContent = d.peers.length ? ('Seeing ' + d.peers.length + ' other Fateblade host' + (d.peers.length > 1 ? 's' : '') + ' on this network') : '';
+    if(P) P.textContent = (d.peers.length ? ('Seeing ' + d.peers.length + ' other Fateblade host' + (d.peers.length > 1 ? 's' : '') + ' on this network') : '')
+      + (staleRooms ? ' · ' + staleRooms + ' stale room' + (staleRooms > 1 ? 's' : '') + ' hidden (an old Fateblade server is still running on this wifi — close or update it)' : '');
   } catch(e){
     L.innerHTML = '<div style="text-align:center;color:#9a8b74;padding:16px">No LAN server reachable. Every desktop copy runs one automatically — make sure the host\'s game is open on the same wifi.</div>';
   }

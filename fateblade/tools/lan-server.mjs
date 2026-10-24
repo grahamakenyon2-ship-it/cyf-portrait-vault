@@ -52,6 +52,7 @@ const LOBBY_IDLE_MS = Number(process.env.LAN_LOBBY_IDLE_MS) || 1800000; // idle 
 const BEACON_PORT = 7778;
 const ROOT = resolve(process.cwd());
 const HOSTNAME = hostname();
+const SRV_V = 5; // v0.38.2: server generation — 0 = unknown/pre-GC (beacon + rooms.json carry it)
 const MIME = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.json': 'application/json', '.css': 'text/css', '.jpg': 'image/jpeg', '.png': 'image/png', '.svg': 'image/svg+xml' };
 
 const rnd = (n) => Array.from({ length: n }, () => 'ABCDEFGHJKMNPQRSTUVWXYZ23456789'[Math.floor(Math.random() * 31)]).join('');
@@ -81,7 +82,13 @@ const rooms = new Map(); // id → { id, name, seats, specCount, state, created,
 const seat = (name) => ({ name, token: rnd(12), connected: true, since: Date.now() });
 const seatS = (s) => (s ? { name: s.name, connected: !!s.connected } : null);
 function roomSummary(r) {
-  return { id: r.id, name: r.name, state: r.state, specCount: r.specCount,
+  // v0.38.2: `created` rides every room summary so receiving clients can tell
+  // a fresh empty room (a v3+ server GCs empties in 120s, so an empty room is
+  // provably NEW) from a zombie — a pre-v3 server has no GC and no `created`,
+  // so an ageless EMPTY room from a peer is hidden as unprovable. Without
+  // this, one stale old-server process on the wifi fills every lobby with
+  // immortal ghost rooms.
+  return { id: r.id, name: r.name, state: r.state, specCount: r.specCount, created: r.created,
     seats: { A: seatS(r.seats.A), B: seatS(r.seats.B) } };
 }
 function roomConnectedCount(r) {
@@ -100,8 +107,8 @@ const httpServer = createServer((req, res) => {
   if (path === '/rooms.json') {
     res.writeHead(200, { 'content-type': 'application/json', 'cache-control': 'no-store', ...CORS });
     res.end(JSON.stringify({
-      me: { host: HOSTNAME, addr: lanAddr(), addrs: lanAddrs(), port: PORT, rooms: [...rooms.values()].map(roomSummary) },
-      peers: [...peers.values()].map((p) => ({ host: p.host, addr: p.addr, addrs: p.addrs, port: p.port, rooms: p.rooms }))
+      me: { host: HOSTNAME, v: SRV_V, addr: lanAddr(), addrs: lanAddrs(), port: PORT, rooms: [...rooms.values()].map(roomSummary) },
+      peers: [...peers.values()].map((p) => ({ host: p.host, v: p.v, addr: p.addr, addrs: p.addrs, port: p.port, rooms: p.rooms }))
     }));
     return;
   }
@@ -161,7 +168,8 @@ function browserPage(){
     <button id="hostBtn">&#9876; HOST A NEW DUEL</button>
   </div>
   <div class="peers" id="peers"></div>
-  <div id="list"></div>
+  <div id="stale" style="color:#c9a86a;font-size:12px;margin:4px 0"></div>
+<div id="list"></div>
   <script>
   const NAME = () => localStorage.getItem('fb-lan-name') || '';
   const $ = (id) => document.getElementById(id);
@@ -179,7 +187,12 @@ function browserPage(){
       const L = $('list');
       const all = [];
       for(const r of d.me.rooms) all.push({ ...r, srv: srvList(d.me.addrs, d.me.port), here: true });
-      for(const p of d.peers) for(const r of p.rooms) all.push({ ...r, srv: srvList(p.addrs, p.addr), here: false, host: p.host });
+      let stale = 0; // v0.38.2 ZOMBIE FILTER: an EMPTY peer room with no created stamp is unprovable (a v3+ server GCs empties in 120s AND stamps created, so ageless empties can only come from an old pre-GC server) — hide them
+      for(const p of d.peers) for(const r of p.rooms){
+        if(!r.seats.A && !r.seats.B && !r.specCount && !r.created){ stale++; continue; }
+        all.push({ ...r, srv: srvList(p.addrs, p.addr), here: false, host: p.host });
+      }
+      const st = $('stale'); if(st) st.textContent = stale ? (stale + ' stale room' + (stale > 1 ? 's' : '') + ' hidden (an old Fateblade server on this wifi — close or update it)') : '';
       if(!all.length){ L.innerHTML = '<div class="empty">No duels yet — click HOST A NEW DUEL to create one.</div>'; }
       else L.innerHTML = all.map(r => {
         const seatA = r.seats.A ? esc(r.seats.A.name) + (r.seats.A.connected ? '' : ' <span class="pill">reconnecting…</span>') : '<span class="seat open">OPEN</span>';
@@ -396,7 +409,7 @@ udp.on('message', (buf) => {
     const d = JSON.parse(buf.toString('utf8'));
     if (!d || !Array.isArray(d.rooms)) return;
     if (Array.isArray(d.addrs) && d.addrs.includes(lanAddr()) && Number(d.port) === PORT) return; // own beacon echoed by the LAN
-    peers.set(d.addr + ':' + d.port, { host: String(d.host || '?'), addr: d.addr, addrs: Array.isArray(d.addrs) ? d.addrs : [d.addr], port: Number(d.port) || 7777, rooms: d.rooms, lastSeen: Date.now() });
+    peers.set(d.addr + ':' + d.port, { host: String(d.host || '?'), v: Number(d.v) || 0, addr: d.addr, addrs: Array.isArray(d.addrs) ? d.addrs : [d.addr], port: Number(d.port) || 7777, rooms: d.rooms, lastSeen: Date.now() });
   } catch (e) {}
 });
 udp.bind(BEACON_PORT, () => { try { udp.setBroadcast(true); } catch (e) {} });
@@ -414,7 +427,7 @@ function bcastAddrs() {
 setInterval(() => {
   const now = Date.now();
   for (const [k, p] of [...peers]) if (now - p.lastSeen > 6000) peers.delete(k);
-  const beacon = Buffer.from(JSON.stringify({ host: HOSTNAME, addr: lanAddr(), addrs: lanAddrs(), port: PORT, rooms: [...rooms.values()].map(roomSummary) }));
+  const beacon = Buffer.from(JSON.stringify({ host: HOSTNAME, v: SRV_V, addr: lanAddr(), addrs: lanAddrs(), port: PORT, rooms: [...rooms.values()].map(roomSummary) }));
   for (const a of bcastAddrs()) { try { udp.send(beacon, BEACON_PORT, a); } catch (e) {} }
 }, 2000);
 
