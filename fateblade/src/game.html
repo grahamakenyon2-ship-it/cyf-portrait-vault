@@ -1136,6 +1136,8 @@ const lan = {
   spec:false, params:null, rematch:false, foeRematch:false, lastAddr:null,
   room:null, role:null, name:'?', resume:null, lastRoomSeats:null, foeName:'',
   foeVer:null, foeDiscAt:0, foeGoneLogged:false, retries:0, resyncs:0,
+  connecting:false, addrs:[], addrIdx:0, pendingHostRoom:null, matchEnded:false,
+  myPhase:null, foePhase:null, rtt:0, lastEchoAt:0, specCount:0, lastTypingSent:0, lastEmote:{},
   squelch: localStorage.getItem('fb-lan-squelch') === '1',
   endReason:null, mullT0:0, specBuf:[], actLog:[], stats:null,
 };
@@ -1144,7 +1146,7 @@ const lan = {
 // different builds is a guaranteed desync, and the patcher means two machines
 // on one LAN are often on different versions). Bump this EVERY release that
 // changes game.html, together with the vault manifest version.
-const FB_LAN_VER = '0.35.9'; // v0.35.9: deckbuilder passive display (UI-only, but keep LAN peers in lockstep)
+const FB_LAN_VER = '0.36.1'; // v0.36.1: LAN v3 client (lobby, countdown, hardening) atop the 0.36.0 cards pass — LAN peers must share identical data + UI
 function lanHashSeed(str){ let h = 2166136261 >>> 0; for(let i=0;i<str.length;i++){ h ^= str.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; } return h >>> 0; }
 function lanRng(seed){ // state-object rng so reconnect RESUME can serialize it
   const r = { s: seed >>> 0, next(){ r.s |= 0; r.s = (r.s + 0x6D2B79F5) | 0; let t = Math.imul(r.s ^ (r.s >>> 15), 1 | r.s); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; } };
@@ -1217,6 +1219,11 @@ function lanClockTick(){
     return;
   }
   const seats = lan.lastRoomSeats;
+  // v3 badge: ECHO heartbeat — live latency readout every 5s while connected
+  if(lan.on && !lan.connecting && (Date.now() - lan.lastEchoAt) > 5000){
+    lan.lastEchoAt = Date.now();
+    lanSend({ t:'ECHO', at: Date.now(), side: lan.side });
+  }
   if(!lan.inMatch || !S || !lan.matchShown){
     // v0.35.7: MULLIGAN TIMER — the rope, phase one (LAN mulligans get 75s too)
     if(lan.inMatch && S && !lan.matchShown && lan.mullT0 && !lan.spec){
@@ -1403,11 +1410,15 @@ async function lanBrowserTick(){
   const L = document.getElementById('lanbList'); if(!L) return;
   try {
     const base = await lanSrvBase();
-    const d = await (await fetch('http://' + base + '/rooms.json', { cache: 'no-store' })).json();
+    const ctl = new AbortController(); // v3: a dead server shows "unreachable" in 3s instead of hanging the modal
+    const kill = setTimeout(()=> ctl.abort(), 3000);
+    const d = await (await fetch('http://' + base + '/rooms.json', { cache: 'no-store', signal: ctl.signal })).json();
+    clearTimeout(kill);
     const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    const addrList = (addrs, addr, port) => ((Array.isArray(addrs) && addrs.length ? addrs : [addr || '127.0.0.1']).map(a => a + ':' + port).join(','));
     const all = [];
-    for(const r of d.me.rooms) all.push({ ...r, srv: d.me.addr + ':' + d.me.port, mine: true });
-    for(const p of d.peers) for(const r of p.rooms) all.push({ ...r, srv: p.addr + ':' + p.port, host: p.host });
+    for(const r of d.me.rooms) all.push({ ...r, srv: addrList(d.me.addrs, d.me.addr, d.me.port), mine: true });
+    for(const p of d.peers) for(const r of p.rooms) all.push({ ...r, srv: addrList(p.addrs, p.addr, p.port), host: p.host });
     if(!all.length){ L.innerHTML = '<div style="text-align:center;color:#9a8b74;padding:16px">No duels yet — click ⚔ HOST A NEW DUEL to create one.</div>'; }
     else L.innerHTML = all.map(r => {
       const seat = (s) => s ? (esc(s.name) + (s.connected ? '' : ' <span style="color:#c9a86a">⏳</span>')) : '<span style="color:#7ac98a">OPEN</span>';
@@ -1434,39 +1445,115 @@ function lanJoinRoom(srv, room, role){
 async function lanHostNew(){
   const name = lanBrowserName().slice(0, 20);
   localStorage.setItem('fb-lan-name', name);
+  // v3: the embedded server may still be booting when the button is clicked —
+  // retry instead of failing once, and never leave a ghost room behind.
+  for(let attempt = 1; attempt <= 3; attempt++){
+    try {
+      const base = await lanSrvBase();
+      const res = await fetch('http://' + base + '/host?name=' + encodeURIComponent(name + "'s duel"), { redirect: 'manual', cache: 'no-store' });
+      const loc = res.headers.get('location') || '';
+      const rm = (loc.match(/room=([A-Z0-9]+)/) || [])[1];
+      const srv = decodeURIComponent((loc.match(/srv=([^&]+)/) || [])[1] || '');
+      if(!rm || !srv) throw 0;
+      lan.pendingHostRoom = rm; // v3: if we never manage to enter it, /del it (no ghost rooms)
+      lanBrowseStop();
+      lanJoin(srv, rm, 'player', name);
+      return;
+    } catch(e){ if(attempt < 3) await new Promise(r => setTimeout(r, 350 * attempt)); }
+  }
+  const L = document.getElementById('lanbList');
+  if(L) L.innerHTML = '<div style="color:#c96a5a;text-align:center;padding:14px">Could not create the duel — the LAN server did not answer after 3 tries. Close and reopen the game (the built-in server restarts with it), then try again.</div>';
+}
+// v3: the host client cleans up a room it created but never entered.
+async function lanCleanupHostRoom(){
+  const rm = lan.pendingHostRoom; lan.pendingHostRoom = null;
+  if(!rm) return;
   try {
     const base = await lanSrvBase();
-    const res = await fetch('http://' + base + '/host?name=' + encodeURIComponent(name + "'s duel"), { redirect: 'manual', cache: 'no-store' });
-    const loc = res.headers.get('location') || '';
-    const rm = (loc.match(/room=([A-Z0-9]+)/) || [])[1];
-    const srv = decodeURIComponent((loc.match(/srv=([^&]+)/) || [])[1] || '');
-    if(!rm || !srv) throw 0;
-    lanBrowseStop();
-    lanJoin(srv, rm, 'player', name);
-  } catch(e){
-    const L = document.getElementById('lanbList');
-    if(L) L.innerHTML = '<div style="color:#c96a5a;text-align:center;padding:14px">Could not create the duel — the LAN server did not answer.</div>';
-  }
+    await fetch('http://' + base + '/del?room=' + rm, { cache: 'no-store' });
+  } catch(e){}
 }
 function lanStatus(t){ const el = document.getElementById('lanStatus'); if(el) el.textContent = t; }
+// v3: MULTI-ADDRESS JOIN + ESCAPE HATCHES. The srv string is a comma-joined
+// addr:port list (every plausible LAN adapter). We try each in turn with a
+// 10s connect timeout; the connecting box has a CANCEL button and Escape
+// works at every stage — the game can never freeze in "Connecting…".
+function lanJoinAddrs(srv){
+  const list = String(srv || '').split(',').map(s => s.trim()).filter(Boolean)
+    .map(s => /^wss?:\/\//.test(s) ? s : ('ws://' + s));
+  return list.length ? list : ['ws://' + String(srv || '')];
+}
+let lanConnectTimer = null;
+function lanConnectClearTimer(){ if(lanConnectTimer){ clearTimeout(lanConnectTimer); lanConnectTimer = null; } }
+function lanConnectCancel(){ // user pressed Esc or CANCEL — abort and go back to the game browser
+  lanConnectClearTimer();
+  lan.connecting = false;
+  try{ lan.ws && lan.ws.close(); }catch(e){}
+  lan.ws = null;
+  lanCleanupHostRoom();
+  lanBrowse();
+}
+function lanConnectFail(msg){ // every address failed — explain + offer the way out
+  lanConnectClearTimer();
+  lan.connecting = false;
+  try{ lan.ws && lan.ws.close(); }catch(e){}
+  lan.ws = null;
+  lanCleanupHostRoom();
+  const m = document.getElementById('mp');
+  if(m && m.classList.contains('on')){
+    m.querySelector('.mbox').innerHTML = `
+    <h2 style="color:var(--gold);letter-spacing:3px;margin:0 0 12px">🌐 LAN DUEL</h2>
+    <p id="lanStatus" style="font-size:13px;color:#e6d8b2">${msg}</p>
+    <p style="font-size:11px;color:#8f8462">Check: both games on the same wifi, the host's game still open, and Windows Firewall asked for access on first run was ALLOWed (both boxes).</p>
+    <div style="display:flex;gap:8px;justify-content:center;margin-top:12px">
+      <button onclick="lanBrowse()">⚔ OPEN THE GAME BROWSER</button>
+      <button onclick="document.getElementById('mp').classList.remove('on')">Close</button>
+    </div>`;
+  } else lanStatus(msg);
+}
+function lanConnectNext(){
+  if(!lan.connecting) return;
+  if(lan.addrIdx >= lan.addrs.length){
+    lanConnectFail('Could not reach the duel — tried ' + lan.addrs.length + ' address' + (lan.addrs.length > 1 ? 'es' : '') + ' (' + lan.addrs.map(a => a.replace(/^ws:\/\//, '')).join(', ') + ').');
+    return;
+  }
+  const addr = lan.addrs[lan.addrIdx++];
+  lan.lastAddr = addr; // reconnect targets the address that actually worked
+  lanStatus('Connecting via ' + addr.replace(/^ws:\/\//, '') + '… (' + lan.addrIdx + '/' + lan.addrs.length + ')');
+  let ws = null;
+  try { ws = new WebSocket(addr); } catch(e){ lanConnectNext(); return; }
+  lan.ws = ws;
+  lanConnectTimer = setTimeout(()=>{ // 10s per address: firewalled hosts fail FAST, never hang
+    if(lan.connecting && lan.ws === ws){ try{ ws.close(); }catch(e){} lanConnectNext(); }
+  }, 10000);
+  ws.onopen = ()=>{
+    if(!lan.connecting){ try{ ws.close(); }catch(e){} return; } // cancelled mid-handshake
+    lanConnectClearTimer();
+    lanSend({ t:'HELLO', name: lan.name, room: lan.room, role: lan.role, token: lan.resume ? lan.resume.token : null });
+  };
+  ws.onmessage = (ev)=>{ try{ lanOnMsg(JSON.parse(ev.data)); }catch(e){} };
+  ws.onclose = ()=>{ if(lan.connecting){ lanConnectClearTimer(); lanConnectNext(); return; } lanDrop(); };
+  ws.onerror = ()=>{};
+}
 function lanJoin(srv, room, role, name){
-  const addr = (/^wss?:\/\//.test(srv) ? srv : 'ws://' + srv).trim();
+  lan.addrs = lanJoinAddrs(srv);
+  lan.addrIdx = 0;
   const key = 'fateblade-lan-' + room;
   const saved = JSON.parse(localStorage.getItem(key) || 'null');
-  lan.room = room; lan.role = role; lan.name = name; lan.lastAddr = addr;
+  lan.room = room; lan.role = role; lan.name = name;
   lan.resume = (saved && saved.token && saved.side && saved.side !== 'S' && role !== 'spec') ? saved : null;
+  lan.connecting = true;
   const m = document.getElementById('mp');
   m.classList.add('on');
   m.querySelector('.mbox').innerHTML = `
     <h2 style="color:var(--gold);letter-spacing:3px;margin:0 0 12px">🌐 LAN DUEL</h2>
     <p id="lanStatus" style="font-size:13px;color:#e6d8b2">Connecting…</p>
-    <p style="font-size:11px;color:#8f8462">This box closes by itself once you are seated.</p>`;
+    <p style="font-size:11px;color:#8f8462">This box closes by itself once you are seated. Escape or CANCEL always takes you back.</p>
+    <div style="display:flex;gap:8px;justify-content:center;margin-top:10px">
+      <button onclick="lanConnectCancel()">✖ CANCEL</button>
+    </div>`;
   lanStatus((lan.resume ? 'Rejoining your duel' : 'Joining the duel') + '…');
-  try { lan.ws = new WebSocket(addr); } catch(e){ lanStatus('Could not reach that duel — is the host still running?'); return; }
-  lan.ws.onopen = ()=>{ lanSend({ t:'HELLO', name, room, role, token: lan.resume ? lan.resume.token : null }); };
-  lan.ws.onmessage = (ev)=>{ try{ lanOnMsg(JSON.parse(ev.data)); }catch(e){} };
-  lan.ws.onclose = ()=>{ lanDrop(); };
-  lan.ws.onerror = ()=>{ if(!lan.on && !lan.inMatch) lanStatus('Connection failed — the host is not reachable right now.'); };
+  lanConnectNext();
 }
 // v0.35.5: AUTO-RECONNECT — a mid-duel wifi blip no longer strands the duel.
 // The seat token stays valid for the server's 120s grace, so we re-HELLO up
@@ -1534,6 +1621,7 @@ function lanOnMsg(m){
     lanSpecBuf.push({ m, at: Date.now() }); return;
   }
   if(m.t === 'ERR'){
+    if(lan.connecting){ lanConnectFail(m.x || 'That duel is no longer listed — open the game browser to find a live one.'); return; } // v3: dead room mid-connect → stop walking addresses
     if(lan.inMatch){ lan.inMatch = false; lanEndModal(m.x || 'The duel is no longer listed — the host may have shut down.'); return; } // v0.35.5: a dead room gets the explanatory modal, not a frozen board
     lanStatus(m.x || 'That duel is no longer listed — open the game browser to find a live one.'); return;
   }
@@ -1549,11 +1637,13 @@ function lanOnMsg(m){
       if(mySeat && !mySeat.connected && lan.lastRoomSeats[lan.side] && lan.lastRoomSeats[lan.side].connected) log('⚠ You are disconnected from the duel — reconnecting…');
     }
     if(lan.side !== 'S' && rs.seats[FOE] && rs.seats[FOE].name) lan.foeName = rs.seats[FOE].name; // v0.35.3: chat labels carry the foe's chosen name
+    lan.specCount = rs.specCount || 0; // v3 badge: live spectator count in the topbar
     lan.lastRoomSeats = rs.seats;
     return;
   }
   if(m.t === 'WELCOME'){
     lan.side = m.side; lan.token = m.token; lan.retries = 0; // v0.35.5: a successful (re)seat clears the reconnect budget
+    lan.connecting = false; lanConnectClearTimer(); lan.pendingHostRoom = null; // v3: seated — connect walk over, host room is live
     lanSend({ t:'VER', side: lan.side, v: FB_LAN_VER }); // v0.35.4: announce our build so the handshake gate can compare
     if(lan.side === 'S'){ // Phase 2: spectator seats render everything and act on nothing
       lan.on = true; lan.inMatch = false; lan.spec = true;
@@ -1574,16 +1664,26 @@ function lanOnMsg(m){
       return;
     }
     document.getElementById('mp').classList.remove('on');
-    lanStatus('Seated as side ' + m.side + ' — pick your realm.');
-    me.deck = null; showPoolPick('play');
+    lanStatus('Seated as side ' + m.side + ' — set up your duel in the shared lobby.');
+    me.deck = null; lanPhaseBroadcast('pool'); showPoolPick('play'); // v3 lobby: my setup progress is live in the opponent's lobby
     return;
   }
   if(m.t === 'HELLO'){ if(!lan.inMatch && !lan.spec){ lanStatus((m.name || 'Your foe') + ' joined the room.'); SFX.lanOn(); } return; } // v0.35.7: join chime
   if(m.t === 'LEAVE'){ if(lan.inMatch) log('⚠ ' + (m.side === FOE ? 'Your opponent disconnected.' : 'A spectator left.')); return; }
+  if(m.t === 'PICK'){ // v3 lobby: live opponent setup progress (phase only — never what they picked)
+    if(m.side && m.side !== lan.side && !lan.spec){ lan.foePhase = m.phase || null; lanLobbyRefresh(); }
+    return;
+  }
   if(m.t === 'READY'){
-    lan.foeReady = m.cfg;
-    if(lan.ready && lan.side === 'A') lanHostStart();
-    else if(!lan.ready && !lan.inMatch) lanStatus('Your foe is ready — pick your realm to begin.');
+    lan.foeReady = m.cfg; lan.foePhase = 'ready';
+    if(!lan.inMatch) lanLobbyRefresh(); // v3 lobby: their status card flips to READY ⚔ whether or not I'm ready yet
+    if(lan.ready) lanCdStart(); // both ready → the 5s countdown begins (AoE2 HD)
+    else if(!lan.inMatch) lanStatus('Your foe is READY — finish your setup and ready up.');
+    return;
+  }
+  if(m.t === 'UNREADY'){ // v3 lobby: the foe withdrew their ready — countdown (if any) aborts
+    lan.foeReady = null; lan.foePhase = 'review';
+    if(!lan.inMatch){ lanLobbyRefresh(); lanCdAbort(); }
     return;
   }
   if(m.t === 'START'){
@@ -1630,7 +1730,26 @@ function lanOnMsg(m){
     }
     return;
   }
-  if(m.t === 'CHAT'){ lanChatLine(m.side, m.x); if(LAN_EMOTES.includes(String(m.x))) lanEmoteBubble(m.side === lan.side ? ME : FOE, m.x); return; } // v0.35.7: quick emotes also bubble over the board
+  if(m.t === 'ECHO'){ // v3 badge: application-level ping — the peer replies verbatim, we read the RTT
+    if(!lan.spec && m.side && m.side !== lan.side) lanSend({ t:'ECHOR', at: m.at, side: lan.side });
+    return;
+  }
+  if(m.t === 'ECHOR'){ // v3 badge: round trip of our own timestamp = live latency to the opponent
+    if(m.side !== lan.side && typeof m.at === 'number') lan.rtt = Math.max(0, Date.now() - m.at);
+    return;
+  }
+  if(m.t === 'TYPING'){ // v3: the "opponent is typing" whisper — HS/MTGA lobby + chat convention
+    if(m.side && m.side !== lan.side) lanTypingShow(m.side);
+    return;
+  }
+  if(m.t === 'CHAT'){
+    if(LAN_EMOTES.includes(String(m.x))){ // v3 polish: emote spam limit (HS rate-limits too) — one identical emote per 2s per side
+      const key = m.side + '|' + m.x, now = Date.now();
+      if(lan.lastEmote[key] && now - lan.lastEmote[key] < 2000) return;
+      lan.lastEmote[key] = now;
+    }
+    lanChatLine(m.side, m.x); if(LAN_EMOTES.includes(String(m.x))) lanEmoteBubble(m.side === lan.side ? ME : FOE, m.x); return; // v0.35.7: quick emotes also bubble over the board
+  }
   if(m.t === 'REMATCH'){
     lan.foeRematch = true;
     if(lan.rematch) lanDoRematch();
@@ -1651,12 +1770,162 @@ function lanOnMsg(m){
 }
 function lanReadyUp(){
   lan.ready = { faction: me.faction, sov: me.sov, deck: me.deck || loadDeck(me.faction) };
+  lanPhaseBroadcast('ready'); // v3 lobby: my status flips to READY in the opponent's lobby
   lanSend({ t:'READY', cfg: lan.ready });
-  document.getElementById('mp').classList.remove('on');
-  if(lan.foeReady && lan.side === 'A') lanHostStart();
-  else showLobby('Realm locked in — waiting for your opponent…');
+  lanLobby(); // v3 lobby: the shared wait box — opponent status + chat, not a dead end
+  if(lan.foeReady) lanCdStart(); // AOE2-HD style: both ready → 5s countdown, withdraw aborts it
 }
+// ---- v3 lobby READY-WITHDRAW + 5s COUNTDOWN (AoE2 HD semantics) ----
+let lanCdTimer = null, lanCdLeft = 0;
+const LAN_CD_MS = (typeof globalThis !== 'undefined' && Number(globalThis.LAN_CD_MS)) || 5000; // AoE2-HD lobby fuse
+function lanUnready(){ // withdraw my ready — aborts the countdown on BOTH sides
+  if(!lan.ready) return;
+  lan.ready = null;
+  lanCdStop();
+  lanSend({ t:'UNREADY', side: lan.side });
+  lanPhaseBroadcast('review'); // the opponent's lobby: I'm back at my picks
+  lanReview();
+}
+function lanCdStop(){ if(lanCdTimer){ clearInterval(lanCdTimer); lanCdTimer = null; } lanCdLeft = 0; const el = document.getElementById('lanCd'); if(el) el.textContent = ''; }
+function lanCdStart(){ // both sides run this locally — each sees both ready states live
+  lanCdStop();
+  if(!lan.ready || !lan.foeReady || lan.inMatch) return;
+  lanCdLeft = 5;
+  const el = document.getElementById('lanCd'); if(el) el.textContent = '⚔ The duel begins in 5…';
+  lanCdTimer = setInterval(()=>{
+    lanCdLeft--;
+    const e2 = document.getElementById('lanCd');
+    if(e2 && lanCdLeft > 0) e2.textContent = '⚔ The duel begins in ' + lanCdLeft + '…';
+    if(lanCdLeft <= 0){
+      lanCdStop();
+      if(lan.ready && lan.foeReady){ // re-verified at expiry: a withdrawal race can't launch a phantom duel
+        if(lan.side === 'A'){ lanHostStart(); }
+        else { const e3 = document.getElementById('lanCd'); if(e3) e3.textContent = '⚔ Launching…'; }
+      }
+    }
+  }, Math.max(50, LAN_CD_MS / 5)); // 5 visible ticks; LAN_CD_MS overridable for tests
+}
+function lanCdAbort(){ // someone withdrew (or dropped) mid-countdown — back to waiting
+  lanCdStop();
+  const el = document.getElementById('lanCd');
+  if(el) el.textContent = '✖ Countdown stopped — waiting for both players to ready up again.';
+}
+// ---- v3 SHARED LOBBY (HS/MTGA/Gwent lobby contract; see docs/lan-deep-dive.md §4)
+// Both players set up simultaneously with LIVE opponent progress, and the
+// match begins only on an EXPLICIT ready from each side.
+function lanPhaseBroadcast(phase){ // informational only — never leaks WHICH realm/sov/deck (picks stay hidden)
+  lan.myPhase = phase;
+  if(lan.on && !lan.inMatch && !lan.spec) lanSend({ t:'PICK', side: lan.side, phase });
+}
+function lanPhaseText(p){
+  return ({ pool:'choosing a card pool', realm:'choosing a banner', deck:'choosing a deck',
+    sov:'choosing a Sovereign', review:'reviewing their picks', ready:'READY ⚔' })[p] || 'setting up…';
+}
+const lanHtmlEsc = (s) => String(s).replace(/[&<>"]/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function lanLobbyChatHtml(){
+  return `<div style="display:flex;gap:6px;margin-top:12px">
+    <input id="lanLobbyChat" type="text" maxlength="140" placeholder="Say something to your opponent…" oninput="lanTypingThrottle()" onkeydown="if(event.key==='Enter'){lanLobbyChatSend();event.stopPropagation();}" style="flex:1;background:#191308;border:1px solid var(--gold-dim);color:var(--ink);padding:7px 10px;font-family:inherit">
+    <button class="themebtn" style="padding:7px 12px" onclick="lanLobbyChatSend()">💬</button>
+  </div>
+  <p style="font-size:10px;color:#8f8462;margin:4px 0 0">Chat lines appear in the box at the bottom-left of the screen.</p>`;
+}
+function lanLobbyChatSend(){
+  const i = document.getElementById('lanLobbyChat'); const x = i && i.value.trim().slice(0, 140);
+  if(!x) return; i.value = '';
+  lanSend({ t:'CHAT', side: lan.side, x });
+  lanChatLine(lan.side, x);
+}
+// ---- v3: "OPPONENT IS TYPING" (the lobby + in-match chat whisper) ----
+function lanTypingThrottle(){ // called on every keystroke — at most one TYPING per 1.5s
+  const now = Date.now();
+  if(now - lan.lastTypingSent < 1500) return;
+  lan.lastTypingSent = now;
+  lanSend({ t:'TYPING', side: lan.side });
+}
+function lanTypingShow(side){ // the peer (or a spectator) is typing — 2.5s whisper near the chat bar
+  if(lan.squelch && side !== lan.side) return;
+  const who = side === 'S' ? 'A spectator' : (side === lan.side ? lan.name : (lan.foeName || 'Your opponent'));
+  let el = document.getElementById('lanTyping');
+  if(!el){ el = document.createElement('div'); el.id = 'lanTyping';
+    el.style.cssText = 'position:fixed; left:12px; bottom:58px; z-index:92; color:#9a8b74; font-size:12.5px; font-style:italic; pointer-events:none;'; document.body.appendChild(el); }
+  el.textContent = '✍ ' + String(who).slice(0, 20) + ' is typing…';
+  el.style.opacity = 1; clearTimeout(el._t); el._t = setTimeout(()=>{ el.style.opacity = 0; }, 2500);
+}
+function lanFoeStatusHtml(){
+  const foe = lanHtmlEsc(lan.foeName || 'Opponent');
+  const st = lan.foeReady ? '<span style="color:#7ac98a">READY ⚔</span>' : lanHtmlEsc(lanPhaseText(lan.foePhase));
+  return `<div id="lanFoeBox" style="flex:1;background:#191308;border:1px solid #3a3128;padding:8px 10px;text-align:left">
+    <div style="font-size:11px;color:#8f8462">OPPONENT</div>
+    <div style="font-weight:700;color:#e8dcc0">${foe}</div>
+    <div style="font-size:12px;color:#c9b78e">${st}</div>
+    <div style="font-size:10px;color:#8f8462;margin-top:2px">picks hidden until the duel begins</div>
+  </div>`;
+}
+function lanMyStatusHtml(){
+  const st = lan.ready ? '<span style="color:#7ac98a">READY ⚔</span>' : lanHtmlEsc(lanPhaseText(lan.myPhase));
+  return `<div style="flex:1;background:#191308;border:1px solid #3a3128;padding:8px 10px;text-align:left">
+    <div style="font-size:11px;color:#8f8462">YOU</div>
+    <div style="font-weight:700;color:#e8dcc0">${lanHtmlEsc(lan.name || 'You')}</div>
+    <div style="font-size:12px;color:#c9b78e">${st}</div>
+  </div>`;
+}
+function lanReview(){ // v3 lobby: the EXPLICIT ready-up moment — review, change, or commit
+  const m = document.getElementById('mp'); m.classList.add('on');
+  const f = facOf(me.faction);
+  m.querySelector('.mbox').innerHTML = `
+    <h2 style="color:var(--gold);letter-spacing:3px;margin:0 0 12px">🌐 LAN DUEL — REVIEW &amp; READY UP</h2>
+    <div id="lanLobby" style="display:flex;gap:10px;text-align:center">${lanMyStatusHtml()}${lanFoeStatusHtml()}</div>
+    <div style="background:#141210;border:1px solid #3a3128;padding:8px 10px;margin-top:10px;text-align:left;font-size:13px;color:#e6d8b2">
+      <b>${lanHtmlEsc(f.label)}</b> · Sovereign <b>${lanHtmlEsc((me.sov||{}).name || '?')}</b> · deck: <b>${lanHtmlEsc(me.deckName || '★ Doctrine (' + f.identity.name + ')')}</b>
+    </div>
+    ${lanLobbyChatHtml()}
+    <div style="display:flex;gap:8px;justify-content:center;margin-top:14px">
+      <button onclick="lanPickChange()">✏ CHANGE PICKS</button>
+      <button class="themebtn" onclick="lanReadyUp()">⚔ READY UP</button>
+    </div>
+    <p style="font-size:11px;color:#8f8462;margin:8px 0 0">The duel launches the moment BOTH players ready up. Escape closes this box; the match still starts by itself.</p>`;
+}
+function lanLobby(){ // v3 lobby: both-ready wait box — opponent progress + chat
+  const m = document.getElementById('mp'); m.classList.add('on');
+  m.querySelector('.mbox').innerHTML = `
+    <h2 style="color:var(--gold);letter-spacing:3px;margin:0 0 12px">🌐 LAN DUEL LOBBY</h2>
+    <div id="lanLobby" style="display:flex;gap:10px;text-align:center">${lanMyStatusHtml()}${lanFoeStatusHtml()}</div>
+    ${lanLobbyChatHtml()}
+    <div id="lanCd" style="font-size:15px;color:var(--gold);font-weight:700;min-height:20px;margin-top:10px">${(lan.ready && lan.foeReady) ? '' : ''}</div>
+    <p style="font-size:12px;color:#c9b78e;margin:8px 0 0">The duel launches after BOTH players are ready + a 5-second countdown. You can withdraw your ready until it launches.</p>
+    <p style="font-size:10px;color:#8f8462;margin:6px 0 0">If nothing happens: both players must be on the same version — Settings → Check for Updates.</p>
+    <div style="display:flex;gap:8px;justify-content:center;margin-top:10px">
+      ${lan.ready ? '<button onclick="lanUnready()">✖ WITHDRAW READY</button>' : ''}
+      <button onclick="document.getElementById('mp').classList.remove('on')">Hide this box</button>
+    </div>`;
+}
+function lanLobbyRefresh(){ // the opponent's state changed — update the status card WITHOUT touching the chat input
+  const box = document.getElementById('lanFoeBox');
+  if(!box || lan.inMatch) return;
+  const foe = lanHtmlEsc(lan.foeName || 'Opponent');
+  const st = lan.foeReady ? '<span style="color:#7ac98a">READY ⚔</span>' : lanHtmlEsc(lanPhaseText(lan.foePhase));
+  box.innerHTML = `<div style="font-size:11px;color:#8f8462">OPPONENT</div>
+    <div style="font-weight:700;color:#e8dcc0">${foe}</div>
+    <div style="font-size:12px;color:#c9b78e">${st}</div>
+    <div style="font-size:10px;color:#8f8462;margin-top:2px">picks hidden until the duel begins</div>`;
+}
+function lanPickChange(){
+  lan.ready = null;
+  document.getElementById('mp').classList.remove('on');
+  me.deck = null; me.deckName = null;
+  lanPhaseBroadcast('pool'); // the opponent's lobby switches back to "choosing a card pool"
+  showPoolPick('play');
+}
+let lanLastActive = null; // v3: turn-chime state (reset per match)
 function lanHostStart(){
+  // v3 hardening: a corrupt/hostile READY cfg can never reach the engine —
+  // both realms and decks are validated before the seed is rolled.
+  const bad = (c) => !c || !c.faction || !facOf(c.faction) || !Array.isArray(c.deck);
+  if(bad(lan.ready) || bad(lan.foeReady)){
+    showLobby('⚠ DUEL BLOCKED — one side\'s ready payload was malformed. Both players: withdraw and ready up again.');
+    log('⚠ Malformed ready payload — duel blocked for safety.');
+    return;
+  }
   // v0.35.4 handshake gate: a match between two different builds is a
   // guaranteed desync (the patcher means friends are often versions apart).
   if(lan.foeVer !== FB_LAN_VER){
@@ -1680,10 +1949,11 @@ function lanStartMatch(p){
   lan.mullSent = false; lan.foeMull = null; lan.matchShown = false; lan.desynced = false;
   lanQReset(); lanTurnKey = null; lan.foeDiscAt = 0; lan.foeGoneLogged = false; lan.retries = 0; // v0.35.4: fresh pacing queue + fresh clock per match
   lan.resyncs = 0; lan.desynced = false; // v0.35.5: resync budget resets per match (desynced re-cleared here for safety)
-  lan.rematch = false; lan.foeRematch = false;
+  lan.rematch = false; lan.foeRematch = false; lan.matchEnded = false; // v3: MATCHEND fires once per duel
   lan.stats = { t0: Date.now(), hA: S.A.hp, hB: S.B.hp, dmgA: 0, dmgB: 0, acts: 0 }; // v0.35.7: post-match summary source
   lan.actLog = []; lan.endReason = null; // v0.35.7: replay export + victory reason
   lan.mullT0 = lan.spec ? 0 : Date.now(); lanMullClockDone = false; lanRematchAskT0 = 0; lanMatchAskHide(); // v0.35.7: mulligan timer + stale invite sweep
+  lanLastActive = null; lan.rtt = 0; lan.lastEchoAt = 0; lan.lastEmote = {}; // v3: fresh badge state per match
   hotseat = false; oppAI = !lan.spec ? false : true;
   setME(lan.side === 'S' ? 'A' : lan.side);
   if(lan.spec) watch.on = true; // spectators render everything and may never act — the existing watch gates do exactly this
@@ -1755,9 +2025,10 @@ function lanActEnd(){ if(!lan.on || !lan.inMatch || lan.spec) return; lanStat();
 function lanSeatLabel(side){ return side === 'A' ? 'Player One' : (side === 'B' ? 'Player Two' : 'Spectator'); }
 function lanChatLine(side, x){
   if(lan.squelch && side !== lan.side) return; // v0.35.5: squelch mutes the foe + spectators — your own lines always show (Hearthstone squelch semantics)
+  x = String(x).slice(0, 140).replace(/[&<>"]/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); // v3 hardening: cap + escape — a peer's chat can never inject markup
   let el = document.getElementById('lanChatLog');
   if(!el){ el = document.createElement('div'); el.id = 'lanChatLog';
-    el.style.cssText = 'position:fixed; left:10px; bottom:64px; z-index:60; color:#e6d8b2; background:#191308ee; border:1px solid #7a6a3f; border-radius:8px; padding:10px 16px; width:min(560px,46vw); pointer-events:none; line-height:1.65; font-size:15.5px; max-height:46vh; overflow:hidden; transition:opacity .8s';
+    el.style.cssText = 'position:fixed; left:10px; bottom:64px; z-index:90; color:#e6d8b2; background:#191308ee; border:1px solid #7a6a3f; border-radius:8px; padding:10px 16px; width:min(560px,46vw); pointer-events:none; line-height:1.65; font-size:15.5px; max-height:46vh; overflow:hidden; transition:opacity .8s'; // v3: z-index above the lobby modal (80) so pre-match chat is readable
     document.body.appendChild(el); }
   const mine = (side === ME && !lan.spec);
   const name = (side === lan.side) ? lan.name : (side === 'S' ? '' : (lan.foeName || ''));
@@ -1772,7 +2043,7 @@ function lanChatSend(){
   if(!bar) lanChatOpen();
   bar = document.getElementById('lanChatBar');
   const inp = document.getElementById('lanChatIn');
-  const x = inp.value.trim(); inp.value = '';
+  const x = inp.value.trim().slice(0, 140); inp.value = '';
   if(x){ lanSend({ t:'CHAT', side: lan.side, x }); lanChatLine(lan.side, x); }
 }
 function lanChatOpen(){
@@ -1783,6 +2054,7 @@ function lanChatOpen(){
   const inp = document.createElement('input'); inp.id = 'lanChatIn'; inp.maxLength = 140; inp.placeholder = 'chat — Enter to send';
   inp.style.cssText = 'width:min(500px,42vw); font-size:15px; padding:8px 12px; background:#191308e8; color:var(--ink); border:1px solid #7a6a3f; border-radius:6px; font-family:inherit'; // v0.35.3: 4x the bar to match the log
   inp.addEventListener('keydown', (ev)=>{ if(ev.key === 'Enter'){ lanChatSend(); inp.blur(); } ev.stopPropagation(); });
+  inp.addEventListener('input', ()=> lanTypingThrottle()); // v3: the foe sees "✍ you are typing…" while you compose
   const btn = document.createElement('button'); btn.className = 'themebtn'; btn.style.padding = '8px 16px'; btn.style.fontSize = '15px'; btn.textContent = '➤';
   btn.onclick = lanChatSend;
   bar.appendChild(inp); bar.appendChild(btn);
@@ -1852,6 +2124,7 @@ function showPoolPick(mode){
 }
 
 function pickPool(p){ me.pool = p; applyTheme(null);
+  if(lan.on && !lan.inMatch && !lan.spec) lanPhaseBroadcast('realm'); // v3 lobby
   document.getElementById('facTitle').textContent = hsTag() + lanTag() + (p==='history'?'THE ANNALS':'THE CANON')+' — CHOOSE YOUR BANNER';
   const row = document.getElementById('facRow');
   row.innerHTML = DATA.factions.filter(f=>f.pool===p).map(f=>`
@@ -1865,6 +2138,7 @@ function pickPool(p){ me.pool = p; applyTheme(null);
 function pickFaction(id){
   me.faction = id; applyTheme(id);
   me.deck = null; me.deckName = null; dpConfirmDel = -1; // doctrine until a saved deck is picked
+  if(lan.on && !lan.inMatch && !lan.spec) lanPhaseBroadcast(decksOf(id).length ? 'deck' : 'sov'); // v3 lobby
   if (decksOf(id).length) { showDeckPick(id, false); return; }
   toSovSelect(facOf(id));
 }
@@ -1899,6 +2173,7 @@ function dpPick(i){
     campToSov(f);
   } else {
     toSovSelect(f, dsov);
+    if(lan.on && !lan.inMatch && !lan.spec) lanPhaseBroadcast('sov'); // v3 lobby
   }
 }
 function dpDel(i){
@@ -1931,8 +2206,8 @@ function pickSovereign(i){
     hs['p' + hs.seat] = { faction: me.faction, sov, deck: me.deck || loadDeck(me.faction) };
     hsNextSeat(); return;
   }
-  if(lan.on && !lan.inMatch){ // v0.35: LAN lobby — my pick goes to the room, not a solo match
-    me.sov = sov; lanReadyUp(); return;
+  if(lan.on && !lan.inMatch){ // v3 lobby: LAN picks land on the REVIEW & READY UP screen — explicit consent, not an auto-fire
+    me.sov = sov; lanPhaseBroadcast('review'); lanReview(); return;
   }
   me.sov = sov; startMatch(); }
 
@@ -1998,6 +2273,7 @@ function checkEnd(){
       tutFinish();
     }
     if(lan.on && lan.inMatch && !lan.spec){ // v0.35 LAN: rematch offers a fresh seed + coin with the same realms
+      if(lan.side !== 'S' && !lan.matchEnded){ lan.matchEnded = true; lanSend({ t:'MATCHEND' }); } // v3: tell the server the room is back in 'lobby' (JOIN reappears in the browser)
       const loser = won ? FOE : ME;
       const reason = lan.endReason || ((S[loser].fatigue||0) > 0 ? 'by fatigue' : 'by Sovereign strike'); // v0.35.7: how it ended
       document.getElementById('ovSub').textContent += ' — ' + reason + '.';
@@ -2474,6 +2750,7 @@ const SFX = {
   shield:  () => AUD.sfx('shield',    () => SND.v({ f: 1200, f2: 820, dur: .18, vol: .15 })), // v0.12: the Aegis ring gets its own metal
   veil:    () => AUD.sfx('veil',      () => SND.v({ f: 700, f2: 200, dur: .28, vol: .12 })), // v0.29.2: the Veil burns away — a low receding hiss
   passive: () => SND.v({ f: 1046, dur: .16, vol: .11 }),
+  turn:    () => AUD.sfx('lan-turn',    () => { SND.v({ f: 880, dur: .14, vol: .1 }); SND.v({ f: 1174, dur: .22, vol: .1, delay: .07 }); }), // v3: the HS "your turn" two-note ding
   fatigue: () => AUD.sfx('fatigue',   () => SND.v({ f: 110, f2: 55, dur: .5, vol: .3 })),
   turnYou: () => AUD.sfx('turn-you',  () => { SND.v({ f: 262, type: 'sawtooth', dur: .25, vol: .11 }); SND.v({ f: 392, type: 'sawtooth', dur: .4, vol: .11, delay: .12 }); }), // rising fifth
   turnEn:  () => AUD.sfx('turn-en',   () => { SND.v({ f: 196, type: 'sawtooth', dur: .25, vol: .11 }); SND.v({ f: 147, type: 'sawtooth', dur: .4, vol: .11, delay: .12 }); }), // falling third
@@ -2928,10 +3205,23 @@ function render(){
   const dealFrom = (lastSeen.handA !== null && my.hand.length - lastSeen.handA > 0 && my.hand.length - lastSeen.handA <= 3) ? lastSeen.handA : 1e9; // v0.22.10: fresh draws (1-3) slide up out of the deck; bigger jumps (mulligan/rematch) don't flash
   lastSeen.handA = my.hand.length;
   const tb = document.getElementById('topbar');
+  // v3 badge: HS/MTGA in-match status — match clock, turn counter, live latency
+  // (app-level ECHO RTT), build versions, and the spectator count, all in one place.
+  let lanBadge = '';
+  if(lan.on && lan.inMatch && !hotseat){
+    const secs = lan.stats && lan.stats.t0 ? Math.floor((Date.now() - lan.stats.t0) / 1000) : 0;
+    const clock = Math.floor(secs / 60) + ':' + String(secs % 60).padStart(2, '0');
+    const rttCol = !lan.rtt ? '#9a8b74' : (lan.rtt < 80 ? '#7ac98a' : (lan.rtt < 250 ? '#c9b78e' : '#c96a5a'));
+    lanBadge = `<span title="LAN duel status" style="font-size:13px;color:#9a8b74">⏱ ${clock} · turn ${S.turn || 1}`
+      + (lan.rtt ? ` · <span style="color:${rttCol}">${lan.rtt}ms</span>` : '')
+      + ` · v${FB_LAN_VER}` + (lan.foeVer && lan.foeVer !== FB_LAN_VER ? `<span style="color:#c96a5a"> ⚠ foe v${lan.foeVer}</span>` : '')
+      + (lan.specCount ? ` · 👁 ${lan.specCount}` : '') + '</span>';
+  }
   tb.innerHTML = `<b>${my.fac.label}</b> ${crystals(my.mana, my.maxmana)}
     <b style="color:#ccc">vs ${ai.fac.label}</b> ${crystals(ai.mana, ai.maxmana)}
     <span>${S.active===ME?'YOUR TURN':'ENEMY TURN'}</span> <span>decks ${my.deck.length} / ${ai.deck.length}</span>
     <span title="cards in the enemy hand">enemy hand ${ai.hand.length}</span>
+    ${lanBadge}
     ${!watch.on && (S.aiB||'normal')!=='normal' ? `<span>AI: ${(S.aiB||'normal').toUpperCase()}</span>`:''}
     ${my.fatigue||ai.fatigue?`<span class="fat">fatigue ${my.fatigue||0} / ${ai.fatigue||0}</span>`:''}`;
   // v0.10: HS/MTGA-style enemy hand — a card back for every card they hold
@@ -2948,6 +3238,11 @@ function render(){
     if(settings.lethalHint && playerLethal()) eb.classList.add('lethal');
   }
   document.getElementById('powerbtn').disabled = !E.canPower(S,ME);
+  // v3 polish: the HS "your turn" ding — once per active-side flip to me, never mid-match spam
+  if(lan.on && lan.inMatch && !lan.spec && !watch.on){
+    if(lanLastActive !== null && S.active === ME && lanLastActive !== ME) SFX.turn();
+    lanLastActive = S.active;
+  }
   document.getElementById('powerbtn').textContent = `${E.powerName(S,ME).toUpperCase()} (${E.powerCost(S,ME)})`;
   document.getElementById('powerbtn').title = E.powerText(S,ME);
 
@@ -3724,6 +4019,15 @@ document.addEventListener('keydown', (e)=>{
   // v0.22.4: confirm dialog owns Esc first
   const conf = document.getElementById('confirm');
   if(conf && conf.classList.contains('on')){ uiConfirmClose(); return; }
+  // v3: THE LAN MODALS CAN NEVER TRAP YOU. Connecting → cancel + back to the
+  // game browser; browser/waiting/end modals → close (a live connection and
+  // any pending match are preserved — only the *connect attempt* dies).
+  const mpEl = document.getElementById('mp');
+  if(mpEl && mpEl.classList.contains('on')){
+    if(lan.connecting){ lanConnectCancel(); return; }
+    if(lanBrowserTimer){ lanBrowseStop(); return; }
+    mpEl.classList.remove('on'); return;
+  }
   const set = document.getElementById('settings');
   const gm = document.getElementById('gmenu');
   const help = document.getElementById('help');
