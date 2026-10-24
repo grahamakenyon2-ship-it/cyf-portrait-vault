@@ -130,11 +130,11 @@
 <section class="whatsnew">
   <div class="wrap">
     <h2>What&#39;s New</h2>
-    <p class="wnver">v0.38.1 — DESKTOP HOST-JOIN HARDENING<span class="wndate">Oct 24, late — LAN debug follow-up</span></p>
+    <p class="wnver">v0.38.2 — ZOMBIE-ROOM FILTER<span class="wndate">Oct 24, late — LAN lobby ghost rooms</span></p>
 <ul>
-      <li>Hosting + joining a LAN duel on the same desktop now works even when Windows' firewall blocks the connection (the join falls back to localhost automatically)</li>
-      <li>Rooms are stamped with their creation time ("Kenyon's duel · 21:47") — attempts are no longer indistinguishable look-alike clones</li>
-      <li>Empty rooms still auto-clear after ~2 minutes (unchanged)</li>
+      <li>The 4 immortal empty "Kenyon's duel" rooms are now hidden from every lobby — they were ghosts advertised by a SECOND old Fateblade server process on the wifi (one with no room GC), not rooms on your own server</li>
+      <li>Lobbies now show a "N stale rooms hidden (an old Fateblade server is still running on this wifi — close or update it)" line so you know when an old server is the culprit instead of staring at empty clones</li>
+      <li>New empty rooms are stamped with creation time and provenance, so a real fresh room is always distinguishable from a ghost</li>
     </ul>
     <p class="wnupd">How to update: in-game Settings → Check for Updates. Desktop players: Patcher → Check for Updates (first try may say "up to date" — the CDN lags ~10 minutes).</p>
   </div>
