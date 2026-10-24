@@ -1140,13 +1140,15 @@ const lan = {
   myPhase:null, foePhase:null, rtt:0, lastEchoAt:0, specCount:0, lastTypingSent:0, lastEmote:{},
   squelch: localStorage.getItem('fb-lan-squelch') === '1',
   endReason:null, mullT0:0, specBuf:[], actLog:[], stats:null,
+  graceMs: 120000, dropAt: 0, awaitRestore: false, war: null, warDone: false,
+  syncReplied: false, warWant: false,
 };
 // v0.35.4: the LAN protocol version this build speaks — the handshake gate
 // below REFUSES cross-version duels (deterministic lockstep between two
 // different builds is a guaranteed desync, and the patcher means two machines
 // on one LAN are often on different versions). Bump this EVERY release that
 // changes game.html, together with the vault manifest version.
-const FB_LAN_VER = '0.36.1'; // v0.36.1: LAN v3 client (lobby, countdown, hardening) atop the 0.36.0 cards pass — LAN peers must share identical data + UI
+const FB_LAN_VER = '0.37.0'; // v0.37.0: session-integrity pass — mid-match reconnect restores (G1), newest-wins state adoption (G2), grace-aware retries (G3), ready-time version gate (G4), war clock (G5)
 function lanHashSeed(str){ let h = 2166136261 >>> 0; for(let i=0;i<str.length;i++){ h ^= str.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; } return h >>> 0; }
 function lanRng(seed){ // state-object rng so reconnect RESUME can serialize it
   const r = { s: seed >>> 0, next(){ r.s |= 0; r.s = (r.s + 0x6D2B79F5) | 0; let t = Math.imul(r.s ^ (r.s >>> 15), 1 | r.s); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; } };
@@ -1179,7 +1181,15 @@ function lanDrain(){
   lanActBusy = true;
   try{ if(m.t === 'ACT') lanApplyAct(m);
     else if(m.t === 'SYNC'){ // v0.35.5: the host's snapshot — the peer adopts it and the duel continues
-      if(m.s && m.side === 'A' && lan.side !== 'A'){ lanQReset(); lanRestore(m); }
+      // v0.37.0 G2: NEWEST-WINS — a stale snapshot (e.g. the host reconnected
+      // after missing our turn) is IGNORED instead of clobbering our state.
+      // If theirs was stale and we're fresher, answer ONCE with ours so the
+      // newest state converges on both ends (syncReplied re-arms per match and
+      // after every restore, so the exchange can't loop).
+      if(m.s && lanSnapNewer(m)){ lanQReset(); lanRestore(m); }
+      else if(m.s && (lan.desynced || lan.awaitRestore) && lan.actLog.length > (typeof m.s.n === 'number' ? m.s.n : -1) && !lan.syncReplied){
+        lan.syncReplied = true; lanSend({ t:'SYNC', s: lanSerialize() });
+      }
     }
     else if(m.t === 'HASH'){
       if(m.h !== lanStateHash() && lan.inMatch){
@@ -1188,8 +1198,13 @@ function lanDrain(){
           if(lan.resyncs >= 3){ log('⚠ DESYNC DETECTED — the clients keep disagreeing. Both players: click ↻ REMATCH to restart with a fresh seed.'); }
           else {
             lan.resyncs++;
-            if(lan.side === 'A'){ lanSend({ t:'SYNC', s: lanSerialize() }); log('⚠ DESYNC DETECTED — resyncing the duel from your state…'); }
-            else { lanSend({ t:'RESYNC' }); log('⚠ DESYNC DETECTED — restoring the host\'s state to continue the duel…'); }
+            // v0.37.0 G2: BOTH sides now push their snapshot (was host-only).
+            // Newest-wins adoption (see SYNC handler) makes the fresher state
+            // converge on both ends — a stale host can no longer clobber the
+            // peer's turn actions.
+            lan.syncReplied = false; // fresh exchange budget for this episode
+            lanSend({ t:'SYNC', s: lanSerialize() });
+            log('⚠ DESYNC DETECTED — exchanging states, the fresher duel wins…');
           }
         }
       } else if(lan.desynced && lan.inMatch) lan.desynced = false; // v0.35.6 nuke-suite finding: a MATCHING hash re-arms the guard — the flag used to stick true forever after one resync, blinding the client to the NEXT divergence
@@ -1246,10 +1261,31 @@ function lanClockTick(){
   }
   el.style.display = 'block';
   const eb = document.getElementById('endbtn');
+  // v0.37.0 G5: WAR CLOCK — ticks down the ACTIVE side only (lichess model:
+  // your clock, your think time), keeps running while the foe is offline
+  // (Hearthstone model: reconnecting doesn't pause your clock), and rides in
+  // the shared clock line. Both clients tick independently from the same
+  // deterministic message stream, so they agree within network jitter; the
+  // CLOCKLOSS claim is cross-checked with a tolerance before it stands.
+  let warSfx = '';
+  if(lan.war && lan.matchShown && !lan.spec && !lan.warDone){
+    lan.war[S.active] = Math.max(0, (lan.war[S.active] || 0) - 250);
+    const fmt = (ms) => { const t = Math.ceil(ms/1000); return Math.floor(t/60) + ':' + String(t%60).padStart(2,'0'); };
+    warSfx = ' · ⏱ <span style="' + (lan.war.A <= 60000 ? 'color:#ff8a5c' : '') + '">A ' + fmt(lan.war.A) + '</span> / <span style="' + (lan.war.B <= 60000 ? 'color:#ff8a5c' : '') + '">B ' + fmt(lan.war.B) + '</span>';
+    if(lan.war[S.active] <= 0){
+      lan.warDone = true;
+      log('⏱ WAR CLOCK — ' + lanSeatLabel(S.active) + ' ran out of time. The duel is over.');
+      lanSend({ t:'CLOCKLOSS', side: S.active, left: lan.war[S.active === 'A' ? 'B' : 'A'] }); // opponent's remaining, for the cross-check
+      lan.endReason = 'on the war clock';
+      lan.actLog.push({ t:'CLOCKLOSS', side: S.active });
+      S[S.active].hp = 0; render(); checkEnd();
+      return;
+    }
+  }
   if(lan.side !== 'S' && seats && seats[FOE] && !seats[FOE].connected){ // foe inside the 120s reconnect grace
     if(!lan.foeDiscAt) lan.foeDiscAt = Date.now();
     const left = Math.max(0, 120 - Math.floor((Date.now() - lan.foeDiscAt) / 1000));
-    el.innerHTML = `📴 OPPONENT OFFLINE — <b style="color:var(--gold)">${left}s</b> to rejoin`;
+    el.innerHTML = `📴 OPPONENT OFFLINE — <b style="color:var(--gold)">${left}s</b> to rejoin` + warSfx;
     if(eb) eb.classList.remove('rope');
     return;
   }
@@ -1266,7 +1302,7 @@ function lanClockTick(){
   const left = Math.max(0, LAN_TURN_MS - (Date.now() - lanTurnT0));
   const secs = Math.ceil(left / 1000);
   const mine = (S.active === ME && !lan.spec);
-  el.innerHTML = (mine ? '⏳ YOUR TURN — <b style="color:var(--gold)">' : '⌛ ' + lanSeatLabel(S.active) + ' THINKING — <b style="color:#c9b78e">') + secs + '</b>s';
+  el.innerHTML = (mine ? '⏳ YOUR TURN — <b style="color:var(--gold)">' : '⌛ ' + lanSeatLabel(S.active) + ' THINKING — <b style="color:#c9b78e">') + secs + '</b>s' + warSfx;
   if(eb) eb.classList.toggle('rope', mine && left <= 20000 && left > 0);
   if(mine && left <= 0 && !lanEndedTurn){
     // v0.35.7 ROPE-BURN GRACE: mid-target when the fuse hits zero? You get 5s to
@@ -1559,15 +1595,24 @@ function lanJoin(srv, room, role, name){
 // The seat token stays valid for the server's 120s grace, so we re-HELLO up
 // to 5 times with growing backoff and stream the state back via RESYNC.
 function lanDrop(){
-  if(lan.inMatch && lan.token && lan.retries < 5){
-    lan.retries++;
-    const wait = Math.min(8000, 1000 * lan.retries * lan.retries); // 1s → 4s → 9s → 16s → 25s
-    const el = document.getElementById('lanClock');
-    if(el){ el.style.display = 'block'; el.innerHTML = '↻ Connection lost — reconnecting… (attempt ' + lan.retries + ' of 5)'; }
-    setTimeout(lanReconnect, wait);
-    return;
+  // v0.37.0 G3: the retry budget now tracks the SERVER'S REAL seat-grace window
+  // (WELCOME.graceMs, env-tunable) instead of a fixed 5 attempts ≈55s — the
+  // server holds a disconnected seat for 120s by default and the old budget
+  // gave up halfway through it. Backoff caps at 8s; we keep trying while the
+  // seat plausibly lives, and the clock shows the seconds of grace left.
+  if(lan.inMatch && lan.token){
+    if(lan.retries === 0) lan.dropAt = Date.now();
+    const graceLeft = Math.ceil((lan.graceMs - (Date.now() - lan.dropAt)) / 1000);
+    if(lan.retries < 12 && graceLeft > 5){
+      lan.retries++;
+      const wait = Math.min(8000, 1000 * lan.retries * lan.retries); // 1s → 4s → 9s → 16s → 25s (capped)
+      const el = document.getElementById('lanClock');
+      if(el){ el.style.display = 'block'; el.innerHTML = '↻ Connection lost — reconnecting… (attempt ' + lan.retries + ', seat held ' + Math.max(0, graceLeft) + 's)'; }
+      setTimeout(lanReconnect, wait);
+      return;
+    }
   }
-  if(lan.inMatch){ lanFail('Could not get you back into the duel. Your seat stays valid for 2 minutes — rejoin from the game browser.'); return; }
+  if(lan.inMatch){ lanFail('Could not get you back into the duel. Your seat may still be valid — rejoin from the game browser within the grace window.'); return; }
   if(lan.on) lanFail('Connection lost');
   else lanStatus('Connection closed — the host may have shut down the server.');
 }
@@ -1643,6 +1688,7 @@ function lanOnMsg(m){
   }
   if(m.t === 'WELCOME'){
     lan.side = m.side; lan.token = m.token; lan.retries = 0; // v0.35.5: a successful (re)seat clears the reconnect budget
+    if(typeof m.graceMs === 'number' && m.graceMs > 0) lan.graceMs = m.graceMs; // v0.37.0: the real seat-grace window (server-tunable), not a hardcoded "2 minutes"
     lan.connecting = false; lanConnectClearTimer(); lan.pendingHostRoom = null; // v3: seated — connect walk over, host room is live
     lanSend({ t:'VER', side: lan.side, v: FB_LAN_VER }); // v0.35.4: announce our build so the handshake gate can compare
     if(lan.side === 'S'){ // Phase 2: spectator seats render everything and act on nothing
@@ -1657,10 +1703,23 @@ function lanOnMsg(m){
       const s2 = JSON.parse(localStorage.getItem(key) || 'null') || {};
       s2.token = m.token; s2.side = m.side; s2.name = lan.name; localStorage.setItem(key, JSON.stringify(s2));
     }
-    if(lan.resume && m.side === lan.resume.side){ // re-seated at our old chair — ask the peer to stream us the live state
-      lan.on = true; lan.inMatch = false;
-      lanSend({ t:'RESYNC' });
-      lanStatus('Seat ' + m.side + ' re-claimed — restoring the duel…');
+    // v0.37.0 G1: ANY (re)seat while a duel is live (or a saved-seat rejoin)
+    // goes down the RESTORE path — the old code only did this for the
+    // page-refresh (lan.resume) path, so a same-page mid-match WS reconnect
+    // fell into the fresh-seat branch below (me.deck = null + pool-pick UI
+    // while the duel ran underneath) and never asked for the missed ACTs.
+    if(lan.inMatch || (lan.resume && m.side === lan.resume.side)){
+      const wasMatch = lan.inMatch;
+      lan.awaitRestore = true;
+      lanSend({ t:'RESYNC' }); // the peer streams us the live state (STATE handler adopts while awaitRestore)
+      lanStatus('Seat ' + m.side + ' re-claimed — ' + (wasMatch ? 'restoring the duel…' : 'checking for a live duel…'));
+      // if the duel ended while we were away (no STATE ever comes), fall back to the shared lobby
+      setTimeout(()=>{ if(lan.awaitRestore && !lan.inMatch){
+        lan.awaitRestore = false;
+        document.getElementById('mp').classList.remove('on');
+        lanStatus('Seat ' + m.side + ' re-claimed — the duel has ended. Set up a new one in the shared lobby.');
+        me.deck = null; lanPhaseBroadcast('pool'); showPoolPick('play');
+      } }, 5000);
       return;
     }
     document.getElementById('mp').classList.remove('on');
@@ -1730,6 +1789,18 @@ function lanOnMsg(m){
     }
     return;
   }
+  if(m.t === 'CLOCKLOSS'){ // v0.37.0 G5: the peer's war clock emptied — verify against our own accounting, then end
+    if(lan.inMatch && lan.war && S && (m.side === 'A' || m.side === 'B') && m.side !== lan.side && !lan.warDone){
+      lan.warDone = true;
+      const mine4 = lan.war[m.side] || 0;
+      if(mine4 > 10000) log('⚠ Clock discrepancy reported — honoring the war-clock loss to keep the duel consistent.'); // >10s off: both still end identically
+      lan.endReason = 'on the war clock';
+      lan.actLog.push({ t:'CLOCKLOSS', side: m.side });
+      S[m.side].hp = 0; render(); checkEnd();
+      log('⏱ ' + (m.side === FOE ? (lan.foeName || 'Your opponent') : lanSeatLabel(m.side)) + ' ran out of war-clock time — the duel is over.');
+    }
+    return;
+  }
   if(m.t === 'ECHO'){ // v3 badge: application-level ping — the peer replies verbatim, we read the RTT
     if(!lan.spec && m.side && m.side !== lan.side) lanSend({ t:'ECHOR', at: m.at, side: lan.side });
     return;
@@ -1765,11 +1836,37 @@ function lanOnMsg(m){
     }
     return;
   }
-  if(m.t === 'STATE'){ if(m.s && (lan.side === 'S' || (lan.on && (!lan.inMatch || lan.desynced)))) lanRestore(m); return; } // v0.35.5: a DESYNC-flagged client also restores from the host's snapshot
+  // v0.35.5: a DESYNC-flagged client also restores from the host's snapshot.
+  // v0.37.0 G1: a mid-match RECONNECT also adopts (awaitRestore) — and G2's
+  // newest-wins rule applies: if OUR state is the fresher one (the peer is the
+  // one who just came back), keep ours and clear the wait instead of adopting.
+  if(m.t === 'STATE'){
+    if(m.s && (lan.side === 'S' || (lan.on && !lan.inMatch) || lan.awaitRestore)){
+      if(lan.awaitRestore && lan.inMatch && !lanSnapNewer(m)){
+        lan.awaitRestore = false;
+        log('↻ Your state is the live one — the duel continues.');
+      } else lanRestore(m);
+    }
+    return;
+  }
   if(m.t === 'RESYNC'){ if(lan.inMatch && lan.side !== 'S' && S) lanSend({ t:'STATE', s: lanSerialize() }); return; }
 }
 function lanReadyUp(){
-  lan.ready = { faction: me.faction, sov: me.sov, deck: me.deck || loadDeck(me.faction) };
+  // v0.37.0 G4: fail EARLY — a version mismatch used to surface only when the
+  // countdown tried to launch (lanHostStart). Blocking at ready-up means the
+  // "update your game" conversation happens before anyone commits. Only gated
+  // once a foe is actually SEATED — readying up solo before they join stays
+  // legal (the launch gate still backstops the final handshake).
+  const foeSeated = lan.lastRoomSeats && lan.lastRoomSeats[FOE];
+  if(foeSeated && lan.foeVer !== FB_LAN_VER){
+    const why = !lan.foeVer ? 'your opponent\'s build predates the version check'
+      : ('you are on v' + FB_LAN_VER + ' and they are on v' + lan.foeVer);
+    lanStatus('⚔ DUEL BLOCKED — ' + why + '. Both players: Settings → Check for Updates, restart, then ready up.');
+    log('⚠ Ready-up blocked — version mismatch. Both players need the same version.');
+    return;
+  }
+  lan.ready = { faction: me.faction, sov: me.sov, deck: me.deck || loadDeck(me.faction),
+    warclock: !!(document.getElementById('lanWarChk') && document.getElementById('lanWarChk').checked) }; // v0.37.0 G5: chess-clock consent
   lanPhaseBroadcast('ready'); // v3 lobby: my status flips to READY in the opponent's lobby
   lanSend({ t:'READY', cfg: lan.ready });
   lanLobby(); // v3 lobby: the shared wait box — opponent status + chat, not a dead end
@@ -1872,6 +1969,7 @@ function lanMyStatusHtml(){
 function lanReview(){ // v3 lobby: the EXPLICIT ready-up moment — review, change, or commit
   const m = document.getElementById('mp'); m.classList.add('on');
   const f = facOf(me.faction);
+  const foeSeated2 = !!(lan.lastRoomSeats && lan.lastRoomSeats[FOE]); // v0.37.0: version-mismatch chip in review
   m.querySelector('.mbox').innerHTML = `
     <h2 style="color:var(--gold);letter-spacing:3px;margin:0 0 12px">🌐 LAN DUEL — REVIEW &amp; READY UP</h2>
     <div id="lanLobby" style="display:flex;gap:10px;text-align:center">${lanMyStatusHtml()}${lanFoeStatusHtml()}</div>
@@ -1879,6 +1977,11 @@ function lanReview(){ // v3 lobby: the EXPLICIT ready-up moment — review, chan
       <b>${lanHtmlEsc(f.label)}</b> · Sovereign <b>${lanHtmlEsc((me.sov||{}).name || '?')}</b> · deck: <b>${lanHtmlEsc(me.deckName || '★ Doctrine (' + f.identity.name + ')')}</b>
     </div>
     ${lanLobbyChatHtml()}
+    <label style="display:flex;gap:6px;align-items:center;justify-content:center;margin-top:10px;font-size:12.5px;color:#c9b78e;cursor:pointer">
+      <input type="checkbox" id="lanWarChk" ${lan.warWant ? 'checked' : ''} onchange="lan.warWant = this.checked" style="accent-color:#c9a24b">
+      ⏱ WAR CLOCK — 30:00 per side (the duel is lost when your clock empties; both players must tick this)
+    </label>
+    ${(foeSeated2 && lan.foeVer && lan.foeVer !== FB_LAN_VER) ? '<p style="font-size:12px;color:#c96a5a;margin:6px 0 0">⚠ Version mismatch — you are on v' + FB_LAN_VER + ', they are on v' + lan.foeVer + '. Both players: Settings → Check for Updates, restart, then ready up.</p>' : ''}
     <div style="display:flex;gap:8px;justify-content:center;margin-top:14px">
       <button onclick="lanPickChange()">✏ CHANGE PICKS</button>
       <button class="themebtn" onclick="lanReadyUp()">⚔ READY UP</button>
@@ -1936,7 +2039,10 @@ function lanHostStart(){
     return;
   }
   const seed = 'lan-' + Date.now() + '-' + Math.floor(Math.random()*1e9);
-  const p = { facA: lan.ready, facB: lan.foeReady, first: Math.random() < 0.5 ? 'A' : 'B', seed };
+  // v0.37.0 G5: the war clock needs BOTH consents (each side's checkbox lives
+  // in their READY cfg) — one-sided ticking would surprise the other player.
+  const p = { facA: lan.ready, facB: lan.foeReady, first: Math.random() < 0.5 ? 'A' : 'B', seed,
+    warclock: !!(lan.ready && lan.ready.warclock && lan.foeReady && lan.foeReady.warclock) };
   lanSend({ t:'START', p });
   lanStartMatch(p);
 }
@@ -1952,6 +2058,9 @@ function lanStartMatch(p){
   lan.rematch = false; lan.foeRematch = false; lan.matchEnded = false; // v3: MATCHEND fires once per duel
   lan.stats = { t0: Date.now(), hA: S.A.hp, hB: S.B.hp, dmgA: 0, dmgB: 0, acts: 0 }; // v0.35.7: post-match summary source
   lan.actLog = []; lan.endReason = null; // v0.35.7: replay export + victory reason
+  lan.war = p.warclock ? { A: 1800000, B: 1800000 } : null; // v0.37.0 G5: MTGA-Bo3-style match chess clock (30:00/side), both-consent
+  lan.warDone = false; lan.awaitRestore = false; lan.syncReplied = false; // v0.37.0: fresh per-match session-integrity state
+  if(lan.war) log('⏱ WAR CLOCK — 30:00 per side. The duel is lost when your clock empties.');
   lan.mullT0 = lan.spec ? 0 : Date.now(); lanMullClockDone = false; lanRematchAskT0 = 0; lanMatchAskHide(); // v0.35.7: mulligan timer + stale invite sweep
   lanLastActive = null; lan.rtt = 0; lan.lastEchoAt = 0; lan.lastEmote = {}; // v3: fresh badge state per match
   hotseat = false; oppAI = !lan.spec ? false : true;
@@ -2075,8 +2184,23 @@ function lanChatOpen(){
   document.body.appendChild(bar);
 }
 function lanSerialize(){
+  // v0.37.0 G2: `n` = freshness counter (applied actions). State adoption is
+  // NEWEST-WINS: a snapshot older than mine is ignored, a stale HOST can no
+  // longer clobber the peer's newer board after a reconnect desync. Tie →
+  // the NON-host adopts (side A keeps its state), so both sides converge on
+  // the same winner without a flip-flop. `log` keeps the replay alive across
+  // restores; `war` carries the chess-clock so a restore can't lose it.
   return { s: JSON.parse(JSON.stringify(S, (k,v)=> typeof v === 'function' ? undefined : v)), rngS: lanMatchRng ? lanMatchRng.s : null,
-           side: lan.side, seed: lan.seed, params: lan.params, active: S.active, turn: S.turn };
+           side: lan.side, seed: lan.seed, params: lan.params, active: S.active, turn: S.turn,
+           n: lan.actLog.length, log: lan.actLog.slice(), war: lan.war };
+}
+// v0.37.0 G2: is the incoming snapshot at least as fresh as mine? (tie → adopt
+// unless I'm the host — the host wins ties, so exactly one side adopts)
+function lanSnapNewer(m){
+  const mine = lan.actLog.length, theirs = (m.s && typeof m.s.n === 'number') ? m.s.n : (typeof m.n === 'number' ? m.n : 0);
+  if(theirs > mine) return true;
+  if(theirs === mine && lan.side !== 'A') return true;
+  return false;
 }
 function lanRestore(m){
   // v0.35.5 CRITICAL FIX: lanSerialize nests everything (s, rngS, seed, params)
@@ -2090,6 +2214,11 @@ function lanRestore(m){
   lanQReset(); lanTurnKey = null; lan.foeDiscAt = 0; lan.foeGoneLogged = false;
   hotseat = false; oppAI = false; setME(lan.side === 'S' ? 'A' : lan.side); watch.on = !!lan.spec;
   S = p.s; if(!S.rng) S.rng = lanMatchRng.next;
+  // v0.37.0: the snapshot carries the replay log + war clock — a restore can
+  // no longer silently drop either (actLog was always reset to [] before).
+  if(Array.isArray(p.log)) lan.actLog = p.log.slice();
+  if(p.war && typeof p.war === 'object') lan.war = { A: Number(p.war.A) || 0, B: Number(p.war.B) || 0 };
+  lan.awaitRestore = false; lan.syncReplied = false; lan.warDone = false;
   lastSeen = { hpA:null, hpB:null, minions:{} }; aiAnimSeq++; blogReset();
   document.getElementById('overlay').classList.remove('on');
   show('match'); render();
