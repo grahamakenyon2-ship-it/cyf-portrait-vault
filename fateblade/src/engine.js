@@ -718,7 +718,7 @@
     towers:      { name: 'Arcane Bolt',    cost: 3, kind: 'dmg', dmg: 2, tset: 'any', text: 'Deal 2 damage to any target.' }, // cost-for-effect doctrine: the realm of magic pays premium for flexibility
     necropolis:  { name: 'Exhume',         cost: 2, kind: 'exhume', text: 'Return the last friendly minion that died as a 2/2 Echo.' }, // v0.34: 1/1→2/2 — on-curve body for the mana; the 1/1 was refuse-cast chaff (46.6% cast WR)
     marches:     { name: 'Raid',           cost: 2, kind: 'raid', dmg: 1, face: 1, text: 'Deal 1 damage to an enemy minion and 1 damage to the enemy Sovereign.' },
-    deepholds:   { name: 'Delve',          cost: 2, kind: 'delve',  text: 'Gain 1 mana this turn.' },
+    deepholds:   { name: 'Delve',          cost: 1, kind: 'delve',  text: 'Gain 2 mana this turn.' }, // v0.38.3: was 2→+1 (net -1, 0 with First Rites — useless); now 1→+2, net +1/turn
     wayfarers:   null, // the neutral guild fields no command
   };
   function realmCmd(S, side) {
@@ -895,7 +895,7 @@
         refreshPrim(S);
         break;
       }
-      case 'delve': { p.mana += 1; S.events.push({ t: 'passive', side, id: 'POWER' }); break; }
+      case 'delve': { p.mana += 2; S.events.push({ t: 'passive', side, id: 'POWER' }); break; } // v0.38.3: +2 (cost 1) — net +1 mana a turn
     }
     if (hasP(p, 'ARCANE_LANCE') && foe.board.length) { const t = foe.board[Math.floor(S.rng() * foe.board.length)]; S.events.push({ t: 'passive', side, id: 'ARCANE_LANCE', on: t.id }); damageMinion(S, other(side), t.uid, 1 * rites(S, side)); } // v0.26: Queliomir — every cast looses a stray arc
     return true;
