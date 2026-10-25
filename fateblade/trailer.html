@@ -558,6 +558,7 @@ function stop(){cancelAnimationFrame(raf);ended=true;reset();
 
 $("play").onclick=start;$("replay").onclick=start;$("skip").onclick=stop;
 $("gamelaunch").onclick=()=>{
+  goFullscreenLandscape(); // the real game opens fullscreen landscape too
   $("gframe").src="https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/src/game.html";
   $("game").classList.add("show");$("exit").classList.add("show");m.pause();};
 $("exit").onclick=()=>{$("game").classList.remove("show");$("exit").classList.remove("show");};
