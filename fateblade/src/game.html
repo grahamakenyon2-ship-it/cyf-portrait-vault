@@ -198,6 +198,68 @@
   body.touch .board.dropzone{outline:2px dashed var(--gold); outline-offset:-6px; box-shadow:inset 0 0 44px #c9a24b44;}
   body.touch .tghost{position:fixed; z-index:95; pointer-events:none; opacity:.94; margin:0;
     filter:drop-shadow(0 16px 30px #000d); transform-origin:center bottom;}
+  /* ===== v0.40.0 PHONE LAYOUT — body.phone only: a TOUCH device whose SHORT
+     edge is under 540px (phones; tablets, desktops and touch-laptops never
+     match). Compact match + mulligan + deck-builder scale so fitScreen has a
+     smaller board to fit and cards stay readable at phone size. ===== */
+  body.phone #match{padding:4px; gap:4px;}
+  body.phone .lane{min-height:124px; gap:8px;}
+  body.phone .board{min-height:132px; gap:6px;}
+  body.phone .hero{width:116px; height:116px; border-width:1px;}
+  body.phone .hero img{height:66px;}
+  body.phone .hero .hp{font-size:17px;}
+  body.phone .hero .nm{font-size:9px;}
+  body.phone .hero .sovname{font-size:8.5px;}
+  body.phone .hero .sovp{font-size:8px; line-height:10px; height:28px;}
+  body.phone .hero .relics{top:-12px;}
+  body.phone .hero .relics .rk{font-size:8px; line-height:11px; max-width:52px;}
+  body.phone .minion{width:96px; height:124px; border-width:4px;}
+  body.phone .minion img{height:96px;}
+  body.phone .minion .nm{font-size:10px;}
+  body.phone .minion .atk, body.phone .minion .hp{font-size:14px;}
+  body.phone .minion .kw{font-size:9.5px; top:1px; left:1px; padding:0 2px;}
+  body.phone .minion .sigil{font-size:9px; line-height:11px; border-width:0;}
+  body.phone .minion .sigil.wreath{bottom:18px; right:2px;}
+  body.phone .minion .sigil.swings{bottom:18px; left:2px; font-size:8px;}
+  body.phone .minion .sigil.muzzle{bottom:18px; font-size:7.5px;}
+  body.phone .minion .ragebadge{font-size:9px; top:1px; right:1px;}
+  body.phone .hand{min-height:148px; gap:5px;}
+  body.phone .hcard{width:102px; height:140px; border-width:4px;}
+  body.phone .hcard img{height:84px;}
+  body.phone .hcard .nm{font-size:9.5px;}
+  body.phone .hcard .cost{width:19px; height:19px; font-size:11px; top:-6px; left:-6px;}
+  body.phone .hcard .kw{font-size:8.5px; height:9px;}
+  body.phone .hcard .abil{font-size:7px; bottom:26px; min-height:0; max-height:17px;}
+  body.phone .minion .abil{font-size:7px; bottom:24px; max-height:17px;}
+  body.phone .mcard .abil{font-size:7px; bottom:26px; max-height:17px;}
+  body.phone .hcard .typerow{top:16px; left:2px; font-size:7px; padding:0 2px;}
+  body.phone #topbar{font-size:10.5px; gap:7px; letter-spacing:0;}
+  body.phone #log{font-size:10px; height:16px;}
+  body.phone #match button{padding:7px 12px; font-size:11px; letter-spacing:1px;}
+  body.phone #foeHand{margin-right:8px; gap:2px;}
+  body.phone #foeHand .fcard{width:15px; height:23px;}
+  body.phone #foeHand .fcnt{font-size:10px; padding:1px 4px; margin-left:2px;}
+  body.phone #blwrap{width:150px; top:26px; right:4px;}
+  body.phone #blhead{font-size:9px; padding:2px 6px;}
+  body.phone #battlelog{font-size:8.5px;}
+  body.phone #zoom{width:260px; pointer-events:auto; touch-action:pan-y; max-height:94dvh; overflow-y:auto;} /* small panel that scrolls if it outgrows a short landscape viewport */
+  body.phone #zoom img{width:180px; height:180px;}
+  body.phone .mcard{width:102px; height:140px; border-width:4px;}
+  body.phone #mullbox{max-width:99vw;}
+  body.phone #deckb .dbwrap{flex-direction:column; height:calc(100vh - 190px); height:calc(100dvh - 190px); min-height:300px; gap:8px;}
+  body.phone #deckb .dbdeck{flex:0 0 34%; width:auto; border-width:5px; padding:6px;}
+  body.phone #deckb .dbcoll{flex:1 1 auto; border-width:5px; padding:6px;}
+  /* v0.40.0: portrait plate — touch devices only. The match plays landscape
+     (Hearthstone model); portrait shows a rotate prompt instead of a broken board. */
+  #rotPlate{display:none;}
+  @media (orientation:portrait){
+    body.touch #match.on #rotPlate{display:flex; position:absolute; inset:0; z-index:99;
+      background:#0a0806f2; flex-direction:column; align-items:center; justify-content:center; gap:10px;}
+  }
+  #rotPlate .rotIco{font-size:44px; color:var(--gold); animation:rotspin 2.2s ease-in-out infinite;}
+  @keyframes rotspin{0%,100%{transform:rotate(0)} 55%,75%{transform:rotate(90deg)}}
+  #rotPlate .rotT{font-family:'Cinzel',Georgia,serif; font-size:15px; letter-spacing:3px; color:var(--gold);}
+  #rotPlate .rotS{font-size:11px; color:#c9b78e; padding:0 22px; line-height:1.5;}
 
   /* ===== v0.12 turn banner + victory pop ===== */
   #turnBanner{position:fixed; top:34%; left:0; right:0; text-align:center; z-index:60; pointer-events:none; opacity:0;}
@@ -686,71 +748,3 @@
       <button class="menubtn themebtn" onclick="menuDeckBuilder()">▦ DECK BUILDER<small>forge your realm's deck from its full roster</small></button>
       <button class="menubtn themebtn" onclick="startTutorial()" id="tutMenuBtn">🎓 TUTORIAL<small id="tutMenuSub">one guided duel — learn the field in five minutes</small></button>
     </div>
-    <button class="playbig themebtn" onclick="menuSingle()"><b>⚔ PLAY</b><small>single player — battle the AI with your realm's deck</small></button>
-    <div class="mcol">
-      <button class="menubtn themebtn" onclick="watchMatch()">▶ WATCH AN AI DUEL<small>visual playtest with live commentary</small></button>
-      <button class="menubtn themebtn" onclick="showMultiplayer()">✦ MULTIPLAYER<small>hotseat &amp; LAN duels — play a friend today</small></button>
-      <button class="menubtn themebtn" onclick="showSettings()">⚙ SETTINGS<small>theme art, AI difficulty, watch speed, saved decks</small></button>
-      <button class="menubtn themebtn" onclick="quitToDesktop()">✖ QUIT TO DESKTOP<small>close Fateblade</small></button>
-    </div>
-  </div>
-  <div id="sovd" style="display:none"></div>
-  <div id="quitNote" style="display:none;max-width:420px;text-align:center;font-size:13px;color:#c9b78e">Your browser kept this tab open — close the tab to exit. (The desktop app closes itself.)</div>
-</div>
-
-<div id="factions" class="screen">
-  <h1 style="font-size:22px" id="facTitle">CHOOSE YOUR BANNER</h1>
-  <div class="row" id="facRow"></div>
-  <button onclick="backToMenu()">Back</button>
-</div>
-
-<div id="poolpick" class="screen">
-  <h1 style="font-size:22px" id="poolTitle">CHOOSE YOUR CARD POOL</h1>
-  <div class="row" id="poolRow"></div>
-  <button onclick="backToMenu()">Back</button>
-</div>
-
-<div id="campaigns" class="screen">
-  <h1 style="font-size:22px" id="campTitle">CAMPAIGNS</h1>
-  <div style="max-width:760px;text-align:center;font-size:14px;color:#c9b78e">Eight-chapter sagas. Swear one banner per campaign, bring its deck, and fight the arc — each chapter's foe brings its own twists, and the last of them is a boss.</div>
-  <div id="campRow" style="display:flex;flex-direction:column;gap:8px;align-items:center;max-height:62vh;overflow:auto;padding:4px"></div>
-  <button onclick="backToMenu()">Back</button>
-</div>
-
-<div id="deckb" class="screen">
-  <h1 style="font-size:20px" id="dbTitle">DECK BUILDER</h1>
-  <div class="dbhead">
-    <span id="dbCount"></span>
-    <input id="dbName" type="text" placeholder="deck name…" style="background:#191308;color:var(--ink);border:1px solid var(--gold-dim);padding:6px 10px;font:inherit;width:160px">
-    <button onclick="dbReset()">↺ Restore Doctrine</button>
-    <button onclick="dbSave()" id="dbSaveBtn">💾 Save Deck</button>
-    <button onclick="dbLeaveGuard()">Done</button>
-  </div>
-  <div class="dbhead2">
-    <input id="dbSearch" type="text" placeholder="🔎 Search name or card text…" oninput="dbFilterSet('q', this.value)">
-    <span class="dblab">COST</span><span id="dbCostChips"></span>
-    <span class="dblab">RARITY</span><span id="dbRarChips"></span>
-    <span class="dblab">TYPE</span><span id="dbTypeChips"></span>
-    <span class="dblab">KEYWORD</span><span id="dbKwChips"></span>
-    <span class="dblab">TRIBE</span><span id="dbTribeChips"></span>
-    <span class="dblab">MECHANIC</span><span id="dbMechChips"></span>
-    <span class="dblab">SOURCE</span><span id="dbSrcChips"></span>
-  <span class="dblab">SORT</span><span id="dbSortChips"></span>
-  </div>
-  <div class="dbwrap">
-    <div class="dbdeck"><div class="dbdecktitle">YOUR DECK — CLICK TO REMOVE</div><div id="dbCurve"></div><div id="dbDeckList"></div></div>
-    <div class="dbcoll" id="dbColl"></div>
-  </div>
-</div>
-
-<div id="sovereigns" class="screen">
-  <h1 style="font-size:22px" id="sovTitle">CHOOSE YOUR SOVEREIGN</h1>
-  <div style="font-size:14px;color:#c9b78e">Your Sovereign leads the deck from the hero box — their passive ability shapes the whole match.</div>
-  <div class="row" id="sovRow"></div>
-  <button onclick="menuSingle()">Back</button>
-</div>
-
-<div id="deckpick" class="screen">
-  <h1 style="font-size:22px" id="dpTitle">CHOOSE YOUR DECK</h1>
-  <div style="font-size:14px;color:#c9b78e">The doctrine is the realm's tuned 30-card deck. Saved decks are your own builds.</div>
-  <div id="dpMigrate" style="display:none;font-size:13px;color:var(--abil);background:#141008;border:1px solid var(--gold-dim);padding:8px 14px;max-width:640px">
