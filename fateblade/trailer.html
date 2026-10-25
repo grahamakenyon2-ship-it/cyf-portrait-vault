@@ -1,0 +1,543 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FATEBLADE — Official Trailer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cinzel+Decorative:wght@400;700&family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     FATEBLADE — 60s official trailer
+     One palette. One type system. One motion language.
+     Rules of the cut:
+       · full-bleed art is ALWAYS dimmed before type lands on it
+       · split frames give text and art separate thirds — never overlap
+       · captions live in the letterbox bar, never on the artwork
+       · every image breathes (slow push) — nothing is ever static
+       · acts are separated by a clean dip to black
+     ============================================================ */
+  :root{
+    --gold:#c9a24b; --gold-hi:#e9cf82; --gold-dim:#6e5a28;
+    --ink:#0a0806; --parch:#efe2c0; --parch-dim:#c4b389;
+    --f-title:"Cinzel",Georgia,serif;
+    --f-deco:"Cinzel Decorative","Cinzel",Georgia,serif;
+    --f-body:"EB Garamond",Georgia,serif;
+    --V:"https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade";
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%;overflow:hidden;background:#000;color:var(--parch)}
+  body{font-family:var(--f-body)}
+
+  #stage{position:fixed;inset:0;background:#000}
+
+  /* ---------- backdrop ---------- */
+  .layer{position:absolute;inset:0;background-size:cover;background-position:center;
+    opacity:0;transition:opacity 1.1s ease;filter:brightness(.4) saturate(.8)}
+  .layer.show{opacity:1}
+  .layer::after{content:"";position:absolute;inset:0;
+    box-shadow:inset 0 0 24vw 9vw rgba(0,0,0,.9)}
+  .kb-a{animation:kbA 9s ease-out forwards}
+  @keyframes kbA{from{transform:scale(1.02)}to{transform:scale(1.15)}}
+
+  /* ---------- montage cuts: brief zoom-fade, never a hard stall ---------- */
+  #cuts{position:absolute;inset:0}
+  .cut{position:absolute;inset:0;background-size:cover;background-position:center 15%;
+    opacity:0;filter:saturate(1.2) contrast(1.1);
+    transition:filter .45s ease}
+  .cut.flash{animation:cutflash var(--d,520ms) ease-out forwards}
+  @keyframes cutflash{0%{opacity:1;transform:scale(1.06)}100%{opacity:0;transform:scale(1.2)}}
+  #stage.dimcuts .cut{filter:saturate(.45) brightness(.28) blur(3px)}
+
+  /* ---------- atmosphere ---------- */
+  #embers{position:absolute;inset:0;z-index:5;pointer-events:none;overflow:hidden}
+  .ember{position:absolute;bottom:-10px;border-radius:50%;
+    background:radial-gradient(circle,#ffc26e,rgba(255,120,20,0));animation:rise linear infinite}
+  @keyframes rise{from{transform:translateY(0);opacity:0}10%{opacity:.7}
+    90%{opacity:.35}to{transform:translateY(-108vh);opacity:0}}
+  #vig{position:absolute;inset:0;z-index:6;pointer-events:none;
+    background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.82) 100%)}
+  #grain{position:absolute;inset:-50%;z-index:7;pointer-events:none;opacity:.045;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2'/></filter><rect width='120' height='120' filter='url(%23n)'/></svg>");
+    animation:grain 480ms steps(4) infinite}
+  @keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(-3%,2%)}
+    50%{transform:translate(2%,-3%)}75%{transform:translate(-2%,-2%)}100%{transform:translate(3%,2%)}}
+
+  /* ---------- letterbox + caption ---------- */
+  .bar{position:absolute;left:0;right:0;height:9%;background:#000;z-index:16}
+  #barT{top:0}
+  #barB{bottom:0;display:flex;align-items:center;justify-content:center;gap:1.2vw}
+  #cap{font-family:var(--f-title);font-size:clamp(12px,1.45vw,19px);
+    letter-spacing:.4em;text-transform:uppercase;color:var(--gold);
+    opacity:0;transition:opacity .55s ease;text-align:center;white-space:nowrap}
+  #cap.show{opacity:1}
+  #cap i{font-family:var(--f-body);font-style:italic;text-transform:none;
+    letter-spacing:.06em;color:var(--parch-dim);font-size:.95em}
+  .hairline{height:1px;width:0;background:linear-gradient(90deg,transparent,var(--gold-dim),transparent);
+    transition:width .8s ease;flex:none}
+  .hairline.show{width:6vw}
+  .diamond{width:5px;height:5px;background:var(--gold);transform:rotate(45deg);
+    opacity:0;transition:opacity .6s ease .15s;flex:none}
+  .diamond.show{opacity:1}
+
+  /* ---------- center type (only over dimmed art) ---------- */
+  #text{position:absolute;inset:0;z-index:12;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;padding:0 6vw;pointer-events:none}
+  .line{opacity:0;font-family:var(--f-title);text-transform:uppercase}
+  .line.small{font-family:var(--f-body);font-style:italic;text-transform:none;
+    font-size:clamp(19px,2.3vw,34px);letter-spacing:.24em;color:var(--parch-dim);
+    text-shadow:0 3px 22px #000}
+  .line.big{font-weight:700;font-size:clamp(42px,7vw,112px);letter-spacing:.12em;
+    color:var(--parch);text-shadow:0 4px 36px rgba(0,0,0,.98),0 0 90px rgba(201,162,75,.22)}
+  .line.med{font-weight:600;font-size:clamp(28px,4vw,60px);letter-spacing:.18em;color:var(--gold-hi);
+    text-shadow:0 4px 30px rgba(0,0,0,.98)}
+  .line.glow{color:#fff;text-shadow:0 0 52px rgba(201,162,75,.95),0 4px 28px #000}
+  /* tracking-in entrance: the classic title-card move */
+  .line.enter{animation:trackin 1s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes trackin{from{opacity:0;letter-spacing:.42em;transform:translateY(10px)}
+    to{opacity:1;letter-spacing:.12em;transform:translateY(0)}}
+  .line.enter.med{animation-name:trackin2}
+  @keyframes trackin2{from{opacity:0;letter-spacing:.5em;transform:translateY(10px)}
+    to{opacity:1;letter-spacing:.18em;transform:translateY(0)}}
+  .line.fade{transition:opacity .9s ease,transform .9s ease;transform:translateY(12px)}
+  .line.fade.show{opacity:1;transform:translateY(0)}
+  .line.exit{animation:fadeout .55s ease both}
+  @keyframes fadeout{from{opacity:1}to{opacity:0;transform:translateY(-8px)}}
+  .rule{width:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);
+    margin:2.4vh auto;transition:width 1.2s ease}
+  .rule.show{width:40vw}
+
+  /* ---------- split frame: text third + art third ---------- */
+  #split{position:absolute;inset:0;z-index:10;display:none;align-items:center;padding:0 5vw;gap:4vw}
+  #split.show{display:flex}
+  #split .info{flex:0 0 40vw;min-width:0;overflow-wrap:normal;word-wrap:normal;hyphens:none}
+  #split.flip .info{order:2;text-align:right}
+  #split.flip .artzone{order:1}
+  #split .kicker{font-family:var(--f-body);font-style:italic;font-size:clamp(14px,1.55vw,21px);
+    letter-spacing:.26em;color:var(--gold);text-transform:uppercase;
+    display:flex;gap:1vw;align-items:center}
+  #split.flip .kicker{flex-direction:row-reverse}
+  #split .kicker .tick{width:2.6vw;height:1px;background:var(--gold-dim);flex:none}
+  #split h2{font-family:var(--f-title);font-weight:700;text-transform:uppercase;
+    font-size:clamp(30px,4.2vw,66px);letter-spacing:.09em;color:var(--parch);
+    line-height:1.1;margin:1.6vh 0 1.4vh;text-shadow:0 4px 32px rgba(0,0,0,.96);
+    opacity:0;transform:translateY(22px);transition:all .95s cubic-bezier(.2,.7,.2,1) .18s}
+  #split .iname{font-family:var(--f-title);font-size:clamp(16px,1.85vw,27px);
+    letter-spacing:.34em;color:var(--gold-hi);text-transform:uppercase;
+    opacity:0;transition:opacity .85s ease .45s;text-shadow:0 3px 20px #000}
+  #split .tag{font-family:var(--f-body);font-style:italic;
+    font-size:clamp(17px,1.8vw,26px);letter-spacing:.04em;color:var(--parch-dim);
+    margin-top:1.6vh;max-width:36vw;opacity:0;transition:opacity .95s ease .62s;
+    text-shadow:0 3px 18px #000}
+  #split.show h2{opacity:1;transform:translateY(0)}
+  #split.show .iname,#split.show .tag{opacity:1}
+  #split .artzone{flex:1;display:flex;align-items:center;justify-content:center;min-width:0}
+  #split .frame{position:relative;width:min(26vw,42vh);aspect-ratio:3/4.1;
+    opacity:0;transform:translateX(4vw) scale(.95);
+    transition:all 1.05s cubic-bezier(.2,.7,.2,1) .3s}
+  #split.flip .frame{transform:translateX(-4vw) scale(.95)}
+  #split.show .frame{opacity:1;transform:translateX(0) scale(1)}
+  #split .art{width:100%;height:100%;background-size:cover;background-position:center 10%;
+    border:1px solid rgba(201,162,75,.35);
+    box-shadow:0 30px 90px rgba(0,0,0,.95),0 0 70px rgba(201,162,75,.12);
+    animation:artbreathe 12s ease-in-out infinite alternate}
+  @keyframes artbreathe{from{transform:scale(1)}to{transform:scale(1.06)}}
+  /* codex corner brackets */
+  #split .c{position:absolute;width:26px;height:26px;border:0 solid var(--gold-dim)}
+  #split .c.tl{top:-1px;left:-1px;border-top-width:2px;border-left-width:2px}
+  #split .c.tr{top:-1px;right:-1px;border-top-width:2px;border-right-width:2px}
+  #split .c.bl{bottom:-1px;left:-1px;border-bottom-width:2px;border-left-width:2px}
+  #split .c.br{bottom:-1px;right:-1px;border-bottom-width:2px;border-right-width:2px}
+  #split .frame .glowline{position:absolute;inset:-14px;border:1px solid rgba(201,162,75,.14);
+    pointer-events:none}
+
+  /* ---------- montage word emblem: readable plate over FULL-BRIGHT art ---------- */
+  #emblem{position:absolute;inset:0;z-index:13;display:flex;align-items:center;
+    justify-content:center;pointer-events:none;opacity:0;transition:opacity .35s ease}
+  #emblem.show{opacity:1}
+  #emblem .plate{position:relative;display:flex;align-items:center;gap:2.2vw;
+    background:rgba(8,6,3,.9);border:1px solid var(--gold);
+    box-shadow:0 0 0 4px rgba(8,6,3,.9),0 0 0 5px var(--gold-dim),
+      0 24px 70px rgba(0,0,0,.75);
+    padding:2.4vh 4.5vw;transform:scale(.92);
+    animation:platesnap .38s cubic-bezier(.2,1.3,.4,1) both}
+  @keyframes platesnap{from{transform:scale(.82);opacity:0}to{transform:scale(1);opacity:1}}
+  #emblem .ediamond{width:7px;height:7px;background:var(--gold);transform:rotate(45deg);
+    box-shadow:0 0 14px rgba(201,162,75,.8);flex:none}
+  #eword{font-family:var(--f-title);font-weight:700;text-transform:uppercase;
+    font-size:clamp(34px,5.8vw,90px);letter-spacing:.22em;color:var(--parch);
+    text-shadow:0 2px 18px #000;white-space:nowrap;line-height:1}
+  #emblem .plate::before,#emblem .plate::after{content:"";position:absolute;
+    width:14px;height:14px;border:0 solid var(--gold-dim)}
+  #emblem .plate::before{top:-5px;left:-5px;border-top-width:2px;border-left-width:2px}
+  #emblem .plate::after{bottom:-5px;right:-5px;border-bottom-width:2px;border-right-width:2px}
+
+  /* ---------- portrait / narrow: stack, compact — everything fits the frame ---------- */
+  @media (orientation:portrait),(max-width:760px){
+    #split{flex-direction:column;gap:1.2vh;padding:0 7vw}
+    #split .info{flex:none;max-width:100%;text-align:center}
+    #split .kicker{justify-content:center;font-size:clamp(11px,2.8vw,15px)}
+    #split .kicker .tick{display:none}
+    #split h2{font-size:clamp(20px,5.6vw,38px);margin:.8vh 0 .5vh}
+    #split .iname{font-size:clamp(12px,3vw,17px);letter-spacing:.24em}
+    #split .tag{font-size:clamp(12px,3vw,16px);max-width:82vw;margin:.9vh auto 0;
+      line-height:1.3;overflow:hidden;display:-webkit-box;
+      -webkit-line-clamp:2;-webkit-box-orient:vertical}
+    #split .artzone{width:100%}
+    #split .frame{width:min(46vw,26vh)}
+    #split .c{width:14px;height:14px}
+    #text{padding:0 8vw}
+    .line.big{font-size:clamp(26px,8.5vw,54px)}
+    .line.med{font-size:clamp(18px,5.5vw,36px)}
+    .line.small{font-size:clamp(13px,3.8vw,22px);letter-spacing:.14em}
+    .rule{margin:1.2vh auto}
+    #logo h1{font-size:clamp(34px,11vw,84px)}
+    #logo .sub{font-size:clamp(11px,3.2vw,18px);margin-top:2vh}
+    #logo .stats{font-size:clamp(10px,2.8vw,15px)}
+    #logo .crest{margin-bottom:2vh}
+    #endcard{flex-direction:column;gap:1.2vh;inset:auto 0 2% 0}
+    #endcard button{padding:9px 20px;font-size:clamp(10px,2.8vw,14px)}
+    #cap{letter-spacing:.24em;font-size:clamp(10px,2.9vw,15px)}
+    #cap i{display:none}
+    #eword{font-size:clamp(22px,7vw,44px)}
+    #emblem .plate{padding:1.6vh 6vw;gap:3vw}
+  }
+
+  /* ---------- dip to black between acts ---------- */
+  #dip{position:absolute;inset:0;z-index:14;background:#000;opacity:0;
+    pointer-events:none;transition:opacity .45s ease}
+  #dip.on{opacity:1}
+
+  /* ---------- logo ---------- */
+  #logo{position:absolute;inset:0;z-index:15;display:flex;flex-direction:column;align-items:center;
+    justify-content:center;opacity:0;transition:opacity 1.5s ease;text-align:center}
+  #logo.show{opacity:1}
+  #logo .crest{width:6px;height:6px;transform:rotate(45deg);background:var(--gold);
+    box-shadow:0 0 38px rgba(201,162,75,.9);margin-bottom:3.2vh}
+  #logo h1{font-family:var(--f-deco);font-weight:700;font-size:clamp(56px,11vw,164px);
+    letter-spacing:.13em;color:var(--parch);line-height:1;
+    text-shadow:0 0 90px rgba(201,162,75,.5),0 6px 42px #000}
+  #logo h1 b{color:var(--gold-hi)}
+  #logo .sub{margin-top:3.2vh;font-family:var(--f-title);letter-spacing:.54em;
+    font-size:clamp(14px,1.9vw,25px);color:var(--gold-hi);text-transform:uppercase}
+  #logo .stats{margin-top:1.5vh;font-family:var(--f-body);font-style:italic;
+    font-size:clamp(13px,1.55vw,20px);color:var(--parch-dim);letter-spacing:.1em}
+
+  /* ---------- splash / controls ---------- */
+  button{font-family:var(--f-title);background:transparent;border:1px solid var(--gold);
+    color:var(--gold);letter-spacing:.34em;cursor:pointer;text-transform:uppercase;
+    transition:all .3s}
+  button:hover{background:rgba(201,162,75,.14);box-shadow:0 0 44px rgba(201,162,75,.3)}
+  #splash{position:absolute;inset:0;z-index:22;background:radial-gradient(ellipse at center,#181008,#000 78%);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4.2vh;
+    transition:opacity .9s ease}
+  #splash.gone{opacity:0;pointer-events:none}
+  #splash .t{font-family:var(--f-deco);font-size:clamp(36px,5.8vw,76px);
+    letter-spacing:.17em;color:var(--parch)}
+  #splash .t b{color:var(--gold-hi)}
+  #splash .rule2{width:26vw;height:1px;
+    background:linear-gradient(90deg,transparent,var(--gold-dim),transparent)}
+  #splash .sub{font-family:var(--f-body);font-style:italic;letter-spacing:.32em;
+    color:#8f7f57;font-size:clamp(12px,1.5vw,18px)}
+  #play{padding:17px 54px;font-size:clamp(14px,1.7vw,21px)}
+  #skip{position:absolute;z-index:18;bottom:1%;right:2.4vw;background:none;border:none;
+    color:#6e603f;letter-spacing:.3em;font-size:11px;display:none;padding:8px}
+  #skip.show{display:block}
+  #endcard{position:absolute;inset:auto 0 2.8% 0;z-index:19;display:none;
+    flex-direction:row;gap:2vw;justify-content:center;align-items:center}
+  #endcard.show{display:flex}
+  #endcard button{padding:12px 30px;font-size:clamp(11px,1.3vw,16px)}
+  #endcard .free{border-color:var(--gold-dim);color:var(--gold-hi)}
+  #game{position:fixed;inset:0;z-index:40;background:#000;display:none}
+  #game.show{display:block}
+  #game iframe{width:100%;height:100%;border:0}
+  #exit{position:fixed;top:2vh;right:2vw;z-index:41;display:none;padding:9px 22px;font-size:12px}
+  #exit.show{display:block}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="layer" id="l1"></div>
+  <div id="cuts"></div>
+
+  <div id="split">
+    <div class="info">
+      <div class="kicker"><span class="tick"></span><span id="skick"></span></div>
+      <h2 id="sname"></h2>
+      <div class="iname" id="siname"></div>
+      <div class="tag" id="stag"></div>
+    </div>
+    <div class="artzone">
+      <div class="frame">
+        <div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div>
+        <div class="art" id="sart"></div>
+        <div class="glowline"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="embers"></div>
+  <div id="vig"></div>
+  <div id="grain"></div>
+  <div id="text">
+    <div class="line small" id="t1"></div>
+    <div class="rule" id="trule"></div>
+    <div class="line big" id="t2"></div>
+  </div>
+  <div id="logo">
+    <div class="crest"></div>
+    <h1>FATE<b>BLADE</b></h1>
+    <div class="sub">Forge Your Fate</div>
+    <div class="stats">16 sovereigns · 11 realms · 1,700+ cards</div>
+  </div>
+  <div id="emblem"><div class="plate">
+    <div class="ediamond"></div><div id="eword"></div><div class="ediamond"></div>
+  </div></div>
+  <div id="dip"></div>
+  <div class="bar" id="barT"></div>
+  <div class="bar" id="barB">
+    <div class="hairline" id="hl1"></div><div class="diamond" id="dm1"></div>
+    <div id="cap"></div>
+    <div class="diamond" id="dm2"></div><div class="hairline" id="hl2"></div>
+  </div>
+  <button id="skip">SKIP ▸</button>
+  <div id="endcard">
+    <button class="free" id="gamelaunch">▶ Play the Real Game</button>
+    <button id="replay">↺ Replay</button>
+  </div>
+  <div id="splash">
+    <div class="t">FATE<b>BLADE</b></div>
+    <div class="rule2"></div>
+    <div class="sub">the official trailer · sixty seconds</div>
+    <button id="play">▶ Play Trailer</button>
+  </div>
+</div>
+
+<div id="game"><iframe id="gframe" src="" title="Fateblade"></iframe></div>
+<button id="exit">✕ Exit Game</button>
+
+<audio id="m" preload="auto" loop src="https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/music/match-canon.ogg"></audio>
+
+<script>
+const V="https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade";
+const IMG=p=>V+"/"+p+".jpg";
+const $=id=>document.getElementById(id);
+
+/* ====== CANON CARD POOL — unique per realm, cards/ art only ====== */
+const POOL={
+ starwind:["korurek-of-the-upper-dark","graleuk-the-cold-curious","rukouk-of-the-hanging-city","mekeshara-the-pattern-reader","zekeax-of-the-rift-spire","skorakosh-the-rift-surveyor","sylokok-of-the-cold-lattice","mekoaal-the-far-returned","xilvahri-of-the-deep-choir","mekoax-of-the-descent-ledger"],
+ courts:["baraando-the-poison-tasted","halovaine-of-house-calvette","perfume-clerk-alabelle","joreando-the-coin-counted","ink-courtier-roewyn","deluebert-tale-carrier","glove-courier-orsamtrice","thalonde-the-perfectly-courteous","lysobelle","vaelith-the-ledger-balanced"],
+ towers:["isenaewenna-the-robe-frayed","quelawynd-the-weave-warder","feniarath-of-the-ordinal-gates","halaelume-the-candle-stubborn","doromere-of-the-ordinal-gates","maeolume-the-footnote-minded","gorakak-the-lexicon-saved","fenath-of-the-cold-azure","kelioaris-of-the-first-seal","queliwenna-of-the-dreamer-s-mirror"],
+ zephek:["vitanrand-the-obedient-unto","basilica-optio-quorael-sevach","lucalius-the-cathode-eyed","dravaian-the-banner-saluted","koren-the-banner-saluted","korvirus-the-whisper","lucerik-reliquary-guard","zephael-the-nightborn","vigil-lieutenant-marcotor","malirio-the-standard-borne"],
+ kingdoms:["river-warden-lizhen","goraxiel-of-the-riverlands","taomqiu-the-line-ended","peishhai-the-home-surrendered","shenshshu-passward","fengmqiu-the-home-surrendered","chenmzhen-songsteel","peisong-passholder","linyan-the-line-ended","aelmar-the-deep-minded"],
+ stormlit:["granite-oak-reserve-warden","moot-herald","whitethorn-moot-captain","grey-house-trove-keeper","driftwood-oath-stone-keeper","grey-veteran-of-the-salt-fog","caelalwyn-the-storm-warded","moot-hearth-keeper","blade-sworn-of-the-long-vigil","muster-warden-of-the-quiet-house"],
+ marches:["rokash-warhorn-cracker","grashgnash-of-the-endless-march","bone-drummer-thugrot","warband-herald-snorrik-greasethumb","nardak-the-scrap-smith","bone-drummer-graznak","snikgnash-the-never-sated","iron-captain-zharruk","ugusk-of-the-broken-banner","grazzog-the-never-sated"],
+ necropolis:["vessmoth-the-death-patient","vylasse-the-liturgy-finished","morgrim-chantwright","the-lantern-of-hollow-rest","countess-ilvane-of-the-border-gates","morvenne-the-pale-sovereign","gryrek-the-last-graved","ashgrim-the-unquiet","vylhold-of-the-drowned-parish","the-legion-s-standard-bearer"],
+ deepholds:["grimbrew-grudgecutter","bregwick-the-oath-claused","balbard-the-seam-finder","borgrim-gatemender","gate-steward-fizzwick","old-threek-cogstoker","hewrik-the-stone-remembered","grimdin-of-the-bellows-row","haldell-tunnelsong","torwick-the-lantern-lost"],
+ tigerpass:["ugogskab-the-tusk-split","aelokax-bone-counter","kragodak-prey-taker","snikograt-scent-reader","rokoggnash-mark-liner","ugukrot-the-trophy-scarred","nagadak-gap-springer","io-the-basilisk-guard","uzogrot-kill-warden","skuzoskab-the-trophy-scarred"],
+ wayfarers:["tavish-of-the-waystone","luco-the-road-opened","osk-the-toll-taken","berand-fers-of-the-hundred-fields","osric-of-the-toll-bridge","fernierre-charter-clerk","berques-of-the-salt-route","aldricen-of-the-inland-road","junano-the-toll-taken","aulanix-the-duskwalker"]
+};
+
+/* ====== REALM CANON (cards.json) ====== */
+const REALMS=[
+ {r:"starwind",n:"The Alien Dominion",i:"Xenos Ascendant",t:"Every star breeds its own conquerors — and the Dominion gathers them all."},
+ {r:"courts",n:"The Gilded Courts",i:"The Game of Crowns",t:"Intrigue is the sharpest blade. The Courts buy what armies cannot take."},
+ {r:"zephek",n:"The Human Star Empire",i:"Crusade Eternal",t:"Transhuman legions carry the Emperor's light across a million worlds."},
+ {r:"towers",n:"The Nine Towers",i:"The Weave of Power",t:"The Towers hold powers older than any crown."},
+ {r:"kingdoms",n:"The Warring Kingdoms",i:"Songs of Steel",t:"A hundred banners, one pass — the warlords sing their wars and settle them in blood."},
+ {r:"stormlit",n:"The Elderkin",i:"The Long Memory",t:"The elder races wage war with the patience of millennia."},
+ {r:"marches",n:"The Broken Marches",i:"Waaagh and Ruin",t:"The Marches march until nothing stands."},
+ {r:"necropolis",n:"The Necropolis",i:"The Long Silence",t:"Death is a border — and the dead do not respect borders."},
+ {r:"deepholds",n:"The Deepholds",i:"The Stone Remembers",t:"Carved deep beneath the world, the Holds outlast every empire that besieged them."},
+ {r:"tigerpass",n:"The Bestial Horde",i:"Fang and Famine",t:"The Horde devours what kingdoms build."},
+ {r:"wayfarers",n:"The Wayfarers' Guild",i:"For Hire",t:"Coin buys loyalty — masterless blades for any banner."}
+];
+
+/* six realms get full chapters; the rest march in the montage */
+const CHAPTERS=["stormlit","necropolis","marches","courts","deepholds","starwind"];
+
+/* ====== preload: everything streams in behind the splash ====== */
+(function(){
+  const all=[IMG("theme/menu-hall"),IMG("theme/fateblade-plate")];
+  Object.keys(POOL).forEach(r=>POOL[r].forEach(c=>all.push(IMG("cards/"+r+"/"+c))));
+  REALMS.forEach(R=>all.push(IMG("commanders/"+R.r)));
+  all.forEach(src=>{const i=new Image();i.onerror=()=>{};i.src=src;});
+})();
+
+/* ====== embers (sparse: atmosphere, not confetti) ====== */
+for(let i=0;i<22;i++){
+  const e=document.createElement("div");e.className="ember";
+  const s=1.5+Math.random()*3.5;
+  e.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;
+    animation-duration:${9+Math.random()*11}s;animation-delay:${-Math.random()*14}s;
+    filter:blur(${Math.random()*1.2}px)`;
+  $("embers").appendChild(e);
+}
+
+/* ====== fit-to-width: titles ALWAYS land on one line, scaled to fit ====== */
+function fitLine(el,boxW){
+  el.style.whiteSpace="nowrap";el.style.fontSize="";
+  const w=el.scrollWidth;
+  if(w>boxW)el.style.fontSize=(parseFloat(getComputedStyle(el).fontSize)*boxW/w*0.97)+"px";
+}
+function emblemWord(w){$("eword").textContent=w;fitLine($("eword"),innerWidth*0.72);
+  const e=$("emblem");e.classList.remove("show");void e.offsetWidth;
+  e.firstElementChild.style.animation="none";void e.firstElementChild.offsetWidth;
+  e.firstElementChild.style.animation="";e.classList.add("show");}
+function emblemOff(){$("emblem").classList.remove("show");}
+
+/* ====== type helpers ====== */
+function clearType(){
+  ["t1","t2","trule"].forEach(id=>$(id).classList.remove("show","enter","exit"));
+  $("t1").className="line small";$("t2").className="line big";
+}
+function say(top,main,cls){
+  clearType();
+  const t1=$("t1"),t2=$("t2");
+  t1.className="line small fade";t2.className="line "+(cls||"big")+" enter";
+  t1.textContent=top;t2.textContent=main;
+  fitLine(t2,innerWidth*0.86);if(top)fitLine(t1,innerWidth*0.8);
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    t1.classList.add("show");$("trule").classList.add("show");}));
+}
+function exitType(){["t1","t2","trule"].forEach(id=>{
+  const e=$(id);if(id!=="trule"){e.classList.remove("enter","fade");e.classList.add("exit");}
+  else e.classList.remove("show");});}
+function sayOff(){["t1","t2","trule"].forEach(id=>{
+  $(id).classList.remove("show","enter","exit");});}
+function cap(html){const c=$("cap");c.innerHTML=html;
+  ["cap","hl1","hl2","dm1","dm2"].forEach(id=>$(id).classList.remove("show"));
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    ["cap","hl1","hl2","dm1","dm2"].forEach(id=>$(id).classList.add("show"));}));}
+function capOff(){["cap","hl1","hl2","dm1","dm2"].forEach(id=>$(id).classList.remove("show"));}
+function bg(src){const e=$("l1");e.style.backgroundImage=`url('${src}')`;
+  e.classList.remove("kb-a","show");void e.offsetWidth;e.classList.add("show","kb-a");}
+function dip(fn){$("dip").classList.add("on");
+  setTimeout(()=>{fn();setTimeout(()=>$("dip").classList.remove("on"),120);},480);}
+
+/* ====== split frame ====== */
+function splitCue(flip,kick,name,iname,tag,art){
+  const s=$("split");
+  s.classList.toggle("flip",flip);
+  $("skick").textContent=kick;$("sname").textContent=name;
+  $("siname").textContent=iname;$("stag").textContent=tag;
+  $("sart").style.backgroundImage=`url('${art}')`;
+  const infoBox=$("split").querySelector(".info").clientWidth||innerWidth*0.4;
+  fitLine($("sname"),infoBox);fitLine($("siname"),infoBox);
+  s.classList.remove("show");void s.offsetWidth;s.classList.add("show");
+}
+function splitOff(){$("split").classList.remove("show");}
+
+/* ====== montage: every card appears exactly once ====== */
+const WAR=[];REALMS.forEach(R=>POOL[R.r].slice(1).forEach(c=>WAR.push(IMG("cards/"+R.r+"/"+c))));
+let warIx=0;
+function warCue(){const c=document.createElement("div");c.className="cut flash";
+  c.style.backgroundImage=`url('${WAR[warIx++]}')`;
+  $("cuts").replaceChildren(c);}
+
+/* ====== TIMELINE — 60 seconds, five acts ====== */
+const RN=["I","II","III","IV","V","VI"];
+/* montage rhythm: generated, accelerating 640ms → 140ms, all unique cards */
+const MCUTS=[];
+(function(){let tt=43.85,iv=0.18;
+  while(tt<45.85){MCUTS.push([tt,warCue]);tt+=iv;iv=Math.max(0.14,iv*0.97);}})();
+const cues=[
+  /* ACT I — PROLOGUE (0–7.5) */
+  [0.2,()=>{$("t1").className="line small fade";$("t1").textContent="eleven realms · one war";
+    requestAnimationFrame(()=>requestAnimationFrame(()=>$("t1").classList.add("show")));}],
+  [2.6,()=>{$("t1").classList.remove("show","fade");}],
+  [3.1,()=>{bg(IMG("theme/menu-hall"));
+    say("","THE CARDS REMEMBER");
+    cap("the official fateblade trailer");}],
+  [6.9,()=>{exitType();capOff();}],
+  [7.5,()=>dip(()=>{$("l1").classList.remove("show");})],
+
+  /* ACT II — THE REALMS (8–23.5) */
+  [8.1,()=>cap("the canon — <i>eleven realms, one war</i>")],
+  ...CHAPTERS.map((r,i)=>{
+    const R=REALMS.find(x=>x.r===r),flip=i%2===1;
+    return [8.5+i*2.55,()=>splitCue(flip,
+      "Chapter "+RN[i],R.n,R.i,R.t,IMG("cards/"+r+"/"+POOL[r][0]))];
+  }),
+  [23.3,()=>{splitOff();capOff();}],
+  [23.7,()=>dip(()=>{})],
+
+  /* ACT III — THE SOVEREIGNS (24.5–31.5) */
+  [24.5,()=>{cap("sixteen sovereigns — <i>each one rewrites the rules</i>");
+    splitCue(false,"The Sovereign","THE NECROPOLIS","The Long Silence",
+      "Death is a border — and the dead do not respect borders.",
+      IMG("commanders/necropolis"));}],
+  [27.9,()=>splitCue(true,"The Sovereign","THE MARCHES","Waaagh and Ruin",
+      "A hundred broken banners, one endless war-host — the Marches march until nothing stands.",
+      IMG("commanders/marches"))],
+  [31.3,()=>{splitOff();capOff();}],
+  [31.7,()=>dip(()=>{})],
+
+  /* ACT IV — THE MONTAGE (32.5–52.5) — full-bright art, word emblem on top */
+  [32.5,()=>emblemWord("EVERY")],
+  [32.65,warCue],[33.25,warCue],[33.85,warCue],[34.4,warCue],[34.9,warCue],[35.35,warCue],
+  [35.75,warCue],[36.1,warCue],[36.4,()=>emblemWord("CHOICE")],
+  [36.5,warCue],[36.85,warCue],[37.2,warCue],[37.55,warCue],[37.88,warCue],[38.2,warCue],
+  [38.5,warCue],[38.78,warCue],[39.04,warCue],[39.28,warCue],[39.5,warCue],[39.7,warCue],
+  [39.9,()=>emblemWord("CUTS")],
+  [39.95,warCue],[40.2,warCue],[40.44,warCue],[40.67,warCue],[40.89,warCue],[41.1,warCue],
+  [41.3,warCue],[41.5,warCue],[41.68,warCue],[41.86,warCue],[42.03,warCue],[42.2,warCue],
+  [42.36,warCue],[42.51,warCue],[42.66,warCue],[42.8,warCue],[42.94,warCue],[43.07,warCue],
+  [43.2,warCue],[43.32,warCue],[43.44,warCue],[43.55,warCue],[43.66,warCue],[43.77,warCue],
+  ...MCUTS,
+  [45.9,()=>{emblemOff();$("cuts").replaceChildren();}],
+
+  /* ACT V — THE PROMISE (46.5–60) */
+  [46.9,()=>say("1,700+ cards. every one of them.","FREE","med glow")],
+  [50.0,()=>{exitType();}],
+  [50.4,()=>say("no seasons. no card packs.","JUST WAR","med")],
+  [53.4,()=>{exitType();}],
+  [54.0,()=>{sayOff();$("dip").classList.add("on");}],
+  [54.5,()=>{$("dip").classList.remove("on");
+    $("logo").classList.add("show");$("endcard").classList.add("show");
+    cap("fateblade — every card free");}],
+  [59.9,()=>{}]
+];
+const TOTAL=60;
+
+/* nothing dims the montage anymore — the emblem plate carries the words */
+
+/* ====== music: one continuous score, volume automation ====== */
+const m=$("m");m.volume=0;
+const VOL=[[0,0],[2,.35],[6.9,.5],[24.5,.55],[31.7,.6],[32.5,.85],[44.5,1],[46.5,.55],[50.4,.68],[53.4,.5],[54.5,.6],[58.5,.4],[59.7,0]];
+function volAt(t){for(let i=1;i<VOL.length;i++) if(t<VOL[i][0]){
+  const [t0,v0]=VOL[i-1],[t1,v1]=VOL[i];
+  return v0+(v1-v0)*Math.min(1,(t-t0)/(t1-t0||1));}
+  return VOL[VOL.length-1][1];}
+
+/* ====== runner ====== */
+let t0=null,ci=0,raf=null,ended=false;
+function tick(){
+  const t=(performance.now()-t0)/1000;
+  while(ci<cues.length&&cues[ci][0]<=t){cues[ci][1]();ci++;}
+  m.volume=Math.max(0,Math.min(1,volAt(t)));
+  if(t>=TOTAL&&!ended){ended=true;cancelAnimationFrame(raf);$("skip").classList.remove("show");return;}
+  raf=requestAnimationFrame(tick);
+}
+function reset(){
+  document.querySelectorAll(".layer").forEach(l=>l.classList.remove("show","kb-a"));
+  $("cuts").replaceChildren();splitOff();
+  $("logo").classList.remove("show");$("endcard").classList.remove("show");
+  sayOff();capOff();emblemOff();$("dip").classList.remove("on");
+  ci=0;ended=false;warIx=0;m.pause();m.currentTime=0;
+}
+function start(){reset();$("splash").classList.add("gone");$("skip").classList.add("show");
+  m.play();t0=performance.now();raf=requestAnimationFrame(tick);}
+function stop(){cancelAnimationFrame(raf);ended=true;reset();
+  $("splash").classList.remove("gone");$("skip").classList.remove("show");}
+
+$("play").onclick=start;$("replay").onclick=start;$("skip").onclick=stop;
+$("gamelaunch").onclick=()=>{
+  $("gframe").src="https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/src/game.html";
+  $("game").classList.add("show");$("exit").classList.add("show");m.pause();};
+$("exit").onclick=()=>{$("game").classList.remove("show");$("exit").classList.remove("show");};
+</script>
+</body>
+</html>
