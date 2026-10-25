@@ -320,7 +320,7 @@
   </div>
 </div>
 
-<div id="game"><iframe id="gframe" src="" title="Fateblade"></iframe></div>
+<div id="game"><iframe id="gframe" src="" title="Fateblade" allow="fullscreen"></iframe></div>
 <button id="exit">✕ Exit Game</button>
 
 <audio id="m" preload="auto" loop src="https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/audio/music/match-canon.ogg"></audio>
@@ -558,8 +558,15 @@ function stop(){cancelAnimationFrame(raf);ended=true;reset();
 
 $("play").onclick=start;$("replay").onclick=start;$("skip").onclick=stop;
 $("gamelaunch").onclick=()=>{
+  // v0.40.0 hardening: touch devices open the game as the TOP-LEVEL page — a
+  // rotated iframe is an unreliable tap surface on mobile, and iframe fullscreen
+  // needs allow="fullscreen" (added above) anyway. Desktop keeps the embed.
+  if(typeof matchMedia==='function' && matchMedia('(pointer:coarse)').matches && !matchMedia('(any-pointer:fine)').matches){
+    try{window.top.location.href="https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/src/game.html?v=0.40.0";}catch(e){}
+    return;
+  }
   goFullscreenLandscape(); // the real game opens fullscreen landscape too
-  $("gframe").src="https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/src/game.html";
+  $("gframe").src="https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/src/game.html?v=0.40.0";
   $("game").classList.add("show");$("exit").classList.add("show");m.pause();};
 $("exit").onclick=()=>{$("game").classList.remove("show");$("exit").classList.remove("show");};
 </script>
