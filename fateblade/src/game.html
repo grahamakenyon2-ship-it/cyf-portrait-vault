@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- v0.38.4: browser/mobile — without this, phone browsers render at the legacy 980px layout width, so fitScreen sees a fake viewport and the game letterboxes at unreadable scale. Desktop ignores it. -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> <!-- v0.38.4: browser/mobile — real px, not the legacy 980px layout width. v0.39: pinch-zoom locked out — it tears drags apart mid-gesture. Desktop ignores it. -->
 <title>FATEBLADE</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2314100a'/%3E%3Crect x='2' y='2' width='60' height='60' rx='10' fill='none' stroke='%238a6d2f' stroke-width='2'/%3E%3Cpath d='M32 18 L32 50' stroke='%23c9a24b' stroke-width='6' stroke-linecap='round'/%3E%3Cpath d='M32 50 L27.5 45 M32 50 L36.5 45' stroke='%23c9a24b' stroke-width='3'/%3E%3Cpath d='M22 16 H42' stroke='%23c9a24b' stroke-width='5' stroke-linecap='round'/%3E%3Cpath d='M32 16 L32 8' stroke='%23c9a24b' stroke-width='4' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='8' r='3' fill='%23e8dcc0'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -187,6 +187,17 @@
     padding:6px 9px; text-shadow:0 1px 1px #000, 0 0 3px #000, 0 -1px 1px #000;} /* v0.21.2 sovereign passive plate — v0.22 text-plate styling; v0.22.6 sage-green to read as PASSIVE, not ability */
   #zoom .zpas.sov{font-size:17px; line-height:1.45; padding:12px 14px;} /* v0.22.6: the sovereign zoom is JUST this plate — give it presence */
   #zoom .zf{font-size:13px; font-style:italic; color:#c9b78e; margin-top:6px; border-top:1px solid #2a2216; padding-top:6px;}
+  /* ===== v0.39 TOUCH LAYER — scoped to body.touch, which only a coarse-pointer
+     device with NO fine pointer ever gets. Desktop never matches a single rule
+     here, so the mouse experience is byte-for-byte unchanged. ===== */
+  body.touch{touch-action:manipulation; -webkit-tap-highlight-color:transparent; -webkit-touch-callout:none;}
+  body.touch #match{touch-action:none;} /* the board is a drag surface, not a page */
+  body.touch #blwrap{touch-action:pan-y;} /* the battle log still scrolls */
+  body.touch #fx{pointer-events:none;}
+  body.touch .hcard.drag-src{opacity:.35;}
+  body.touch .board.dropzone{outline:2px dashed var(--gold); outline-offset:-6px; box-shadow:inset 0 0 44px #c9a24b44;}
+  body.touch .tghost{position:fixed; z-index:95; pointer-events:none; opacity:.94; margin:0;
+    filter:drop-shadow(0 16px 30px #000d); transform-origin:center bottom;}
 
   /* ===== v0.12 turn banner + victory pop ===== */
   #turnBanner{position:fixed; top:34%; left:0; right:0; text-align:center; z-index:60; pointer-events:none; opacity:0;}
@@ -743,13 +754,3 @@
   <h1 style="font-size:22px" id="dpTitle">CHOOSE YOUR DECK</h1>
   <div style="font-size:14px;color:#c9b78e">The doctrine is the realm's tuned 30-card deck. Saved decks are your own builds.</div>
   <div id="dpMigrate" style="display:none;font-size:13px;color:var(--abil);background:#141008;border:1px solid var(--gold-dim);padding:8px 14px;max-width:640px">
-    ⚠ Pre-v0.10 custom decks were cleared — the old 20-card format is not legal under the new
-    30-card rules. Build and save a new deck from the Deck Builder any time.
-  </div>
-  <div id="dpRow" style="display:flex;flex-direction:column;align-items:center"></div>
-  <button onclick="dpBack()">Back</button>
-</div>
-
-<div id="match" class="screen">
-  <div id="blwrap"><div id="blhead" onclick="blToggle()"><span>📜 BATTLE LOG</span><span style="display:flex;gap:4px;align-items:center;letter-spacing:0"><span id="blSizeTag" title="log size"></span><button class="blbtn" title="Smaller log" onclick="event.stopPropagation();blBump(-20)">A−</button><button class="blbtn" title="Bigger log" onclick="event.stopPropagation();blBump(20)">A+</button><span id="blchev">▾</span></span></div><div id="battlelog"></div></div>
-  <div id="topbar"></div>
