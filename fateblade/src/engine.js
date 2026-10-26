@@ -282,7 +282,7 @@
     // falls and no other Conscript remains, the last levy's Guard lapses.
     if (hasP(vp, 'BLOCKADE')) {
       const conscripts = vp.board.filter((x) => x.id.startsWith('TOKEN@'));
-      if (conscripts.length === 1 && hasKw(conscripts[0], 'Guard')) { conscripts[0].kw = conscripts[0].kw.split(',').map((s) => s.trim()).filter((s) => s !== 'Guard').join(', ') || null; KW_CACHE.delete(conscripts[0]); }
+      if (conscripts.length === 1 && hasKw(conscripts[0], 'Guard')) { conscripts[0].kw = (conscripts[0].kw || '').split(',').map((s) => s.trim()).filter((s) => s !== 'Guard').join(', ') || null; KW_CACHE.delete(conscripts[0]); }
     }
     S.events.push({ t: 'death', side: victimSide, id: t.id, uid });
     // Deathrattle templates (fixed/fair automatic targeting)
@@ -691,8 +691,8 @@
         break;
       }
       // v0.21 P8: interaction + choice templates
-      case 'fxSilence': { const t = pickTarget(opts, foe.board) || foe.board.slice().sort((a,b) => (b.atk+b.hp)-(a.atk+a.hp))[0]; if (t) { t.kw = null; t.shield = 0; if (t.perm) { t.atk -= t.perm.atk || 0; t.hp -= t.perm.hp || 0; t.perm = null; } t.aura = null; t.rage = null; t.t0 = null; t.tt = null; S.events.push({ t: 'passive', side, id: 'FX_SILENCE', on: t.id }); refreshPrim(S); } break; } // v0.27.0: silence also strips auras/enrage/triggers/persistent enchants // strip keywords + Aegis shield, aimed else auto-biggest
-      case 'fxTransform': { const t = pickTarget(opts, foe.board) || foe.board.slice().sort((a,b) => (b.atk+b.hp)-(a.atk+a.hp))[0]; if (t) { t.atk = 1; t.hp = 1; t.kw = null; t.shield = 0; t.bc = null; t.dr = null; t.aura = null; t.rage = null; t.t0 = null; t.tt = null; t.perm = null; t._pA = 0; t._pH = 0; t._pR = 0; t.name = 'Conscript'; t.id = 'SHEEP@' + t.uid; refreshPrim(S); S.events.push({ t: 'passive', side, id: 'FX_TRANSFORM', on: t.id }); } break; } // polymorph: any foe body becomes a 1/1 Conscript
+      case 'fxSilence': { const t = pickTarget(opts, foe.board) || foe.board.slice().sort((a,b) => (b.atk+b.hp)-(a.atk+a.hp))[0]; if (t) { t.kw = null; KW_CACHE.delete(t); t.shield = 0; if (t.perm) { t.atk -= t.perm.atk || 0; t.hp -= t.perm.hp || 0; t.perm = null; } t.aura = null; t.rage = null; t.t0 = null; t.tt = null; S.events.push({ t: 'passive', side, id: 'FX_SILENCE', on: t.id }); refreshPrim(S); } break; } // v0.27.0: silence also strips auras/enrage/triggers/persistent enchants // strip keywords + Aegis shield, aimed else auto-biggest
+      case 'fxTransform': { const t = pickTarget(opts, foe.board) || foe.board.slice().sort((a,b) => (b.atk+b.hp)-(a.atk+a.hp))[0]; if (t) { t.atk = 1; t.hp = 1; t.kw = null; KW_CACHE.delete(t); t.shield = 0; t.bc = null; t.dr = null; t.aura = null; t.rage = null; t.t0 = null; t.tt = null; t.perm = null; t._pA = 0; t._pH = 0; t._pR = 0; t.name = 'Conscript'; t.id = 'SHEEP@' + t.uid; refreshPrim(S); S.events.push({ t: 'passive', side, id: 'FX_TRANSFORM', on: t.id }); } break; } // polymorph: any foe body becomes a 1/1 Conscript
       case 'fxDeliberate': { // discover-class: look at the top 3, take the best, shuffle the rest back in
         const top = p.deck.splice(-Math.min(3, p.deck.length));
         const val = (cc) => cc.type === 'minion' ? (cc.atk + cc.hp + (cc.bc ? 2 : 0) + (cc.dr ? 1 : 0)) : 6;
