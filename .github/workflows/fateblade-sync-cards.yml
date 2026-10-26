@@ -4,10 +4,14 @@ name: Fateblade Sync Cards (from CYF-Cards)
 # The agent pushes the source files to the vault in vault format
 # (fateblade/src/*, fateblade/data/cards.json as JSON.stringify(D,null,1)+'\n')
 # plus the sync-queue bump; THIS workflow then recomputes everything:
-# wrappers (cards.js), manifest (all sha256s from the tree, version from
-# cards.json), guard, commit. No per-version patch scripts, no hand-built
-# manifests. The guard runs BEFORE the commit: drift never lands on main.
-# Also runnable by hand from the Actions tab. Idempotent: no-op on clean.
+# wrappers (cards.js), manifest (all sha256s from the tree, version from the
+# QUEUE — v2 Oct 26: engine/game.html-only ships can bump without a cards.json
+# change; queue must be >= cards semver), guard, commit. No per-version patch
+# scripts, no hand-built manifests. The guard runs BEFORE the commit: drift
+# never lands on main. Also runnable by hand from the Actions tab. Idempotent:
+# no-op on clean.
+# PHASE-2 NOTE (Oct 26): the agent NEVER stages manifest.json anymore — this
+# workflow owns it end to end (push-kit v2 pipeline).
 
 on:
   push:
@@ -31,14 +35,19 @@ jobs:
             fateblade
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
-      - name: Sanity (queue version == cards.json version, fresh sync)
+      - name: Sanity (queue version >= cards version, fresh sync)
         run: |
           set -e
           QV=$(node -e "const q=require('./fateblade/sync-queue.json');console.log(q.version||q.pending[0].version||'')")
           CV=$(node -e "const c=require('./fateblade/data/cards.json');console.log(c.version||'')")
           echo "queue=$QV cards=$CV"
-          if [ "$QV" != "$CV" ]; then
-            echo "SYNC RIG MISMATCH: sync-queue.json version ($QV) != data/cards.json version ($CV) — the agent must push both in the same ship"; exit 1
+          if ! node -e "
+            const q='$QV', c='$CV', pv=v=>String(v).split('.').map(Number);
+            const [a,b]=[pv(q),pv(c)];
+            for (let i=0;i<Math.max(a.length,b.length);i++){const x=a[i]||0,y=b[i]||0;if(x>y)process.exit(0);if(x<y)process.exit(1);}
+            process.exit(0);
+          "; then
+            echo "SYNC RIG MISMATCH: sync-queue.json version ($QV) is BEHIND data/cards.json ($CV) — bump the queue to at least the cards version"; exit 1;
           fi
       - name: Regen wrappers + manifest (recompute from the tree)
         run: |
@@ -78,7 +87,7 @@ jobs:
             echo "push raced; replaying on fresh main"
             sleep 15
             git fetch origin main
-            git reset --hard origin main
+            git reset --hard origin/main
             while read -r p; do
               cp "/tmp/staged/$p" "$p"
             done < /tmp/staged-files.txt
