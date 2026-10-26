@@ -1,0 +1,31 @@
+name: game-version-fix (one-shot)
+on:
+  push:
+    branches: [main]
+    paths: ['fateblade/game-version-fix.mjs']
+permissions:
+  contents: write
+concurrency:
+  group: fateblade-sync-cards
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: fateblade
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node fateblade/game-version-fix.mjs
+      - run: node fateblade/regen-manifest.mjs --apply
+      - run: node fateblade/vault-consistency-guard.mjs
+      - name: Commit the fix, then self-disarm
+        run: |
+          git config user.name fateblade-bot
+          git config user.email actions@users.noreply.github.com
+          git add fateblade
+          git commit -m "vault sync: game.html GAME_VERSION 0.32.1 -> 0.41.1 (mirror of CYF-Cards fix; manifest regenerated)"
+          git rm -q fateblade/game-version-fix.mjs .github/workflows/game-version-fix.yml
+          git commit -m "chore: remove one-shot game-version-fix (self-disarm)"
+          git push
