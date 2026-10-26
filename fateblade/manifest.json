@@ -1,5 +1,5 @@
 {
- "version": "0.40.1",
+ "version": "0.36.0",
  "files": [
   {
    "path": "scenes/starwind/the-satrap-s-seal.jpg",
@@ -13,7 +13,7 @@
   },
   {
    "path": "scenes/tigerpass/the-beasts-moot.jpg",
-   "sha256": "e93421be8a57fd6e53e3c0e6d578576ea5dfbbcebb588321ea682fdb94d17700",
+   "sha256": "8679d444e7cf58fb449c734a40eac946691610e5ca431a5ef02de3fced36c318",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/tigerpass/the-beasts-moot.jpg"
   },
   {
@@ -30,7 +30,7 @@
   },
   {
    "path": "scenes/marches/ambush-at-the-pass.jpg",
-   "sha256": "7b3f4ee6d1fdb4a8a077702d466d5159f293c19d2c4e69e4924870d778de0870",
+   "sha256": "97a42fda233d297e8e3617a44a055fe21a1c5ff531bc5dd2110d1a219bfbd91a",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/marches/ambush-at-the-pass.jpg"
   },
   {
@@ -49,7 +49,7 @@
   },
   {
    "path": "scenes/zephek/apprentice-s-masterpiece.jpg",
-   "sha256": "aed602bd4d04de186c4015e27c727d4bf51a3720998c738a35d885aff6ef6ffc",
+   "sha256": "b34846fc8fcec2029a893beb9c9bef512a371c39ef6d3f512bf623155b828e1e",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/zephek/apprentice-s-masterpiece.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -70,26 +70,26 @@
   },
   {
    "path": "scenes/starwind/assassination-order.jpg",
-   "sha256": "ffb00fca21f9b36018358dd403794884c37b7f4948d76577da4e0d4e9ad8dfce",
+   "sha256": "bdff83bb5af7416b355581f4de822184969393bf5f3dcd00a848eac40238a7c7",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/starwind/assassination-order.jpg"
   },
   {
    "path": "scenes/courts/astrolabe.jpg",
-   "sha256": "ed6bace3a219cabf3b2d7bf05050a59eb52bc82b11abfe70eed83602ccc591c5",
+   "sha256": "49f91ed362ea655470f8d7276e4603ce033bcf554ac9e34b4874debba2531690",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/courts/astrolabe.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/kingdoms/ballista-bolt.jpg",
-   "sha256": "51ef8dcc6e961fddd0dfc4e053b9815d6d5e11df0c11fcba1d22966b3fe603b8",
+   "sha256": "54f005ca2d27a09b1f6ed9e38fcc2ae47a8f26b141622c01047d93081b18e626",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/kingdoms/ballista-bolt.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/towers/barnacled-hull.jpg",
-   "sha256": "1b6180fea06e6006fc3ee3987486d303fc06c589e14a317c1f846a00103c9f57",
+   "sha256": "fe341adad5fe46cc416dd8baee243e8562aa3f61aacdb526354d38c10e401bc9",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/towers/barnacled-hull.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -115,14 +115,14 @@
   },
   {
    "path": "scenes/necropolis/blood-moon.jpg",
-   "sha256": "982cab3fee3bd8c68d09bb3e351854e546f9128297da17f9b7550785396c45c3",
+   "sha256": "388b85985e1a257d47b2645318e58cb201ba30a1129fef54b55bc1aa0e0e5a65",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/necropolis/blood-moon.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/marches/call-to-arms.jpg",
-   "sha256": "f4a9436288fb7e1976b28b59c4b7f547b267890044fb6974f490159853a99ec7",
+   "sha256": "8537e0865b7f0dd3fd13503b72ca925ddfc7323bd25563193a5c1f38ae6eac53",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/marches/call-to-arms.jpg"
   },
   {
@@ -146,7 +146,7 @@
   },
   {
    "path": "scenes/stormlit/cataclysm.jpg",
-   "sha256": "fc09fba3a9b2676b887cd14dae8a1a34ab306a288bdd8d6c2d7ef81e0ebd9f28",
+   "sha256": "53cd0bcc03515935385812c4a6a2ff5185d302c4bce66a1f66cf59b4252d4fa5",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/stormlit/cataclysm.jpg"
   },
   {
@@ -184,7 +184,7 @@
   },
   {
    "path": "scenes/zephek/crusade-bull.jpg",
-   "sha256": "675603117169b4cf8a343998fa35737c55f269a8a8947649c50be6a21c94bea7",
+   "sha256": "5afbe7c501a920c1623ed2cbe98fd623fc87f1820f1ad0822c16bd2ba21aad08",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/zephek/crusade-bull.jpg"
   },
   {
@@ -220,7 +220,7 @@
   },
   {
    "path": "scenes/towers/dragon-prow.jpg",
-   "sha256": "ccded92591fc24882bf75fd97d1c73bd765efcfd63b34aa5214dcc3af9efdf15",
+   "sha256": "f64be8a318b3983b3e73375328067a9bf36974c21854b0cfb420747604229239",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/towers/dragon-prow.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -234,14 +234,14 @@
   },
   {
    "path": "scenes/stormlit/drummers-of-the-line.jpg",
-   "sha256": "571f50ac1f756d8706f4e37029c2114eb3137782991b05dd3039c0c20acdafe4",
+   "sha256": "c83bf6d2edf18cf02010fe8125121208037d8d0bc8413e3762cb226b5647b277",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/stormlit/drummers-of-the-line.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/zephek/excommunicado.jpg",
-   "sha256": "83145d3b0fdee4db3ad59eeae3d7484e4c75741798bfca20ed9925447e10db43",
+   "sha256": "808be56cae57bf943b032a4719aefa08c24a495958eae3d7511c9a296f21555c",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/zephek/excommunicado.jpg"
   },
   {
@@ -281,12 +281,12 @@
   },
   {
    "path": "scenes/stormlit/grand-archive.jpg",
-   "sha256": "7dae248b8fe030088a1e912fcb9d3b6e0016235bc8442ebf7bad087d5170a432",
+   "sha256": "bedf1b431c1312e7b48f2a789d1a9c42c0ac09a28239d6d2e357f15b154765f5",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/stormlit/grand-archive.jpg"
   },
   {
    "path": "scenes/starwind/great-granary.jpg",
-   "sha256": "779a39549d7ea0a1e3d02c46113dd3ddfce702e22203bd10ad86388cb7fd5a4b",
+   "sha256": "28723ba37d47eaebd1cdad99846ed7bf0000016b5a26c56527b2dc32df8b98a8",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/starwind/great-granary.jpg"
   },
   {
@@ -312,7 +312,7 @@
   },
   {
    "path": "scenes/courts/ion-trail-ambush.jpg",
-   "sha256": "8b4d505679094a8ac4b5bb163117c82c2afff6dd893c11f05c97835f9a70df0d",
+   "sha256": "83f115374d7ea8d514bcd538c5072610f05357fceedd84704a6d7fa7fe2aa3c7",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/courts/ion-trail-ambush.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -326,14 +326,14 @@
   },
   {
    "path": "scenes/towers/iron-fist-artillery.jpg",
-   "sha256": "0db592b81dab9cd7929437011d7091c25b4267031d264cbf85f3f50745a6f58e",
+   "sha256": "87304165676f5c92eb5fef27fe9fa18360565caaea6f1792eeee7f32e0afb9eb",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/towers/iron-fist-artillery.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/starwind/iron-shod-warhorse.jpg",
-   "sha256": "c9b98fcdb83f96e5d781d9f3f92dca4a728f9f77120b620382df7bbf569cf266",
+   "sha256": "50534fb1b04655f7fee06478930a4e63300adcd1d7583e309a6e5f1820d8333b",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/starwind/iron-shod-warhorse.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -347,7 +347,7 @@
   },
   {
    "path": "scenes/necropolis/kraken-s-coil.jpg",
-   "sha256": "9224e8be204a8d4c02753c77c61f8296cb0a1e6310af7d8f53277b625fcb92b3",
+   "sha256": "c715d7e52a1b5a231bcb57b4fbe73cb8cb1c77dfe733430ed2f2fcde027c3596",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/necropolis/kraken-s-coil.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -418,21 +418,21 @@
   },
   {
    "path": "scenes/courts/northern-armada.jpg",
-   "sha256": "953c27a6a8c916acf137360f57d741e91d6d12f81e109e5d7135336087d62e1a",
+   "sha256": "cb082e2a0b57bafffea31641e92580a14fcf3b3b2241dde645f1b6ef7e96d6c0",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/courts/northern-armada.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/kingdoms/notre-dame-rose-window.jpg",
-   "sha256": "3b7bd4229a20905ae4ee5ec5515106f8c81be2739f2f1b59f3b1a186f56fb4a2",
+   "sha256": "4741347741303138669546f506b1ebf45d9bcf384099bd83f61588707e4f7e88",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/kingdoms/notre-dame-rose-window.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/towers/orbital-ring.jpg",
-   "sha256": "511d7a08caf1d6d3d4fc6e01e7389f4de5f5b80afeb729cdbedf5bdd2903a1d1",
+   "sha256": "6661034f095f0dc226834771d09a239de15dc318af85b40c7a850b96215aa4c7",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/towers/orbital-ring.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -453,7 +453,7 @@
   },
   {
    "path": "scenes/tigerpass/perpetual-engine.jpg",
-   "sha256": "83e9969c4f6d12e919cade7f6b601aed4b417b48c20ff76df7b5f8b3aac1150b",
+   "sha256": "60cea6ab1029ea395800345dca832b6bcbcd9ec09642db76e0956f7ee288aa23",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/tigerpass/perpetual-engine.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -488,14 +488,14 @@
   },
   {
    "path": "scenes/zephek/quasar-beacon.jpg",
-   "sha256": "3979ce803bffdacaa33aa1aae2637219c7bc32f5073fae7172900b961e2a5951",
+   "sha256": "d3efa33ada2b55beab8799f526a8bd579f64feafff4fd19f490f35335c23b956",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/zephek/quasar-beacon.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/stormlit/rain-of-arrows.jpg",
-   "sha256": "be789e86c4735484896e64b0de36b654091506bed4c52d33d2fa87c869f5280b",
+   "sha256": "3db405549b7103befc40267a15ca77ab6c9958738460f23674fd4cc055b9b59e",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/stormlit/rain-of-arrows.jpg"
   },
   {
@@ -514,35 +514,35 @@
   },
   {
    "path": "scenes/courts/reactor-core-blue.jpg",
-   "sha256": "880153796e4526d6d1554604ee9cec5c6e0fdc8586a7b9303be36b939e44c44a",
+   "sha256": "08699b2eb0c6403962fde7f06bee3a0f20639f230f4db1e1198ce282aebd44e4",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/courts/reactor-core-blue.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/towers/reading-the-weave.jpg",
-   "sha256": "c4c1654f6eaebff153173de39fa17ed4438b77b6bc531ed9f2e87b58075a69ac",
+   "sha256": "7dc8b0271d669eeb77db39638f604be7a7caa2657e233ae643e8f87ca2e0d982",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/towers/reading-the-weave.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/kingdoms/red-sands-canyon.jpg",
-   "sha256": "05cb8e89a20f07f7df6ca23e7c635ca9b8b8d4101859826cd8ff1004fd940d24",
+   "sha256": "3c6b63537819b8216431e52a9454cb209f1caf3197c24d2177bc96c5f130ef56",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/kingdoms/red-sands-canyon.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/towers/redcoat-volley.jpg",
-   "sha256": "da9b26774729892bdef0094f351e11eac558c75d3d9d71ca42d433bb7f296035",
+   "sha256": "f8ae88c3af4d5d7e297c2e30e77df3067a9ff27fa4b0d99cabc0f778ec08898a",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/towers/redcoat-volley.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/starwind/rite-of-ascension.jpg",
-   "sha256": "1032a404b09ac32d26bb5e1c792e2682872b82b27cf234bb3077912abc513e07",
+   "sha256": "cdf51b1e12c706eb12fd37de9ef8c83d995ffa0b3a8d736dc85aeaae5b9fc406",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/starwind/rite-of-ascension.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -559,21 +559,21 @@
   },
   {
    "path": "scenes/starwind/rune-stone.jpg",
-   "sha256": "778a7c2007cfd18be759b4cb19e8534a89652b6572814f7f2d1f43c6b6ccbe36",
+   "sha256": "7d74497bac25c2f61f9660dff01508657c7ad21bbd4f3aaf614ba92234e4e8b3",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/starwind/rune-stone.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/stormlit/salt-fog-harbor.jpg",
-   "sha256": "5803d53cbb461f52a46ae910b32ccd78a5d2fa11e485ad00c8d7c811b9b69c38",
+   "sha256": "c00069a2d44524b05ac80a7b436b63dbd05560a0800c4468a0e095c9716a52fc",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/stormlit/salt-fog-harbor.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/tigerpass/salvage-yards.jpg",
-   "sha256": "603f4b90f310cc809cadc60282c6e3435ae2ede1299b9a455d4b9b2bd52b8f0f",
+   "sha256": "d9cdff16194953bdb507ac78688d27a69edcc480122897e648c58cb57808ae8f",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/tigerpass/salvage-yards.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -1789,7 +1789,7 @@
   },
   {
    "path": "scenes/marches/shieldwall.jpg",
-   "sha256": "735c35064c0ee4bf8cb15ef97326d3e4d28cc49ec5bacd15c5fc6abe57c86d5b",
+   "sha256": "3e68f78e73e98cbdb0a329fd7197c7705ebc1b89f43f3b5f236b564d4d92b542",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/marches/shieldwall.jpg"
   },
   {
@@ -1820,7 +1820,7 @@
   },
   {
    "path": "scenes/zephek/silk-bolt-cargo.jpg",
-   "sha256": "ce499c861cd2baab43683a0ecb376b9314c04bce089f024bab7cf75e0184c7a2",
+   "sha256": "30d39de2f1e8771eda26fdf2c6692e0a9b9e5dcb72982cf8f40f9158ef3b0fdf",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/zephek/silk-bolt-cargo.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -1834,7 +1834,7 @@
   },
   {
    "path": "scenes/starwind/solar-flare.jpg",
-   "sha256": "e37ff5e84d76ed12093bb572bf68ebdc0671e9257dc819dc883951b803e75f7a",
+   "sha256": "c33277ead6c103d58c83faeec4fc7e0122113f341feb264f5483874daa52c45e",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/starwind/solar-flare.jpg"
   },
   {
@@ -1846,26 +1846,26 @@
   },
   {
    "path": "scenes/courts/stag-of-the-grove.jpg",
-   "sha256": "d714705c1a1e1fd6b4c92722466a842bca48519adb2ecb897a2d3d38a5d6291a",
+   "sha256": "9adb056e6706446caf848748552ecb2e62f3609330aae8a7705f482dde25cec0",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/courts/stag-of-the-grove.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/kingdoms/standing-stones.jpg",
-   "sha256": "0a1c0f74110778f813e0b1e52ab7572a3ceeef99fecb5c1ba62f1e2a3686a708",
+   "sha256": "39270208aa1ce1adc296588c070c9f063fad27e0ea58e89b2213de5f5334238d",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/kingdoms/standing-stones.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/starwind/star-charts.jpg",
-   "sha256": "405911b2b65b74518efbc4a7aaae39486af0689f993b0d02d6d49ae8e0b66b97",
+   "sha256": "9c5a6a7871ff89d6f145bd565bf3d8e5a06e2f9845d2e8202964a2c0cc97d8fb",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/starwind/star-charts.jpg"
   },
   {
    "path": "scenes/towers/steppe-horse-archers.jpg",
-   "sha256": "794ee4011cb0b7987c94cb766076b643ec411de66d7dcf39d041ab9e0982c8a7",
+   "sha256": "2a8f943212be499bb13b27ac5ec057775a6dacd1497dc7b49bbfcd1956d94cba",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/towers/steppe-horse-archers.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -11035,7 +11035,7 @@
   },
   {
    "path": "scenes/starwind/sultan-s-tughra.jpg",
-   "sha256": "bb8fe44d58e87861f0cff2d9caea7ff01d60a06dbd12a2a5f6fe08b4f2fc2196",
+   "sha256": "5761482f81caa1eda37641e3d1a0b8b525e12c664a139989d8534896e6d99434",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/starwind/sultan-s-tughra.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -11098,7 +11098,7 @@
   },
   {
    "path": "scenes/zephek/the-bastille-key.jpg",
-   "sha256": "31b0782dfd253fa967de1c69feca4a6267ba12c2485727ec8ae814fabbfefef4",
+   "sha256": "665472a01d48e4fab738da285c1e72a729f2135cd2cf09b8b4d12858f5fec1f5",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/zephek/the-bastille-key.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -11119,21 +11119,21 @@
   },
   {
    "path": "scenes/courts/the-belt-miners.jpg",
-   "sha256": "ecf2369240ea2805d4ffa1c62252abf52da81bd449d07033a32aedd57c134cd8",
+   "sha256": "9dab5efeddb68709c10818d9466408ebe26ffafc3fe00a2c70c3e7f1743dd26b",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/courts/the-belt-miners.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/kingdoms/the-berserker-s-rage.jpg",
-   "sha256": "2c5b6083722fd64d638f2f60a613f1d9789baf8ca5948a595f8327cac5d22282",
+   "sha256": "12afef4054b3b3adaeaeff085a95e60b5db2be16becba8189e37b623a150a69f",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/kingdoms/the-berserker-s-rage.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/towers/the-blind-oracle.jpg",
-   "sha256": "45d2e716aba3a56456ba69f043ee7d2ef15bc41930a65b672c0aa39b98b1d715",
+   "sha256": "e4e4e1d13168b6bae12b1d63180da478a396df20864a3b9eccd939ce42c1811b",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/towers/the-blind-oracle.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -11145,35 +11145,35 @@
   },
   {
    "path": "scenes/marches/the-bone-feast.jpg",
-   "sha256": "1f5e2363d28ffdbcd24f876ec19e386ca48b8b657e64dbdb7ccae4f471b398cb",
+   "sha256": "963d5bf0b0d91eac01f19c6000829e85d3a326b1fc73d26c76c82a5ff6a5fad0",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/marches/the-bone-feast.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/starwind/the-bone-golem.jpg",
-   "sha256": "7d8d356602d52f2a09849e30674e5095f88263fa094ee4ea59b18cb8d867f92b",
+   "sha256": "4676a5af5d71830a4c59599a1b5873785a98c702536483e5afbc63d5fe4025d7",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/starwind/the-bone-golem.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/kingdoms/the-border-truce.jpg",
-   "sha256": "cc126568f3e8f1a2e6c5bf2e74a7b315e026fd1d4ac446d07c002f6c4961c1a6",
+   "sha256": "b30b5a1f5fd1d429c79476563ff9c34cfc02d44e0d74ffa331ce3d49784986d2",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/kingdoms/the-border-truce.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/stormlit/the-borgia-chalice.jpg",
-   "sha256": "889c87d8c4e5c627490a7957a7f76f6b12c2b1f458db1eaf25f8d138f6ba7e18",
+   "sha256": "e2f71f0c0066700a38f1ba1514a7fecf5cb0a4e819a2b236b38a6dd3e4a88b52",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/stormlit/the-borgia-chalice.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/tigerpass/the-bronze-telescope.jpg",
-   "sha256": "babd77d0d663787f4b090acf2bdf90b652b1f1346e28bdf26a9b912edcd94001",
+   "sha256": "e51d9b99615f1128236320230824e80dc06481509f1d3a962217d7d493818d9a",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/tigerpass/the-bronze-telescope.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -11237,14 +11237,14 @@
   },
   {
    "path": "scenes/kingdoms/the-chronicler-s-quill.jpg",
-   "sha256": "2a5308f9955fbf9c2d4d1c35f88e244b18050464fba1f2976ae3fc7bf14aa7a4",
+   "sha256": "558f58e0189c3ed1c34df15be90a112af7c078a568c24f6c2b198e0e49bf3b3a",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/kingdoms/the-chronicler-s-quill.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/towers/the-circle-of-nine.jpg",
-   "sha256": "75fc6d611bf82cfba75f5185176a285741a935522d9bef4e72012ce02050e2d3",
+   "sha256": "f3922d3f10eeceefbcee9cba59fd37ba18f40c2ec5fe400e6388e5341a865247",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/towers/the-circle-of-nine.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -11265,28 +11265,28 @@
   },
   {
    "path": "scenes/courts/the-coaling-station.jpg",
-   "sha256": "591a942495eb7af68e12aaa432c8c7b8693b1aa511f49f8826f0c5fddc423205",
+   "sha256": "42f8b88553105020312cdc62f61c5af7fffe73065c89615140ed0717e12e70fe",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/courts/the-coaling-station.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/kingdoms/the-codex-of-nine.jpg",
-   "sha256": "eeb98b8183af4bb6b12457c9eb4d9ca13d85a152d2d99d76476b9e22f2df6c93",
+   "sha256": "c831efeeec6c3c0da13b7affd02f0de4ce4021805752f5ebb8c89c1d9438d171",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/kingdoms/the-codex-of-nine.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/courts/the-coinmaster-s-scales.jpg",
-   "sha256": "b543c74c7f40b4c96e3e86011b1fae2a509263f73c7637b495e4629394a3e01a",
+   "sha256": "7d7562a8e72eaba802d8ef4aa442cb128b4c56fd9d8e377ce0618cd1df5738ea",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/courts/the-coinmaster-s-scales.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/towers/the-consul-s-fasces.jpg",
-   "sha256": "90c9382c2c729a8c0a7b258f2604fbe94d89490f1226dada0871d24377309eed",
+   "sha256": "7b9d0b1fb73479aa414dfb0872d1d56000b82c331c4be796d5f43985fad3c872",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/towers/the-consul-s-fasces.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -11305,21 +11305,21 @@
   },
   {
    "path": "scenes/stormlit/the-coronation-oil.jpg",
-   "sha256": "f4d251d5328821906b4b99c51d4b00f400a144ccd6c20009a98bc30e93df0cca",
+   "sha256": "e3f9b4ad011f6cdf4e4dd2a955aa7d7bf8146337337c20fcaebee0b15dc85d62",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/stormlit/the-coronation-oil.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/courts/the-court-chronicler.jpg",
-   "sha256": "edf35a7d6709df2cea4f57e6d04d329176d4c7588f0cb58cb0a5440709f50472",
+   "sha256": "74043da9ba5f69205d7f0596220a6bfae62a3556cf845771f4501235872b0a9c",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/courts/the-court-chronicler.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/courts/the-crown-s-debt.jpg",
-   "sha256": "d642404e0ab70aad8dd1fc003648de73807bab22667d20dfade627990cca5ffd",
+   "sha256": "dd87037efeb8220b52427939b4cb29b255ff14ab16abdbf3b162c6a4e21b1476",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/courts/the-crown-s-debt.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -11333,14 +11333,14 @@
   },
   {
    "path": "scenes/zephek/the-dawn-edict.jpg",
-   "sha256": "8936937afb8e4042cf44872e7648d8848cc06af29fd3c266d357a2a025dfc7e0",
+   "sha256": "c505968ac542cf12d6a775f3993ee848bc4f745e51ea81055851fc5066ba41c5",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/zephek/the-dawn-edict.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/necropolis/the-dead-calm.jpg",
-   "sha256": "4b927dabd57eef63f8790d530af8105f2c57a479b1e828e2742349e5d138dcca",
+   "sha256": "a40adb3d7b8cb400c7a090b230ba866663e833feef8efc09e7bf556e6db58e25",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/necropolis/the-dead-calm.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -11359,7 +11359,7 @@
   },
   {
    "path": "scenes/towers/the-dreamer-s-mirror.jpg",
-   "sha256": "02166ca2c2a275687e6abe01ec4eb591414943911237610b8ea3aaa9ba9d5150",
+   "sha256": "ac084901a35f726807d8117185e7fc8af965e882bb0ca8015ef68902d29e6325",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/towers/the-dreamer-s-mirror.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -11373,7 +11373,7 @@
   },
   {
    "path": "scenes/stormlit/the-elder-moot.jpg",
-   "sha256": "96172e9956f50c88d17d080a9f13cd7bceeba43b6fd8c2ffa2a211c32441ee3d",
+   "sha256": "066fddce27fa4dcc74b5d9bb06f8c75b7de325cc1ca12904a5320c8ad30d8880",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/stormlit/the-elder-moot.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -11406,7 +11406,7 @@
   },
   {
    "path": "scenes/starwind/the-fleet-muster.jpg",
-   "sha256": "dce0ff7a41c1c2632232f4d889ee4e3f12089286fe28347fa16bde595453d8c2",
+   "sha256": "ef0311a43d75e6aee650749f5dc343edb786652492192219dbc73ada7d916b42",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/starwind/the-fleet-muster.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -11418,7 +11418,7 @@
   },
   {
    "path": "scenes/stormlit/the-forge-blessing.jpg",
-   "sha256": "0e3f70e39fa626f218f4427e5280233a0d573f2771db65fc14a65de6e0f5e407",
+   "sha256": "8c655fce32658d9b818efe65884b280e0b949ee86c1bafd4d6c7fd9607aa7a27",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/stormlit/the-forge-blessing.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -11432,21 +11432,21 @@
   },
   {
    "path": "scenes/courts/the-gilded-ledger.jpg",
-   "sha256": "92f50ce7288e7d2070ef805322eaaec6161c0c7faa28d55d162b2f29748bf796",
+   "sha256": "2ec12cbf3c5d5a356d334919ef542b45aa0ee0b11364d40eab4da80d8cff6249",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/courts/the-gilded-ledger.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/courts/the-gilded-vault.jpg",
-   "sha256": "ba739e5d20971de59500fdcc0b35578454eb36bd1348c2885ce4034be62ad0af",
+   "sha256": "29c427c23b7ed629ede7fc16f428fff8242961995f14315b56061d4fcbbec8cc",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/courts/the-gilded-vault.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/stormlit/the-glade-ward.jpg",
-   "sha256": "150ce5f12381b85fec3c9d2d6474f798198fa6096b38497a50cbb235718ba946",
+   "sha256": "cae5d86ea0562996bdfd2408eeca48dff3fc538dd3587dd9e6cff037eefac5d5",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/stormlit/the-glade-ward.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -11486,7 +11486,7 @@
   },
   {
    "path": "scenes/courts/the-green-knight.jpg",
-   "sha256": "0f947d7eac6e85c209be663058ca9a45eaf34133715658a4a625bd968d0ca1d6",
+   "sha256": "eca65ca67004bb318f38f0c9e2df77de04d4cde7f373a7eccf92e30817841b8d",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/courts/the-green-knight.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -11507,7 +11507,7 @@
   },
   {
    "path": "scenes/towers/the-harbor-customs.jpg",
-   "sha256": "a4235ddad7edd50792970e1fe0e00187029326e7e22a73f9d5fced9a32167f42",
+   "sha256": "22c29aa95511f8770bcb7cc007d7985a676debbc35bf76259be49808631a1846",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/towers/the-harbor-customs.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -11521,21 +11521,21 @@
   },
   {
    "path": "scenes/stormlit/the-heretic-s-stake.jpg",
-   "sha256": "4f594ea81ddcee0ef6061edb4dcc4d4a315df54f7bfc243750a8e59da38c8866",
+   "sha256": "ab96a0d2d7fffe0ab53a60c30d1c4acdede296feb292acf465a98ef648910d92",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/stormlit/the-heretic-s-stake.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/tigerpass/the-hive-spire.jpg",
-   "sha256": "12d631c4e9d3e31464364557dbd292a4558a754bcacbde0a7cf724531434865b",
+   "sha256": "253f1f594c574c1a69e4541ffd76e1e6a2c8efe607d655c00aec21aa364c9d26",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/tigerpass/the-hive-spire.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/starwind/the-honor-duel.jpg",
-   "sha256": "e18d4fb33ecb030f26327b57e53c09218c8927f597a738db70314ad2e00c11f8",
+   "sha256": "765ab47e91e5a0936cfd9c2d7e9f97fd106f07e7da54e5b94104faa1684293e8",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/starwind/the-honor-duel.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -11547,7 +11547,7 @@
   },
   {
    "path": "scenes/tigerpass/the-idol-of-the-deep-woods.jpg",
-   "sha256": "0ae791150d104ad98897ab850ffea41c7de1e6ffe2ed9b33d67cb730eb29221c",
+   "sha256": "e477cab64ff745f3527f554ec0ec5d70447aa9b2ba0a708b6e6a6ce69ada83e2",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/tigerpass/the-idol-of-the-deep-woods.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -11568,7 +11568,7 @@
   },
   {
    "path": "scenes/zephek/the-imperial-tithe.jpg",
-   "sha256": "aec659ef304aa3117fbcf235932a5042a4852e2b6a9c679fa01992d2b20aa60d",
+   "sha256": "f6bf389d94e13776f612ea888a8b0a2543aa31dacc59b35f642bdebd93e3df05",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/zephek/the-imperial-tithe.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -11596,7 +11596,7 @@
   },
   {
    "path": "scenes/zephek/the-iron-basilica.jpg",
-   "sha256": "763d0548465592573acc89405cd95bbdf29c38cd56c333cadfa10a8ec733bf31",
+   "sha256": "a6e93c53bda5a534c892681c7f7cbf7c1c508b30b996650adca49f8f696df677",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/zephek/the-iron-basilica.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -11620,7 +11620,7 @@
   },
   {
    "path": "scenes/courts/the-judicial-duel.jpg",
-   "sha256": "89b9fd1f255838c32cbb783a909a9d40dfcbcb77d2226af7dbf94065bd7f444e",
+   "sha256": "51bc5602af68d1a48cb0f45f97f9f2fa8d38a2be7f4fda01bb8f8b41e39bf508",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/courts/the-judicial-duel.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -11646,7 +11646,7 @@
   },
   {
    "path": "scenes/courts/the-kurgan-barrow.jpg",
-   "sha256": "a7bbe9c3d25f51d2117b5e1b9337969f2d3b928155b9d39075af070e8a1b5837",
+   "sha256": "8dbab20edd49cbfdab33b6f503d8e011a14b470a881bd278630185af10adc45f",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/courts/the-kurgan-barrow.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -11663,28 +11663,28 @@
   },
   {
    "path": "scenes/kingdoms/the-lighthouse-keeper.jpg",
-   "sha256": "4bd49b25ae17ae1cf6bd12a7957e6d02c323d8687a29f991f003467b36c2d226",
+   "sha256": "872e22ee66ddbcaea8c4ea2f942118e1ea6e1620336fae5932289d375bfa9364",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/kingdoms/the-lighthouse-keeper.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/towers/the-lighthouse-storm.jpg",
-   "sha256": "4050764e79cd0f36fbc3188ec759036debbd32afca97327cd77239814a069c97",
+   "sha256": "d2e2adb18396fe0ce0214019ff25c2096951211238d102a3c5239c3ce35619e3",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/towers/the-lighthouse-storm.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/kingdoms/the-long-winter-watch.jpg",
-   "sha256": "4bacca0934ad71b0456b37d653e00841fde1c73668032244caffdcb9c52b90b4",
+   "sha256": "168e952e535120830919481fa7f7bf5cb32372319dd472b3cba00caa77a0159b",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/kingdoms/the-long-winter-watch.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/starwind/the-longbow-yeomen.jpg",
-   "sha256": "1cc4c7fa24157b1ba134ca97f7f898e0f7d607cf0ff67cb55e3f18be1458e76b",
+   "sha256": "3ecff56b109bf2761306cbb689a83dbf6733a5c1aeb20382a4827ac9cfdd0f11",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/starwind/the-longbow-yeomen.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -11712,7 +11712,7 @@
   },
   {
    "path": "scenes/kingdoms/the-marches-aflame.jpg",
-   "sha256": "54c165612d486ed1304d6dfd5cac4c3d759909296c5e35a220c8864d028c9f96",
+   "sha256": "297abd02b354d24ae4414332ced6bf78cacc4d9f06650cee1592f8a99bc45a7b",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/kingdoms/the-marches-aflame.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -11745,7 +11745,7 @@
   },
   {
    "path": "scenes/stormlit/the-moonwell-vial.jpg",
-   "sha256": "9dd7ea4f53615c05414c0d503e72dd4102e917dbf30658eec49bed7b1d5cc27c",
+   "sha256": "5f424da6d862f94cf5362a6d65ac86ad6cdcf550bafc4fc891cb04064143227b",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/stormlit/the-moonwell-vial.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -11764,21 +11764,21 @@
   },
   {
    "path": "scenes/towers/the-nine-seals.jpg",
-   "sha256": "fe204137b7c51e6956d62a2edbd443412c39977ab4ad30537c7afc71bd20005b",
+   "sha256": "069ae48a7da423ba197fb4377346345fab8db8768a6bfc93a9745dd32cea7521",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/towers/the-nine-seals.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/towers/the-ninefold-amulet.jpg",
-   "sha256": "5a113b2f226a8accdf910a52d1fdba03032b0e3cdd4eed59a45e29f76f0f8997",
+   "sha256": "355f62eb9122546622c087cb691e41a0e69def88c1c418bbb7d430ebff93c29b",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/towers/the-ninefold-amulet.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/towers/the-novice-trials.jpg",
-   "sha256": "50d9c65640fe3e354be1010e96251596561eb6ccdddd548d2d2c66099c71c7c0",
+   "sha256": "6a1032ce0e2551c622b3d7ab88d8dc662be40c45806862806725225252a1030a",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/towers/the-novice-trials.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -11799,7 +11799,7 @@
   },
   {
    "path": "scenes/courts/the-orb-of-foresight.jpg",
-   "sha256": "fa4e1492adbb17ac2cba7b14e72bd615e54487dba7a157fc4f55f381e0b3782c",
+   "sha256": "54b9edec037bffa9c92993efcfc1ee439884ccc2dfbb7e2fd1020f25f480e668",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/courts/the-orb-of-foresight.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -11811,7 +11811,7 @@
   },
   {
    "path": "scenes/kingdoms/the-poet-s-laurel.jpg",
-   "sha256": "4d40b239568c83f035b693af2c585d3694bde3e89b10e5106559bf4ecff51414",
+   "sha256": "96add472c6dcfa818d2e14db51076cc2bdd28b933c21437ecb8d8f51f2b42549",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/kingdoms/the-poet-s-laurel.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -11835,28 +11835,28 @@
   },
   {
    "path": "scenes/starwind/the-quartermaster-s-wagon.jpg",
-   "sha256": "243904901bf624aa6cab8dc10cefd9c26973b200719c1f4425712de1dfcfda3d",
+   "sha256": "dc54be61f1c62cd1f14debed0fff728573d238042ec3a132b81d85928ac78854",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/starwind/the-quartermaster-s-wagon.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/courts/the-queen-s-bargain.jpg",
-   "sha256": "dec50d69808f77f380f2651687f804719c2f0b2eb44418dd70627e4bec598d87",
+   "sha256": "5939d5672240881d0a8bd23396f398a8a7b1a1c90511d2e96d934fed83564efb",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/courts/the-queen-s-bargain.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/kingdoms/the-quiet-host.jpg",
-   "sha256": "ff0b0654965e2af46dd436634a10fe1dee71960eeae87c03a33d98ead8d1c59a",
+   "sha256": "6b7c4a3c6683883e9fe6ebe0fee62defb1c519804a96478f8b46192f3c5a505c",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/kingdoms/the-quiet-host.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/tigerpass/the-rampart-of-skulls.jpg",
-   "sha256": "d5d209c3dcc243ff8b0b5b80747af116a9d50ae1b2a0abfbc6fbb0d8d9bb4982",
+   "sha256": "95bad73314c3d83e3fc1f3c0f9884df2e75308717a2d72ae251bea2509faab73",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/tigerpass/the-rampart-of-skulls.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -11875,7 +11875,7 @@
   },
   {
    "path": "scenes/kingdoms/the-rose-accord.jpg",
-   "sha256": "1c5a6ef0adb80d81f363a2df75024666f79fa7676334d82db3a60ebbd99dd4e1",
+   "sha256": "5ff5fadc138735efbdc8f273d114f4efca8df975b0605ec3c9f5ecc1d5a7cf6e",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/kingdoms/the-rose-accord.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -11887,14 +11887,14 @@
   },
   {
    "path": "scenes/marches/the-royal-treasury.jpg",
-   "sha256": "5542173791099bce3c510b20b9facee97788d6ed1c5e47a7af07c41e1ae50c5d",
+   "sha256": "6aa5e5a9b4326a09f2a790590fd6aaff6117fbcde2354b106be4b746608b3215",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/marches/the-royal-treasury.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/zephek/the-saint-s-reliquary.jpg",
-   "sha256": "d281ae4eee8e35d37001dfcd6302f7bd8918fcdc776b9dd7ec73c0c57197daa2",
+   "sha256": "8bfa7b5abcf67e87c3b52e2433fcfe1f8d881052688d53bd4fea4e22fb03a4e0",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/zephek/the-saint-s-reliquary.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -11962,7 +11962,7 @@
   },
   {
    "path": "scenes/towers/the-silver-flame.jpg",
-   "sha256": "2d14166197714ef2678cb3f400fb5ac8f954c774de024d50fbd70896f62e9e65",
+   "sha256": "09c646f0662c969202c8af34aeb6078466099fef9549a1830098dcf63348d4bd",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/towers/the-silver-flame.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -11974,14 +11974,14 @@
   },
   {
    "path": "scenes/courts/the-silverwood-bow.jpg",
-   "sha256": "8b6b7ec5d6875debaa1dd76c4ae9da48866f0ed0732bcac242b947f36d0b05f7",
+   "sha256": "b12f8ee2acfea065d0fa1dac29d0b97dec867e32df4cd4f940e7be9c0c6e311c",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/courts/the-silverwood-bow.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/courts/the-small-council.jpg",
-   "sha256": "ca426f4e0f21179a1849a3b788bfba90249662d3f80eb1dd59cdd90e3a434d9e",
+   "sha256": "eeb982e2ea0d9c61b46f1ac32c83175b61a4e80f7b48385bff5201cd6bc41174",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/courts/the-small-council.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -11995,7 +11995,7 @@
   },
   {
    "path": "scenes/towers/the-star-sanctum.jpg",
-   "sha256": "b3350cb1cebf2c06bf15a910cd81b6bc4c7a42b9330dbaf02540c11475cdfebf",
+   "sha256": "95b75afa741f1f6d14b507985597402154e5fe1a4baa785814d6aa6567b439c5",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/towers/the-star-sanctum.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -12016,14 +12016,14 @@
   },
   {
    "path": "scenes/stormlit/the-storm-summoner.jpg",
-   "sha256": "a89f189a5bae2e89f4bb0359755b8bd233bb5a0b9e9328a3a4c4d94b8f107d94",
+   "sha256": "77a03146e16ca9a8769205a62812b351a0ca30feffb189d41b426cf53c758317",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/stormlit/the-storm-summoner.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/necropolis/the-summoning-circle.jpg",
-   "sha256": "9b368ca2b809ace736ecd1a36d7c3bbabcc070ab74e60c0a1424526bc67312ef",
+   "sha256": "008b69f1ffbc31255ad201d52158a53512844db7dc61733e3f4042039b9a222f",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/necropolis/the-summoning-circle.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -12061,7 +12061,7 @@
   },
   {
    "path": "scenes/towers/the-testing-flame.jpg",
-   "sha256": "da7721b0e34b7b46f42781035fbafd9c5ca9dd9486d9bbb964157506ee034180",
+   "sha256": "c96627c236c9577c53f3e0ae18b77e0d279c09dd7c366757bce8bf24e460ffeb",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/towers/the-testing-flame.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -12080,7 +12080,7 @@
   },
   {
    "path": "scenes/zephek/the-tidal-gauge.jpg",
-   "sha256": "01d86ec34a60b16bfeee583617bf758ddcd0494f2e1684e9e04576a30faf4c81",
+   "sha256": "2b0ac7d5a956ef1eccba3a70bf9634ba6a4102ec812d742276137372ecbd7cf1",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/zephek/the-tidal-gauge.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -12101,14 +12101,14 @@
   },
   {
    "path": "scenes/starwind/the-trophy-wall.jpg",
-   "sha256": "c777f60e59536a3db07855ec6341313d13d5dba539eefb25f2c0fdd616a86aba",
+   "sha256": "f1a750d3c32ede1a3803fea9fb0ef4ac33b18872531c64b400c0eef05df79b43",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/starwind/the-trophy-wall.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/kingdoms/the-unbowed-banner.jpg",
-   "sha256": "968883fe8bfc96a8f5da2cc9b54631009d52bb654d1bf301972944c84e6bf746",
+   "sha256": "018d887ba56f96761a1906dc49d15090f06f5883ae46ed9731399a4f4e3fd329",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/kingdoms/the-unbowed-banner.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -12136,14 +12136,14 @@
   },
   {
    "path": "scenes/zephek/the-vigil-of-steel.jpg",
-   "sha256": "8bbe3731a0c31986127d2c44b6cda35a68846ad1db6cc9df2fbff8368fdbd8a2",
+   "sha256": "a29ccbb1a0a05d0a10ee3595a1b52dbcd0e21823c8e33ab083026c182ea5f1e5",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/zephek/the-vigil-of-steel.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/starwind/the-vintner-s-harvest.jpg",
-   "sha256": "e49b6b8a0f909e4170153f445ab5e821d3cda90cbfb4d24db442c96da7ddea08",
+   "sha256": "2e93e999b5edd31a5bd8dc678dfd0a6c8b109b8066ebf5241ee7e841f7cf4ff0",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/starwind/the-vintner-s-harvest.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -12157,21 +12157,21 @@
   },
   {
    "path": "scenes/starwind/the-war-standard-of-the-houses.jpg",
-   "sha256": "3b9df0a82d5f52c50a87a8f475385b0170a36aa3931d978d36af76eddc1f510a",
+   "sha256": "d92b9cec60a3fa078b81d99829dd60f06c293e28ed2bdd896f57a8554d29b5b4",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/starwind/the-war-standard-of-the-houses.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/marches/the-warlord-s-drum.jpg",
-   "sha256": "85beabee183ab410537ef3e7a367712c7b260cd914c20cdfe7d5bce81fe5a10c",
+   "sha256": "c0d77f1ed85a3522e84853fa66f493dd73cd6180a53343c7a8aecd387384e383",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/marches/the-warlord-s-drum.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/towers/the-watcher-s-vigil.jpg",
-   "sha256": "eea887ba7a82ecfd25522b7dac8bc5072418fbec6e4bd6d9c78bd41fa30f0701",
+   "sha256": "8469678a1f07a89c6a10e000e657e1fd7f3cd5bdde448a7e62e2a45892010fa6",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/towers/the-watcher-s-vigil.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -12190,7 +12190,7 @@
   },
   {
    "path": "scenes/tigerpass/the-werebeast-moon.jpg",
-   "sha256": "aa23f5abb90c34b045b150f078dbbc68a72a17947049cb6a37bbbb558d28731f",
+   "sha256": "955d4d6bb05ee12d721c9b20fcee655bac4beffb125208d9a9096af0103cb6ed",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/tigerpass/the-werebeast-moon.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -12204,21 +12204,21 @@
   },
   {
    "path": "scenes/tigerpass/the-wild-hunt.jpg",
-   "sha256": "add6f9ddefe62aab5e9a077ec3755a51bc8a66e1a01be85143ac26d93af75ee6",
+   "sha256": "a18595889b720630a5f8101b17a58ef88bde8ebf6f65102fbcf21d2337feef4e",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/tigerpass/the-wild-hunt.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/kingdoms/the-winter-hearth.jpg",
-   "sha256": "c2a7f368ef340860e9e559ff3c58067528c748be57c107f79c7e80cafb76d11d",
+   "sha256": "8d82cb5b0d012201670dab2c9e7b89f13b8be7ed3f3f62f5010988fea298ccd6",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/kingdoms/the-winter-hearth.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/kingdoms/the-winter-levy.jpg",
-   "sha256": "18c2af641c64e6921ca9d7f3e65bd8744717e4e455e8ac1c455bb6f9a4cc50a9",
+   "sha256": "bff63957cb28136082dbab372bc1d8344adf8014e0c8bd7ad664189464c790a0",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/kingdoms/the-winter-levy.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -12244,7 +12244,7 @@
   },
   {
    "path": "scenes/zephek/training-grounds.jpg",
-   "sha256": "22694bbbc556eb352759424c53917cfa6d3fbfc5cc7e73204525a9d32c11f576",
+   "sha256": "ec8067c7cd1c1344a2ed2d11be8746ea58231c9bfe4b3b7e8635e0984419d656",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/zephek/training-grounds.jpg"
   },
   {
@@ -12280,12 +12280,12 @@
   },
   {
    "path": "scenes/marches/war-banner.jpg",
-   "sha256": "2981c143594be01fbd6c5d7cb4247b7f3db9b9be3a66a8d9e15ea26516dbc732",
+   "sha256": "f996cbaf189bdd482efba8e43ee2e438538d6fede365caff6c8dff4fd9bde598",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/marches/war-banner.jpg"
   },
   {
    "path": "scenes/stormlit/war-council.jpg",
-   "sha256": "feb01bb9fb062e7e806c7807986dd9429cbfc92685e1f3c56e8256ec72c8f08e",
+   "sha256": "bee4de4680eb2f4981c4e3a4f6bb86005e3685f3161066e30fc50404973b6261",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/stormlit/war-council.jpg"
   },
   {
@@ -12297,56 +12297,56 @@
   },
   {
    "path": "scenes/courts/watchtower-relay.jpg",
-   "sha256": "d2b81f8116244c4aa002cea96cf0958d9fff38fbee2d46136025e1a3f2eda647",
+   "sha256": "71920b9b6956cfea8d65fcef6b4c3cc4624cca84bb6ec7911e59405628a8bb97",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/courts/watchtower-relay.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/kingdoms/whaler-s-harpoon.jpg",
-   "sha256": "48685dafa3ab496c918ee884c0af6e7a380e847e5fb46f4a1dbcc4d33892a4c9",
+   "sha256": "24ef03028b3baaad34ecc7f32b00b1e12a2dd0b6604be4124e78d326648294a5",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/kingdoms/whaler-s-harpoon.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/towers/whirling-dervishes.jpg",
-   "sha256": "271598f4b3e25d81f2f54c9b11c628dda0fb3ef4c610b1427762edc1ddeb6800",
+   "sha256": "0bc332c7c8ffb2a4f07d514597aa7773ea2c7891adc1cb2fe30a9af1e332a7e7",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/towers/whirling-dervishes.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/courts/whispers-at-court.jpg",
-   "sha256": "b9ea23ab00ec3ae8ad7d69d49e9481dcb66e42758230384782871fec5b04a3f8",
+   "sha256": "21ce94bfa2c2be6da250138f80c6e2957d74757fc3e99e94f1e7936d95330c2b",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/courts/whispers-at-court.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/stormlit/wildsong-rising.jpg",
-   "sha256": "fd54319845c9960877ad3ed8ac1c222ff564a745077a7b62c4c0068c4d389653",
+   "sha256": "eacb4414cbebfeb552476367906909c0721bfac42f272ed02c3621334fa10d3d",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/stormlit/wildsong-rising.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/starwind/willow-lantern.jpg",
-   "sha256": "78eaea38f2e4d2c28730cf11b6fddf6aa051b5310a6aee86b525f3e533926060",
+   "sha256": "5a259db57486d62782df78679cfd1f175543f84881fedd5d50f1202af0eac3a0",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/starwind/willow-lantern.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/stormlit/wind-swept-dunes-fortress.jpg",
-   "sha256": "4f2eee82f503c8138b54538f4fe73bba48d32e4606a91e4256c8d2bae90563a3",
+   "sha256": "ac1314db713e89c6952c191e9d41fecec3cf1b2bef1c1d3e2feff1d7aa90be3e",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/stormlit/wind-swept-dunes-fortress.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
   },
   {
    "path": "scenes/tigerpass/wyvern-s-shadow.jpg",
-   "sha256": "150e950b483bff9be45f52b4fc1ad6c0962b7a5b74c00119a3756b93c46e944c",
+   "sha256": "8b6396f88c734d612076f6ccf45cf23691919b7d8faa984508dc32aaa4131260",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/tigerpass/wyvern-s-shadow.jpg",
    "license": "AI-generated",
    "src": "Mistral image generation"
@@ -12360,7 +12360,7 @@
   },
   {
    "path": "scenes/zephek/zealot-fervor.jpg",
-   "sha256": "876fe80f34d2c552cb5fa19f08281b0115a466eddeca4c4b8951e99e5a5a2ce8",
+   "sha256": "f0de594c2036f78656a9f567ae9bd9a20be123e54fa83aff86dc6ec6228158a5",
    "url": "https://grahamakenyon2-ship-it.github.io/cyf-portrait-vault/fateblade/scenes/zephek/zealot-fervor.jpg"
   },
   {
