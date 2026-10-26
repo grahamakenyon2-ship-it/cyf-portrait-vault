@@ -1,4 +1,4 @@
 {
- "version": "0.40.2",
- "note": "v0.40.2 art ship: scene-art rewire delivered 128 minted fandom edict/relic scenes (rewire v1.0, workflow 6a51a83); version line restored above the hand-bumped 0.40.1 so the patcher sees a monotonic bump. No card-data changes."
+ "version": "0.41.0",
+ "note": "v0.41.0 grand tranche: 227 E/R rewrites (11 realms), 46 sov passive texts, 86 legendary bodies; engine density hook + cum counters + all 46 non-KEEP sov clauses + drSummon2; KW_CACHE kw-mutation bugfix. Mirror of CYF-Cards @2f9762de (PR #11, merged)."
 }
