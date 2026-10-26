@@ -1,0 +1,68 @@
+name: Fateblade Rewire Scene Art
+
+# Wires the Scene Forge minted art (art/scenes/) onto the files cards
+# reference (the v0.28 reorg left old Commons fetch art there). Idempotent:
+# no-op on clean. See fateblade/art/rewire-report.json after each run.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: vault-painter
+
+jobs:
+  rewire:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            fateblade
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Rewire (copy minted art over the old fetch art)
+        run: node fateblade/rewire-scene-art.mjs
+      - name: Regen manifest (recompute sha256s from the tree)
+        run: node fateblade/regen-manifest.mjs --apply
+      - name: Guard (drift never ships)
+        run: node fateblade/vault-consistency-guard.mjs
+      - name: Commit if anything drifted (with race replay)
+        run: |
+          set -e
+          git add -A fateblade
+          if git diff --cached --quiet; then
+            echo "NO DRIFT — art already wired"
+            exit 0
+          fi
+          git diff --cached --name-only > /tmp/staged-files.txt
+          mkdir -p /tmp/staged
+          while read -r p; do
+            mkdir -p "/tmp/staged/$(dirname "$p")"
+            cp "$p" "/tmp/staged/$p"
+          done < /tmp/staged-files.txt
+          git fetch origin main
+          git reset --hard origin/main
+          while read -r p; do
+            cp "/tmp/staged/$p" "$p"
+          done < /tmp/staged-files.txt
+          git config user.name "fateblade-bot"
+          git config user.email "fateblade-bot@users.noreply.github.com"
+          git add -A fateblade
+          git commit -m "scene-art rewire: minted scenes over old fetch art (rewire v1.0)"
+          if ! git push origin main; then
+            echo "push raced; replaying on fresh main"
+            sleep 15
+            git fetch origin main
+            git reset --hard origin/main
+            while read -r p; do
+              cp "/tmp/staged/$p" "$p"
+            done < /tmp/staged-files.txt
+            git add -A fateblade
+            git commit -m "scene-art rewire: minted scenes over old fetch art (replayed)"
+            git push origin main
+          fi
+      - name: Guard again post-commit
+        run: node fateblade/vault-consistency-guard.mjs
