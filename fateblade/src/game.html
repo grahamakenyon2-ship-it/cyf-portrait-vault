@@ -1233,7 +1233,7 @@ const lan = {
 // different builds is a guaranteed desync, and the patcher means two machines
 // on one LAN are often on different versions). Bump this EVERY release that
 // changes game.html, together with the vault manifest version.
-const FB_LAN_VER = '0.40.0'; // v0.40.0: PHONE LAYOUT — compact match/mulligan/deck-builder scale (body.phone: touch + short edge <540px), portrait rotate-plate on #match, phone zoom panel that scrolls. Desktop + tablets unchanged.
+const FB_LAN_VER = '0.40.1'; // v0.40.1: LEGEND/sov VIEW SPLIT — decked Legendary cards read as CARDS everywhere (deck-builder grid + in-game hand/board/mulligan/battle-log/touch zoom = full cost/stats/keywords/ability view, no sov passive); the passive-only zoom is reserved for sovereign PICKER rows + the in-match hero-box inspect. Sov select tiles unchanged.
 function lanHashSeed(str){ let h = 2166136261 >>> 0; for(let i=0;i<str.length;i++){ h ^= str.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; } return h >>> 0; }
 function lanRng(seed){ // state-object rng so reconnect RESUME can serialize it
   const r = { s: seed >>> 0, next(){ r.s |= 0; r.s = (r.s + 0x6D2B79F5) | 0; let t = Math.imul(r.s ^ (r.s >>> 15), 1 | r.s); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; } };
@@ -3132,17 +3132,19 @@ document.addEventListener('click', (e) => { if (e.target.closest('button')) SFX.
 /* ---------- hover-zoom ---------- */
 const zoom = document.getElementById('zoom');
 function kwList(c){ return (c.kw||'').split(/[+,]/).map(s=>s.trim()).filter(Boolean).map(k=>`<b>${KWTXT[k]||k}</b> — ${KWDESC[k]||''}`).join('<br>'); } // v0.20-ready: renders multi-keyword lists
-function showZoom(c, ev, db, sov){ // db=true: deck-builder; sov=true: sovereign PICKER row (passive-only).
-  // v0.26.1: deck-builder zooms of deckable Sovereigns show the FULL body view (cost/stats/kw/ability/tribe)
-  // WITHOUT the passive — a decked Legendary is a body, never your played Sovereign. The picker row
-  // (sov=true) and in-game zoom (!db) stay passive-only (v0.22.6 rule).
+function showZoom(c, ev, db, sov){ // db=true: deck-builder; sov=true: SOVEREIGN view (passive-only).
+  // v0.38.5: a decked Legendary is a CARD — in the deck builder, in hand, on
+  // the board, mulligan, battle-log, everywhere, its zoom shows the full body
+  // (cost/stats/kw/ability) and NEVER the sov passive. The passive matters
+  // only for the Sovereign actually leading a deck, so passive-only zooms are
+  // reserved for sov=true: the picker rows, saga banners, and the in-match
+  // hero-box inspect.
   const esc = (s)=>String(s||'').replace(/"/g,'&quot;');
   zoom.className = 'r-' + (c.rarity || 'common');
-  // v0.22.6: SOVEREIGN ZOOM = PASSIVE ONLY. Sovereigns lead from the hero box —
-  // they are never played as cards, so keywords/battlecries/stats are noise here.
-  // Only the passive matters, so that's all the zoom shows (decked legends, which
-  // ARE bodies, keep the full card view below).
-  if (c.passive && (sov || !db)) {
+  // v0.22.6: SOVEREIGN ZOOM = PASSIVE ONLY (sov=true). Sovereigns lead from
+  // the hero box — they are never played as cards, so keywords/battlecries/
+  // stats are noise for THEM. Decked legends are bodies: full card view.
+  if (c.passive && sov) {
     zoom.innerHTML = `<img src="${c.img}">
       <div class="zn">${c.name}</div>
       <div class="zr">${c.rarity} · SOVEREIGN</div>
@@ -3491,7 +3493,7 @@ if (TOUCH){
         if(!TD || TD.moved || TD.zoomed) return;
         const who = zoomCardFor(mcard); if(!who) return;
         const r = who.el.getBoundingClientRect();
-        showZoom(who.c, { clientX: r.left + r.width/2, clientY: r.top + r.height/2 });
+        showZoom(who.c, { clientX: r.left + r.width/2, clientY: r.top + r.height/2 }, false, !!cls(who.el, '#aiHero')); // v0.38.5: foe Sovereign keeps the passive-only view
         TD.zoomed = true; swallow.n = 1;
       }, 300);
       return;
@@ -3508,7 +3510,7 @@ if (TOUCH){
       TD.timer = setTimeout(()=>{
         if(!TD || TD.moved || TD.zoomed) return;
         const r = who.el.getBoundingClientRect();
-        showZoom(who.c, { clientX: r.left + r.width/2, clientY: r.top + r.height/2 });
+        showZoom(who.c, { clientX: r.left + r.width/2, clientY: r.top + r.height/2 }, false, !!cls(who.el, '#aiHero')); // v0.38.5: foe Sovereign keeps the passive-only view
         TD.zoomed = true; swallow.n = 1;
       }, 300);
     }
@@ -3900,14 +3902,14 @@ function dbCardHtml(c){
   // v0.35.8: the tile shows SHORT keyword tags (multi-kw reads at a glance — "GUARD · AEGIS")
   // plus the ability text itself; the full descriptions stay in the hover zoom.
   const kwNames = (c.kw||'').split(/[+,]/).map((s)=>s.trim()).filter(Boolean).map((k)=>KWTXT[k]||k).join(' · ');
-  const pas = c.passive ? (c.passive.name + ': ' + c.passive.desc) : '';
-  const tip = esc([c.ability, pas, kwNames ? '[' + kwNames + ']' : ''].filter(Boolean).join(' — '));
+  // v0.38.5: a tile legend is a CARD — keywords + ability, never the sov passive
+  const tip = esc([c.ability, kwNames ? '[' + kwNames + ']' : ''].filter(Boolean).join(' — '));
   return `    <div class="dbcard r-${c.rarity||'common'} ${n?'sel':''}" onclick="dbAdd('${c.id.replace(/'/g,"\\'")}')" data-id="${c.id}" title="${tip}">
       <div class="dbcost">${c.cost}</div>
       ${n?`<div class="dbn">×${n}</div>`:''}
       <img src="${c.img}" loading="lazy" alt="${c.name}">
       <div class="nm">${c.name}</div>
-      <div class="ab">${kwNames ? `<div>${kwNames}</div>`:''}${(c.ability||pas) ? `<div style="font-weight:400;color:#cbb98d">${esc(c.ability||pas).slice(0,110)}</div>` : (!kwNames && c.type ? c.type.toUpperCase() : '')}</div>
+      <div class="ab">${kwNames ? `<div>${kwNames}</div>`:''}${c.ability ? `<div style="font-weight:400;color:#cbb98d">${esc(c.ability).slice(0,110)}</div>` : (!kwNames && c.type ? c.type.toUpperCase() : '')}</div>
       <div class="st">${(c.type==='edict'||c.type==='relic')?`<span style="color:var(--abil);letter-spacing:1px">${c.type.toUpperCase()}</span>`:`<span class="statgem atk">${c.atk}<i>ATK</i></span><span class="statgem hp">${c.hp}<i>HP</i></span>`}</div>
     </div>`;
 }
